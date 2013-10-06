@@ -1,0 +1,143 @@
+de.dbo.Displaying 69/69 tagmatches
+
+Printing 69 matches
+
+Name                 Start   End           Value       OrigValue Qty         Caption       Type Visible Comment Editable  Meta
+XXXjava.awt.Rectangle[x=408,y=157,width=199,height=34]    31    39       Automobil                 1.0             XXX       null  true false  true false
+
+XXXjava.awt.Rectangle[x=785,y=157,width=286,height=43]    47    59   Niederlassung                 1.0             XXX       null  true false  true false
+
+XXXjava.awt.Rectangle[x=1090,y=157,width=281,height=43]    61    72    Braunschweig                 1.0             XXX       null  true false  true false
+
+XXXjava.awt.Rectangle[x=240,y=227,width=346,height=35]    94   109 Ernst-Böhme-Str.                 1.0             XXX       null  true false  true false
+
+XXXjava.awt.Rectangle[x=822,y=228,width=282,height=43]   121   132    Braunschweig                 1.0             XXX       null  true false  true false
+
+XXXjava.awt.Rectangle[x=240,y=440,width=228,height=33]   214   222       DEKRA-Nr:                 1.0             XXX       null  true false  true false
+
+XXXjava.awt.Rectangle[x=265,y=573,width=919,height=25]   386   404 SCHADEN-KALKULATION                 1.0             XXX       null  true false  true false
+
+XXXjava.awt.Rectangle[x=263,y=657,width=520,height=25]   549   559     ERSATZTEILE                 1.0             XXX       null  true false  true false
+
+XXXjava.awt.Rectangle[x=1438,y=657,width=245,height=25]   643   652      PREISSTAND                 1.0             XXX       null  true false  true false
+
+XXXjava.awt.Rectangle[x=264,y=741,width=171,height=23]   709   715         LEIT-NR                 1.0             XXX       null  true false  true false
+
+XXXjava.awt.Rectangle[x=588,y=740,width=271,height=25]   735   745     BEZEICHNUNG                 1.0             XXX       null  true false  true false
+
+XXXjava.awt.Rectangle[x=1114,y=741,width=196,height=23]   777   784        TEILE-NR                 1.0             XXX       null  true false  true false
+
+XXXjava.awt.Rectangle[x=590,y=823,width=444,height=25]   901   918 STOSSF-VERKLEIDUNG                 1.0             XXX       null  true false  true false
+
+XXXjava.awt.Rectangle[x=586,y=868,width=197,height=24]  1065  1072        AUFNAHME                 1.0             XXX       null  true false  true false
+
+XXXjava.awt.Rectangle[x=865,y=867,width=143,height=25]  1076  1081          STOSSF                 1.0             XXX       null  true false  true false
+
+XXXjava.awt.Rectangle[x=586,y=912,width=197,height=24]  1231  1238        AUFNAHME                 1.0             XXX       null  true false  true false
+
+XXXjava.awt.Rectangle[x=865,y=911,width=143,height=25]  1242  1247          STOSSF                 1.0             XXX       null  true false  true false
+
+XXXjava.awt.Rectangle[x=590,y=955,width=245,height=25]  1397  1406      ZIERGITTER                 1.0             XXX       null  true false  true false
+
+XXXjava.awt.Rectangle[x=588,y=998,width=270,height=25]  1562  1572     FRONTKLAPPE                 1.0             XXX       null  true false  true false
+
+XXXjava.awt.Rectangle[x=586,y=1041,width=223,height=33]  1727  1735       Abdeckung                 1.0             XXX       null  true false  true false
+
+XXXjava.awt.Rectangle[x=340,y=1336,width=869,height=25]  1882  1899 SCHLUSSKALKULATION                 1.0             XXX       null  true false  true false
+
+XXXjava.awt.Rectangle[x=336,y=1463,width=523,height=25]  2052  2062     ARBEITSLOHN                 1.0             XXX       null  true false  true false
+
+XXXjava.awt.Rectangle[x=940,y=1463,width=217,height=25]  2100  2108       ZEITBASIS                 1.0             XXX       null  true false  true false
+
+XXXjava.awt.Rectangle[x=388,y=1507,width=145,height=25]  2168  2173          GESAMT                 1.0             XXX       null  true false  true false
+
+XXXjava.awt.Rectangle[x=1363,y=1503,width=170,height=31]  2246  2252         EUR/STD                 1.0             XXX       null  true false  true false
+
+XXXjava.awt.Rectangle[x=388,y=1550,width=145,height=25]  2313  2318          GESAMT                 1.0             XXX       null  true false  true false
+
+XXXjava.awt.Rectangle[x=1363,y=1546,width=170,height=31]  2391  2397         EUR/STD                 1.0             XXX       null  true false  true false
+
+XXXjava.awt.Rectangle[x=338,y=1594,width=270,height=25]  2452  2462     GESAMTSUMME                 1.0             XXX       null  true false  true false
+
+XXXjava.awt.Rectangle[x=636,y=1594,width=273,height=25]  2464  2474     ARBEITSLOHN                 1.0             XXX       null  true false  true false
+
+XXXjava.awt.Rectangle[x=337,y=1678,width=522,height=25]  2617  2627     NEBENKOSTEN                 1.0             XXX       null  true false  true false
+
+XXXjava.awt.Rectangle[x=388,y=1721,width=389,height=25]  2659  2674 HOHLRAUMKONSERV.                 1.0             XXX       null  true false  true false
+
+XXXjava.awt.Rectangle[x=1363,y=1761,width=170,height=31]  2784  2790         EUR/STD                 1.0             XXX       null  true false  true false
+
+XXXjava.awt.Rectangle[x=338,y=1809,width=270,height=25]  2846  2856     GESAMTSUMME                 1.0             XXX       null  true false  true false
+
+XXXjava.awt.Rectangle[x=637,y=1809,width=272,height=25]  2858  2868     NEBENKOSTEN                 1.0             XXX       null  true false  true false
+
+XXXjava.awt.Rectangle[x=339,y=1892,width=470,height=25]  3012  3021      LACKIERUNG                 1.0             XXX       null  true false  true false
+
+XXXjava.awt.Rectangle[x=940,y=1892,width=217,height=25]  3060  3068       ZEITBASIS                 1.0             XXX       null  true false  true false
+
+XXXjava.awt.Rectangle[x=386,y=1936,width=273,height=25]  3128  3138     ARBEITSLOHN                 1.0             XXX       null  true false  true false
+
+XXXjava.awt.Rectangle[x=1363,y=1932,width=170,height=31]  3206  3212         EUR/STD                 1.0             XXX       null  true false  true false
+
+XXXjava.awt.Rectangle[x=414,y=1980,width=370,height=25]  3273  3287 LACKIERMATERIAL                 1.0             XXX       null  true false  true false
+
+XXXjava.awt.Rectangle[x=338,y=2023,width=270,height=25]  3410  3420     GESAMTSUMME                 1.0             XXX       null  true false  true false
+
+XXXjava.awt.Rectangle[x=639,y=2023,width=245,height=25]  3422  3431      LACKIERUNG                 1.0             XXX       null  true false  true false
+
+XXXjava.awt.Rectangle[x=1037,y=2024,width=197,height=23]  3438  3445        MATERIAL                 1.0             XXX       null  true false  true false
+
+XXXjava.awt.Rectangle[x=338,y=2107,width=520,height=25]  3576  3586     ERSATZTEILE                 1.0             XXX       null  true false  true false
+
+XXXjava.awt.Rectangle[x=388,y=2150,width=395,height=25]  3721  3736 KLEINERSATZTEILE                 1.0             XXX       null  true false  true false
+
+XXXjava.awt.Rectangle[x=338,y=2194,width=270,height=25]  3861  3871     GESAMTSUMME                 1.0             XXX       null  true false  true false
+
+XXXjava.awt.Rectangle[x=638,y=2194,width=270,height=25]  3873  3883     ERSATZTEILE                 1.0             XXX       null  true false  true false
+
+XXXjava.awt.Rectangle[x=338,y=2278,width=721,height=25]  4025  4039 REPARATURKOSTEN                 1.0             XXX       null  true false  true false
+
+XXXjava.awt.Rectangle[x=338,y=2448,width=721,height=25]  4355  4369 REPARATURKOSTEN                 1.0             XXX       null  true false  true false
+
+XXXjava.awt.Rectangle[x=387,y=2571,width=522,height=31]  4562  4582 NFA/VORTEILSAUSGLEICH                 1.0             XXX       null  true false  true false
+
+XXXjava.awt.Rectangle[x=1038,y=2575,width=296,height=25]  4588  4599    ERSATZTEILEN                 1.0             XXX       null  true false  true false
+
+XXXjava.awt.Rectangle[x=338,y=2619,width=270,height=25]  4702  4712     GESAMTSUMME                 1.0             XXX       null  true false  true false
+
+XXXjava.awt.Rectangle[x=338,y=2703,width=571,height=25]  4870  4881    GESAMTBETRAG                 1.0             XXX       null  true false  true false
+
+XXXjava.awt.Rectangle[x=1386,y=2702,width=138,height=30]  4949  4954          ABZUG)                 1.0             XXX       null  true false  true false
+
+XXXjava.awt.Rectangle[x=338,y=2830,width=571,height=25]  5197  5208    GESAMTBETRAG                 1.0             XXX       null  true false  true false
+
+XXXjava.awt.Rectangle[x=1361,y=2829,width=138,height=30]  5274  5279          ABZUG)                 1.0             XXX       null  true false  true false
+
+XXXjava.awt.Rectangle[x=263,y=2955,width=364,height=25]  5356  5370 ERLAEUTERUNGEN:                 1.0             XXX       null  true false  true false
+
+XXXjava.awt.Rectangle[x=263,y=2998,width=445,height=25]  5392  5409 E-TEILE-PREISE=UPE                 1.0             XXX       null  true false  true false
+
+XXXjava.awt.Rectangle[x=788,y=2994,width=295,height=31]  5413  5424    HERST/IMPORT                 1.0             XXX       null  true false  true false
+
+XXXjava.awt.Rectangle[x=1336,y=2998,width=373,height=25]  5474  5488 ANWENDERANGABEN                 1.0             XXX       null  true false  true false
+
+XXXjava.awt.Rectangle[x=263,y=3043,width=247,height=23]  5510  5519      E-TEILE-NR                 1.0             XXX       null  true false  true false
+
+XXXjava.awt.Rectangle[x=688,y=3042,width=220,height=25]  5527  5535       UNBEDINGT                 1.0             XXX       null  true false  true false
+
+XXXjava.awt.Rectangle[x=938,y=3042,width=147,height=25]  5537  5542          BST-NR                 1.0             XXX       null  true false  true false
+
+XXXjava.awt.Rectangle[x=1513,y=3038,width=547,height=31]  5599  5620 ERSATZTEIL-/ARB-POS-NR                 1.0             XXX       null  true false  true false
+
+XXXjava.awt.Rectangle[x=315,y=3087,width=268,height=23]  5645  5655     ZEITANTEILE                 1.0             XXX       null  true false  true false
+
+XXXjava.awt.Rectangle[x=686,y=3087,width=174,height=23]  5660  5666         ANDERER                 1.0             XXX       null  true false  true false
+
+XXXjava.awt.Rectangle[x=1239,y=3087,width=143,height=23]  5720  5725          LIZENZ                 1.0             XXX       null  true false  true false
+
+XXXjava.awt.Rectangle[x=1463,y=3084,width=193,height=27]  5729  5736        DEKRAT01                 1.0             XXX       null  true false  true false
+
+XXXjava.awt.Rectangle[x=1040,y=3130,width=146,height=25]  5820  5825          SYSTEM                 1.0             XXX       null  true false  true false
+
+XXXjava.awt.Rectangle[x=1211,y=3131,width=173,height=24]  5827  5833         AUDATEX                 1.0             XXX       null  true false  true false
+

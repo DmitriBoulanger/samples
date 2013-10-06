@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd" >
+
+    <!--|  																						-->
+	<!--| Only messages from the application itself are send to the console. 					-->
+	<!--| However, all messages are send to the standard file.  								-->
+	<!--| Also a special file is used to collect ALL error messages  							-->
+	<!--|  																						-->
+
+<log4j:configuration xmlns:log4j='http://jakarta.apache.org/log4j/'>
+
+	<!-- messages to console -->
+	<appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+		<param name="threshold" value="debug" />
+		<param name="target" value="System.out" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{HH:mm:ss.SSS} %-5p %20c{1}: %m %n" />
+		</layout>
+	</appender>
+
+	<!-- messages to a daily-rolling file (every day)  -->
+	<appender name="DAILY_ROLLING_FILE" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="threshold" value="debug" />
+		<param name="file" value="target/logs/log.log" />
+		<param name="datePattern" value="'.'yyyy-MM-dd" />
+		<param name="append" value="true" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{HH:mm:ss.SSS} [%t] %-5p %30c: %m%n" />
+		</layout>
+	</appender> 
+
+	<!-- errors to a special daily-rolling file (every day) -->
+	<appender name="DAILY_ROLLING_FILE_ERRORS" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="threshold" value="error" />
+		<param name="file" value="target/logs/err.log" />
+		<param name="datePattern" value="'.'yyyy-MM-dd" />
+		<param name="append" value="true" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{HH:mm:ss.SSS} [%t] %35c: %m%n" />
+		</layout>
+	</appender> 
+
+	<!-- all application-triggered messages to console -->
+	<logger name="de.dbo">
+		<level value="debug" />
+		<appender-ref ref="CONSOLE" />
+	</logger>
+	
+	<!-- all messages to the main file and errors to the separate err-file -->
+	<root>
+		<level value="debug" />
+		<appender-ref ref="DAILY_ROLLING_FILE_ERRORS" />
+		<appender-ref ref="DAILY_ROLLING_FILE" /> 
+	</root>
+
+</log4j:configuration>
