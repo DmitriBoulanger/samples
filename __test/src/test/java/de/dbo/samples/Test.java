@@ -6,6 +6,7 @@ import org.junit.runners.Suite.SuiteClasses;
 
 /**
  * All repository/workspace tests
+ * Logger is configured to INFO-level. See: log4j.xml
  * 
  * @author Dmitri Boulanger, Hombach
  *

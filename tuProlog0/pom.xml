@@ -7,6 +7,7 @@
 		<groupId>de.dbo.samples</groupId>
 		<artifactId>parent</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
+		<relativePath>../__parent</relativePath>
 	</parent>
 
 	<dependencies>
