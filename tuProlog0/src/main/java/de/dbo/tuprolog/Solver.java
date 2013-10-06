@@ -39,7 +39,7 @@ public final class Solver {
 		}
 		try {
 			engine.addTheory( theory );
-			log.info("theory " + theory.toString() + " loaded.");
+			log.debug("theory loaded: \n" + theory.toString());
 		} catch ( InvalidTheoryException e ) {
 			log.error( "error while parsing " + resource+": " + e.getMessage() );
 		}

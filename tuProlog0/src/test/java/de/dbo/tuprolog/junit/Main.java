@@ -18,10 +18,6 @@ public class Main extends PathTests {
 					new Solver( new Library( "de.dbo.tuprolog.tuprolog0.Prolog" ) );
 			solver.loadTheory("rules.pl");
 			solver.loadTheory("db.pl");
-			solver.loadTheory("col1.pl");
-			solver.loadTheory("col2.pl");
-			solver.loadTheory("col3.pl");
-			solver.loadTheory("table.pl");
 			return solver;
 		} catch (Exception e) {
 			throw new RuntimeException("cannot create solver",e);
@@ -31,6 +27,6 @@ public class Main extends PathTests {
 	@BeforeClass
 	public static void init() {
 		solver = solver();
-		log.info("Libraries: " + solver.printLibraries() );
+		log.debug("Libraries: " + solver.printLibraries() );
 	}
 }

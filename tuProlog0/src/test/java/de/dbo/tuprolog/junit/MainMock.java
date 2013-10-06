@@ -27,6 +27,6 @@ public class MainMock extends PathTests {
 	@BeforeClass
 	public static void init() {
 		solver = solver();
-		log.info("Libraries: " + solver.printLibraries() );
+		log.debug("Libraries: " + solver.printLibraries() );
 	}
 }

@@ -64,23 +64,20 @@ public final class Logger  {
 				sb.append( contents.getTerm().toString() );
 			}
 		}
+		
 		// send to the logger
-		doLog( type, sb);
-	}
-	
-	private final void doLog(final Integer type, final StringBuilder sb) {
-		final String message = sb.toString();
+		final String txt = sb.toString();
 		switch( type.intValue() ) {
-			case 0: log.error(message); break;
-			case 1: log.warn(message); 	break;
-			case 2: log.info(message);	break;
-			case 3: log.debug(message); break;
+			case 0: log.error(txt); break;
+			case 1: log.warn(txt); 	break;
+			case 2: log.debug(txt);	break;
+			case 3: log.debug(txt); break;
 			default:
 				new RuntimeException(
 						"Should never happen: type=" + type + " is not acceptable");
 		}
 	}
-	
+
 	/*
 	 * drop single-quotations (begin and end of a string), if any
 	 */

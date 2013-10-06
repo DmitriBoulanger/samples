@@ -50,7 +50,7 @@ public class StudentTest {
 		// create entity-manager for Derby (test-configuration)
 		final Map<String,String> config 
 			=  PersistenceConfigurationFactory.persistence(PersistenceConfigurations.TEST);
-		log.info("Configuration properties:" +  Print.lines(config));
+		log.debug("Configuration properties:" +  Print.lines(config));
 		
 		EMF = Persistence.createEntityManagerFactory("JEE6-Persistence", config);
 		EM = EMF.createEntityManager();
