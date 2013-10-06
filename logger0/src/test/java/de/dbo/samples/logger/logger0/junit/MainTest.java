@@ -1,6 +1,8 @@
-package de.dbo.samples.logger.logger0;
+package de.dbo.samples.logger.logger0.junit;
  
 import org.junit.Test;
+
+import de.dbo.samples.logger.logger0.Main;
 import static org.junit.Assert.assertSame;;
 
 /**

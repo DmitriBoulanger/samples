@@ -13,6 +13,8 @@
 	<!-- ALL RESORCES: VERSIONS -->
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		
+		<eclipselink.version>2.5.1</eclipselink.version>
 		<xstream.version>1.2.2</xstream.version>
 		<tuprolog.version>2.1.1</tuprolog.version>
 
@@ -26,6 +28,18 @@
 
 	<dependencyManagement>
 		<dependencies>
+
+	<dependency>
+		<groupId>de.dbo.samples</groupId>
+		<artifactId>parent</artifactId>
+		<version>${project.version}</version>
+	</dependency>
+		
+		<dependency>
+			<groupId>org.eclipse.persistence</groupId>
+			<artifactId>eclipselink</artifactId>
+			<version>${eclipselink.version}</version>
+		</dependency>
 			<dependency>
 				<groupId>xstream</groupId>
 				<artifactId>xstream</artifactId>
@@ -92,5 +106,19 @@
 			<artifactId>slf4j-log4j12</artifactId>
 		</dependency>
 	</dependencies>
+	
+  <build>
+    <plugins>
+       <plugin>
+           <groupId>org.apache.maven.plugins</groupId>
+           <artifactId>maven-compiler-plugin</artifactId>
+           <version>2.3.1</version>
+           <configuration>
+               <source>1.6</source>
+               <target>1.6</target>
+           </configuration>
+       </plugin>
+    </plugins>
+  </build>
 
 </project>

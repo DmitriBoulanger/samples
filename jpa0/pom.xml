@@ -12,7 +12,7 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>de.dbo.util</groupId>
+			<groupId>de.dbo.samples</groupId>
 			<artifactId>util0</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
@@ -20,13 +20,21 @@
 		<dependency>
 			<groupId>org.eclipse.persistence</groupId>
 			<artifactId>eclipselink</artifactId>
-			<version>2.5.1</version>
 		</dependency>
 
 		<dependency>
 			<groupId>xstream</groupId>
 			<artifactId>xstream</artifactId>
 		</dependency>
+		
+		<dependency>
+				<groupId>org.apache.derby</groupId>
+				<artifactId>derby</artifactId>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.derby</groupId>
+				<artifactId>derbyclient</artifactId>
+			</dependency>
 
 	</dependencies>
 

@@ -1,5 +1,6 @@
-package de.dbo.samples.jpa.jpa0;
+package de.dbo.samples.jpa.jpa0.junit;
 
+import static org.junit.Assert.*;
 import de.dbo.util0.Print;
 import de.dbo.samples.jpa.jpa0.config.DerbyProperties;
 import de.dbo.samples.jpa.jpa0.config.PersistenceConfigurationFactory;
@@ -117,9 +118,12 @@ public class StudentTest {
 			   trx.commit();
 			   
 			   final Query q = EM.createQuery("select t from Student t");
-			   final List<Student> studentList = (List<Student> )q.getResultList();
-			   for (Student studentFromList: studentList) {
+			   final List<?> studentList = q.getResultList();
+			   for (final Object studentFromList: studentList) {
 				   log.info("LIST   -- " +studentFromList);
+				   assertSame("Unexpected entiy class: " + studentFromList.getClass()
+						   + " Expected: " +  Student.class
+						   , studentFromList.getClass(), Student.class);
 			   }
 			   
 			} catch (Exception e) {
