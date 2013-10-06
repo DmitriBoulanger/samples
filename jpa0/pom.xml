@@ -24,19 +24,18 @@
 		</dependency>
 
 		<dependency>
-			<groupId>xstream</groupId>
+			<groupId>com.thoughtworks.xstream</groupId>
 			<artifactId>xstream</artifactId>
 		</dependency>
 		
 		<dependency>
 				<groupId>org.apache.derby</groupId>
 				<artifactId>derby</artifactId>
-			</dependency>
-			<dependency>
+		</dependency>
+		<dependency>
 				<groupId>org.apache.derby</groupId>
 				<artifactId>derbyclient</artifactId>
-			</dependency>
-
+		</dependency>
 	</dependencies>
 
 </project>

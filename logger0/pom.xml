@@ -10,6 +10,8 @@
 		<relativePath>../__parent</relativePath>
 	</parent>
 
-	<!--  Only standard resources from the parent ... -->
+	<!-- =====================
+	     ONLY COMMON RESOURCES 
+	     ===================== -->
 	
 </project>

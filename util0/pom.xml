@@ -9,4 +9,8 @@
 		<relativePath>../__parent</relativePath>
 	</parent>
 	
+	<!-- =====================
+	     ONLY COMMON RESOURCES 
+	     ===================== -->
+	
 </project>
