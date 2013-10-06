@@ -8,6 +8,12 @@ public final class Profiler {
 		// should be never initialized as an instance
 	}
 	
+	/**
+     * Convert a millisecond duration to a string format
+     * 
+     * @param time A duration in milliseconds to convert to a string form
+     * @return A string of the form "X h. Y min. Z sec. W ms. ".
+     */
 	public static String formatMs(final long time) {
         if(time < 0){
            return "?";
@@ -63,7 +69,13 @@ public final class Profiler {
 		}
 	}
 	
+	/**
+     * Convert elapsed  duration to a string format
+     * 
+     * @param time A duration in milliseconds to convert to a string form
+     * @return A string of the form "Elapsed: X h. Y min. Z sec. W ms. ".
+     */
 	public static String elapsed(long start) {
-		return new String("Elapsed: "+formatMs(System.currentTimeMillis()-start));
+		return new String("Elapsed: " + formatMs(System.currentTimeMillis()-start));
 	}
 }
