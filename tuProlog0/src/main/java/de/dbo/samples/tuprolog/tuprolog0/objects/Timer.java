@@ -1,4 +1,4 @@
-package de.dbo.tuprolog;
+package de.dbo.samples.tuprolog.tuprolog0.objects;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

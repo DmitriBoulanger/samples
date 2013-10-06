@@ -1,5 +1,7 @@
-package de.dbo.tuprolog;
+package de.dbo.samples.tuprolog.tuprolog0;
 
+import de.dbo.samples.tuprolog.tuprolog0.objects.Counter;
+import de.dbo.samples.tuprolog.tuprolog0.objects.Timer;
 import alice.tuprolog.Term;
 
 public final class Library extends alice.tuprolog.Library {

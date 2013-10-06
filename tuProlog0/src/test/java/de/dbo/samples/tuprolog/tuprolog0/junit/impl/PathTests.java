@@ -1,11 +1,11 @@
-package de.dbo.tuprolog.junit.impl;
+package de.dbo.samples.tuprolog.tuprolog0.junit.impl;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import de.dbo.tuprolog.Solver;
+import de.dbo.samples.tuprolog.tuprolog0.Solver;
 import alice.tuprolog.Int;
 import alice.tuprolog.Struct;
 import alice.tuprolog.Term;

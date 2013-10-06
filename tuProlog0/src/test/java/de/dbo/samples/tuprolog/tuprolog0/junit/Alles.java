@@ -1,4 +1,4 @@
-package de.dbo.tuprolog.junit;
+package de.dbo.samples.tuprolog.tuprolog0.junit;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
@@ -12,7 +12,7 @@ import org.junit.runners.Suite.SuiteClasses;
  */
 @RunWith(Suite.class)
 @SuiteClasses({ 
-	    de.dbo.tuprolog.junit.Main.class
-	  , de.dbo.tuprolog.junit.MainMock.class})
+	    de.dbo.samples.tuprolog.tuprolog0.junit.Main.class
+	  , de.dbo.samples.tuprolog.tuprolog0.junit.MainMock.class})
 
 public class Alles {}

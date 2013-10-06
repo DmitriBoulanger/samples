@@ -1,4 +1,4 @@
-package de.dbo.tuprolog;
+package de.dbo.samples.tuprolog.tuprolog0;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -16,7 +16,7 @@ public final class Logger  {
 	static {
 		MESSAGE_TYPES.put("err" ,  new Integer(0));
 		MESSAGE_TYPES.put("warn",  new Integer(1));
-		MESSAGE_TYPES.put("info",  new Integer(2));
+		MESSAGE_TYPES.put("info",  new Integer(3)); // 2 to enable
 		MESSAGE_TYPES.put("debug", new Integer(3));
 	}
 	
@@ -70,7 +70,7 @@ public final class Logger  {
 		switch( type.intValue() ) {
 			case 0: log.error(txt); break;
 			case 1: log.warn(txt); 	break;
-			case 2: log.debug(txt);	break;
+			case 2: log.info(txt);	break;
 			case 3: log.debug(txt); break;
 			default:
 				new RuntimeException(

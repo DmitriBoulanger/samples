@@ -15,7 +15,7 @@ import static org.junit.Assert.assertSame;;
  * @author Dmitri Boulanger, Hombach
  *
  */
-public class MainTest {
+public class LoggerTest {
 	
 	@Test
 	public void test() {

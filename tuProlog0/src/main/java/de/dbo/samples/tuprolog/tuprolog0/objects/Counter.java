@@ -1,4 +1,4 @@
-package de.dbo.tuprolog;
+package de.dbo.samples.tuprolog.tuprolog0.objects;
 
 public class Counter {
 	
