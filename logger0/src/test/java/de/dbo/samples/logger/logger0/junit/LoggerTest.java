@@ -1,6 +1,8 @@
 package de.dbo.samples.logger.logger0.junit;
  
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import de.dbo.samples.logger.logger0.Main;
 import static org.junit.Assert.assertSame;;
@@ -20,6 +22,8 @@ public class LoggerTest {
 	@Test
 	public void test() {
 		 final Main main = new Main();
+		 final Logger log = LoggerFactory.getLogger(LoggerTest.class);
+		 log.info(main.msg());
 		 main.log(); // this does not work in the Main
 		 assertSame("Expected logger is " + org.slf4j.impl.Log4jLoggerAdapter.class.getName()
 				 + " but found " +  main.logger()

@@ -17,7 +17,7 @@ public final class Main {
 	protected static final Logger log = LoggerFactory.getLogger(Main.class);
 
 	public void log() {
-		 log.info(msg());
+		 log.debug(msg());
 	}
 	
 	public String msg() {
