@@ -29,14 +29,14 @@ public final class Main {
 	}
 	
 	public static final void main(final String[] args) {
-		/*
-		this method throws warning:
-		SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
-		SLF4J: Defaulting to no-operation (NOP) logger implementation
-		SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
-		=================================================================================
-		there no logger resources at the class-path
-		*/
+	/*
+	this method throws warning:
+	SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+	SLF4J: Defaulting to no-operation (NOP) logger implementation
+	SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder
+	===========================================================================
+	Reason: there no logger resources at the class-path
+	*/
 		final Main main = new Main();
 		main.log(); // does nothing!
 		System.out.println("SYSTEM.OUT: " + main.msg());
