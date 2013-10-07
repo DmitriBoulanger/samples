@@ -2,6 +2,12 @@ package de.dbo.util0;
 
 import java.util.concurrent.TimeUnit;
 
+/**
+ *  Converter for elapsed duration in milliseconds
+ * 
+ * @author Dmitri Boulanger, Hombach
+ *
+ */
 public final class Profiler {
 	
 	private Profiler() {
@@ -18,7 +24,6 @@ public final class Profiler {
         if(time < 0){
            return "?";
         }
-        
         long millliseconds = time;
 
         final long hours = TimeUnit.MILLISECONDS.toHours(millliseconds);
@@ -48,26 +53,6 @@ public final class Profiler {
 
         return(sb.toString());
     }
-
-	private static final String zeros(final int cnt, final long x) {
-		switch (cnt) {
-		case 2:
-		if (x<10) {
-			return "00" + x;
-		} else if (x<100) {
-			return "0" + x;
-		} else {
-			return "" + x;
-		}
-		case 1:
-			if (x<10) {
-				return "0" + x;
-			} else {
-				return "" + x;
-			}
-			default: return "" +x;
-		}
-	}
 	
 	/**
      * Convert elapsed  duration to a string format
@@ -77,5 +62,28 @@ public final class Profiler {
      */
 	public static String elapsed(long start) {
 		return new String("Elapsed: " + formatMs(System.currentTimeMillis()-start));
+	}
+	
+	/**
+	 * @return formated number with possibly added zeros at the left
+	 */
+	private static final String zeros(final int cnt, final long x) {
+		switch (cnt) {
+		case 2:
+			if (x<10) {
+				return "00" + x;
+			} else if (x<100) {
+				return "0" + x;
+			} else {
+				return "" + x;
+			}
+			case 1:
+			if (x<10) {
+				return "0" + x;
+			} else {
+				return "" + x;
+			}
+			default: return "" +x;
+		}
 	}
 }
