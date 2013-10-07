@@ -10,9 +10,9 @@
      Version management for samples
    </description>
 
-	<!-- ====================== 
-	     ALL RESORCES: VERSIONS 
-	     ====================== -->
+	<!-- =============================== 
+	     ALL RESORCES AND THEIR VERSIONS 
+	     =============================== -->
 	     
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -23,6 +23,8 @@
 
 		<junit.version>4.8.2</junit.version>
 		<slf4j-api.version>1.6.1</slf4j-api.version>
+		
+		<!-- TEST ONLY  -->
 		<slf4j-log4j12.version>1.6.1</slf4j-log4j12.version>
 
 		<derby.version>10.8.2.2</derby.version>
@@ -58,13 +60,6 @@
 			<version>${tuprolog.version}</version>
 		</dependency>
 
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<scope>test</scope>
-			<version>${junit.version}</version>
-		</dependency>
-
 		<!-- SLF4J Logging -->
 
 		<dependency>
@@ -80,6 +75,13 @@
 		</dependency>
 
 		<!-- Test resources -->
+		
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+			<version>${junit.version}</version>
+		</dependency>
 
 		<dependency>
 			<groupId>org.apache.derby</groupId>
@@ -97,9 +99,9 @@
 	</dependencies>
 	</dependencyManagement>
 
-	<!-- ===============
-	     COMMON RESORCES 
-	     =============== -->
+	<!-- ====================================
+	     COMMON RESORCES USED IN ALL PROJECTS
+	     ==================================== -->
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
@@ -116,7 +118,7 @@
 	</dependencies>
 
 	<!--  =============
-	      JAVA COMPILER 
+	      JAVA COMPILER
 	      ============= -->
 	<build>
 		<plugins>

@@ -16,6 +16,7 @@
 		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 		
 		<class>de.dbo.samples.jpa.jpa0.entities.Student</class>
+		<class>de.dbo.samples.jpa.jpa0.entities.StudentGroup</class>
 		
 	</persistence-unit>
 

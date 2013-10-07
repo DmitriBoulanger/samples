@@ -5,6 +5,7 @@ import de.dbo.util0.Print;
 import de.dbo.samples.jpa.jpa0.config.DerbyProperties;
 import de.dbo.samples.jpa.jpa0.config.PersistenceConfigurationFactory;
 import de.dbo.samples.jpa.jpa0.config.PersistenceConfigurations;
+import de.dbo.samples.jpa.jpa0.entities.StudentGroup;
 import de.dbo.samples.jpa.jpa0.entities.Student;
 
 import org.junit.AfterClass;
@@ -58,18 +59,23 @@ public class StudentTest {
 	
 	@Test
 	public void test() {
+		StudentGroup group = null;
 		Student student = null;
 		EntityTransaction trx = null;
 		try {
 		   //Get a new transaction
 		   trx = EM.getTransaction();
+		   group = new StudentGroup();
+		   group.setGroupName("CleverGuys");
            student = new Student();
-           student.setmFirstName("John");
-           student.setmBirthDate(new Date());
+           student.setGroup(group);
+           student.setFirstname("John");
+           student.setBirthdate(new Date());
            log.info("ORIGIN -- " + student);
 		   //Start the transaction
 		   trx.begin();
 		   //Persist the object in the DB
+		   EM.persist(group);
 		   EM.persist(student);
 		   //Commit and end the transaction
 		   trx.commit();
@@ -103,9 +109,9 @@ public class StudentTest {
 			throw new RuntimeException(e);
 		}
 		
-		student2.setmId(null);
-		student2.setmFirstName( student2.getmFirstName() 
-					+ " " + student2.getmFirstName());
+		student2.setSudentId(null);
+		student2.setFirstname( student2.getFirstname() 
+					+ " " + student2.getFirstname());
 		log.info("XMLSER -- " + student2);
 		
 		try {

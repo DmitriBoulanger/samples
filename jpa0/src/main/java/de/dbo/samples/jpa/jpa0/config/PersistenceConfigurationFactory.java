@@ -23,10 +23,10 @@ public final class PersistenceConfigurationFactory {
 		switch(config) {
 		
 		case PRODUCTION:
-				ret.put("eclipselink.target-database","MYSQL");
-				ret.put("eclipselink.ddl-generation","none");
-				ret.put("eclipselink.logging.level","INFO");
-				ret.putAll(ConnectionPropertiesFactory.connection(Connections.MY_SQL));
+			ret.put("eclipselink.target-database","MYSQL");
+			ret.put("eclipselink.ddl-generation","none");
+			ret.put("eclipselink.logging.level","INFO");
+			ret.putAll(ConnectionPropertiesFactory.connection(Connections.MY_SQL));
 			return ret;
 			
 		case TEST:
@@ -37,7 +37,8 @@ public final class PersistenceConfigurationFactory {
 		    ret.putAll(ConnectionPropertiesFactory.connection(Connections.DERBY_IN_MEMORY));
 		    return ret;
 			
-			default: throw new RuntimeException("SYSTEM ERROR: Unknown persistence configutaion");
+			default: throw new RuntimeException(
+					"SYSTEM ERROR: Unknown persistence configutaion");
 		}
 	}
 	
