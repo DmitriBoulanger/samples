@@ -14,10 +14,11 @@ import java.util.Set;
  *
  */
 public final class Print {
+	public static final StringBuilder NULL = new StringBuilder("NULL");
+	public static final StringBuilder EMPTY = new StringBuilder("EMPTY");
+	
 	private static final String NL = "\n\t - ";
 	private static final String NL2 = "\n\t\t -- ";
-	private static final StringBuilder NULL = new StringBuilder("NULL");
-	private static final StringBuilder EMPTY = new StringBuilder("EMPTY");
 	
 	private Print() {
 		// should be never initialized as an instance
