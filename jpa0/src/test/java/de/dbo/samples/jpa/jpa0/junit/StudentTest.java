@@ -1,7 +1,7 @@
 package de.dbo.samples.jpa.jpa0.junit;
 
 import static org.junit.Assert.*;
-import de.dbo.util0.Print;
+import de.dbo.samples.util0.Print;
 import de.dbo.samples.jpa.jpa0.config.DerbyProperties;
 import de.dbo.samples.jpa.jpa0.config.PersistenceConfigurationFactory;
 import de.dbo.samples.jpa.jpa0.config.PersistenceConfigurations;

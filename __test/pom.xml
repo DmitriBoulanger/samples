@@ -13,8 +13,27 @@
 	     ONLY COMMON RESOURCES 
 	     ===================== -->
 	     
-	<!-- =============================================
-	     All projects should be in eclipse class-path!  
-	     ============================================= -->
+	<!-- =====================================================
+	     All projects should be in eclipse class-path as well!  
+	     ===================================================== -->
+
+	<dependencies>
+		<dependency>
+			<groupId>de.dbo.samples</groupId>
+			<artifactId>jpa0</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>de.dbo.samples</groupId>
+			<artifactId>logger0</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>de.dbo.samples</groupId>
+			<artifactId>tuProlog0</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>de.dbo.samples</groupId>
+			<artifactId>util0</artifactId>
+		</dependency>
+	</dependencies>
 
 </project>

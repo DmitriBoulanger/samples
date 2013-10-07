@@ -95,6 +95,30 @@
 			<version>${derbyclient.version}</version>
 			<scope>test</scope>
 		</dependency>
+		
+		<!-- PROJECTS -->
+		
+	
+		<dependency>
+			<groupId>de.dbo.samples</groupId>
+			<artifactId>jpa0</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>de.dbo.samples</groupId>
+			<artifactId>logger0</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>de.dbo.samples</groupId>
+			<artifactId>tuProlog0</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>de.dbo.samples</groupId>
+			<artifactId>util0</artifactId>
+			<version>${project.version}</version>
+		</dependency>
 
 	</dependencies>
 	</dependencyManagement>

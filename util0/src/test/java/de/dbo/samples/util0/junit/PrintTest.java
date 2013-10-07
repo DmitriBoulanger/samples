@@ -1,4 +1,4 @@
-package de.dbo.util0.junit;
+package de.dbo.samples.util0.junit;
  
 import static org.junit.Assert.assertTrue;
 
@@ -6,7 +6,7 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.dbo.util0.Print;
+import de.dbo.samples.util0.Print;
 
 import java.util.*;
 

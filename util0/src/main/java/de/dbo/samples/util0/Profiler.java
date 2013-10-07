@@ -1,4 +1,4 @@
-package de.dbo.util0;
+package de.dbo.samples.util0;
 
 import java.util.concurrent.TimeUnit;
 

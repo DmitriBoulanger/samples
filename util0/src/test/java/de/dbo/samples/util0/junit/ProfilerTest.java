@@ -1,10 +1,10 @@
-package de.dbo.util0.junit;
+package de.dbo.samples.util0.junit;
  
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.dbo.util0.Profiler;
+import de.dbo.samples.util0.Profiler;
 
 /**
  *
