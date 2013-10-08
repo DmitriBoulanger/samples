@@ -1,11 +1,20 @@
 package de.dbo.samples.tuprolog.tuprolog0;
 
+import static de.dbo.samples.util0.Profiler.elapsed;
+
 import java.io.IOException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import alice.tuprolog.*;
+import alice.tuprolog.Int;
+import alice.tuprolog.InvalidLibraryException;
+import alice.tuprolog.InvalidTheoryException;
+import alice.tuprolog.Prolog;
+import alice.tuprolog.SolveInfo;
+import alice.tuprolog.Term;
+import alice.tuprolog.Theory;
+import alice.tuprolog.Var;
 
 public final class Solver {
     private static final Logger log    = LoggerFactory.getLogger(Solver.class);
@@ -48,7 +57,7 @@ public final class Solver {
     }
 
     public boolean solve(Term goal, Int maxLength, Var output) throws Exception {
-        log.info("running " + goal.toString() + "...");
+        log.debug("running " + goal.toString() + "...");
         final long start = System.currentTimeMillis();
         SolveInfo info = engine.solve(goal);
         int i = 0;
@@ -70,13 +79,11 @@ public final class Solver {
             }
         }
         if (0 == i) {
-            log.info("No solutions. Elapsed: "
-                    + (System.currentTimeMillis() - start) + " ms.");
+            log.info("No solutions. " + elapsed(start));
             return false;
         }
         else {
-            log.info(i + " solution(s). Elapsed: "
-                    + (System.currentTimeMillis() - start) + " ms.");
+            log.info(i + " solution(s). " + elapsed(start));
             return true;
         }
     }

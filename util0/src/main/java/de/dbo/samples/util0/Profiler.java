@@ -1,5 +1,6 @@
 package de.dbo.samples.util0;
 
+import java.text.DecimalFormat;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -9,6 +10,9 @@ import java.util.concurrent.TimeUnit;
  *
  */
 public final class Profiler {
+	
+	private static final String DF2 = "00";
+	private static final String DF3 = "000";
 
     private Profiler() {
         // should be never initialized as an instance
@@ -24,6 +28,8 @@ public final class Profiler {
         if (time < 0) {
             return "?";
         }
+        final DecimalFormat df2 = new DecimalFormat(DF2);
+        final DecimalFormat df3 = new DecimalFormat(DF3);
         long millliseconds = time;
 
         final long hours = TimeUnit.MILLISECONDS.toHours(millliseconds);
@@ -37,18 +43,18 @@ public final class Profiler {
 
         final StringBuilder sb = new StringBuilder(64);
         if (0 < hours) {
-            sb.append(zeros(1, hours));
+            sb.append(df2.format(hours));
             sb.append(" h. ");
         }
         if (0 < minutes) {
-            sb.append(zeros(1, minutes));
+            sb.append(df2.format(minutes));
             sb.append(" min. ");
         }
         if (0 < seconds) {
-            sb.append(zeros(1, seconds));
+            sb.append(df2.format(seconds));
             sb.append(" sec. ");
         }
-        sb.append(zeros(2, millliseconds));
+        sb.append(df3.format(millliseconds));
         sb.append(" ms. ");
 
         return (sb.toString());
@@ -58,36 +64,10 @@ public final class Profiler {
      * Convert elapsed  duration to a string format
      * 
      * @param time A duration in milliseconds to convert to a string form
-     * @return A string of the form "Elapsed: X h. Y min. Z sec. W ms. ".
+     * @return A string of the form "Elapsed: 2 h. 10 min. 29 sec. 130 ms. ".
      */
     public static String elapsed(long start) {
         return new String("Elapsed: " + formatMs(System.currentTimeMillis() - start));
     }
 
-    /**
-     * @return formated number with possibly added zeros at the left
-     */
-    private static final String zeros(final int cnt, final long x) {
-        switch (cnt) {
-            case 2:
-                if (x < 10) {
-                    return "00" + x;
-                }
-                else if (x < 100) {
-                    return "0" + x;
-                }
-                else {
-                    return "" + x;
-                }
-            case 1:
-                if (x < 10) {
-                    return "0" + x;
-                }
-                else {
-                    return "" + x;
-                }
-            default:
-                return "" + x;
-        }
-    }
 }
