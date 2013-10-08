@@ -7,8 +7,8 @@ import org.slf4j.LoggerFactory;
  * Using SLF4J implies that an actual logger-binding resources are
  * supplied by the actual run-time system. Therefore, no logging
  * resources should be included in the component-jar. 
- * Therefore, this class has no logger but the corresponding JUnit-test shows 
- * how it should work since the test-classpath has some logger resources
+ * Therefore, this class has no logger but the corresponding JUnit-test   
+ * use some logger resources
  * 
  * @author Dmitri Boulanger, Hombach
  *
