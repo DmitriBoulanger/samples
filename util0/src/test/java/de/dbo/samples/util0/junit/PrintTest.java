@@ -25,37 +25,37 @@ public class PrintTest {
 		 String ret = null;
 		 ret = Print.lines((Map<String,String>) null ).toString();
 		 log.debug("Null map lines: " + ret);
-		 assertTrue("Printing null-map returns not " + Print.NULL + "-string"
+		 assertTrue("Printing null-map returns not " + NULL + "-string"
 				 ,ret.equals(NULL));
 		 
 		 ret = Print.lines((Set<Object>) null ).toString();
 		 log.debug("Null set lines: " + ret);
-		 assertTrue("Printing null-set returns not " + Print.NULL + "-string"
+		 assertTrue("Printing null-set returns not " + NULL + "-string"
 				 ,ret.equals(NULL));
 		 
 		 ret =  Print.lines((List<Object>) null ).toString();
 		 log.debug("Null list lines: " + ret);
-		 assertTrue("Printing null-list returns not " + Print.NULL + "-string"
+		 assertTrue("Printing null-list returns not " + NULL + "-string"
 				 ,ret.equals(NULL));
 		 
 		 ret =  Print.lines((Properties) null ).toString();
 		 log.debug("Null properties lines: " + ret);
-		 assertTrue("Printing null-properties returns not " + Print.NULL + "-string"
+		 assertTrue("Printing null-properties returns not " + NULL + "-string"
 				 ,ret.equals(NULL));
 		 
 		 ret =  Print.line((Map<String,String>) null ).toString();
 		 log.debug("Null map line: " + ret);
-		 assertTrue("Printing null-map as a line returns not " + Print.NULL + "-string"
+		 assertTrue("Printing null-map as a line returns not " + NULL + "-string"
 				 ,ret.equals(NULL));
 		
 		 ret =  Print.line((int[])null).toString();
 		 log.debug("Null integers line: " + ret);
-		 assertTrue("Printing null-integers as a line returns not " + Print.NULL + "-string"
+		 assertTrue("Printing null-integers as a line returns not " + NULL + "-string"
 				 ,ret.equals(NULL));
 		 
 		 ret =   Print.line((Integer[])null).toString();
 		 log.debug("Null integers line: " + ret);
-		 assertTrue("Printing null-integer objects as a line returns not " + Print.NULL + "-string"
+		 assertTrue("Printing null-integer objects as a line returns not " + NULL + "-string"
 				 ,ret.equals(NULL));
 	}
 	
