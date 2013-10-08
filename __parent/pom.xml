@@ -11,10 +11,10 @@
 	<!-- =============================== 
 	     ALL RESORCES AND THEIR VERSIONS 
 	     =============================== -->
-	     
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		
+
 		<eclipselink.version>2.5.1</eclipselink.version>
 		<xstream.version>1.4.4</xstream.version>
 		<tuprolog.version>2.1.1</tuprolog.version>
@@ -33,92 +33,92 @@
 	     ALL RESORCES: MANAGMENT 
 	     ======================= -->
 	<dependencyManagement>
-	<dependencies>
-	
-		<dependency>
-			<groupId>de.dbo.samples</groupId>
-			<artifactId>parent</artifactId>
-			<version>${project.version}</version>
-		</dependency>
+		<dependencies>
 
-		<dependency>
-			<groupId>org.eclipse.persistence</groupId>
-			<artifactId>eclipselink</artifactId>
-			<version>${eclipselink.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.thoughtworks.xstream</groupId>
-			<artifactId>xstream</artifactId>
-			<version>${xstream.version}</version>
-		</dependency>
+			<dependency>
+				<groupId>de.dbo.samples</groupId>
+				<artifactId>parent</artifactId>
+				<version>${project.version}</version>
+			</dependency>
 
-		<dependency>
-			<groupId>it.unibo.alice.tuprolog</groupId>
-			<artifactId>tuprolog</artifactId>
-			<version>${tuprolog.version}</version>
-		</dependency>
+			<dependency>
+				<groupId>org.eclipse.persistence</groupId>
+				<artifactId>eclipselink</artifactId>
+				<version>${eclipselink.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.thoughtworks.xstream</groupId>
+				<artifactId>xstream</artifactId>
+				<version>${xstream.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>it.unibo.alice.tuprolog</groupId>
+				<artifactId>tuprolog</artifactId>
+				<version>${tuprolog.version}</version>
+			</dependency>
 
 		<!-- SLF4J Logging -->
 
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>${slf4j-api.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
-			<scope>test</scope>
-			<version>${slf4j-log4j12.version}</version>
-		</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+				<version>${slf4j-api.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-log4j12</artifactId>
+				<scope>test</scope>
+				<version>${slf4j-log4j12.version}</version>
+			</dependency>
 
 		<!-- Test resources -->
-		
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<scope>test</scope>
-			<version>${junit.version}</version>
-		</dependency>
 
-		<dependency>
-			<groupId>org.apache.derby</groupId>
-			<artifactId>derby</artifactId>
-			<version>${derby.version}</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.derby</groupId>
-			<artifactId>derbyclient</artifactId>
-			<version>${derbyclient.version}</version>
-			<scope>test</scope>
-		</dependency>
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<scope>test</scope>
+				<version>${junit.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.derby</groupId>
+				<artifactId>derby</artifactId>
+				<version>${derby.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.derby</groupId>
+				<artifactId>derbyclient</artifactId>
+				<version>${derbyclient.version}</version>
+				<scope>test</scope>
+			</dependency>
 		
 		<!-- PROJECTS -->
-		
-	
-		<dependency>
-			<groupId>de.dbo.samples</groupId>
-			<artifactId>jpa0</artifactId>
-			<version>${project.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>de.dbo.samples</groupId>
-			<artifactId>logger0</artifactId>
-			<version>${project.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>de.dbo.samples</groupId>
-			<artifactId>tuProlog0</artifactId>
-			<version>${project.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>de.dbo.samples</groupId>
-			<artifactId>util0</artifactId>
-			<version>${project.version}</version>
-		</dependency>
 
-	</dependencies>
+
+			<dependency>
+				<groupId>de.dbo.samples</groupId>
+				<artifactId>jpa0</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>de.dbo.samples</groupId>
+				<artifactId>logger0</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>de.dbo.samples</groupId>
+				<artifactId>tuProlog0</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>de.dbo.samples</groupId>
+				<artifactId>util0</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+
+		</dependencies>
 	</dependencyManagement>
 
 	<!-- ====================================

@@ -7,6 +7,6 @@ package de.dbo.samples.jpa.jpa0.config;
  *
  */
 public enum PersistenceConfigurations {
-	PRODUCTION
-	,TEST
+    PRODUCTION
+    , TEST
 }

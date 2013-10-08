@@ -7,6 +7,6 @@ package de.dbo.samples.jpa.jpa0.config.connections;
  *
  */
 public enum Connections {
-	MY_SQL
-	,DERBY_IN_MEMORY
+    MY_SQL
+    , DERBY_IN_MEMORY
 }

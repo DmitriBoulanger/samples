@@ -12,8 +12,7 @@ import org.junit.runners.Suite.SuiteClasses;
  */
 
 @RunWith(Suite.class)
-@SuiteClasses({ 
-	    ProfilerTest.class
-	  , PrintTest.class})
-
+@SuiteClasses({
+        ProfilerTest.class
+        , PrintTest.class})
 public class Alles {}
