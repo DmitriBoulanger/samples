@@ -6,9 +6,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>Samples parent</name>
-	<description>
-     Version management for samples
-   </description>
+	<description>Version management for all  samples</description>
 
 	<!-- =============================== 
 	     ALL RESORCES AND THEIR VERSIONS 
