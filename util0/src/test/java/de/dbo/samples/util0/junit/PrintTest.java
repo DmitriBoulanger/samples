@@ -28,12 +28,12 @@ public class PrintTest {
         assertTrue("Printing null-map returns not " + NULL + "-string"
                 , ret.equals(NULL));
 
-        ret = Print.lines((Set<Object>) null).toString();
+        ret = Print.lines((Set<String>) null).toString();
         log.debug("Null set lines: " + ret);
         assertTrue("Printing null-set returns not " + NULL + "-string"
                 , ret.equals(NULL));
 
-        ret = Print.lines((List<Object>) null).toString();
+        ret = Print.lines((List<String>) null).toString();
         log.debug("Null list lines: " + ret);
         assertTrue("Printing null-list returns not " + NULL + "-string"
                 , ret.equals(NULL));

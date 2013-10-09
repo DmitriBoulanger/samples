@@ -62,7 +62,7 @@ public final class Print {
         return sb;
     }
 
-    public static final StringBuilder lines(final Set<Object> set) {
+    public static final StringBuilder lines(final Set<String> set) {
         if (null == set) {
             return NULL;
         }
@@ -70,13 +70,13 @@ public final class Print {
             return EMPTY;
         }
         final StringBuilder sb = new StringBuilder();
-        for (final Object o : toList(set)) {
+        for (final String o : toList(set)) {
             sb.append(NL + o);
         }
         return sb;
     }
 
-    public static final StringBuilder lines(final List<Object> list) {
+    public static final StringBuilder lines(final List<String> list) {
         if (null == list) {
             return NULL;
         }
@@ -84,7 +84,7 @@ public final class Print {
             return EMPTY;
         }
         final StringBuilder sb = new StringBuilder();
-        for (final Object o : list) {
+        for (final String o : list) {
             sb.append(NL + o);
         }
         return sb;
@@ -163,7 +163,22 @@ public final class Print {
         return sb;
     }
 
-    public static final StringBuilder line(int[] integers) {
+    public static final StringBuilder line(final List<?> integers) {
+        if (null == integers) {
+            return NULL;
+        }
+        final int n = integers.size();
+        if (0 == n) {
+            return EMPTY;
+        }
+        final StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < n; i++) {
+            sb.append(integers.get(i) + " ");
+        }
+        return sb;
+    }
+
+    public static final StringBuilder line(final int[] integers) {
         if (null == integers) {
             return NULL;
         }
@@ -213,9 +228,9 @@ public final class Print {
         return values;
     }
 
-    private static final List<?> toList(final Set<Object> set) {
-        final List<Object> values = new ArrayList<Object>();
-        values.addAll(new ArrayList<Object>(set));
+    private static final List<String> toList(final Set<String> set) {
+        final List<String> values = new ArrayList<String>();
+        values.addAll(new ArrayList<String>(set));
         return values;
     }
 
