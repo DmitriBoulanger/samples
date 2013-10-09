@@ -5,10 +5,10 @@
 
 	
 	<!--
-		This persistence is only used to declare persistent provider
-		and available class-names of the database entities
+		This persistence unit is only used to declare persistence provider
+		and to indicate available class-names of the database entities
 		At the run-time it is extended using application-specific properties,
-		e.g. PRODUCTION or TEST
+		e.g. PRODUCTION or TEST properties can be used
 	-->
 	
 	<persistence-unit name="JEE6-Persistence"
@@ -17,7 +17,7 @@
 		
 		<class>de.dbo.samples.jpa.jpa0.entities.Student</class>
 		<class>de.dbo.samples.jpa.jpa0.entities.StudentGroup</class>
-		
+	
 	</persistence-unit>
 
 </persistence>
