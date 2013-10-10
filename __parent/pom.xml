@@ -7,7 +7,7 @@
 	<packaging>pom</packaging>
 	<name>Samples parent</name>
 	<description>Version management for all  samples</description>
-
+ 
 	<!-- =============================== 
 	     ALL RESORCES AND THEIR VERSIONS 
 	     =============================== -->
