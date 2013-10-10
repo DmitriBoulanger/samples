@@ -17,8 +17,10 @@ public final class Print {
     public static final StringBuilder NULL  = new StringBuilder("NULL");
     public static final StringBuilder EMPTY = new StringBuilder("EMPTY");
 
-    private static final String       NL    = "\n\t - ";
-    private static final String       NL2   = "\n\t\t -- ";
+    private static final String NL    = "\n\t - ";
+    private static final String NL2   = "\n\t\t -- ";
+    private static final String EQ = " = ";
+    private static final String NB = ": ";
 
     private Print() {
         // should be never initialized as an instance
@@ -43,7 +45,7 @@ public final class Print {
                     continue;
                 }
             }
-            sb.append(NL + key + "=" + map.get(key).printline());
+            sb.append(NL + key + EQ + new PrintableObject(map.get(key)).printline());
         }
         return sb;
     }
@@ -58,7 +60,7 @@ public final class Print {
         final StringBuilder sb = new StringBuilder();
         final String nl = nl(offset);
         for (final String key : sortedKeys(map)) {
-            sb.append(nl + key + " = " + map.get(key).printline());
+            sb.append(nl + key + EQ + new PrintableObject(map.get(key)).printline());
         }
         return sb;
     }
@@ -115,7 +117,7 @@ public final class Print {
         final StringBuilder sb = new StringBuilder();
         int n = list.size();
         for (int i = 0; i < n; i++) {
-            sb.append(NL + i + ": " + list.get(i));
+            sb.append(NL + i + NB + list.get(i));
         }
         return sb;
     }
@@ -144,7 +146,7 @@ public final class Print {
         }
         final StringBuilder sb = new StringBuilder();
         for (final String key : sortedKeys(map)) {
-            sb.append(" [" + key + "=" + map.get(key).printline() + "]");
+            sb.append(" [" + key + "=" + new PrintableObject(map.get(key)).printline() + "]");
         }
         return sb;
     }
@@ -203,7 +205,7 @@ public final class Print {
         }
         final StringBuilder sb = new StringBuilder();
         for (final String key : sortedKeys(properties)) {
-            sb.append(NL + key + "=" + properties.getProperty(key));
+            sb.append(NL + key + EQ + new PrintableObject(properties.getProperty(key)) );
         }
         return sb;
     }

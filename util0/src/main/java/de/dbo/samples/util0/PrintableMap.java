@@ -13,21 +13,15 @@ public final class PrintableMap implements Printable {
 	public static Map<String, Printable> map(final Map<String, ?> map) {
 		final Map<String, Printable> ret = new HashMap<String, Printable>();
 		for (Map.Entry<String, ?> entry: map.entrySet()) {
-			final String key = entry.getKey();
-			ret.put(key, new PrintableObject(entry.getValue()));
+			put(entry,ret);
 		}
 		return ret;
 	}
 	
 	public PrintableMap(final Map<String, ?> map) {
 		for (Map.Entry<String, ?> entry: map.entrySet()) {
-			final String key = entry.getKey();
-			this.map.put(key, new PrintableObject(entry.getValue()));
+			put(entry,this.map);
 		}
-	}
-	
-	public  Map<String, Printable> map() {
-		return map;
 	}
 
 	@Override
@@ -38,6 +32,16 @@ public final class PrintableMap implements Printable {
 	@Override
 	public final StringBuilder printline() {
 		return line(map);
+	}
+	
+	private static void put(final Map.Entry<String, ?> entry, final Map<String, Printable> map) {
+		final String key = entry.getKey();
+		final Object o = entry.getValue();
+		if ( o instanceof Printable) {
+			map.put(key, (Printable) o);
+		} else {
+			map.put(key, new PrintableObject(o));
+		}
 	}
 
 }
