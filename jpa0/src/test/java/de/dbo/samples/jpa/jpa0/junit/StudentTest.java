@@ -1,26 +1,6 @@
 package de.dbo.samples.jpa.jpa0.junit;
 
-import static org.junit.Assert.*;
-import de.dbo.samples.util0.Print;
-import de.dbo.samples.jpa.jpa0.config.DerbyProperties;
-import de.dbo.samples.jpa.jpa0.config.PersistenceConfigurationFactory;
-import de.dbo.samples.jpa.jpa0.config.PersistenceConfigurations;
-import de.dbo.samples.jpa.jpa0.entities.StudentGroup;
-import de.dbo.samples.jpa.jpa0.entities.Student;
-
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import com.thoughtworks.xstream.XStream;
-
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
-import javax.persistence.Query;
+import static org.junit.Assert.assertSame;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -30,6 +10,27 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
+import javax.persistence.Query;
+
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.thoughtworks.xstream.XStream;
+
+import de.dbo.samples.jpa.jpa0.config.DerbyProperties;
+import de.dbo.samples.jpa.jpa0.config.PersistenceConfigurationFactory;
+import de.dbo.samples.jpa.jpa0.config.PersistenceConfigurations;
+import de.dbo.samples.jpa.jpa0.entities.Student;
+import de.dbo.samples.jpa.jpa0.entities.StudentGroup;
+import de.dbo.samples.util0.PrintableMap;
 
 public class StudentTest {
 	protected static final Logger log = LoggerFactory.getLogger(StudentTest.class);
@@ -51,8 +52,8 @@ public class StudentTest {
 		// create entity-manager for Derby (test-configuration)
 		final Map<String,String> config 
 			=  PersistenceConfigurationFactory.persistence(PersistenceConfigurations.TEST);
-		log.debug("Configuration properties:" +  Print.lines(config));
-		
+		log.debug("Configuration properties:" +  new PrintableMap(config).printlines());
+			
 		EMF = Persistence.createEntityManagerFactory("JEE6-Persistence", config);
 		EM = EMF.createEntityManager();
 	}

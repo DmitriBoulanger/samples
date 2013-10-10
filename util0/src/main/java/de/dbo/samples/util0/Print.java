@@ -23,12 +23,13 @@ public final class Print {
     private Print() {
         // should be never initialized as an instance
     }
-
-    public static StringBuilder lines(final Map<String, String> map) {
+    
+   
+    public static StringBuilder lines(final Map<String, Printable> map) {
         return lines(map, 0);
     }
 
-    public static final StringBuilder lines(final Map<String, ?> map, final String filter) {
+    public static final StringBuilder lines(final Map<String, Printable> map, final String filter) {
         if (null == map) {
             return NULL;
         }
@@ -42,12 +43,12 @@ public final class Print {
                     continue;
                 }
             }
-            sb.append(NL + key + "=" + map.get(key));
+            sb.append(NL + key + "=" + map.get(key).printline());
         }
         return sb;
     }
 
-    public static StringBuilder lines(final Map<String, String> map, final int offset) {
+    public static StringBuilder lines(final Map<String, Printable> map, final int offset) {
         if (null == map) {
             return NULL;
         }
@@ -57,7 +58,7 @@ public final class Print {
         final StringBuilder sb = new StringBuilder();
         final String nl = nl(offset);
         for (final String key : sortedKeys(map)) {
-            sb.append(nl + key + " = " + map.get(key));
+            sb.append(nl + key + " = " + map.get(key).printline());
         }
         return sb;
     }
@@ -134,7 +135,7 @@ public final class Print {
         return sb;
     }
 
-    public static StringBuilder line(final Map<String, String> map) {
+    public static StringBuilder line(final Map<String, Printable> map) {
         if (null == map) {
             return NULL;
         }
@@ -143,7 +144,7 @@ public final class Print {
         }
         final StringBuilder sb = new StringBuilder();
         for (final String key : sortedKeys(map)) {
-            sb.append(" [" + key + "=" + map.get(key) + "]");
+            sb.append(" [" + key + "=" + map.get(key).printline() + "]");
         }
         return sb;
     }
