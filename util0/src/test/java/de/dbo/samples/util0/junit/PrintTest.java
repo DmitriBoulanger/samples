@@ -2,6 +2,7 @@ package de.dbo.samples.util0.junit;
 
 import static de.dbo.samples.util0.Print.line;
 import static de.dbo.samples.util0.Print.lines;
+import static de.dbo.samples.util0.PrintableMap.toMapOfPrintables;
 import static org.junit.Assert.assertTrue;
 import static org.slf4j.LoggerFactory.getLogger;
 
@@ -90,22 +91,22 @@ public class PrintTest {
 
     @Test
     public void test_20_map() {
-    	final Map<String,Printable> map =  PrintableMap.toMapOfPrintables(map(0));
+    	final Map<String,Printable> map = toMapOfPrintables(map(0));
     	map.put("printable map", new PrintableMap(map(1)));
     	map.put("printable object", new PrintableObject(map(2)));
     	map.put("printable object null", new PrintableObject(null));
 
-        log.debug("Complete map: " + lines(map, null));
+        log.debug("Complete map: " + lines(map));
         log.debug("Complete map single-line: " + line(map));
-        log.debug("Filtered map: " + lines(map, "a"));
+        log.debug("Filtered map: " + lines(map, "a" /* filter */));
     }
     
     @Test
     public void test_30_integers() {
-        final int[] integers = new int[]{1, 2, 3};
-        log.debug("Integers: " + line(integers));
-        final Integer[] integersObjects = new Integer[]{new Integer(2), new Integer(3)};
-        log.debug("Integer objects: " + line(integersObjects));
+        final int[] integers = new int[]{0, 1, 2};
+        log.debug("integers: " + line(integers));
+        final Object[] objects = new Object[]{new Integer(0), new Integer(1)};
+        log.debug("Integers: " + line(objects));
     }
     
     @Test
@@ -119,9 +120,9 @@ public class PrintTest {
     
     private static Map<String,String> map(final int i) {
     	final Map<String,String> map = new HashMap<String,String>();
-    	map.put("a"+i, "x" + i*100);
-    	map.put("b"+i, "x" + i*1000);
-    	map.put("c"+i, "x" + i*10000);
+    	map.put("a"+i, "a-" + i*100);
+    	map.put("b"+i, "b-" + i*1000);
+    	map.put("c"+i, "c-" + i*10000);
         return map;
     }
 

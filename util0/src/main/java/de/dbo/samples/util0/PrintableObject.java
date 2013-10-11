@@ -6,38 +6,38 @@ public final class PrintableObject implements Printable {
 	
 	private final Printable o;
 	private final Map<String,Printable> map;
-	private final StringBuilder string;
+	private final StringBuilder sb;
 	
 	@SuppressWarnings("unchecked")
 	public PrintableObject(final Object o) {
 		if (null==o) {
 			this.o = null;
 			this.map = null;
-			this.string = Print.NULL;
+			this.sb = Print.NULL;
 		} else if (o instanceof String) {
 			this.o = null;
 			this.map = null;
-			this.string = new StringBuilder( (String) o);
+			this.sb = new StringBuilder( (String) o);
 		} else if (o instanceof Integer) {
 			this.o = null;
 			this.map = null;
-			this.string = new StringBuilder( (Integer) o);
+			this.sb = new StringBuilder( (Integer) o);
 		} else if (o instanceof PrintableMap) {
 			this.o = (PrintableMap) o;
 			this.map = null;
-			this.string = null;
+			this.sb = null;
 		} else if (isMapStringPrintable(o) ) {
 			this.o = null;
 			this.map =  (Map<String,Printable>) o;
-			this.string = null;
+			this.sb = null;
 		} else if (o instanceof Printable) {
 			this.o = (Printable) o;
 			this.map = null;
-			this.string = null;
+			this.sb = null;
 		} else {
 			this.o = null;
 			this.map = null;
-			this.string =  new StringBuilder(o.toString());
+			this.sb =  new StringBuilder(o.toString());
 		}
 	}
 	
@@ -52,15 +52,23 @@ public final class PrintableObject implements Printable {
 
 	@Override
 	public StringBuilder printline() {
-		return null != o?  o.printline()  
-				: null != map? Print.line(map) 
-				:  string;
+		if (null!=o) {
+			return  o.printline()  ;
+		} else if (null != map) {
+			 return Print.line(map);
+		} else {
+			return sb;
+		}
 	}
 	
 	@Override
 	public StringBuilder printlines() {
-		return null != o?  o.printlines() 
-				: null != map? Print.lines(map) 
-				:  string;
+		if (null!=o) {
+			return  o.printlines()  ;
+		} else if (null != map) {
+			 return Print.lines(map);
+		} else {
+			return sb;
+		}
 	}
 }

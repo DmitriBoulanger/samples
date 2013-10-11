@@ -8,8 +8,11 @@ import java.util.Map;
 
 public final class PrintableMap implements Printable {
 	
-	private final Map<String, Printable> map = new HashMap<String, Printable>();
-	
+	/**
+	 * collects values from the given map into map with printable values
+	 * @param map
+	 * @return map with printable values
+	 */
 	public static Map<String, Printable> toMapOfPrintables(final Map<String, ?> map) {
 		final Map<String, Printable> ret = new HashMap<String, Printable>();
 		for (Map.Entry<String, ?> entry: map.entrySet()) {
@@ -18,6 +21,12 @@ public final class PrintableMap implements Printable {
 		return ret;
 	}
 	
+	private final Map<String, Printable> map = new HashMap<String, Printable>();
+	
+	/**
+	 * creates a new printable map from the given map
+	 * @param map
+	 */
 	public PrintableMap(final Map<String, ?> map) {
 		for (Map.Entry<String, ?> entry: map.entrySet()) {
 			put(entry,this.map);

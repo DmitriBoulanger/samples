@@ -1,5 +1,7 @@
 package de.dbo.samples.jpa.jpa0.junit;
 
+import static de.dbo.samples.util0.Print.lines;
+import static de.dbo.samples.util0.PrintableMap.toMapOfPrintables;
 import static org.junit.Assert.assertSame;
 
 import java.io.File;
@@ -30,7 +32,6 @@ import de.dbo.samples.jpa.jpa0.config.PersistenceConfigurationFactory;
 import de.dbo.samples.jpa.jpa0.config.PersistenceConfigurations;
 import de.dbo.samples.jpa.jpa0.entities.Student;
 import de.dbo.samples.jpa.jpa0.entities.StudentGroup;
-import de.dbo.samples.util0.PrintableMap;
 
 public class StudentTest {
 	protected static final Logger log = LoggerFactory.getLogger(StudentTest.class);
@@ -52,7 +53,7 @@ public class StudentTest {
 		// create entity-manager for Derby (test-configuration)
 		final Map<String,String> config 
 			=  PersistenceConfigurationFactory.persistence(PersistenceConfigurations.TEST);
-		log.debug("Configuration properties:" +  new PrintableMap(config).printlines());
+		log.debug("Configuration properties:" +  lines(toMapOfPrintables(config)));
 			
 		EMF = Persistence.createEntityManagerFactory("JEE6-Persistence", config);
 		EM = EMF.createEntityManager();
