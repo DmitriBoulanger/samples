@@ -10,7 +10,7 @@ public final class PrintableMap implements Printable {
 	
 	private final Map<String, Printable> map = new HashMap<String, Printable>();
 	
-	public static Map<String, Printable> map(final Map<String, ?> map) {
+	public static Map<String, Printable> toMapOfPrintables(final Map<String, ?> map) {
 		final Map<String, Printable> ret = new HashMap<String, Printable>();
 		for (Map.Entry<String, ?> entry: map.entrySet()) {
 			put(entry,ret);
@@ -43,5 +43,4 @@ public final class PrintableMap implements Printable {
 			map.put(key, new PrintableObject(o));
 		}
 	}
-
 }

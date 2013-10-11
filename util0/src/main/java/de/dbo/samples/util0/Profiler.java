@@ -1,7 +1,12 @@
 package de.dbo.samples.util0;
 
+import static java.lang.System.currentTimeMillis;
+import static java.util.concurrent.TimeUnit.MILLISECONDS;
+import static java.util.concurrent.TimeUnit.SECONDS;
+import static java.util.concurrent.TimeUnit.MINUTES;
+import static java.util.concurrent.TimeUnit.HOURS;
+
 import java.text.DecimalFormat;
-import java.util.concurrent.TimeUnit;
 
 /**
  *  Converter for elapsed duration in milliseconds
@@ -32,14 +37,14 @@ public final class Profiler {
         final DecimalFormat df3 = new DecimalFormat(DF3);
         long millliseconds = time;
 
-        final long hours = TimeUnit.MILLISECONDS.toHours(millliseconds);
-        millliseconds -= TimeUnit.HOURS.toMillis(hours);
+        final long hours = MILLISECONDS.toHours(millliseconds);
+        millliseconds -= HOURS.toMillis(hours);
 
-        final long minutes = TimeUnit.MILLISECONDS.toMinutes(millliseconds);
-        millliseconds -= TimeUnit.MINUTES.toMillis(minutes);
+        final long minutes = MILLISECONDS.toMinutes(millliseconds);
+        millliseconds -= MINUTES.toMillis(minutes);
 
-        final long seconds = TimeUnit.MILLISECONDS.toSeconds(millliseconds);
-        millliseconds -= TimeUnit.SECONDS.toMillis(seconds);
+        final long seconds = MILLISECONDS.toSeconds(millliseconds);
+        millliseconds -= SECONDS.toMillis(seconds);
 
         final StringBuilder sb = new StringBuilder(64);
         if (0 < hours) {
@@ -67,7 +72,7 @@ public final class Profiler {
      * @return A string of the form "Elapsed: 2 h. 10 min. 29 sec. 130 ms. ".
      */
     public static String elapsed(long start) {
-        return new String("Elapsed: " + formatMs(System.currentTimeMillis() - start));
+        return new String("Elapsed: " + formatMs(currentTimeMillis() - start));
     }
 
 }

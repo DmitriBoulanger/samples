@@ -3,6 +3,12 @@ package de.dbo.samples.util0.junit;
 import static de.dbo.samples.util0.Print.line;
 import static de.dbo.samples.util0.Print.lines;
 import static org.junit.Assert.assertTrue;
+import static org.slf4j.LoggerFactory.getLogger;
+
+import de.dbo.samples.util0.Print;
+import de.dbo.samples.util0.Printable;
+import de.dbo.samples.util0.PrintableMap;
+import de.dbo.samples.util0.PrintableObject;
 
 import java.util.HashMap;
 import java.util.List;
@@ -12,12 +18,6 @@ import java.util.Set;
 
 import org.junit.Test;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import de.dbo.samples.util0.Print;
-import de.dbo.samples.util0.Printable;
-import de.dbo.samples.util0.PrintableMap;
-import de.dbo.samples.util0.PrintableObject;
 
 /**
  *
@@ -25,7 +25,7 @@ import de.dbo.samples.util0.PrintableObject;
  *
  */
 public class PrintTest {
-    private static final Logger log = LoggerFactory.getLogger(PrintTest.class);
+    private static final Logger log = getLogger(PrintTest.class);
 
     @Test
     public void test_00_null() {
@@ -90,7 +90,7 @@ public class PrintTest {
 
     @Test
     public void test_20_map() {
-    	final Map<String,Printable> map =  PrintableMap.map(map(0));
+    	final Map<String,Printable> map =  PrintableMap.toMapOfPrintables(map(0));
     	map.put("printable map", new PrintableMap(map(1)));
     	map.put("printable object", new PrintableObject(map(2)));
     	map.put("printable object null", new PrintableObject(null));

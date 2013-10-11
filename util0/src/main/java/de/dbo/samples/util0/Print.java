@@ -1,7 +1,8 @@
 package de.dbo.samples.util0;
 
+import static java.util.Collections.sort;
+
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
@@ -26,18 +27,22 @@ public final class Print {
         // should be never initialized as an instance
     }
     
-   
     public static StringBuilder lines(final Map<String, Printable> map) {
-        return lines(map, 0);
+    	return lines(map, null, 0);
+    }
+    
+    public static final StringBuilder lines(final Map<String, Printable> map, final String filter)  {
+    	return lines(map, filter, 0);
     }
 
-    public static final StringBuilder lines(final Map<String, Printable> map, final String filter) {
+    public static final StringBuilder lines(final Map<String, Printable> map, final String filter, final int offset) {
         if (null == map) {
             return NULL;
         }
         if (0 == map.size()) {
             return EMPTY;
         }
+        final String nl = nl(offset);
         final StringBuilder sb = new StringBuilder();
         for (final String key : sortedKeys(map)) {
             if (null != filter && filter.trim().length() > 0) {
@@ -45,21 +50,6 @@ public final class Print {
                     continue;
                 }
             }
-            sb.append(NL + key + EQ + new PrintableObject(map.get(key)).printline());
-        }
-        return sb;
-    }
-
-    public static StringBuilder lines(final Map<String, Printable> map, final int offset) {
-        if (null == map) {
-            return NULL;
-        }
-        if (0 == map.size()) {
-            return EMPTY;
-        }
-        final StringBuilder sb = new StringBuilder();
-        final String nl = nl(offset);
-        for (final String key : sortedKeys(map)) {
             sb.append(nl + key + EQ + new PrintableObject(map.get(key)).printline());
         }
         return sb;
@@ -122,7 +112,7 @@ public final class Print {
         return sb;
     }
 
-    public static final StringBuilder printWithNumbers(final String[] strings) {
+    public static final StringBuilder linesWithNumbers(final String[] strings) {
         if (null == strings) {
             return NULL;
         }
@@ -213,21 +203,21 @@ public final class Print {
     private static final List<String> sortedKeys(final Map<String, ?> map) {
         final List<String> keys = new ArrayList<String>();
         keys.addAll(new ArrayList<String>(map.keySet()));
-        Collections.sort(keys);
+        sort(keys);
         return keys;
     }
 
     private static final List<String> sortedKeys(final Properties p) {
         final List<String> keys = new ArrayList<String>();
         keys.addAll(new ArrayList<String>(p.stringPropertyNames()));
-        Collections.sort(keys);
+        sort(keys);
         return keys;
     }
 
     private static final List<String> sorted(final Set<String> set) {
         final List<String> values = new ArrayList<String>();
         values.addAll(new ArrayList<String>(set));
-        Collections.sort(values);
+        sort(values);
         return values;
     }
 
