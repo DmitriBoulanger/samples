@@ -1,5 +1,6 @@
 package de.dbo.samples.tuprolog.tuprolog0;
 
+import static java.lang.System.currentTimeMillis;
 import static de.dbo.samples.util0.Profiler.elapsed;
 
 import java.io.IOException;
@@ -39,9 +40,10 @@ public final class Solver {
     }
 
     public void loadTheory(final String resource) throws IOException {
+    	 log.debug("loading resource " + resource + " ...");
         final Theory theory;
         try {
-            theory = new Theory(ClassLoader.getSystemResourceAsStream(resource));
+            theory = new Theory(Solver.class.getResourceAsStream(resource));
         }
         catch(Exception e) {
             log.error("error while reading " + resource + ": " + e.getMessage());
@@ -58,16 +60,13 @@ public final class Solver {
 
     public boolean solve(Term goal, Int maxLength, Var output) throws Exception {
         log.debug("running " + goal.toString() + "...");
-        final long start = System.currentTimeMillis();
+        final long start = currentTimeMillis();
         SolveInfo info = engine.solve(goal);
         int i = 0;
 
         while (info.isSuccess()) {
             i++;
-            log.debug("solution " + i + ": "
-                    + info.getVarValue("Value1") + " "
-                    + info.getVarValue("Value2") + " "
-                    + info.getVarValue("Value3"));
+            log.debug("solution " + i + ": "+ info.getVarValue("Path"));
             if (engine.hasOpenAlternatives()) {
                 info = engine.solveNext();
             }

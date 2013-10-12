@@ -32,6 +32,7 @@ public final class PersistenceConfigurationFactory {
             case TEST:
                 ret.put("eclipselink.target-database", "DERBY");
                 ret.put("eclipselink.ddl-generation", "create-tables");
+                ret.put("eclipselink.ddl-generation.output-mode", "both");
                 ret.put("eclipselink.logging.level", "FINE");
                 ret.put("eclipselink.logging.file", "target/logs/eclipselink.log");
                 ret.putAll(ConnectionPropertiesFactory.connection(Connections.DERBY_IN_MEMORY));

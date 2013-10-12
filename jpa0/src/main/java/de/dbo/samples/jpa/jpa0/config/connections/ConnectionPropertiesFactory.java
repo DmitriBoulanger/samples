@@ -21,7 +21,7 @@ public final class ConnectionPropertiesFactory {
 
             case MY_SQL:
                 ret.put("javax.persistence.jdbc.driver", "com.mysql.jdbc.Driver");
-                ret.put("javax.persistence.jdbc.url", "jdbc:mysql://localhost:3306/Students_DB");
+                ret.put("javax.persistence.jdbc.url", "jdbc:mysql://localhost:3306/Students");
                 ret.put("javax.persistence.jdbc.user", "root");
                 ret.put("javax.persistence.jdbc.password", "");
 
@@ -29,7 +29,7 @@ public final class ConnectionPropertiesFactory {
 
             case DERBY_IN_MEMORY:
                 ret.put("javax.persistence.jdbc.driver", "org.apache.derby.jdbc.EmbeddedDriver");
-                ret.put("javax.persistence.jdbc.url", "jdbc:derby:memory:StudentsDB;create=true");
+                ret.put("javax.persistence.jdbc.url", "jdbc:derby:memory:Students;create=true");
                 ret.put("javax.persistence.jdbc.user", "");
                 ret.put("javax.persistence.jdbc.password", "");
 
