@@ -94,27 +94,22 @@ public class PrintTest {
     	final Map<String,Printable> map = toMapOfPrintables(map(0));
     	map.put("printable map", new PrintableMap(map(1)));
     	map.put("printable object", new PrintableObject(map(2)));
-    	map.put("printable object null", new PrintableObject(null));
+    	map.put("printable object null", new PrintableObject());
 
         log.debug("Complete map: " + lines(map));
-        log.debug("Complete map single-line: " + line(map));
         log.debug("Filtered map: " + lines(map, "a" /* filter */));
+        log.debug("Complete map single-line: " + line(map));
     }
     
     @Test
     public void test_30_integers() {
         final int[] integers = new int[]{0, 1, 2};
         log.debug("integers: " + line(integers));
-        final Object[] objects = new Object[]{new Integer(0), new Integer(1)};
-        log.debug("Integers: " + line(objects));
+        final Integer[] objects = new Integer[]{new Integer(0), new Integer(1)};
+        final StringBuilder sb = line(objects);
+        log.debug("Integers: " + sb);
     }
-    
-    @Test
-    public void test_40_printable() {
-    	 final PrintableMap map = new PrintableMap(map(0));
-         log.debug("Printable map-lines: " + map.printlines());
-         log.debug("Printable map-line: " + map.printline());
-    }
+ 
     
     // HELPERS
     

@@ -1,6 +1,7 @@
 package de.dbo.samples.util0;
 
 import static java.util.Collections.sort;
+import static de.dbo.samples.util0.PrintableObject.toPrintable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,7 +52,7 @@ public final class Print {
                     continue;
                 }
             }
-            sb.append(nl + key + EQ + new PrintableObject(map.get(key)).printline());
+            sb.append(nl + key + EQ + toPrintable(map.get(key)).printline());
         }
         return sb;
     }
@@ -65,7 +66,7 @@ public final class Print {
         }
         final StringBuilder sb = new StringBuilder();
         for (final Object o : set) {
-            sb.append(NL + new PrintableObject(o).printline());
+            sb.append(NL + toPrintable(o).printline());
         }
         return sb;
     }
@@ -79,7 +80,7 @@ public final class Print {
         }
         final StringBuilder sb = new StringBuilder();
         for (final Object o : list) {
-            sb.append(NL + new PrintableObject(o).printline());
+            sb.append(NL + toPrintable(o).printline());
         }
         return sb;
     }
@@ -108,7 +109,7 @@ public final class Print {
         final StringBuilder sb = new StringBuilder();
         int n = list.size();
         for (int i = 0; i < n; i++) {
-            sb.append(NL + i + NB + new PrintableObject(list.get(i)).printline());
+            sb.append(NL + i + NB + toPrintable(list.get(i)).printline());
         }
         return sb;
     }
@@ -137,22 +138,21 @@ public final class Print {
         }
         final StringBuilder sb = new StringBuilder();
         for (final String key : map.keySet()) {
-            sb.append(" [" + key + "=" + new PrintableObject(map.get(key)).printline() + "]");
+            sb.append(" [" + key + "=" + toPrintable(map.get(key)).printline() + "]");
         }
         return sb;
     }
 
-    public static final StringBuilder line(final Object[] objects) {
-        if (null == objects) {
+    public static final StringBuilder line(final Integer[] integers) {
+        if (null == integers) {
             return NULL;
         }
-        if (0 == objects.length) {
+        if (0 == integers.length) {
             return EMPTY;
         }
         final StringBuilder sb = new StringBuilder();
-        final int n = objects.length;
-        for (int i = 0; i < n; i++) {
-            sb.append( new PrintableObject(objects[i]).printline() );
+        for (final Integer i:integers) {
+            sb.append(  i );
             sb.append( " " );
         }
         return sb;
@@ -168,7 +168,7 @@ public final class Print {
         }
         final StringBuilder sb = new StringBuilder();
         for (int i = 0; i < n; i++) {
-            sb.append(new PrintableObject(objects.get(i)) + " ");
+            sb.append(toPrintable(objects.get(i)) + " ");
         }
         return sb;
     }
@@ -181,9 +181,9 @@ public final class Print {
             return EMPTY;
         }
         final StringBuilder sb = new StringBuilder();
-        final int n = integers.length;
-        for (int i = 0; i < n; i++) {
-            sb.append(integers[i] + " ");
+        for (final int i:integers) {
+            sb.append(  i );
+            sb.append( " " );
         }
         return sb;
     }
@@ -231,4 +231,6 @@ public final class Print {
                 return NL;
         }
     }
+    
+   
 }
