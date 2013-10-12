@@ -23,6 +23,7 @@ public final class Print {
     private static final String NL2   = "\n\t\t -- ";
     private static final String EQ = " = ";
     private static final String NB = ": ";
+    private static final String SP = " ";
 
     private Print() {
         // should be never initialized as an instance
@@ -124,7 +125,7 @@ public final class Print {
         final StringBuilder sb = new StringBuilder();
         int n = strings.length;
         for (int i = 0; i < n; i++) {
-            sb.append(NL + i + ": " + strings[i]);
+            sb.append(NL + i + NB + strings[i]);
         }
         return sb;
     }
@@ -138,7 +139,7 @@ public final class Print {
         }
         final StringBuilder sb = new StringBuilder();
         for (final String key : map.keySet()) {
-            sb.append(" [" + key + "=" + toPrintable(map.get(key)).printline() + "]");
+            sb.append(" [" + key + EQ + toPrintable(map.get(key)).printline() + "]");
         }
         return sb;
     }
@@ -153,7 +154,22 @@ public final class Print {
         final StringBuilder sb = new StringBuilder();
         for (final Integer i:integers) {
             sb.append(  i );
-            sb.append( " " );
+            sb.append( SP );
+        }
+        return sb;
+    }
+    
+    public static final StringBuilder line(final String[] strings) {
+        if (null == strings) {
+            return NULL;
+        }
+        if (0 == strings.length) {
+            return EMPTY;
+        }
+        final StringBuilder sb = new StringBuilder();
+        for (final String string:strings) {
+            sb.append(  string );
+            sb.append( SP );
         }
         return sb;
     }
@@ -183,7 +199,7 @@ public final class Print {
         final StringBuilder sb = new StringBuilder();
         for (final int i:integers) {
             sb.append(  i );
-            sb.append( " " );
+            sb.append( SP );
         }
         return sb;
     }

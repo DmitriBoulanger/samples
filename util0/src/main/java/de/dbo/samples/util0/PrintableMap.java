@@ -15,12 +15,12 @@ public final class PrintableMap extends HashMap<String, Printable> implements Pr
 	 * @param map
 	 * @return map with printable values
 	 */
-	public static Map<String, Printable> toMapOfPrintables(final Map<String, ?> map) {
+	public static Map<String, Printable> toMapOfPrintables(final Map<?, ?> map) {
 		final Map<String, Printable> ret = new HashMap<String, Printable>();
-		for (Map.Entry<String, ?> entry: map.entrySet()) {
-			final String key = entry.getKey();
+		for (Map.Entry<?, ?> entry: map.entrySet()) {
+			final Object key = entry.getKey();
 			final Object o = entry.getValue();
-			ret.put(key, toPrintable(o));
+			ret.put(toPrintable(key).printline().toString(), toPrintable(o));
 		}
 		return ret;
 	}

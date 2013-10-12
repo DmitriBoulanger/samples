@@ -1,5 +1,9 @@
 package de.dbo.samples.util0;
 
+import static de.dbo.samples.util0.PrintableMap.toMapOfPrintables;
+import static de.dbo.samples.util0.Print.line;
+import static de.dbo.samples.util0.Print.lines;
+
 import java.util.Map;
 
 public final class PrintableObject implements Printable {
@@ -15,6 +19,8 @@ public final class PrintableObject implements Printable {
 			return new PrintableObject((Integer) o);
 		} else if (o instanceof Printable) {
 			return (Printable) o;
+		} else if (o instanceof Map<?,?>) {
+			return new PrintableObject( toMapOfPrintables( (Map<?,?>) o));
 		} else {
 			return new PrintableObject(o.toString());
 		}
@@ -51,12 +57,24 @@ public final class PrintableObject implements Printable {
 	public PrintableObject(final Integer o) {
 		this.o = null;
 		this.map = null;
-		this.sb = o == null ? null : new StringBuilder(o);
+		this.sb = o == null ? null : new StringBuilder(Integer.toString( o.intValue() ));
+	}
+	
+	public PrintableObject(final Integer[] o) {
+		this.o = null;
+		this.map = null;
+		this.sb = o == null ? null : new StringBuilder( line((Integer[]) o) );
+	}
+	
+	public PrintableObject(final String[] o) {
+		this.o = null;
+		this.map = null;
+		this.sb = o == null ? null : new StringBuilder( line((String[]) o) );
 	}
 
-	public PrintableObject(final Map<String, ?> o) {
+	public PrintableObject(final Map<?, ?> o) {
 		this.o = null;
-		this.map = o == null ? null : PrintableMap.toMapOfPrintables(o);
+		this.map = o == null ? null : toMapOfPrintables(o);
 		this.sb = null;
 	}
 
@@ -71,7 +89,7 @@ public final class PrintableObject implements Printable {
 		if (null != o) {
 			return o.printline();
 		} else if (null != map) {
-			return Print.line(map);
+			return line(map);
 		} else if (null != sb) {
 			return sb;
 		} else {
@@ -84,7 +102,7 @@ public final class PrintableObject implements Printable {
 		if (null != o) {
 			return o.printlines();
 		} else if (null != map) {
-			return Print.lines(map);
+			return lines(map);
 		} else if (null != sb) {
 			return sb;
 		} else {

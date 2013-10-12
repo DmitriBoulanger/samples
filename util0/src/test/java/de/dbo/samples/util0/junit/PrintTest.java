@@ -91,9 +91,13 @@ public class PrintTest {
 
     @Test
     public void test_20_map() {
-    	final Map<String,Printable> map = toMapOfPrintables(map(0));
-    	map.put("printable map", new PrintableMap(map(1)));
-    	map.put("printable object", new PrintableObject(map(2)));
+    	final Map<String,Printable> map = toMapOfPrintables(sampleMap(0));
+    	map.put("Integer",   new PrintableObject(new Integer(012)));
+    	map.put("Integers",  new PrintableObject(sampleIntegers()));
+    	map.put("String",    new PrintableObject("bababa"));
+    	map.put("Strings",   new PrintableObject(sampleStrings()));
+    	map.put("printable map", new PrintableMap(sampleMap(1)));
+    	map.put("printable object", new PrintableObject(sampleMap(2)));
     	map.put("printable object null", new PrintableObject());
 
         log.debug("Complete map: " + lines(map));
@@ -103,22 +107,29 @@ public class PrintTest {
     
     @Test
     public void test_30_integers() {
-        final int[] integers = new int[]{0, 1, 2};
-        log.debug("integers: " + line(integers));
-        final Integer[] objects = new Integer[]{new Integer(0), new Integer(1)};
-        final StringBuilder sb = line(objects);
+        log.debug("integers: " + line(sampleintegers() ));
+        final StringBuilder sb = line(sampleIntegers());
         log.debug("Integers: " + sb);
     }
  
-    
     // HELPERS
     
-    private static Map<String,String> map(final int i) {
+    private static Map<String,String> sampleMap(final int i) {
     	final Map<String,String> map = new HashMap<String,String>();
     	map.put("a"+i, "a-" + i*100);
     	map.put("b"+i, "b-" + i*1000);
     	map.put("c"+i, "c-" + i*10000);
         return map;
+    }
+    
+    private static Integer[] sampleIntegers() {
+        return new Integer[]{new Integer(0), new Integer(1), new Integer(2)};
+    }
+    private static int[] sampleintegers() {
+        return new int[]{0, 1, 2};
+    }
+    private static String[] sampleStrings() {
+        return new String[]{"ba", "ba", "ba"};
     }
 
 }
