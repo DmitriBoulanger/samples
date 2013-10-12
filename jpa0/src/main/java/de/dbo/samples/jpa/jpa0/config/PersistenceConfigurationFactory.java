@@ -6,6 +6,8 @@ import de.dbo.samples.jpa.jpa0.config.connections.Connections;
 import java.util.HashMap;
 import java.util.Map;
 
+//import org.eclipse.persistence.config.PersistenceUnitProperties;
+
 /**
  * Factory to generate properties of available persistence units
  *
@@ -35,6 +37,8 @@ public final class PersistenceConfigurationFactory {
                 ret.put("eclipselink.ddl-generation.output-mode", "both");
                 ret.put("eclipselink.logging.level", "FINE");
                 ret.put("eclipselink.logging.file", "target/logs/eclipselink.log");
+                ret.put("eclipselink.create-ddl-jdbc-file-name", "target/logs/createDDL.sql"); 
+                
                 ret.putAll(ConnectionPropertiesFactory.connection(Connections.DERBY_IN_MEMORY));
                 return ret;
 
