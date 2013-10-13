@@ -4,7 +4,6 @@ import static de.dbo.samples.util0.Print.line;
 import static de.dbo.samples.util0.Print.lines;
 import static de.dbo.samples.util0.Print.linesNumbered;
 import static de.dbo.samples.util0.Print.linesSorted;
-
 import static de.dbo.samples.util0.PrintConversions.toMapOfPrintables;
 
 import static org.junit.Assert.assertTrue;
@@ -19,6 +18,7 @@ import de.dbo.samples.util0.PrintableObject;
 import static java.util.Arrays.asList;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -39,6 +39,8 @@ public class PrintTest {
 
     @Test
     public void test_000_null() {
+    	final Collection<?> nullCollection = null;
+    	final String[] nullStrings = null;
         final StringBuilder NULL = Print.NULL;
         StringBuilder ret = null;
         
@@ -47,16 +49,16 @@ public class PrintTest {
         assertTrue("Printing null-map returns not " + NULL + "-object"
         		 , ret == NULL);
 
-        ret = lines((Set<String>) null);
+        ret = lines(nullCollection);
         log.debug("Null set lines: " + ret);
-        assertTrue("Printing null-set returns not " + NULL + "-object"
+        assertTrue("Printing null-collection returns not " + NULL + "-object"
         		 , ret == NULL);
-
-        ret = lines((List<String>) null);
-        log.debug("Null list lines: " + ret);
-        assertTrue("Printing null-list returns not " + NULL + "-object"
+        
+        ret = line(nullCollection);
+        log.debug("Null collection lines: " + ret);
+        assertTrue("Printing null-list line returns not " + NULL + "-object"
         		 , ret == NULL);
-
+        
         ret = lines((Properties) null);
         log.debug("Null properties lines: " + ret);
         assertTrue("Printing null-properties lines returns not " + NULL + "-object"
@@ -71,6 +73,11 @@ public class PrintTest {
         log.debug("Null map line: " + ret);
         assertTrue("Printing null-map as a line returns not " + NULL + "-object"
         		 , ret == NULL);
+        
+        ret = linesSorted(nullCollection);
+        log.debug("Null collection sorted lines: " + ret);
+        assertTrue("Printing collection sorted returns not " + NULL + "-object"
+                , ret == NULL);
 
         ret = line((int[]) null);
         log.debug("Null integers line: " + ret);
@@ -82,30 +89,46 @@ public class PrintTest {
         assertTrue("Printing null-integer objects as a line returns not " + NULL + "-object"
                 , ret == NULL);
         
-        ret = line((String[]) null);
+        ret = line(nullStrings);
         log.debug("Null string line: " + ret);
         assertTrue("Printing null-string objects as a line returns not " + NULL + "-object"
+                , ret == NULL);
+        
+        ret = linesNumbered(nullCollection);
+        log.debug("Null collection numbered lines: " + ret);
+        assertTrue("Printing empty collection numbered lines returns not " + NULL + "-object"
+                , ret == NULL);
+        
+        ret = linesNumbered(nullStrings);
+        log.debug("Empty strings numbered lines: " + ret);
+        assertTrue("Printing empty strings numbered lines returns not " + NULL + "-object"
                 , ret == NULL);
     }
 
     @Test
     public void test_010_empty() {
+    	final Collection<?> emptyCollection = new HashSet<Object>();
         final StringBuilder EMPTY = Print.EMPTY;
         StringBuilder ret = null;
 
         ret = lines(new HashMap<String, Printable>());
         log.debug("Empty map lines: " + ret);
         assertTrue("Printing empty-map lines returns not " + EMPTY + "-object"
-                , ret.equals(EMPTY));
+        		 , ret == EMPTY);
         
         ret = line(new HashMap<String, Printable>());
         log.debug("Empty map line: " + ret);
         assertTrue("Printing empty-map line returns not " + EMPTY + "-object"
-                , ret.equals(EMPTY));
+                , ret == EMPTY);
         
-        ret = lines(new HashSet<String>());
-        log.debug("Empty set lines: " + ret);
-        assertTrue("Printing empty set lines returns not " + EMPTY + "-object"
+        ret = lines(emptyCollection);
+        log.debug("Empty collection lines: " + ret);
+        assertTrue("Printing empty collection lines returns not " + EMPTY + "-object"
+        		 , ret == EMPTY);
+        
+        ret = line(emptyCollection);
+        log.debug("Empty collection line: " + ret);
+        assertTrue("Printing empty collection line returns not " + EMPTY + "-object"
         		 , ret == EMPTY);
         
         ret = lines(new Properties());
@@ -127,12 +150,32 @@ public class PrintTest {
         log.debug("Empty integer-objects line: " + ret);
         assertTrue("Printing empty integer objects as a line returns not " + EMPTY + "-object"
         		 , ret==EMPTY);
+        
+        ret = line(new String[]{});
+        log.debug("Empty strings line: " + ret);
+        assertTrue("Printing empty strings as a line returns not " + EMPTY + "-object"
+        		 , ret==EMPTY);
+        
+        ret = linesSorted(emptyCollection);
+        log.debug("Empty collection sorted lines: " + ret);
+        assertTrue("Printing empty collection sorted lines returns not " + EMPTY + "-object"
+                , ret == EMPTY);
+        
+        ret = linesNumbered(emptyCollection);
+        log.debug("Empty collection numbered lines: " + ret);
+        assertTrue("Printing empty collection numbered lines returns not " + EMPTY + "-object"
+                , ret == EMPTY);
+        
+        ret = linesNumbered(new String[]{});
+        log.debug("Empty strings numbered lines: " + ret);
+        assertTrue("Printing empty strings numbered lines returns not " + EMPTY + "-object"
+                , ret == EMPTY);
     }
 
     @Test
     public void test_020_map() {
     	final Map<String,Printable> map = toMapOfPrintables(sampleMap(0));
-    	map.put("Integer",   new PrintableObject(new Integer(012)));
+    	map.put("Integer",   new PrintableObject(new Integer(12)));
     	map.put("Integers",  new PrintableObject(sampleIntegers()));
     	map.put("String",    new PrintableObject("bababa"));
     	map.put("Strings",   new PrintableObject(sampleStrings()));
@@ -150,19 +193,16 @@ public class PrintTest {
     @Test
     public void test_021_properties() {
     	final Properties properties = sampleProperties(200);
-    	log.debug("Properties line: " + line(properties));
-    	log.debug("Properties lines: " + lines(properties));
+    	log.debug("Properties line:" + line(properties));
+    	log.debug("Properties lines:" + lines(properties));
     }
     
     @Test
     public void test_030_integers() {
-        log.debug("integers: " + line(sampleintegers()) );
-        log.debug("Integers: " + line(sampleIntegers()) );
-        log.debug("Integers list: " + line(asList(sampleIntegers())) );
-        
-//TODO        log.debug("integers: " + linesNumbered(sampleintegers()) );
-//TODO       log.debug("Integers: " + linesNumbered(sampleIntegers()) );
-        log.debug("Integers list: " + linesNumbered(asList(sampleIntegers())) );
+        log.debug("integers:" + line(sampleintegers()) );
+        log.debug("Integers:" + line(sampleIntegers()) );
+        log.debug("Integers list line:" + line(asList(sampleIntegers())) );
+        log.debug("Integers list numbered lines:" + linesNumbered(asList(sampleIntegers())) );
     }
     
     @Test
@@ -178,9 +218,10 @@ public class PrintTest {
     // linesNumbered(List<?>)
     @Test
     public void test_050_lists() {
-    	log.debug("List line: " + line( sampleMapList()) );
-        log.debug("List lines numbered: " + linesNumbered( sampleMapList()) );
-        log.debug("List lines sorted: " + linesSorted( sampleMapList()) );
+    	log.debug("List line:" + line( sampleMapList()) );
+    	log.debug("List lines:" + lines( sampleMapList()) );
+        log.debug("List lines numbered:" + linesNumbered( sampleMapList()) );
+        log.debug("List lines sorted:" + linesSorted( sampleMapList()) );
     }
     
     // lines(Set<?>) 
@@ -188,9 +229,9 @@ public class PrintTest {
     // linesNumberes(Set<?>)
     @Test
     public void test_060_sets() {
-    	log.debug("Set lines: " + lines( sampleMapSet()) );
-    	log.debug("Set lines numbered: " + linesNumbered( sampleMapSet()) );
-    	log.debug("Set lines sorted: " + linesSorted( sampleMapSet()) );
+    	log.debug("Set lines:" + lines( sampleMapSet()) );
+    	log.debug("Set lines numbered:" + linesNumbered( sampleMapSet()) );
+    	log.debug("Set lines sorted:" + linesSorted( sampleMapSet()) );
     }
     
     @Test

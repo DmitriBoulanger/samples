@@ -1,15 +1,13 @@
 package de.dbo.samples.util0;
 
 import static de.dbo.samples.util0.PrintConversions.sortedKeys;
-import static de.dbo.samples.util0.PrintConversions.toSortedList;
 import static de.dbo.samples.util0.PrintConversions.toPrintable;
+import static de.dbo.samples.util0.PrintConversions.toSortedList;
 
 import java.text.DecimalFormat;
 import java.util.Collection;
-import java.util.List;
 import java.util.Map;
 import java.util.Properties;
-import java.util.Set;
 
 import static java.util.Arrays.asList;
 
@@ -41,6 +39,10 @@ public final class Print {
     public static final StringBuilder lines(final Map<String, ?> map, final String filter)  {
     	return lines(map, filter, 1);
     }
+    
+    public static StringBuilder line(final Map<String, ?> map) {
+        return lines(map, null, 0);
+    }
 
     public static final StringBuilder lines(final Map<String, ?> map
     		, final String filter, final int offset) {
@@ -64,31 +66,34 @@ public final class Print {
         }
         return sb;
     }
-
-    public static final StringBuilder lines(final Set<?> set) {
-        if (null == set) {
-            return NULL;
-        }
-        if (0 == set.size()) {
-            return EMPTY;
-        }
-        final StringBuilder sb = new StringBuilder();
-        for (final Object o : set) {
-            sb.append(NL + toPrintable(o).printline());
-        }
-        return sb;
+    
+    public static final StringBuilder line(final Collection<?> collection) {
+    	return lines(collection, null, 0);
+    }
+    
+    public static final StringBuilder lines(final Collection<?> collection) {
+    	return lines(collection, null, 1);
     }
 
-    public static final StringBuilder lines(final List<?> list) {
-        if (null == list) {
+    public static final StringBuilder lines(final Collection<?> collection
+    		, final String filter, final int offset) {
+        if (null == collection) {
             return NULL;
         }
-        if (0 == list.size()) {
+        if (0 == collection.size()) {
             return EMPTY;
         }
+        final String nl = nl(offset);
         final StringBuilder sb = new StringBuilder();
-        for (final Object o : list) {
-            sb.append(NL + toPrintable(o).printline());
+        for (final Object o : collection) {
+        	final StringBuilder value = toPrintable(o).printline();
+            if (null != filter && filter.trim().length() > 0) {
+                if (-1 == value.indexOf(filter)) {
+                    continue;
+                }
+            }
+        	sb.append(nl);
+            sb.append(toPrintable(o).printline());
         }
         return sb;
     }
@@ -132,22 +137,6 @@ public final class Print {
         return linesNumbered(asList(strings));
     }
 
-    public static StringBuilder line(final Map<String, ?> map) {
-        if (null == map) {
-            return NULL;
-        }
-        if (0 == map.size()) {
-            return EMPTY;
-        }
-        final StringBuilder sb = new StringBuilder();
-        for (final String key : map.keySet()) {
-        	final Object o = map.get(key);
-        	final StringBuilder value = toPrintable(o).printline() ;
-            sb.append(SP);
-            sb.append(keyValue(key,value));
-        }
-        return sb;
-    }
 
     public static final StringBuilder line(final Integer[] integers) {
         if (null == integers) {
@@ -158,8 +147,8 @@ public final class Print {
         }
         final StringBuilder sb = new StringBuilder();
         for (final Integer i:integers) {
-            sb.append(  i );
             sb.append( SP );
+            sb.append(  i );
         }
         return sb;
     }
@@ -188,24 +177,8 @@ public final class Print {
         }
         final StringBuilder sb = new StringBuilder();
         for (final String string:strings) {
+            sb.append( SP );
             sb.append(  string );
-            sb.append( SP );
-        }
-        return sb;
-    }
-
-    public static final StringBuilder line(final List<?> objects) {
-        if (null == objects) {
-            return NULL;
-        }
-        final int n = objects.size();
-        if (0 == n) {
-            return EMPTY;
-        }
-        final StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < n; i++) {
-            sb.append( toPrintable(objects.get(i)).printline()  );
-            sb.append( SP );
         }
         return sb;
     }
@@ -219,8 +192,8 @@ public final class Print {
         }
         final StringBuilder sb = new StringBuilder();
         for (final int i:integers) {
-            sb.append(  i );
             sb.append( SP );
+            sb.append(  i );
         }
         return sb;
     }

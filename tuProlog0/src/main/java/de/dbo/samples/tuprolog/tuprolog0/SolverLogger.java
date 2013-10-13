@@ -9,7 +9,7 @@ import alice.tuprolog.Struct;
 import alice.tuprolog.Term;
 import alice.tuprolog.Var;
 
-public final class Logger {
+public final class SolverLogger {
 
     private static final Map<String, Integer> MESSAGE_TYPES = new HashMap<String, Integer>();
     static {
@@ -21,7 +21,7 @@ public final class Logger {
 
     private final org.slf4j.Logger            log;
 
-    public Logger(final String name) {
+    public SolverLogger(final String name) {
         this.log = LoggerFactory.getLogger(name);
         log.debug("logger created. Name=" + this.log.getName());
 

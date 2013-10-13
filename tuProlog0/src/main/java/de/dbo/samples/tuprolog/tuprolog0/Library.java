@@ -14,15 +14,15 @@ import alice.tuprolog.Term;
 public final class Library extends alice.tuprolog.Library {
     private static final long serialVersionUID = 5009215062246299601L;
     
-    /* Prolog-logger */
-    private final Logger      log;
+    /* internal Prolog-logger. It receives messages from the solver*/
+    private final SolverLogger      log;
 
     /** 
-     * logger-name to be used for the internal library-logger 
-     * @param logger
+     * 
+     * @param loggerName name to be used for the internal library-logger 
      */
-    public Library(final String logger) {
-        log = new Logger(logger);
+    public Library(final String loggerName) {
+        log = new SolverLogger(loggerName);
     }
 
     /**
@@ -45,9 +45,10 @@ public final class Library extends alice.tuprolog.Library {
 
     /**
      * Built-in predicate log/1
-     * e.g. info( info("something strange ...") )
      * @param well-formed message-term of the form err|warn|info|debug (.....)
+     *           e.g. info( info("something strange ...") )
      * @return true
+     * @see SolverLogger
      */
     public final boolean log_1(final Term messageTerm) {
         log.log(messageTerm);

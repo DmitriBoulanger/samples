@@ -13,10 +13,10 @@ public final class Main extends PathTests {
 
     /* solver with extension library */
     static final Solver solver() {
-    	final String libraryLoggerName =
+    	final String loggerName =
     			"de.dbo.samples.tuprolog.tuprolog0.tuprolog0.PrologLogger";
         try {
-            final Solver solver = new Solver("Main", new Library(libraryLoggerName));
+            final Solver solver = new Solver("Main", new Library(loggerName));
             solver.loadTheory("rules.pl");
             solver.loadTheory("db.pl");
             return solver;
