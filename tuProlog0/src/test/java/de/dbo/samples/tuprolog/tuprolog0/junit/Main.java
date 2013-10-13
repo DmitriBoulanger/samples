@@ -8,14 +8,15 @@ import de.dbo.samples.tuprolog.tuprolog0.Library;
 import de.dbo.samples.tuprolog.tuprolog0.Solver;
 import de.dbo.samples.tuprolog.tuprolog0.junit.impl.PathTests;
 
-public class Main extends PathTests {
+public final class Main extends PathTests {
     protected static final Logger log = LoggerFactory.getLogger(Main.class);
 
     /* solver with extension library */
     static final Solver solver() {
+    	final String libraryLoggerName =
+    			"de.dbo.samples.tuprolog.tuprolog0.tuprolog0.PrologLogger";
         try {
-            final Solver solver =
-                new Solver(new Library("de.dbo.samples.tuprolog.tuprolog0.tuprolog0.Prolog"));
+            final Solver solver = new Solver("Main", new Library(libraryLoggerName));
             solver.loadTheory("rules.pl");
             solver.loadTheory("db.pl");
             return solver;

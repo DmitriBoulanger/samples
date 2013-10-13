@@ -1,12 +1,14 @@
 package de.dbo.samples.util0.junit;
 
-import org.junit.Test;
-import static org.junit.Assert.assertTrue;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import static de.dbo.samples.util0.Profiler.elapsed;
 import static de.dbo.samples.util0.Profiler.formatMs;
+
+import static org.junit.Assert.assertTrue;
+import static org.slf4j.LoggerFactory.getLogger;
+import static java.lang.System.currentTimeMillis;
+
+import org.junit.Test;
+import org.slf4j.Logger;
 
 /**
  *
@@ -14,7 +16,7 @@ import static de.dbo.samples.util0.Profiler.formatMs;
  *
  */
 public class ProfilerTest {
-    private static final Logger log = LoggerFactory.getLogger(ProfilerTest.class);
+    private static final Logger log = getLogger(ProfilerTest.class);
 
     @Test
     public void test_formatMs() {
@@ -35,13 +37,14 @@ public class ProfilerTest {
         		, -1!=formatMs(10000035L).indexOf("02 h. 46 min. 40 sec. 035 ms."));
     }
 
+    private static final long INTERVAL = 12733L;
+    private static final String ELAPSED_INTERVAL_EXPECTED = "Elapsed: 12 sec. 73";
     @Test
     public void test_elapsed() {
-        final long start = System.currentTimeMillis() - 10000;
-        final String elapsed = elapsed(start);
+        final String elapsed = elapsed(currentTimeMillis() - INTERVAL);
         log.debug(elapsed);
-        assertTrue("Incorret elapse value for " + 10000L
-        		, -1!=elapsed.indexOf("10 sec. 000 ms."));
+        assertTrue("Incorret elapse value for " + INTERVAL
+        		, -1 != elapsed.indexOf(ELAPSED_INTERVAL_EXPECTED));
     }
 
 }

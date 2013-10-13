@@ -1,9 +1,9 @@
 package de.dbo.samples.util0;
 
-import static java.util.Collections.sort;
-import static de.dbo.samples.util0.PrintableObject.toPrintable;
+import static de.dbo.samples.util0.PrintConversions.sortedKeys;
+import static de.dbo.samples.util0.PrintConversions.toSortedList;
+import static de.dbo.samples.util0.PrintConversions.toPrintable;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
@@ -19,6 +19,7 @@ public final class Print {
     public static final StringBuilder NULL  = new StringBuilder("NULL");
     public static final StringBuilder EMPTY = new StringBuilder("EMPTY");
 
+    // internal constants
     private static final String NL    = "\n\t - ";
     private static final String NL2   = "\n\t\t -- ";
     private static final String EQ = " = ";
@@ -94,7 +95,7 @@ public final class Print {
             return EMPTY;
         }
         final StringBuilder sb = new StringBuilder();
-        for (final String key : sorted(set)) {
+        for (final String key : toSortedList(set)) {
             sb.append(NL + key);
         }
         return sb;
@@ -159,6 +160,21 @@ public final class Print {
         return sb;
     }
     
+    public static final StringBuilder lines(final String[] strings) {
+        if (null == strings) {
+            return NULL;
+        }
+        if (0 == strings.length) {
+            return EMPTY;
+        }
+        final StringBuilder sb = new StringBuilder();
+        for (final String string:strings) {
+        	 sb.append( NL );
+        	 sb.append( string );
+        }
+        return sb;
+    }
+    
     public static final StringBuilder line(final String[] strings) {
         if (null == strings) {
             return NULL;
@@ -184,7 +200,8 @@ public final class Print {
         }
         final StringBuilder sb = new StringBuilder();
         for (int i = 0; i < n; i++) {
-            sb.append(toPrintable(objects.get(i)) + " ");
+            sb.append( toPrintable(objects.get(i)).printline()  );
+            sb.append( SP );
         }
         return sb;
     }
@@ -218,26 +235,6 @@ public final class Print {
         return sb;
     }
     
-    private static final List<String> sortedKeys(final Map<String, ?> map) {
-        final List<String> keys = new ArrayList<String>();
-        keys.addAll(new ArrayList<String>(map.keySet()));
-        sort(keys);
-        return keys;
-    }
-
-    private static final List<String> sortedKeys(final Properties p) {
-        final List<String> keys = new ArrayList<String>();
-        keys.addAll(new ArrayList<String>(p.stringPropertyNames()));
-        sort(keys);
-        return keys;
-    }
-
-    private static final List<String> sorted(final Set<String> set) {
-        final List<String> values = new ArrayList<String>();
-        values.addAll(new ArrayList<String>(set));
-        sort(values);
-        return values;
-    }
 
     private static final String nl(final int offset) {
         switch (offset) {

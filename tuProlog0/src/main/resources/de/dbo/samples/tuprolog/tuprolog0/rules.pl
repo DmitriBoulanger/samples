@@ -13,7 +13,7 @@ find(X, Y, Path, MaxLength) :-
  	   , Length < MaxLength
  	   , Counter <- incr returns Cnt
  	   , Timer <- elapsed returns Elapsed
- 	   , log( info(Cnt ," path=", Path, ". Length=", Length, " Elapsed: ", Elapsed," ms.") )
+ 	   , log( info("solution=", Cnt ," path=", Path, ". Length=", Length, " Elapsed: ", Elapsed," ms.") )
  	   , Timer <- reset.
  
 % path definition (arc is a database)

@@ -1,7 +1,7 @@
 package de.dbo.samples.jpa.jpa0.junit;
 
 import static de.dbo.samples.util0.Print.lines;
-import static de.dbo.samples.util0.PrintableMap.toMapOfPrintables;
+import static de.dbo.samples.util0.PrintConversions.toMapOfPrintables;
 import static org.junit.Assert.assertSame;
 
 import java.io.File;

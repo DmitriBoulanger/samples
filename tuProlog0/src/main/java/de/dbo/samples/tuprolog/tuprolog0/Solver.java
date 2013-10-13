@@ -2,8 +2,10 @@ package de.dbo.samples.tuprolog.tuprolog0;
 
 import static java.lang.System.currentTimeMillis;
 import static de.dbo.samples.util0.Profiler.elapsed;
+import static de.dbo.samples.util0.Print.lines;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,25 +22,42 @@ import alice.tuprolog.Var;
 public final class Solver {
     private static final Logger log    = LoggerFactory.getLogger(Solver.class);
 
-    private final Prolog        engine = new Prolog();
+    private static final String DF3 = "000";
+    private final Prolog        engine;
+    private final String        name;
 
-    public Solver() {
+    /**
+     * Empty (standard) Prolog-solver
+     */
+    public Solver(final String name) throws InvalidLibraryException{
+    	this(name,null);
     }
 
-    public Solver(final Library library) throws InvalidLibraryException {
-        engine.loadLibrary(library);
-        engine.setSpy(true);
+    /**
+     * Solver with loaded library
+     * 
+     * @param library
+     * @throws InvalidLibraryException
+     */
+    public Solver(final String name, final Library library) throws InvalidLibraryException {
+    	this.name = name;
+    	this.engine = new Prolog();
+    	this.engine.setSpy(true);
+        if (null!=library) {
+			this.engine.loadLibrary(library);
+		}
+		
     }
 
-    public final String printLibraries() {
-        final String[] libraries = engine.getCurrentLibraries();
-        final StringBuilder sb = new StringBuilder();
-        for (String name : libraries) {
-            sb.append("\n\t - " + name);
-        }
-        return sb.toString().trim();
+    public final StringBuilder printLibraries() {
+    	return lines(engine.getCurrentLibraries());
     }
 
+    /**
+     * loads a theory into this solver
+     * @param resource relative path of the resource containing Prolog-rules
+     * @throws IOException
+     */
     public void loadTheory(final String resource) throws IOException {
     	 log.debug("loading resource " + resource + " ...");
         final Theory theory;
@@ -58,31 +77,44 @@ public final class Solver {
         }
     }
 
-    public boolean solve(Term goal, Int maxLength, Var output) throws Exception {
-        log.debug("running " + goal.toString() + "...");
+    /**
+     * runs the specifies goal.
+     * The method tries to generate all solutions.
+     * Generated solutions are only shown as log-messages
+     * 
+     * @param goal
+     * @param maxLength
+     * @param output variable that contains solution
+     * @return true if at least one solution found
+     * @throws Exception
+     */
+    public boolean solve(final Term goal, final Int maxLength, final Var output) throws Exception {
         final long start = currentTimeMillis();
+        
+        log.debug("running " + goal.toString() + "...");
+        final String outputVarname = output.getName();
         SolveInfo info = engine.solve(goal);
-        int i = 0;
-
+        int solutionCounter = 0;
         while (info.isSuccess()) {
-            i++;
-            log.debug("solution " + i + ": "+ info.getVarValue("Path"));
+            solutionCounter++;
+            log.debug(name + " - solution " + solutionCounter + ": "+ info.getVarValue(outputVarname));
             if (engine.hasOpenAlternatives()) {
                 info = engine.solveNext();
             }
             else {
                 break;
             }
-            if (i > 100) {
+            if (solutionCounter > 100) {
                 break;
             }
         }
-        if (0 == i) {
-            log.info("No solutions. " + elapsed(start));
+        if (0 == solutionCounter) {
+            log.info(name + " - No  solutions.   " + elapsed(start));
             return false;
         }
         else {
-            log.info(i + " solution(s). " + elapsed(start));
+            log.info(name + " - " + new DecimalFormat(DF3).format(solutionCounter) + " solution(s). " 
+            							+ elapsed(start));
             return true;
         }
     }

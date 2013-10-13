@@ -1,5 +1,14 @@
 package de.dbo.samples.tuprolog.tuprolog0.objects;
 
+/**
+ * Counter-object to be used by the solver 
+ * Objects are used and initialized in the solver-library
+ * 
+ * @see de.dbo.samples.tuprolog.tuprolog0.Library#getObjectInitializationSubTheory()
+ * 
+ * @author Dmitri Boulanger, Hombach
+ *
+ */
 public class Counter {
 	
 	private int value;

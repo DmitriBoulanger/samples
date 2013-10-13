@@ -4,44 +4,82 @@ import de.dbo.samples.tuprolog.tuprolog0.objects.Counter;
 import de.dbo.samples.tuprolog.tuprolog0.objects.Timer;
 import alice.tuprolog.Term;
 
+/**
+ * Solver-library containing special Prolog-predicates and Java-objects
+ * It is used as an extension of an application rules
+ * 
+ * @author Dmitri Boulanger, Hombach
+ *
+ */
 public final class Library extends alice.tuprolog.Library {
     private static final long serialVersionUID = 5009215062246299601L;
+    
+    /* Prolog-logger */
     private final Logger      log;
 
+    /** 
+     * logger-name to be used for the internal library-logger 
+     * @param logger
+     */
     public Library(final String logger) {
         log = new Logger(logger);
     }
 
+    /**
+     * name of this library
+     */
     @Override
     public String getName() {
-        return "de.dbo.Library";
+        return "tuPrologSampleLibrary";
+    }
+    
+    /**
+     * library theory
+     */
+    public final String getTheory() {
+        final StringBuilder sb = new StringBuilder();
+        sb.append( getObjectInitializationSubTheory());
+        sb.append( getSimplePerdicatesSubTheory());
+        return sb.toString();
     }
 
     /**
-     * predicate log/1
+     * Built-in predicate log/1
      * e.g. info( info("something strange ...") )
      * @param well-formed message-term of the form err|warn|info|debug (.....)
      * @return true
      */
-    public boolean log_1(final Term messageTerm) {
+    public final boolean log_1(final Term messageTerm) {
         log.log(messageTerm);
         return true;
     }
 
     /**
-     * library theory
+     * theory to initialize Java-objects
+     * 
+     * @return
      */
-    public String getTheory() {
-        final StringBuilder sb = new StringBuilder();
+    public final StringBuilder getObjectInitializationSubTheory() {
+    	final StringBuilder sb = new StringBuilder();
 
-        // Java objects
+    	sb.append("init(Timer,Counter) :- timer(Timer), counter(Counter).\n");
         sb.append("timer(X) :- java_object('" + Timer.class.getName() + "' ,[] ,X).\n");
         sb.append("counter(X) :- java_object('" + Counter.class.getName() + "' ,[] ,X).\n");
-        sb.append("init(Timer,Counter) :- timer(Timer), counter(Counter).\n");
+      
+        return sb;
+    }
+    
+    /**
+     *  theory with Prolog predicates
+     *  
+     * @return
+     */
+    public final StringBuilder getSimplePerdicatesSubTheory() {
+    	final StringBuilder sb = new StringBuilder();
 
-        // Prolog predicates
         sb.append("size([],0).\n");
         sb.append("size([_|T],Total) :- !, size(T,N), Total is N+1.");
-        return sb.toString();
+        
+        return sb;
     }
 }

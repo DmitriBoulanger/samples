@@ -2,7 +2,9 @@ package de.dbo.samples.util0.junit;
 
 import static de.dbo.samples.util0.Print.line;
 import static de.dbo.samples.util0.Print.lines;
-import static de.dbo.samples.util0.PrintableMap.toMapOfPrintables;
+import static de.dbo.samples.util0.Print.linesNumbered;
+import static de.dbo.samples.util0.PrintConversions.toMapOfPrintables;
+
 import static org.junit.Assert.assertTrue;
 import static org.slf4j.LoggerFactory.getLogger;
 
@@ -11,6 +13,9 @@ import de.dbo.samples.util0.Printable;
 import de.dbo.samples.util0.PrintableMap;
 import de.dbo.samples.util0.PrintableObject;
 
+import static java.util.Arrays.asList;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -96,9 +101,11 @@ public class PrintTest {
     	map.put("Integers",  new PrintableObject(sampleIntegers()));
     	map.put("String",    new PrintableObject("bababa"));
     	map.put("Strings",   new PrintableObject(sampleStrings()));
-    	map.put("printable map", new PrintableMap(sampleMap(1)));
-    	map.put("printable object", new PrintableObject(sampleMap(2)));
-    	map.put("printable object null", new PrintableObject());
+    	map.put("Printable ", printableObject(777));
+    	map.put("Printable map", new PrintableMap(sampleMap(1)));
+    	map.put("Printable map of printables", new PrintableObject(sampleMapPrintable(11)));
+    	map.put("Printable object", new PrintableObject(sampleMap(2)));
+    	map.put("Printable object null", new PrintableObject());
 
         log.debug("Complete map: " + lines(map));
         log.debug("Filtered map: " + lines(map, "a" /* filter */));
@@ -107,9 +114,29 @@ public class PrintTest {
     
     @Test
     public void test_30_integers() {
-        log.debug("integers: " + line(sampleintegers() ));
-        final StringBuilder sb = line(sampleIntegers());
-        log.debug("Integers: " + sb);
+        log.debug("integers: " + line(sampleintegers()) );
+        log.debug("Integers: " + line(sampleIntegers()) );
+        log.debug("Integers list: " + line(asList(sampleIntegers())) );
+        
+//TODO        log.debug("integers: " + linesNumbered(sampleintegers()) );
+//TODO       log.debug("Integers: " + linesNumbered(sampleIntegers()) );
+        log.debug("Integers list: " + linesNumbered(asList(sampleIntegers())) );
+    }
+    
+    @Test
+    public void test_40_strings() {
+        log.debug("Strings: " + line(sampleStrings()) );
+        log.debug("Strings list: " + line(asList(sampleStrings())) );
+        
+        log.debug("Strings list numbered: " + linesNumbered(asList(sampleStrings())) );
+    }
+    
+    // line(List<?>) 
+    // linesNumbered(List<?>)
+    @Test
+    public void test_50_lists() {
+    	log.debug("List line: " + line( sampleMapList()) );
+        log.debug("List lines numbered: " + linesNumbered( sampleMapList()) );
     }
  
     // HELPERS
@@ -122,6 +149,18 @@ public class PrintTest {
         return map;
     }
     
+    private static Map<String,Printable> sampleMapPrintable(final int i) {
+        return toMapOfPrintables(sampleMap(i));
+    }
+    
+    private static List<?> sampleMapList() {
+    	final List<Map<String,String>> ret = new ArrayList<Map<String,String>>();
+    	ret.add(sampleMap(11));
+    	ret.add(sampleMap(22));
+    	ret.add(sampleMap(33));
+    	return ret;
+    }
+    
     private static Integer[] sampleIntegers() {
         return new Integer[]{new Integer(0), new Integer(1), new Integer(2)};
     }
@@ -130,6 +169,17 @@ public class PrintTest {
     }
     private static String[] sampleStrings() {
         return new String[]{"ba", "ba", "ba"};
+    }
+    private static Printable printableObject(final int x) {
+        return new Printable() {
+        	private final Map<String,Printable> map = toMapOfPrintables(sampleMap(x));
+        	public final StringBuilder printline() {
+        			return line(map);
+        	}
+        	public final StringBuilder printlines() {
+        		return lines(map);
+    	}
+        };
     }
 
 }

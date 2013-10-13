@@ -2,28 +2,13 @@ package de.dbo.samples.util0;
 
 import static de.dbo.samples.util0.Print.line;
 import static de.dbo.samples.util0.Print.lines;
-import static de.dbo.samples.util0.PrintableObject.toPrintable;
+import static de.dbo.samples.util0.PrintConversions.toPrintable;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public final class PrintableMap extends HashMap<String, Printable> implements Printable {
 	private static final long serialVersionUID = -2780960984071643688L;
-
-	/**
-	 * collects values from the given map into map with printable values
-	 * @param map
-	 * @return map with printable values
-	 */
-	public static Map<String, Printable> toMapOfPrintables(final Map<?, ?> map) {
-		final Map<String, Printable> ret = new HashMap<String, Printable>();
-		for (Map.Entry<?, ?> entry: map.entrySet()) {
-			final Object key = entry.getKey();
-			final Object o = entry.getValue();
-			ret.put(toPrintable(key).printline().toString(), toPrintable(o));
-		}
-		return ret;
-	}
 	
 	/**
 	 * creates a new printable map from the given map

@@ -77,22 +77,22 @@ public abstract class PathTests {
 	
 	// goals
 	private static final Term pathFrom( int from,  Var output, Int maxLength) {
-		return  new Struct("find", new Int(from), new Var("To"), output, maxLength);
+		return new Struct("find", new Int(from), new Var("To"), output, maxLength);
 	}
 	private static final Term pathFromTo( int from, int to, Var output, Int maxLength) {
-		return  new Struct("find", new Int(from), new Int(to), output, maxLength);
+		return new Struct("find", new Int(from), new Int(to), output, maxLength);
 	}
 	private static final Term pathFromToMe( Var output, Int maxLength) {
-		return  new Struct("find",  new Var("X"), new Var("X"), output, maxLength);
+		return new Struct("find",  new Var("X"), new Var("X"), output, maxLength);
 	}
 	private static final Term pathTo( int to, Var output, Int maxLength) {
-		return  new Struct("find", new Var("From"), new Int(to), output, maxLength);
+		return new Struct("find", new Var("From"), new Int(to), output, maxLength);
 	}
 	private static final Term cycles( Var output, Int maxLength) {
-		return  new Struct("findCycle", new Var("From"), new Var("To"), output, maxLength);
+		return new Struct("findCycle", new Var("From"), new Var("To"), output, maxLength);
 	}
 	private static final Term paths( Var output, Int maxLength) {
-		return  new Struct("find", new Var("From"), new Var("To"), output, maxLength);
+		return new Struct("find", new Var("From"), new Var("To"), output, maxLength);
 	}
 	
 }

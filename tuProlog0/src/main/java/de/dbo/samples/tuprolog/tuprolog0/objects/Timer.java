@@ -1,23 +1,32 @@
 package de.dbo.samples.tuprolog.tuprolog0.objects;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import static java.lang.System.currentTimeMillis;
+import static org.slf4j.LoggerFactory.getLogger;
 
+import org.slf4j.Logger;
+
+/**
+ * Timer-object to be used by the solver 
+ * Objects are used and initialized in the solver-library
+ * 
+ * @see de.dbo.samples.tuprolog.tuprolog0.Library#getObjectInitializationSubTheory()
+ *
+ */
 public final class Timer {
-	private static final Logger log = LoggerFactory.getLogger(Timer.class);
+	private static final Logger log = getLogger(Timer.class);
 
 	private long start;
 	
 	public Timer() {
-		start = System.currentTimeMillis();
+		start = currentTimeMillis();
 		log.debug("timer created.");
 	}
 	
 	public void reset() {
-		start = System.currentTimeMillis();
+		start = currentTimeMillis();
 	}
 	
 	public long elapsed()  {
-		return System.currentTimeMillis() - start;
+		return currentTimeMillis() - start;
 	}
 }

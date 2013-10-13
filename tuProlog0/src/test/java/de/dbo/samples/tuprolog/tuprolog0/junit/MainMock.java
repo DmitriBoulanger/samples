@@ -10,10 +10,10 @@ import de.dbo.samples.tuprolog.tuprolog0.junit.impl.PathTests;
 public class MainMock extends PathTests {
     protected static final Logger log = LoggerFactory.getLogger(MainMock.class);
 
-    /* default solver that uses mock-theory */
+    /* default solver that uses mock-theory (no special library) */
     static final Solver solver() {
         try {
-            final Solver solver = new Solver();
+            final Solver solver = new Solver("Mock");
             solver.loadTheory("rules-mock.pl");
             solver.loadTheory("rules.pl");
             solver.loadTheory("db.pl");
