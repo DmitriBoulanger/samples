@@ -4,10 +4,14 @@ import static de.dbo.samples.util0.PrintConversions.sortedKeys;
 import static de.dbo.samples.util0.PrintConversions.toSortedList;
 import static de.dbo.samples.util0.PrintConversions.toPrintable;
 
+import java.text.DecimalFormat;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
+
+import static java.util.Arrays.asList;
 
 /**
  * Pretty-print for debugging/logging
@@ -31,11 +35,11 @@ public final class Print {
     }
     
     public static StringBuilder lines(final Map<String, ?> map) {
-    	return lines(map, null, 0);
+    	return lines(map, null, 1);
     }
     
     public static final StringBuilder lines(final Map<String, ?> map, final String filter)  {
-    	return lines(map, filter, 0);
+    	return lines(map, filter, 1);
     }
 
     public static final StringBuilder lines(final Map<String, ?> map
@@ -54,7 +58,9 @@ public final class Print {
                     continue;
                 }
             }
-            sb.append(nl + key + EQ + toPrintable(map.get(key)).printline());
+            final StringBuilder value = toPrintable(map.get(key)).printline();
+            sb.append(nl);
+            sb.append(keyValue(key,value));
         }
         return sb;
     }
@@ -87,7 +93,7 @@ public final class Print {
         return sb;
     }
 
-    public static final StringBuilder linesSorted(final Set<String> set) {
+    public static final StringBuilder linesSorted(final Collection<?> set) {
         if (null == set) {
             return NULL;
         }
@@ -101,17 +107,17 @@ public final class Print {
         return sb;
     }
 
-    public static final StringBuilder linesNumbered(final List<?> list) {
-        if (null == list) {
+    public static final StringBuilder linesNumbered(final Collection<?> collection) {
+        if (null == collection) {
             return NULL;
         }
-        if (0 == list.size()) {
+        if (0 == collection.size()) {
             return EMPTY;
         }
         final StringBuilder sb = new StringBuilder();
-        int n = list.size();
-        for (int i = 0; i < n; i++) {
-            sb.append(NL + i + NB + toPrintable(list.get(i)).printline());
+        int i = 0;
+        for (final Object o:collection) {
+            sb.append(NL + number(i++) + NB + toPrintable(o).printline());
         }
         return sb;
     }
@@ -123,12 +129,7 @@ public final class Print {
         if (0 == strings.length) {
             return EMPTY;
         }
-        final StringBuilder sb = new StringBuilder();
-        int n = strings.length;
-        for (int i = 0; i < n; i++) {
-            sb.append(NL + i + NB + strings[i]);
-        }
-        return sb;
+        return linesNumbered(asList(strings));
     }
 
     public static StringBuilder line(final Map<String, ?> map) {
@@ -140,7 +141,10 @@ public final class Print {
         }
         final StringBuilder sb = new StringBuilder();
         for (final String key : map.keySet()) {
-            sb.append(" [" + key + EQ + toPrintable(map.get(key)).printline() + "]");
+        	final Object o = map.get(key);
+        	final StringBuilder value = toPrintable(o).printline() ;
+            sb.append(SP);
+            sb.append(keyValue(key,value));
         }
         return sb;
     }
@@ -230,20 +234,58 @@ public final class Print {
         }
         final StringBuilder sb = new StringBuilder();
         for (final String key : sortedKeys(properties)) {
-            sb.append(NL + key + EQ + properties.getProperty(key) );
+            sb.append(NL);
+            sb.append(keyValue(key, properties.getProperty(key) ));
         }
         return sb;
     }
     
-
-    private static final String nl(final int offset) {
-        switch (offset) {
-            case 2:
-                return NL2;
-            default:
-                return NL;
+    public static final StringBuilder line(final Properties properties) {
+        if (null == properties) {
+            return NULL;
         }
+        if (0 == properties.size()) {
+            return EMPTY;
+        }
+        final StringBuilder sb = new StringBuilder();
+        for (final String key : sortedKeys(properties)) {
+        	sb.append(SP);
+            sb.append(keyValue(key, properties.getProperty(key) ));
+        }
+        return sb;
     }
     
-   
+    private static final StringBuilder keyValue(final String key, final String value) {
+    	return keyValue(key, new StringBuilder(value));
+    }
+    
+    
+    private static final StringBuilder keyValue(final String key, final StringBuilder value) {
+    	final StringBuilder sb = new StringBuilder();
+    	sb.append("[");
+    	sb.append(key);
+    	sb.append(EQ);
+    	sb.append(value);
+    	sb.append("]");
+    	return sb;
+    }
+    
+
+	private static final String nl(final int offset) {
+		switch (offset) {
+		case 0:
+			return SP;
+		case 1:
+			return NL;
+		case 2:
+			return NL2;
+		default:
+			return NL;
+		}
+	}
+	
+	private static final String DF3 = "000";
+	private static final String number(final int number) {
+		return new DecimalFormat(DF3).format(number);
+	}
 }

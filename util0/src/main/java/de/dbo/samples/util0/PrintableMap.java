@@ -7,7 +7,7 @@ import static de.dbo.samples.util0.PrintConversions.toPrintable;
 import java.util.HashMap;
 import java.util.Map;
 
-public final class PrintableMap extends HashMap<String, Printable> implements Printable {
+final class PrintableMap extends HashMap<String, Printable> implements Printable {
 	private static final long serialVersionUID = -2780960984071643688L;
 	
 	/**

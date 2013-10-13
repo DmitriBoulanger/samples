@@ -6,7 +6,7 @@ import static de.dbo.samples.util0.Print.lines;
 
 import java.util.Map;
 
-public final class PrintableObject implements Printable {
+final class PrintableObject implements Printable {
 
 	
 	private final Printable o;

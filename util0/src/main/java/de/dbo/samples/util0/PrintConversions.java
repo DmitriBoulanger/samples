@@ -1,6 +1,7 @@
 package de.dbo.samples.util0;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,7 +13,8 @@ import static java.util.Collections.sort;
 public final class PrintConversions {
 	
 	/**
-	 * collects values from the given map into map with printable values
+	 * collects keys and values from the given map into a new map 
+	 * with string as keys and printable values
 	 * @param map
 	 * @return map with printable values
 	 */
@@ -73,9 +75,11 @@ public final class PrintConversions {
 	        return keys;
 	 }
 
-	 static final List<String> toSortedList(final Set<String> set) {
+	 static final List<String> toSortedList(final Collection<?> collection) {
 	        final List<String> values = new ArrayList<String>();
-	        values.addAll(new ArrayList<String>(set));
+	        for (final Object o:collection){
+	        	values.add(keyToString(o));
+	        }
 	        sort(values);
 	        return values;
 	 }

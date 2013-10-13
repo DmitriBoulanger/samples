@@ -1,4 +1,4 @@
-package de.dbo.samples.util0.junit;
+package de.dbo.samples.util0;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;

@@ -1,4 +1,4 @@
-package de.dbo.samples.util0.junit;
+package de.dbo.samples.util0;
 
 import static de.dbo.samples.util0.Profiler.elapsed;
 import static de.dbo.samples.util0.Profiler.formatMs;
