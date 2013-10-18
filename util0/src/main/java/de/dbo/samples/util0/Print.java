@@ -40,6 +40,7 @@ public final class Print {
         final Collection<?> objects = map.values();
         for (final Object o : objects) {
             if (null == o) {
+            	sb2.append(0 + " ");
                 continue;
             }
             if (o instanceof Collection<?>) {
@@ -50,6 +51,16 @@ public final class Print {
                     continue;
                 }
                 ret = ret * (size);
+            } else if (o instanceof Map<?,?>) {
+            	 final  Map<?,?> mapValue = ( Map<?,?>) o;
+                 final int size = mapValue.size();
+                 sb2.append(size + " ");
+                 if (0 == size) {
+                     continue;
+                 }
+                 ret = ret * (size);
+            } else {
+            	 sb2.append(1 + " ");
             }
         }
         final StringBuilder sb = new StringBuilder();

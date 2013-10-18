@@ -1,5 +1,6 @@
 package de.dbo.samples.util0;
 
+import static de.dbo.samples.util0.Print.cpCardinality;
 import static de.dbo.samples.util0.Print.line;
 import static de.dbo.samples.util0.Print.lines;
 import static de.dbo.samples.util0.Print.linesNumbered;
@@ -94,6 +95,16 @@ public class PrintTest {
         assertTrue("Printing null-string objects as a line returns not " + NULL + "-object"
                 , ret == NULL);
         
+        ret = lines(nullStrings);
+        log.debug("Null string lines: " + ret);
+        assertTrue("Printing null-string objects as a line returns not " + NULL + "-object"
+                , ret == NULL);
+        
+        ret = line((String[])null);
+        log.debug("Null string line: " + ret);
+        assertTrue("Printing null-string objects as a line returns not " + NULL + "-object"
+                , ret == NULL);
+        
         ret = linesNumbered(nullCollection);
         log.debug("Null collection numbered lines: " + ret);
         assertTrue("Printing empty collection numbered lines returns not " + NULL + "-object"
@@ -154,6 +165,11 @@ public class PrintTest {
         ret = line(new String[]{});
         log.debug("Empty strings line: " + ret);
         assertTrue("Printing empty strings as a line returns not " + EMPTY + "-object"
+        		 , ret==EMPTY);
+        
+        ret = lines(new String[]{});
+        log.debug("Empty strings line: " + ret);
+        assertTrue("Printing empty strings as lines returns not " + EMPTY + "-object"
         		 , ret==EMPTY);
         
         ret = linesSorted(emptyCollection);
@@ -235,7 +251,7 @@ public class PrintTest {
     }
     
     @Test
-    public void test_100_conversions() {
+    public void test_090_conversions() {
     	final Map<?,?> map = sampleMap(1000);
     	final Map<?,?>  mapOfPrintables = toMapOfPrintables(map);
     	for (final Object value: mapOfPrintables.values()) {
@@ -246,7 +262,39 @@ public class PrintTest {
     	assertTrue("Printable object is not printable"
     			,printableObject instanceof Printable);
     }
- 
+    
+    @Test
+    public void test_100_misc() {
+    	final Map<?,?> map = sampleMap(1000);
+    	final Map<?,?> map2 = sampleMap(2000);
+    	final Map<?,?> map3 = sampleMap(3000);
+    	final Map<String,Object> mapWithMaps = new HashMap<String,Object>();
+    	mapWithMaps.put("x",  map);
+    	mapWithMaps.put("x2", map2);
+    	mapWithMaps.put("x3", map3);
+    	mapWithMaps.put("x4", "fafafaf");
+    	mapWithMaps.put("x5", null);
+    	mapWithMaps.put("x6",  new HashMap<String,Object>());
+    	mapWithMaps.put("x7",  new ArrayList<Object>() );
+    	mapWithMaps.put("x8",  sampleMapList() );
+    	
+    	final String cpCardinality = cpCardinality(mapWithMaps).toString();
+    	final String cpCardinalityExpected = "CP-cardinaliy[3x0x0x1x0x3x3x3] = 000 000 081";
+    	log.debug(cpCardinality);
+    	assertTrue("cpCardinaly is not correct: " + cpCardinality
+    			+ " Expected "+cpCardinalityExpected
+    			,cpCardinality.equals(cpCardinalityExpected));
+    	
+    	
+    	final String cpCardinality2 = cpCardinality(map).toString();
+    	final String cpCardinalityExpected2 = "CP-cardinaliy[1x1x1] = 000 000 001";
+    	log.debug(cpCardinality2);
+    	assertTrue("cpCardinaly is not correct: " + cpCardinality2
+    			+ " Expected "+cpCardinalityExpected2
+    			,cpCardinality2.equals(cpCardinalityExpected2));
+    	
+    }
+    
     // SMAPLE GENERATORS
     
     private static Properties sampleProperties(final int i) {
