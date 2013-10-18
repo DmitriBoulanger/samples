@@ -10,6 +10,10 @@ import java.util.Properties;
 import static java.util.Collections.sort;
 
 public final class PrintConversions {
+    
+    private PrintConversions() {
+        // should be never initialized as an instance
+    }
 
 	/**
 	 * collects keys and values from the given map into a new map with string as
