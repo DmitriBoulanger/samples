@@ -32,6 +32,35 @@ public final class Print {
         // should be never initialized as an instance
     }
     
+    private static final String DF_CARDINALIY = "000,000,000";
+    public static final StringBuilder cpCardinality(final Map<?, ?> map) {
+        long ret = 1;
+        final StringBuilder sb2 = new StringBuilder();
+        final Collection<?> objects = map.values();
+        for (final Object o : objects) {
+            if (null == o) {
+                continue;
+            }
+            if (o instanceof Collection<?>) {
+                final Collection<?> collection = (Collection<?>) o;
+                final int size = collection.size();
+                sb2.append(size + " ");
+                if (0 == size) {
+                    continue;
+                }
+                ret = ret * (size);
+            }
+        }
+        final StringBuilder sb = new StringBuilder();
+        sb.append("CP-cardinaliy");
+        sb.append("[");
+        sb.append(sb2.toString().trim().replace(" ", "x"));
+        sb.append("]");
+        sb.append(" = ");
+        sb.append(new DecimalFormat(DF_CARDINALIY).format(ret).replace(".", " "));
+        return sb;
+    }
+    
     public static StringBuilder lines(final Map<String, ?> map) {
     	return lines(map, null, 1);
     }
