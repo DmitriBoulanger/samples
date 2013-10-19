@@ -8,7 +8,6 @@ import java.util.Map;
 
 final class PrintableObject implements Printable {
 
-	
 	private final Printable o;
 	private final Map<String, Printable> map;
 	private final StringBuilder sb;;

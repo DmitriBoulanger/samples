@@ -65,9 +65,11 @@ public final class PrintConversions {
 		return keySring;
 	}
 
-	static final List<String> sortedKeys(final Map<String, ?> map) {
+	static final List<String> sortedKeys(final Map<?, ?> map) {
 		final List<String> keys = new ArrayList<String>();
-		keys.addAll(new ArrayList<String>(map.keySet()));
+		for (final Object o:map.keySet()){
+			keys.add(keyToString(o));
+		}
 		sort(keys);
 		return keys;
 	}

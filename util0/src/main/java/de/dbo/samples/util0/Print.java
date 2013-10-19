@@ -73,26 +73,26 @@ public final class Print {
         return sb;
     }
 
-    public static StringBuilder lines(final Map<String, ?> map) {
+    public static StringBuilder lines(final Map<?, ?> map) {
         return lines(map, null, 1);
     }
 
-    public static final StringBuilder lines(final Map<String, ?> map, final String filter) {
+    public static final StringBuilder lines(final Map<?, ?> map, final String filter) {
         return lines(map, filter, 1);
     }
 
-    public static StringBuilder line(final Map<String, ?> map) {
+    public static StringBuilder line(final Map<?, ?> map) {
         return lines(map, null, 0);
     }
 
-    public static final StringBuilder lines(final Map<String, ?> map, final String filter, final int offset) {
+    public static final StringBuilder lines(final Map<?, ?> map, final String filter, final int level) {
         if (null == map) {
             return NULL;
         }
         if (0 == map.size()) {
             return EMPTY;
         }
-        final String nl = nl(offset);
+        final String nl = nl(level);
         final StringBuilder sb = new StringBuilder();
         for (final String key : sortedKeys(map)) {
             if (null != filter && filter.trim().length() > 0) {
@@ -102,7 +102,12 @@ public final class Print {
             }
             final StringBuilder value = toPrintable(map.get(key)).printline();
             sb.append(nl);
-            sb.append(keyValue(key, value));
+            if (0==level) {
+            	sb.append(keyValue(key, value));
+            } else {
+            	sb.append(eq(key, value));
+            }
+            
         }
         return sb;
     }
@@ -265,7 +270,15 @@ public final class Print {
         }
         return sb;
     }
-
+    
+    private static final StringBuilder eq(final String key, final StringBuilder value) {
+    	 final StringBuilder sb = new StringBuilder();
+         sb.append(key);
+         sb.append(EQ);
+         sb.append(value);
+         return sb;
+    }
+    
     private static final StringBuilder keyValue(final String key, final String value) {
         return keyValue(key, new StringBuilder(value));
     }
@@ -273,9 +286,7 @@ public final class Print {
     private static final StringBuilder keyValue(final String key, final StringBuilder value) {
         final StringBuilder sb = new StringBuilder();
         sb.append("[");
-        sb.append(key);
-        sb.append(EQ);
-        sb.append(value);
+        sb.append(eq(key,value));
         sb.append("]");
         return sb;
     }
@@ -292,7 +303,6 @@ public final class Print {
     }
 
     private static final String DF3 = "000";
-
     private static final String number(final int number) {
         return new DecimalFormat(DF3).format(number);
     }
