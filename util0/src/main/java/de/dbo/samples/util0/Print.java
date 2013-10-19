@@ -251,7 +251,7 @@ public final class Print {
         final StringBuilder sb = new StringBuilder();
         for (final String key : sortedKeys(properties)) {
             sb.append(NL);
-            sb.append(keyValue(key, properties.getProperty(key)));
+            sb.append(eq(key, properties.getProperty(key)));
         }
         return sb;
     }
@@ -278,6 +278,11 @@ public final class Print {
          sb.append(value);
          return sb;
     }
+    
+    private static final StringBuilder eq(final String key, final String value) {
+   	 final StringBuilder sb = new StringBuilder();
+        return eq(key,new StringBuilder(value));
+   }
     
     private static final StringBuilder keyValue(final String key, final String value) {
         return keyValue(key, new StringBuilder(value));
