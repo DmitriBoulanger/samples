@@ -85,8 +85,7 @@ public final class Print {
         return lines(map, null, 0);
     }
 
-    public static final StringBuilder lines(final Map<String, ?> map
-            , final String filter, final int offset) {
+    public static final StringBuilder lines(final Map<String, ?> map, final String filter, final int offset) {
         if (null == map) {
             return NULL;
         }
@@ -116,8 +115,7 @@ public final class Print {
         return lines(collection, null, 1);
     }
 
-    public static final StringBuilder lines(final Collection<?> collection
-            , final String filter, final int offset) {
+    public static final StringBuilder lines(final Collection<?> collection, final String filter, final int offset) {
         if (null == collection) {
             return NULL;
         }
@@ -284,14 +282,12 @@ public final class Print {
 
     private static final String nl(final int offset) {
         switch (offset) {
-            case 0:
-                return SP;
             case 1:
                 return NL;
             case 2:
                 return NL2;
             default:
-                return NL;
+            	return SP;
         }
     }
 

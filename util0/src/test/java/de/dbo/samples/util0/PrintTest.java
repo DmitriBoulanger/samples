@@ -292,6 +292,23 @@ public class PrintTest {
     	assertTrue("cpCardinaly is not correct: " + cpCardinality2
     			+ " Expected "+cpCardinalityExpected2
     			,cpCardinality2.equals(cpCardinalityExpected2));
+    }
+    
+    @Test
+    public void test_101_misc() {
+    	final Map<String,?> map = sampleMap(1000);
+    	log.debug("Level map 0: "+lines(map, "1",0));
+    	log.debug("Level map 1: "+lines(map, "1",1));
+    	log.debug("Level map 2: "+lines(map, "1",2));
+    	
+    	log.debug("Level 0 maps empty filer: "+lines(map, "%%%%%",0));
+    	
+    	final List<?> list = sampleMapList();
+    	log.debug("Level list 0: "+lines(list, "1",0));
+    	log.debug("Level list 1: "+lines(list, "1",1));
+    	log.debug("Level list 2: "+lines(list, "1",2));
+    	
+    	log.debug("Level 0 list empty filer: "+lines(list, "%%%%%",0));
     	
     }
     
@@ -324,7 +341,7 @@ public class PrintTest {
     	ret.add(sampleMap(108));
     	return ret;
     }
-    
+
     private static Set<?> sampleMapSet() {
     	final List<Map<String,String>> ret = new ArrayList<Map<String,String>>();
     	ret.add(sampleMap(11));
