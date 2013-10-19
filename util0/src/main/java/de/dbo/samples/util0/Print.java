@@ -280,7 +280,6 @@ public final class Print {
     }
     
     private static final StringBuilder eq(final String key, final String value) {
-   	 final StringBuilder sb = new StringBuilder();
         return eq(key,new StringBuilder(value));
    }
     
