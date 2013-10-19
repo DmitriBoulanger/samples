@@ -300,6 +300,7 @@ public class PrintTest {
     	final Map<?,?> map = sampleMap(1000);
     	final Map<?,?> map2 = sampleMap(2000);
     	final Map<?,?> map3 = sampleMap(3000);
+    	
     	final Map<String,Object> mapWithMaps = new HashMap<String,Object>();
     	mapWithMaps.put("x",  map);
     	mapWithMaps.put("x2", map2);
@@ -309,6 +310,7 @@ public class PrintTest {
     	mapWithMaps.put("x6",  new HashMap<String,Object>());
     	mapWithMaps.put("x7",  new ArrayList<Object>() );
     	mapWithMaps.put("x8",  collectionOfMaps() );
+    	assertTrue(8==mapWithMaps.size());
     	
     	final String cpCardinality = cpCardinality(mapWithMaps).toString();
     	final String cpCardinalityExpected = "CP-cardinaliy[3x0x0x1x0x3x3x3] = 000 000 081";
