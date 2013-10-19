@@ -8,72 +8,79 @@ import java.util.Map;
 
 final class PrintableObject implements Printable {
 
-	private final Printable o;
-	private final Map<String, Printable> map;
-	private final StringBuilder sb;;
+	private final Printable printable;
+	private final Map<String, Printable> mapOfPrintables;
+	private final StringBuilder stringBuffer;
 
 	public PrintableObject() {
-		this.o = null;
-		this.map = null;
-		this.sb = null;
+		this.printable = null;
+		this.mapOfPrintables = null;
+		this.stringBuffer = null;
 	}
 
 	public PrintableObject(final String o) {
-		this.o = null;
-		this.map = null;
-		this.sb = o == null ? null : new StringBuilder(o);
+		this.printable = null;
+		this.mapOfPrintables = null;
+		this.stringBuffer = (o == null ? null : new StringBuilder(o));
 	}
 
 	public PrintableObject(final StringBuilder o) {
-		this.o = null;
-		this.map = null;
-		this.sb = o == null ? null : o;
+		this.printable = null;
+		this.mapOfPrintables = null;
+		this.stringBuffer = (o == null ? null : o);
 	}
 
 	public PrintableObject(final int o) {
-		this.o = null;
-		this.map = null;
-		this.sb = new StringBuilder(o);
+		this.printable = null;
+		this.mapOfPrintables = null;
+		this.stringBuffer = new StringBuilder(o);
 	}
 
 	public PrintableObject(final Integer o) {
-		this.o = null;
-		this.map = null;
-		this.sb = o == null ? null : new StringBuilder(Integer.toString( o.intValue() ));
+		this.printable = null;
+		this.mapOfPrintables = null;
+		this.stringBuffer = 
+				(o == null ? null : new StringBuilder(Integer.toString( o.intValue() )));
 	}
 	
 	public PrintableObject(final Integer[] o) {
-		this.o = null;
-		this.map = null;
-		this.sb = o == null ? null : new StringBuilder( line((Integer[]) o) );
+		this.printable = null;
+		this.mapOfPrintables = null;
+		this.stringBuffer = o == null ? null : new StringBuilder( line((Integer[]) o) );
+	}
+	
+	public PrintableObject(final int[] o) {
+		this.printable = null;
+		this.mapOfPrintables = null;
+		this.stringBuffer = o == null ? null : new StringBuilder( line(o) );
 	}
 	
 	public PrintableObject(final String[] o) {
-		this.o = null;
-		this.map = null;
-		this.sb = o == null ? null : new StringBuilder( line((String[]) o) );
+		this.printable = null;
+		this.mapOfPrintables = null;
+		this.stringBuffer = o == null ? null : new StringBuilder( line((String[]) o) );
 	}
 
 	public PrintableObject(final Map<?, ?> o) {
-		this.o = null;
-		this.map = o == null ? null : toMapOfPrintables(o);
-		this.sb = null;
+		this.printable = null;
+		this.mapOfPrintables = (o == null ? null : toMapOfPrintables(o));
+		this.stringBuffer = null;
 	}
 
 	public PrintableObject(final Printable o) {
-		this.o = o == null ? null : o;
-		this.map = null;
-		this.sb = null;
+		this.printable = o == null ? null : o;
+		this.mapOfPrintables = null;
+		this.stringBuffer = null;
 	}
 
 	@Override
 	public StringBuilder printline() {
-		if (null != o) {
-			return o.printline();
-		} else if (null != map) {
-			return line(map);
-		} else if (null != sb) {
-			return sb;
+		if (null != printable) {
+			return printable.printline();
+		} else if (null != mapOfPrintables) {
+			return line(mapOfPrintables);
+		} else if (null != stringBuffer) {
+			return stringBuffer;
 		} else {
 			return Print.NULL;
 		}
@@ -81,12 +88,12 @@ final class PrintableObject implements Printable {
 
 	@Override
 	public StringBuilder printlines() {
-		if (null != o) {
-			return o.printlines();
-		} else if (null != map) {
-			return lines(map);
-		} else if (null != sb) {
-			return sb;
+		if (null != printable) {
+			return printable.printlines();
+		} else if (null != mapOfPrintables) {
+			return lines(mapOfPrintables);
+		} else if (null != stringBuffer) {
+			return stringBuffer;
 		} else {
 			return Print.NULL;
 		}

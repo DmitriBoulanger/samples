@@ -32,8 +32,12 @@ public final class Print {
         // should be never initialized as an instance
     }
 
-    private static final String DF_CARDINALIY = "000,000,000";
-
+    /**
+     * considers map-values as collections and generates the
+     * cardinality of the corresponding Cartesian product
+     * @param map
+     * @return cardinality of the map 
+     */
     public static final StringBuilder cpCardinality(final Map<?, ?> map) {
         long ret = 1;
         final StringBuilder sb2 = new StringBuilder();
@@ -72,19 +76,14 @@ public final class Print {
         sb.append(new DecimalFormat(DF_CARDINALIY).format(ret).replace(".", " "));
         return sb;
     }
+    private static final String DF_CARDINALIY = "000,000,000";
 
-    public static StringBuilder lines(final Map<?, ?> map) {
-        return lines(map, null, 1);
-    }
-
-    public static final StringBuilder lines(final Map<?, ?> map, final String filter) {
-        return lines(map, filter, 1);
-    }
-
-    public static StringBuilder line(final Map<?, ?> map) {
-        return lines(map, null, 0);
-    }
-
+    /**
+     * @param map to be printed as a sequence of lines. Lines are sorted using their keys
+     * @param filter positive filter that is applied to the keys stored in the map
+     * @param level of the print-out
+     * @return pretty-print of the map
+     */
     public static final StringBuilder lines(final Map<?, ?> map, final String filter, final int level) {
         if (null == map) {
             return NULL;
@@ -111,15 +110,41 @@ public final class Print {
         }
         return sb;
     }
-
-    public static final StringBuilder line(final Collection<?> collection) {
-        return lines(collection, null, 0);
+    
+    /**
+     * filter=null level=1
+     * @return pretty-print of the map
+     * @see #lines(Map,String,int)
+     */
+    public static StringBuilder lines(final Map<?, ?> map) {
+        return lines(map, null, 1);
     }
 
-    public static final StringBuilder lines(final Collection<?> collection) {
-        return lines(collection, null, 1);
+    /**
+     * level=1
+     * @return pretty-print of the map
+     * @see #lines(Map,String,int)
+     */
+    public static final StringBuilder lines(final Map<?, ?> map, final String filter) {
+        return lines(map, filter, 1);
     }
 
+    /**
+     * filter=null level=0
+     * @return pretty-print of the map
+     * @see #lines(Map,String,int)
+     */
+    public static StringBuilder line(final Map<?, ?> map) {
+        return lines(map, null, 0);
+    }
+
+    /**
+     * @param collection to be printed as a sequence of lines
+     * @param filter positive filter that is applied to printable objects obtained from the original values
+     * @param level of the print-out
+     * @return pretty-print of the map
+     * @see PrintConversions#toPrintable(Object)
+     */
     public static final StringBuilder lines(final Collection<?> collection, final String filter, final int offset) {
         if (null == collection) {
             return NULL;
@@ -141,46 +166,30 @@ public final class Print {
         }
         return sb;
     }
-
-    public static final StringBuilder linesSorted(final Collection<?> set) {
-        if (null == set) {
-            return NULL;
-        }
-        if (0 == set.size()) {
-            return EMPTY;
-        }
-        final StringBuilder sb = new StringBuilder();
-        for (final String key : toSortedList(set)) {
-            sb.append(NL + key);
-        }
-        return sb;
+    
+    /**
+     * filter=null level=0
+     * @return pretty-print of the collection
+     * @see #lines(Collection,String,int)
+     */
+    public static final StringBuilder line(final Collection<?> collection) {
+        return lines(collection, null, 0);
     }
 
-    public static final StringBuilder linesNumbered(final Collection<?> collection) {
-        if (null == collection) {
-            return NULL;
-        }
-        if (0 == collection.size()) {
-            return EMPTY;
-        }
-        final StringBuilder sb = new StringBuilder();
-        int i = 0;
-        for (final Object o : collection) {
-            sb.append(NL + number(i++) + NB + toPrintable(o).printline());
-        }
-        return sb;
+    /**
+     * filter=null level=1
+     * @return pretty-print of the collection
+     * @see #lines(Collection,String,int)
+     */
+    public static final StringBuilder lines(final Collection<?> collection) {
+        return lines(collection, null, 1);
     }
-
-    public static final StringBuilder linesNumbered(final String[] strings) {
-        if (null == strings) {
-            return NULL;
-        }
-        if (0 == strings.length) {
-            return EMPTY;
-        }
-        return linesNumbered(asList(strings));
-    }
-
+    
+    /**
+     * @param integers array of Integer-objects to be printed
+     * @return pretty-print line of the integers
+     * @see PrintConversions#toSortedList(Collection)
+     */
     public static final StringBuilder line(final Integer[] integers) {
         if (null == integers) {
             return NULL;
@@ -195,7 +204,22 @@ public final class Print {
         }
         return sb;
     }
-
+    
+    public static final StringBuilder line(final int[] integers) {
+        if (null == integers) {
+            return NULL;
+        }
+        if (0 == integers.length) {
+            return EMPTY;
+        }
+        final StringBuilder sb = new StringBuilder();
+        for (final int i : integers) {
+            sb.append(SP);
+            sb.append(i);
+        }
+        return sb;
+    }
+    
     public static final StringBuilder lines(final String[] strings) {
         if (null == strings) {
             return NULL;
@@ -226,20 +250,7 @@ public final class Print {
         return sb;
     }
 
-    public static final StringBuilder line(final int[] integers) {
-        if (null == integers) {
-            return NULL;
-        }
-        if (0 == integers.length) {
-            return EMPTY;
-        }
-        final StringBuilder sb = new StringBuilder();
-        for (final int i : integers) {
-            sb.append(SP);
-            sb.append(i);
-        }
-        return sb;
-    }
+
 
     public static final StringBuilder lines(final Properties properties) {
         if (null == properties) {
@@ -269,6 +280,60 @@ public final class Print {
             sb.append(keyValue(key, properties.getProperty(key)));
         }
         return sb;
+    }
+    
+    /**
+     * @param collection
+     * @return pretty-print of the sorted collection
+     * @see PrintConversions#toSortedList(Collection)
+     */
+    public static final StringBuilder linesSorted(final Collection<?> collection) {
+        if (null == collection) {
+            return NULL;
+        }
+        if (0 == collection.size()) {
+            return EMPTY;
+        }
+        final StringBuilder sb = new StringBuilder();
+        for (final String key : toSortedList(collection)) {
+            sb.append(NL + key);
+        }
+        return sb;
+    }
+
+    /**
+     * @param collection
+     * @return pretty-print of the numbered collection
+     * @see PrintConversions#toSortedList(Collection)
+     */
+    public static final StringBuilder linesNumbered(final Collection<?> collection) {
+        if (null == collection) {
+            return NULL;
+        }
+        if (0 == collection.size()) {
+            return EMPTY;
+        }
+        final StringBuilder sb = new StringBuilder();
+        int i = 0;
+        for (final Object o : collection) {
+            sb.append(NL + number(i++) + NB + toPrintable(o).printline());
+        }
+        return sb;
+    }
+
+    /**
+     * @param string array of strings to be printed
+     * @return pretty-print of the numbered strings
+     * @see PrintConversions#toSortedList(Collection)
+     */
+    public static final StringBuilder linesNumbered(final String[] strings) {
+        if (null == strings) {
+            return NULL;
+        }
+        if (0 == strings.length) {
+            return EMPTY;
+        }
+        return linesNumbered(asList(strings));
     }
     
     private static final StringBuilder eq(final String key, final StringBuilder value) {

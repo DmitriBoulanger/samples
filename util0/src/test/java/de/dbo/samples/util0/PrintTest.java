@@ -6,6 +6,7 @@ import static de.dbo.samples.util0.Print.lines;
 import static de.dbo.samples.util0.Print.linesNumbered;
 import static de.dbo.samples.util0.Print.linesSorted;
 import static de.dbo.samples.util0.PrintConversions.toMapOfPrintables;
+import static de.dbo.samples.util0.PrintConversions.toPrintable;
 
 import static org.junit.Assert.assertTrue;
 
@@ -20,6 +21,7 @@ import static java.util.Arrays.asList;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -197,7 +199,7 @@ public class PrintTest {
     	map.put("Strings",   new PrintableObject(sampleStrings()));
     	map.put("Printable ", printableObject(777));
     	map.put("Printable map", new PrintableMap(sampleMap(1)));
-    	map.put("Printable map of printables", new PrintableObject(sampleMapPrintable(11)));
+    	map.put("Printable map of printables", new PrintableObject(sampleMapOfPrintable(11)));
     	map.put("Printable object", new PrintableObject(sampleMap(2)));
     	map.put("Printable object null", new PrintableObject());
 
@@ -229,42 +231,72 @@ public class PrintTest {
         log.debug("Strings list numbered: " + linesNumbered(asList(sampleStrings())) );
     }
     
-    // line(List<?>) 
-    // linesSorted(List<?>)
-    // linesNumbered(List<?>)
+    // lines(Collection<?>) 
+    // linesSorted(Collection<?>)
+    // linesNumberes(Collection<?>)
     @Test
-    public void test_050_lists() {
-    	log.debug("List line:" + line( sampleMapList()) );
-    	log.debug("List lines:" + lines( sampleMapList()) );
-        log.debug("List lines numbered:" + linesNumbered( sampleMapList()) );
-        log.debug("List lines sorted:" + linesSorted( sampleMapList()) );
+    public void test_050_collections() {
+    	log.debug("Collection lines:" + lines( (Collection<?>) collectionOfMaps()) );
+    	log.debug("Collection lines numbered:" + linesNumbered( (Collection<?>) collectionOfMaps()) );
+    	log.debug("Collection lines sorted:" + linesSorted( (Collection<?>) collectionOfMaps()) );
     }
     
-    // lines(Set<?>) 
-    // linesSorted(Set<?>)
-    // linesNumberes(Set<?>)
     @Test
-    public void test_060_sets() {
-    	log.debug("Set lines:" + lines( sampleMapSet()) );
-    	log.debug("Set lines numbered:" + linesNumbered( sampleMapSet()) );
-    	log.debug("Set lines sorted:" + linesSorted( sampleMapSet()) );
+    public void test_060_levels() {
+    	final Map<?,?> map = sampleMap(1000);
+    	log.debug("Level map 0: "+lines(map, "1",0));
+    	log.debug("Level map 1: "+lines(map, "1",1));
+    	log.debug("Level map 2: "+lines(map, "1",2));
+    	
+    	log.debug("Level 0 maps empty filer: "+lines(map, "%%%%%",0));
+    	
+    	final Collection<?> list = collectionOfMaps();
+    	log.debug("Level list 0: " + lines(list, "1",0));
+    	log.debug("Level list 1: " + lines(list, "1",1));
+    	log.debug("Level list 2: " + lines(list, "1",2));
+    	
+    	log.debug("Level 0 list empty filer: "+lines(list, "%%%%%",0));
+    }
+    
+    @Test
+    public void test_070_inverseMap() {
+    	final Map<Object,String> map0 = new HashMap<Object,String>();
+    	map0.put(new Integer(333),"Integer 333");
+    	map0.put(new StringBuilder("444"),"StringBuilder 444");
+    	map0.put(new String("555"),"String 555");
+    	map0.put(collectionOfMaps(),"Collections of maps");
+    	map0.put(new PrintableObject(),"Printable null-object");
+    	map0.put(new Date(),"Date");
+    	map0.put(new int[]{3,3,3} ,"int 3 3 3");
+    	map0.put(new Integer[]{new Integer(3),new Integer(3),new Integer(3)} ,"Integer 3 3 3");
+    	map0.put(new Integer[]{3,3,3} ,"Integer? 3 3 3 ");
+    	final int expectedSize= 9;
+    	
+    	final Map<String,Printable> map0Converted = toMapOfPrintables(map0);
+    	
+    	log.debug("Map0 with object-keys:" + lines(map0Converted));
+    	assertTrue("Converted map0 has wrong size " + map0Converted.size()
+    			+ ". Expected " + expectedSize
+    			,expectedSize==map0Converted.size());
     }
     
     @Test
     public void test_090_conversions() {
     	final Map<?,?> map = sampleMap(1000);
-    	final Map<?,?>  mapOfPrintables = toMapOfPrintables(map);
+    	final Map<String,Printable>  mapOfPrintables = toMapOfPrintables(map);
     	for (final Object value: mapOfPrintables.values()) {
     		assertTrue("Value in the map of printables is not printable"
     			,value instanceof Printable);
     	}
     	final Object printableObject = new PrintableObject(map);
     	assertTrue("Printable object is not printable"
-    			,printableObject instanceof Printable);
+    			,printableObject instanceof PrintableObject);
+    	
+    	log.debug("Line Null to printable: " + toPrintable(null).printline());
     }
     
     @Test
-    public void test_100_misc() {
+    public void test_100_cardinality() {
     	final Map<?,?> map = sampleMap(1000);
     	final Map<?,?> map2 = sampleMap(2000);
     	final Map<?,?> map3 = sampleMap(3000);
@@ -276,7 +308,7 @@ public class PrintTest {
     	mapWithMaps.put("x5", null);
     	mapWithMaps.put("x6",  new HashMap<String,Object>());
     	mapWithMaps.put("x7",  new ArrayList<Object>() );
-    	mapWithMaps.put("x8",  sampleMapList() );
+    	mapWithMaps.put("x8",  collectionOfMaps() );
     	
     	final String cpCardinality = cpCardinality(mapWithMaps).toString();
     	final String cpCardinalityExpected = "CP-cardinaliy[3x0x0x1x0x3x3x3] = 000 000 081";
@@ -294,24 +326,7 @@ public class PrintTest {
     			,cpCardinality2.equals(cpCardinalityExpected2));
     }
     
-    @Test
-    public void test_101_misc() {
-    	final Map<String,?> map = sampleMap(1000);
-    	log.debug("Level map 0: "+lines(map, "1",0));
-    	log.debug("Level map 1: "+lines(map, "1",1));
-    	log.debug("Level map 2: "+lines(map, "1",2));
-    	
-    	log.debug("Level 0 maps empty filer: "+lines(map, "%%%%%",0));
-    	
-    	final List<?> list = sampleMapList();
-    	log.debug("Level list 0: "+lines(list, "1",0));
-    	log.debug("Level list 1: "+lines(list, "1",1));
-    	log.debug("Level list 2: "+lines(list, "1",2));
-    	
-    	log.debug("Level 0 list empty filer: "+lines(list, "%%%%%",0));
-    	
-    }
-    
+ 
     // SMAPLE GENERATORS
     
     private static Properties sampleProperties(final int i) {
@@ -322,7 +337,7 @@ public class PrintTest {
         return properties;
     }
     
-    private static Map<String,String> sampleMap(final int i) {
+    private static Map<?,?> sampleMap(final int i) {
     	final Map<String,String> map = new HashMap<String,String>();
     	map.put("a"+i, "a-" + i*100);
     	map.put("b"+i, "b-" + i*1000);
@@ -330,45 +345,42 @@ public class PrintTest {
         return map;
     }
     
-    private static Map<String,Printable> sampleMapPrintable(final int i) {
+    private static Map<String,Printable> sampleMapOfPrintable(final int i) {
         return toMapOfPrintables(sampleMap(i));
     }
     
-    private static List<?> sampleMapList() {
-    	final List<Map<String,String>> ret = new ArrayList<Map<String,String>>();
+    private static Collection<?> collectionOfMaps() {
+    	final List<Object> ret = new ArrayList<Object>();
     	ret.add(sampleMap(109));
     	ret.add(sampleMap(103));
     	ret.add(sampleMap(108));
     	return ret;
     }
 
-    private static Set<?> sampleMapSet() {
-    	final List<Map<String,String>> ret = new ArrayList<Map<String,String>>();
-    	ret.add(sampleMap(11));
-    	ret.add(sampleMap(22));
-    	ret.add(sampleMap(33));
-    	return new HashSet<Object>( ret );
-    }
-    
     private static Integer[] sampleIntegers() {
         return new Integer[]{new Integer(0), new Integer(1), new Integer(2)};
     }
+    
     private static int[] sampleintegers() {
         return new int[]{0, 1, 2};
     }
+    
     private static String[] sampleStrings() {
         return new String[]{"ba", "ba", "ba"};
     }
-    private static Printable printableObject(final int x) {
-        return new Printable() {
-        	private final Map<String,Printable> map = toMapOfPrintables(sampleMap(x));
-        	public final StringBuilder printline() {
-        			return line(map);
-        	}
-        	public final StringBuilder printlines() {
-        		return lines(map);
-    	}
-        };
-    }
+    
+	private static Printable printableObject(final int x) {
+		return new Printable() {
+			private final Map<String, Printable> map = toMapOfPrintables(sampleMap(x));
+
+			public final StringBuilder printline() {
+				return line(map);
+			}
+
+			public final StringBuilder printlines() {
+				return lines(map);
+			}
+		};
+	}
 
 }
