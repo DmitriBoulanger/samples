@@ -40,17 +40,17 @@ public final class Print {
      */
     public static final StringBuilder cpCardinality(final Map<?, ?> map) {
         long ret = 1;
-        final StringBuilder sb2 = new StringBuilder();
+        final StringBuilder sbCardinalities = new StringBuilder();
         final Collection<?> objects = map.values();
         for (final Object o : objects) {
             if (null == o) {
-            	sb2.append(0 + " ");
+            	sbCardinalities.append(0 + SP);
                 continue;
             }
             if (o instanceof Collection<?>) {
                 final Collection<?> collection = (Collection<?>) o;
                 final int size = collection.size();
-                sb2.append(size + " ");
+                sbCardinalities.append(size + " ");
                 if (0 == size) {
                     continue;
                 }
@@ -58,22 +58,22 @@ public final class Print {
             } else if (o instanceof Map<?,?>) {
             	 final  Map<?,?> mapValue = ( Map<?,?>) o;
                  final int size = mapValue.size();
-                 sb2.append(size + " ");
+                 sbCardinalities.append(size + SP);
                  if (0 == size) {
                      continue;
                  }
                  ret = ret * (size);
             } else {
-            	 sb2.append(1 + " ");
+            	 sbCardinalities.append(1 + SP);
             }
         }
         final StringBuilder sb = new StringBuilder();
         sb.append("CP-cardinaliy");
         sb.append("[");
-        sb.append(sb2.toString().trim().replace(" ", "x"));
+        sb.append(sbCardinalities.toString().trim().replace(SP, "x"));
         sb.append("]");
-        sb.append(" = ");
-        sb.append(new DecimalFormat(DF_CARDINALIY).format(ret).replace(".", " "));
+        sb.append(EQ);
+        sb.append(new DecimalFormat(DF_CARDINALIY).format(ret).replace(".", SP));
         return sb;
     }
     private static final String DF_CARDINALIY = "000,000,000";
@@ -250,36 +250,52 @@ public final class Print {
         return sb;
     }
 
-
-
-    public static final StringBuilder lines(final Properties properties) {
+    /**
+     * @param properties
+     * @param filter
+     * @param level
+     * @return
+     */
+    public static final StringBuilder lines(final Properties properties, String filter, final int level) {
         if (null == properties) {
             return NULL;
         }
         if (0 == properties.size()) {
             return EMPTY;
         }
+        final String nl = nl(level);
         final StringBuilder sb = new StringBuilder();
         for (final String key : sortedKeys(properties)) {
-            sb.append(NL);
-            sb.append(eq(key, properties.getProperty(key)));
+        	if (null != filter && filter.trim().length() > 0) {
+                if (-1 == key.indexOf(filter)) {
+                    continue;
+                }
+            }
+        	sb.append(nl);
+        	final String value = properties.getProperty(key);
+            if (0==level) {
+            	sb.append(keyValue(key, value));
+            } else {
+            	sb.append(eq(key, value));
+            }
         }
         return sb;
     }
 
     public static final StringBuilder line(final Properties properties) {
-        if (null == properties) {
-            return NULL;
-        }
-        if (0 == properties.size()) {
-            return EMPTY;
-        }
-        final StringBuilder sb = new StringBuilder();
-        for (final String key : sortedKeys(properties)) {
-            sb.append(SP);
-            sb.append(keyValue(key, properties.getProperty(key)));
-        }
-        return sb;
+    	return lines(properties,null,0);
+    }
+    
+    public static final StringBuilder lines(final Properties properties) {
+    	return lines(properties,null,1);
+    }
+    
+    public static final StringBuilder line(final Properties properties, final String filter) {
+    	return lines(properties,filter,0);
+    }
+    
+    public static final StringBuilder lines(final Properties properties, final String filter) {
+    	return lines(properties,filter,1);
     }
     
     /**

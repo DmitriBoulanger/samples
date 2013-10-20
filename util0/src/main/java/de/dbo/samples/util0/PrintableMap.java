@@ -8,6 +8,12 @@ import static de.dbo.samples.util0.PrintConversions.toPrintable;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Internal (private) class to be used in the Print-algorithms
+ * 
+ * @author Dmitri Boulanger, Hombach
+ *
+ */
 final class PrintableMap extends HashMap<String, Printable> implements Printable {
 	private static final long serialVersionUID = -2780960984071643688L;
 	

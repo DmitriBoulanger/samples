@@ -8,88 +8,97 @@ import static de.dbo.samples.util0.Print.lines;
 import java.util.Collection;
 import java.util.Map;
 
+/**
+ * Internal (private) class to be used in the Print-algorithms
+ * 
+ * @author Dmitri Boulanger, Hombach
+ *
+ */
 final class PrintableObject implements Printable {
 
 	private final Printable printable;
 	private final Map<String, Printable> mapOfPrintables;
 	private final Collection<Printable> collectionOfPrintables;
-	private final StringBuilder stringBuffer;
+	private final StringBuilder stringBuilder;
 
-	public PrintableObject() {
+	/**
+	 * Printable NULL
+	 */
+	PrintableObject() {
 		this.printable = null;
 		this.mapOfPrintables = null;
 		this.collectionOfPrintables = null;
-		this.stringBuffer = null;
+		this.stringBuilder = null;
 	}
 
-	public PrintableObject(final String o) {
+	PrintableObject(final String o) {
 		this.printable = null;
 		this.mapOfPrintables = null;
 		this.collectionOfPrintables = null;
-		this.stringBuffer = nn(o);
+		this.stringBuilder = nn(o);
 	}
 
-	public PrintableObject(final StringBuilder o) {
+	PrintableObject(final StringBuilder o) {
 		this.printable = null;
 		this.mapOfPrintables = null;
 		this.collectionOfPrintables = null;
-		this.stringBuffer = nn(o);
+		this.stringBuilder = nn(o);
 	}
 
-	public PrintableObject(final int o) {
+	PrintableObject(final int o) {
 		this.printable = null;
 		this.mapOfPrintables = null;
 		this.collectionOfPrintables = null;
-		this.stringBuffer = nn(o);
+		this.stringBuilder = nn(o);
 	}
 
-	public PrintableObject(final Integer o) {
+	PrintableObject(final Integer o) {
 		this.printable = null;
 		this.mapOfPrintables = null;
 		this.collectionOfPrintables = null;
-		this.stringBuffer = nn(o);
+		this.stringBuilder = nn(o);
 	}
 	
-	public PrintableObject(final Integer[] o) {
+	PrintableObject(final Integer[] o) {
 		this.printable = null;
 		this.mapOfPrintables = null;
 		this.collectionOfPrintables = null;
-		this.stringBuffer = nn(o);
+		this.stringBuilder = nn(o);
 	}
 	
-	public PrintableObject(final int[] o) {
+	PrintableObject(final int[] o) {
 		this.printable = null;
 		this.mapOfPrintables = null;
 		this.collectionOfPrintables = null;
-		this.stringBuffer = nn(o);
+		this.stringBuilder = nn(o);
 	}
 	
-	public PrintableObject(final String[] o) {
+	PrintableObject(final String[] o) {
 		this.printable = null;
 		this.mapOfPrintables = null;
 		this.collectionOfPrintables = null;
-		this.stringBuffer = nn(o);
+		this.stringBuilder = nn(o);
 	}
 
-	public PrintableObject(final Map<?, ?> o) {
+	PrintableObject(final Map<?, ?> o) {
 		this.printable = null;
 		this.mapOfPrintables = nn(o);
 		this.collectionOfPrintables = null;
-		this.stringBuffer = null;
+		this.stringBuilder = null;
 	}
 	
-	public PrintableObject(final Collection<?> o) {
+	PrintableObject(final Collection<?> o) {
 		this.printable = null;
 		this.mapOfPrintables = null;
 		this.collectionOfPrintables = nn(o);
-		this.stringBuffer = null;
+		this.stringBuilder = null;
 	}
 
-	public PrintableObject(final Printable o) {
+	PrintableObject(final Printable o) {
 		this.printable = nn(o);
 		this.mapOfPrintables = null;
 		this.collectionOfPrintables = null;
-		this.stringBuffer = null;
+		this.stringBuilder = null;
 	}
 	
 	// HELPERS
@@ -107,7 +116,7 @@ final class PrintableObject implements Printable {
 				: new StringBuilder(Integer.toString( value.intValue() ));
 	}
 	private static final StringBuilder nn(final int value) {
-		return new StringBuilder(value);
+		return new StringBuilder(Integer.toString(value));
 	}
 	private static final StringBuilder nn(final int[] value) {
 		return value == null ? null 
@@ -142,8 +151,8 @@ final class PrintableObject implements Printable {
 			return line(mapOfPrintables);
 		} else if (null != collectionOfPrintables) {
 			return line(collectionOfPrintables);
-		} else if (null != stringBuffer) {
-			return stringBuffer;
+		} else if (null != stringBuilder) {
+			return stringBuilder;
 		} else {
 			return Print.NULL;
 		}
@@ -155,8 +164,8 @@ final class PrintableObject implements Printable {
 			return printable.printlines();
 		} else if (null != mapOfPrintables) {
 			return lines(mapOfPrintables);
-		} else if (null != stringBuffer) {
-			return stringBuffer;
+		} else if (null != stringBuilder) {
+			return stringBuilder;
 		} else {
 			return Print.NULL;
 		}

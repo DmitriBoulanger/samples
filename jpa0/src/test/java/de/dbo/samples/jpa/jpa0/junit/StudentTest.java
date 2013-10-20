@@ -1,7 +1,6 @@
 package de.dbo.samples.jpa.jpa0.junit;
 
 import static de.dbo.samples.util0.Print.lines;
-import static de.dbo.samples.util0.PrintConversions.toMapOfPrintables;
 import static org.junit.Assert.assertSame;
 
 import java.io.File;
@@ -53,7 +52,7 @@ public class StudentTest {
 		// create entity-manager for Derby (test-configuration)
 		final Map<String,String> config 
 			=  PersistenceConfigurationFactory.persistence(PersistenceConfigurations.TEST);
-		log.debug("Configuration properties:" +  lines(toMapOfPrintables(config)));
+		log.debug("Configuration properties:" +  lines(config));
 			
 		EMF = Persistence.createEntityManagerFactory("JEE6-Persistence", config);
 		EM = EMF.createEntityManager();

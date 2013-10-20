@@ -6,9 +6,11 @@ import static de.dbo.samples.util0.Print.lines;
 import static de.dbo.samples.util0.Print.linesNumbered;
 import static de.dbo.samples.util0.Print.linesSorted;
 import static de.dbo.samples.util0.PrintConversions.toMapOfPrintables;
+import static de.dbo.samples.util0.PrintConversions.toColllectionOfPrintables;
 import static de.dbo.samples.util0.PrintConversions.toPrintable;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
@@ -196,15 +198,15 @@ public class PrintTest {
 
     @Test
     public void test_020_map() {
-    	final Map<String,Printable> map = toMapOfPrintables(sampleMap(0));
+    	final Map<String,Printable> map = toMapOfPrintables(sampleNonPrintableMap(0));
     	map.put("Integer",   new PrintableObject(new Integer(12)));
     	map.put("Integers",  new PrintableObject(sampleIntegers()));
     	map.put("String",    new PrintableObject("bababa"));
     	map.put("Strings",   new PrintableObject(sampleStrings()));
     	map.put("Printable ", printableObject(777));
-    	map.put("Printable map", new PrintableMap(sampleMap(1)));
-    	map.put("Printable map of printables", new PrintableObject(sampleMapOfPrintable(11)));
-    	map.put("Printable object", new PrintableObject(sampleMap(2)));
+    	map.put("Printable map", new PrintableMap(sampleNonPrintableMap(1)));
+    	map.put("Printable map of printables", new PrintableObject(sampleMapOfPrintables(11)));
+    	map.put("Printable object", new PrintableObject(sampleNonPrintableMap(2)));
     	map.put("Printable object null", new PrintableObject());
 
         log.debug("Complete map: " + lines(map));
@@ -217,6 +219,8 @@ public class PrintTest {
     	final Properties properties = sampleProperties(200);
     	log.debug("Properties line:" + line(properties));
     	log.debug("Properties lines:" + lines(properties));
+    	log.debug("Properties line filter:" + line(properties,"a"));
+    	log.debug("Properties lines filter:" + lines(properties,"a"));
     }
     
     @Test
@@ -240,21 +244,21 @@ public class PrintTest {
     // linesNumberes(Collection<?>)
     @Test
     public void test_050_collections() {
-    	log.debug("Collection lines:" + lines( (Collection<?>) collectionOfMaps()) );
-    	log.debug("Collection lines numbered:" + linesNumbered( (Collection<?>) collectionOfMaps()) );
-    	log.debug("Collection lines sorted:" + linesSorted( (Collection<?>) collectionOfMaps()) );
+    	log.debug("Collection lines:" + lines( (Collection<?>) sampleCollectionOfNonPrintableMaps(1)) );
+    	log.debug("Collection lines numbered:" + linesNumbered( (Collection<?>) sampleCollectionOfNonPrintableMaps(2)) );
+    	log.debug("Collection lines sorted:" + linesSorted( (Collection<?>) sampleCollectionOfNonPrintableMaps(3)) );
     }
     
     @Test
     public void test_060_levels() {
-    	final Map<?,?> map = sampleMap(1000);
+    	final Map<?,?> map = sampleNonPrintableMap(1000);
     	log.debug("Level map 0: "+lines(map, "1",0));
     	log.debug("Level map 1: "+lines(map, "1",1));
     	log.debug("Level map 2: "+lines(map, "1",2));
     	
     	log.debug("Level 0 maps empty filer: "+lines(map, "%%%%%",0));
     	
-    	final Collection<?> list = collectionOfMaps();
+    	final Collection<?> list = sampleCollectionOfNonPrintableMaps(2);
     	log.debug("Level list 0: " + lines(list, "1",0));
     	log.debug("Level list 1: " + lines(list, "1",1));
     	log.debug("Level list 2: " + lines(list, "1",2));
@@ -268,13 +272,16 @@ public class PrintTest {
     	map0.put(new Integer(333),"Integer 333");
     	map0.put(new StringBuilder("444"),"StringBuilder 444");
     	map0.put(new String("555"),"String 555");
-    	map0.put(collectionOfMaps(),"Collections of maps");
+    	map0.put(sampleCollectionOfNonPrintableMaps(1),"Collection of non-printable maps");
+    	map0.put(toColllectionOfPrintables(sampleCollectionOfNonPrintableMaps(2)),"Collection of printables");
     	map0.put(new PrintableObject(),"Printable null-object");
+    	map0.put(new PrintableObject(toPrintable(Calendar.getInstance())),"Calendar");
+    	map0.put(new PrintableObject(123456),"Printabe 123456-object");
     	map0.put(new Date(),"Date");
-    	map0.put(new int[]{3,3,3} ,"int 3 3 3");
+    	map0.put(new int[]{6,6,6} ,"int 6 6 6");
     	map0.put(new Integer[]{new Integer(3),new Integer(3),new Integer(3)} ,"Integer 3 3 3");
-    	map0.put(new Integer[]{3,3,3} ,"Integer? 3 3 3 ");
-    	final int expectedSize= 9;
+    	map0.put(new Integer[]{7,7,7} ,"Integer? 7 7 7 ");
+    	final int expectedSize= 12;
     	
     	final Map<String,Printable> map0Converted = toMapOfPrintables(map0);
     	
@@ -286,7 +293,7 @@ public class PrintTest {
     
     @Test
     public void test_090_conversions() {
-    	final Map<?,?> map = sampleMap(1000);
+    	final Map<?,?> map = sampleNonPrintableMap(1000);
     	final Map<String,Printable>  mapOfPrintables = toMapOfPrintables(map);
     	for (final Object value: mapOfPrintables.values()) {
     		assertTrue("Value in the map of printables is not printable"
@@ -296,14 +303,20 @@ public class PrintTest {
     	assertTrue("Printable object is not printable"
     			,printableObject instanceof PrintableObject);
     	
+    	final Collection<?> collection = sampleCollectionOfNonPrintableMaps(33);
+    	final StringBuilder collectionLines =  lines(collection);
+    	final Collection<Printable> collectionOfPrintables = toColllectionOfPrintables(collection);
+    	final StringBuilder collectionOfPrintablesLines =  lines(collectionOfPrintables);
+    	log.debug("Lines for collection:"  + collectionLines);
+    	log.debug("Lines for collection of printables:"  + collectionOfPrintablesLines);
     	
     }
     
     @Test
     public void test_100_cardinality() {
-    	final Map<?,?> map = sampleMap(1000);
-    	final Map<?,?> map2 = sampleMap(2000);
-    	final Map<?,?> map3 = sampleMap(3000);
+    	final Map<?,?> map = sampleNonPrintableMap(1000);
+    	final Map<?,?> map2 = sampleNonPrintableMap(2000);
+    	final Map<?,?> map3 = sampleNonPrintableMap(3000);
     	
     	final Map<String,Object> mapWithMaps = new HashMap<String,Object>();
     	mapWithMaps.put("x",  map);
@@ -313,7 +326,7 @@ public class PrintTest {
     	mapWithMaps.put("x5", null);
     	mapWithMaps.put("x6",  new HashMap<String,Object>());
     	mapWithMaps.put("x7",  new ArrayList<Object>() );
-    	mapWithMaps.put("x8",  collectionOfMaps() );
+    	mapWithMaps.put("x8",  sampleCollectionOfNonPrintableMaps(11) );
     	assertTrue(8==mapWithMaps.size());
     	
     	final String cpCardinality = cpCardinality(mapWithMaps).toString();
@@ -343,7 +356,7 @@ public class PrintTest {
         return properties;
     }
     
-    private static Map<?,?> sampleMap(final int i) {
+    private static Map<?,?> sampleNonPrintableMap(final int i) {
     	final Map<String,String> map = new HashMap<String,String>();
     	map.put("a"+i, "a-" + i*100);
     	map.put("b"+i, "b-" + i*1000);
@@ -351,15 +364,15 @@ public class PrintTest {
         return map;
     }
     
-    private static Map<String,Printable> sampleMapOfPrintable(final int i) {
-        return toMapOfPrintables(sampleMap(i));
+    private static Map<String,Printable> sampleMapOfPrintables(final int i) {
+        return toMapOfPrintables(sampleNonPrintableMap(i));
     }
     
-    private static Collection<?> collectionOfMaps() {
+    private static Collection<?> sampleCollectionOfNonPrintableMaps(final int i) {
     	final List<Object> ret = new ArrayList<Object>();
-    	ret.add(sampleMap(109));
-    	ret.add(sampleMap(103));
-    	ret.add(sampleMap(108));
+    	ret.add(sampleNonPrintableMap(i+10));
+    	ret.add(sampleNonPrintableMap(i+100));
+    	ret.add(sampleNonPrintableMap(i+1000));
     	return ret;
     }
 
@@ -377,7 +390,7 @@ public class PrintTest {
     
 	private static Printable printableObject(final int x) {
 		return new Printable() {
-			private final Map<String, Printable> map = toMapOfPrintables(sampleMap(x));
+			private final Map<String, Printable> map = toMapOfPrintables(sampleNonPrintableMap(x));
 
 			public final StringBuilder printline() {
 				return line(map);
