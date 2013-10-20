@@ -34,6 +34,15 @@ public final class PrintConversions {
 		}
 		return ret;
 	}
+	
+	public static Collection<Printable> toColllectionOfPrintables(final Collection<?> collection) {
+		final Collection<Printable> ret = new ArrayList<Printable>();
+		for (Object o : collection) {
+			final Printable printable = toPrintable(o);
+			ret.add(printable);
+		}
+		return ret;
+	}
 
 	/**
 	 * @param o object to be converted into a printable

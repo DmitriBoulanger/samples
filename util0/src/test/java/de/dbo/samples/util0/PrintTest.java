@@ -8,17 +8,6 @@ import static de.dbo.samples.util0.Print.linesSorted;
 import static de.dbo.samples.util0.PrintConversions.toMapOfPrintables;
 import static de.dbo.samples.util0.PrintConversions.toPrintable;
 
-import static org.junit.Assert.assertTrue;
-
-import static org.slf4j.LoggerFactory.getLogger;
-
-import de.dbo.samples.util0.Print;
-import de.dbo.samples.util0.Printable;
-import de.dbo.samples.util0.PrintableMap;
-import de.dbo.samples.util0.PrintableObject;
-
-import static java.util.Arrays.asList;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -27,10 +16,15 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
-import java.util.Set;
 
 import org.junit.Test;
 import org.slf4j.Logger;
+
+import static org.junit.Assert.assertTrue;
+
+import static org.slf4j.LoggerFactory.getLogger;
+
+import static java.util.Arrays.asList;
 
 /**
  *
@@ -109,12 +103,22 @@ public class PrintTest {
         
         ret = linesNumbered(nullCollection);
         log.debug("Null collection numbered lines: " + ret);
-        assertTrue("Printing empty collection numbered lines returns not " + NULL + "-object"
+        assertTrue("Printing null collection numbered lines returns not " + NULL + "-object"
                 , ret == NULL);
         
         ret = linesNumbered(nullStrings);
-        log.debug("Empty strings numbered lines: " + ret);
-        assertTrue("Printing empty strings numbered lines returns not " + NULL + "-object"
+        log.debug("Null strings numbered lines: " + ret);
+        assertTrue("Printing null strings numbered lines returns not " + NULL + "-object"
+                , ret == NULL);
+        
+        ret = toPrintable(null).printline();
+        log.debug("Null line from to printable: " + ret);
+        assertTrue("Printing null-line from toPrintable returns not " + NULL + "-object"
+                , ret == NULL);
+        
+        ret = toPrintable(null).printlines();
+        log.debug("Null lines from to printable: " + ret);
+        assertTrue("Printing null-lines from toPrintable returns not " + NULL + "-object"
                 , ret == NULL);
     }
 
@@ -292,7 +296,7 @@ public class PrintTest {
     	assertTrue("Printable object is not printable"
     			,printableObject instanceof PrintableObject);
     	
-    	log.debug("Line Null to printable: " + toPrintable(null).printline());
+    	
     }
     
     @Test
