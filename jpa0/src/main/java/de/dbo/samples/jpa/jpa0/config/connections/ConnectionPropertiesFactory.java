@@ -23,7 +23,7 @@ public final class ConnectionPropertiesFactory {
                 ret.put("javax.persistence.jdbc.driver", "com.mysql.jdbc.Driver");
                 ret.put("javax.persistence.jdbc.url", "jdbc:mysql://localhost:3306/Students");
                 ret.put("javax.persistence.jdbc.user", "root");
-                ret.put("javax.persistence.jdbc.password", "");
+                ret.put("javax.persistence.jdbc.password", "root");
 
                 return ret;
 

@@ -34,7 +34,11 @@ import de.dbo.samples.jpa.jpa0.entities.StudentGroup;
 
 public class StudentTest {
 	protected static final Logger log = LoggerFactory.getLogger(StudentTest.class);
-	
+
+	private static final Map<String, String> config = 
+			PersistenceConfigurationFactory
+				.persistence(PersistenceConfigurations.TEST);
+
 	/** The factory that produces entity managers */
 	private static EntityManagerFactory EMF;
 	
@@ -50,8 +54,7 @@ public class StudentTest {
 		System.getProperties().putAll(new DerbyProperties());
 		
 		// create entity-manager for Derby (test-configuration)
-		final Map<String,String> config 
-			=  PersistenceConfigurationFactory.persistence(PersistenceConfigurations.TEST);
+		
 		log.debug("Configuration properties:" +  lines(config));
 			
 		EMF = Persistence.createEntityManagerFactory("JEE6-Persistence", config);
@@ -67,7 +70,7 @@ public class StudentTest {
 		   //Get a new transaction
 		   trx = EM.getTransaction();
 		   group = new StudentGroup();
-		   group.setGroupName("CleverGuys");
+		   group.setGroupName("CleverGuys 2");
            student = new Student();
            student.setGroup(group);
            student.setFirstname("John");
@@ -87,8 +90,8 @@ public class StudentTest {
 		   throw new RuntimeException("Transaction rolled back", e);
 		} finally {
 //		   // Close the manager and its factory
-//		   EM.close();
-//		   EMF.close();
+		   EM.close();
+		   EMF.close();
 		}
 		
 		File tmp = null;
@@ -102,6 +105,9 @@ public class StudentTest {
 		} catch (FileNotFoundException e) {
 			throw new RuntimeException(e);
 		}
+		
+		EMF = Persistence.createEntityManagerFactory("JEE6-Persistence", config);
+		EM = EMF.createEntityManager();
 		Student student2 = null;
 		try {
 			student2 = (Student) xstream.fromXML( new FileInputStream(tmp) );
