@@ -12,6 +12,7 @@ import org.junit.runners.Suite.SuiteClasses;
  */
 @RunWith(Suite.class)
 @SuiteClasses({ 
-	    StudentTest.class})
+	    StudentTest.class
+	    ,CloseTest.class})
 
 public class Alles {}

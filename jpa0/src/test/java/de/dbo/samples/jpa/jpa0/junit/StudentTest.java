@@ -1,12 +1,8 @@
 package de.dbo.samples.jpa.jpa0.junit;
 
-import static de.dbo.samples.jpa.jpa0.config.PersistenceConfigurationFactory.persistence;
-import static de.dbo.samples.util0.Print.lines;
-
-import de.dbo.samples.jpa.jpa0.TransactionRunner;
-import de.dbo.samples.jpa.jpa0.config.PersistenceConfigurations;
-import de.dbo.samples.jpa.jpa0.entities.Student;
 import de.dbo.samples.jpa.jpa0.entities.Group;
+import de.dbo.samples.jpa.jpa0.entities.Student;
+import de.dbo.samples.jpa.jpa0.junit.impl.TransactionTest;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -15,7 +11,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
 import javax.persistence.EntityManager;
@@ -23,43 +18,16 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 import javax.persistence.RollbackException;
 
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
 import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.thoughtworks.xstream.XStream;
 
 import static org.junit.Assert.assertSame;
 
-public class StudentTest {
-	protected static final Logger log = LoggerFactory
-			.getLogger(StudentTest.class);
-
-	/** Wrapper of the entity manager that persists and queries the database */
-	private static TransactionRunner TRANSACTION_RUNNER;
-
-	private static XStream xstream = new XStream();
-
-	@BeforeClass
-	public static void init() throws Exception {
-		final Map<String, String> config = persistence(PersistenceConfigurations.PRODUCTION);
-		TRANSACTION_RUNNER = new TransactionRunner(config, "JEE6-Persistence");
-		log.debug("Configuration properties:" + lines(config));
-	}
+public class StudentTest extends TransactionTest {
 	
-	/**
-	 * cleans up the test-session.
-	 */
-	@AfterClass
-	public static void close() {
-		if (null != TRANSACTION_RUNNER) {
-			TRANSACTION_RUNNER.shutdown();
-		}
-	}
-
-
+	private static XStream xstream = new XStream();
+ 
 	@Test
 	public void test_010() {
 		Group group = null;

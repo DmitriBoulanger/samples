@@ -20,12 +20,12 @@ public class TransactionRunner {
 	private static final Logger log = LoggerFactory.getLogger(TransactionRunner.class);
 
 	/** Factory to generate instances of the entity manager */
-	protected final EntityManagerFactory entityManagerFactory;
+	private  final EntityManagerFactory entityManagerFactory;
 	
 	/** Entity manager that persists and queries the database */
-	protected EntityManager entityManager = null;
+	private  EntityManager entityManager = null;
 	
-	protected EntityTransaction entityTransaction = null;
+	private  EntityTransaction entityTransaction = null;
 	
 	/**
 	 * 
@@ -35,32 +35,6 @@ public class TransactionRunner {
 	public TransactionRunner(final Map<String, String> config, final String persistenceUnit) {
 		this.entityManagerFactory = 
 				Persistence.createEntityManagerFactory("JEE6-Persistence", config);
-	}
-	
-	public final EntityManager getEntityManager() {
-		if (null == entityManager) {
-			entityManager = entityManagerFactory.createEntityManager();
-		}
-		return entityManager;
-	}
-	
-	public final EntityTransaction getTransaction() {
-		if (null == entityManager) {
-			entityManager = entityManagerFactory.createEntityManager();
-		}
-		entityTransaction =  entityManager.getTransaction();
-		return entityTransaction;
-	}
-	
-	public final void rollbackTransaction(final Throwable e) {
-		 if (entityTransaction != null && entityTransaction.isActive()) {
-			 entityTransaction.rollback();
-			 final String msg = "Transaction rolled back";
-			 log.warn(msg + (null!=e? ": \n"+e.toString():""));
-		 } else {
-			 final String msg = "Transaction was not rolled back (NULL or not active)";
-			 log.warn(msg + (null!=e? ": \n"+e.toString():""));
-		 }
 	}
 	
 	/**
@@ -90,4 +64,34 @@ public class TransactionRunner {
 		}
 	}
 	
+	public final EntityManager getEntityManager() {
+		if (null == entityManager) {
+			if (entityManagerFactory.isOpen()) {
+				entityManager = entityManagerFactory.createEntityManager();
+			} else {
+				throw new RuntimeException("EntityManagerFactory is closed");
+			}
+		}
+		return entityManager;
+	}
+	
+	public final EntityTransaction getTransaction() {
+		if (null == entityManager) {
+			entityManager = entityManagerFactory.createEntityManager();
+		}
+		entityTransaction =  entityManager.getTransaction();
+		return entityTransaction;
+	}
+	
+	public final void rollbackTransaction(final Throwable e) {
+		 if (entityTransaction != null && entityTransaction.isActive()) {
+			 entityTransaction.rollback();
+			 final String msg = "Transaction rolled back";
+			 log.warn(msg + (null!=e? ": \n"+e.toString():""));
+		 } else {
+			 final String msg = "Transaction was not rolled back (NULL or not active)";
+			 log.warn(msg + (null!=e? ": \n"+e.toString():""));
+		 }
+	}
+
 }
