@@ -1,7 +1,9 @@
 package de.dbo.samples.jpa.jpa0.config;
 
-import de.dbo.samples.jpa.jpa0.config.connections.ConnectionPropertiesFactory;
-import de.dbo.samples.jpa.jpa0.config.connections.Connections;
+import static de.dbo.samples.jpa.jpa0.config.connections.ConnectionPropertiesFactory.connection;
+
+import static de.dbo.samples.jpa.jpa0.config.connections.Connections.DERBY_IN_MEMORY;
+import static de.dbo.samples.jpa.jpa0.config.connections.Connections.MY_SQL;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -22,24 +24,23 @@ public final class PersistenceConfigurationFactory {
 
     public static Map<String, String> persistence(PersistenceConfigurations config) {
         final Map<String, String> ret = new HashMap<String, String>();
+        
+        ret.put("eclipselink.ddl-generation", "create-or-extend-tables");
+        ret.put("eclipselink.logging.level", "WARNING");
+        
         switch (config) {
 
             case PRODUCTION:
+            	ret.putAll(connection(MY_SQL));
                 ret.put("eclipselink.target-database", "MYSQL");
-                ret.put("eclipselink.ddl-generation", "none");
-                ret.put("eclipselink.logging.level", "INFO");
-                ret.putAll(ConnectionPropertiesFactory.connection(Connections.MY_SQL));
                 return ret;
 
             case TEST:
+            	ret.putAll(connection(DERBY_IN_MEMORY));
                 ret.put("eclipselink.target-database", "DERBY");
-                ret.put("eclipselink.ddl-generation", "create-tables");
                 ret.put("eclipselink.ddl-generation.output-mode", "both");
-                ret.put("eclipselink.logging.level", "FINE");
                 ret.put("eclipselink.logging.file", "target/logs/eclipselink.log");
                 ret.put("eclipselink.create-ddl-jdbc-file-name", "target/logs/createDDL.sql"); 
-                
-                ret.putAll(ConnectionPropertiesFactory.connection(Connections.DERBY_IN_MEMORY));
                 return ret;
 
             default:

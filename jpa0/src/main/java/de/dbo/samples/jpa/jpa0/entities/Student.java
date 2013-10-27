@@ -26,9 +26,9 @@ public class Student implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "GROUP_ID", nullable = false)
-    private StudentGroup      group;
+    private Group      group;
 
-    @Column(name = "LAST_NAME", length = 35)
+    @Column(name = "LAST_NAME", length = 35, nullable=false)
     private String            lastname;
 
     @Column(name = "FIRST_NAME", nullable = false, length = 35)
@@ -38,11 +38,11 @@ public class Student implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date              birthdate;
 
-    public StudentGroup getGroup() {
+    public Group getGroup() {
         return group;
     }
 
-    public void setGroup(final StudentGroup group) {
+    public void setGroup(final Group group) {
         this.group = group;
     }
 
@@ -54,11 +54,11 @@ public class Student implements Serializable {
         this.studentId = studentId;
     }
 
-    public String getmLastname() {
+    public String getLastname() {
         return lastname;
     }
 
-    public void setmLastname(String lastname) {
+    public void setLastname(String lastname) {
         this.lastname = lastname;
     }
 
@@ -79,7 +79,10 @@ public class Student implements Serializable {
     }
 
     public final String toString() {
-        return "Student: ID=" + studentId + " FirstName=" + firstname + " Group=" + group.getGroupName();
+        return "Student: ID=" + studentId 
+        		+ " FirstName=" + firstname 
+        		+ " LastName=" + lastname 
+        		+ " Group=" + (null==group? "NULL" : group.getGroupName());
     }
 
 }

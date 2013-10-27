@@ -13,8 +13,8 @@ import java.io.Serializable;
 import java.util.List;
 
 @Entity
-@Table(name = "STUDENT_GROUPS")
-public class StudentGroup implements Serializable {
+@Table(name = "GROUPS")
+public class Group implements Serializable {
     private static final long serialVersionUID = 6682592613968564789L;
 
     @Id
@@ -22,7 +22,7 @@ public class StudentGroup implements Serializable {
     @Column(name = "GROUP_ID")
     private Long              groupId;
 
-    @Column(name = "GROUP_NAME", length = 35)
+    @Column(name = "GROUP_NAME", length = 200)
     private String            groupName;
 
     @OneToMany(cascade = CascadeType.ALL)

@@ -1,4 +1,4 @@
-package de.dbo.samples.jpa.jpa0.config;
+package de.dbo.samples.jpa.jpa0.junit.impl;
 
 import java.util.Properties;
 
