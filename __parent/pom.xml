@@ -29,6 +29,7 @@
 		<eclipselink.version>2.5.1</eclipselink.version>
 		<xstream.version>1.4.4</xstream.version>
 		<tuprolog.version>2.1.1</tuprolog.version>
+		<maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
 
 		<junit.version>4.8.2</junit.version>
 		<slf4j-api.version>1.6.1</slf4j-api.version>
@@ -158,10 +159,13 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>2.3.1</version>
+				<version>${maven-compiler-plugin.version}</version>
 				<configuration>
 					<source>1.6</source>
 					<target>1.6</target>
+					<fork>true</fork>
+                    <meminitial>128m</meminitial>
+                    <maxmem>512m</maxmem>
 				</configuration>
 			</plugin>
 		</plugins>
