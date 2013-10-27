@@ -7,6 +7,17 @@
 	<packaging>pom</packaging>
 	<name>Samples parent</name>
 	<description>Version management for all  samples</description>
+	
+	<!--  ========================
+	      MODULES WITH JUnit-TESTS
+	      ======================== -->
+	      
+	<modules>
+		<module>../jpa0</module>
+		<module>../logger0</module>
+		<module>../tuProlog0</module>
+		<module>../util0</module>
+	</modules>
  
 	<!-- =============================== 
 	     ALL RESORCES AND THEIR VERSIONS 
@@ -155,5 +166,5 @@
 			</plugin>
 		</plugins>
 	</build>
-
+	
 </project>

@@ -2,8 +2,8 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>logger0</artifactId>
-	
 	<name>Using SLF4J APT for logging</name>
+	
 	<description>
 	
 	SLF4J API is used in the main program.
