@@ -1,4 +1,4 @@
-package de.dbo.samples.logger.logger0.junit;
+package de.dbo.samples.jpa.jpa0.junit;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
@@ -10,9 +10,8 @@ import org.junit.runners.Suite.SuiteClasses;
  * @author Dmitri Boulanger, Hombach
  *
  */
-
 @RunWith(Suite.class)
 @SuiteClasses({ 
-	  LoggerTest.class})
+	    StudentTest.class})
 
 public class Alles {}

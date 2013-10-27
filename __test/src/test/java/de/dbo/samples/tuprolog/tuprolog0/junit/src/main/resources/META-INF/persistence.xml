@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+
+	
+	<!--
+		This persistence unit is only used to declare persistence provider
+		and to indicate available class-names of the database entities
+		At the run-time it is extended using application-specific properties,
+		e.g. PRODUCTION or TEST properties can be used
+	-->
+	
+	<persistence-unit name="JEE6-Persistence"
+		transaction-type="RESOURCE_LOCAL">
+		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+		
+		<class>de.dbo.samples.jpa.jpa0.entities.Student</class>
+		<class>de.dbo.samples.jpa.jpa0.entities.StudentGroup</class>
+	
+	</persistence-unit>
+
+</persistence>
