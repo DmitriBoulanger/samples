@@ -11,7 +11,7 @@
 
 	<!-- messages to console -->
 	<appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
-		<param name="threshold" value="debug" />
+		<param name="threshold" value="error" />
 		<param name="target" value="System.out" />
 		<layout class="org.apache.log4j.PatternLayout">
 			<param name="ConversionPattern" value="%d{HH:mm:ss.SSS} %-5p %20c{1}: %m %n" />
@@ -31,7 +31,7 @@
 
 	<!-- errors to a special daily-rolling file (every day) -->
 	<appender name="DAILY_ROLLING_FILE_ERRORS" class="org.apache.log4j.DailyRollingFileAppender">
-		<param name="threshold" value="error" />
+		<param name="threshold" value="debug" />
 		<param name="file" value="target/logs/err.log" />
 		<param name="datePattern" value="'.'yyyy-MM-dd" />
 		<param name="append" value="true" />
@@ -40,9 +40,9 @@
 		</layout>
 	</appender> 
 
-	<!-- all application-triggered messages to console -->
+	<!-- application-triggered messages to console -->
 	<logger name="de.dbo">
-		<level value="debug" />
+		<level value="error" />
 		<appender-ref ref="CONSOLE" />
 	</logger>
 	

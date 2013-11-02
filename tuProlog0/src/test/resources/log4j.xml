@@ -40,9 +40,9 @@
 		</layout>
 	</appender> 
 
-	<!-- all application-triggered messages to console -->
+	<!--application-triggered messages to console -->
 	<logger name="de.dbo">
-		<level value="debug" />
+		<level value="error" />
 		<appender-ref ref="CONSOLE" />
 	</logger>
 	

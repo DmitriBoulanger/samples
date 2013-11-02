@@ -10,9 +10,9 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	     
-	<!-- ==========================================================
-	     All projects below should be in eclipse class-path as well!  
-	     =========================================================== -->
+	<!-- ======================================================
+	     All projects below should be in the eclipse class-path 
+	     ====================================================== -->
 
 	<dependencies>
 		<dependency>

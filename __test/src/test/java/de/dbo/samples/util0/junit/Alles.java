@@ -1,4 +1,7 @@
-package de.dbo.samples.util0;
+package de.dbo.samples.util0.junit;
+
+import de.dbo.samples.util0.PrintTest;
+import de.dbo.samples.util0.ProfilerTest;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
