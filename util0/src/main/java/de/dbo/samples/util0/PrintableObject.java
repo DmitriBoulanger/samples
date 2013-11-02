@@ -13,6 +13,9 @@ import java.util.Map;
  * 
  * @author Dmitri Boulanger, Hombach
  *
+ * D. Knuth: Programs are meant to be read by humans and 
+ *           only incidentally for computers to execute 
+ *
  */
 final class PrintableObject implements Printable {
 

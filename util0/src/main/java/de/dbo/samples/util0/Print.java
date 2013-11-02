@@ -16,6 +16,9 @@ import static java.util.Arrays.asList;
  * 
  * @author Dmitri Boulanger, Hombach
  *
+ * D. Knuth: Programs are meant to be read by humans and 
+ *           only incidentally for computers to execute 
+ *
  */
 public final class Print {
     public static final StringBuilder NULL  = new StringBuilder("NULL");

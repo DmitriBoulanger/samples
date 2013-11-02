@@ -14,6 +14,9 @@ import org.slf4j.Logger;
  *
  * @author Dmitri Boulanger, Hombach
  *
+ * D. Knuth: Programs are meant to be read by humans and 
+ *           only incidentally for computers to execute 
+ *
  */
 public class ProfilerTest {
     private static final Logger log = getLogger(ProfilerTest.class);

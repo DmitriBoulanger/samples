@@ -13,6 +13,9 @@ import java.text.DecimalFormat;
  * 
  * @author Dmitri Boulanger, Hombach
  *
+ * D. Knuth: Programs are meant to be read by humans and 
+ *           only incidentally for computers to execute 
+ *
  */
 public final class Profiler {
 	

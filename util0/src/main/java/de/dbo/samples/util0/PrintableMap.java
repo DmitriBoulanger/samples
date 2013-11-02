@@ -13,6 +13,9 @@ import java.util.Map;
  * 
  * @author Dmitri Boulanger, Hombach
  *
+ * D. Knuth: Programs are meant to be read by humans and 
+ *           only incidentally for computers to execute 
+ *
  */
 final class PrintableMap extends HashMap<String, Printable> implements Printable {
 	private static final long serialVersionUID = -2780960984071643688L;

@@ -12,6 +12,9 @@ import org.junit.runners.Suite.SuiteClasses;
  * 
  * @author Dmitri Boulanger, Hombach
  *
+ * D. Knuth: Programs are meant to be read by humans and 
+ *           only incidentally for computers to execute 
+ *
  */
 
 @RunWith(Suite.class)

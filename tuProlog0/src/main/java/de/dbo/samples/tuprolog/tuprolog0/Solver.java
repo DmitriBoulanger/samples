@@ -19,6 +19,15 @@ import alice.tuprolog.Term;
 import alice.tuprolog.Theory;
 import alice.tuprolog.Var;
 
+/**
+ * Prolog-based solver
+ * 
+ * @author Dmitri Boulanger, Hombach
+ *
+ * D. Knuth: Programs are meant to be read by humans and 
+ *           only incidentally for computers to execute 
+ *
+ */
 public final class Solver {
     private static final Logger log    = LoggerFactory.getLogger(Solver.class);
 

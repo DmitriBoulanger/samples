@@ -7,6 +7,14 @@ import org.slf4j.LoggerFactory;
 import de.dbo.samples.tuprolog.tuprolog0.Solver;
 import de.dbo.samples.tuprolog.tuprolog0.junit.impl.PathTests;
 
+/**
+ * 
+ * @author Dmitri Boulanger, Hombach
+ *
+ * D. Knuth: Programs are meant to be read by humans and 
+ *           only incidentally for computers to execute 
+ *
+ */
 public class MainMock extends PathTests {
     protected static final Logger log = LoggerFactory.getLogger(MainMock.class);
 

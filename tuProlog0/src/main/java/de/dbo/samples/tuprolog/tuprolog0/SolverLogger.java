@@ -9,6 +9,15 @@ import alice.tuprolog.Struct;
 import alice.tuprolog.Term;
 import alice.tuprolog.Var;
 
+/**
+ * Logger to be used in the Prolog solver
+ * 
+ * @author Dmitri Boulanger, Hombach
+ *
+ * D. Knuth: Programs are meant to be read by humans and 
+ *           only incidentally for computers to execute 
+ *
+ */
 public final class SolverLogger {
 
     private static final Map<String, Integer> MESSAGE_TYPES = new HashMap<String, Integer>();

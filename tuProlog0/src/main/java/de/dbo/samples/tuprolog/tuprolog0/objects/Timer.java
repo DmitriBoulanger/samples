@@ -11,6 +11,11 @@ import org.slf4j.Logger;
  * 
  * @see de.dbo.samples.tuprolog.tuprolog0.Library#getObjectInitializationSubTheory()
  *
+ * @author Dmitri Boulanger, Hombach
+ *
+ * D. Knuth: Programs are meant to be read by humans and 
+ *           only incidentally for computers to execute 
+ *
  */
 public final class Timer {
 	private static final Logger log = getLogger(Timer.class);

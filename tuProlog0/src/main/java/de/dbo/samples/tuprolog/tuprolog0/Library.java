@@ -10,6 +10,9 @@ import alice.tuprolog.Term;
  * 
  * @author Dmitri Boulanger, Hombach
  *
+ * D. Knuth: Programs are meant to be read by humans and 
+ *           only incidentally for computers to execute 
+ *
  */
 public final class Library extends alice.tuprolog.Library {
     private static final long serialVersionUID = 5009215062246299601L;

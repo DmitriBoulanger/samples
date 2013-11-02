@@ -32,6 +32,9 @@ import static java.util.Arrays.asList;
  *
  * @author Dmitri Boulanger, Hombach
  *
+ * D. Knuth: Programs are meant to be read by humans and 
+ *           only incidentally for computers to execute 
+ *
  */
 public class PrintTest {
     private static final Logger log = getLogger(PrintTest.class);
