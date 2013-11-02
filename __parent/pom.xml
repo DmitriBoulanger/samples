@@ -92,7 +92,6 @@
 				<scope>test</scope>
 				<version>${junit.version}</version>
 			</dependency>
-
 			<dependency>
 				<groupId>org.apache.derby</groupId>
 				<artifactId>derby</artifactId>
