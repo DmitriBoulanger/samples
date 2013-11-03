@@ -20,7 +20,7 @@
 
 	<!-- messages to a daily-rolling file (every day)  -->
 	<appender name="DAILY_ROLLING_FILE" class="org.apache.log4j.DailyRollingFileAppender">
-		<param name="threshold" value="info" />
+		<param name="threshold" value="debug" />
 		<param name="file" value="target/logs/log.log" />
 		<param name="datePattern" value="'.'yyyy-MM-dd" />
 		<param name="append" value="true" />

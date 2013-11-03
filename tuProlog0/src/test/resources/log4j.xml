@@ -2,9 +2,9 @@
 <!DOCTYPE log4j:configuration SYSTEM "log4j.dtd" >
 
     <!--|  																						-->
-	<!--| Only messages from the application itself are send to the console. 					-->
-	<!--| However, all messages are send to the standard file.  								-->
-	<!--| Also a special file is used to collect ALL error messages  							-->
+	<!--| Messages from the application itself are send to the console. 					    -->
+	<!--| All messages are send to the standard file in the target-directory.  				    -->
+	<!--| A special file is used to collect ALL error messages  							    -->
 	<!--|  																						-->
 
 <log4j:configuration xmlns:log4j='http://jakarta.apache.org/log4j/'>
@@ -18,7 +18,7 @@
 		</layout>
 	</appender>
 
-	<!-- messages to a daily-rolling file (every day)  -->
+	<!-- all messages to a daily-rolling file in target (every day)  -->
 	<appender name="DAILY_ROLLING_FILE" class="org.apache.log4j.DailyRollingFileAppender">
 		<param name="threshold" value="debug" />
 		<param name="file" value="target/logs/log.log" />
@@ -29,7 +29,7 @@
 		</layout>
 	</appender> 
 
-	<!-- errors to a special daily-rolling file (every day) -->
+	<!-- errors to a special daily-rolling file in target (every day) -->
 	<appender name="DAILY_ROLLING_FILE_ERRORS" class="org.apache.log4j.DailyRollingFileAppender">
 		<param name="threshold" value="error" />
 		<param name="file" value="target/logs/err.log" />
@@ -40,9 +40,9 @@
 		</layout>
 	</appender> 
 
-	<!--application-triggered messages to console -->
+	<!-- application-triggered messages to console -->
 	<logger name="de.dbo">
-		<level value="error" />
+		<level value="debug" />
 		<appender-ref ref="CONSOLE" />
 	</logger>
 	
