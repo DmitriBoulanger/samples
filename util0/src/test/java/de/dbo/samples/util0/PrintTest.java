@@ -250,6 +250,14 @@ public class PrintTest {
 		final PrintableObject printableObjectPrintable = new PrintableObject(printable);
 		log.debug("PrintableObjectPrintable line: " + printableObjectPrintable.printline());
 		log.debug("PrintableObjectPrintable lines: " + printableObjectPrintable.printlines());
+		
+		final Printable printable2 = toPrintable("abcdef");
+		log.debug("PrintableObjectPrintable2 line: " + printable2.printline());
+		log.debug("PrintableObjectPrintable2 lines: " + printable2.printlines());
+		
+		final Printable printable3 = toPrintable(new String[]{"a","b","c","d","e","f"});
+		log.debug("PrintableObjectPrintable3 line: " + printable3.printline());
+		log.debug("PrintableObjectPrintable3 lines: " + printable3.printlines());
 	}
 
     @Test
