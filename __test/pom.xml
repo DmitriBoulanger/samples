@@ -1,8 +1,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+	
 	<artifactId>test</artifactId>
 	<name>All Workspace-Tests for Eclipse</name>
+    <description>A  special ecipse-project to run all workspace JUnit-tests.
+If a test starts from this project, only error messages are send to the console. 
+All mesages can be found in the target/logs directory</description>
 
 	<parent>
 		<groupId>de.dbo.samples</groupId>
@@ -32,6 +36,5 @@
 			<artifactId>util0</artifactId>
 		</dependency>
 	</dependencies>
-	<description>A  special ecipse-project to run all workspace JUnit-tests.
-If a test starts from this project, only error messages are send to the console. All mesages can be found in the target/logs directory</description>
+
 </project>
