@@ -16,6 +16,7 @@ import org.junit.runners.Suite.SuiteClasses;
 @RunWith(Suite.class)
 @SuiteClasses({ 
 	    StudentTest.class
-	    ,CloseTest.class})
+	    ,CloseTest.class
+	    ,CloseTestNoConnection.class})
 
 public class Alles {}

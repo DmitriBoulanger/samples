@@ -79,7 +79,9 @@ public class TransactionRunner {
 		if (null == entityManager) {
 			entityManager = entityManagerFactory.createEntityManager();
 		}
-		entityTransaction =  entityManager.getTransaction();
+		if (null == entityTransaction) {
+			entityTransaction =  entityManager.getTransaction();
+		}
 		return entityTransaction;
 	}
 	
@@ -87,11 +89,15 @@ public class TransactionRunner {
 		 if (entityTransaction != null && entityTransaction.isActive()) {
 			 entityTransaction.rollback();
 			 final String msg = "Transaction rolled back";
-			 log.warn(msg + (null!=e? ": \n"+e.toString():""));
+			 if (null==e) {
+				 log.info(msg);
+			 } else {
+				 log.warn(msg + ": \n"+ e.toString());
+//					e.printStackTrace();
+			 }
 		 } else {
 			 final String msg = "Transaction was not rolled back (NULL or not active)";
-			 log.warn(msg + (null!=e? ": \n"+e.toString():""));
+			 log.info(msg + (null!=e? ": \n"+e.toString():""));
 		 }
 	}
-
 }

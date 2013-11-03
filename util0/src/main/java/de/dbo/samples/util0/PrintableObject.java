@@ -104,48 +104,6 @@ final class PrintableObject implements Printable {
 		this.stringBuilder = null;
 	}
 	
-	// HELPERS
-	
-	private static final StringBuilder nn(final String value) {
-		return null==value? null 
-				: new StringBuilder(value);
-	}
-	private static final StringBuilder nn(final StringBuilder value) {
-		return null==value? null 
-				: value;
-	}
-	private static final StringBuilder nn(final Integer value) {
-		return value == null ? null 
-				: new StringBuilder(Integer.toString( value.intValue() ));
-	}
-	private static final StringBuilder nn(final int value) {
-		return new StringBuilder(Integer.toString(value));
-	}
-	private static final StringBuilder nn(final int[] value) {
-		return value == null ? null 
-				: new StringBuilder( line(value) );
-	}
-	private static final StringBuilder nn(final Integer[] value) {
-		return value == null ? null 
-				: new StringBuilder( line(value) );
-	}
-	private static final StringBuilder nn(final String[] value) {
-		return value == null ? null 
-				: new StringBuilder( line(value) );
-	}
-	private static final Map<String,Printable> nn(final Map<?,?> value) {
-		return value == null ? null 
-				: toMapOfPrintables(value);
-	}
-	private static final  Collection<Printable> nn(final Collection<?> value) {
-		return value == null ? null 
-				: toColllectionOfPrintables(value);
-	}
-	private static final Printable nn(final Printable value) {
-		return value == null ? null : value;
-	}
-	
-
 	@Override
 	public StringBuilder printline() {
 		if (null != printable) {
@@ -172,5 +130,38 @@ final class PrintableObject implements Printable {
 		} else {
 			return Print.NULL;
 		}
+	}
+	
+	// HELPERS
+	
+	private static final StringBuilder nn(final String value) {
+		return null==value? null : new StringBuilder(value);
+	}
+	private static final StringBuilder nn(final StringBuilder value) {
+		return null==value? null : value;
+	}
+	private static final StringBuilder nn(final Integer value) {
+		return value == null ? null : new StringBuilder(Integer.toString( value.intValue() ));
+	}
+	private static final StringBuilder nn(final int value) {
+		return new StringBuilder(Integer.toString(value));
+	}
+	private static final StringBuilder nn(final int[] value) {
+		return value == null ? null : new StringBuilder( line(value) );
+	}
+	private static final StringBuilder nn(final Integer[] value) {
+		return value == null ? null : new StringBuilder( line(value) );
+	}
+	private static final StringBuilder nn(final String[] value) {
+		return value == null ? null : new StringBuilder( line(value) );
+	}
+	private static final Map<String,Printable> nn(final Map<?,?> value) {
+		return value == null ? null : toMapOfPrintables(value);
+	}
+	private static final  Collection<Printable> nn(final Collection<?> value) {
+		return value == null ? null : toColllectionOfPrintables(value);
+	}
+	private static final Printable nn(final Printable value) {
+		return value == null ? null : value;
 	}
 }

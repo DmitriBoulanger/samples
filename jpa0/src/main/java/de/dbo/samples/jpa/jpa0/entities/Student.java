@@ -78,11 +78,12 @@ public class Student implements Serializable {
         this.birthdate = birthdate;
     }
 
+    @Override
     public final String toString() {
         return "Student: ID=" + studentId 
         		+ " FirstName=" + firstname 
         		+ " LastName=" + lastname 
-        		+ " Group=" + (null==group? "NULL" : group.getGroupName());
+        	    + " " + group;
     }
 
 }

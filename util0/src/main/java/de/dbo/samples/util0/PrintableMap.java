@@ -24,7 +24,7 @@ final class PrintableMap extends HashMap<String, Printable> implements Printable
 	 * creates a new printable map from the given map
 	 * @param map
 	 */
-	public PrintableMap(final Map<?, ?> map) {
+	PrintableMap(final Map<?, ?> map) {
 		for (final Map.Entry<?, ?> entry: map.entrySet()) {
 			final String key = keyToString(entry.getKey());
 			final Printable value  = toPrintable(entry.getValue());

@@ -215,6 +215,8 @@ public class PrintTest {
         log.debug("Complete map: " + lines(map));
         log.debug("Filtered map: " + lines(map, "a" /* filter */));
         log.debug("Complete map single-line: " + line(map));
+        
+       
     }
     
     @Test
@@ -226,6 +228,30 @@ public class PrintTest {
     	log.debug("Properties lines filter:" + lines(properties,"a"));
     }
     
+	@Test
+	public void test_022_printable_map_object() {
+		final PrintableMap printableMap = new PrintableMap(sampleNonPrintableMap(333));
+		log.debug("PrintableMap line: " + printableMap.printline());
+		log.debug("PrintableMap lines: " + printableMap.printlines());
+		
+		final PrintableObject printableObject = new PrintableObject(sampleMapOfPrintables(666));
+		log.debug("PrintableObject line: " + printableObject.printline());
+		log.debug("PrintableObject lines: " + printableObject.printlines());
+		
+		final PrintableObject printableObjectNull = new PrintableObject((Map<?,?>)null);
+		log.debug("PrintableObjectNull line: " + printableObjectNull.printline());
+		log.debug("PrintableObjectNull lines: " + printableObjectNull.printlines());
+		
+		final PrintableObject printableObjectString = new PrintableObject("abcde");
+		log.debug("PrintableObjectString line: " + printableObjectString.printline());
+		log.debug("PrintableObjectString lines: " + printableObjectString.printlines());
+		
+		final Printable printable = printableObject(999);
+		final PrintableObject printableObjectPrintable = new PrintableObject(printable);
+		log.debug("PrintableObjectPrintable line: " + printableObjectPrintable.printline());
+		log.debug("PrintableObjectPrintable lines: " + printableObjectPrintable.printlines());
+	}
+
     @Test
     public void test_030_integers() {
         log.debug("integers:" + line(sampleintegers()) );

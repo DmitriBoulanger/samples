@@ -140,11 +140,12 @@ public class StudentTest extends TransactionTest {
 		student2.setBirthdate(new Date());
 		log.info("Bad Student: " + student2);
 
-		// Start the transaction (student2 is bad-defined)
+		// Start bad-transaction (student2 is bad-defined)
 		try {
 			final EntityManager em = TRANSACTION_RUNNER.getEntityManager();
 			final EntityTransaction trx = TRANSACTION_RUNNER.getTransaction();
 			trx.begin();
+			log.info("Transaction is active: " + trx.isActive());
 			em.persist(group);
 			em.persist(student);
 			em.persist(student2);

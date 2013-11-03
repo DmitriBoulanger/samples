@@ -52,6 +52,7 @@ public class Group implements Serializable {
         this.groupName = groupName;
     }
 
+    @Override
     public final String toString() {
         return "GROUP: ID=" + groupId + " Name=" + groupName;
     }
