@@ -6,10 +6,8 @@
 	<name>SLF4J APT Logging</name>
 	<description>
 	SLF4J API is used in the main program.
-    It has no actual logger binding, 
-    i.e. there is no logger in the class-path). 
-    However, the JUnit-test 
-    uses the log4j-logger
+    It has no actual logger binding, i.e. there is no logger in the class-path). 
+    However, the JUnit-test uses the log4j-logger
     </description>
 
 	<parent>
