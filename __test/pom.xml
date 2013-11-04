@@ -11,7 +11,7 @@ All mesages can be found in the target/logs directory</description>
 	<parent>
 		<groupId>de.dbo.samples</groupId>
 		<artifactId>parent</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
+		<version>0.0.0-SNAPSHOT</version>
 	</parent>
 	     
 	<!-- ======================================================
