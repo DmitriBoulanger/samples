@@ -13,28 +13,21 @@ import org.junit.Test;
 
 public class PageTest {
 	
-	private static final String DIR =  new File(".").getAbsolutePath()+"/target/data/";
+	private static final String TARTGET_DATA_DIR =  new File(".","/target/data/").getAbsolutePath();
 	private static Path targetDir;
 	
-	@Before 
+	@Before
 	public void init() throws IOException {
-		targetDir = Paths.get(DIR);
+		targetDir = Paths.get(TARTGET_DATA_DIR);
 		if (Files.exists(targetDir)) {
 			return;
+		} else {
+			Files.createDirectories(targetDir);
 		}
-		try {
-			Files.deleteIfExists(targetDir);
-		} catch (DirectoryNotEmptyException e) {
-			 return;
-		}
-		 Files.createDirectories(targetDir);
 	}
 	
 	@Test
 	public void test() throws IOException {
-		final Path target = Paths.get(new File(DIR,Page.class.getSimpleName()+".html").getAbsolutePath());
-		Files.deleteIfExists(target);
-		Path file = Files.createFile(target);
 		final Page page = new Page("Documentation page");
 		page.summary(
 				"This is a very nice documentation page");
@@ -50,9 +43,19 @@ public class PageTest {
 		page.p("f it doesn't, then the best it can do is make an assumption. "
 				+ "Problems with encoding usually show up "
 				+ "as weird characters in a tool that has read the file. ");
-		Files.write(file
-		    ,page.toString().getBytes()
-		    , StandardOpenOption.WRITE);
+		page.section("Conclusion");
+		
+		save(page);
+	}
+	
+	private static void save(final Object page) throws IOException {
+		final byte[] text = page.toString().getBytes();
+		final String pagePath = 
+				new File(TARTGET_DATA_DIR, page.getClass().getSimpleName()+".html").getAbsolutePath();
+		final Path target = Paths.get(pagePath);
+		Files.deleteIfExists(target);
+		Path file = Files.createFile(target);
+		Files.write(file ,text, StandardOpenOption.WRITE);
 	}
 
 }
