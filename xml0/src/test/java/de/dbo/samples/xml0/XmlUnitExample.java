@@ -94,16 +94,14 @@ public class XmlUnitExample extends XMLTestCase {
     
     public void testForEquality() throws Exception {
         String myControlXML = "<msg><uuid>0x00435A8C</uuid></msg>";
-        String myTestXML = "<msg><localId>2376</localId></msg>";
+        String myTestXML    = "<msg><localId>2376</localId></msg>";
         assertXMLEqual("comparing test xml to control xml", myControlXML, myTestXML);
-
         assertXMLNotEqual("test xml not similar to control xml", myControlXML, myTestXML);
     }
 
-    
     public void testIdentical() throws Exception {
         String myControlXML = "<struct><int>3</int><boolean>false</boolean></struct>";
-        String myTestXML = "<struct><boolean>false</boolean><int>3</int></struct>";
+        String myTestXML    = "<struct><boolean>false</boolean><int>3</int></struct>";
         Diff myDiff = new Diff(myControlXML, myTestXML);
         assertTrue("pieces of XML are similar " + myDiff, myDiff.similar());
         assertTrue("but are they identical? " + myDiff, myDiff.identical());
@@ -111,10 +109,8 @@ public class XmlUnitExample extends XMLTestCase {
 
     
     public void testAllDifferences() throws Exception {
-        String myControlXML = "<news><item id=\"1\">War</item>"
-            + "<item id=\"2\">Plague</item><item id=\"3\">Famine</item></news>";
-        String myTestXML = "<news><item id=\"1\">Peace</item>"
-            + "<item id=\"2\">Health</item><item id=\"3\">Plenty</item></news>";
+        String myControlXML = "<news><item id=\"1\">War</item>"    + "<item id=\"2\">Plague</item><item id=\"3\">Famine</item></news>";
+        String myTestXML =    "<news><item id=\"1\">Peace</item>"  + "<item id=\"2\">Health</item><item id=\"3\">Plenty</item></news>";
         DetailedDiff myDiff = new DetailedDiff(compareXML(myControlXML, myTestXML));
         List<?> allDifferences = myDiff.getAllDifferences();
         assertEquals(myDiff.toString(), 0, allDifferences.size());
@@ -123,7 +119,7 @@ public class XmlUnitExample extends XMLTestCase {
     
     public void testCompareToSkeletonXML() throws Exception {
         String myControlXML = "<location><street-address>22 any street</street-address><postcode>XY00 99Z</postcode></location>";
-        String myTestXML = "<location><street-address>20 east cheap</street-address><postcode>EC3M 1EB</postcode></location>";
+        String myTestXML    = "<location><street-address>20 east cheap</street-address><postcode>EC3M 1EB</postcode></location>";
         DifferenceListener myDifferenceListener = new IgnoreTextAndAttributeValuesDifferenceListener();
         Diff myDiff = new Diff(myControlXML, myTestXML);
         myDiff.overrideDifferenceListener(myDifferenceListener);
@@ -133,7 +129,7 @@ public class XmlUnitExample extends XMLTestCase {
     
     public void testRepeatedChildElements() throws Exception {
         String myControlXML = "<suite><test status=\"pass\">FirstTestCase</test><test status=\"pass\">SecondTestCase</test></suite>";
-        String myTestXML = "<suite><test status=\"pass\">SecondTestCase</test><test status=\"pass\">FirstTestCase</test></suite>";
+        String myTestXML    = "<suite><test status=\"pass\">SecondTestCase</test><test status=\"pass\">FirstTestCase</test></suite>";
 
         assertXMLNotEqual("Repeated child elements in different sequence order are not equal by default",
             myControlXML, myTestXML);
