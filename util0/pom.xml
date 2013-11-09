@@ -8,7 +8,7 @@
 		<groupId>de.dbo.samples</groupId>
 		<artifactId>parent</artifactId>
 		<version>0.0.0-SNAPSHOT</version>
-	</parent>
+  	</parent>
 	
 	<!-- =====================
 	     ONLY COMMON RESOURCES 
