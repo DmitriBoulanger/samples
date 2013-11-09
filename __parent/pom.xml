@@ -33,6 +33,7 @@
 		<xstream.version>1.4.4</xstream.version>
 		<tuprolog.version>2.1.1</tuprolog.version>
 		<xmlunit.version>1.4</xmlunit.version>
+	    <ecs.version>1.4.2</ecs.version>
 		
 		<maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
 		<maven-surefire-plugin.version>2.16</maven-surefire-plugin.version>
@@ -78,6 +79,11 @@
 				<artifactId>xmlunit</artifactId>
 				<version>${xmlunit.version}</version>
 			</dependency>
+			<dependency>
+	<groupId>ecs</groupId>
+	<artifactId>ecs</artifactId>
+	<version>${ecs.version}</version>
+  </dependency>
 			
 			<!-- SLF4J Logging -->
 			<dependency>
@@ -158,11 +164,6 @@
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
-		</dependency>
-		
-		<dependency>
-				<groupId>xmlunit</groupId>
-				<artifactId>xmlunit</artifactId>
 		</dependency>
 		
 	</dependencies>
