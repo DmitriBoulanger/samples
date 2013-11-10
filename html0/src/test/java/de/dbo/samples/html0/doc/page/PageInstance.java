@@ -11,16 +11,21 @@ import java.nio.file.StandardOpenOption;
  * 
  * @author Dmitri Boulanger, Hombach
  *
- * D. Knuth: Programs are meant to be read by humans and 
- *           only incidentally for computers to execute 
+ * Programs are meant to be read by humans and only incidentally for computers to execute (D. Knuth)
  *
  */
 public class PageInstance extends Page{
 	
+	/**
+	 * 
+	 * @param isCompletXhtml flag to generate complete XHTML-document
+	 * @param isPrettyPrint flag to force pretty-print for the output XHTML-string
+	 */
 	PageInstance(final boolean isCompletXhtml, final boolean isPrettyPrint) {
-		super("Documentation page", isCompletXhtml, isPrettyPrint);
-		summary(
-				"This is a very nice documentation page");
+		super(isCompletXhtml, isPrettyPrint);
+		title("Documentation page");
+		summary("This is a very nice documentation page");
+		
 		section("Important remarks");
 		p("With Java 7 it is very easy to read and write files. "
 				+ "If you want to put a string into a file, "
@@ -29,6 +34,7 @@ public class PageInstance extends Page{
 				+ "you need to understand that those read/write operations always "
 				+ "use an implicit character encoding to translate raw bytes "
 				+ "- the 1s and 0s - into text. ");
+		
 		section("Best praxis");
 		p("it doesn't, then the best it can do is make an assumption. "
 				+ "Problems with encoding usually show up "

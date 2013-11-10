@@ -4,7 +4,8 @@ import org.apache.ecs.xhtml.li;
 import org.apache.ecs.xhtml.ul;
 
 public final class List extends ul {
-	
+	private static final long serialVersionUID = -898064196066306021L;
+
 	/**
 	 * Vertical list of items
 	 */

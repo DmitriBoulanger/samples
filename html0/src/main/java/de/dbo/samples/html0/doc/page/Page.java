@@ -20,23 +20,17 @@ public class Page {
 	private final boolean isCompleteXhtml;
 	private final boolean isPrettyPrint;
 	
-	public Page(final String title) {
-	   this(title,false,false);
+	public Page() {
+	   this(false,false);
     }
 	 
-	public Page(final String documentTitle
-			, final boolean isCompleteXhtml, final boolean isPrettyPrint) {
+	public Page(final boolean isCompleteXhtml, final boolean isPrettyPrint) {
 		this.isCompleteXhtml = isCompleteXhtml;
 		this.isPrettyPrint = isPrettyPrint;
 		if (isCompleteXhtml) {
-			
 			document = new XhtmlDocument();
 			document.setDoctype(DOCTYPE);
 			document.setCodeset(ENCODING);
-			
-			final title title = new title(documentTitle);
-			title.setPrettyPrint(isPrettyPrint);
-			document.setTitle(title);
 			
 			html = document.getHtml();
 			html.setPrettyPrint(isPrettyPrint);
@@ -59,11 +53,26 @@ public class Page {
 			html.addElement(body);
 			document = null;
 		}
-		body.addElement(new h1(documentTitle));
-		body.addElement(new hr());
-		
 	}
 	
+	/**
+	 * text wrapped as a page-title 
+	 * @param title
+	 */
+	public void title(final String text) {
+		if (isCompleteXhtml) {
+			final title title = new title(text);
+			title.setPrettyPrint(isPrettyPrint);
+			document.setTitle(title);
+		}
+		body.addElement(new h1(text));
+		body.addElement(new hr());
+	}
+	
+	/**
+	 * text wrapped as a summary
+	 * @param title
+	 */
 	public final  void summary(final String text) {
 		final h3 summary = new h3();
 		if (isPrettyPrint) {
@@ -73,6 +82,10 @@ public class Page {
 		body.addElement(summary);
 	}
 	
+	/**
+	 * title wrapped as a section
+	 * @param title
+	 */
 	public final  void section(final String title) {
 		final h2 section = new h2();
 		section.addElement(title);
@@ -82,7 +95,11 @@ public class Page {
 		body.addElement(section);
 	}
 	
-	public final  void p(final String text) {
+	/**
+	 * text wrapped as a paragraph
+	 * @param text
+	 */
+	public final void p(final String text) {
 		final p p = new p();
 		if (isPrettyPrint) {
 			p.setPrettyPrint(true);
@@ -91,7 +108,10 @@ public class Page {
 		body.addElement(p);
 	}
 	
-	public final  void nl() {
+	/**
+	 * new line
+	 */
+	public final void nl() {
 		final br nl = new br();
 		if (isPrettyPrint) {
 			nl.setPrettyPrint(true);
@@ -99,11 +119,19 @@ public class Page {
 		body.addElement(nl);
 	}
 	
+	/**
+	 * add text
+	 * @param text
+	 */
 	public final  void text(final String text) {
 		body.addElement(text);
 	}
 	
-	public final  void textem(final String text) {
+	/**
+	 * emphasized text
+	 * @param text
+	 */
+	public final void textem(final String text) {
 		final em em = new em();
 		if (isPrettyPrint) {
 			em.setPrettyPrint(true);
@@ -112,6 +140,9 @@ public class Page {
 		body.addElement(em);
 	}
 	
+	/**
+	 * @return vertical list
+	 */
 	public final  List list() {
 		final List list = new List();
 		if (isPrettyPrint) {
@@ -121,6 +152,11 @@ public class Page {
 		return list;
 	}
 	
+	/**
+	 * text and then add vertical list
+	 * @param text
+	 * @return vertical list
+	 */
 	public final List list(final String text) {
 		text(text);
 		return list();

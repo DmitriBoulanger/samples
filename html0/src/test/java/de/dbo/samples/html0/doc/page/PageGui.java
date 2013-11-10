@@ -19,19 +19,31 @@ public class PageGui {
 		EventQueue.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				new PageGui("Page GUI");
+				new PageGui("Page GUI"
+						, new Dimension(800, 800) /* default pane size */);
 			}
 		});
 	}
 
-	private final JFrame frame;
-	
-	public PageGui(final String frameTitle) {
-		this(frameTitle, new Dimension(800, 800) /* default pane size */);
+	public PageGui(final String title, final Dimension size) {
+		final JPanel pane = pane(title,size);
+		final JFrame frame = frame(title,size);
+		frame.add(pane, BorderLayout.CENTER);
+		frame.setVisible(true);
 	}
+	
+	private static final JFrame frame(final String title, final Dimension size) {
+		final JFrame ret = new JFrame();
+		ret.setTitle(title);
+		ret.setSize(size);
 
-	public PageGui(final String frameTitle, final Dimension size) {
-
+		// Center the frame in the middle of the screen
+		ret.setLocationRelativeTo(null);
+		ret.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		return ret;
+	}
+	
+	private static final JPanel pane(final String title, final Dimension size) {
 		final GridBagLayout grid = new GridBagLayout();
 		grid.columnWidths = new int[] { 0 };
 		grid.columnWeights = new double[] { 0 };
@@ -66,21 +78,7 @@ public class PageGui {
 		
 		pane.add(label, gbc);
 
-		// Done!
-		frame = frame(frameTitle,size);
-		frame.add(pane, BorderLayout.CENTER);
-		frame.setVisible(true);
-	}
-
-	private static final JFrame frame(final String title, final Dimension size) {
-		final JFrame ret = new JFrame();
-		ret.setTitle(title);
-		ret.setSize(size);
-
-		// Center the frame in the middle of the screen
-		ret.setLocationRelativeTo(null);
-		ret.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		return ret;
+		return pane;
 	}
 
 }
