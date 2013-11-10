@@ -17,8 +17,8 @@ import java.nio.file.StandardOpenOption;
  */
 public class PageInstance extends Page{
 	
-	PageInstance(final boolean xhtml) {
-		super("Documentation page", xhtml);
+	PageInstance(final boolean isCompletXhtml, final boolean isPrettyPrint) {
+		super("Documentation page", isCompletXhtml, isPrettyPrint);
 		summary(
 				"This is a very nice documentation page");
 		section("Important remarks");
@@ -30,16 +30,16 @@ public class PageInstance extends Page{
 				+ "use an implicit character encoding to translate raw bytes "
 				+ "- the 1s and 0s - into text. ");
 		section("Best praxis");
-		p("f it doesn't, then the best it can do is make an assumption. "
+		p("it doesn't, then the best it can do is make an assumption. "
 				+ "Problems with encoding usually show up "
 				+ "as weird characters in a tool that has read the file. ");
-		
-		text("u kannst den Nutzernamen für deine persönliche Chronik nur einmal ändern. "
+		text("den Nutzernamen für deine persönliche Chronik nur einmal ändern. "
 				+ "Melde dich auf einem Computer "
 				+ "bei Facebook an und klicke auf das ...");
 		nl();
-		text("Also, wenn du den normalen Namen meinst, dann weiß ich wie Du gehst "
-				+ "auf den Pfeil oben wo du dich abmeldest und dann auf Kontoeinstellungen ...");
+		text("Крис Уифер, старший партнер в Macro Advisory, утверждает, "
+				+ "что приток листингов указывает на стабильность России "
+				+ "по сравнению с другими развивающимися рынками. ");
 		text("Hei Leute ich suche eine Möglichkeit das ich den Nutzername bei "
 				+ "Facebok ändern kann ohne das ich dabei meine Handynummer zum ...");
 		final List list = list("Some decisions:");
@@ -54,7 +54,8 @@ public class PageInstance extends Page{
 		textem("Standardmässig erhält der Admin-Benutzer einer WordPress ");
 	}
 	
-	private static final String TARTGET_DATA_DIR =  new File(".","/target/data/").getAbsolutePath();
+	private static final String TARTGET_DATA_DIR =  
+			new File(".","/target/data/").getAbsolutePath();
 
 	void save() throws IOException {
 		final Path targetDir = Paths.get(TARTGET_DATA_DIR);

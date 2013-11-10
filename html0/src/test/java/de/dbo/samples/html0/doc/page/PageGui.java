@@ -6,7 +6,6 @@ import java.awt.EventQueue;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.io.IOException;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -57,10 +56,10 @@ public class PageGui {
 		label.setMinimumSize(labelSize);
 		label.setBorder(new EmptyBorder(new Insets(inset, inset, inset, inset)) );
 		
-		final PageInstance page = new PageInstance(false);
+		final PageInstance page = new PageInstance(false,false);
 		try {
 			page.save();
-		} catch (IOException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		label.setText(page.toString());

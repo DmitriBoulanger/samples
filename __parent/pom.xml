@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	
+
 	<groupId>de.dbo.samples</groupId>
 	<artifactId>parent</artifactId>
 	<version>0.0.0-SNAPSHOT</version>
@@ -33,8 +33,9 @@
 		<xstream.version>1.4.4</xstream.version>
 		<tuprolog.version>2.1.1</tuprolog.version>
 		<xmlunit.version>1.4</xmlunit.version>
-	    <ecs.version>1.4.2</ecs.version>
-		
+		<ecs.version>1.4.2</ecs.version>
+		<jtidy.version>4aug2000r7-dev</jtidy.version>
+
 		<maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
 		<maven-surefire-plugin.version>2.16</maven-surefire-plugin.version>
 
@@ -80,11 +81,16 @@
 				<version>${xmlunit.version}</version>
 			</dependency>
 			<dependency>
-	<groupId>ecs</groupId>
-	<artifactId>ecs</artifactId>
-	<version>${ecs.version}</version>
-  </dependency>
-			
+				<groupId>ecs</groupId>
+				<artifactId>ecs</artifactId>
+				<version>${ecs.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>jtidy</groupId>
+				<artifactId>jtidy</artifactId>
+				<version>${jtidy.version}</version>
+			</dependency>
+
 			<!-- SLF4J Logging -->
 			<dependency>
 				<groupId>org.slf4j</groupId>
@@ -106,6 +112,12 @@
 				<version>${junit.version}</version>
 			</dependency>
 			<dependency>
+				<groupId>jtidy</groupId>
+				<artifactId>jtidy</artifactId>
+				<scope>test</scope>
+				<version>${jtidy.version}</version>
+			</dependency>
+			<dependency>
 				<groupId>org.apache.derby</groupId>
 				<artifactId>derby</artifactId>
 				<version>${derby.version}</version>
@@ -117,8 +129,8 @@
 				<version>${derbyclient.version}</version>
 				<scope>test</scope>
 			</dependency>
-		
-		<!-- PROJECTS -->
+
+			<!-- PROJECTS -->
 
 			<dependency>
 				<groupId>de.dbo.samples</groupId>
@@ -156,6 +168,10 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>jtidy</groupId>
+			<artifactId>jtidy</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
@@ -200,5 +216,6 @@
 		
 	</build>
 	
+
 
 </project>
