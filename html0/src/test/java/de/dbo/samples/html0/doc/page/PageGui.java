@@ -10,6 +10,8 @@ import java.awt.Insets;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
 public class PageGui {
@@ -20,22 +22,25 @@ public class PageGui {
 			@Override
 			public void run() {
 				new PageGui("Page GUI"
-						, new Dimension(800, 800) /* default pane size */);
+						, new Dimension(600, 600) /* default pane size */);
 			}
 		});
 	}
 
 	public PageGui(final String title, final Dimension size) {
 		final JPanel pane = pane(title,size);
-		final JFrame frame = frame(title,size);
-		frame.add(pane, BorderLayout.CENTER);
+		pane.setPreferredSize(size);
+		final JFrame frame = frame(title,size,40);
+		final JScrollPane jScrollPane = new JScrollPane();
+		jScrollPane.setViewportView(pane);
+		frame.add(jScrollPane, BorderLayout.CENTER);
 		frame.setVisible(true);
 	}
 	
-	private static final JFrame frame(final String title, final Dimension size) {
+	private static final JFrame frame(final String title, final Dimension size, int margin) {
 		final JFrame ret = new JFrame();
 		ret.setTitle(title);
-		ret.setSize(size);
+		ret.setSize(new Dimension(size.width+margin, size.height+margin));
 
 		// Center the frame in the middle of the screen
 		ret.setLocationRelativeTo(null);
@@ -50,7 +55,7 @@ public class PageGui {
 		grid.rowHeights = new int[] { 0 };
 		grid.rowWeights = new double[] { 0 };
 		
-		final int inset = 50;
+		final int inset = 20;
 
 		final GridBagConstraints gbc = new GridBagConstraints();
 		gbc.fill = GridBagConstraints.HORIZONTAL;
@@ -59,13 +64,15 @@ public class PageGui {
 		gbc.gridy = 0;
 		gbc.insets = new Insets(0, 0, 0, 0);
 		gbc.gridwidth = GridBagConstraints.REMAINDER;
+		gbc.ipadx = 10;
+		gbc.ipady = 10;
 		
 		final JPanel pane = new JPanel();
 		pane.setLayout(grid);
 
 		final Dimension labelSize = new Dimension(size.width-2*inset, size.height-2*inset);
 		final JLabel label = new JLabel();
-		label.setMinimumSize(labelSize);
+		label.setPreferredSize(labelSize);
 		label.setBorder(new EmptyBorder(new Insets(inset, inset, inset, inset)) );
 		
 		final PageInstance page = new PageInstance(false,false);
