@@ -50,16 +50,19 @@ public class XmlUnitExampleTest  {
     	x = new XmlUnitExample("XmlUnitExample Test");
     }
     
+    @Ignore
     @Test
     public void testForEquality() throws Exception {
         x.testForEquality();
     }
 
+    @Ignore
     @Test
     public void testIdentical() throws Exception {
        x.testIdentical();
     }
 
+    @Ignore
     @Test
     public void testAllDifferences() throws Exception {
       x.testAllDifferences();
@@ -111,17 +114,17 @@ public class XmlUnitExampleTest  {
         x.testXpathsInHTML();
     }
 
+    @Ignore
     @Test
     public void testCountingNodeTester() throws Exception {
         x.testCountingNodeTester();
     }
 
+    @Ignore
     @Test
     public void testCustomNodeTester() throws Exception {
         x.testCustomNodeTester();
     }
-
-   
 }
 
 

@@ -19,6 +19,7 @@
 		<module>../tuProlog0</module>
 		<module>../util0</module>
 		<module>../xml0</module>
+		<module>../html0</module>
 	</modules>
 	
  

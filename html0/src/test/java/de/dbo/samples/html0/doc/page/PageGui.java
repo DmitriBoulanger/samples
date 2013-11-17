@@ -18,7 +18,7 @@ import javax.swing.border.LineBorder;
 
 public class PageGui {
 	
-	private static final Dimension FRAME_SIZE = new Dimension(800, 800);
+	private static final Dimension FRAME_SIZE = new Dimension(950, 800);
 	private static final Dimension LABEL_SIZE = new Dimension(700, 700);
 	
 	// Use the event dispatch thread for Swing components
