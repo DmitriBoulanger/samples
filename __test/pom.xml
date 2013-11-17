@@ -34,6 +34,14 @@ All mesages can be found in the target/logs directory</description>
 			<groupId>de.dbo.samples</groupId>
 			<artifactId>util0</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>de.dbo.samples</groupId>
+			<artifactId>xml0</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>de.dbo.samples</groupId>
+			<artifactId>html0</artifactId>
+		</dependency>
 	</dependencies>
 
 </project>

@@ -157,6 +157,11 @@
 				<artifactId>xml0</artifactId>
 				<version>${project.version}</version>
 			</dependency>
+			<dependency>
+				<groupId>de.dbo.samples</groupId>
+				<artifactId>html0</artifactId>
+				<version>${project.version}</version>
+			</dependency>
 
 		</dependencies>
 	</dependencyManagement>

@@ -19,5 +19,7 @@ import org.junit.runners.Suite.SuiteClasses;
           de.dbo.samples.logger.logger0.junit.Alles.class
         , de.dbo.samples.jpa.jpa0.junit.Alles.class
         , de.dbo.samples.util0.junit.Alles.class
+        , de.dbo.samples.xml0.junit.Alles.class
+        , de.dbo.samples.html0.junit.Alles.class
         , de.dbo.samples.tuprolog.tuprolog0.junit.Alles.class})
 public class Test {}
