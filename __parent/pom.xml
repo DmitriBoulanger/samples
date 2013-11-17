@@ -34,7 +34,7 @@
 		<tuprolog.version>2.1.1</tuprolog.version>
 		<xmlunit.version>1.4</xmlunit.version>
 		<ecs.version>1.4.2</ecs.version>
-		<jtidy.version>4aug2000r7-dev</jtidy.version>
+		<jtidy.version>r938</jtidy.version>
 
 		<maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
 		<maven-surefire-plugin.version>2.16</maven-surefire-plugin.version>
@@ -86,11 +86,11 @@
 				<version>${ecs.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>jtidy</groupId>
+				<groupId>net.sf.jtidy</groupId>
 				<artifactId>jtidy</artifactId>
 				<version>${jtidy.version}</version>
 			</dependency>
-
+			
 			<!-- SLF4J Logging -->
 			<dependency>
 				<groupId>org.slf4j</groupId>
@@ -112,7 +112,7 @@
 				<version>${junit.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>jtidy</groupId>
+				<groupId>net.sf.jtidy</groupId>
 				<artifactId>jtidy</artifactId>
 				<scope>test</scope>
 				<version>${jtidy.version}</version>
@@ -170,7 +170,7 @@
 			<artifactId>junit</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>jtidy</groupId>
+			<groupId>net.sf.jtidy</groupId>
 			<artifactId>jtidy</artifactId>
 		</dependency>
 		<dependency>

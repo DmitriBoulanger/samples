@@ -1,7 +1,5 @@
 package de.dbo.samples.html0.doc.page;
 
-import static org.w3c.tidy.Configuration.UTF8;
-
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -28,11 +26,10 @@ public class PageTest {
 
 	@Test
 	public void test() throws IOException {
-		final PageInstance page = new PageInstance(true, true);
+		final PageInstance page = new PageInstance("300px", true, true);
 		page.save();
 
 		final Tidy tidy = new Tidy();
-		tidy.setCharEncoding(UTF8);
 		tidy.setQuiet(false);
 		tidy.setOnlyErrors(false);
 		tidy.setShowWarnings(true);

@@ -21,9 +21,9 @@ public class PageInstance extends Page{
 	 * @param isCompletXhtml flag to generate complete XHTML-document
 	 * @param isPrettyPrint flag to force pretty-print for the output XHTML-string
 	 */
-	PageInstance(final boolean isCompletXhtml, final boolean isPrettyPrint) {
-		super(isCompletXhtml, isPrettyPrint);
-		title("Documentation page");
+	PageInstance(final String width, final boolean isCompletXhtml, final boolean isPrettyPrint) {
+		super(width, isCompletXhtml, isPrettyPrint);
+		title("Documentation page: width=" + width);
 		summary("This is a very nice documentation page");
 		
 		section("Important remarks");
@@ -53,6 +53,20 @@ public class PageInstance extends Page{
 		list.item("Very bad");
 		
 		section("Conclusion");
+		text("ja es kommt erst die meldung das du nun registriert bist. aber um diese "
+				+ "vollständig abzuschliessen musst du erst noch in deinem emailpostfach");
+		text("Und siehe da, er konnte auf einmal den Nutzernamen ändern. Was ist das für eine Logik, "
+				+ "bin ich denn kein Administrator auch wenn es mein ...");
+		textem("Standardmässig erhält der Admin-Benutzer einer WordPress ");
+		
+		section("Conclusion2");
+		text("ja es kommt erst die meldung das du nun registriert bist. aber um diese "
+				+ "vollständig abzuschliessen musst du erst noch in deinem emailpostfach");
+		text("Und siehe da, er konnte auf einmal den Nutzernamen ändern. Was ist das für eine Logik, "
+				+ "bin ich denn kein Administrator auch wenn es mein ...");
+		textem("Standardmässig erhält der Admin-Benutzer einer WordPress ");
+		
+		section("Conclusion3");
 		text("ja es kommt erst die meldung das du nun registriert bist. aber um diese "
 				+ "vollständig abzuschliessen musst du erst noch in deinem emailpostfach");
 		text("Und siehe da, er konnte auf einmal den Nutzernamen ändern. Was ist das für eine Logik, "

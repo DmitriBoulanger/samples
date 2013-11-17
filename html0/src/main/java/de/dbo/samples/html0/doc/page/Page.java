@@ -20,11 +20,11 @@ public class Page {
 	private final boolean isCompleteXhtml;
 	private final boolean isPrettyPrint;
 	
-	public Page() {
-	   this(false,false);
+	public Page(final String width) {
+	   this(width,false,false);
     }
 	 
-	public Page(final boolean isCompleteXhtml, final boolean isPrettyPrint) {
+	public Page(final String width, final boolean isCompleteXhtml, final boolean isPrettyPrint) {
 		this.isCompleteXhtml = isCompleteXhtml;
 		this.isPrettyPrint = isPrettyPrint;
 		if (isCompleteXhtml) {
@@ -53,6 +53,8 @@ public class Page {
 			html.addElement(body);
 			document = null;
 		}
+		body.setStyle("width: "+width+"; padding: 5px 5px 5px 5px;");
+
 	}
 	
 	/**
