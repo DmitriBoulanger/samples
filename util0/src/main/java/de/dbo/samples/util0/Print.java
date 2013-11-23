@@ -42,9 +42,18 @@ public final class Print {
      * @return cardinality of the map 
      */
     public static final StringBuilder cpCardinality(final Map<?, ?> map) {
+       return cpCardinality(map.values());
+    }
+    
+    /**
+     * considers collection-objects as as collections or maps and generates the
+     * cardinality of the corresponding Cartesian product
+     * @param objects collection of collections/maps
+     * @return cardinality of the collection 
+     */
+    public static final StringBuilder cpCardinality(final Collection<?> objects) {
         long ret = 1;
         final StringBuilder sbCardinalities = new StringBuilder();
-        final Collection<?> objects = map.values();
         for (final Object o : objects) {
             if (null == o) {
             	sbCardinalities.append(0 + SP);

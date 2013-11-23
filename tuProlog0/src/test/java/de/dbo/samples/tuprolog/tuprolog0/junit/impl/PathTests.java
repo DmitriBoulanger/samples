@@ -5,7 +5,8 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import de.dbo.samples.tuprolog.tuprolog0.Solver;
+import de.dbo.samples.tuprolog0.Solver;
+
 import alice.tuprolog.Int;
 import alice.tuprolog.Struct;
 import alice.tuprolog.Term;

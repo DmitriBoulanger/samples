@@ -15,8 +15,8 @@
 		transaction-type="RESOURCE_LOCAL">
 		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 		
-		<class>de.dbo.samples.jpa.jpa0.entities.Student</class>
-		<class>de.dbo.samples.jpa.jpa0.entities.Group</class>
+		<class>de.dbo.samples.jpa0.entities.Student</class>
+		<class>de.dbo.samples.jpa0.entities.Group</class>
 	
 	</persistence-unit>
 

@@ -4,8 +4,8 @@ import org.junit.BeforeClass;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.dbo.samples.tuprolog.tuprolog0.Solver;
 import de.dbo.samples.tuprolog.tuprolog0.junit.impl.PathTests;
+import de.dbo.samples.tuprolog0.Solver;
 
 /**
  * 

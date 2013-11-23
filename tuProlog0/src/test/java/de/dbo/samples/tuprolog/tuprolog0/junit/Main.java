@@ -4,9 +4,9 @@ import org.junit.BeforeClass;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.dbo.samples.tuprolog.tuprolog0.Library;
-import de.dbo.samples.tuprolog.tuprolog0.Solver;
 import de.dbo.samples.tuprolog.tuprolog0.junit.impl.PathTests;
+import de.dbo.samples.tuprolog0.Library;
+import de.dbo.samples.tuprolog0.Solver;
 
 /**
  * 
@@ -22,7 +22,7 @@ public final class Main extends PathTests {
     /* solver with extension library */
     static final Solver solver() {
     	final String loggerName =
-    			"de.dbo.samples.tuprolog.tuprolog0.tuprolog0.PrologLogger";
+    			"de.dbo.samples.tuprolog0.tuprolog0.PrologLogger";
         try {
             final Solver solver = new Solver("Main", new Library(loggerName));
             solver.loadTheory("rules.pl");
