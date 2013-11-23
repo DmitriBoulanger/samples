@@ -16,7 +16,6 @@ import java.util.UUID;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
-import javax.persistence.RollbackException;
 
 import org.junit.Test;
 

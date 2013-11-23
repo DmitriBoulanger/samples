@@ -52,7 +52,7 @@ public class XmlUnitInstanceTest  {
         xmlUnit.testAnotherXSLTransformation();
     }
 
-    //TODO we need files ...
+    //TODO how does it work?
     @Ignore
     @Test
     public void testValidation() throws Exception {

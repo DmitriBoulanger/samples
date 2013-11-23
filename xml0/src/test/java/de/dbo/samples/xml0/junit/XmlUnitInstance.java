@@ -38,12 +38,18 @@ POSSIBILITY OF SUCH DAMAGE.
 
 import java.io.File;
 import java.io.FileReader;
+import java.io.IOException;
+import java.net.URL;
+import java.nio.charset.Charset;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.List;
 
 import javax.xml.transform.stream.StreamSource;
 
+import org.custommonkey.xmlunit.examples.CountingNodeTester;
 import org.custommonkey.xmlunit.AbstractNodeTester;
-import org.custommonkey.xmlunit.CountingNodeTester;
 import org.custommonkey.xmlunit.DetailedDiff;
 import org.custommonkey.xmlunit.Diff;
 import org.custommonkey.xmlunit.DifferenceListener;
@@ -85,6 +91,9 @@ import org.w3c.dom.Text;
  * <br />Examples and more at <a href="http://xmlunit.sourceforge.net"/>xmlunit.sourceforge.net</a>
  */
 public class XmlUnitInstance extends XMLTestCase {
+	
+	 private static final String TEST_DIR = "src/test/resources/de/dbo/samples/xml0/junit/";
+	
     public XmlUnitInstance(String name) {
         super(name);
     }
@@ -93,7 +102,7 @@ public class XmlUnitInstance extends XMLTestCase {
     public void testForEquality() throws Exception {
         String myControlXML = "<msg><uuid>0x00435A8C</uuid></msg>";
         String myTestXML    = "<msg><localId>2376</localId></msg>";
-//TODO        assertXMLEqual("comparing test xml to control xml", myControlXML, myTestXML);
+//        assertXMLEqual("comparing test xml to control xml", myControlXML, myTestXML);
         assertXMLNotEqual("test xml not similar to control xml", myControlXML, myTestXML);
     }
 
@@ -102,7 +111,7 @@ public class XmlUnitInstance extends XMLTestCase {
         String myTestXML    = "<struct><boolean>false</boolean><int>3</int></struct>";
         Diff myDiff = new Diff(myControlXML, myTestXML);
         assertTrue("pieces of XML are similar " + myDiff, myDiff.similar());
-//TODO        assertTrue("but are they identical? " + myDiff, myDiff.identical());
+        assertFalse("but are they identical? " + myDiff, myDiff.identical());
     }
 
     
@@ -152,19 +161,31 @@ public class XmlUnitInstance extends XMLTestCase {
         File myInputXMLFile = new File("...");
         File myStylesheetFile = new File("...");
         Transform myTransform = new Transform(new StreamSource(myInputXMLFile), new StreamSource(myStylesheetFile));
-        Document myExpectedOutputXML = XMLUnit.buildDocument(XMLUnit.getControlParser(), new FileReader("..."));
+        Document myExpectedOutputXML = XMLUnit.buildDocument(XMLUnit.newControlParser(), new FileReader("..."));
         Diff myDiff = new Diff(myExpectedOutputXML, myTransform.getResultDocument());
         assertTrue("XSL transformation worked as expected " + myDiff, myDiff.similar());
     }
+    
+    private static final String read(final String name) throws IOException {
+    	 final Charset charset = Charset.forName("utf-8");
+         final Path pathXml = FileSystems.getDefault().getPath(TEST_DIR, name);
+         return new String(Files.readAllBytes(pathXml),charset);
+    }
+    
+    private static final Path path(final String name) throws IOException {
+        return FileSystems.getDefault().getPath(TEST_DIR, name);
+   }
 
+    // As the document is parsed it is validated against its referenced DTD
     public void testValidation() throws Exception {
-        XMLUnit.getTestDocumentBuilderFactory().setValidating(true);
-        // As the document is parsed it is validated against its referenced DTD
-        Document myTestDocument = XMLUnit.buildTestDocument("...");
-        String mySystemId = "...";
-        String myDTDUrl = new File("...").toURL().toExternalForm();
-        Validator myValidator = new Validator(myTestDocument, mySystemId, myDTDUrl);
-        assertTrue("test document validates against unreferenced DTD", myValidator.isValid());
+    	 XMLUnit.getTestDocumentBuilderFactory().setValidating(true);
+        final Document xmlDocument = XMLUnit.buildTestDocument( read("log4j.xml"));
+        final URL dtdUrl = path("log4j.dtd").toFile().toURI().toURL();
+        String systemId = "log4j.dtd"; // "SYSTEM";
+        System.err.println(dtdUrl);
+       
+        final Validator validator = new Validator(xmlDocument, systemId, dtdUrl.toString());
+        assertTrue("test document validates against unreferenced DTD", validator.isValid());
     }
 
     
@@ -191,7 +212,7 @@ public class XmlUnitInstance extends XMLTestCase {
     
     public void testXpathsInHTML() throws Exception {
         String someBadlyFormedHTML = "<html><title>Ugh</title><body><h1>Heading<ul><li id='1'>Item One<li id='2'>Item Two";
-        TolerantSaxDocumentBuilder tolerantSaxDocumentBuilder = new TolerantSaxDocumentBuilder(XMLUnit.getTestParser());
+        TolerantSaxDocumentBuilder tolerantSaxDocumentBuilder = new TolerantSaxDocumentBuilder(XMLUnit.newTestParser());
         HTMLDocumentBuilder htmlDocumentBuilder = new HTMLDocumentBuilder(tolerantSaxDocumentBuilder);
         Document wellFormedDocument = htmlDocumentBuilder.parse(someBadlyFormedHTML);
         assertXpathEvaluatesTo("Item One", "/html/body//li[@id='1']", wellFormedDocument);
@@ -213,14 +234,16 @@ public class XmlUnitInstance extends XMLTestCase {
     }
 
     private class FibonacciNodeTester extends AbstractNodeTester {
-        private int nextVal = 1, lastVal = 1, priorVal = 0;
+        private int nextVal = 1;
+        private int lastVal = 1;
+//        private int priorVal = 0;
         public void testText(Text text) throws NodeTestException {
             int val = Integer.parseInt(text.getData());
             if (nextVal != val) {
                 throw new NodeTestException("Incorrect sequence value", text);
             }
             nextVal = val + lastVal;
-            priorVal = lastVal;
+//            priorVal = lastVal;
             lastVal = val;
         }
         public void testElement(Element element) throws NodeTestException {
