@@ -1,6 +1,6 @@
 package de.dbo.samples.html0.junit;
 
-import de.dbo.samples.html0.doc.page.PageTest;
+import de.dbo.samples.html0.doc.page.junit.PageTest;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;

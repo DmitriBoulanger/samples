@@ -1,4 +1,4 @@
-package de.dbo.samples.html0.doc.page;
+package de.dbo.samples.html0.doc.page.junit;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;

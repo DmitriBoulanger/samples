@@ -1,4 +1,7 @@
-package de.dbo.samples.html0.doc.page;
+package de.dbo.samples.html0.doc.page.junit;
+
+import de.dbo.samples.html0.doc.page.List;
+import de.dbo.samples.html0.doc.page.Page;
 
 import java.io.File;
 import java.io.IOException;

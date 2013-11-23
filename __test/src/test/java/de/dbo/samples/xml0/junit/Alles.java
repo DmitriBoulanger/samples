@@ -1,6 +1,6 @@
 package de.dbo.samples.xml0.junit;
 
-import de.dbo.samples.xml0.XmlUnitExampleTest;
+import de.dbo.samples.xml0.junit.XmlUnitInstanceTest;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
@@ -17,6 +17,6 @@ import org.junit.runners.Suite.SuiteClasses;
  */
 @RunWith(Suite.class)
 @SuiteClasses({ 
-	XmlUnitExampleTest.class})
+	XmlUnitInstanceTest.class})
 
 public class Alles {}

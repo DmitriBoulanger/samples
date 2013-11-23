@@ -45,7 +45,7 @@ public class TransactionRunner {
 	
 	private final void newEntityManagerFactory() {
 		this.entityManagerFactory = 
-				Persistence.createEntityManagerFactory("JEE6-Persistence", config);
+				Persistence.createEntityManagerFactory(persistenceUnit, config);
 	}
 	
 	/**
