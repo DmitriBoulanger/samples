@@ -3,7 +3,6 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
 	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
 
-	
 	<!--
 		This persistence unit is only used to declare persistence provider
 		and to indicate available class-names of the database entities
@@ -19,5 +18,4 @@
 		<class>de.dbo.samples.jpa0.entities.Group</class>
 	
 	</persistence-unit>
-
 </persistence>

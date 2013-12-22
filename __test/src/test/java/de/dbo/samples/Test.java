@@ -5,15 +5,13 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 /**
- * All repository/workspace tests
+ * All samples-tests
  * 
  * @author Dmitri Boulanger, Hombach
  *
- * D. Knuth: Programs are meant to be read by humans and 
- *           only incidentally for computers to execute 
+ * Programs are meant to be read by humans and only incidentally for computers to execute (D. Knuth)
  *
  */
-
 @RunWith(Suite.class)
 @SuiteClasses({
           de.dbo.samples.logger0.junit.Alles.class

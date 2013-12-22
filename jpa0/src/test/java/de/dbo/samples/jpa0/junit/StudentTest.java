@@ -23,6 +23,14 @@ import com.thoughtworks.xstream.XStream;
 
 import static org.junit.Assert.assertSame;
 
+/**
+ * Test uses XStrem-serialization of persistent objects
+ * 
+ * @author Dmitri Boulanger, Hombach
+ *
+ * Programs are meant to be read by humans and only incidentally for computers to execute (D. Knuth)
+ *
+ */
 public class StudentTest extends TransactionTest {
 	
 	private static XStream xstream = new XStream();
@@ -37,7 +45,7 @@ public class StudentTest extends TransactionTest {
 			// Get a new transaction
 			trx = TRANSACTION_RUNNER.getTransaction();
 			group = new Group();
-			group.setGroupName("CleverGuys 2");
+			group.setGroupName("Clever Guys 2");
 			student = new Student();
 			student.setGroup(group);
 			student.setFirstname("James");
@@ -97,9 +105,7 @@ public class StudentTest extends TransactionTest {
 			final List<?> studentList = q.getResultList();
 			for (final Object studentFromList : studentList) {
 				log.info("LIST   -- " + studentFromList);
-				assertSame(
-						"Unexpected entiy class: " + studentFromList.getClass()
-								+ " Expected: " + Student.class,
+				assertSame("Unexpected entiy class: " + studentFromList.getClass() + " Expected: " + Student.class,
 						studentFromList.getClass(), Student.class);
 			}
 
@@ -117,12 +123,12 @@ public class StudentTest extends TransactionTest {
 	
 	/**
 	 * Bad entities: student without last-name
+	 * Data: group and two students
 	 * 
 	 * @throws Exception
 	 */
 	@Test()
 	public void test_020() throws Exception {
-		// Data: group and two students
 		final Group group = new Group();
 		group.setGroupName("Bad Guys " + UUID.randomUUID().toString());
 		 
@@ -149,9 +155,9 @@ public class StudentTest extends TransactionTest {
 			em.persist(student);
 			em.persist(student2);
 			trx.commit();
-		} catch (Exception e) {
-			TRANSACTION_RUNNER.rollbackTransaction(e);
-			throw e;
+//		} catch (Exception e) {
+//			TRANSACTION_RUNNER.rollbackTransaction(e);
+//			throw e;
 		} finally {
 			TRANSACTION_RUNNER.close();
 		}
