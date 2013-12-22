@@ -34,6 +34,27 @@ public final class Print {
     private Print() {
         // should be never initialized as an instance
     }
+    
+   /**
+    * pad with " " to the right to the given length (n)
+    * @param s
+    * @param n
+    * @return
+    */
+    public static String padRight(String s, int n) {
+      return String.format("%1$-" + n + "s", s);
+    }
+
+    /** 
+     * pad with " " to the left to the given length (n)
+     * @param s
+     * @param n
+     * @return
+     */
+    public static String padLeft(String s, int n) {
+      return String.format("%1$" + n + "s", s);
+    }
+
 
     /**
      * considers map-values as collections and generates the

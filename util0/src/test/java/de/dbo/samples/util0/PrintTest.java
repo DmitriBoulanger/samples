@@ -5,6 +5,8 @@ import static de.dbo.samples.util0.Print.line;
 import static de.dbo.samples.util0.Print.lines;
 import static de.dbo.samples.util0.Print.linesNumbered;
 import static de.dbo.samples.util0.Print.linesSorted;
+import static de.dbo.samples.util0.Print.padLeft;
+import static de.dbo.samples.util0.Print.padRight;
 import static de.dbo.samples.util0.PrintConversions.toMapOfPrintables;
 import static de.dbo.samples.util0.PrintConversions.toColllectionOfPrintables;
 import static de.dbo.samples.util0.PrintConversions.toPrintable;
@@ -38,7 +40,9 @@ import static java.util.Arrays.asList;
  */
 public class PrintTest {
     private static final Logger log = getLogger(PrintTest.class);
-
+    
+    
+	
     @Test
     public void test_000_null() {
     	final Collection<?> nullCollection = null;
@@ -382,7 +386,20 @@ public class PrintTest {
     			,cpCardinality2.equals(cpCardinalityExpected2));
     }
     
- 
+    @Test
+    public void test_600() {
+    	final int lenght = 20;
+    	final String padRight = padRight("Howto", lenght);
+    	final String padLeft = padLeft("Howto", lenght);
+		log.debug("padRight = " + padRight + "*");
+		log.debug("padLeft  = " + padLeft + "*");
+		assertTrue(padRight + "has incorrect length. Expeced: " + lenght
+				,lenght==padRight.length());
+		assertTrue(padLeft + "has incorrect length. Expeced: " + lenght
+				,lenght==padLeft.length());
+	}
+
+    
     // SMAPLE GENERATORS
     
     private static Properties sampleProperties(final int i) {
