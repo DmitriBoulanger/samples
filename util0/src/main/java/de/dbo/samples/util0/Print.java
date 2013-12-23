@@ -37,21 +37,21 @@ public final class Print {
     
    /**
     * pad with " " to the right to the given length (n)
-    * @param s
-    * @param n
-    * @return
+    * @param s string to be padded
+    * @param n length of the ouput
+    * @return padded string having the specified length
     */
-    public static String padRight(String s, int n) {
+    public static String padRight(final String s, int n) {
       return String.format("%1$-" + n + "s", s);
     }
 
     /** 
      * pad with " " to the left to the given length (n)
-     * @param s
-     * @param n
-     * @return
+     * @param s string to be padded
+     * @param n length of the ouput
+     * @return padded string having the specified length
      */
-    public static String padLeft(String s, int n) {
+    public static String padLeft(final String s, int n) {
       return String.format("%1$" + n + "s", s);
     }
 
