@@ -387,15 +387,15 @@ public class PrintTest {
     }
     
     @Test
-    public void test_600() {
+    public void test_200() {
     	final int lenght = 20;
     	final String padRight = padRight("Howto", lenght);
     	final String padLeft = padLeft("Howto", lenght);
 		log.debug("padRight = " + padRight + "*");
 		log.debug("padLeft  = " + padLeft + "*");
-		assertTrue(padRight + "has incorrect length. Expeced: " + lenght
+		assertTrue(padRight + "has incorrect length "+ padRight.length() + ". Expected: " + lenght
 				,lenght==padRight.length());
-		assertTrue(padLeft + "has incorrect length. Expeced: " + lenght
+		assertTrue(padLeft + "has incorrect length " + padLeft.length() + ". Expected: " + lenght
 				,lenght==padLeft.length());
 	}
 

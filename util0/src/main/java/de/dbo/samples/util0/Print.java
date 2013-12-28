@@ -38,7 +38,7 @@ public final class Print {
    /**
     * pad with " " to the right to the given length (n)
     * @param s string to be padded
-    * @param n length of the ouput
+    * @param n length of the output
     * @return padded string having the specified length
     */
     public static String padRight(final String s, int n) {
@@ -48,13 +48,12 @@ public final class Print {
     /** 
      * pad with " " to the left to the given length (n)
      * @param s string to be padded
-     * @param n length of the ouput
+     * @param n length of the output
      * @return padded string having the specified length
      */
     public static String padLeft(final String s, int n) {
       return String.format("%1$" + n + "s", s);
     }
-
 
     /**
      * considers map-values as collections and generates the
@@ -87,7 +86,7 @@ public final class Print {
                 if (0 == size) {
                     continue;
                 }
-                ret = ret * (size);
+                ret = ret * size;
             } else if (o instanceof Map<?,?>) {
             	 final  Map<?,?> mapValue = ( Map<?,?>) o;
                  final int size = mapValue.size();
