@@ -2,6 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   
   <artifactId>html0</artifactId>
+  <name>XHTML(ecs) Pages</name>
 
 	<parent>
 		<groupId>de.dbo.samples</groupId>

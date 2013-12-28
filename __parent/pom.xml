@@ -86,11 +86,6 @@
 				<artifactId>ecs</artifactId>
 				<version>${ecs.version}</version>
 			</dependency>
-			<dependency>
-				<groupId>net.sf.jtidy</groupId>
-				<artifactId>jtidy</artifactId>
-				<version>${jtidy.version}</version>
-			</dependency>
 			
 			<!-- SLF4J Logging -->
 			<dependency>
@@ -115,7 +110,6 @@
 			<dependency>
 				<groupId>net.sf.jtidy</groupId>
 				<artifactId>jtidy</artifactId>
-				<scope>test</scope>
 				<version>${jtidy.version}</version>
 			</dependency>
 			<dependency>
