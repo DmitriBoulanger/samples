@@ -21,3 +21,10 @@ import org.junit.runners.Suite.SuiteClasses;
         , de.dbo.samples.html0.junit.Alles.class
         , de.dbo.samples.tuprolog0.junit.Alles.class})
 public class Test {}
+
+/*
+ * Comments
+ * 
+ * 
+ * 
+ */
