@@ -35,7 +35,7 @@ POSSIBILITY OF SUCH DAMAGE.
 
 ******************************************************************
 */
-
+ 
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
@@ -47,6 +47,8 @@ import java.nio.file.Path;
 import java.util.List;
 
 import javax.xml.transform.stream.StreamSource;
+
+import static org.slf4j.LoggerFactory.getLogger;
 
 import org.custommonkey.xmlunit.examples.CountingNodeTester;
 import org.custommonkey.xmlunit.AbstractNodeTester;
@@ -63,6 +65,7 @@ import org.custommonkey.xmlunit.Transform;
 import org.custommonkey.xmlunit.Validator;
 import org.custommonkey.xmlunit.XMLTestCase;
 import org.custommonkey.xmlunit.XMLUnit;
+import org.slf4j.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -91,8 +94,9 @@ import org.w3c.dom.Text;
  * <br />Examples and more at <a href="http://xmlunit.sourceforge.net"/>xmlunit.sourceforge.net</a>
  */
 public class XmlUnitInstance extends XMLTestCase {
+	 private static final Logger log = getLogger(XmlUnitInstance.class);
 	
-	 private static final String TEST_DIR = "src/test/resources/de/dbo/samples/xml0/junit/";
+	 private static final String TEST_DIR = "";
 	
     public XmlUnitInstance(String name) {
         super(name);
@@ -179,13 +183,20 @@ public class XmlUnitInstance extends XMLTestCase {
     // As the document is parsed it is validated against its referenced DTD
     public void testValidation() throws Exception {
     	 XMLUnit.getTestDocumentBuilderFactory().setValidating(true);
-        final Document xmlDocument = XMLUnit.buildTestDocument( read("log4j.xml"));
-        final URL dtdUrl = path("log4j.dtd").toFile().toURI().toURL();
-        String systemId = "log4j.dtd"; // "SYSTEM";
-        System.err.println(dtdUrl);
+    	 final String xml = read("xlog4j.xml");
+    	 final String xmlBad = read("xlog4j-bad.xml");
+    	 log.debug("XML as string:\n" + xml);
+        final Document xmlDocument = XMLUnit.buildTestDocument(xml);
+        log.debug("XML as document:\n" + xmlDocument.toString());
+        final URL dtdUrl = path("xlog4j.dtd").toFile().toURI().toURL();
+        String systemId = "xlog4j.dtd"; // "SYSTEM";
+        log.debug("DTD: " + dtdUrl);
        
-        final Validator validator = new Validator(xmlDocument, systemId, dtdUrl.toString());
+//        final Validator validator = new Validator(xmlDocument, systemId, dtdUrl.toString());
+        final Validator validator = new Validator(xml, systemId);
         assertTrue("test document validates against unreferenced DTD", validator.isValid());
+        final Validator validator2 = new Validator(xmlBad, systemId);
+        assertFalse("bad test document validates against unreferenced DTD", validator2.isValid());
     }
 
     

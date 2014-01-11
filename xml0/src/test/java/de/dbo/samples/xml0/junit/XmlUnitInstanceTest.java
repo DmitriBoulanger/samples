@@ -48,12 +48,10 @@ public class XmlUnitInstanceTest  {
     //TODO we need files ...
     @Ignore
     @Test
-    public void testAnotherXSLTransformation() throws Exception {
+    public void testXSLTransformationAnother() throws Exception {
         xmlUnit.testAnotherXSLTransformation();
     }
 
-    //TODO how does it work?
-    @Ignore
     @Test
     public void testValidation() throws Exception {
        xmlUnit.testValidation();
