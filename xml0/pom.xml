@@ -11,6 +11,11 @@
 
 	<dependencies>
 		<dependency>
+			<groupId>de.dbo.samples</groupId>
+			<artifactId>util0</artifactId>
+		</dependency>
+		
+		<dependency>
 			<groupId>xmlunit</groupId>
 			<artifactId>xmlunit</artifactId>
 		</dependency>

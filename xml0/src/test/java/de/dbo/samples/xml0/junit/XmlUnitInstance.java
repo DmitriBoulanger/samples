@@ -36,21 +36,10 @@ POSSIBILITY OF SUCH DAMAGE.
 ******************************************************************
 */
  
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.net.URL;
-import java.nio.charset.Charset;
-import java.nio.file.FileSystems;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.List;
+import static de.dbo.samples.util0.Print.lines;
+import static de.dbo.samples.xml0.junit.FileSystemUtils.path;
+import static de.dbo.samples.xml0.junit.FileSystemUtils.read;
 
-import javax.xml.transform.stream.StreamSource;
-
-import static org.slf4j.LoggerFactory.getLogger;
-
-import org.custommonkey.xmlunit.examples.CountingNodeTester;
 import org.custommonkey.xmlunit.AbstractNodeTester;
 import org.custommonkey.xmlunit.DetailedDiff;
 import org.custommonkey.xmlunit.Diff;
@@ -65,11 +54,22 @@ import org.custommonkey.xmlunit.Transform;
 import org.custommonkey.xmlunit.Validator;
 import org.custommonkey.xmlunit.XMLTestCase;
 import org.custommonkey.xmlunit.XMLUnit;
+import org.custommonkey.xmlunit.examples.CountingNodeTester;
+import org.junit.Ignore;
 import org.slf4j.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.Text;
+
+import java.io.File;
+import java.io.FileReader;
+import java.net.URL;
+import java.util.List;
+
+import javax.xml.transform.stream.StreamSource;
+
+import static org.slf4j.LoggerFactory.getLogger;
 
 /**
  * Example XMLUnit XMLTestCase code
@@ -92,99 +92,210 @@ import org.w3c.dom.Text;
  * buildTestDocument(), setIgnoreWhitespace()</li>
  * </ul>
  * <br />Examples and more at <a href="http://xmlunit.sourceforge.net"/>xmlunit.sourceforge.net</a>
+ * 
+ * 
+ * @author Dmitri Boulanger, Hombach
+ *
+ * Programs are meant to be read by humans and only incidentally for computers to execute (D. Knuth)
+ *
  */
 public class XmlUnitInstance extends XMLTestCase {
-	 private static final Logger log = getLogger(XmlUnitInstance.class);
-	
-	 private static final String TEST_DIR = "";
+	private static final Logger log = getLogger(XmlUnitInstance.class);
 	
     public XmlUnitInstance(String name) {
         super(name);
     }
     
-    
     public void testForEquality() throws Exception {
-        String myControlXML = "<msg><uuid>0x00435A8C</uuid></msg>";
-        String myTestXML    = "<msg><localId>2376</localId></msg>";
-//        assertXMLEqual("comparing test xml to control xml", myControlXML, myTestXML);
-        assertXMLNotEqual("test xml not similar to control xml", myControlXML, myTestXML);
+    	final StringBuffer sb = new StringBuffer();
+    	sb.append("<msg>");
+    	sb.append("<uuid>0x00435A8C</uuid>");
+    	sb.append("</msg>");
+    	final StringBuffer sb2 = new StringBuffer();
+    	sb2.append("<msg>");
+    	sb2.append("<localId>2376</localId>");
+    	sb2.append("</msg>");
+        final String control = sb.toString();
+        final String test    = sb2.toString();
+        
+//       assertXMLEqual("comparing test to control", control, test);
+        assertXMLNotEqual("test not similar to control", control, test);
     }
 
     public void testIdentical() throws Exception {
-        String myControlXML = "<struct><int>3</int><boolean>false</boolean></struct>";
-        String myTestXML    = "<struct><boolean>false</boolean><int>3</int></struct>";
-        Diff myDiff = new Diff(myControlXML, myTestXML);
+    	final StringBuffer sb = new StringBuffer();
+    	sb.append("<struct>");
+    	sb.append("<int>3</int><boolean>false</boolean>");
+    	sb.append("</struct>");
+    	final StringBuffer sb2 = new StringBuffer();
+    	sb2.append("<struct>");
+    	sb2.append("<boolean>false</boolean><int>3</int>");
+    	sb2.append("</struct>");
+        final String control = sb.toString();
+        final String test    = sb2.toString();
+        printDifferences(control,test,"Identical");
+    	
+        final Diff myDiff = new Diff(control, test);
         assertTrue("pieces of XML are similar " + myDiff, myDiff.similar());
         assertFalse("but are they identical? " + myDiff, myDiff.identical());
     }
 
-    
     public void testAllDifferences() throws Exception {
-        String myControlXML = "<news><item id=\"1\">War</item>"    + "<item id=\"2\">Plague</item><item id=\"3\">Famine</item></news>";
-        String myTestXML =    "<news><item id=\"1\">Peace</item>"  + "<item id=\"2\">Health</item><item id=\"3\">Plenty</item></news>";
-        DetailedDiff myDiff = new DetailedDiff(compareXML(myControlXML, myTestXML));
-        List<?> allDifferences = myDiff.getAllDifferences();
-        assertNotSame(myDiff.toString(), 0, allDifferences.size());
+    	final StringBuffer sb = new StringBuffer();
+    	sb.append("<news>");
+    	sb.append("<item id=\"1\">War</item>");
+    	sb.append("<item id=\"2\">Plague</item>");
+    	sb.append("<item id=\"3\">Famine</item>");
+    	sb.append("</news>");
+    	final StringBuffer sb2 = new StringBuffer();
+    	sb2.append("<news>");
+    	sb2.append("<item id=\"1\">Peace</item>");
+    	sb2.append("<item id=\"2\">Health</item>");
+    	sb2.append("<item id=\"3\">Plenty</item>");
+    	sb2.append("</news>");
+        final String control = sb.toString();
+        final String test    = sb2.toString();
+        printDifferences(control,test,"AllDifferences");
+    	
+        final DetailedDiff detailedDifferences = new DetailedDiff(compareXML(control, test));
+        final List<?> allDifferences = detailedDifferences.getAllDifferences();
+        assertNotSame(detailedDifferences.toString(), 0, allDifferences.size());
     }
 
-    
     public void testCompareToSkeletonXML() throws Exception {
-        String myControlXML = "<location><street-address>22 any street</street-address><postcode>XY00 99Z</postcode></location>";
-        String myTestXML    = "<location><street-address>20 east cheap</street-address><postcode>EC3M 1EB</postcode></location>";
-        DifferenceListener myDifferenceListener = new IgnoreTextAndAttributeValuesDifferenceListener();
-        Diff myDiff = new Diff(myControlXML, myTestXML);
+    	final StringBuffer sb = new StringBuffer();
+    	sb.append("<location>");
+    	sb.append("<street-address>22 any street</street-address>");
+    	sb.append("<postcode>XY00 99Z</postcode>");
+    	sb.append("</location>");
+    	final StringBuffer sb2 = new StringBuffer();
+    	sb2.append("<location>");
+    	sb2.append("<street-address>20 east cheap</street-address>");
+    	sb2.append("<postcode>EC3M 1EB</postcode>");
+    	sb2.append("</location>");
+        final String control = sb.toString();
+        final String test    = sb2.toString();
+        printDifferences(control,test,"CompareToSkeletonXML");
+ 
+        final DifferenceListener myDifferenceListener = new IgnoreTextAndAttributeValuesDifferenceListener();
+        final Diff myDiff = new Diff(control, test);
         myDiff.overrideDifferenceListener(myDifferenceListener);
-        assertTrue("test XML matches control skeleton XML " + myDiff, myDiff.similar());
+        assertTrue("test matches control skeleton " + myDiff, myDiff.similar());
     }
 
-    
     public void testRepeatedChildElements() throws Exception {
-        String myControlXML = "<suite><test status=\"pass\">FirstTestCase</test><test status=\"pass\">SecondTestCase</test></suite>";
-        String myTestXML    = "<suite><test status=\"pass\">SecondTestCase</test><test status=\"pass\">FirstTestCase</test></suite>";
-
-        assertXMLNotEqual("Repeated child elements in different sequence order are not equal by default",
-            myControlXML, myTestXML);
-
-        Diff myDiff = new Diff(myControlXML, myTestXML);
+    	final StringBuffer sb = new StringBuffer();
+    	sb.append("<suite>");
+    	sb.append("<test status=\"pass\">FirstTestCase</test>");
+    	sb.append("<test status=\"pass\">SecondTestCase</test>");
+    	sb.append("</suite>");
+    	final StringBuffer sb2 = new StringBuffer();
+    	sb2.append("<suite>");
+    	sb2.append("<test status=\"pass\">SecondTestCase</test>");
+    	sb2.append("<test status=\"pass\">FirstTestCase</test>");
+    	sb2.append("</suite>");
+        final String control = sb.toString();
+        final String test    = sb2.toString();
+        printDifferences(control,test,"RepeatedChildElements");
+        
+        assertXMLNotEqual("Repeated child elements in different sequence order are not equal by default", control, test);
+        final Diff myDiff = new Diff(control, test);
         myDiff.overrideElementQualifier(new ElementNameAndTextQualifier());
         assertXMLEqual("But they are equal when an ElementQualifier controls which test element is compared with each control element",
             myDiff, true);
     }
 
-    public void testXSLTransformation() throws Exception {
-        String myInputXML = "...";
-        File myStylesheetFile = new File("...");
-        Transform myTransform = new Transform(myInputXML, myStylesheetFile);
-        String myExpectedOutputXML = "...";
-        Diff myDiff = new Diff(myExpectedOutputXML, myTransform);
-        assertTrue("XSL transformation worked as expected " + myDiff, myDiff.similar());
+    public void testXPaths() throws Exception {
+    	final StringBuffer sb = new StringBuffer();
+    	sb.append("<solar-system>");
+    	sb.append("<planet name='Earth' position='3' supportsLife='yes'/>");
+    	sb.append("<planet name='Venus' position='4'/>");
+    	sb.append("</solar-system>");
+        final String mySolarSystemXML = sb.toString();
+        
+        assertXpathExists("//planet[@name='Earth']", mySolarSystemXML);
+        assertXpathNotExists("//star[@name='alpha centauri']", mySolarSystemXML);
+        assertXpathsEqual("//planet[@name='Earth']", "//planet[@position='3']", mySolarSystemXML);
+        assertXpathsNotEqual("//planet[@name='Venus']", "//planet[@supportsLife='yes']", mySolarSystemXML);
     }
 
-   
-    public void testAnotherXSLTransformation() throws Exception {
-        File myInputXMLFile = new File("...");
-        File myStylesheetFile = new File("...");
-        Transform myTransform = new Transform(new StreamSource(myInputXMLFile), new StreamSource(myStylesheetFile));
-        Document myExpectedOutputXML = XMLUnit.buildDocument(XMLUnit.newControlParser(), new FileReader("..."));
-        Diff myDiff = new Diff(myExpectedOutputXML, myTransform.getResultDocument());
-        assertTrue("XSL transformation worked as expected " + myDiff, myDiff.similar());
+    public void testXPathValues() throws Exception {
+    	final StringBuffer sb = new StringBuffer();
+    	sb.append("<java-flavours>");
+    	sb.append("<jvm current='some platforms'>1.1.x</jvm>");
+    	sb.append("<jvm current='no'>1.2.x</jvm><jvm current='yes'>1.3.x</jvm>");
+    	sb.append("<jvm current='yes' latest='yes'>1.4.x</jvm>");
+    	sb.append("</java-flavours>");
+        final String myJavaFlavours = sb.toString();
+        
+        assertXpathEvaluatesTo("1.4.x", "//jvm[@latest='yes']", myJavaFlavours);
+        assertXpathEvaluatesTo("2", "count(//jvm[@current='yes'])", myJavaFlavours);
+        assertXpathValuesEqual("//jvm[4]/@latest", "//jvm[4]/@current", myJavaFlavours);
+        assertXpathValuesNotEqual("//jvm[2]/@current", "//jvm[3]/@current", myJavaFlavours);
     }
-    
-    private static final String read(final String name) throws IOException {
-    	 final Charset charset = Charset.forName("utf-8");
-         final Path pathXml = FileSystems.getDefault().getPath(TEST_DIR, name);
-         return new String(Files.readAllBytes(pathXml),charset);
-    }
-    
-    private static final Path path(final String name) throws IOException {
-        return FileSystems.getDefault().getPath(TEST_DIR, name);
-   }
 
+    public void testXpathsInHTML() throws Exception {
+    	final StringBuffer sb = new StringBuffer();
+    	sb.append("<html>");
+    	sb.append("<title>Ugh</title>");
+    	sb.append("<body>");
+    	sb.append("<h1>Heading");
+    	sb.append("<ul>");
+    	sb.append("<li id='1'>Item One<li id='2'>Item Two");
+    	final String someBadlyFormedHTML = sb.toString();
+    	
+        final TolerantSaxDocumentBuilder tolerantSaxDocumentBuilder = new TolerantSaxDocumentBuilder(XMLUnit.newTestParser());
+        final HTMLDocumentBuilder htmlDocumentBuilder = new HTMLDocumentBuilder(tolerantSaxDocumentBuilder);
+        final Document wellFormedDocument = htmlDocumentBuilder.parse(someBadlyFormedHTML);
+        assertXpathEvaluatesTo("Item One", "/html/body//li[@id='1']", wellFormedDocument);
+        assertXpathEvaluatesTo("Item Two", "/html/body//li[@id='2']", wellFormedDocument);
+    }
+
+    /**
+     * Fibonacci-test with non-detected errors (values are not tested)
+     * @throws Exception
+     */
+    public void testCountingNodeTester() throws Exception {
+    	final StringBuffer sb = new StringBuffer();
+    	sb.append("<fibonacci>");
+    	sb.append("<val>1</val>");
+    	sb.append("<val>2</val>");
+    	sb.append("<val>3</val>");
+    	sb.append("<val>5</val>");
+    	sb.append("<val>9</val>"); // error!
+    	sb.append("</fibonacci>");
+        final String test = sb.toString();
+        
+        final CountingNodeTester countingNodeTester = new CountingNodeTester(5);
+        assertNodeTestPasses(test, countingNodeTester, Node.TEXT_NODE);
+    }
+
+    /**
+     * real Fibonacci-test
+     * @throws Exception
+     */
+    public void testCustomNodeTester() throws Exception {
+    	final StringBuffer sb = new StringBuffer();
+    	sb.append("<fibonacci>");
+    	sb.append("<val>1</val>");
+    	sb.append("<val>2</val>");
+    	sb.append("<val>3</val>");
+    	sb.append("<val>5</val>");
+    	sb.append("<val>8</val>");
+    	sb.append("</fibonacci>");
+        final String test = sb.toString();
+        
+        final NodeTest nodeTest = new NodeTest(test);
+        assertNodeTestPasses(nodeTest, new FibonacciNodeTester(), new short[] {Node.TEXT_NODE, Node.ELEMENT_NODE}, true);
+    }
+    
     // As the document is parsed it is validated against its referenced DTD
     public void testValidation() throws Exception {
     	 XMLUnit.getTestDocumentBuilderFactory().setValidating(true);
     	 final String xml = read("xlog4j.xml");
     	 final String xmlBad = read("xlog4j-bad.xml");
+//    	 printDifferences(xml,xmlBad,"Validation");
+    	 
     	 log.debug("XML as string:\n" + xml);
         final Document xmlDocument = XMLUnit.buildTestDocument(xml);
         log.debug("XML as document:\n" + xmlDocument.toString());
@@ -199,74 +310,58 @@ public class XmlUnitInstance extends XMLTestCase {
         assertFalse("bad test document validates against unreferenced DTD", validator2.isValid());
     }
 
-    
-    public void testXPaths() throws Exception {
-        String mySolarSystemXML = "<solar-system><planet name='Earth' position='3' supportsLife='yes'/>"
-            + "<planet name='Venus' position='4'/></solar-system>";
-        assertXpathExists("//planet[@name='Earth']", mySolarSystemXML);
-        assertXpathNotExists("//star[@name='alpha centauri']", mySolarSystemXML);
-        assertXpathsEqual("//planet[@name='Earth']", "//planet[@position='3']", mySolarSystemXML);
-        assertXpathsNotEqual("//planet[@name='Venus']", "//planet[@supportsLife='yes']", mySolarSystemXML);
+    @Ignore
+    public void testXSLTransformation() throws Exception {
+        String myInputXML = "...";
+        File myStylesheetFile = new File("...");
+        Transform myTransform = new Transform(myInputXML, myStylesheetFile);
+        String myExpectedOutputXML = "...";
+        Diff myDiff = new Diff(myExpectedOutputXML, myTransform);
+        assertTrue("XSL transformation worked as expected " + myDiff, myDiff.similar());
     }
 
- 
-    public void testXPathValues() throws Exception {
-        String myJavaFlavours = "<java-flavours><jvm current='some platforms'>1.1.x</jvm>"
-            + "<jvm current='no'>1.2.x</jvm><jvm current='yes'>1.3.x</jvm>"
-            + "<jvm current='yes' latest='yes'>1.4.x</jvm></java-flavours>";
-        assertXpathEvaluatesTo("1.4.x", "//jvm[@latest='yes']", myJavaFlavours);
-        assertXpathEvaluatesTo("2", "count(//jvm[@current='yes'])", myJavaFlavours);
-        assertXpathValuesEqual("//jvm[4]/@latest", "//jvm[4]/@current", myJavaFlavours);
-        assertXpathValuesNotEqual("//jvm[2]/@current", "//jvm[3]/@current", myJavaFlavours);
+    @Ignore
+    public void testAnotherXSLTransformation() throws Exception {
+        File myInputXMLFile = new File("...");
+        File myStylesheetFile = new File("...");
+        Transform myTransform = new Transform(new StreamSource(myInputXMLFile), new StreamSource(myStylesheetFile));
+        Document myExpectedOutputXML = XMLUnit.buildDocument(XMLUnit.newControlParser(), new FileReader("..."));
+        Diff myDiff = new Diff(myExpectedOutputXML, myTransform.getResultDocument());
+        assertTrue("XSL transformation worked as expected " + myDiff, myDiff.similar());
     }
 
-    
-    public void testXpathsInHTML() throws Exception {
-        String someBadlyFormedHTML = "<html><title>Ugh</title><body><h1>Heading<ul><li id='1'>Item One<li id='2'>Item Two";
-        TolerantSaxDocumentBuilder tolerantSaxDocumentBuilder = new TolerantSaxDocumentBuilder(XMLUnit.newTestParser());
-        HTMLDocumentBuilder htmlDocumentBuilder = new HTMLDocumentBuilder(tolerantSaxDocumentBuilder);
-        Document wellFormedDocument = htmlDocumentBuilder.parse(someBadlyFormedHTML);
-        assertXpathEvaluatesTo("Item One", "/html/body//li[@id='1']", wellFormedDocument);
-    }
+	private class FibonacciNodeTester extends AbstractNodeTester {
+		private int nextVal = 1;
+		private int lastVal = 1;
+		@SuppressWarnings("unused")
+		private int priorVal = 0;
 
-    
-    public void testCountingNodeTester() throws Exception {
-        String testXML = "<fibonacci><val>1</val><val>2</val><val>3</val><val>5</val><val>9</val></fibonacci>";
-        CountingNodeTester countingNodeTester = new CountingNodeTester(5);
-        assertNodeTestPasses(testXML, countingNodeTester, Node.TEXT_NODE);
-    }
+		public void testText(Text text) throws NodeTestException {
+			final int val = Integer.parseInt(text.getData());
+			if (nextVal != val) {
+				throw new NodeTestException("Incorrect sequence value", text);
+			}
+			nextVal = val + lastVal;
+			priorVal = lastVal;
+			lastVal = val;
+		}
 
-    
-    public void testCustomNodeTester() throws Exception {
-        String testXML = "<fibonacci><val>1</val><val>2</val><val>3</val><val>5</val></fibonacci>";
-        NodeTest nodeTest = new NodeTest(testXML);
-        assertNodeTestPasses(nodeTest, new FibonacciNodeTester(),
-            new short[] {Node.TEXT_NODE, Node.ELEMENT_NODE}, true);
-    }
+		public void testElement(Element element) throws NodeTestException {
+			final String name = element.getLocalName();
+			if ("fibonacci".equals(name) || "val".equals(name)) {
+				return;
+			}
+			throw new NodeTestException("Unexpected element", element);
+		}
 
-    private class FibonacciNodeTester extends AbstractNodeTester {
-        private int nextVal = 1;
-        private int lastVal = 1;
-//        private int priorVal = 0;
-        public void testText(Text text) throws NodeTestException {
-            int val = Integer.parseInt(text.getData());
-            if (nextVal != val) {
-                throw new NodeTestException("Incorrect sequence value", text);
-            }
-            nextVal = val + lastVal;
-//            priorVal = lastVal;
-            lastVal = val;
-        }
-        public void testElement(Element element) throws NodeTestException {
-            String name = element.getLocalName();
-            if ("fibonacci".equals(name) || "val".equals(name)) {
-                return;
-            }
-            throw new NodeTestException("Unexpected element", element);
-        }
-        public void noMoreNodes(NodeTest nodeTest) throws NodeTestException {
-        }
-    }
+		public void noMoreNodes(NodeTest nodeTest) throws NodeTestException {
+		}
+	}
+	
+	// HELPERS 
+	
+	private final void printDifferences(final String control, final String test, final String comment) throws Exception {
+		 final DetailedDiff detailedDifferences = new DetailedDiff(compareXML(control, test));
+	      log.debug(comment + ": " + lines(detailedDifferences.getAllDifferences()));	
+	}
 }
-
-
