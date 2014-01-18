@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!DOCTYPE log4j:configuration SYSTEM "xlog4j.dtd" >
+<!DOCTYPE log4j:configuration SYSTEM "./test.dtd" >
 
 	<!--|  																		 
 	    | Only messages from the application itself are send to the console. 	 
@@ -9,7 +9,7 @@
 	    | 
 	 --> 																		 
 
-<log4j:configurationx xmlns:log4j='http://jakarta.apache.org/log4j/'>
+<log4j:configuration xmlns:log4j='http://jakarta.apache.org/log4j/'>
 
 	<!-- messages to console -->
 	<appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
@@ -55,4 +55,4 @@
 		<appender-ref ref="DAILY_ROLLING_FILE" />
 	</root>
 
-</log4j:configurationx>
+</log4j:configuration>

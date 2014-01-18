@@ -292,22 +292,21 @@ public class XmlUnitInstance extends XMLTestCase {
     // As the document is parsed it is validated against its referenced DTD
     public void testValidation() throws Exception {
     	 XMLUnit.getTestDocumentBuilderFactory().setValidating(true);
-    	 final String xml = read("xlog4j.xml");
-    	 final String xmlBad = read("xlog4j-bad.xml");
+    	 final String xml = read("test.xml");
+    	 final String xmlError = read("test-error.xml");
 //    	 printDifferences(xml,xmlBad,"Validation");
     	 
     	 log.debug("XML as string:\n" + xml);
-        final Document xmlDocument = XMLUnit.buildTestDocument(xml);
-        log.debug("XML as document:\n" + xmlDocument.toString());
-        final URL dtdUrl = path("xlog4j.dtd").toFile().toURI().toURL();
-        String systemId = "xlog4j.dtd"; // "SYSTEM";
+//        final Document document = XMLUnit.buildTestDocument(xml);
+        final URL dtdUrl = path("test.dtd").toFile().toURI().toURL();
+        String systemId = "test.dtd"; // "SYSTEM";
         log.debug("DTD: " + dtdUrl);
        
 //        final Validator validator = new Validator(xmlDocument, systemId, dtdUrl.toString());
-        final Validator validator = new Validator(xml, systemId);
-        assertTrue("test document validates against unreferenced DTD", validator.isValid());
-        final Validator validator2 = new Validator(xmlBad, systemId);
-        assertFalse("bad test document validates against unreferenced DTD", validator2.isValid());
+        final Validator validator = new Validator(xml, dtdUrl.toString());
+        assertTrue("test doesn't validate against unreferenced DTD", validator.isValid());
+        final Validator validatorError = new Validator(xmlError, systemId);
+        assertFalse("test-error validates against unreferenced DTD", validatorError.isValid());
     }
 
     @Ignore

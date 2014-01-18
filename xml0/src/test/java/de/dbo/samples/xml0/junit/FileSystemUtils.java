@@ -7,7 +7,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 final class FileSystemUtils {
-	 private static final String TEST_DIR = "";
+	 private static final String TEST_DIR = "src/test/resources/de/dbo/samples/xml0/dtd/";
 		
 	private FileSystemUtils() {
 		// no instances of this class
