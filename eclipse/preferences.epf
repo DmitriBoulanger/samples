@@ -1,0 +1,30 @@
+#Sun Nov 03 19:07:50 CET 2013
+/instance/org.eclipse.jdt.ui/org.eclipse.jdt.ui.overrideannotation=true
+@org.eclipse.team.core=3.7.0.v20130514-1224
+/instance/org.eclipse.jdt.launching/org.eclipse.jdt.launching.PREF_DEFAULT_ENVIRONMENTS_XML=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\r\n<defaultEnvironments>\r\n<defaultEnvironment environmentId\="JavaSE-1.6" vmId\="57,org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType13,1381051225242"/>\r\n</defaultEnvironments>\r\n
+/instance/org.eclipse.jdt.ui/org.eclipse.jdt.ui.formatterprofiles.version=12
+/instance/org.eclipse.jdt.core/org.eclipse.jdt.core.compiler.codegen.inlineJsrBytecode=enabled
+/instance/org.eclipse.jdt.ui/org.eclipse.jdt.ui.text.custom_code_templates=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?><templates><template autoinsert\="false" context\="typecomment_context" deleted\="false" description\="Comment for created types" enabled\="true" id\="org.eclipse.jdt.ui.text.codetemplates.typecomment" name\="typecomment">/**\r\n * @author Dmitri Boulanger, Hombach\r\n *\r\n * D. Knuth\: Programs are meant to be read by humans and \r\n *           only incidentally for computers to execute \r\n *\r\n * ${tags}\r\n */</template></templates>
+/instance/org.eclipse.jdt.core/org.eclipse.jdt.core.codeComplete.fieldSuffixes=
+\!/=
+/instance/org.eclipse.jdt.ui/org.eclipse.jdt.ui.ignorelowercasenames=true
+/instance/org.eclipse.jdt.core/org.eclipse.jdt.core.codeComplete.localSuffixes=
+/instance/org.eclipse.jdt.core/org.eclipse.jdt.core.codeComplete.fieldPrefixes=
+/instance/org.eclipse.jdt.core/org.eclipse.jdt.core.codeComplete.localPrefixes=
+/instance/org.eclipse.jdt.launching/org.eclipse.jdt.launching.PREF_VM_XML=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\r\n<vmSettings defaultVM\="57,org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType13,1381051225242" defaultVMConnector\="">\r\n<vmType id\="org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType">\r\n<vm id\="1381051225242" javadocURL\="http\://download.oracle.com/javase/6/docs/api/" name\="JDK6" path\="C\:\\Program Files\\Java\\jdk1.6.0_25">\r\n<libraryLocations>\r\n<libraryLocation jreJar\="C\:/Program Files/Java/jdk1.6.0_25/jre/lib/resources.jar" jreJavadoc\="http\://download.oracle.com/javase/6/docs/api/" jreSrc\="C\:/Program Files/Java/jdk1.6.0_25/src.zip" pkgRoot\=""/>\r\n<libraryLocation jreJar\="C\:/Program Files/Java/jdk1.6.0_25/jre/lib/rt.jar" jreJavadoc\="http\://download.oracle.com/javase/6/docs/api/" jreSrc\="C\:/Program Files/Java/jdk1.6.0_25/src.zip" pkgRoot\=""/>\r\n<libraryLocation jreJar\="C\:/Program Files/Java/jdk1.6.0_25/jre/lib/jsse.jar" jreJavadoc\="http\://download.oracle.com/javase/6/docs/api/" jreSrc\="C\:/Program Files/Java/jdk1.6.0_25/src.zip" pkgRoot\=""/>\r\n<libraryLocation jreJar\="C\:/Program Files/Java/jdk1.6.0_25/jre/lib/jce.jar" jreJavadoc\="http\://download.oracle.com/javase/6/docs/api/" jreSrc\="C\:/Program Files/Java/jdk1.6.0_25/src.zip" pkgRoot\=""/>\r\n<libraryLocation jreJar\="C\:/Program Files/Java/jdk1.6.0_25/jre/lib/charsets.jar" jreJavadoc\="http\://download.oracle.com/javase/6/docs/api/" jreSrc\="C\:/Program Files/Java/jdk1.6.0_25/src.zip" pkgRoot\=""/>\r\n<libraryLocation jreJar\="C\:/Program Files/Java/jdk1.6.0_25/jre/lib/ext/dnsns.jar" jreJavadoc\="http\://download.oracle.com/javase/6/docs/api/" jreSrc\="" pkgRoot\=""/>\r\n<libraryLocation jreJar\="C\:/Program Files/Java/jdk1.6.0_25/jre/lib/ext/localedata.jar" jreJavadoc\="http\://download.oracle.com/javase/6/docs/api/" jreSrc\="" pkgRoot\=""/>\r\n<libraryLocation jreJar\="C\:/Program Files/Java/jdk1.6.0_25/jre/lib/ext/sunjce_provider.jar" jreJavadoc\="http\://download.oracle.com/javase/6/docs/api/" jreSrc\="" pkgRoot\=""/>\r\n<libraryLocation jreJar\="C\:/Program Files/Java/jdk1.6.0_25/jre/lib/ext/sunmscapi.jar" jreJavadoc\="http\://download.oracle.com/javase/6/docs/api/" jreSrc\="" pkgRoot\=""/>\r\n<libraryLocation jreJar\="C\:/Program Files/Java/jdk1.6.0_25/jre/lib/ext/sunpkcs11.jar" jreJavadoc\="http\://download.oracle.com/javase/6/docs/api/" jreSrc\="" pkgRoot\=""/>\r\n</libraryLocations>\r\n</vm>\r\n</vmType>\r\n</vmSettings>\r\n
+/instance/org.eclipse.jdt.core/org.eclipse.jdt.core.codeComplete.argumentSuffixes=
+/instance/org.eclipse.jdt.core/org.eclipse.jdt.core.codeComplete.staticFinalFieldPrefixes=
+/instance/org.eclipse.jdt.core/org.eclipse.jdt.core.codeComplete.argumentPrefixes=
+/instance/org.eclipse.jdt.ui/org.eclipse.jdt.ui.ondemandthreshold=99
+/instance/org.eclipse.jdt.ui/org.eclipse.jdt.ui.gettersetter.use.is=true
+/instance/org.eclipse.jdt.ui/org.eclipse.jdt.ui.exception.name=e
+/instance/org.eclipse.jdt.core/org.eclipse.jdt.core.codeComplete.staticFieldSuffixes=
+/instance/org.eclipse.jdt.core/org.eclipse.jdt.core.codeComplete.staticFieldPrefixes=
+/instance/org.eclipse.jdt.ui/org.eclipse.jdt.ui.importorder=\#de.dbo;de.dbo;java;javax;org;com;\#org.junt;\#org.slf4j;\#java.util;
+@org.eclipse.jdt.ui=3.9.1.v20130820-1427
+/instance/org.eclipse.team.core/ignore_files=*/.settings/*\ntrue\n.project\ntrue\n
+/instance/org.eclipse.jdt.core/org.eclipse.jdt.core.codeComplete.staticFinalFieldSuffixes=
+file_export_version=3.0
+/instance/org.eclipse.jdt.ui/org.eclipse.jdt.ui.staticondemandthreshold=99
+@org.eclipse.jdt.launching=3.7.0.v20130515-1451
+@org.eclipse.jdt.core=3.9.1.v20130905-0837
