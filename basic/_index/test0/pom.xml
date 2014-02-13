@@ -8,7 +8,7 @@
 		<version>0.0.0-SNAPSHOT</version>
 	</parent>
 	
-	<artifactId>test</artifactId>
+	<artifactId>test0</artifactId>
 	<name>All Basic-Tests for Eclipse</name>
     <description>
 A special ecipse-project to run all workspace JUnit-tests. 
