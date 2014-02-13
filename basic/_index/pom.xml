@@ -12,7 +12,6 @@
 	<!--  ========================
 	      MODULES WITH JUnit-TESTS
 	      ======================== -->
-	      
 	<modules>
 		<module>jpa0</module>
 		<module>logger0</module>
@@ -20,7 +19,6 @@
 		<module>util0</module>
 		<module>xml0</module>
 		<module>html0</module>
-		<module>__test</module>
 	</modules>
 	
  

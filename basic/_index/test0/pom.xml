@@ -9,7 +9,7 @@
 	</parent>
 	
 	<artifactId>test</artifactId>
-	<name>All Workspace-Tests for Eclipse</name>
+	<name>All Basic-Tests for Eclipse</name>
     <description>
 A special ecipse-project to run all workspace JUnit-tests. 
 If a test starts from this project, only error messages are send to the console. 
