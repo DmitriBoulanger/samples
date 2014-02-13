@@ -13,7 +13,7 @@
     <description>
 A special ecipse-project to run all workspace JUnit-tests. 
 If a test starts from this project, only error messages are send to the console. 
-All mesages can be found in the target/logs directory
+All messages can be found in the target/logs directory
     </description>
    
 	<!-- ======================================================
