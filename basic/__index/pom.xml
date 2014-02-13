@@ -2,11 +2,11 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>de.dbo.samples</groupId>
-	<artifactId>parent</artifactId>
+	<groupId>de.dbo.samples.basic</groupId>
+	<artifactId>_index</artifactId>
 	<version>0.0.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
-	<name>Samples parent</name>
+	<name>Basic-samples parent (INDEX REACTOR)</name>
 	<description>Version and plug-in management for all  samples</description>
 	
 	<!--  ========================
@@ -14,13 +14,13 @@
 	      ======================== -->
 	      
 	<modules>
-		<module>../jpa0</module>
-		<module>../logger0</module>
-		<module>../tuProlog0</module>
-		<module>../util0</module>
-		<module>../xml0</module>
-		<module>../html0</module>
-		<module>../__test</module>
+		<module>jpa0</module>
+		<module>logger0</module>
+		<module>tuProlog0</module>
+		<module>util0</module>
+		<module>xml0</module>
+		<module>html0</module>
+		<module>__test</module>
 	</modules>
 	
  
