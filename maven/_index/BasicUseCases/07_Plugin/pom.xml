@@ -16,7 +16,7 @@
   <name>Writing Plugins</name>
   
   <modules>
-    <module>O7_Plugin-MavenPlugin</module>
+    <module>07_Plugin-MavenPlugin</module>
   </modules>
   
   
