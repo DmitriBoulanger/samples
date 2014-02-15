@@ -5,8 +5,8 @@
   <build>
     <plugins>
       <plugin>
-        <groupId>de.dbo.samples.maven.mojo</groupId>
-        <artifactId>00_Timestamp</artifactId>
+        <groupId>de.dbo.samples.maven.basic</groupId>
+        <artifactId>07_Mojo-Timestamp</artifactId>
         <configuration>
           <prefix>+++</prefix>
           <datetimePattern>HH:mm:ss</datetimePattern>

@@ -12,6 +12,10 @@
 	<packaging>pom</packaging>
 	<name>Mojo (INDEX)</name>
 	<url>http://www.torsten-horn.de/techdocs/maven.htm#Mojo</url>
+	<description>
+	POM in this project uses the Timestamp Mojo to show
+	time stamps and durations of the clean and install phases
+	</description>
 
 	<modules>
 		<module>07_Mojo-Timestamp</module>

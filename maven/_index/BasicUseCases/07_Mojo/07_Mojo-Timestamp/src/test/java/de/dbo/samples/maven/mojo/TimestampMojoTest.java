@@ -14,21 +14,21 @@ public class TimestampMojoTest extends AbstractMojoTestCase
       String log1 = executeMojo( pluginContext );
       String log2 = executeMojo( pluginContext );
       assertTrue(  log1.length() < log2.length() );
-      assertTrue( !log1.contains( "Dauer" ) );
-      assertTrue(  log2.contains( "Dauer" ) );
+      assertTrue( !log1.contains( "Elapsed" ) );
+      assertTrue(  log2.contains( "Elapsed" ) );
    }
 
    private String executeMojo( final Map<?,?> pluginContext ) throws Exception
    {
-      String        testPom = getBasedir() + "/src/test/resources/test-pom.xml";
-      String        artifactId = "00_Timestamp";
-      StringBuffer  log  = new StringBuffer();
-      TimestampMojo mojo = new TimestampMojo();
+      final String        testPom = getBasedir() + "/src/test/resources/test-pom.xml";
+      final String        artifactId = "07_Mojo-Timestamp";
+      final StringBuffer  log  = new StringBuffer();
+      final TimestampMojo mojo = new TimestampMojo();
       configureMojo( mojo, artifactId, new File( testPom ) );
       mojo.setPluginContext( pluginContext );
       mojo.setLog( new TestLog( log ) );
       mojo.execute();
-      String prefix = (String) getVariableValueFromObject( mojo, "prefix" );
+      final String prefix = (String) getVariableValueFromObject( mojo, "prefix" );
       assertNotNull( prefix );
       assertEquals( prefix, log.substring( 0, prefix.length() ) );
       return log.toString();

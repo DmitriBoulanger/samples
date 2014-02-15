@@ -9,7 +9,7 @@
   </parent>
   
   <artifactId>07_Mojo-TimestampUsage</artifactId>
-  <name>Mojo - Timestamp Plugin Usage</name>
+  <name>Mojo - Timestamp Usage</name>
   <url>http://www.torsten-horn.de/techdocs/maven.htm#Mojo</url>
   
   	<build>
@@ -38,9 +38,51 @@
 							<goal>timestamp</goal>
 						</goals>
 					</execution>
+					<execution>
+						<id>after compile</id>
+						<phase>compile</phase>
+						<goals>
+							<goal>timestamp</goal>
+						</goals>
+					</execution>
 				</executions>
 			</plugin>
 		</plugins>
-	</build>
+		<pluginManagement>
+			<plugins>
+				<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>
+											de.dbo.samples.maven.basic
+										</groupId>
+										<artifactId>
+											07_Mojo-Timestamp
+										</artifactId>
+										<versionRange>
+											[0.0.0-SNAPSHOT,)
+										</versionRange>
+										<goals>
+											<goal>timestamp</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+  	</build>
   
 </project>
