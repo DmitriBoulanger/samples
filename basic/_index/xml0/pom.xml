@@ -12,7 +12,7 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>de.dbo.samples</groupId>
+			<groupId>${project.groupId}</groupId>
 			<artifactId>util0</artifactId>
 		</dependency>
 		

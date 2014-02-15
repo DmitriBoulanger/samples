@@ -1,16 +1,16 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	
+
 	<parent>
 		<groupId>de.dbo.samples.basic</groupId>
 		<artifactId>_index</artifactId>
 		<version>0.0.0-SNAPSHOT</version>
 	</parent>
-	
+
 	<artifactId>test0</artifactId>
 	<name>All Basic-Tests for Eclipse</name>
-    <description>
+	<description>
 A special ecipse-project to run all workspace JUnit-tests. 
 If a test starts from this project, only error messages are send to the console. 
 All messages can be found in the target/logs directory
@@ -22,28 +22,65 @@ All messages can be found in the target/logs directory
 
 	<dependencies>
 		<dependency>
-			<groupId>de.dbo.samples</groupId>
+			<groupId>${project.groupId}</groupId>
 			<artifactId>jpa0</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>de.dbo.samples</groupId>
+			<groupId>${project.groupId}</groupId>
 			<artifactId>logger0</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>de.dbo.samples</groupId>
+			<groupId>${project.groupId}</groupId>
 			<artifactId>tuProlog0</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>de.dbo.samples</groupId>
+			<groupId>${project.groupId}</groupId>
 			<artifactId>util0</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>de.dbo.samples</groupId>
+			<groupId>${project.groupId}</groupId>
 			<artifactId>xml0</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>de.dbo.samples</groupId>
+			<groupId>${project.groupId}</groupId>
 			<artifactId>html0</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>jpa0</artifactId>
+			<type>test-jar</type>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>logger0</artifactId>
+			<type>test-jar</type>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>tuProlog0</artifactId>
+			<type>test-jar</type>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>util0</artifactId>
+			<type>test-jar</type>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>xml0</artifactId>
+			<type>test-jar</type>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>html0</artifactId>
+			<type>test-jar</type>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 

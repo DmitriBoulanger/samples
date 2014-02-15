@@ -23,12 +23,12 @@
 	
  
 	<!-- =============================== 
-	     ALL RESORCES AND THEIR VERSIONS 
+	     ALL RESORCES - VERSIONS 
 	     =============================== -->
-	     
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	
+
 		<eclipselink.version>2.5.1</eclipselink.version>
 		<xstream.version>1.4.4</xstream.version>
 		<tuprolog.version>2.1.1</tuprolog.version>
@@ -52,7 +52,6 @@
 	<!-- =======================
 	     ALL RESORCES: MANAGMENT 
 	     ======================= -->
-	     
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
@@ -80,6 +79,7 @@
 				<artifactId>xmlunit</artifactId>
 				<version>${xmlunit.version}</version>
 			</dependency>
+
 			<dependency>
 				<groupId>ecs</groupId>
 				<artifactId>ecs</artifactId>
@@ -127,34 +127,79 @@
 			<!-- PROJECTS -->
 
 			<dependency>
-				<groupId>de.dbo.samples</groupId>
+				<groupId>${project.groupId}</groupId>
 				<artifactId>jpa0</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>de.dbo.samples</groupId>
+				<groupId>${project.groupId}</groupId>
 				<artifactId>logger0</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>de.dbo.samples</groupId>
+				<groupId>${project.groupId}</groupId>
 				<artifactId>tuProlog0</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>de.dbo.samples</groupId>
+				<groupId>${project.groupId}</groupId>
 				<artifactId>util0</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>de.dbo.samples</groupId>
+				<groupId>${project.groupId}</groupId>
 				<artifactId>xml0</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>de.dbo.samples</groupId>
+				<groupId>${project.groupId}</groupId>
 				<artifactId>html0</artifactId>
 				<version>${project.version}</version>
+			</dependency>
+			
+			<!-- PROJECTS TESTS -->
+
+			<dependency>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>jpa0</artifactId>
+				<version>${project.version}</version>
+				<type>test-jar</type>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>logger0</artifactId>
+				<version>${project.version}</version>
+				<type>test-jar</type>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>tuProlog0</artifactId>
+				<version>${project.version}</version>
+				<type>test-jar</type>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>util0</artifactId>
+				<version>${project.version}</version>
+				<type>test-jar</type>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>xml0</artifactId>
+				<version>${project.version}</version>
+				<type>test-jar</type>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>html0</artifactId>
+				<version>${project.version}</version>
+				<type>test-jar</type>
+				<scope>test</scope>
 			</dependency>
 
 		</dependencies>
@@ -163,6 +208,7 @@
 	<!-- ====================================
 	     COMMON RESORCES USED IN ALL PROJECTS
 	     ==================================== -->
+	     
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
@@ -180,7 +226,7 @@
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
 		</dependency>
-		
+
 	</dependencies>
 	
 	
@@ -188,8 +234,10 @@
 	      JAVA COMPILER
 	      ============= -->
 	<build>
+		<finalName>samples-samples0-${project.artifactId}-${project.version}</finalName>
 		<pluginManagement>
 			<plugins>
+
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-compiler-plugin</artifactId>
@@ -202,19 +250,30 @@
 						<maxmem>512m</maxmem>
 					</configuration>
 				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-jar-plugin</artifactId>
+					<version>2.2</version>
+					<executions>
+						<execution>
+							<goals>
+								<goal>test-jar</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-surefire-plugin</artifactId>
 					<version>${maven-surefire-plugin.version}</version>
 					<configuration>
-						<systemProperties/>	
+						<systemProperties />
 					</configuration>
 				</plugin>
 			</plugins>
 		</pluginManagement>
-		
+
 	</build>
-	
-
-
 </project>
