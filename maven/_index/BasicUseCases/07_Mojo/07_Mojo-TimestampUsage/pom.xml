@@ -50,6 +50,7 @@
 		</plugins>
 		<pluginManagement>
 			<plugins>
+			    <!-- We need this because of the phase=compile in the plug-in above   -->
 				<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
 				<plugin>
 					<groupId>org.eclipse.m2e</groupId>
