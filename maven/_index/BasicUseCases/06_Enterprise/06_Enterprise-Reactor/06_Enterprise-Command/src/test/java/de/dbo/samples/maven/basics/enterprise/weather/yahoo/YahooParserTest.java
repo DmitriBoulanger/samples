@@ -1,10 +1,10 @@
-package de.dbo.samples.maven.basics.enterprise.weather.yahoo;
+package de.dbo.samples.maven.basic.enterprise.weather.yahoo;
 
 import java.io.InputStream;
 
 import junit.framework.TestCase;
-import de.dbo.samples.maven.basics.enterprise.weather.model.Weather;
-import de.dbo.samples.maven.basics.enterprise.weather.service.YahooParser;
+import de.dbo.samples.maven.basic.enterprise.weather.model.Weather;
+import de.dbo.samples.maven.basic.enterprise.weather.service.YahooParser;
 
 public class YahooParserTest extends TestCase {
 

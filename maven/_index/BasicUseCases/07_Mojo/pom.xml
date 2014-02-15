@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>de.dbo.samples.maven.basics</groupId>
+		<groupId>de.dbo.samples.maven.basic</groupId>
 		<artifactId>BasicUseCases</artifactId>
 		<version>0.0.0-SNAPSHOT</version>
 	</parent>
@@ -27,12 +27,10 @@
 				<artifactId>07_Mojo-Timestamp</artifactId>
 				<version>${project.version}</version>
 				<configuration>
-					<prefix>---</prefix>
+					<prefix>###</prefix>
 					<datetimePattern>HH:mm:ss</datetimePattern>
 				</configuration>
 				<executions>
-				
-					
 					<execution>
 						<id>after install</id>
 						<phase>install</phase>
@@ -40,7 +38,6 @@
 							<goal>timestamp</goal>
 						</goals>
 					</execution>
-					
 					<execution>
 						<id>after clean</id>
 						<phase>clean</phase>
@@ -48,11 +45,9 @@
 							<goal>timestamp</goal>
 						</goals>
 					</execution>
-					
-					
-					
 				</executions>
 			</plugin>
+
 		</plugins>
 	</build>
 

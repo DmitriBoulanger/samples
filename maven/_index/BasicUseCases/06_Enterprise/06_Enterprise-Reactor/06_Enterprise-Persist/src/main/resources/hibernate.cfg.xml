@@ -32,11 +32,11 @@
     <property name="jdbc.batch_size">0</property>
     
     <!-- List all the mapping documents we're using -->
-    <mapping class="de.dbo.samples.maven.basics.enterprise.weather.model.Atmosphere"/>
-    <mapping class="de.dbo.samples.maven.basics.enterprise.weather.model.Condition"/>
-    <mapping class="de.dbo.samples.maven.basics.enterprise.weather.model.Location"/>
-    <mapping class="de.dbo.samples.maven.basics.enterprise.weather.model.Weather"/>
-    <mapping class="de.dbo.samples.maven.basics.enterprise.weather.model.Wind"/>
+    <mapping class="de.dbo.samples.maven.basic.enterprise.weather.model.Atmosphere"/>
+    <mapping class="de.dbo.samples.maven.basic.enterprise.weather.model.Condition"/>
+    <mapping class="de.dbo.samples.maven.basic.enterprise.weather.model.Location"/>
+    <mapping class="de.dbo.samples.maven.basic.enterprise.weather.model.Weather"/>
+    <mapping class="de.dbo.samples.maven.basic.enterprise.weather.model.Wind"/>
         
   </session-factory>
 </hibernate-configuration>

@@ -10,10 +10,10 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.Controller;
 
-import de.dbo.samples.maven.basics.enterprise.weather.model.Location;
-import de.dbo.samples.maven.basics.enterprise.weather.model.Weather;
-import de.dbo.samples.maven.basics.enterprise.weather.persist.LocationDAO;
-import de.dbo.samples.maven.basics.enterprise.weather.persist.WeatherDAO;
+import de.dbo.samples.maven.basic.enterprise.weather.model.Location;
+import de.dbo.samples.maven.basic.enterprise.weather.model.Weather;
+import de.dbo.samples.maven.basic.enterprise.weather.persist.LocationDAO;
+import de.dbo.samples.maven.basic.enterprise.weather.persist.WeatherDAO;
 
 public class HistoryController implements Controller {
 

@@ -2,11 +2,12 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>de.dbo.samples.maven.basics</groupId>
+	<groupId>de.dbo.samples.maven.basic</groupId>
 	<artifactId>BasicUseCases</artifactId>
 	<version>0.0.0-SNAPSHOT</version>
-	<name>Basic use cases (INDEX)</name>
 	<packaging>pom</packaging>
+	<name>Basic use cases (INDEX)</name>
+	<url>http://books.sonatype.com/mvnex-book/reference/index.html</url>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -27,10 +28,9 @@
 	</modules>
 
 	<build>
-		<finalName>samples-maven-basics-${project.version}</finalName>
+	    <finalName>samples-maven-basic-${project.artifactId}-${project.version}</finalName>
 		<pluginManagement>
 			<plugins>
-
 				<!-- JAVA -->
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
@@ -42,7 +42,7 @@
 					</configuration>
 				</plugin>
 
-				<!-- Maven plug-ins -->
+				<!-- MAVEN Plugins -->
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-jar-plugin</artifactId>
@@ -69,7 +69,7 @@
 					<version>1.3.1</version>
 				</plugin>
 
-				<!-- Special plug-ins -->
+				<!-- SPECIAL Plugins -->
 				<plugin>
 					<groupId>org.mortbay.jetty</groupId>
 					<artifactId>maven-jetty-plugin</artifactId>
@@ -104,7 +104,6 @@
 			</dependency>
 
 			<!-- Logging -->
-
 			<dependency>
 				<groupId>org.slf4j</groupId>
 				<artifactId>slf4j-api</artifactId>
@@ -116,7 +115,7 @@
 				<version>1.7.5</version>
 			</dependency>
 
-			<!-- Special -->
+			<!-- SPECIAL -->
 
 			<dependency>
 				<groupId>org.springframework</groupId>
@@ -154,5 +153,5 @@
 
 	</dependencies>
 
-	<url>http://books.sonatype.com/mvnex-book/reference/index.html</url>
+	
 </project>

@@ -1,4 +1,4 @@
-package de.dbo.samples.maven.basics.enterprise.weather.service;
+package de.dbo.samples.maven.basic.enterprise.weather.service;
 
 import java.io.InputStream;
 import java.net.URL;

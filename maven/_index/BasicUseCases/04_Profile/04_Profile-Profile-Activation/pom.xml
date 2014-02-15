@@ -6,7 +6,7 @@
   <modelVersion>4.0.0</modelVersion>
   
   <parent>
-      <groupId>de.dbo.samples.maven.basics</groupId>
+      <groupId>de.dbo.samples.maven.basic</groupId>
       <artifactId>04_Profile</artifactId>
       <version>0.0.0-SNAPSHOT</version>
   </parent>

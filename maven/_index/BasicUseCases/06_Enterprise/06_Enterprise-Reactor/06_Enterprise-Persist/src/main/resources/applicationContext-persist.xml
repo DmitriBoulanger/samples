@@ -23,11 +23,11 @@
         class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
         <property name="annotatedClasses">
             <list>
-                <value>de.dbo.samples.maven.basics.enterprise.weather.model.Atmosphere</value>
-                <value>de.dbo.samples.maven.basics.enterprise.weather.model.Condition</value>
-                <value>de.dbo.samples.maven.basics.enterprise.weather.model.Location</value>
-                <value>de.dbo.samples.maven.basics.enterprise.weather.model.Weather</value>
-                <value>de.dbo.samples.maven.basics.enterprise.weather.model.Wind</value>
+                <value>de.dbo.samples.maven.basic.enterprise.weather.model.Atmosphere</value>
+                <value>de.dbo.samples.maven.basic.enterprise.weather.model.Condition</value>
+                <value>de.dbo.samples.maven.basic.enterprise.weather.model.Location</value>
+                <value>de.dbo.samples.maven.basic.enterprise.weather.model.Weather</value>
+                <value>de.dbo.samples.maven.basic.enterprise.weather.model.Wind</value>
             </list>
         </property>
         <property name="hibernateProperties">
@@ -47,11 +47,11 @@
         </property>
     </bean>
 
-    <bean id="locationDAO" class="de.dbo.samples.maven.basics.enterprise.weather.persist.LocationDAO">
+    <bean id="locationDAO" class="de.dbo.samples.maven.basic.enterprise.weather.persist.LocationDAO">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
     
-    <bean id="weatherDAO" class="de.dbo.samples.maven.basics.enterprise.weather.persist.WeatherDAO">
+    <bean id="weatherDAO" class="de.dbo.samples.maven.basic.enterprise.weather.persist.WeatherDAO">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
  </beans>

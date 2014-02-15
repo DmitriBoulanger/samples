@@ -1,4 +1,4 @@
-package de.dbo.samples.maven.basics.enterprise.command;
+package de.dbo.samples.maven.basic.enterprise.command;
 
 import java.util.List;
 
@@ -6,12 +6,12 @@ import org.apache.log4j.PropertyConfigurator;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import de.dbo.samples.maven.basics.enterprise.weather.model.Location;
-import de.dbo.samples.maven.basics.enterprise.weather.model.Weather;
-import de.dbo.samples.maven.basics.enterprise.weather.persist.LocationDAO;
-import de.dbo.samples.maven.basics.enterprise.weather.persist.WeatherDAO;
-import de.dbo.samples.maven.basics.enterprise.weather.service.WeatherFormatter;
-import de.dbo.samples.maven.basics.enterprise.weather.service.WeatherService;
+import de.dbo.samples.maven.basic.enterprise.weather.model.Location;
+import de.dbo.samples.maven.basic.enterprise.weather.model.Weather;
+import de.dbo.samples.maven.basic.enterprise.weather.persist.LocationDAO;
+import de.dbo.samples.maven.basic.enterprise.weather.persist.WeatherDAO;
+import de.dbo.samples.maven.basic.enterprise.weather.service.WeatherFormatter;
+import de.dbo.samples.maven.basic.enterprise.weather.service.WeatherService;
 
 public class Main {
 
