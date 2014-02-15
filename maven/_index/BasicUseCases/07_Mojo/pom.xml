@@ -10,7 +10,7 @@
 
 	<artifactId>07_Mojo</artifactId>
 	<packaging>pom</packaging>
-	<name>Maven Mojo (INDEX)</name>
+	<name>Mojo (INDEX)</name>
 	<url>http://www.torsten-horn.de/techdocs/maven.htm#Mojo</url>
 
 	<modules>
