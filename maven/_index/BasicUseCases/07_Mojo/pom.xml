@@ -15,39 +15,12 @@
 
 	<modules>
 		<module>07_Mojo-Timestamp</module>
+		<module>07_Mojo-TimestampUsage</module>
 	</modules>
 
 	<build>
-		<!-- Plug-ins for all -->
 		<plugins>
 		
-		    <!-- Timestamp Mojo Plug -->
-			<plugin>
-				<groupId>${project.groupId}</groupId>
-				<artifactId>07_Mojo-Timestamp</artifactId>
-				<version>${project.version}</version>
-				<configuration>
-					<prefix>###</prefix>
-					<datetimePattern>HH:mm:ss</datetimePattern>
-				</configuration>
-				<executions>
-					<execution>
-						<id>after install</id>
-						<phase>install</phase>
-						<goals>
-							<goal>timestamp</goal>
-						</goals>
-					</execution>
-					<execution>
-						<id>after clean</id>
-						<phase>clean</phase>
-						<goals>
-							<goal>timestamp</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-
 		</plugins>
 	</build>
 

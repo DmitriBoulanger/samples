@@ -1,0 +1,46 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  
+  <parent>
+  	<groupId>de.dbo.samples.maven.basic</groupId>
+  	<artifactId>07_Mojo</artifactId>
+  	<version>0.0.0-SNAPSHOT</version>
+  </parent>
+  
+  <artifactId>07_Mojo-TimestampUsage</artifactId>
+  <name>Mojo - Timestamp Plugin Usage</name>
+  <url>http://www.torsten-horn.de/techdocs/maven.htm#Mojo</url>
+  
+  	<build>
+		<plugins>
+		  <!-- Timestamp Mojo Plug -->
+			<plugin>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>07_Mojo-Timestamp</artifactId>
+				<version>${project.version}</version>
+				<configuration>
+					<prefix>###</prefix>
+					<datetimePattern>HH:mm:ss</datetimePattern>
+				</configuration>
+				<executions>
+					<execution>
+						<id>after install</id>
+						<phase>install</phase>
+						<goals>
+							<goal>timestamp</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>after clean</id>
+						<phase>clean</phase>
+						<goals>
+							<goal>timestamp</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+  
+</project>
