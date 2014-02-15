@@ -81,6 +81,26 @@
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
 			</plugin>
+
+			<plugin>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>00_Timestamp</artifactId>
+				<version>${project.version}</version>
+				<configuration>
+					<prefix>---</prefix>
+					<datetimePattern>HH:mm:ss</datetimePattern>
+				</configuration>
+				<executions>
+					<execution>
+						<id>nach clean</id>
+						<phase>clean</phase>
+						<goals>
+							<goal>timestamp</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
 		</plugins>
 
 	</build>
@@ -95,6 +115,13 @@
 				<version>4.8.1</version>
 				<scope>test</scope>
 			</dependency>
+			
+			<dependency>
+      <groupId>org.apache.maven.shared</groupId>
+      <artifactId>maven-plugin-testing-harness</artifactId>
+      <version>1.1</version>
+      <scope>test</scope>
+    </dependency>
 
 			<!-- Logging -->
 
@@ -110,14 +137,14 @@
 			</dependency>
 
 			<!-- Special -->
-			
-			 
-    <dependency>
-      <groupId>org.apache.maven</groupId>
-      <artifactId>maven-plugin-api</artifactId>
-      <version>2.0</version>
-    </dependency>
- 
+
+
+			<dependency>
+				<groupId>org.apache.maven</groupId>
+				<artifactId>maven-plugin-api</artifactId>
+				<version>2.0</version>
+			</dependency>
+
 
 			<dependency>
 				<groupId>org.springframework</groupId>
@@ -135,19 +162,23 @@
 	</dependencyManagement>
 
 	<!-- Dependencies for all -->
-	
-	
 
 	<dependencies>
-	
-	<dependency>
-      <groupId>org.apache.maven</groupId>
-      <artifactId>maven-plugin-api</artifactId>
-    </dependency>
-    
+
+		<dependency>
+			<groupId>org.apache.maven</groupId>
+			<artifactId>maven-plugin-api</artifactId>
+		</dependency>
+
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.maven.shared</groupId>
+			<artifactId>maven-plugin-testing-harness</artifactId>
 			<scope>test</scope>
 		</dependency>
 
@@ -163,5 +194,5 @@
 
 	</dependencies>
 
-	<url>http://books.sonatype.com/mvnex-book/reference/index.html</url>
+	<url>http://www.torsten-horn.de/techdocs/maven.htm#Mojo</url>
 </project>
