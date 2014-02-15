@@ -17,11 +17,7 @@
 
 	<modules>
 		<module>BasicUseCases</module>
-
-
-		<!-- <module>ch-writing-plugins</module> -->
-		<!-- <module>ch-alternate-plugins</module> -->
-
+		<module>Mojo</module>
 	</modules>
 
 	<dependencyManagement>
