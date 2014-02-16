@@ -289,45 +289,44 @@ public class XmlUnitInstance extends XMLTestCase {
         assertNodeTestPasses(nodeTest, new FibonacciNodeTester(), new short[] {Node.TEXT_NODE, Node.ELEMENT_NODE}, true);
     }
     
-    // As the document is parsed it is validated against its referenced DTD
-    public void testValidation() throws Exception {
-    	 XMLUnit.getTestDocumentBuilderFactory().setValidating(true);
-    	 final String xml = read("test.xml");
-    	 final String xmlError = read("test-error.xml");
-//    	 printDifferences(xml,xmlBad,"Validation");
-    	 
-    	 log.debug("XML as string:\n" + xml);
-//        final Document document = XMLUnit.buildTestDocument(xml);
-        final URL dtdUrl = path("test.dtd").toFile().toURI().toURL();
-        String systemId = "test.dtd"; // "SYSTEM";
-        log.debug("DTD: " + dtdUrl);
-       
-//        final Validator validator = new Validator(xmlDocument, systemId, dtdUrl.toString());
-        final Validator validator = new Validator(xml, dtdUrl.toString());
-        assertTrue("test doesn't validate against unreferenced DTD", validator.isValid());
-        final Validator validatorError = new Validator(xmlError, systemId);
-        assertFalse("test-error validates against unreferenced DTD", validatorError.isValid());
-    }
+//    // As the document is parsed it is validated against its referenced DTD
+//    @Ignore
+//    public void testValidation() throws Exception {
+//    	 XMLUnit.getTestDocumentBuilderFactory().setValidating(true);
+//    	 final String xml = read("test.xml");
+//    	 final String xmlError = read("test-error.xml");
+////    	 printDifferences(xml,xmlBad,"Validation");
+//    	 
+//    	 log.debug("XML as string:\n" + xml);
+////        final Document document = XMLUnit.buildTestDocument(xml);
+//        final URL dtdUrl = path("test.dtd").toFile().toURI().toURL();
+//        String systemId = "test.dtd"; // "SYSTEM";
+//        log.debug("DTD: " + dtdUrl);
+//       
+////        final Validator validator = new Validator(xmlDocument, systemId, dtdUrl.toString());
+//        final Validator validator = new Validator(xml, dtdUrl.toString());
+//        assertTrue("test doesn't validate against unreferenced DTD", validator.isValid());
+//        final Validator validatorError = new Validator(xmlError, systemId);
+//        assertFalse("test-error validates against unreferenced DTD", validatorError.isValid());
+//    }
 
-    @Ignore
-    public void testXSLTransformation() throws Exception {
-        String myInputXML = "...";
-        File myStylesheetFile = new File("...");
-        Transform myTransform = new Transform(myInputXML, myStylesheetFile);
-        String myExpectedOutputXML = "...";
-        Diff myDiff = new Diff(myExpectedOutputXML, myTransform);
-        assertTrue("XSL transformation worked as expected " + myDiff, myDiff.similar());
-    }
+//    public void testXSLTransformation() throws Exception {
+//        String myInputXML = "...";
+//        File myStylesheetFile = new File("...");
+//        Transform myTransform = new Transform(myInputXML, myStylesheetFile);
+//        String myExpectedOutputXML = "...";
+//        Diff myDiff = new Diff(myExpectedOutputXML, myTransform);
+//        assertTrue("XSL transformation worked as expected " + myDiff, myDiff.similar());
+//    }
 
-    @Ignore
-    public void testAnotherXSLTransformation() throws Exception {
-        File myInputXMLFile = new File("...");
-        File myStylesheetFile = new File("...");
-        Transform myTransform = new Transform(new StreamSource(myInputXMLFile), new StreamSource(myStylesheetFile));
-        Document myExpectedOutputXML = XMLUnit.buildDocument(XMLUnit.newControlParser(), new FileReader("..."));
-        Diff myDiff = new Diff(myExpectedOutputXML, myTransform.getResultDocument());
-        assertTrue("XSL transformation worked as expected " + myDiff, myDiff.similar());
-    }
+//    public void testAnotherXSLTransformation() throws Exception {
+//        File myInputXMLFile = new File("...");
+//        File myStylesheetFile = new File("...");
+//        Transform myTransform = new Transform(new StreamSource(myInputXMLFile), new StreamSource(myStylesheetFile));
+//        Document myExpectedOutputXML = XMLUnit.buildDocument(XMLUnit.newControlParser(), new FileReader("..."));
+//        Diff myDiff = new Diff(myExpectedOutputXML, myTransform.getResultDocument());
+//        assertTrue("XSL transformation worked as expected " + myDiff, myDiff.similar());
+//    }
 
 	private class FibonacciNodeTester extends AbstractNodeTester {
 		private int nextVal = 1;

@@ -15,6 +15,7 @@ final class FileSystemUtils {
 	
 	static final String read(final String name) throws IOException {
     	 final Charset charset = Charset.forName("utf-8");
+    	 
          final Path pathXml = FileSystems.getDefault().getPath(TEST_DIR, name);
          return new String(Files.readAllBytes(pathXml),charset);
     }
