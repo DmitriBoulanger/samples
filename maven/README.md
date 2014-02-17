@@ -6,4 +6,4 @@ in the corresponding Maven-project. It is used as an enumeration
 of all maven sample-collections.
 
 Sample collections (e.g. BasicUseCases) are independent children 
-of the top-project. Use these children  as eclipse maven-projects
+of the top index-project. Use these children  as eclipse maven-projects
