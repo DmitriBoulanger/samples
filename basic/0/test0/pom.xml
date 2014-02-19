@@ -4,7 +4,7 @@
 
 	<parent>
 		<groupId>de.dbo.samples.basic</groupId>
-		<artifactId>_index</artifactId>
+		<artifactId>0</artifactId>
 		<version>0.0.0-SNAPSHOT</version>
 	</parent>
 
