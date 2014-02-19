@@ -21,22 +21,51 @@ All messages can be found in the target/logs directory
 	     ====================================================== -->
 
 	<dependencies>
+	
 		<dependency>
 			<groupId>${project.groupId}</groupId>
 			<artifactId>jpa0</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>${project.groupId}</groupId>
+			<artifactId>jpa0</artifactId>
+			<type>test-jar</type>
+			<scope>test</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>${project.groupId}</groupId>
 			<artifactId>logger0</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>logger0</artifactId>
+			<type>test-jar</type>
+			<scope>test</scope>
+		</dependency>
+		
 		<dependency>
 			<groupId>${project.groupId}</groupId>
 			<artifactId>tuProlog0</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>${project.groupId}</groupId>
+			<artifactId>tuProlog0</artifactId>
+			<type>test-jar</type>
+			<scope>test</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>${project.groupId}</groupId>
 			<artifactId>util0</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>util0</artifactId>
+			<type>test-jar</type>
+			<scope>test</scope>
+		</dependency>
+		
 		<dependency>
 			<groupId>${project.groupId}</groupId>
 			<artifactId>xml0</artifactId>
@@ -44,54 +73,30 @@ All messages can be found in the target/logs directory
 		<dependency>
 			<groupId>${project.groupId}</groupId>
 			<artifactId>html0</artifactId>
+			<type>test-jar</type>
+			<scope>test</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>html0</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>xml0</artifactId>
+			<type>test-jar</type>
+			<scope>test</scope>
 		</dependency>
 
 		<dependency>
-			<groupId>${project.groupId}</groupId>
-			<artifactId>jpa0</artifactId>
-			<type>test-jar</type>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>${project.groupId}</groupId>
-			<artifactId>logger0</artifactId>
-			<type>test-jar</type>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>${project.groupId}</groupId>
-			<artifactId>tuProlog0</artifactId>
-			<type>test-jar</type>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>${project.groupId}</groupId>
-			<artifactId>util0</artifactId>
-			<type>test-jar</type>
-			<scope>test</scope>
-		</dependency>
-		
-		<dependency>
-			<groupId>${project.groupId}</groupId>
-			<artifactId>xml0</artifactId>
-			<type>test-jar</type>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>${project.groupId}</groupId>
-			<artifactId>html0</artifactId>
-			<type>test-jar</type>
-			<scope>test</scope>
-		</dependency>
-		
-		
-				<dependency>
 				<groupId>org.apache.derby</groupId>
 				<artifactId>derby</artifactId>
+				<scope>test</scope>
 		</dependency>
 		<dependency>
 				<groupId>org.apache.derby</groupId>
 				<artifactId>derbyclient</artifactId>
+				<scope>test</scope>
 		</dependency>
 	</dependencies>
 
