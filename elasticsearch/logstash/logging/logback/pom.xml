@@ -44,4 +44,5 @@
 [clj-logging-config "1.9.10" :exclusions [log4j]]
 </dependencies>
 
+	<url>http://blog.dylants.com/2013/08/27/java-logging-creating-indexing-monitoring/</url>
 </project>
