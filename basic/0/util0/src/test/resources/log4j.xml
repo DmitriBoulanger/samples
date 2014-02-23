@@ -39,6 +39,12 @@
 			<param name="ConversionPattern" value="%d{HH:mm:ss.SSS} [%t] %35c: %m%n" />
 		</layout>
 	</appender> 
+	
+	<appender name="LOGSTASH" class="org.apache.log4j.net.SocketAppender">
+		<param name="RemoteHost" value="localhost" />
+		<param name="ReconnectionDelay" value="60000" />
+		<param name="Threshold" value="DEBUG" />
+	</appender>
 
 	<!-- application-triggered messages to console -->
 	<logger name="de.dbo">
@@ -51,6 +57,7 @@
 		<level value="debug" />
 		<appender-ref ref="DAILY_ROLLING_FILE_ERRORS" />
 		<appender-ref ref="DAILY_ROLLING_FILE" /> 
+		<appender-ref ref="LOGSTASH" /> 
 	</root>
 
 </log4j:configuration>
