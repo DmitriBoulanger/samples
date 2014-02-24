@@ -45,9 +45,11 @@
 		<appender-ref ref="CONSOLE" />
 	</logger>
 	
-	<!-- all messages to the main file and errors to the separate err-file -->
-	<!-- Log4J won’t try to send logs to a server unless it can establish a connection. -->
-	<!-- This won’t happen until logstash is up and running -->
+	<!-- NON-CONSOLE LOGGING
+	        - all messages to the main file
+	        - errors messages to the separate err-file 
+	        - all messages to LOGSTASH if it is on-line
+	-->
 	<root>
 		<level value="DEBUG" />
 		<appender-ref ref="DAILY_ROLLING_FILE_ERRORS" />
