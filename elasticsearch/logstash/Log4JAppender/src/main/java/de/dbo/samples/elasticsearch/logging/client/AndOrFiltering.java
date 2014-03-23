@@ -1,6 +1,8 @@
 package de.dbo.samples.elasticsearch.logging.client;
  
 
+import java.util.Map;
+
 import org.elasticsearch.action.admin.indices.mapping.put.PutMappingRequestBuilder;
 //import org.elasticsearch.action.admin.indices.settings.UpdateSettingsRequestBuilder;
 //import org.elasticsearch.action.admin.indices.settings.UpdateSettingsResponse;
@@ -17,8 +19,11 @@ import org.elasticsearch.common.xcontent.XContentBuilder;
 import org.elasticsearch.common.xcontent.XContentFactory;
 import org.elasticsearch.index.query.*;
 import org.elasticsearch.node.Node;
+import org.elasticsearch.search.SearchHit;
+import org.elasticsearch.search.SearchHits;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import static org.elasticsearch.common.xcontent.XContentFactory.jsonBuilder;
 import static org.elasticsearch.index.query.FilterBuilders.andFilter;
 import static org.elasticsearch.index.query.FilterBuilders.orFilter;
@@ -30,11 +35,11 @@ import static org.elasticsearch.node.NodeBuilder.nodeBuilder;
 public class AndOrFiltering {
     final static Logger logger = LoggerFactory.getLogger(AndOrFiltering.class);
     public static void main(String[] args) {
-          Node node = null;
+//          Node node = null;
           Client client = null;
           
          logger.info("Initializing Search Server - Bootstrap ...");
-         node = nodeBuilder().node();
+//         node = nodeBuilder().node();
           
          client = new TransportClient() .addTransportAddress(new
         			InetSocketTransportAddress("127.0.0.1", 9300));
@@ -51,7 +56,7 @@ public class AndOrFiltering {
 //
 
        
-        DateTime dt1 =  DateTime.now().minus(10000000L);
+        DateTime dt1 =  DateTime.now().minus(1000*60*15);
         DateTime dt2 =  DateTime.now(); 
         RangeFilterBuilder rangeFilterBuilder = FilterBuilders.rangeFilter("@timestamp");
         rangeFilterBuilder.from(dt1).to(dt2);
@@ -83,10 +88,14 @@ public class AndOrFiltering {
                                                    .execute()
                                                    .actionGet();
 
+//   SearchHits hits = response.getHits();
+//   for (SearchHit hit : hits.getHits() ) {
+//	   Map<String, ?> map =  hit
+//	   System.out.println(map);
+//   }
+      
 
-        logger.info(response.toString());
-
-
+        System.out.println(response);
     } 
     
 }
