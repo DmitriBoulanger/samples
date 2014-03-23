@@ -31,8 +31,17 @@
 
 	<appender name="LOGSTASH" class="org.apache.log4j.net.SocketAppender">
 		<param name="RemoteHost" value="localhost" />
+		<param name="port" value="4560" />
 		<param name="ReconnectionDelay" value="60000" />
 		<param name="Threshold" value="DEBUG" />
+	</appender>
+	
+		<appender name="LOGSTASH2" class="org.apache.log4j.net.SocketAppender">
+		<param name="RemoteHost" value="localhost" />
+		<param name="port" value="4561" />
+		<param name="ReconnectionDelay" value="60000" />
+		<param name="Threshold" value="DEBUG" />
+		<param name="port" value="localhost" />
 	</appender>
 
 	<!-- errors to a special daily-rolling file in target (every day) -->
@@ -62,6 +71,7 @@
 		<appender-ref ref="DAILY_ROLLING_FILE_ERRORS" />
 		<appender-ref ref="DAILY_ROLLING_FILE" /> 
 		<appender-ref ref="LOGSTASH" /> 
+		<appender-ref ref="LOGSTASH2" /> 
 	</root>
 
 </log4j:configuration>

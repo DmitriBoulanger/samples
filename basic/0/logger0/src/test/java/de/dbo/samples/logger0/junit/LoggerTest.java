@@ -29,10 +29,10 @@ public class LoggerTest {
 	@Test
 	public void test() {
 		try {
-			final String name = org.slf4j.impl.SLF4JLogger.ROOT_LOGGER_NAME;
+			final String name = org.apache.logging.log4j.Logger.class.getName();
 			log.debug(name + " found in the class-path");
 		} catch (Throwable e) {
-			fail("No Log4j-LoggerAdapter found in the class-path");
+			fail("No Log4j-Logger found in the class-path");
 		}
 		
 		 final Main main = new Main();
@@ -42,8 +42,8 @@ public class LoggerTest {
 		 
 		 final Class<?> mainLoggerClass = main.logger();
 		 final Class<?> expectedLoggerClass = Logger.class; // org.slf4j.impl.Log4jLoggerAdapter.class;
-		 assertSame("Expected logger is " + expectedLoggerClass.getSimpleName()
-				 + " but found " +  mainLoggerClass.getSimpleName()
+		 assertSame("Expected logger is " + expectedLoggerClass.getName()
+				 + " but found " +  mainLoggerClass.getName()
 				 ,mainLoggerClass,   expectedLoggerClass);
 		 
 	}
