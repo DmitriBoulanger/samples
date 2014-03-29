@@ -9,6 +9,28 @@
 	
    
   <artifactId>AutoLocalThreshold</artifactId>
+  <description>Origin 1.48t 28 March 2014 </description>
   
-
+  <dependencies>
+  
+    <dependency>
+	<groupId>gov.nih.imagej</groupId>
+	<artifactId>imagej</artifactId>
+	<version>1.47</version>
+    </dependency>
+  
+     <!-- SLF4J Logging -->
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+			</dependency>
+			
+			<dependency>
+				<groupId>org.apache.logging.log4j</groupId>
+				<artifactId>slf4j-impl</artifactId>
+			</dependency>
+			
+  </dependencies>
+  
+  
 </project>
