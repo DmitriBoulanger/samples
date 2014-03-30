@@ -12,11 +12,13 @@
 
 	<dependencies>
 
+<!-- 
 		<dependency>
 			<groupId>gov.nih.imagej</groupId>
 			<artifactId>imagej</artifactId>
 			<version>1.47</version>
-		</dependency>
+		</dependency>  
+-->
 
      	<!-- SLF4J Logging -->
 		<dependency>
@@ -29,6 +31,18 @@
 		</dependency>
 
 	</dependencies>
+	
+	<build>
+	<plugins>
+        <plugin>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <configuration>
+                <source>1.7</source>
+                <target>1.7</target>
+            </configuration>
+        </plugin>
+    </plugins>
+    </build>
 
 
 </project>
