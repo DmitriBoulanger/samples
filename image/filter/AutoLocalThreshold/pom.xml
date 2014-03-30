@@ -1,36 +1,34 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  
-   <parent>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
 		<groupId>de.dbo.samples.image.filter</groupId>
 		<artifactId>super</artifactId>
 		<version>0.0.0-SNAPSHOT</version>
 	</parent>
-	
-   
-  <artifactId>AutoLocalThreshold</artifactId>
-  <description>Origin 1.48t 28 March 2014 </description>
-  
-  <dependencies>
-  
-    <dependency>
-	<groupId>gov.nih.imagej</groupId>
-	<artifactId>imagej</artifactId>
-	<version>1.47</version>
-    </dependency>
-  
-     <!-- SLF4J Logging -->
-			<dependency>
-				<groupId>org.slf4j</groupId>
-				<artifactId>slf4j-api</artifactId>
-			</dependency>
-			
-			<dependency>
-				<groupId>org.apache.logging.log4j</groupId>
-				<artifactId>slf4j-impl</artifactId>
-			</dependency>
-			
-  </dependencies>
-  
-  
+
+	<artifactId>AutoLocalThreshold</artifactId>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>gov.nih.imagej</groupId>
+			<artifactId>imagej</artifactId>
+			<version>1.47</version>
+		</dependency>
+
+     	<!-- SLF4J Logging -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>slf4j-impl</artifactId>
+		</dependency>
+
+	</dependencies>
+
+
 </project>

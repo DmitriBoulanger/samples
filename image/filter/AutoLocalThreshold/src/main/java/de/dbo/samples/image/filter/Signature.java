@@ -1,20 +1,16 @@
 package de.dbo.samples.image.filter;
 
 
-import java.awt.Image;
-
-import ij.IJ;
 import ij.ImagePlus;
-import ij.ImageStack;
-
-
 import ij.Undo;
+import ij.process.ImageProcessor;
+
 import ij.gui.NewImage;
 import ij.plugin.filter.RankFilters;
 import ij.process.Blitter;
-import ij.process.ByteProcessor;
 import ij.process.ImageConverter;
-import ij.process.ImageProcessor;
+
+import java.awt.image.BufferedImage;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -178,7 +174,7 @@ public class Signature {
 		 * 
 		 * Does NOT show the new, image; just returns it. 
 		 */
-		 public Object[] exec(final Image image, 
+		 public Object[] exec(final BufferedImage image, 
 				 final String myMethod, int radius,  double par1, double par2, boolean doIwhite ) {
 
 			  
