@@ -32,7 +32,7 @@
 	<appender name="LOGSTASH" class="org.apache.log4j.net.SocketAppender">
 		<param name="RemoteHost" value="localhost" />
 		<param name="Port" value="4560" />
-		<param name="ReconnectionDelay" value="60000" />
+		<param name="ReconnectionDelay" value="5000" />
 		<param name="Threshold" value="DEBUG" />
 	</appender>
 	
