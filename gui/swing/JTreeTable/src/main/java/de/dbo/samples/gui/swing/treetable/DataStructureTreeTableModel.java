@@ -5,13 +5,18 @@ import de.dbo.samples.gui.swing.treetable.api.TreeTableModelAbstraction;
 
 import java.util.Date;
  
-public class DataStructureTreeTableModel extends TreeTableModelAbstraction {
-    // Spalten Name.
-    static protected String[] columnNames = { "Knotentext", "String",  "UUUID", "Datum", "Integer" };
+public final class DataStructureTreeTableModel extends TreeTableModelAbstraction {
+	
+    // Names of the columns
+    private static  String[] columnNames = { "Knotentext", "String",  "UUUID", "Datum", "Integer" };
  
-    // Spalten Typen.
-    static protected Class<?>[] columnTypes = { TreeTableModel.class, String.class,  String.class, Date.class, Integer.class };
+    // Types of the columns
+    private static Class<?>[] columnTypes = { TreeTableModel.class, String.class,  String.class, Date.class, Integer.class };
  
+    /**
+     * 
+     * @param rootNode complete data-structure
+     */
     public DataStructureTreeTableModel(Object rootNode) {
         super(rootNode);
     }

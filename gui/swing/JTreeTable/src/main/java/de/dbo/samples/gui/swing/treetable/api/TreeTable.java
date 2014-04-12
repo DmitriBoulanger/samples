@@ -11,11 +11,23 @@ import java.awt.Dimension;
 
 import javax.swing.JTable;
  
+/**
+ * TreeTable as extension of the JTable
+ * 
+ * @author Dmitri Boulanger, Hombach
+ *
+ * D. Knuth: Programs are meant to be read by humans and 
+ *           only incidentally for computers to execute 
+ *
+ */
 public class TreeTable extends JTable {
 	private static final long serialVersionUID = -5203756529846423026L;
 	
 	private final TreeTableCellRenderer tree;
      
+	/**
+	 * @param treeTableModel tree-table data-model 
+	 */
     public TreeTable(TreeTableModel treeTableModel) {
         super();
  

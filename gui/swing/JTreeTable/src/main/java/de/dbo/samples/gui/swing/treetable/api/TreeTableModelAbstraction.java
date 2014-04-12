@@ -5,6 +5,15 @@ import javax.swing.event.TreeModelEvent;
 import javax.swing.event.TreeModelListener;
 import javax.swing.tree.TreePath;
  
+/**
+ * Default or basic tree-table model
+ * 
+ * @author Dmitri Boulanger, Hombach
+ *
+ * D. Knuth: Programs are meant to be read by humans and 
+ *           only incidentally for computers to execute 
+ *
+ */
 public abstract class TreeTableModelAbstraction implements TreeTableModel {
 	
     protected final Object root;
@@ -19,33 +28,39 @@ public abstract class TreeTableModelAbstraction implements TreeTableModel {
         this.root = root;
     }
  
+    @Override
     public Object getRoot() {
         return root;
     }
  
+    @Override
     public boolean isLeaf(Object node) {
         return getChildCount(node) == 0;
     }
  
+    @Override
     public void valueForPathChanged(TreePath path, Object newValue) {
     }
  
     /**
      * Die Methode wird normalerweise nicht aufgerufen.
      */
+    @Override
     public int getIndexOfChild(Object parent, Object child) {
         return 0;
     }
  
+    @Override
     public void addTreeModelListener(TreeModelListener l) {
         listenerList.add(TreeModelListener.class, l);
     }
  
+    @Override
     public void removeTreeModelListener(TreeModelListener l) {
         listenerList.remove(TreeModelListener.class, l);
     }
  
-    private void fireTreeNode(int changeType, Object source, Object[] path, int[] childIndices, Object[] children) {
+    private final void fireTreeNode(int changeType, Object source, Object[] path, int[] childIndices, Object[] children) {
         Object[] listeners = listenerList.getListenerList();
         TreeModelEvent e = new TreeModelEvent(source, path, childIndices, children);
         for (int i = listeners.length - 2; i >= 0; i -= 2) {
