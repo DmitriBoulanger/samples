@@ -3,14 +3,18 @@ package de.dbo.samples.gui.swing.treetable.api;
 import java.awt.Component;
 import java.awt.event.MouseEvent;
 import java.util.EventObject;
- 
+
 import javax.swing.AbstractCellEditor;
 import javax.swing.JTable;
 import javax.swing.JTree;
 import javax.swing.table.TableCellEditor;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
  
 public class TreeTableCellEditor extends AbstractCellEditor implements TableCellEditor {
 	private static final long serialVersionUID = -6289597470847709283L;
+	private static final Logger log = LoggerFactory.getLogger(TreeTableCellEditor.class);
 	
 	private final JTree tree;
     private final JTable table;
@@ -39,6 +43,7 @@ public class TreeTableCellEditor extends AbstractCellEditor implements TableCell
  
     @Override
     public Object getCellEditorValue() {
+    	log.debug("getCellEditorValue(): returning null");
         return null;
     }
  

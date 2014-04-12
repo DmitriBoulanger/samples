@@ -7,14 +7,16 @@ import java.util.UUID;
  
 public class DataNode {
  
-    final private String name;
-    final private String capital;
-    final private Date declared;
-    final private Integer area;
-    final private String uuid = UUID.randomUUID().toString().replaceAll("-", "");
+    private final String name;
+    private final String capital;
+    private final Date declared;
+    
+    private Integer area;
+    private String uuid = UUID.randomUUID().toString().replaceAll("-", "");
+    
     final private List<DataNode> children;
  
-    public DataNode(String name, String capital, Date declared, Integer area, List<DataNode> children) {
+    public DataNode(final String name, final String capital, Date declared, Integer area, List<DataNode> children) {
         this.name = name;
         this.capital = capital;
         this.declared = declared;
@@ -37,6 +39,10 @@ public class DataNode {
     public String getUUID() {
         return uuid;
     }
+    
+    public void setUUID(String value) {
+        this.uuid = value;
+    }
  
     public Date getDeclared() {
         return declared;
@@ -45,13 +51,17 @@ public class DataNode {
     public Integer getArea() {
         return area;
     }
+    
+    public void setArea(Integer value) {
+    	 this.area = value;
+    }
  
     public List<DataNode> getChildren() {
         return children;
     }
  
     /**
-     * Knotentext vom JTree.
+     * Knotentext from JTree.
      */
     public String toString() {
         return name;

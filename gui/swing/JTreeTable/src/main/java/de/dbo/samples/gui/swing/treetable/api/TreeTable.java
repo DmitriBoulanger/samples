@@ -1,18 +1,15 @@
 package de.dbo.samples.gui.swing.treetable.api;
  
 import java.awt.Dimension;
- 
-
-
-
-
-
-
 
 import javax.swing.JTable;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
  
 /**
- * TreeTable as extension of the JTable
+ * TreeTable as extension of the JTable.
+ * The JTree-extension is implemented as JTree-based table-cell renderer
  * 
  * @author Dmitri Boulanger, Hombach
  *
@@ -22,6 +19,7 @@ import javax.swing.JTable;
  */
 public class TreeTable extends JTable {
 	private static final long serialVersionUID = -5203756529846423026L;
+	private static final Logger log = LoggerFactory.getLogger(TreeTable.class);
 	
 	private final TreeTableCellRenderer tree;
      
@@ -31,28 +29,29 @@ public class TreeTable extends JTable {
     public TreeTable(TreeTableModel treeTableModel) {
         super();
  
-        // JTree erstellen.
+        // JTree-extension
         tree = new TreeTableCellRenderer(this, treeTableModel);
          
-        // Modell setzen.
+        // Model
         super.setModel(new TreeTableModelAdapter(treeTableModel, tree));
          
-        // Gleichzeitiges Selektieren fuer Tree und Table.
-        TreeTableSelectionModel selectionModel = new TreeTableSelectionModel();
-        tree.setSelectionModel(selectionModel); //For the tree
+        // Simultaneous selections for JTable and JTree
+        final TreeTableSelectionModel selectionModel = new TreeTableSelectionModel();
+        tree.setSelectionModel(selectionModel); // For the tree
         setSelectionModel(selectionModel.getListSelectionModel()); //For the table
  
-         
-        // Renderer fuer den Tree.
+        // Renderer for JTree
         setDefaultRenderer(TreeTableModel.class, tree);
-        // Editor fuer die TreeTable
+        
+        // Editor for the TreeTable
         setDefaultEditor(TreeTableModel.class, new TreeTableCellEditor(tree, this));
          
-        // Kein Grid anzeigen.
+        // No grid show
         setShowGrid(false);
  
-        // Keine Abstaende.
+        // No margins between cells
         setIntercellSpacing(new Dimension(0, 0));
  
+        log.debug("created");
     }
 }

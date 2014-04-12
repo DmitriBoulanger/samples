@@ -4,14 +4,20 @@ import de.dbo.samples.gui.swing.treetable.api.TreeTableModel;
 import de.dbo.samples.gui.swing.treetable.api.TreeTableModelAbstraction;
 
 import java.util.Date;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
  
 public final class DataStructureTreeTableModel extends TreeTableModelAbstraction {
+	private static final Logger log = LoggerFactory.getLogger(DataStructureTreeTableModel.class);
 	
     // Names of the columns
-    private static  String[] columnNames = { "Knotentext", "String",  "UUUID", "Datum", "Integer" };
+    private static  String[] columnNames = { 
+    	"Ex-Tag path", "Component",  "UUID", "Datum", "Integer" };
  
     // Types of the columns
-    private static Class<?>[] columnTypes = { TreeTableModel.class, String.class,  String.class, Date.class, Integer.class };
+    private static Class<?>[] columnTypes = { 
+    	TreeTableModel.class, String.class,  String.class,  Date.class, Integer.class };
  
     /**
      * 
@@ -59,10 +65,12 @@ public final class DataStructureTreeTableModel extends TreeTableModelAbstraction
             return ((DataNode) node).getDeclared();
         case 4:
             return ((DataNode) node).getArea();
+            
         default:
-            break;
+            throw new RuntimeException(
+            	"Incorrect column in getValueAt(Object node="+node.toString()+", int column="+column+")");
         }
-        return null;
+        
     }
  
     @Override
@@ -72,6 +80,28 @@ public final class DataStructureTreeTableModel extends TreeTableModelAbstraction
  
     @Override
     public void setValueAt(Object aValue, Object node, int column) {
+    	 switch (column) {
+         case 0:
+        	 break;
+         case 1:
+             break;
+         case 2:
+             ((DataNode) node).setUUID((String)aValue);
+             break;
+         case 3:
+        	 throw new RuntimeException(
+                 	"Cannot do setValueAt(Object node="+node.toString()+", int column="+column+")");
+
+         case 4:
+        	 ((DataNode) node).setArea((Integer) aValue);
+        	 break;
+         
+         default:
+             throw new RuntimeException(
+                 	"Incorrect column in setValueAt(Object node="+node.toString()+", int column="+column+")");
+
+             
+         }
     }
  
 }
