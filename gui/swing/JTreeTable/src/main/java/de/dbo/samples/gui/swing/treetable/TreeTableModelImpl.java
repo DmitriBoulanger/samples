@@ -7,10 +7,10 @@ import java.util.Date;
  
 public class TreeTableModelImpl extends TreeTableModelAbstraction {
     // Spalten Name.
-    static protected String[] columnNames = { "Knotentext", "String", "Datum", "Integer" };
+    static protected String[] columnNames = { "Knotentext", "String",  "UUUID", "Datum", "Integer" };
  
     // Spalten Typen.
-    static protected Class<?>[] columnTypes = { TreeTableModel.class, String.class, Date.class, Integer.class };
+    static protected Class<?>[] columnTypes = { TreeTableModel.class, String.class,  String.class, Date.class, Integer.class };
  
     public TreeTableModelImpl(DataNode rootNode) {
         super(rootNode);
@@ -31,16 +31,17 @@ public class TreeTableModelImpl extends TreeTableModelAbstraction {
         return columnNames.length;
     }
  
- 
+    @Override
     public String getColumnName(int column) {
         return columnNames[column];
     }
  
- 
+    @Override
     public Class<?> getColumnClass(int column) {
         return columnTypes[column];
     }
  
+    @Override
     public Object getValueAt(Object node, int column) {
         switch (column) {
         case 0:
@@ -48,8 +49,10 @@ public class TreeTableModelImpl extends TreeTableModelAbstraction {
         case 1:
             return ((DataNode) node).getCapital();
         case 2:
-            return ((DataNode) node).getDeclared();
+            return ((DataNode) node).getUUID();
         case 3:
+            return ((DataNode) node).getDeclared();
+        case 4:
             return ((DataNode) node).getArea();
         default:
             break;
@@ -57,10 +60,12 @@ public class TreeTableModelImpl extends TreeTableModelAbstraction {
         return null;
     }
  
+    @Override
     public boolean isCellEditable(Object node, int column) {
         return true; // Important to activate TreeExpandListener
     }
  
+    @Override
     public void setValueAt(Object aValue, Object node, int column) {
     }
  

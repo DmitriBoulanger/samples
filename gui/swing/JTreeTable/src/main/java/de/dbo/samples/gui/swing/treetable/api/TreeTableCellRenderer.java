@@ -1,10 +1,9 @@
-package de.dbo.samples.gui.swing.treetable;
+package de.dbo.samples.gui.swing.treetable.api;
  
-import de.dbo.samples.gui.swing.treetable.api.TreeTable;
-
 import java.awt.Component;
 import java.awt.Graphics;
  
+
 
 import javax.swing.JTable;
 import javax.swing.JTree;

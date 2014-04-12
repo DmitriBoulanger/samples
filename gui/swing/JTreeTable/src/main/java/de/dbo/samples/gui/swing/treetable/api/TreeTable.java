@@ -1,9 +1,8 @@
 package de.dbo.samples.gui.swing.treetable.api;
  
-import de.dbo.samples.gui.swing.treetable.TreeTableCellRenderer;
-
 import java.awt.Dimension;
  
+
 
 
 

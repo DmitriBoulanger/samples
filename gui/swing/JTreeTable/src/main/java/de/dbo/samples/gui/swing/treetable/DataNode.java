@@ -3,6 +3,7 @@ package de.dbo.samples.gui.swing.treetable;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
  
 public class DataNode {
  
@@ -10,6 +11,7 @@ public class DataNode {
     final private String capital;
     final private Date declared;
     final private Integer area;
+    final private String uuid = UUID.randomUUID().toString().replaceAll("-", "");
     final private List<DataNode> children;
  
     public DataNode(String name, String capital, Date declared, Integer area, List<DataNode> children) {
@@ -30,6 +32,10 @@ public class DataNode {
  
     public String getCapital() {
         return capital;
+    }
+    
+    public String getUUID() {
+        return uuid;
     }
  
     public Date getDeclared() {
