@@ -1,4 +1,4 @@
-package de.dbo.samples.gui.swing.treetable;
+package de.dbo.samples.gui.swing.treetable.api;
  
 import java.awt.Component;
 import java.awt.event.MouseEvent;
