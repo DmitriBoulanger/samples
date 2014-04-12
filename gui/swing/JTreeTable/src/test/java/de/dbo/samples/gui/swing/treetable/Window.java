@@ -18,7 +18,7 @@ public class Window extends JFrame {
         super("Tree Table Sample");
              
         final DataNode structureRoot = DataStructure.instance();
-        final TreeTableModel treeTableModel = new TreeTableModelImpl(structureRoot);
+        final TreeTableModel treeTableModel = new DataStructureTreeTableModel(structureRoot);
         final TreeTable treeTable = new TreeTable(treeTableModel);
         
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
