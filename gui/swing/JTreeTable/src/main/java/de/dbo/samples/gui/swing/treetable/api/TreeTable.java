@@ -16,7 +16,7 @@ public class TreeTable extends JTable {
 	
 	private final TreeTableCellRenderer tree;
      
-    public TreeTable(TreeTableModelAbstraction treeTableModel) {
+    public TreeTable(TreeTableModel treeTableModel) {
         super();
  
         // JTree erstellen.

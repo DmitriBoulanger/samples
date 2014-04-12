@@ -1,14 +1,11 @@
 package de.dbo.samples.gui.swing.treetable;
  
 import de.dbo.samples.gui.swing.treetable.api.TreeTable;
-import de.dbo.samples.gui.swing.treetable.api.TreeTableModelAbstraction;
+import de.dbo.samples.gui.swing.treetable.api.TreeTableModel;
 
 import java.awt.Container;
 import java.awt.GridLayout;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
- 
+
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
@@ -21,7 +18,7 @@ public class Window extends JFrame {
         super("Tree Table Sample");
              
         final DataNode structureRoot = DataStructure.instance();
-        final TreeTableModelAbstraction treeTableModel = new TreeTableModelImpl(structureRoot);
+        final TreeTableModel treeTableModel = new TreeTableModelImpl(structureRoot);
         final TreeTable treeTable = new TreeTable(treeTableModel);
         
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -34,11 +31,10 @@ public class Window extends JFrame {
         this.setVisible(true);
     }
  
-   
- 
     public static void main(final String[] args) {
-        Runnable gui = new Runnable() {
+        final Runnable gui = new Runnable() {
  
+        	@Override
             public void run() {
                 try {
                     UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -48,6 +44,7 @@ public class Window extends JFrame {
                 new Window().setVisible(true);
             }
         };
+        
         SwingUtilities.invokeLater(gui);
     }
 }
