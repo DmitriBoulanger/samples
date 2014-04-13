@@ -40,14 +40,14 @@ public class Window extends JFrame {
         treeTableModel = new DataStructureTreeTableModel( DataStructure.instance());
         treeTable = new TreeTable(treeTableModel);
         jScrollPane = new JScrollPane(treeTable);
-        treeTable.setBackground(background);
         
+
         treeTable.setBasicUI(background,selection, Color.BLACK,font);
         treeTable.setColumnWidthNonresizable(2, 300);
         treeTable.setColumnWidthNonresizable(3, 150);
        
         
-        jScrollPane.getViewport().setBackground(background);
+//        jScrollPane.getViewport().setBackground(background);
         
         final GridBagLayout gridBagLayout = new GridBagLayout();
         final GridBagConstraints gbc = new GridBagConstraints();

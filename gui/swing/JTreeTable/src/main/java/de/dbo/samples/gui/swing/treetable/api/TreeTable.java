@@ -68,23 +68,25 @@ public class TreeTable extends JTable {
     	tableColumn.setMaxWidth(width);
     	tableColumn.setMinWidth(width);
     	tableColumn.setResizable(false);
-    	
-    	
     }
     
     public void setBasicUI(Color background, Color selection,  Color foreground, Font font) {
     	 setFont(font);
     	 setBackground(background);
+    	 setForeground(foreground);
     	 setSelectionBackground(selection);
          setSelectionForeground(foreground);
+
     	 
-         final DefaultTreeCellRenderer renderer = (DefaultTreeCellRenderer) tree.getCellRenderer();
-    	renderer.setBackground(background);
-    	renderer.setForeground(background);
-        renderer.setTextSelectionColor(foreground);
-        renderer.setTextNonSelectionColor(foreground);
-        renderer.setBackgroundSelectionColor(background);
+        final DefaultTreeCellRenderer renderer = (DefaultTreeCellRenderer) tree.getCellRenderer();
         renderer.setFont(font);
+    	renderer.setBackground(background);
+    	renderer.setForeground(foreground);
+    	renderer.setTextSelectionColor(foreground);
+    	renderer.setTextNonSelectionColor(foreground);
+        renderer.setBackgroundSelectionColor(selection);
+       
+       
     }
     
    
