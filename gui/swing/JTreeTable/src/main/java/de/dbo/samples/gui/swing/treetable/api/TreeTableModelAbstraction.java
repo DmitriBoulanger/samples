@@ -4,6 +4,9 @@ import javax.swing.event.EventListenerList;
 import javax.swing.event.TreeModelEvent;
 import javax.swing.event.TreeModelListener;
 import javax.swing.tree.TreePath;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
  
 /**
  * Default or basic tree-table model
@@ -15,6 +18,7 @@ import javax.swing.tree.TreePath;
  *
  */
 public abstract class TreeTableModelAbstraction implements TreeTableModel {
+	private static final Logger log = LoggerFactory.getLogger(TreeTableModelAbstraction.class);
 	
     protected final Object root;
     protected final EventListenerList listenerList = new EventListenerList();
@@ -60,8 +64,27 @@ public abstract class TreeTableModelAbstraction implements TreeTableModel {
         listenerList.remove(TreeModelListener.class, l);
     }
  
+
+ 
+    protected void fireTreeNodesChanged(Object source, Object[] path, int[] childIndices, Object[] children) {
+        fireTreeNode(CHANGED, source, path, childIndices, children);
+    }
+ 
+    protected void fireTreeNodesInserted(Object source, Object[] path, int[] childIndices, Object[] children) {
+        fireTreeNode(INSERTED, source, path, childIndices, children);
+    }
+ 
+    protected void fireTreeNodesRemoved(Object source, Object[] path, int[] childIndices, Object[] children) {
+        fireTreeNode(REMOVED, source, path, childIndices, children);
+    }
+ 
+    protected void fireTreeStructureChanged(Object source, Object[] path, int[] childIndices, Object[] children) {
+        fireTreeNode(STRUCTURE_CHANGED, source, path, childIndices, children);
+    }
+    
     private final void fireTreeNode(int changeType, Object source, Object[] path, int[] childIndices, Object[] children) {
-        Object[] listeners = listenerList.getListenerList();
+    	log.debug("fireTreeNode(int changeType, Object source, Object[] path, int[] childIndices, Object[] children)");
+    	Object[] listeners = listenerList.getListenerList();
         TreeModelEvent e = new TreeModelEvent(source, path, childIndices, children);
         for (int i = listeners.length - 2; i >= 0; i -= 2) {
             if (listeners[i] == TreeModelListener.class) {
@@ -85,22 +108,6 @@ public abstract class TreeTableModelAbstraction implements TreeTableModel {
  
             }
         }
-    }
- 
-    protected void fireTreeNodesChanged(Object source, Object[] path, int[] childIndices, Object[] children) {
-        fireTreeNode(CHANGED, source, path, childIndices, children);
-    }
- 
-    protected void fireTreeNodesInserted(Object source, Object[] path, int[] childIndices, Object[] children) {
-        fireTreeNode(INSERTED, source, path, childIndices, children);
-    }
- 
-    protected void fireTreeNodesRemoved(Object source, Object[] path, int[] childIndices, Object[] children) {
-        fireTreeNode(REMOVED, source, path, childIndices, children);
-    }
- 
-    protected void fireTreeStructureChanged(Object source, Object[] path, int[] childIndices, Object[] children) {
-        fireTreeNode(STRUCTURE_CHANGED, source, path, childIndices, children);
     }
  
 }

@@ -1,8 +1,12 @@
 package de.dbo.samples.gui.swing.treetable.api;
  
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 
 import javax.swing.JTable;
+import javax.swing.table.TableColumn;
+import javax.swing.tree.DefaultTreeCellRenderer;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,7 +26,7 @@ public class TreeTable extends JTable {
 	private static final Logger log = LoggerFactory.getLogger(TreeTable.class);
 	
 	private final TreeTableCellRenderer tree;
-     
+	
 	/**
 	 * @param treeTableModel tree-table data-model 
 	 */
@@ -50,8 +54,39 @@ public class TreeTable extends JTable {
         setShowGrid(false);
  
         // No margins between cells
-        setIntercellSpacing(new Dimension(0, 0));
- 
+        setIntercellSpacing(new Dimension(3, 1));
+        
+        setFocusable(false);
+        
         log.debug("created");
     }
+    
+    
+    
+    public final void setColumnWidthNonresizable(int column, int width) {
+    	final TableColumn tableColumn =  getColumnModel().getColumn(column);
+    	tableColumn.setMaxWidth(width);
+    	tableColumn.setMinWidth(width);
+    	tableColumn.setResizable(false);
+    	
+    	
+    }
+    
+    public void setBasicUI(Color background, Color selection,  Color foreground, Font font) {
+    	 setFont(font);
+    	 setBackground(background);
+    	 setSelectionBackground(selection);
+         setSelectionForeground(foreground);
+    	 
+         final DefaultTreeCellRenderer renderer = (DefaultTreeCellRenderer) tree.getCellRenderer();
+    	renderer.setBackground(background);
+    	renderer.setForeground(background);
+        renderer.setTextSelectionColor(foreground);
+        renderer.setTextNonSelectionColor(foreground);
+        renderer.setBackgroundSelectionColor(background);
+        renderer.setFont(font);
+    }
+    
+   
+   
 }

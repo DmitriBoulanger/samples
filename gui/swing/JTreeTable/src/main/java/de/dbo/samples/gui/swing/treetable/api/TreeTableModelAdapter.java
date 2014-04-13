@@ -13,7 +13,6 @@ public class TreeTableModelAdapter extends AbstractTableModel {
 	private static final long serialVersionUID = 7118812279021590634L;
 	private static final Logger log = LoggerFactory.getLogger(TreeTableModelAdapter.class);
 	
-	
 	final JTree tree;
     final TreeTableModel treeTableModel;
  
@@ -24,11 +23,13 @@ public class TreeTableModelAdapter extends AbstractTableModel {
         tree.addTreeExpansionListener(new TreeExpansionListener() {
         	@Override
             public void treeExpanded(TreeExpansionEvent event) {
+        		log.debug("treeExpanded(TreeExpansionEvent event"+event.toString()+") ...");
                 fireTableDataChanged();
             }
         	
         	@Override
             public void treeCollapsed(TreeExpansionEvent event) {
+        		log.debug("fireTableDataChanged() event"+event.toString()+") ...");
                 fireTableDataChanged();
             }
         });

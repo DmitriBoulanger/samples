@@ -3,8 +3,6 @@ package de.dbo.samples.gui.swing.treetable;
 import de.dbo.samples.gui.swing.treetable.api.TreeTableModel;
 import de.dbo.samples.gui.swing.treetable.api.TreeTableModelAbstraction;
 
-import java.util.Date;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
  
@@ -13,19 +11,22 @@ public final class DataStructureTreeTableModel extends TreeTableModelAbstraction
 	
     // Names of the columns
     private static  String[] columnNames = { 
-    	"Ex-Tag path", "Component",  "UUID", "Datum", "Integer" };
+    	"Path", "Component",  "UUID", "Timestamp", "Object" };
  
     // Types of the columns
     private static Class<?>[] columnTypes = { 
-    	TreeTableModel.class, String.class,  String.class,  Date.class, Integer.class };
+    	TreeTableModel.class, String.class,  String.class,  Long.class, Object.class };
  
     /**
      * 
-     * @param rootNode complete data-structure
+     * @param root complete data-structure 
      */
-    public DataStructureTreeTableModel(Object rootNode) {
-        super(rootNode);
+    public DataStructureTreeTableModel(Object root) {
+        super(root);
     }
+    
+    
+   
  
     @Override
     public Object getChild(Object parent, int index) {
@@ -62,9 +63,9 @@ public final class DataStructureTreeTableModel extends TreeTableModelAbstraction
         case 2:
             return ((DataNode) node).getUUID();
         case 3:
-            return ((DataNode) node).getDeclared();
+            return ((DataNode) node).getTimestamp();
         case 4:
-            return ((DataNode) node).getArea();
+            return ((DataNode) node).getObject();
             
         default:
             throw new RuntimeException(
@@ -75,31 +76,50 @@ public final class DataStructureTreeTableModel extends TreeTableModelAbstraction
  
     @Override
     public boolean isCellEditable(Object node, int column) {
-        return true; // Important to activate TreeExpandListener
+    	 switch (column) {
+         case 0:
+        	 return true; // Important to activate TreeExpandListener
+         case 1:
+        	 return false;
+         case 2:
+        	 return true;
+         case 3:
+        	 return true;	
+         case 4:
+        	 return true;
+         
+         default:
+             throw new RuntimeException(
+                 	"Incorrect column in isCellEditable(Object node="+node.toString()+", int column="+column+")");
+         }
     }
  
     @Override
-    public void setValueAt(Object aValue, Object node, int column) {
+    public void setValueAt(Object value, Object node, int column) {
+    	 log.debug("setValueAt(Object value="+value+", Object node="+node.toString()+", int column="+column+") ...");
+    	  
     	 switch (column) {
          case 0:
-        	 break;
          case 1:
-             break;
+        	 log.debug("setValueAt(Object value="+value+", Object node="+node.toString()+", int column="+column+") rejected");
+        	 break;
+         
          case 2:
-             ((DataNode) node).setUUID((String)aValue);
+             ((DataNode) node).setUUID((String)value);
              break;
+             
          case 3:
-        	 throw new RuntimeException(
-                 	"Cannot do setValueAt(Object node="+node.toString()+", int column="+column+")");
-
+        	 ((DataNode) node).setTimestamp( (Long) value);
+        	
          case 4:
-        	 ((DataNode) node).setArea((Integer) aValue);
+        	 ((DataNode) node).setObject(value);
         	 break;
          
          default:
              throw new RuntimeException(
-                 	"Incorrect column in setValueAt(Object node="+node.toString()+", int column="+column+")");
+                 	"Incorrect column in setValueAt(Object value="+value+", Object node="+node.toString()+", int column="+column+")");
 
+       
              
          }
     }

@@ -7,9 +7,14 @@ import javax.swing.JTable;
 import javax.swing.JTree;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.tree.TreeModel;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
  
 public class TreeTableCellRenderer extends JTree implements TableCellRenderer {
 	private static final long serialVersionUID = 7501441646955414246L;
+	private static final Logger log = LoggerFactory.getLogger(TreeTableCellRenderer.class);
+
 	
     private final TreeTable treeTable;
     
@@ -24,6 +29,7 @@ public class TreeTableCellRenderer extends JTree implements TableCellRenderer {
         // Muss explizit aufgerufen werden, weil treeTable noch
         // null ist, wenn super(model) setRowHeight aufruft!
         setRowHeight(getRowHeight());
+        setRootVisible(false);
     }
  
     /**
@@ -62,12 +68,17 @@ public class TreeTableCellRenderer extends JTree implements TableCellRenderer {
      */
     @Override
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-        if (isSelected)
+        log.debug("getTableCellRendererComponent(JTable table, Object value="+value+", boolean isSelected="+isSelected+", boolean hasFocus, int row="+ row +", int column="+column+")");
+    	if (isSelected) {
             setBackground(table.getSelectionBackground());
-        else
+        }
+        else {
             setBackground(table.getBackground());
+        }
  
         visibleRow = row;
         return this;
     }
+    
+   
 }
