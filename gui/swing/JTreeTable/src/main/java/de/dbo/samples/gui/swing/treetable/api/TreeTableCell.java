@@ -21,21 +21,20 @@ import org.slf4j.LoggerFactory;
  *           only incidentally for computers to execute 
  *
  */
-public class TreeTableCellRenderer extends JTree implements TableCellRenderer {
+public class TreeTableCell extends JTree implements TableCellRenderer {
 	private static final long serialVersionUID = 7501441646955414246L;
-	private static final Logger log = LoggerFactory.getLogger(TreeTableCellRenderer.class);
+	private static final Logger log = LoggerFactory.getLogger(TreeTableCell.class);
 
     private final TreeTable treeTable;
     private final TreeCellRenderer treeCellRenderer;
     
-    public TreeCellRenderer getTreeCellRenderer() {
-		return treeCellRenderer;
-	}
-
 	/** Die letzte Zeile, die gerendert wurde. */
     protected int visibleRow;
-     
-    public TreeTableCellRenderer(TreeTable treeTable, TreeModel model) {
+    
+    private final int verticalMargin = 1;
+    
+   
+	public TreeTableCell(TreeTable treeTable, TreeModel model) {
         super(model);
         
         this.treeTable = treeTable;
@@ -47,6 +46,13 @@ public class TreeTableCellRenderer extends JTree implements TableCellRenderer {
         
         setCellRenderer(treeCellRenderer);
     }
+	
+	 
+    public TreeCellRenderer getTreeCellRenderer() {
+		return treeCellRenderer;
+	}
+    
+    
  
     /**
      * Tree und Table muessen die gleiche Hoehe haben.
@@ -54,7 +60,7 @@ public class TreeTableCellRenderer extends JTree implements TableCellRenderer {
     @Override
     public void setRowHeight(int rowHeight) {
         if (rowHeight > 0) {
-            super.setRowHeight(rowHeight + 1);
+            super.setRowHeight(rowHeight + verticalMargin);
             if (treeTable != null && treeTable.getRowHeight() != rowHeight) {
                 treeTable.setRowHeight(getRowHeight());
             }

@@ -25,16 +25,18 @@ public class TreeTable extends JTable {
 	private static final long serialVersionUID = -5203756529846423026L;
 	private static final Logger log = LoggerFactory.getLogger(TreeTable.class);
 	
-	private final TreeTableCellRenderer tree;
+	private final TreeTableCell tree;
 	
 	/**
 	 * @param treeTableModel tree-table data-model 
 	 */
     public TreeTable(TreeTableModel treeTableModel) {
         super();
+        
+        
  
         // JTree-extension
-        tree = new TreeTableCellRenderer(this, treeTableModel);
+        tree = new TreeTableCell(this, treeTableModel);
          
         // Model
         super.setModel(new TreeTableModelAdapter(treeTableModel, tree));
@@ -59,6 +61,8 @@ public class TreeTable extends JTable {
         // No margins between cells
         setIntercellSpacing(new Dimension(0, 0)); 
         
+        getTableHeader().setReorderingAllowed(false);
+        
         log.debug("created");
     }
     
@@ -77,7 +81,8 @@ public class TreeTable extends JTable {
     	tableColumn.setResizable(false);
     }
     
-    public void setBasicUI(Color background, Color selection,  Color foreground, Font font) {
+    public void setBasicUI(Color background, Color selection,  Color foreground, Font font
+    		, int verticalMargin) {
     	 // JTable
     	 setFont(font);
     	 setBackground(background);
@@ -96,6 +101,7 @@ public class TreeTable extends JTable {
         
         // Node in the tree
         tree.getTreeCellRenderer().setBackgroundselection(selection);
+         
         
     }
     
