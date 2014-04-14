@@ -6,29 +6,44 @@ import java.awt.Component;
 import javax.swing.Icon;
 import javax.swing.JTree;
 import javax.swing.UIManager;
+import javax.swing.plaf.basic.BasicTreeUI;
 import javax.swing.tree.DefaultTreeCellRenderer;
 
+/**
+ * Rendering of the tree-node cell.
+ * The class determines tree-icons as well
+ * 
+ * @author Dmitri Boulanger, Hombach
+ *
+ * D. Knuth: Programs are meant to be read by humans and 
+ *           only incidentally for computers to execute 
+ *
+ */
 public class TreeCellRenderer extends DefaultTreeCellRenderer {
 	private static final long serialVersionUID = -8468286287964002501L;
 	
 	private Icon nodeIcon = UIManager.getIcon("FileView.directoryIcon");
-    private Icon leafIcon = UIManager.getIcon("Tree.leafIcon");
-    private Color backgroundselection;
+    private Icon leafIcon = null;
     
-    public TreeCellRenderer() {
-    	 
+    private Color selectionBackground;
+    
+    public TreeCellRenderer(JTree tree) {
+        final BasicTreeUI ui = (BasicTreeUI) tree.getUI();
+        ui.setCollapsedIcon(null);
+        ui.setExpandedIcon(null);
+//        ui.setRightChildIndent(3);
     }
     
-    
-    public Color getBackgroundselection() {
-		return backgroundselection;
-	}
-
+    /**
+     * sets the selection background.
+     * It has to be the same as in the table 
+     * 
+     * @param backgroundSelection selection background in the table
+     */
 	public void setBackgroundselection(Color backgroundselection) {
-		this.backgroundselection = backgroundselection;
+		this.selectionBackground = backgroundselection;
 	}
-
-
+	
 
 	@Override
     public Component getTreeCellRendererComponent(final JTree tree,
@@ -46,7 +61,7 @@ public class TreeCellRenderer extends DefaultTreeCellRenderer {
         
         if (selected) {
         	this.setOpaque(false);
-        	setBackgroundSelectionColor(backgroundselection);
+        	setBackgroundSelectionColor(selectionBackground);
         } else {
         	this.setOpaque(true);
         }

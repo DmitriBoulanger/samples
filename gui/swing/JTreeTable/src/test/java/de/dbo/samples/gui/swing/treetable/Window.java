@@ -40,15 +40,12 @@ public class Window extends JFrame {
         treeTable = new TreeTable(treeTableModel);
         jScrollPane = new JScrollPane(treeTable);
         
-
-     
-        treeTable.setIntercellSpacing(new Dimension(2, 1)); // Margins between cells
-        treeTable.setBasicUI(background,selection, Color.BLACK,font);
-        treeTable.setColumnWidthNonresizable(2, 300);
-        treeTable.setColumnWidthNonresizable(3, 150);
-        treeTable.setRootVisible(false);
        
-        
+        treeTable.setRootVisible(false);
+        treeTable.setBasicUI(background,selection, Color.BLACK,font);
+        treeTable.setColumnWidthNonresizable(1, 120);
+        treeTable.setColumnWidthNonresizable(3, 280);
+       
         jScrollPane.getViewport().setBackground(background);
         
         final GridBagLayout gridBagLayout = new GridBagLayout();

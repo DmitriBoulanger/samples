@@ -52,8 +52,12 @@ public class TreeTable extends JTable {
          
         // No grid show
         setShowGrid(false);
- 
+        
+        // No focus show
         setFocusable(false);
+        
+        // No margins between cells
+        setIntercellSpacing(new Dimension(0, 0)); 
         
         log.debug("created");
     }
@@ -90,11 +94,9 @@ public class TreeTable extends JTable {
     	renderer.setTextNonSelectionColor(foreground);
         renderer.setBackgroundSelectionColor(selection);
         
-        // Node
+        // Node in the tree
         tree.getTreeCellRenderer().setBackgroundselection(selection);
         
-        
-       
     }
     
    

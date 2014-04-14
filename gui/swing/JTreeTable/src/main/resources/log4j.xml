@@ -42,15 +42,16 @@
 
 	<!-- application-triggered messages to console -->
 	<logger name="de.dbo">
-		<level value="debug" />
+		<level value="info" />
 		<appender-ref ref="CONSOLE" />
 	</logger>
 	
-	<!-- all messages to the main file and errors to the separate err-file -->
+	<!-- all messages to the main file and errors to the separate err-file 
 	<root>
 		<level value="debug" />
 		<appender-ref ref="DAILY_ROLLING_FILE_ERRORS" />
 		<appender-ref ref="DAILY_ROLLING_FILE" /> 
 	</root>
+	-->
 
 </log4j:configuration>

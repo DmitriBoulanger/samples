@@ -11,11 +11,11 @@ public final class DataStructureTreeTableModel extends TreeTableModelAbstraction
 	
     // Names of the columns
     private static  String[] columnNames = { 
-    	"Path", "Component",  "UUID", "Timestamp", "Object" };
+    	"Componet", "Timestamp", "Message", "UUID",  "Object" };
  
     // Types of the columns
     private static Class<?>[] columnTypes = { 
-    	TreeTableModel.class, String.class,  String.class,  Long.class, Object.class };
+    	TreeTableModel.class, Long.class,  String.class,  String.class,  Object.class };
  
     /**
      * 
@@ -59,11 +59,11 @@ public final class DataStructureTreeTableModel extends TreeTableModelAbstraction
         case 0:
             return ((DataNode) node).getName();
         case 1:
-            return ((DataNode) node).getCapital();
-        case 2:
-            return ((DataNode) node).getUUID();
-        case 3:
             return ((DataNode) node).getTimestamp();
+        case 2:
+            return ((DataNode) node).getCapital();
+        case 3:
+            return ((DataNode) node).getUUID();
         case 4:
             return ((DataNode) node).getObject();
             

@@ -39,7 +39,7 @@ public class TreeTableCellRenderer extends JTree implements TableCellRenderer {
         super(model);
         
         this.treeTable = treeTable;
-        this.treeCellRenderer = new TreeCellRenderer();
+        this.treeCellRenderer = new TreeCellRenderer(this);
          
         // Setzen der Zeilenhoehe fuer die JTable
         // Muss explizit aufgerufen werden, weil treeTable noch null ist, wenn super(model) setRowHeight aufruft!
@@ -54,7 +54,7 @@ public class TreeTableCellRenderer extends JTree implements TableCellRenderer {
     @Override
     public void setRowHeight(int rowHeight) {
         if (rowHeight > 0) {
-            super.setRowHeight(rowHeight);
+            super.setRowHeight(rowHeight + 1);
             if (treeTable != null && treeTable.getRowHeight() != rowHeight) {
                 treeTable.setRowHeight(getRowHeight());
             }
