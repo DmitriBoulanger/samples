@@ -53,8 +53,6 @@ public class TreeTable extends JTable {
         // No grid show
         setShowGrid(false);
  
-        
-        
         setFocusable(false);
         
         log.debug("created");
@@ -91,6 +89,11 @@ public class TreeTable extends JTable {
     	renderer.setTextSelectionColor(foreground);
     	renderer.setTextNonSelectionColor(foreground);
         renderer.setBackgroundSelectionColor(selection);
+        
+        // Node
+        tree.getTreeCellRenderer().setBackgroundselection(selection);
+        
+        
        
     }
     

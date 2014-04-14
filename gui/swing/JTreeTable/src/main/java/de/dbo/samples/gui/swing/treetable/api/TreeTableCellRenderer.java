@@ -26,20 +26,26 @@ public class TreeTableCellRenderer extends JTree implements TableCellRenderer {
 	private static final Logger log = LoggerFactory.getLogger(TreeTableCellRenderer.class);
 
     private final TreeTable treeTable;
+    private final TreeCellRenderer treeCellRenderer;
     
-    /** Die letzte Zeile, die gerendert wurde. */
+    public TreeCellRenderer getTreeCellRenderer() {
+		return treeCellRenderer;
+	}
+
+	/** Die letzte Zeile, die gerendert wurde. */
     protected int visibleRow;
      
     public TreeTableCellRenderer(TreeTable treeTable, TreeModel model) {
         super(model);
         
         this.treeTable = treeTable;
+        this.treeCellRenderer = new TreeCellRenderer();
          
         // Setzen der Zeilenhoehe fuer die JTable
         // Muss explizit aufgerufen werden, weil treeTable noch null ist, wenn super(model) setRowHeight aufruft!
         setRowHeight(getRowHeight());
         
-        setCellRenderer( new TreeCellRenderer());
+        setCellRenderer(treeCellRenderer);
     }
  
     /**
