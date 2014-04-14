@@ -53,15 +53,20 @@ public class TreeTable extends JTable {
         // No grid show
         setShowGrid(false);
  
-        // No margins between cells
-        setIntercellSpacing(new Dimension(3, 1));
+        
         
         setFocusable(false);
         
         log.debug("created");
     }
     
+    //
+    // Customization
+    //
     
+    public void setRootVisible(boolean visible) {
+    	tree.setRootVisible(visible);
+    }
     
     public final void setColumnWidthNonresizable(int column, int width) {
     	final TableColumn tableColumn =  getColumnModel().getColumn(column);
@@ -71,13 +76,14 @@ public class TreeTable extends JTable {
     }
     
     public void setBasicUI(Color background, Color selection,  Color foreground, Font font) {
+    	 // JTable
     	 setFont(font);
     	 setBackground(background);
     	 setForeground(foreground);
     	 setSelectionBackground(selection);
          setSelectionForeground(foreground);
 
-    	 
+    	// JTree
         final DefaultTreeCellRenderer renderer = (DefaultTreeCellRenderer) tree.getCellRenderer();
         renderer.setFont(font);
     	renderer.setBackground(background);
@@ -85,7 +91,6 @@ public class TreeTable extends JTable {
     	renderer.setTextSelectionColor(foreground);
     	renderer.setTextNonSelectionColor(foreground);
         renderer.setBackgroundSelectionColor(selection);
-       
        
     }
     

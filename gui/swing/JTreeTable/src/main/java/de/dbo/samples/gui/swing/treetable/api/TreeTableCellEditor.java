@@ -30,14 +30,16 @@ public class TreeTableCellEditor extends AbstractCellEditor implements TableCell
     	return tree;
     }
  
+
     @Override
-    public boolean isCellEditable(EventObject e) {
+    public boolean isCellEditable(final EventObject e) {
         if (e instanceof MouseEvent) {
             int colunm1 = 0;
             MouseEvent me = (MouseEvent) e;
             int doubleClick = 2;
-            MouseEvent newME = new MouseEvent(tree, me.getID(), me.getWhen(), me.getModifiers(), me.getX() - table.getCellRect(0, colunm1, true).x, me.getY(), doubleClick, me.isPopupTrigger());
-            log.debug("isCellEditable(EventObject e="+e+"): dispatching ...");
+            final MouseEvent newME = 
+            		new MouseEvent(tree, me.getID(), me.getWhen(), me.getModifiers(), me.getX() - table.getCellRect(0, colunm1, true).x, me.getY(), doubleClick, me.isPopupTrigger());
+            log.debug("isCellEditable(EventObject e=" + e +"): dispatching ...");
             tree.dispatchEvent(newME);
         } else {
         	 log.debug("isCellEditable(EventObject e="+e+"): ignoring ...");

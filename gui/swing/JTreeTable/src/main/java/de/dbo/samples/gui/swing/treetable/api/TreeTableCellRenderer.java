@@ -11,11 +11,20 @@ import javax.swing.tree.TreeModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
  
+/**
+ * JTree-extension  as a table-cell renderer.
+ * This renderer comes as a first column in the table
+ * 
+ * @author Dmitri Boulanger, Hombach
+ *
+ * D. Knuth: Programs are meant to be read by humans and 
+ *           only incidentally for computers to execute 
+ *
+ */
 public class TreeTableCellRenderer extends JTree implements TableCellRenderer {
 	private static final long serialVersionUID = 7501441646955414246L;
 	private static final Logger log = LoggerFactory.getLogger(TreeTableCellRenderer.class);
 
-	
     private final TreeTable treeTable;
     
     /** Die letzte Zeile, die gerendert wurde. */
@@ -23,13 +32,14 @@ public class TreeTableCellRenderer extends JTree implements TableCellRenderer {
      
     public TreeTableCellRenderer(TreeTable treeTable, TreeModel model) {
         super(model);
+        
         this.treeTable = treeTable;
          
         // Setzen der Zeilenhoehe fuer die JTable
-        // Muss explizit aufgerufen werden, weil treeTable noch
-        // null ist, wenn super(model) setRowHeight aufruft!
+        // Muss explizit aufgerufen werden, weil treeTable noch null ist, wenn super(model) setRowHeight aufruft!
         setRowHeight(getRowHeight());
-        setRootVisible(false);
+        
+        setCellRenderer( new TreeCellRenderer());
     }
  
     /**
@@ -59,7 +69,7 @@ public class TreeTableCellRenderer extends JTree implements TableCellRenderer {
     @Override
     public void paint(Graphics g) {
         g.translate(0, -visibleRow * getRowHeight());
-         
+        
         super.paint(g);
     }
      

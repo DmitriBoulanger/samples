@@ -14,7 +14,6 @@ import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
-import javax.swing.table.TableColumn;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -42,12 +41,15 @@ public class Window extends JFrame {
         jScrollPane = new JScrollPane(treeTable);
         
 
+     
+        treeTable.setIntercellSpacing(new Dimension(2, 1)); // Margins between cells
         treeTable.setBasicUI(background,selection, Color.BLACK,font);
         treeTable.setColumnWidthNonresizable(2, 300);
         treeTable.setColumnWidthNonresizable(3, 150);
+        treeTable.setRootVisible(false);
        
         
-//        jScrollPane.getViewport().setBackground(background);
+        jScrollPane.getViewport().setBackground(background);
         
         final GridBagLayout gridBagLayout = new GridBagLayout();
         final GridBagConstraints gbc = new GridBagConstraints();
