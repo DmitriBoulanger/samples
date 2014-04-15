@@ -11,11 +11,11 @@ public final class DataStructureTreeTableModel extends TreeTableModelAbstraction
 	
     // Names of the columns
     private static  String[] columnNames = { 
-    	"Componet", "Timestamp", "Message", "UUID",  "Object" };
+    	"Path", "Timestamp", "UUID" ,"Tag/Component", "Object" };
  
     // Types of the columns
     private static Class<?>[] columnTypes = { 
-    	TreeTableModel.class, Long.class,  String.class,  String.class,  Object.class };
+    	TreeTableModel.class, Long.class,  String.class,  String.class, Object.class };
  
     /**
      * 
@@ -61,9 +61,9 @@ public final class DataStructureTreeTableModel extends TreeTableModelAbstraction
         case 1:
             return ((DataNode) node).getTimestamp();
         case 2:
-            return ((DataNode) node).getCapital();
-        case 3:
             return ((DataNode) node).getUUID();
+        case 3:
+            return ((DataNode) node).getCapital();
         case 4:
             return ((DataNode) node).getObject();
             
@@ -82,7 +82,7 @@ public final class DataStructureTreeTableModel extends TreeTableModelAbstraction
          case 1:
         	 return false;
          case 2:
-        	 return true;
+        	 return false;
          case 3:
         	 return true;	
          case 4:
@@ -103,14 +103,14 @@ public final class DataStructureTreeTableModel extends TreeTableModelAbstraction
          case 1:
         	 log.debug("setValueAt(Object value="+value+", Object node="+node.toString()+", int column="+column+") rejected");
         	 break;
-         
+        	 
          case 2:
+        	 ((DataNode) node).setTimestamp( (Long) value);
+         
+         case 3:
              ((DataNode) node).setUUID((String)value);
              break;
              
-         case 3:
-        	 ((DataNode) node).setTimestamp( (Long) value);
-        	
          case 4:
         	 ((DataNode) node).setObject(value);
         	 break;

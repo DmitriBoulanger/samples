@@ -44,7 +44,7 @@ public class Window extends JFrame {
         treeTable.setRootVisible(false);
         treeTable.setBasicUI(background, selection, Color.BLACK, font, 20 /*vertical margin*/);
         treeTable.setColumnWidthNonresizable(1, 120);
-        treeTable.setColumnWidthNonresizable(3, 280);
+        treeTable.setColumnWidthNonresizable(2, 280);
        
         jScrollPane.getViewport().setBackground(background);
         
