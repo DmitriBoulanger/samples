@@ -1,10 +1,11 @@
 package de.dbo.samples.gui.swing.treetable.records;
 
+import de.dbo.samples.gui.swing.treetable.records.api.Path;
+import de.dbo.samples.gui.swing.treetable.records.api.Record;
+
 import java.util.UUID;
 
-
-
-public class Record implements Comparable<Record> {
+public class RecordImpl implements Record {
 	
 	// /A/B/C/D or anything other as a non-path
 	private final Path path;
@@ -17,54 +18,53 @@ public class Record implements Comparable<Record> {
 	
 	private Integer sequence = null;
 	
-	public Record(final Long timestamp) {
+	public RecordImpl(final Long timestamp) {
 		this((Path) null, timestamp);
 	}
 	
-	public Record(final Path path, final Long timestamp) {
-		this.path = null!=path? path : new Path();
+	public RecordImpl(final Path path, final Long timestamp) {
+		this.path = path;
 		this.timestamp = timestamp;
 		this.uuid = UUID.randomUUID().toString().replaceAll("_", "");
 	}
-	
-	public Record(final String path, final Long timestamp) {
-		this(new Path(path), timestamp);
-	}
 
+	@Override
 	public Path getPath() {
 		return path;
 	}
 	
+
 	public String getUuid() {
 		return uuid;
 	}
 
 	@Override
 	public int compareTo(Record another) {
-		return timestamp.compareTo(another.timestamp);
+		return sequence.compareTo(another.getSequence());
 	}
 	
+	@Override
 	public Long getTimestamp() {
 		return timestamp;
 	}
 
+	@Override
 	public Integer getSequence() {
 		return sequence;
 	}
 
+	@Override
 	public void setSequence(Integer sequence) {
-		if (null!=this.sequence) {
-			return;
-		}
 		this.sequence = sequence;
 	}
 
+	@Override
 	public Object getContents() {
 		return contents;
 	}
 
+	@Override
 	public void setContents(Object contents) {
 		this.contents = contents;
 	}
-
 }

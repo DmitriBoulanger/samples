@@ -1,33 +1,25 @@
 package de.dbo.samples.gui.swing.treetable.records;
 
+import de.dbo.samples.gui.swing.treetable.records.api.Path;
+import de.dbo.samples.gui.swing.treetable.records.api.PathException;
+
 import java.util.List;
 import java.util.ArrayList;
 
-public class Path {
+public class PathImpl implements Path {
 	
-	private static final char PATH_SEPARATOR_CHAR = '/';
-	public static final String PATH_SEPARATOR = String.valueOf(PATH_SEPARATOR_CHAR);
-
 	private List<String> elements = new ArrayList<String>();
 	
-	private final String root;
 	private String canonicalValue;
 	private String parentCanonicalValue;
 	
-	public Path() {
-		this(null);
-	}
-	
 	/**
 	 * @param path
-	 *            e.g /A/B/C with A as a root
+	 *            e.g /A/B/C with A as a root or something as root
 	 */
-	public Path(final String path) {
+	public PathImpl(final String path) {
 		if (!nn(path)) {
-			root = null;
-			canonicalValue = null;
-			parentCanonicalValue = null;
-			return;
+			throw new PathException("Null or empty path is not allowed: " + path);
 		}
 		
 		final String pathTrimmed = path.trim();
@@ -46,52 +38,34 @@ public class Path {
 		} else {
 			canonicalValue = pathTrimmed;
 			parentCanonicalValue = null;
-		}
-		if (0!=elements.size()) {
-			root = elements.get(0);
-		} else {
-			root = null;
+			elements.add(pathTrimmed);
 		}
 	}
 	
-	public void addChild(final String child) {
-		if (!nn(child)) {
-			return;
-		}
-		final String childTrimmed = child.trim();
-		elements.add(childTrimmed);
-		
-		parentCanonicalValue = canonicalValue;
-		canonicalValue = canonicalValue + PATH_SEPARATOR + childTrimmed;
-	}
-	
-	
+	@Override
 	public boolean isChildOf(final Path parent) {
-		return null!=this.root && null!=parent.root
-				&& this.root.equals(parent.root) 
-				&& this.canonicalValue.startsWith(parent.canonicalValue)
+		return null!=this.pathElement(0) && null!=parent.pathElement(0)
+				&& this.pathElement(0).equals(parent.pathElement(0)) 
+				&& this.canonicalValue.startsWith(parent.canonicalValue())
 				&& this.depth() == parent.depth() + 1;
 	}
 	
+	@Override
 	public boolean isParentOf(final Path child) {
-		return null!=root && null!=child.root
-				&& this.root.equals(child.root) 
-				&& child.canonicalValue.startsWith(canonicalValue)
+		return this.pathElement(0).equals(child.pathElement(0)) 
+				&& child.canonicalValue().startsWith(canonicalValue)
 				&& this.depth() == child.depth() - 1;
 	}
 	
-	/**
-	 * the same path is not a sibling
-	 * @param sibling
-	 * @return
-	 */
+	@Override
 	public boolean isSiblingOf(final Path sibling) {
-		return null!=this.parentCanonicalValue && null!=sibling.parentCanonicalValue
-				&& this.parentCanonicalValue.equals(sibling.parentCanonicalValue)
-				&& !this.canonicalValue.equals(sibling.canonicalValue);
+		return null!=this.parentCanonicalValue && null!=sibling.parentCanonicalValue()
+				&& this.parentCanonicalValue.equals(sibling.parentCanonicalValue())
+				&& !this.canonicalValue.equals(sibling.canonicalValue());
 	}
 	
-	public String root(int depth) {
+	@Override
+	public String pathElement(int depth) {
 		if (elements.isEmpty()) {
 			return 0==depth? canonicalValue : null;
 		}
@@ -101,34 +75,29 @@ public class Path {
 		return null;
 	}
 	
-	public boolean rootPath() {
-		return null!=root && 1==depth();
-	}
-	
+	@Override
 	public String canonicalValue() {
 		return canonicalValue;
 	}
 	
+	@Override
 	public String parentCanonicalValue() {
 		return parentCanonicalValue;
 	}
 
 	
+	@Override
 	public final int depth() {
-		if (null!=root)  {
-			return elements.size();
-		} else {
-			return 0;
-		}
+		return elements.size()-1;
 	}
 	
-	public final String print() {
-		final StringBuffer sb = new StringBuffer();
-		sb.append(" Root=" + root);
+	@Override
+	public final StringBuilder print() {
+		final StringBuilder sb = new StringBuilder();
 		sb.append(" Depth=" + depth());
 		sb.append(" Canonical=" + canonicalValue());
 		sb.append(" ParentCanonical=" + parentCanonicalValue());
-		return sb.toString();
+		return sb;
 	}
 
 	private static final boolean nn(final String x) {

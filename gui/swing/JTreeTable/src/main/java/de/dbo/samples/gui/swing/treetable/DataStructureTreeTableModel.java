@@ -11,7 +11,7 @@ public final class DataStructureTreeTableModel extends TreeTableModelAbstraction
 	
     // Names of the columns
     private static  String[] columnNames = { 
-    	"Path", "Timestamp", "UUID" ,"Tag/Component", "Object" };
+    	"PathImpl", "Timestamp", "UUID" ,"Tag/Component", "Object" };
  
     // Types of the columns
     private static Class<?>[] columnTypes = { 
