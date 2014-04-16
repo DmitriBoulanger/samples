@@ -12,6 +12,14 @@ import java.util.Collections;
 import java.util.List;
 
 /**
+ * Generator of the record-tree.
+ * It takes input record-list and transforms this list into the record-tree
+ * using the paths available in the records.
+ * 
+ * Input record-list is considered as ordered list. Records are ordered
+ * using their sequence attributes. The output record-tree preserves the
+ * order from the input record-list.
+ * 
  * 
  * @author Dmitri Boulanger, Hombach
  *
@@ -21,20 +29,30 @@ import java.util.List;
  */
 public class RecordTreeGenerator implements Comparable<RecordTreeGenerator> {
 	
-	final List<RecordTreeGenerator> childRecordGroups = new ArrayList<RecordTreeGenerator>();
-
-	/*
-	 * node to appear in a tree
+	/**
+	 * root-node to appear in a tree.
+	 * After processing the input records (in the constructor),
+	 * it contains valid complete tree.
 	 */
 	final Node node;
 	
+	/**
+	 * representation of children nodes.
+	 * This list is only used while building the tree
+	 */
+	final List<RecordTreeGenerator> childRecordGroups = new ArrayList<RecordTreeGenerator>();
+
 	final int depth;
+	
+	/**
+	 * sorted input record-list
+	 */
 	final List<Record> records = new ArrayList<Record>();
 	
 	/**
-	 * Root of the tree-structure.
 	 * 
-	 * @param records all data-items of the the tree-structure
+	 * @param records
+	 * 			record-list to be converted into the record-tree
 	 */
 	public RecordTreeGenerator(final List<Record> records) {
 		this.depth = 0;
@@ -46,15 +64,12 @@ public class RecordTreeGenerator implements Comparable<RecordTreeGenerator> {
 		Collections.sort(this.records);
 		process(this, 0L);
 		sort(this.node);
-	}
-	
-	public Node tree() {
-		clear(this);
-		return node;
+		merge(this.node);
 	}
 	
 	/**
-	 * internal (recursive) constructor 
+	 * internal (recursive) constructor.
+	 * It is only used while building the tree
 	 * @param depth
 	 * @param node
 	 */
@@ -63,29 +78,35 @@ public class RecordTreeGenerator implements Comparable<RecordTreeGenerator> {
 		this.node = node;
 	}
 	
-	private static final void clear(RecordTreeGenerator recordList) {
-		recordList.childRecordGroups.clear();
-		recordList.records.clear();
-	}
-	
 	@Override
 	public int compareTo(RecordTreeGenerator another) {
 		return node.compareTo(another.node);
 	}
 	
+	/**
+	 * complete record-tree.
+	 * 
+	 * @return root of the record-tree
+	 */
+	public Node tree() {
+		clear(this);
+		return node;
+	}
+	
+	/**
+	 * site of the input record-list
+	 * @return
+	 */
 	public int size() {
 		return records.size();
 	}
 	
-	private static final void sort(final Node node) {
-		if (!node.getChildren().isEmpty() ) {
-			Collections.sort(node.getChildren());
-			for (Node child: node.getChildren()) {
-				sort(child);
-			}
-		}
-	}
-	
+	/**
+	 * creates initial brunches of the record-tree.
+	 * 
+	 * @param recordList
+	 * @param recordListSeq
+	 */
 	private static final void process(final RecordTreeGenerator recordList,  final Long recordListSeq) {
 		Long seq = new Long( recordListSeq );
 		String group = null;
@@ -132,6 +153,47 @@ public class RecordTreeGenerator implements Comparable<RecordTreeGenerator> {
 				process(recordList2,seq+1);
 			}
 		}
+	}
+	
+	
+	/**
+	 * sorts brunches to have original record-order in the completely expanded record-tree
+	 * @param node
+	 */
+	private static final void sort(final Node node) {
+		if (!node.getChildren().isEmpty() ) {
+			Collections.sort(node.getChildren());
+			for (Node child: node.getChildren()) {
+				sort(child);
+			}
+		}
+	}
+	
+	/**
+	 * tries to merge sibling-children with the same tree-name and the same depth
+	 * @param node
+	 */
+	private static final void merge(final Node node) {
+		if (!node.getChildren().isEmpty() ) {
+			
+			 //TODO
+			
+			for (Node child: node.getChildren()) {
+				
+				//TODO
+				
+				merge(child);
+			}
+		}
+	}
+	
+	/**
+	 * cleans up all lists that have been used while building record-tree
+	 * @param recordList
+	 */
+	private static final void clear(RecordTreeGenerator recordList) {
+		recordList.childRecordGroups.clear();
+		recordList.records.clear();
 	}
 	
 	/**

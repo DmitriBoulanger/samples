@@ -7,7 +7,7 @@ import java.util.UUID;
 
 public final class RecordImpl extends RecordAbstraction {
 	
-	private final String uuid;
+	private String uuid;
 	
 	public RecordImpl(final String path) {
 		this(new PathImpl(path));
@@ -27,6 +27,10 @@ public final class RecordImpl extends RecordAbstraction {
     public final String toString() {
     	return uuid;
     }
+	
+	public void setSmthAsUUID(final String smth) {
+		this.uuid = smth;
+	}
 	
     @Override
 	public StringBuilder print() {

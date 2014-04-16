@@ -66,14 +66,12 @@ public class RecordWindow extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
         this.setAlwaysOnTop(true);
-        this.setVisible(true);
         
         log.info("window done. Elapsed " +(System.currentTimeMillis()-start) + " ms." );
-        
     }
 
     public static void main(final String[] args) {
-    	
+    	log.info("openning ..." );
         final Runnable gui = new Runnable() {
  
         	@Override
@@ -88,7 +86,5 @@ public class RecordWindow extends JFrame {
         };
         
         SwingUtilities.invokeLater(gui);
-        
-       
     }
 }
