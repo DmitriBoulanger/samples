@@ -28,7 +28,7 @@ public abstract class RecordAbstraction implements Record {
 	
 	public RecordAbstraction(final Path path) {
 		if (null==path) {
-			throw new PathException("Record must have non-path");
+			throw new RecordException("Record must have non-path");
 		}
 		this.path = path;
 	}
