@@ -1,7 +1,8 @@
-package de.dbo.samples.gui.swing.treetable.data;
+package de.dbo.samples.gui.swing.treetable;
  
 import de.dbo.samples.gui.swing.treetable.api.TreeTable;
 import de.dbo.samples.gui.swing.treetable.api.TreeTableModel;
+import de.dbo.samples.gui.swing.treetable.data.DataWindow;
 
 import java.awt.Color;
 import java.awt.Container;
@@ -22,31 +23,28 @@ public class Window extends JFrame {
 	private static final long serialVersionUID = 4489500964556705612L;
 	private static final Logger log = LoggerFactory.getLogger(Window.class);
 	
-	private final Dimension size = new Dimension(1000, 400);
-	private final Font font = new Font("Consolas",Font.PLAIN, 14);
-	private final Container contentPane = getContentPane();
+	protected final Dimension size = new Dimension(1000, 400);
+	protected final Font font = new Font("Consolas",Font.PLAIN, 14);
+	protected final Container contentPane = getContentPane();
 	
-	private final TreeTableModel treeTableModel;
-	private final TreeTable treeTable;
-	private final JScrollPane jScrollPane;
+	protected final TreeTableModel treeTableModel;
+	protected final TreeTable treeTable;
+	protected final JScrollPane jScrollPane;
 	
-	private final Color background = new Color(239,241,248);
-	private final Color selection = new Color(168,208,245);
+	protected final Color background = new Color(239,241,248);
+	protected final Color selection = new Color(168,208,245);
 	
-	public Window() {
-        super("Tree Table Sample");
-
-        treeTableModel = new DataStructureTreeTableModel( DataStructure.instance());
-        treeTable = new TreeTable(treeTableModel);
-        jScrollPane = new JScrollPane(treeTable);
+	protected static Window INSTANCE = null;
+	
+	public Window(final TreeTableModel treeTableModel, final String title) {
+        super(title);
+        final long start = System.currentTimeMillis();
         
-       
-        treeTable.setRootVisible(false);
+        this.treeTableModel = treeTableModel;
+        treeTable = new TreeTable(treeTableModel);
         treeTable.setBasicUI(background, selection, Color.BLACK, font);
-        treeTable.setIntercellSpacing(new Dimension(2, 2)); 
-        treeTable.setColumnWidthNonresizable(1, 120);
-        treeTable.setColumnWidthNonresizable(2, 280);
-       
+        
+        jScrollPane = new JScrollPane(treeTable);
         jScrollPane.getViewport().setBackground(background);
         
         final GridBagLayout gridBagLayout = new GridBagLayout();
@@ -65,20 +63,12 @@ public class Window extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
         this.setAlwaysOnTop(true);
-        this.setVisible(true);
         
-        log.debug("created. Background=" + background);
+        log.info("window done. Elapsed " + (System.currentTimeMillis()-start) + " ms." );
     }
 	
-	 
-   
-    
-	
-	
- 
-    public static void main(final String[] args) {
-        final Runnable gui = new Runnable() {
- 
+	protected static Runnable runnable(final Window window) {
+		return new Runnable() {
         	@Override
             public void run() {
                 try {
@@ -86,10 +76,9 @@ public class Window extends JFrame {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                new Window().setVisible(true);
+                window.setVisible(true);
             }
         };
-        
-        SwingUtilities.invokeLater(gui);
-    }
+	}
+	
 }

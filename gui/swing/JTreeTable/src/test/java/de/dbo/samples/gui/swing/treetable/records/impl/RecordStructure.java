@@ -1,16 +1,21 @@
-package de.dbo.samples.gui.swing.treetable.records;
+package de.dbo.samples.gui.swing.treetable.records.impl;
  
 import de.dbo.samples.gui.swing.treetable.records.api.Node;
 import de.dbo.samples.gui.swing.treetable.records.api.Path;
 import de.dbo.samples.gui.swing.treetable.records.api.Record;
 import de.dbo.samples.gui.swing.treetable.records.impl.PathImpl;
 import de.dbo.samples.gui.swing.treetable.records.impl.RecordImpl;
+import de.dbo.samples.gui.swing.treetable.records.impl.RecordTreeGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
  
 public class RecordStructure  {
-	 
+	private static final Logger log = LoggerFactory.getLogger(RecordStructureTreeTableModel.class);
+	
     public static Node instance() {
 
     	Path error = new PathImpl("Error");
@@ -43,12 +48,13 @@ public class RecordStructure  {
 		records.add( new RecordImpl(new PathImpl("/A/B/C/d") ));
 		
 		final RecordTreeGenerator recordList = new RecordTreeGenerator(records);
-		System.out.println("Tree-Structure: "
-				 + "\nTotal records: " + recordList.size()  
-	             + recordList.print());
-        
+		if (log.isDebugEnabled() ) {
+			log.debug("Tree-Structure: "
+					 + "\nTotal records: " + recordList.size()  
+		             + recordList.print());	
+		}
+		
         return recordList.tree();
-
     }
  
     

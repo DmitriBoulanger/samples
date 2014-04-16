@@ -1,12 +1,11 @@
-package de.dbo.samples.gui.swing.treetable.records;
+package de.dbo.samples.gui.swing.treetable.records.impl;
 
 import static de.dbo.samples.gui.swing.treetable.records.api.Node.ROOT;
-import static de.dbo.samples.gui.swing.treetable.records.Tools.printInternalData;
+import static de.dbo.samples.gui.swing.treetable.records.impl.Tools.printInternalData;
 
 import de.dbo.samples.gui.swing.treetable.records.api.Node;
 import de.dbo.samples.gui.swing.treetable.records.api.Path;
 import de.dbo.samples.gui.swing.treetable.records.api.Record;
-import de.dbo.samples.gui.swing.treetable.records.impl.NodeImpl;
 
 import java.util.ArrayList;
 import java.util.Collections;

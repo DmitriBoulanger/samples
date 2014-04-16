@@ -22,7 +22,7 @@ public class NodeImpl extends NodeAbsraction {
         log.debug("created. Tree-name: " + treename);
     }
     
-	public Object getObject() {
+	public Record getObject() {
         return record;
     }
     

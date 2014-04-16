@@ -46,12 +46,11 @@ public class DataStructure  {
         nodes0.add(new DataNode("Root 14", "C09 again"		, children1));
         nodes0.add(new DataNode("Root 15", "C10 again"		, children1));
         nodes0.add(new DataNode("Root 16", "C11 again"		, children1));
-        nodes0.add(new DataNode("Record 17", "CXXX bla bla"	, null));
+        nodes0.add(new DataNode("Root 17", "CXXX bla bla"	, null));
         
         
-        final Node root = new DataNode("Evaluation events", "",  nodes0);
-        return root;
+        return new DataNode(Node.ROOT, "",  nodes0);
+
     }
- 
     
 }

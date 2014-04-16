@@ -1,4 +1,4 @@
-package de.dbo.samples.gui.swing.treetable.records;
+package de.dbo.samples.gui.swing.treetable.records.impl;
 
 import de.dbo.samples.gui.swing.treetable.records.api.Record;
 
@@ -6,6 +6,10 @@ import java.text.DecimalFormat;
 import java.util.List;
 
 final class Tools {
+	
+	private Tools()   {
+		// never initialize it as an instance
+	}
 	
 	final static StringBuilder printInternalData(final List<RecordTreeGenerator> children
 			, final int depth, final boolean onlyNodes) {

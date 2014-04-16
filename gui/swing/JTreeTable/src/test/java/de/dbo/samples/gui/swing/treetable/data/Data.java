@@ -43,5 +43,9 @@ public class Data  {
         this.timestamp = timestamp;
     }
     
+    public final String toString() {
+    	return uuid.substring(10,15);
+    }
+    
  
 }

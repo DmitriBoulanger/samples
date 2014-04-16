@@ -1,9 +1,10 @@
-package de.dbo.samples.gui.swing.treetable.records;
+package de.dbo.samples.gui.swing.treetable.records.impl;
 
 import de.dbo.samples.gui.swing.treetable.records.api.Path;
 import de.dbo.samples.gui.swing.treetable.records.api.Record;
 import de.dbo.samples.gui.swing.treetable.records.impl.PathImpl;
 import de.dbo.samples.gui.swing.treetable.records.impl.RecordImpl;
+import de.dbo.samples.gui.swing.treetable.records.impl.RecordTreeGenerator;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -55,15 +55,16 @@ public final class DataStructureTreeTableModel extends TreeTableModelAbstraction
  
     @Override
     public Object getValueAt(Object node, int column) {
+    	final DataNode datanode = (DataNode) node;
         switch (column) {
         case 0:
-            return ((DataNode) node).treename();
+            return datanode.treename();
         case 1:
-            return ((DataNode) node).getTimestamp();
+            return datanode.getObject().getTimestamp();
         case 2:
-            return ((DataNode) node).getUUID();
+            return datanode.getObject().getUUID();
         case 3:
-            return ((DataNode) node).getCapital();
+            return datanode.getObject().getCapital();
         case 4:
             return ((DataNode) node).getObject();
             
@@ -97,7 +98,7 @@ public final class DataStructureTreeTableModel extends TreeTableModelAbstraction
     @Override
     public void setValueAt(Object value, Object node, int column) {
     	 log.debug("setValueAt(Object value="+value+", Object node="+node.toString()+", int column="+column+") ...");
-    	  
+    	 final DataNode datanode = (DataNode) node;
     	 switch (column) {
          case 0:
          case 1:
@@ -105,14 +106,14 @@ public final class DataStructureTreeTableModel extends TreeTableModelAbstraction
         	 break;
         	 
          case 2:
-        	 ((DataNode) node).setTimestamp( (Long) value);
+        	 datanode.getObject().setTimestamp( (Long) value);
          
          case 3:
-             ((DataNode) node).setUUID((String)value);
+        	 datanode.getObject().setUUID((String)value);
              break;
              
          case 4:
-        	 ((DataNode) node).setObject(value);
+        	 datanode.setObject(value);
         	 break;
          
          default:

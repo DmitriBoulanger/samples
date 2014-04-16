@@ -1,29 +1,22 @@
 package de.dbo.samples.gui.swing.treetable.data;
  
 import de.dbo.samples.gui.swing.treetable.records.api.Node;
+import de.dbo.samples.gui.swing.treetable.records.api.NodeAbsraction;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class DataNode extends Data implements Node {
+public class DataNode extends NodeAbsraction {
 	 
-    final private List<Node> children = new ArrayList<Node>();
- 
+    private final Data data;
     public DataNode(final String name, final String capital,  List<Node> children) {
-        super(name,capital);
-        if (children != null) {
-            this.children.addAll(children);
-        } 
+        super(name,children);
+        data = new Data(name,capital);
     }
     
-    @Override
-    public String toString() {
-    	return treename(); // important for the tree-path
-    }
- 
 
+   
     public Data getObject() {
-        return null;
+        return data;
     }
     
 
@@ -31,10 +24,7 @@ public class DataNode extends Data implements Node {
     	
     }
  
-    public List<Node> getChildren() {
-        return children;
-    }
-
+   
 	
 	@Override
 	public StringBuilder print() {
@@ -42,10 +32,7 @@ public class DataNode extends Data implements Node {
 		return null;
 	}
 
-	@Override
-	public int compareTo(Node another) {
-		return getSequence().compareTo(another.getSequence());
-	}
+	 
 
 	@Override
 	public Long getSequence() {
