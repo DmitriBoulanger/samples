@@ -75,22 +75,22 @@ public class RecordsTest {
 	@Test 
 	public void recordList() {
 		final List<Record> records = new ArrayList<Record>();
-		records.add( new RecordImpl(parent,System.currentTimeMillis() ));
-		records.add( new RecordImpl(parent2,System.currentTimeMillis() ));
-		records.add( new RecordImpl(px,System.currentTimeMillis() ));
-		records.add( new RecordImpl(px,System.currentTimeMillis() ));
-		records.add( new RecordImpl(px2,System.currentTimeMillis() ));
-		records.add( new RecordImpl(px3,System.currentTimeMillis() ));
-		records.add( new RecordImpl(px4,System.currentTimeMillis() ));
-		records.add( new RecordImpl(smth,System.currentTimeMillis() ));
-		records.add( new RecordImpl(parent3,System.currentTimeMillis() ));
-		records.add( new RecordImpl(parent4,System.currentTimeMillis() ));
-		records.add( new RecordImpl(smth,System.currentTimeMillis() ));
-		records.add( new RecordImpl(smth,System.currentTimeMillis() ));
-		records.add( new RecordImpl(parent5,System.currentTimeMillis() ));
-		records.add( new RecordImpl(child,System.currentTimeMillis() ));
+		records.add( new RecordImpl(parent ));
+		records.add( new RecordImpl(parent2 ));
+		records.add( new RecordImpl(px ));
+		records.add( new RecordImpl(px ));
+		records.add( new RecordImpl(px2 ));
+		records.add( new RecordImpl(px3 ));
+		records.add( new RecordImpl(px4 ));
+		records.add( new RecordImpl(smth ));
+		records.add( new RecordImpl(parent3 ));
+		records.add( new RecordImpl(parent4 ));
+		records.add( new RecordImpl(smth ));
+		records.add( new RecordImpl(smth ));
+		records.add( new RecordImpl(parent5 ));
+		records.add( new RecordImpl(child ));
 		
-		final RecordList recordList = new RecordList(records);
+		final RecordTreeGenerator recordList = new RecordTreeGenerator(records);
 		System.out.println("Tree-Structure: "
 				 + "\nTotal records: " + recordList.size()  
 	             + recordList.print());

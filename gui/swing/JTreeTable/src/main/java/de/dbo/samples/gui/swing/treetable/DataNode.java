@@ -18,7 +18,7 @@ public class DataNode extends Data implements Node {
     
     @Override
     public String toString() {
-    	return treeName(); // important for the tree-path
+    	return treename(); // important for the tree-path
     }
  
 
@@ -58,9 +58,4 @@ public class DataNode extends Data implements Node {
 		// TODO Auto-generated method stub
 	}
 
-	@Override
-	public String title() {
-		// TODO Auto-generated method stub
-		return "title";
-	}
 }

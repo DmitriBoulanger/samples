@@ -3,10 +3,10 @@ package de.dbo.samples.gui.swing.treetable.records.api;
 import java.util.List;
 
 public interface Node extends Comparable<Node>{
-
-	public abstract String treeName();
 	
-	public abstract String title();
+	public static final String ROOT = "ROOT";
+
+	public abstract String treename();
 	
 	public abstract List<Node> getChildren();
 	

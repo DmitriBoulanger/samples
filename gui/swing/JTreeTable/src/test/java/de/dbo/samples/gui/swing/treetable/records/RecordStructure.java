@@ -16,34 +16,34 @@ public class RecordStructure  {
     	
     	final List<Record> records = new ArrayList<Record>();
     	
-		records.add( new RecordImpl(new PathImpl("/a/b/c"),System.currentTimeMillis() ));
-		records.add( new RecordImpl(new PathImpl("/a/b/c/d/"),System.currentTimeMillis() ));
+		records.add( new RecordImpl(new PathImpl("/a/b/c") ));
+		records.add( new RecordImpl(new PathImpl("/a/b/c/d/") ));
 		
-		records.add( new RecordImpl(new PathImpl("/a/"),System.currentTimeMillis() ));
+		records.add( new RecordImpl(new PathImpl("/a/") ));
 		
-		records.add( new RecordImpl(new PathImpl("/a/b/c/d/e"),System.currentTimeMillis() ));
-		records.add( new RecordImpl(error,System.currentTimeMillis() ));
-		records.add( new RecordImpl(new PathImpl("/Processing/Main/Opening/d/x"),System.currentTimeMillis() ));
+		records.add( new RecordImpl(new PathImpl("/a/b/c/d/e") ));
+		records.add( new RecordImpl(error ));
+		records.add( new RecordImpl(new PathImpl("/a/b/c/d/x") ));
 	
-		records.add( new RecordImpl(error,System.currentTimeMillis() ));
-		records.add( new RecordImpl(error,System.currentTimeMillis() ));
-		records.add( new RecordImpl(warning,System.currentTimeMillis() ));
-		records.add( new RecordImpl(new PathImpl("/Optimization/Main/Opening/f/k/f"),System.currentTimeMillis() ));
-		records.add( new RecordImpl(new PathImpl("/Optimization/Main/Opening/f/k"),System.currentTimeMillis() ));
-		records.add( new RecordImpl(new PathImpl("/Optimization/Main/Opening/f/"),System.currentTimeMillis() ));
-		records.add( new RecordImpl(new PathImpl("/Optimization/Main/Opening/f/"),System.currentTimeMillis() ));
-		records.add( new RecordImpl(new PathImpl("/Optimization"),System.currentTimeMillis() ));
+		records.add( new RecordImpl(error ));
+		records.add( new RecordImpl(error ));
+		records.add( new RecordImpl(warning ));
+		records.add( new RecordImpl(new PathImpl("/A///B/C/f/k/f") ));
+		records.add( new RecordImpl(new PathImpl("/A/B/C/f/k") ));
+		records.add( new RecordImpl(warning ));
+		records.add( new RecordImpl(new PathImpl("/A/B/C/f/") ));
+		records.add( new RecordImpl(new PathImpl("/A/B/C/f/") ));
+		records.add( new RecordImpl(new PathImpl("/A") ));
 		
-		records.add( new RecordImpl(warning,System.currentTimeMillis() ));
+		records.add( new RecordImpl(warning ));
 		
 		
-		records.add( new RecordImpl(new PathImpl("/Optimization/Main/Opening/d"),System.currentTimeMillis() ));
+		records.add( new RecordImpl(new PathImpl("/A/B/C/d") ));
 		
-		final RecordList recordList = new RecordList(records);
+		final RecordTreeGenerator recordList = new RecordTreeGenerator(records);
 		System.out.println("Tree-Structure: "
 				 + "\nTotal records: " + recordList.size()  
 	             + recordList.print());
-        
         
         return recordList.tree();
 

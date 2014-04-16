@@ -56,7 +56,7 @@ public final class RecordStructureTreeTableModel extends TreeTableModelAbstracti
     public Object getValueAt(Object node, int column) {
         switch (column) {
         case 0:
-            return ((Node) node).treeName();
+            return ((Node) node).treename();
         case 1:
             return ((Node) node).getSequence();
         case 2:

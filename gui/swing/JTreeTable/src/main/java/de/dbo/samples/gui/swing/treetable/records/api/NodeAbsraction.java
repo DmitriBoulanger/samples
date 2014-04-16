@@ -1,22 +1,18 @@
 package de.dbo.samples.gui.swing.treetable.records.api;
 
 import de.dbo.samples.gui.swing.treetable.records.api.Node;
-import de.dbo.samples.gui.swing.treetable.records.api.Record;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public abstract class NodeAbsraction implements Node {
 	 
-    private final String name;
-    
+    private final String treename;
     protected final List<Node> children = new ArrayList<Node>();
  
-    public NodeAbsraction(final String name, List<Node> children) {
-        this.name = name;
+    public NodeAbsraction(final String treename, List<Node> children) {
+        this.treename = treename;
         if (children != null) {
             this.children.addAll(children);
         } 
@@ -28,26 +24,13 @@ public abstract class NodeAbsraction implements Node {
 	}
 
     @Override
-	public StringBuilder print() {
-    	final StringBuilder sb = new StringBuilder(name+": ");
-    	final StringBuilder sb2 = new StringBuilder();
-    	for (final Node node:children) {
-    		sb2.append(node.treeName()+" ");
-    	}
-    	sb.append("<");
-    	sb.append(sb2.toString().trim());
-    	sb.append(">");
-    	return sb;
-    }
- 
-    @Override
-	public final String treeName() {
-        return name;
+	public final String treename() {
+        return treename;
     }
     
     @Override
 	public final String toString() {
-        return treeName();
+        return this.treename;
     }
  
 	@Override

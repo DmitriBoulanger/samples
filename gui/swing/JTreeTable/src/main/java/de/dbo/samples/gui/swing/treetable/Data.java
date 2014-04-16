@@ -19,7 +19,7 @@ public class Data  {
         this.timestamp = System.currentTimeMillis();
     }
     
-    public String treeName() {
+    public String treename() {
         return name;
     }
  

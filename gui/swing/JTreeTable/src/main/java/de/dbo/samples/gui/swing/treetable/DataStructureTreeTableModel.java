@@ -57,7 +57,7 @@ public final class DataStructureTreeTableModel extends TreeTableModelAbstraction
     public Object getValueAt(Object node, int column) {
         switch (column) {
         case 0:
-            return ((DataNode) node).treeName();
+            return ((DataNode) node).treename();
         case 1:
             return ((DataNode) node).getTimestamp();
         case 2:
