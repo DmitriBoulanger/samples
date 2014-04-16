@@ -68,8 +68,8 @@ public class NodeImpl extends NodeAbsraction {
 		final StringBuilder sb2 = new StringBuilder();
 		for (final Node node : getChildren()) {
 			sb2.append(node.treename());
+			sb2.append(" ");
 		}
-		sb.append(" ");
 		sb.append("children=");
 		sb.append("<");
 		sb.append(sb2.toString().trim());

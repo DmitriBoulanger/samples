@@ -9,7 +9,9 @@ import de.dbo.samples.gui.swing.treetable.records.api.Record;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Generator of the record-tree.
@@ -57,14 +59,16 @@ public class RecordTreeGenerator implements Comparable<RecordTreeGenerator> {
 	public RecordTreeGenerator(final List<Record> records) {
 		this.depth = 0;
 		this.node = new NodeImpl(ROOT,null,null);
+		
 		for (final Record record:records) {
 			record.setSequence( (long) this.records.size() );
 			this.records.add(record);
 		}
-		Collections.sort(this.records);
-		process(this, 0L);
-		sort(this.node);
-		merge(this.node);
+		Collections.sort(this.records); // sort records using the sequence-attribute
+		
+		process(this, 0L); // generate initial brunches
+		sort(this.node);   // sort children in nodes to ensure the original record-order
+		merge(this.node);  // merge siblings with the same tree-names if possible
 	}
 	
 	/**
@@ -155,7 +159,6 @@ public class RecordTreeGenerator implements Comparable<RecordTreeGenerator> {
 		}
 	}
 	
-	
 	/**
 	 * sorts brunches to have original record-order in the completely expanded record-tree
 	 * @param node
@@ -174,16 +177,30 @@ public class RecordTreeGenerator implements Comparable<RecordTreeGenerator> {
 	 * @param node
 	 */
 	private static final void merge(final Node node) {
-		if (!node.getChildren().isEmpty() ) {
-			
-			 //TODO
-			
-			for (Node child: node.getChildren()) {
-				
-				//TODO
-				
-				merge(child);
+		final List<Node> children = node.getChildren();
+		if (children.isEmpty()) {
+			return;
+		}
+		final Set<Node> toBeRemoved = new HashSet<Node>();
+		Node child = null;
+		for (final Node childNext:children) {
+//			System.err.println("CURRENT: " + (null!=child? child.print(): "null")  // DEBUGGING!
+//					+"          NEXT: " + childNext.print());
+			if (null!=child && !toBeRemoved.contains(childNext)
+					&& child.treename().equals(childNext.treename())) {
+				child.getChildren().addAll(childNext.getChildren());
+//				child.setObject("got merge from " + childNext.print()); // DEBUGGING!
+				toBeRemoved.add(childNext);
+			} else {
+				child = childNext;
 			}
+		}
+		for (Node childToBeRemoved:toBeRemoved) {
+			children.remove(childToBeRemoved);
+		}
+		
+		for (final Node child2:children) {
+			merge(child2);
 		}
 	}
 	
@@ -191,7 +208,7 @@ public class RecordTreeGenerator implements Comparable<RecordTreeGenerator> {
 	 * cleans up all lists that have been used while building record-tree
 	 * @param recordList
 	 */
-	private static final void clear(RecordTreeGenerator recordList) {
+	private static final void clear(final RecordTreeGenerator recordList) {
 		recordList.childRecordGroups.clear();
 		recordList.records.clear();
 	}
