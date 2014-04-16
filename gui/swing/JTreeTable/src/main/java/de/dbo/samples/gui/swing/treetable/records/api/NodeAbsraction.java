@@ -9,6 +9,8 @@ import java.util.List;
 /**
  * Reference (basic) implementation of tree-nodes
  * 
+ * @see Node
+ * 
  * @author Dmitri Boulanger, Hombach
  *
  * D. Knuth: Programs are meant to be read by humans and 
@@ -30,27 +32,33 @@ public abstract class NodeAbsraction implements Node {
         } 
     }
     
-    @Override
-  	public final String treename() {
-          return treename;
-      }
-      
-      /**
-       * tree-name used in the Tree-Table
-       */
-      @Override
-  	public final String toString() {
-          return this.treename;
-      }
+	/**
+	 * name to appear in the Tree-Table
+	 */
+	@Override
+	public final String treename() {
+		return treename;
+	}
+
+	/**
+	 * tree-name used in the Tree-Table
+	 */
+	@Override
+	public final String toString() {
+		return this.treename;
+	}
     
     /**
      * nodes are compared using their sequence-attributes
      */
 	@Override
-	public final int compareTo(Node another) {
+	public final int compareTo(final Node another) {
 		return getSequence().compareTo(another.getSequence());
 	}
     
+	/**
+	 * ordered list of children
+	 */
     @Override
     public final List<Node> getChildren() {
 		return children;

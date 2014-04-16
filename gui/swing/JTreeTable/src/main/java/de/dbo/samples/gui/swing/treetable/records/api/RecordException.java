@@ -1,7 +1,7 @@
 package de.dbo.samples.gui.swing.treetable.records.api;
 
-public class RecordException extends RuntimeException {
-	private static final long serialVersionUID = 1L;
+public final class RecordException extends RuntimeException {
+	private static final long serialVersionUID = -1007313509791399051L;
 	
 	public RecordException(final String message) {
 		super(message);

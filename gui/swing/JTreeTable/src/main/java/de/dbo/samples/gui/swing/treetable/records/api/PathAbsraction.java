@@ -26,7 +26,8 @@ public abstract class PathAbsraction implements Path {
 	 * creates an 
 	 * @param path
 	 *            e.g /A/B/C with A as a root
-	 *            Any other structure is considered as single root having no parent
+	 *            Any other structure is considered an immediate
+	 *            child of the tree-root
 	 *            
 	 *  @throws PathException if the path is null or empty string
 	 */
@@ -100,8 +101,10 @@ public abstract class PathAbsraction implements Path {
 
 	@Override
 	public final int depth() {
-		return elements.size()-1;
+		return elements.size() - 1;
 	}
+	
+	// PRIVATE HELPERS
 	
 	private static final boolean nn(final String x) {
 		return null!=x && 0!=x.trim().length();
@@ -115,6 +118,4 @@ public abstract class PathAbsraction implements Path {
 			return canonicalValue.substring(0,idx);
 		}
 	}
-	
-	
 }

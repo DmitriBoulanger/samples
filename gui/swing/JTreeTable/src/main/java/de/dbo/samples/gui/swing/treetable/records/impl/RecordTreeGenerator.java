@@ -4,7 +4,6 @@ import static de.dbo.samples.gui.swing.treetable.records.api.Node.ROOT;
 import static de.dbo.samples.gui.swing.treetable.records.impl.Tools.printInternalData;
 
 import de.dbo.samples.gui.swing.treetable.records.api.Node;
-import de.dbo.samples.gui.swing.treetable.records.api.Path;
 import de.dbo.samples.gui.swing.treetable.records.api.Record;
 
 import java.util.ArrayList;
@@ -29,7 +28,7 @@ import java.util.Set;
  *           only incidentally for computers to execute 
  *
  */
-public class RecordTreeGenerator implements Comparable<RecordTreeGenerator> {
+public final class RecordTreeGenerator implements Comparable<RecordTreeGenerator> {
 	
 	/**
 	 * root-node to appear in a tree.
@@ -58,7 +57,7 @@ public class RecordTreeGenerator implements Comparable<RecordTreeGenerator> {
 	 */
 	public RecordTreeGenerator(final List<Record> records) {
 		this.depth = 0;
-		this.node = new NodeImpl(ROOT,null,null);
+		this.node = new NodeImpl(ROOT, null, null);
 		
 		for (final Record record:records) {
 			record.setSequence( (long) this.records.size() );
@@ -83,7 +82,7 @@ public class RecordTreeGenerator implements Comparable<RecordTreeGenerator> {
 	}
 	
 	@Override
-	public int compareTo(RecordTreeGenerator another) {
+	public final int compareTo(RecordTreeGenerator another) {
 		return node.compareTo(another.node);
 	}
 	
@@ -115,21 +114,20 @@ public class RecordTreeGenerator implements Comparable<RecordTreeGenerator> {
 		Long seq = new Long( recordListSeq );
 		String group = null;
 		RecordTreeGenerator groupList = null;
+		
 		final int depth = recordList.depth;
-		for (Record record:recordList.records) {
+		for (final Record record:recordList.records) {
 			final String name = record.treename();
-			final Path path = record.getPath();
 			final boolean isData = record.isDataDepth(depth);
-			final String groupNext = path.pathElement(depth);
+			final String groupNext = record.getPath().pathElement(depth);
 			if (null==groupNext) {
 				continue;
 			}
+			
 			final Long seqNext = record.getSequence();
-			
-			
-			if (groupNext.equals(group) && null!=seq && seqNext == seq+1) {
+			if (groupNext.equals(group) && null!=seq && seqNext == seq + 1) {
 				if (isData) {
-					groupList.node.getChildren().add(new NodeImpl(name,record,null));
+					groupList.node.getChildren().add(new NodeImpl(name, record, null));
 				} else {
 					groupList.records.add(record);
 				}
@@ -138,15 +136,16 @@ public class RecordTreeGenerator implements Comparable<RecordTreeGenerator> {
 				seq = seqNext;
 				final Node node = new NodeImpl(group, null, null);
 				node.setSequence(seq);
-				groupList = new RecordTreeGenerator(depth+1, node );
+				groupList = new RecordTreeGenerator(depth + 1, node );
 				if (isData) {
-					groupList.node.getChildren().add(new NodeImpl(name,record,null));
+					groupList.node.getChildren().add(new NodeImpl(name, record, null));
 				} else {
 					groupList.records.add(record);
 				}
 				recordList.childRecordGroups.add(groupList);
 			}
 		}
+		
 		final List<Node> childern = recordList.node.getChildren();
 		for (RecordTreeGenerator childRecordTreeGenerator: recordList.childRecordGroups)  {
 			childern.add(childRecordTreeGenerator.node);

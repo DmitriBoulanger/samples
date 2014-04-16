@@ -2,6 +2,7 @@ package de.dbo.samples.gui.swing.treetable.records.api;
 
 
 /**
+ * Record is an object attached to leaf-nodes in the Tree-Table
  * 
  * @author Dmitri Boulanger, Hombach
  *
@@ -45,9 +46,10 @@ public interface Record extends Comparable<Record> {
 	public abstract void setContents(Object contents);
 	
 	/**
-	 * pretty-print of this record
+	 * pretty-print of this record.
+	 * Mostly used for debugging/logging
+	 * 
 	 * @return printable string representing this record
 	 */
 	public abstract StringBuilder print();
-
 }

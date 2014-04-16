@@ -5,8 +5,10 @@ import de.dbo.samples.gui.swing.treetable.records.api.Record;
 
 /**
  * Reference (or basic) implementation of a data-record.
- * A record must have path
- * 
+ * Any record has at least path, tree-name and sequence.
+ * Optionally a record has a contents-object.
+ * Attributes of a contents are shown as values in the table-cells
+ * of a Tree-Table
  * 
  * @author Dmitri Boulanger, Hombach
  *
@@ -59,18 +61,7 @@ public abstract class RecordAbstraction implements Record {
 	public void setSequence(Long sequence) {
 		this.sequence = sequence;
 	}
-
-	/**
-	 * check the specified depth.
-	 * This method is only used while building the tree.
-	 * 
-	 * @return true only if the specified depth is the tree-depth of this record
-	 */
-	@Override
-	public boolean isDataDepth(final int depth) {
-		 return depth == getPath().depth();
-	}
-
+	
 	/**
 	 * contents of this record
 	 */
@@ -83,4 +74,17 @@ public abstract class RecordAbstraction implements Record {
 	public void setContents(Object contents) {
 		this.contents = contents;
 	}
+
+	/**
+	 * checks the specified depth.
+	 * This method is only used while building the tree.
+	 * 
+	 * @return true only if the specified depth is the tree-depth of this record
+	 */
+	@Override
+	public boolean isDataDepth(final int depth) {
+		 return depth == getPath().depth();
+	}
+
+
 }
