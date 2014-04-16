@@ -44,7 +44,7 @@ public class RecordWindow extends JFrame {
        
         treeTable.setRootVisible(true);
         treeTable.setBasicUI(background, selection, foreground, font);
-        treeTable.setIntercellSpacing(new Dimension(2, 2)); 
+        treeTable.setIntercellSpacing(new Dimension(1,1)); 
         treeTable.setColumnWidthNonresizable(1, 65);
         treeTable.setColumnWidthNonresizable(2, 600);
        

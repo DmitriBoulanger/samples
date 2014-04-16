@@ -9,8 +9,8 @@ public final class RecordImpl extends RecordAbstraction {
 	
 	private final String uuid;
 	
-	public RecordImpl() {
-		this(null);
+	public RecordImpl(final String path) {
+		this(new PathImpl(path));
 	}
 	
 	public RecordImpl(final Path path) {

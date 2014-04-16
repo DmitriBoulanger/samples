@@ -17,18 +17,12 @@ import de.dbo.samples.gui.swing.treetable.records.api.Record;
 public abstract class RecordAbstraction implements Record {
 	
 	private final Path path;
-	
-	private Object contents = null;
-	
 	private Long sequence = null;
-	
-	public RecordAbstraction() {
-		this((Path) null);
-	}
+	private Object contents = null;
 	
 	public RecordAbstraction(final Path path) {
 		if (null==path) {
-			throw new RecordException("Record must have non-path");
+			throw new RecordException("Record must have non-null path");
 		}
 		this.path = path;
 	}
@@ -43,7 +37,7 @@ public abstract class RecordAbstraction implements Record {
 	
 	/**
 	 * records are compared using their sequence-value.
-	 * Therefore, a record must have sequence.
+	 * Therefore, any record must have sequence.
 	 */
 	@Override
 	public int compareTo(Record another) {
