@@ -1,4 +1,4 @@
-package de.dbo.samples.gui.swing.treetable.records;
+package de.dbo.samples.gui.swing.treetable.records.impl;
 
 import de.dbo.samples.gui.swing.treetable.records.api.Node;
 import de.dbo.samples.gui.swing.treetable.records.api.NodeAbsraction;
@@ -42,19 +42,19 @@ public class NodeImpl extends NodeAbsraction {
 		}
 	}
 	
-	   @Override
-		public StringBuilder print() {
-	    	final StringBuilder sb = new StringBuilder(treename()+": ");
-	    	final StringBuilder sb2 = new StringBuilder();
-	    	for (final Node node:children) {
-	    		sb2.append(node.treename()+" ");
-	    	}
-	    	sb.append("children=");
-	    	sb.append("<");
-	    	sb.append(sb2.toString().trim());
-	    	sb.append(">");
-	    	return sb;
-	    }
+	@Override
+	public StringBuilder print() {
+		final StringBuilder sb = new StringBuilder(treename() + ": ");
+		final StringBuilder sb2 = new StringBuilder();
+		for (final Node node : getChildren()) {
+			sb2.append(node.treename() + " ");
+		}
+		sb.append("children=");
+		sb.append("<");
+		sb.append(sb2.toString().trim());
+		sb.append(">");
+		return sb;
+	}
 	 
 
  

@@ -6,8 +6,8 @@ import static de.dbo.samples.gui.swing.treetable.records.Tools.printInternalData
 import de.dbo.samples.gui.swing.treetable.records.api.Node;
 import de.dbo.samples.gui.swing.treetable.records.api.Path;
 import de.dbo.samples.gui.swing.treetable.records.api.Record;
+import de.dbo.samples.gui.swing.treetable.records.impl.NodeImpl;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -44,12 +44,13 @@ public class RecordTreeGenerator implements Comparable<RecordTreeGenerator> {
 			record.setSequence( (long) this.records.size() );
 			this.records.add(record);
 		}
+		Collections.sort(this.records);
 		process(this, 0L);
+		sort(this.node);
 	}
 	
 	public Node tree() {
 		clear(this);
-		sort(this.node);
 		return node;
 	}
 	

@@ -1,4 +1,4 @@
-package de.dbo.samples.gui.swing.treetable.records;
+package de.dbo.samples.gui.swing.treetable.records.api;
 
 import de.dbo.samples.gui.swing.treetable.records.api.Path;
 import de.dbo.samples.gui.swing.treetable.records.api.PathException;
@@ -6,7 +6,15 @@ import de.dbo.samples.gui.swing.treetable.records.api.PathException;
 import java.util.List;
 import java.util.ArrayList;
 
-public class PathImpl implements Path {
+/**
+ * 
+ * @author Dmitri Boulanger, Hombach
+ *
+ * D. Knuth: Programs are meant to be read by humans and 
+ *           only incidentally for computers to execute 
+ *
+ */
+public abstract class PathAbsraction implements Path {
 	
 	private List<String> elements = new ArrayList<String>();
 	
@@ -14,10 +22,14 @@ public class PathImpl implements Path {
 	private String parentCanonicalValue;
 	
 	/**
+	 * creates an 
 	 * @param path
-	 *            e.g /A/B/C with A as a root or something as root
+	 *            e.g /A/B/C with A as a root
+	 *            Any other structure is considered as single root having no parent
+	 *            
+	 *  @throws PathException if the path is null or empty string
 	 */
-	public PathImpl(final String path) {
+	public PathAbsraction(final String path) {
 		if (!nn(path)) {
 			throw new PathException("Null or empty path is not allowed: " + path);
 		}
@@ -85,21 +97,11 @@ public class PathImpl implements Path {
 		return parentCanonicalValue;
 	}
 
-	
 	@Override
 	public final int depth() {
 		return elements.size()-1;
 	}
 	
-	@Override
-	public final StringBuilder print() {
-		final StringBuilder sb = new StringBuilder();
-		sb.append(" Depth=" + depth());
-		sb.append(" Canonical=" + canonicalValue());
-		sb.append(" ParentCanonical=" + parentCanonicalValue());
-		return sb;
-	}
-
 	private static final boolean nn(final String x) {
 		return null!=x && 0!=x.trim().length();
 	}

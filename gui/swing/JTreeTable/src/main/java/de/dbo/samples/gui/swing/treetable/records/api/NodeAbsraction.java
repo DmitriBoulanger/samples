@@ -9,7 +9,7 @@ import java.util.List;
 public abstract class NodeAbsraction implements Node {
 	 
     private final String treename;
-    protected final List<Node> children = new ArrayList<Node>();
+    private final List<Node> children = new ArrayList<Node>();
  
     public NodeAbsraction(final String treename, List<Node> children) {
         this.treename = treename;
@@ -17,6 +17,11 @@ public abstract class NodeAbsraction implements Node {
             this.children.addAll(children);
         } 
     }
+    
+	@Override
+	public final int compareTo(Node another) {
+		return getSequence().compareTo(another.getSequence());
+	}
     
     @Override
     public final List<Node> getChildren() {
@@ -33,9 +38,4 @@ public abstract class NodeAbsraction implements Node {
         return this.treename;
     }
  
-	@Override
-	public final int compareTo(Node another) {
-		return getSequence().compareTo(another.getSequence());
-	}
-
 }

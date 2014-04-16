@@ -3,6 +3,7 @@ package de.dbo.samples.gui.swing.treetable.records;
 import de.dbo.samples.gui.swing.treetable.api.TreeTableModel;
 import de.dbo.samples.gui.swing.treetable.api.TreeTableModelAbstraction;
 import de.dbo.samples.gui.swing.treetable.records.api.Node;
+import de.dbo.samples.gui.swing.treetable.records.impl.NodeImpl;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

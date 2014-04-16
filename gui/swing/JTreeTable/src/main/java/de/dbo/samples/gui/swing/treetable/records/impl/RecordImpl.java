@@ -1,11 +1,11 @@
-package de.dbo.samples.gui.swing.treetable.records;
+package de.dbo.samples.gui.swing.treetable.records.impl;
 
 import de.dbo.samples.gui.swing.treetable.records.api.Path;
 import de.dbo.samples.gui.swing.treetable.records.api.RecordAbstraction;
 
 import java.util.UUID;
 
-public class RecordImpl extends RecordAbstraction {
+public final class RecordImpl extends RecordAbstraction {
 	
 	private final String uuid;
 	
@@ -18,29 +18,25 @@ public class RecordImpl extends RecordAbstraction {
 		this.uuid = UUID.randomUUID().toString().replaceAll("_", "");
 	}
 	
-	public String getUuid() {
-		return uuid;
-	}
-
-	
 	@Override
 	public String treename() {
 		return UUID.randomUUID().toString().replaceAll("-", "").substring(0,6);
 	}
-
-	private static final String DF = "000";
+	
+	@Override
+    public final String toString() {
+    	return uuid;
+    }
+	
     @Override
 	public StringBuilder print() {
     	final StringBuilder sb = new StringBuilder();
-//    	sb.append(" seq=" + new DecimalFormat(DF).format(sequence) );
+//    	sb.append(" seq=" + new DecimalFormat("000").format(sequence) );
 //    	sb.append(" uuid=" + uuid);
     	sb.append(" path=" + getPath().canonicalValue());
     	return sb;
     }
     
-    @Override
-    public String toString() {
-    	return uuid;
-    }
+    
     
 }

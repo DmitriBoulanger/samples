@@ -1,4 +1,4 @@
-package de.dbo.samples.gui.swing.treetable;
+package de.dbo.samples.gui.swing.treetable.data;
  
 import de.dbo.samples.gui.swing.treetable.api.TreeTable;
 import de.dbo.samples.gui.swing.treetable.api.TreeTableModel;

@@ -1,4 +1,4 @@
-package de.dbo.samples.gui.swing.treetable;
+package de.dbo.samples.gui.swing.treetable.data;
  
 import java.util.UUID;
  

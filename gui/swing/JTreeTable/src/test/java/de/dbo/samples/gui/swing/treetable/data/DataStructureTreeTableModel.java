@@ -1,4 +1,4 @@
-package de.dbo.samples.gui.swing.treetable;
+package de.dbo.samples.gui.swing.treetable.data;
  
 import de.dbo.samples.gui.swing.treetable.api.TreeTableModel;
 import de.dbo.samples.gui.swing.treetable.api.TreeTableModelAbstraction;
@@ -11,7 +11,7 @@ public final class DataStructureTreeTableModel extends TreeTableModelAbstraction
 	
     // Names of the columns
     private static  String[] columnNames = { 
-    	"PathImpl", "Timestamp", "UUID" ,"Tag/Component", "Object" };
+    	"PathAbsraction", "Timestamp", "UUID" ,"Tag/Component", "Object" };
  
     // Types of the columns
     private static Class<?>[] columnTypes = { 
