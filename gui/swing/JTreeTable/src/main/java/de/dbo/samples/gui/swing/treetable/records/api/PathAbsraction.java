@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 /**
+ * Reference (basic) implementation of the paths used in data-records
  * 
  * @author Dmitri Boulanger, Hombach
  *

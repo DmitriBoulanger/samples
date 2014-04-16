@@ -4,7 +4,7 @@ import de.dbo.samples.gui.swing.treetable.records.api.Path;
 import de.dbo.samples.gui.swing.treetable.records.api.Record;
 
 /**
- * Default (or basic) implementation of a record.
+ * Reference (or basic) implementation of a data-record.
  * A record must have path
  * 
  * 

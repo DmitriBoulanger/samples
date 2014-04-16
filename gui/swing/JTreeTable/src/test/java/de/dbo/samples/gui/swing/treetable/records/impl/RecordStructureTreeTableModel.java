@@ -51,7 +51,7 @@ public final class RecordStructureTreeTableModel extends TreeTableModelAbstracti
         case 1:
             return ((Node) node).getSequence();
         case 2:
-            return ((NodeImpl) node).getObject();
+            return ((NodeImpl) node).getContents();
             
         default:
             throw new RuntimeException(
@@ -69,7 +69,7 @@ public final class RecordStructureTreeTableModel extends TreeTableModelAbstracti
         	 break;
         	 
          case 2:
-        	 ((NodeImpl) node).setObject(value);
+        	 ((NodeImpl) node).setContents(value);
         	 break;
          
          default:
@@ -78,7 +78,6 @@ public final class RecordStructureTreeTableModel extends TreeTableModelAbstracti
          }
     }
     
- 
     @Override
     public Object getChild(Object parent, int index) {
         return ((NodeImpl) parent).getChildren().get(index);
@@ -103,11 +102,4 @@ public final class RecordStructureTreeTableModel extends TreeTableModelAbstracti
     public Class<?> getColumnClass(int column) {
         return columnTypes[column];
     }
- 
-
- 
-  
- 
-
- 
 }

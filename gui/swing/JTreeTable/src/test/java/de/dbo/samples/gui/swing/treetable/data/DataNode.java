@@ -13,19 +13,14 @@ public class DataNode extends NodeAbsraction {
         data = new Data(name,capital);
     }
     
-
-   
-    public Data getObject() {
+    public Data getContents() {
         return data;
     }
     
-
-    public void setObject(Object o) {
+    public void setContents(Object o) {
     	
     }
  
-   
-	
 	@Override
 	public StringBuilder print() {
 		// TODO Auto-generated method stub

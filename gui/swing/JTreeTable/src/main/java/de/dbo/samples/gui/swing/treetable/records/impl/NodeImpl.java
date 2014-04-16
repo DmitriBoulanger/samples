@@ -2,15 +2,12 @@ package de.dbo.samples.gui.swing.treetable.records.impl;
 
 import de.dbo.samples.gui.swing.treetable.records.api.Node;
 import de.dbo.samples.gui.swing.treetable.records.api.NodeAbsraction;
+import de.dbo.samples.gui.swing.treetable.records.api.NodeException;
 import de.dbo.samples.gui.swing.treetable.records.api.Record;
 
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 public class NodeImpl extends NodeAbsraction {
-	private static final Logger log = LoggerFactory.getLogger(NodeImpl.class);
 	
     private Record record;
     private Long sequence;
@@ -19,17 +16,18 @@ public class NodeImpl extends NodeAbsraction {
         super(treename, children);
         this.record = record;
         this.sequence = null!=record? record.getSequence() : null;
-        log.debug("created. Tree-name: " + treename);
     }
     
-	public Record getObject() {
+	public Record getContents() {
         return record;
     }
     
 	/*
 	 * just for fun ...
+	 * In real application, it should use contents of the record
+	 * and split it in several table-cells
 	 */
-	public void setObject(Object o) {
+	public void setContents(Object o) {
 		 if (o instanceof String) {
 			 if (null!=record) {
 				 ((RecordImpl) record).setSmthAsUUID((String)o);
@@ -40,6 +38,8 @@ public class NodeImpl extends NodeAbsraction {
 				 
 		 } else if (o instanceof Record) {
 			 this.record = (Record) o;
+		 } else {
+			 throw new NodeException("Can't set object: " + o);
 		 }
     }
 

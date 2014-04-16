@@ -60,13 +60,13 @@ public final class DataStructureTreeTableModel extends TreeTableModelAbstraction
         case 0:
             return datanode.treename();
         case 1:
-            return datanode.getObject().getTimestamp();
+            return datanode.getContents().getTimestamp();
         case 2:
-            return datanode.getObject().getUUID();
+            return datanode.getContents().getUUID();
         case 3:
-            return datanode.getObject().getCapital();
+            return datanode.getContents().getCapital();
         case 4:
-            return ((DataNode) node).getObject();
+            return ((DataNode) node).getContents();
             
         default:
             throw new RuntimeException(
@@ -106,14 +106,14 @@ public final class DataStructureTreeTableModel extends TreeTableModelAbstraction
         	 break;
         	 
          case 2:
-        	 datanode.getObject().setTimestamp( (Long) value);
+        	 datanode.getContents().setTimestamp( (Long) value);
          
          case 3:
-        	 datanode.getObject().setUUID((String)value);
+        	 datanode.getContents().setUUID((String)value);
              break;
              
          case 4:
-        	 datanode.setObject(value);
+        	 datanode.setContents(value);
         	 break;
          
          default:
