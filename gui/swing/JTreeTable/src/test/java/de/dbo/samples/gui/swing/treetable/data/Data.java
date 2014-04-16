@@ -7,6 +7,7 @@ public class Data  {
     private final String name;
     private final String capital;
     private Long timestamp;
+    
     private String uuid = UUID.randomUUID().toString().replaceAll("-", "");
      
     public Data(final String name) {

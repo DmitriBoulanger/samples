@@ -27,6 +27,57 @@ public final class RecordStructureTreeTableModel extends TreeTableModelAbstracti
         super(root);
     }
     
+    @Override
+    public boolean isCellEditable(Object node, int column) {
+    	 switch (column) {
+         case 0:
+        	 return true; // Important to activate TreeExpandListener
+         case 1:
+        	 return false;
+         case 2:
+        	 return true;
+         
+         default:
+             throw new RuntimeException(
+                 	"Incorrect column in isCellEditable(Object node="+node.toString()+", int column="+column+")");
+         }
+    }
+    
+    @Override
+    public Object getValueAt(Object node, int column) {
+        switch (column) {
+        case 0:
+            return ((Node) node).treename();
+        case 1:
+            return ((Node) node).getSequence();
+        case 2:
+            return ((NodeImpl) node).getObject();
+            
+        default:
+            throw new RuntimeException(
+            	"Incorrect column in getValueAt(Object node="+node.toString()+", int column="+column+")");
+        } 
+    }
+    
+    @Override
+    public void setValueAt(Object value, Object node, int column) {
+    	 log.debug("setValueAt(Object value="+value+", Object node="+node.toString()+", int column="+column+") ...");
+    	 switch (column) {
+         case 0:
+         case 1:
+        	 log.error("setValueAt(Object value="+value+", Object node="+node.toString()+", int column="+column+") rejected");
+        	 break;
+        	 
+         case 2:
+        	 ((NodeImpl) node).setObject(value);
+        	 break;
+         
+         default:
+             throw new RuntimeException(
+                 	"Incorrect column in setValueAt(Object value="+value+", Object node="+node.toString()+", int column="+column+")");
+         }
+    }
+    
  
     @Override
     public Object getChild(Object parent, int index) {
@@ -53,61 +104,10 @@ public final class RecordStructureTreeTableModel extends TreeTableModelAbstracti
         return columnTypes[column];
     }
  
-    @Override
-    public Object getValueAt(Object node, int column) {
-        switch (column) {
-        case 0:
-            return ((Node) node).treename();
-        case 1:
-            return ((Node) node).getSequence();
-        case 2:
-            return ((NodeImpl) node).getObject();
-            
-        default:
-            throw new RuntimeException(
-            	"Incorrect column in getValueAt(Object node="+node.toString()+", int column="+column+")");
-        }
-        
-    }
- 
-    @Override
-    public boolean isCellEditable(Object node, int column) {
-    	 switch (column) {
-         case 0:
-        	 return true; // Important to activate TreeExpandListener
-         case 1:
-        	 return false;
-         case 2:
-        	 return true;
-         
-         default:
-             throw new RuntimeException(
-                 	"Incorrect column in isCellEditable(Object node="+node.toString()+", int column="+column+")");
-         }
-    }
- 
-    @Override
-    public void setValueAt(Object value, Object node, int column) {
-    	 log.debug("setValueAt(Object value="+value+", Object node="+node.toString()+", int column="+column+") ...");
-    	  
-    	 switch (column) {
-         case 0:
-         case 1:
-         case 2:
-        	 log.debug("setValueAt(Object value="+value+", Object node="+node.toString()+", int column="+column+") rejected");
-        	 break;
-        	 
-         case 3:
-        	 ((NodeImpl) node).setObject(value);
-        	 break;
-         
-         default:
-             throw new RuntimeException(
-                 	"Incorrect column in setValueAt(Object value="+value+", Object node="+node.toString()+", int column="+column+")");
 
-       
-             
-         }
-    }
+ 
+  
+ 
+
  
 }
