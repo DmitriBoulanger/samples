@@ -3,6 +3,7 @@ package de.dbo.samples.gui.swing.treetable.records;
 import de.dbo.samples.gui.swing.treetable.records.api.Path;
 import de.dbo.samples.gui.swing.treetable.records.api.Record;
 
+import java.text.DecimalFormat;
 import java.util.UUID;
 
 public class RecordImpl implements Record {
@@ -16,7 +17,7 @@ public class RecordImpl implements Record {
 	
 	private Object contents = null;
 	
-	private Integer sequence = null;
+	private Long sequence = null;
 	
 	public RecordImpl(final Long timestamp) {
 		this((Path) null, timestamp);
@@ -26,6 +27,11 @@ public class RecordImpl implements Record {
 		this.path = path;
 		this.timestamp = timestamp;
 		this.uuid = UUID.randomUUID().toString().replaceAll("_", "");
+	}
+	
+	@Override
+	public boolean isData(final int depth) {
+		 return depth == getPath().depth();
 	}
 
 	@Override
@@ -49,12 +55,12 @@ public class RecordImpl implements Record {
 	}
 
 	@Override
-	public Integer getSequence() {
+	public Long getSequence() {
 		return sequence;
 	}
 
 	@Override
-	public void setSequence(Integer sequence) {
+	public void setSequence(Long sequence) {
 		this.sequence = sequence;
 	}
 
@@ -67,4 +73,26 @@ public class RecordImpl implements Record {
 	public void setContents(Object contents) {
 		this.contents = contents;
 	}
+	
+	
+	private static final String DF = "000";
+	
+	@Override
+	public String name() {
+		return UUID.randomUUID().toString().replaceAll("-", "").substring(0,6);
+	}
+
+    @Override
+	public StringBuilder print() {
+    	final StringBuilder sb = new StringBuilder();
+//    	sb.append(" seq=" + new DecimalFormat(DF).format(sequence) );
+//    	sb.append(" uuid=" + uuid);
+    	sb.append(" path=" + path.canonicalValue());
+    	return sb;
+    }
+    
+    @Override
+    public String toString() {
+    	return print().toString();
+    }
 }

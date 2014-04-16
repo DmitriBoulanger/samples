@@ -1,41 +1,40 @@
-package de.dbo.samples.gui.swing.treetable;
+package de.dbo.samples.gui.swing.treetable.records;
  
 import de.dbo.samples.gui.swing.treetable.api.TreeTableModel;
 import de.dbo.samples.gui.swing.treetable.api.TreeTableModelAbstraction;
+import de.dbo.samples.gui.swing.treetable.records.api.Node;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
  
-public final class DataStructureTreeTableModel extends TreeTableModelAbstraction {
-	private static final Logger log = LoggerFactory.getLogger(DataStructureTreeTableModel.class);
+public final class RecordStructureTreeTableModel extends TreeTableModelAbstraction {
+	private static final Logger log = LoggerFactory.getLogger(RecordStructureTreeTableModel.class);
 	
     // Names of the columns
     private static  String[] columnNames = { 
-    	"PathImpl", "Timestamp", "UUID" ,"Tag/Component", "Object" };
+    	"Path", "Sequence", "Record" };
  
     // Types of the columns
     private static Class<?>[] columnTypes = { 
-    	TreeTableModel.class, Long.class,  String.class,  String.class, Object.class };
+    	TreeTableModel.class, Long.class, Object.class };
  
     /**
      * 
      * @param root complete data-structure 
      */
-    public DataStructureTreeTableModel(Object root) {
+    public RecordStructureTreeTableModel(Object root) {
         super(root);
     }
     
-    
-   
  
     @Override
     public Object getChild(Object parent, int index) {
-        return ((DataNode) parent).getChildren().get(index);
+        return ((NodeImpl) parent).getChildren().get(index);
     }
  
     @Override
     public int getChildCount(Object parent) {
-        return ((DataNode) parent).getChildren().size();
+        return ((NodeImpl) parent).getChildren().size();
     }
  
     @Override
@@ -57,15 +56,11 @@ public final class DataStructureTreeTableModel extends TreeTableModelAbstraction
     public Object getValueAt(Object node, int column) {
         switch (column) {
         case 0:
-            return ((DataNode) node).treeName();
+            return ((Node) node).treeName();
         case 1:
-            return ((DataNode) node).getTimestamp();
+            return ((Node) node).getSequence();
         case 2:
-            return ((DataNode) node).getUUID();
-        case 3:
-            return ((DataNode) node).getCapital();
-        case 4:
-            return ((DataNode) node).getObject();
+            return ((NodeImpl) node).getObject();
             
         default:
             throw new RuntimeException(
@@ -82,10 +77,6 @@ public final class DataStructureTreeTableModel extends TreeTableModelAbstraction
          case 1:
         	 return false;
          case 2:
-        	 return false;
-         case 3:
-        	 return true;	
-         case 4:
         	 return true;
          
          default:
@@ -101,18 +92,12 @@ public final class DataStructureTreeTableModel extends TreeTableModelAbstraction
     	 switch (column) {
          case 0:
          case 1:
+         case 2:
         	 log.debug("setValueAt(Object value="+value+", Object node="+node.toString()+", int column="+column+") rejected");
         	 break;
         	 
-         case 2:
-        	 ((DataNode) node).setTimestamp( (Long) value);
-         
          case 3:
-             ((DataNode) node).setUUID((String)value);
-             break;
-             
-         case 4:
-        	 ((DataNode) node).setObject(value);
+        	 ((NodeImpl) node).setObject(value);
         	 break;
          
          default:

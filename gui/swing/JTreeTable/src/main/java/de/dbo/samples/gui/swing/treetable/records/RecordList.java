@@ -5,9 +5,14 @@ import de.dbo.samples.gui.swing.treetable.records.api.Path;
 import de.dbo.samples.gui.swing.treetable.records.api.Record;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
-public class RecordList {
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+public class RecordList implements Comparable<RecordList> {
+	private static final Logger log = LoggerFactory.getLogger(RecordList.class);
 	
 	private final List<RecordList> childRecordGroups = new ArrayList<RecordList>();
 
@@ -23,10 +28,14 @@ public class RecordList {
 		this.depth = 0;
 		this.node = new NodeImpl("ROOT",null,null);
 		for (final Record record:records) {
-			record.setSequence(this.records.size());
+			record.setSequence( (long) this.records.size() );
 			this.records.add(record);
 		}
-		process();
+		process(this);
+	}
+	
+	public Node tree() {
+		return node;
 	}
 	
 	/**
@@ -39,58 +48,67 @@ public class RecordList {
 		this.node = node;
 	}
 	
+	@Override
+	public int compareTo(RecordList another) {
+		return node.compareTo(another.node);
+	}
+	
 	public int size() {
 		return records.size();
 	}
 	
 	public String nodeName() {
-		return node.getName();
+		return node.treeName();
 	}
 	
 	public boolean nodeExpandable() {
 		return !childRecordGroups.isEmpty() || 1!=records.size();
 	}
 	
-	private void attachChildren() {
-		List<Node> childern = node.children();
-		for (RecordList recordList: childRecordGroups)  {
-			childern.add(recordList.node);
-		}
-	}
-	
-	private final void process() {
-		process(this);
-	}
-	
 	private static final void process(RecordList recordList) {
 		String group = null;
+		Long seq = null;
 		RecordList groupList = null;
+		final int depth = recordList.depth;
 		for (Record record:recordList.records) {
+			final String name = record.name();
 			final Path path = record.getPath();
-			final String group2 = path.pathElement(recordList.depth);
+			final boolean isData = record.isData(depth);
+			final String group2 = path.pathElement(depth);
+			final Long seq2 = record.getSequence();
 			if (null==group2) {
 				continue;
 			}
 			
-			if (group2.equals(group)) {
-				groupList.records.add(record);
+			if (group2.equals(group) && null!=seq && seq2 == seq+1) {
+				if (isData) {
+					groupList.node.getChildren().add(new NodeImpl(name,record,null));
+				} else {
+					groupList.records.add(record);
+				}
 			} else {
 				group = group2;
-				groupList = new RecordList(recordList.depth+1, new NodeImpl(group, null, null) );
-				groupList.records.add(record);
+				seq = seq2;
+				final Node node = new NodeImpl(group, null, null);
+				groupList = new RecordList(depth+1, node );
+				if (isData) {
+					groupList.node.getChildren().add(new NodeImpl(name,record,null));
+				} else {
+					groupList.records.add(record);
+				}
 				recordList.childRecordGroups.add(groupList);
 			}
 		}
-		recordList.attachChildren();
+		final List<Node> childern = recordList.node.getChildren();
+		for (RecordList childRecordList: recordList.childRecordGroups)  {
+			childern.add(childRecordList.node);
+		}
 		
 		if (!recordList.childRecordGroups.isEmpty() ) {
 			for (RecordList recordList2:recordList.childRecordGroups) {
 				process(recordList2);
 			}
 		}
-		
-		
-		
 	}
 	
 	public StringBuilder print() {
@@ -109,11 +127,15 @@ public class RecordList {
 		for (RecordList recordList: children) {
 			sb.append(t);
 			sb.append("#" + depth + "#");
-			sb.append(" Node=" + recordList.node.print());
+			sb.append(" Node=" + recordList.node.print() + " sort=" + recordList.node.getSequence());
 			sb.append(" Expandable="+ recordList.nodeExpandable());
 			sb.append(" Cnt=" + recordList.size() + ":");
 			for (Record record: recordList.records) {
-				sb.append(print(record, depth, t, dataCnt) );
+				final boolean isData = record.isData(depth);
+				if (record.isData(depth)) {
+					dataCnt.incr();
+				}
+				sb.append(print(record, depth, t, isData) );
 			}
 			
 			sb.append( print(recordList.childRecordGroups, depth+1, dataCnt));
@@ -121,16 +143,14 @@ public class RecordList {
 		return sb;
 	}
 	
-	private static final StringBuilder print(Record record, int depth, StringBuilder t, Cnt dataCnt) {
-		boolean isData = depth==record.getPath().depth();
+	private static final StringBuilder print(Record record, int depth, StringBuilder t, boolean isData) {
+		
 		final StringBuilder sb = new StringBuilder();
 			sb.append(t);
 			sb.append("sequence="+ record.getSequence());
 			sb.append(" path=" + record.getPath().canonicalValue());
 			sb.append(" data=" + isData);
-			if (isData) {
-				dataCnt.incr();
-			}
+			
 	   return sb;
 	}
 	
@@ -146,5 +166,7 @@ public class RecordList {
 		sb.append(" ");
 		return sb;
 	}
+
+	
 	
 }

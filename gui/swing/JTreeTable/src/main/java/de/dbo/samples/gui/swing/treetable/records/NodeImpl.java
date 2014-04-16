@@ -1,59 +1,59 @@
 package de.dbo.samples.gui.swing.treetable.records;
 
 import de.dbo.samples.gui.swing.treetable.records.api.Node;
+import de.dbo.samples.gui.swing.treetable.records.api.NodeAbsraction;
+import de.dbo.samples.gui.swing.treetable.records.api.Record;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class NodeImpl implements Node {
-    private final String name;
-    private Object o;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+public class NodeImpl extends NodeAbsraction {
+	private static final Logger log = LoggerFactory.getLogger(NodeImpl.class);
+	
+    private Record record;
     
-    private final List<Node> children = new ArrayList<Node>();
- 
-    public NodeImpl(final String name, Object o, List<Node> children) {
-        this.name = name;
-        this.o = o;
-        if (children != null) {
-            this.children.addAll(children);
-        } 
+    private final Long sequence;
+   
+    public NodeImpl(final String treename, Record record, List<Node> children) {
+        super(treename,children);
+        this.record = record;
+        this.sequence = null!=record? record.getSequence() : Long.MAX_VALUE;
+        log.debug("created. Tree-name: " + treename);
     }
     
-    public StringBuilder print() {
-    	final StringBuilder sb = new StringBuilder(name+": ");
-    	final StringBuilder sb2 = new StringBuilder();
-    	for (final Node node:children) {
-    		sb2.append(node.getName()+" ");
-    	}
-    	sb.append("<");
-    	sb.append(sb2.toString().trim());
-    	sb.append(">");
-    	return sb;
-    }
- 
-    @Override
-	public String getName() {
-        return name;
-    }
- 
-    
-    @Override
 	public Object getObject() {
-        return o;
+        return record;
     }
     
-    @Override
 	public void setObject(Object o) {
-    	 this.o = o;
+    	 this.record = (Record) o;
     }
+
+	@Override
+	public Long getSequence() {
+		Long ret = this.sequence;
+		for (Node child:children) {
+			final Long childSequence = child.getSequence();
+			if (ret > childSequence) {
+				ret = childSequence;
+			}
+		}
+		return ret;
+	}
+
+	@Override
+	public void setSequence(Long sequence) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public String title() {
+		// TODO Auto-generated method stub
+		return null;
+	}
  
-    @Override
-	public List<Node> children() {
-        return children;
-    }
- 
-    @Override
-	public final String toString() {
-        return name;
-    }
 }

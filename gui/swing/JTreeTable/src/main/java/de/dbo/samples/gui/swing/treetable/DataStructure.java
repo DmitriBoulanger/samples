@@ -1,31 +1,33 @@
 package de.dbo.samples.gui.swing.treetable;
  
+import de.dbo.samples.gui.swing.treetable.records.api.Node;
+
 import java.util.ArrayList;
 import java.util.List;
  
 public class DataStructure  {
 	 
-    public static DataNode instance() {
+    public static Node instance() {
     	
-        final List<DataNode> children1 = new ArrayList<DataNode>();
+        final List<Node> children1 = new ArrayList<Node>();
         children1.add(new DataNode("Record 12", "C12",  null));
         children1.add(new DataNode("Record 13", "C13",  null));
         children1.add(new DataNode("Record 14", "C14",  null));
         children1.add(new DataNode("Record 15", "C15",  null));
  
-        final List<DataNode> children2 = new ArrayList<DataNode>();
+        final List<Node> children2 = new ArrayList<Node>();
         children2.add(new DataNode("Record 12", "C12", null));
         children2.add(new DataNode("Node 13", "C13", children1));
         children2.add(new DataNode("Record 14", "C14",  null));
         children2.add(new DataNode("Record 15", "C15",  null));
         
-        final List<DataNode> children3 = new ArrayList<DataNode>();
+        final List<Node> children3 = new ArrayList<Node>();
         children3.add(new DataNode("Record 312", "C312",  null));
         children3.add(new DataNode("Node 313", "C313", children2));
         children3.add(new DataNode("Record 314", "C314",  null));
         children3.add(new DataNode("Record 315", "C315",  null));
          
-        final List<DataNode> nodes0 = new ArrayList<DataNode>();
+        final List<Node> nodes0 = new ArrayList<Node>();
         nodes0.add(new DataNode("Root 01", "C01", children2));
         nodes0.add(new DataNode("Root 02", "C02", children1));
         nodes0.add(new DataNode("Root 03", "C03", children2));
@@ -47,7 +49,7 @@ public class DataStructure  {
         nodes0.add(new DataNode("Record 17", "CXXX bla bla"	, null));
         
         
-        final DataNode root = new DataNode("Evaluation events", "",  nodes0);
+        final Node root = new DataNode("Evaluation events", "",  nodes0);
         return root;
     }
  

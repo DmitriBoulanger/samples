@@ -3,7 +3,7 @@ package de.dbo.samples.gui.swing.treetable;
 import java.util.UUID;
  
 public class Data  {
-	 
+	
     private final String name;
     private final String capital;
     private Long timestamp;
@@ -19,7 +19,7 @@ public class Data  {
         this.timestamp = System.currentTimeMillis();
     }
     
-    public String getName() {
+    public String treeName() {
         return name;
     }
  

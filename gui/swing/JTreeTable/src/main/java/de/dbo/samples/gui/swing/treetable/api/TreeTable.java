@@ -81,8 +81,7 @@ public class TreeTable extends JTable {
     	tableColumn.setResizable(false);
     }
     
-    public void setBasicUI(Color background, Color selection,  Color foreground, Font font
-    		, int verticalMargin) {
+    public void setBasicUI(Color background, Color selection,  Color foreground, Font font) {
     	 // JTable
     	 setFont(font);
     	 setBackground(background);

@@ -7,9 +7,9 @@ import java.util.List;
 
 public class DataNode extends Data implements Node {
 	 
-    final private List<DataNode> children = new ArrayList<DataNode>();
+    final private List<Node> children = new ArrayList<Node>();
  
-    public DataNode(final String name, final String capital,  List<DataNode> children) {
+    public DataNode(final String name, final String capital,  List<Node> children) {
         super(name,capital);
         if (children != null) {
             this.children.addAll(children);
@@ -18,32 +18,49 @@ public class DataNode extends Data implements Node {
     
     @Override
     public String toString() {
-    	return getName(); // important for the tree-path
+    	return treeName(); // important for the tree-path
     }
  
-    @Override
+
     public Data getObject() {
         return null;
     }
     
-    @Override
+
     public void setObject(Object o) {
     	
     }
  
-    public List<DataNode> getChildren() {
+    public List<Node> getChildren() {
         return children;
     }
 
+	
 	@Override
-	public List<Node> children() {
+	public StringBuilder print() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public StringBuilder print() {
+	public int compareTo(Node another) {
+		return getSequence().compareTo(another.getSequence());
+	}
+
+	@Override
+	public Long getSequence() {
 		// TODO Auto-generated method stub
-		return null;
+		return 0L;
+	}
+
+	@Override
+	public void setSequence(Long o) {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public String title() {
+		// TODO Auto-generated method stub
+		return "title";
 	}
 }

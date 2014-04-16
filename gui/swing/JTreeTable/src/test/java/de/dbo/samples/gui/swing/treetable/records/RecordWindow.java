@@ -1,4 +1,4 @@
-package de.dbo.samples.gui.swing.treetable;
+package de.dbo.samples.gui.swing.treetable.records;
  
 import de.dbo.samples.gui.swing.treetable.api.TreeTable;
 import de.dbo.samples.gui.swing.treetable.api.TreeTableModel;
@@ -18,9 +18,9 @@ import javax.swing.UIManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
  
-public class Window extends JFrame {
+public class RecordWindow extends JFrame {
 	private static final long serialVersionUID = 4489500964556705612L;
-	private static final Logger log = LoggerFactory.getLogger(Window.class);
+	private static final Logger log = LoggerFactory.getLogger(RecordWindow.class);
 	
 	private final Dimension size = new Dimension(1000, 400);
 	private final Font font = new Font("Consolas",Font.PLAIN, 14);
@@ -33,19 +33,21 @@ public class Window extends JFrame {
 	private final Color background = new Color(239,241,248);
 	private final Color selection = new Color(168,208,245);
 	
-	public Window() {
-        super("Tree Table Sample");
+	
+	public RecordWindow() {
+        super("Record Tree-Table");
+        final long start = System.currentTimeMillis();
 
-        treeTableModel = new DataStructureTreeTableModel( DataStructure.instance());
+        treeTableModel = new RecordStructureTreeTableModel( RecordStructure.instance());
         treeTable = new TreeTable(treeTableModel);
         jScrollPane = new JScrollPane(treeTable);
         
        
-        treeTable.setRootVisible(false);
+        treeTable.setRootVisible(true);
         treeTable.setBasicUI(background, selection, Color.BLACK, font);
         treeTable.setIntercellSpacing(new Dimension(2, 2)); 
-        treeTable.setColumnWidthNonresizable(1, 120);
-        treeTable.setColumnWidthNonresizable(2, 280);
+        treeTable.setColumnWidthNonresizable(1, 65);
+        treeTable.setColumnWidthNonresizable(2, 600);
        
         jScrollPane.getViewport().setBackground(background);
         
@@ -67,16 +69,12 @@ public class Window extends JFrame {
         this.setAlwaysOnTop(true);
         this.setVisible(true);
         
-        log.debug("created. Background=" + background);
+        log.info("window done. Elapsed " +(System.currentTimeMillis()-start) + " ms." );
+        
     }
-	
-	 
-   
-    
-	
-	
- 
+
     public static void main(final String[] args) {
+    	
         final Runnable gui = new Runnable() {
  
         	@Override
@@ -86,10 +84,12 @@ public class Window extends JFrame {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                new Window().setVisible(true);
+                new RecordWindow().setVisible(true);
             }
         };
         
         SwingUtilities.invokeLater(gui);
+        
+       
     }
 }
