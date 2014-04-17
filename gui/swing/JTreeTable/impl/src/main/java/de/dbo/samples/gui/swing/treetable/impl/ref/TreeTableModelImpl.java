@@ -1,5 +1,6 @@
 package de.dbo.samples.gui.swing.treetable.impl.ref;
  
+import de.dbo.samples.gui.swing.treetable.api.gui.TreeTableException;
 import de.dbo.samples.gui.swing.treetable.api.gui.TreeTableModel;
 import de.dbo.samples.gui.swing.treetable.api.gui.TreeTableModelAbstraction;
 import de.dbo.samples.gui.swing.treetable.api.records.Node;
@@ -7,8 +8,8 @@ import de.dbo.samples.gui.swing.treetable.api.records.Node;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
  
-public final class RecordTreeTableModelImpl extends TreeTableModelAbstraction {
-	private static final Logger log = LoggerFactory.getLogger(RecordTreeTableModelImpl.class);
+public final class TreeTableModelImpl extends TreeTableModelAbstraction {
+	private static final Logger log = LoggerFactory.getLogger(TreeTableModelImpl.class);
 	
     // Names of the columns
     private static  String[] columnNames = { 
@@ -22,7 +23,7 @@ public final class RecordTreeTableModelImpl extends TreeTableModelAbstraction {
      * 
      * @param root complete data-structure 
      */
-    public RecordTreeTableModelImpl() {
+    public TreeTableModelImpl() {
         super();
     }
     
@@ -30,14 +31,14 @@ public final class RecordTreeTableModelImpl extends TreeTableModelAbstraction {
     public boolean isCellEditable(Object node, int column) {
     	 switch (column) {
          case 0:
-        	 return true; // Important to activate TreeExpandListener
+        	 return true; // Important to activate the TreeExpandListener
          case 1:
         	 return false;
          case 2:
         	 return true;
          
          default:
-             throw new RuntimeException(
+             throw new TreeTableException(
                  	"Incorrect column in isCellEditable(Object node="+node.toString()+", int column="+column+")");
          }
     }
@@ -53,7 +54,7 @@ public final class RecordTreeTableModelImpl extends TreeTableModelAbstraction {
             return ((Node) node).getContents();
             
         default:
-            throw new RuntimeException(
+            throw new TreeTableException(
             	"Incorrect column in getValueAt(Object node="+node.toString()+", int column="+column+")");
         } 
     }
@@ -72,7 +73,7 @@ public final class RecordTreeTableModelImpl extends TreeTableModelAbstraction {
         	 break;
          
          default:
-             throw new RuntimeException(
+             throw new TreeTableException(
                  	"Incorrect column in setValueAt(Object value="+value+", Object node="+node.toString()+", int column="+column+")");
          }
     }

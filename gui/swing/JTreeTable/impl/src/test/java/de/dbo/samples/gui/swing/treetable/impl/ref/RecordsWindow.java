@@ -36,19 +36,19 @@ public class RecordsWindow extends JFrame {
 	private final TreeTable treeTable;
 	private final JScrollPane jScrollPane;
 	
-    private final Factory factory = new Factory(
-			new ClassPathXmlApplicationContext("ReferenceImplementation.xml"));
+    private final Factory factory;
 	
 	public RecordsWindow() {
-        super("Record Tree-Table");
+        super("Record Tree-Table - Reference Implementation");
         final long start = System.currentTimeMillis();
+        
+        factory = Factory.instance("ReferenceImplementation.xml");
 
         treeTableModel = factory.treeTableModel(new RecordTreeGenerator(factory
         		, Records.list()).tree() );
         treeTable = new TreeTable(treeTableModel);
         jScrollPane = new JScrollPane(treeTable);
         
-       
         treeTable.setRootVisible(true);
         treeTable.setBasicUI(background, selection, foreground, font);
         treeTable.setIntercellSpacing(new Dimension(1,1)); 
@@ -78,7 +78,7 @@ public class RecordsWindow extends JFrame {
     }
 
     public static void main(final String[] args) {
-    	log.info("openning ..." );
+    	log.info("window openning ..." );
         final Runnable gui = new Runnable() {
  
         	@Override

@@ -2,7 +2,7 @@ package de.dbo.samples.gui.swing.treetable.impl.ref;
  
 import de.dbo.samples.gui.swing.treetable.api.gui.TreeTable;
 import de.dbo.samples.gui.swing.treetable.api.gui.TreeTableModel;
-import de.dbo.samples.gui.swing.treetable.impl.ref.RecordTreeTableModelImpl;
+import de.dbo.samples.gui.swing.treetable.impl.ref.TreeTableModelImpl;
 
 import java.awt.Color;
 import java.awt.Container;
@@ -38,7 +38,7 @@ public class RecordsTestWindow extends JFrame {
         super("Record Tree-Table");
         final long start = System.currentTimeMillis();
         
-        treeTableModel = new RecordTreeTableModelImpl();
+        treeTableModel = new TreeTableModelImpl();
         treeTableModel.setRoot(new RecordsTest().getTreeroot());
         treeTable = new TreeTable(treeTableModel);
         jScrollPane = new JScrollPane(treeTable);

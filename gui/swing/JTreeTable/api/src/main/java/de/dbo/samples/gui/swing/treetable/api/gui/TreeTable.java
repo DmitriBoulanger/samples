@@ -28,18 +28,16 @@ public class TreeTable extends JTable {
 	private final TreeTableCell tree;
 	
 	/**
-	 * @param treeTableModel tree-table data-model 
+	 * @param model tree-table data-model 
 	 */
-    public TreeTable(TreeTableModel treeTableModel) {
+    public TreeTable(TreeTableModel model) {
         super();
         
-        
- 
         // JTree-extension
-        tree = new TreeTableCell(this, treeTableModel);
+        tree = new TreeTableCell(this, model);
          
         // Model
-        super.setModel(new TreeTableModelAdapter(treeTableModel, tree));
+        super.setModel(new TreeTableModelAdapter(model, tree));
          
         // Simultaneous selections for JTable and JTree
         final TreeTableSelectionModel selectionModel = new TreeTableSelectionModel();

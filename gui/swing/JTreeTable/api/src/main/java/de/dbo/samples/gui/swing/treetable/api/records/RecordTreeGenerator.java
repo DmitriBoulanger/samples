@@ -16,13 +16,12 @@ import java.util.Set;
 
 /**
  * Generator of the record-tree.
- * It takes input record-list and transforms this list into the record-tree
- * using the paths available in the records.
+ * It takes input record-list and transforms it into the record-tree
+ * using paths available in the records.
  * 
  * Input record-list is considered as ordered list. Records are ordered
  * using their sequence attributes. The output record-tree preserves the
  * order from the input record-list.
- * 
  * 
  * @author Dmitri Boulanger, Hombach
  *
@@ -50,7 +49,7 @@ public final class RecordTreeGenerator implements Comparable<RecordTreeGenerator
 	/**
 	 * sorted input record-list
 	 */
-	private final List<Record> records = new ArrayList<Record>();
+	final List<Record> records = new ArrayList<Record>();
 	
 	final Factory factory;
 	
@@ -113,7 +112,7 @@ public final class RecordTreeGenerator implements Comparable<RecordTreeGenerator
 		RecordTreeGenerator groupList = null;
 		
 		final int depth = recordList.depth;
-		for (final Record record:recordList.getRecords()) {
+		for (final Record record:recordList.records) {
 			final String name = record.treename();
 			final boolean isData = record.isDataDepth(depth);
 			final String groupNext = record.getPath().pathElement(depth);
@@ -221,10 +220,6 @@ public final class RecordTreeGenerator implements Comparable<RecordTreeGenerator
 				,0 ,true /* only nodes */);
 		ret.append(sb);
 		return ret;
-	}
-
-	public List<Record> getRecords() {
-		return records;
 	}
 
 }

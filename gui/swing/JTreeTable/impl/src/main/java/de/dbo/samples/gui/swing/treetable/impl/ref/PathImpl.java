@@ -23,7 +23,7 @@ public class PathImpl extends PathAbsraction {
 	 *            
 	 *  @throws PathException if the path is null or empty string
 	 */
-	public PathImpl(final String path) {
+	PathImpl(final String path) {
 		super(path);
 	}
 	

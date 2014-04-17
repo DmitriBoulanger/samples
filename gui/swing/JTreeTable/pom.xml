@@ -11,14 +11,9 @@
 
 	<properties>
 		<java.version>1.7</java.version>
+		<slf4j.version>1.7.6</slf4j.version>
 		<spring.version>3.1.2.RELEASE</spring.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		
-		
-		<!-- =============================== 
-	                
-	     	 =============================== -->
-
 	</properties>
 	
 	<modules>
@@ -26,7 +21,6 @@
 		<module>impl</module>
 	</modules>
 	
-
 	<build>
 		<finalName>samples-gui-treetable-${project.artifactId}-${project.version}</finalName>
 
@@ -48,24 +42,17 @@
 	</build>
 
 	<dependencies>
-	
-	<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>1.6.1</version>
-		</dependency>
-	
+
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
-			<version>1.6.1</version>
+			<version>${slf4j.version}</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
-			<version>1.6.1</version>
-			<scope>runtime</scope>
+			<version>${slf4j.version}</version>
 		</dependency>
 
 		<dependency>
@@ -74,28 +61,12 @@
 			<version>4.8.2</version>
 			<scope>test</scope>
 		</dependency>
-		
-		  <!-- SPRING -->
-			<dependency>
-				<groupId>org.springframework</groupId>
-				<artifactId>spring-context</artifactId>
-				<version>${spring.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.springframework</groupId>
-				<artifactId>spring-jdbc</artifactId>
-				<version>${spring.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.springframework</groupId>
-				<artifactId>spring-web</artifactId>
-				<version>${spring.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.springframework</groupId>
-				<artifactId>spring-webmvc</artifactId>
-				<version>${spring.version}</version>
-			</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
 
 	</dependencies>
 </project>

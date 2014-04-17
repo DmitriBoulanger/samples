@@ -22,7 +22,6 @@ public class NodeImpl extends NodeAbsraction {
     	else if (!(o instanceof Record)) {
     		throw new NodeException("init(final String treename="+treename
     				+", final Object o="+o+"): Object has to be a Record");
-    		
     	} else {
     		this.record = (Record) o;
     	}

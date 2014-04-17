@@ -10,7 +10,7 @@
 		scope="prototype" >
 	</bean> 
 	
-	<bean id="treeTableModel" class="de.dbo.samples.gui.swing.treetable.impl.ref.RecordTreeTableModelImpl"
+	<bean id="treeTableModel" class="de.dbo.samples.gui.swing.treetable.impl.ref.TreeTableModelImpl"
 		scope="prototype" >
 	</bean> 
 	

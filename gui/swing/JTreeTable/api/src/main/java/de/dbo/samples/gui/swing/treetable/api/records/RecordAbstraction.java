@@ -41,7 +41,7 @@ public abstract class RecordAbstraction implements Record {
 	 * Therefore, any record must have sequence.
 	 */
 	@Override
-	public int compareTo(Record another) {
+	public int compareTo(final Record another) {
 		return sequence.compareTo(another.getSequence());
 	}
 	

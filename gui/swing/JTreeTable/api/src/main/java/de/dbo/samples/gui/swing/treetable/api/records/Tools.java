@@ -45,7 +45,7 @@ public final class Tools {
 			sb.append(" Node=" + recordList.node.print() + " sort=" + recordList.node.getSequence());
 			if (!onlyNodes) {
 				sb.append(" Records (" + recordList.size() + "):");
-				for (Record record : recordList.getRecords()) {
+				for (Record record : recordList.records) {
 					sb.append(print(record, depth, tab));
 				}
 			}
