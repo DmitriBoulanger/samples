@@ -6,11 +6,11 @@
 	<context:annotation-config />  
 
 	<!-- Definition for textEditor bean without constructor-arg -->
-	<bean id="textEditor" class="com.tutorialspoint.AnnotatedConfiguration.TextEditorImpl">
+	<bean id="textEditor" class="de.dbo.samples.spring.configuration.TextEditorImpl">
 	</bean> 
 	
 	<!-- Definition for spellChecker bean -->
-	<bean id="spellChecker" class="com.tutorialspoint.AnnotatedConfiguration.SpellCheckerImpl">
+	<bean id="spellChecker" class="de.dbo.samples.spring.configuration.SpellCheckerImpl">
 		<property name="lang" value="EN"/> 
 	</bean>
 
