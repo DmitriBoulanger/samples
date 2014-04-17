@@ -183,7 +183,7 @@ public final class RecordTreeGenerator implements Comparable<RecordTreeGenerator
 //			System.err.println("CURRENT: " + (null!=child? child.print(): "null")  // DEBUGGING!
 //					+"          NEXT: " + childNext.print());
 			if (null!=child && !toBeRemoved.contains(childNext)
-					&& child.treename().equals(childNext.treename())) {
+					&& child.getTreename().equals(childNext.getTreename())) {
 				child.getChildren().addAll(childNext.getChildren());
 //				child.setObject("got merge from " + childNext.print()); // DEBUGGING!
 				toBeRemoved.add(childNext);

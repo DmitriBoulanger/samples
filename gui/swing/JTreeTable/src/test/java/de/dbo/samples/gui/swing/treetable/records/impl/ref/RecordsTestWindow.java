@@ -18,9 +18,9 @@ import javax.swing.UIManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
  
-public class RecordTestWindow extends JFrame {
+public class RecordsTestWindow extends JFrame {
 	private static final long serialVersionUID = 4489500964556705612L;
-	private static final Logger log = LoggerFactory.getLogger(RecordTestWindow.class);
+	private static final Logger log = LoggerFactory.getLogger(RecordsTestWindow.class);
 	
 	private final Dimension size = new Dimension(1000, 400);
 	private final Font font = new Font("Consolas",Font.PLAIN, 14);
@@ -33,11 +33,12 @@ public class RecordTestWindow extends JFrame {
 	private final TreeTable treeTable;
 	private final JScrollPane jScrollPane;
 	
-	public RecordTestWindow() {
+	public RecordsTestWindow() {
         super("Record Tree-Table");
         final long start = System.currentTimeMillis();
         
-        treeTableModel = new RecordStructureTreeTableModel(new RecordsTest().getTreeroot() );
+        treeTableModel = new RecordTreeTableModelImpl();
+        treeTableModel.setRoot(new RecordsTest().getTreeroot());
         treeTable = new TreeTable(treeTableModel);
         jScrollPane = new JScrollPane(treeTable);
         
@@ -80,7 +81,7 @@ public class RecordTestWindow extends JFrame {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                new RecordTestWindow().setVisible(true);
+                new RecordsTestWindow().setVisible(true);
             }
         };
         

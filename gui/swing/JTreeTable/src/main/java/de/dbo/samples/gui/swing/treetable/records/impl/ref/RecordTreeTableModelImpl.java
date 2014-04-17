@@ -7,8 +7,8 @@ import de.dbo.samples.gui.swing.treetable.records.api.Node;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
  
-public final class RecordStructureTreeTableModel extends TreeTableModelAbstraction {
-	private static final Logger log = LoggerFactory.getLogger(RecordStructureTreeTableModel.class);
+public final class RecordTreeTableModelImpl extends TreeTableModelAbstraction {
+	private static final Logger log = LoggerFactory.getLogger(RecordTreeTableModelImpl.class);
 	
     // Names of the columns
     private static  String[] columnNames = { 
@@ -22,8 +22,8 @@ public final class RecordStructureTreeTableModel extends TreeTableModelAbstracti
      * 
      * @param root complete data-structure 
      */
-    public RecordStructureTreeTableModel(Object root) {
-        super(root);
+    public RecordTreeTableModelImpl() {
+        super();
     }
     
     @Override
@@ -46,7 +46,7 @@ public final class RecordStructureTreeTableModel extends TreeTableModelAbstracti
     public Object getValueAt(Object node, int column) {
         switch (column) {
         case 0:
-            return ((Node) node).treename();
+            return ((Node) node).getTreename();
         case 1:
             return ((Node) node).getSequence();
         case 2:

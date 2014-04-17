@@ -8,13 +8,18 @@ import java.util.List;
 public class DataNode extends NodeAbsraction {
 	 
     private final Data data;
-    public DataNode(final String name, final String capital,  List<Node> children) {
-        super(name);
-        data = new Data(name,capital);
+    public DataNode(final String treename, final String capital,  List<Node> children) {
+        super();
+        super.setTreename(treename);
+        data = new Data(treename,capital);
         if (children != null) {
             super.getChildren().addAll(children);
         } 
     }
+    
+    public void init(final String treename, final Object o) {
+    	// we do this in the constructor
+	}
     
     public Data getContents() {
         return data;

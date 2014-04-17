@@ -20,7 +20,7 @@ import org.slf4j.LoggerFactory;
 public abstract class TreeTableModelAbstraction implements TreeTableModel {
 	private static final Logger log = LoggerFactory.getLogger(TreeTableModelAbstraction.class);
 	
-    protected final Object root;
+    private Object root;
     protected final EventListenerList listenerList = new EventListenerList();
  
     private static final int CHANGED = 0;
@@ -28,13 +28,18 @@ public abstract class TreeTableModelAbstraction implements TreeTableModel {
     private static final int REMOVED = 2;
     private static final int STRUCTURE_CHANGED = 3;
  
-    public TreeTableModelAbstraction(Object root) {
-        this.root = root;
+    public TreeTableModelAbstraction() {
+    
     }
  
     @Override
     public Object getRoot() {
         return root;
+    }
+    
+    @Override
+    public void setRoot(Object root) {
+        this.root = root;
     }
  
     @Override

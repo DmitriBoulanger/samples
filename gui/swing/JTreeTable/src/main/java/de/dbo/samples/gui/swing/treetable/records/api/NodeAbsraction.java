@@ -19,22 +19,30 @@ import java.util.List;
  */
 public abstract class NodeAbsraction implements Node {
 	 
-    private final String treename;
+    private String treename = null;
     private final List<Node> children = new ArrayList<Node>();
  
-    public NodeAbsraction(final String treename) {
-    	if (null==treename || 0==treename.trim().length()) {
-    		throw new NodeException("Node must have non-null non-empty treename");
-    	}
-        this.treename = treename;
+    public NodeAbsraction() {
+    
     }
     
 	/**
 	 * name to appear in the Tree-Table
 	 */
 	@Override
-	public final String treename() {
+	public final String getTreename() {
+		if (null==treename || 0==treename.trim().length()) {
+    		throw new NodeException("getTreename: Node must have non-null non-empty treename");
+    	}
 		return treename;
+	}
+	
+	@Override
+	public final void setTreename(final String treename) {
+		if (null==treename || 0==treename.trim().length()) {
+    		throw new NodeException("setTreename: Node must have non-null non-empty treename");
+    	}
+		this.treename = treename;
 	}
 
 	/**

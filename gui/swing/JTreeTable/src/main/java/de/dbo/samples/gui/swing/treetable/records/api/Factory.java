@@ -1,17 +1,30 @@
 package de.dbo.samples.gui.swing.treetable.records.api;
 
 
-public interface Factory {
+import de.dbo.samples.gui.swing.treetable.api.TreeTableModel;
+import de.dbo.samples.gui.swing.treetable.records.api.Node;
+import de.dbo.samples.gui.swing.treetable.records.api.Record;
 
-	/**
-	 * node having no children
-	 * It can have a record
-	 * 
-	 * @param name tree-name (display name)
-	 * @param record data-record
-	 * 
-	 * @return new Node-instance
-	 */
-	public abstract Node newNode(final String name, final Record record);
+import org.springframework.context.ApplicationContext;
+
+public final class Factory  {
+	
+	final ApplicationContext ctx; 
+	
+	public Factory(final ApplicationContext ctx) {
+		this.ctx = ctx;
+	}
+	
+	public Node newNode(final String treename, final Record record) {
+		final Node node = (Node) ctx.getBean("node");
+		node.init(treename,record);
+		return node;
+	}
+	
+	public TreeTableModel treeTableModel(final Node root) {
+		final TreeTableModel treeTableModel = (TreeTableModel) ctx.getBean("treeTableModel");
+		treeTableModel.setRoot(root);
+		return treeTableModel;
+	}
 
 }

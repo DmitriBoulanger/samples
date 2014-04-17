@@ -3,6 +3,8 @@ package de.dbo.samples.gui.swing.treetable.api;
 import javax.swing.tree.TreeModel;
  
 public interface TreeTableModel extends TreeModel {
+	
+	public void setRoot(Object node);
  
     /**
      * Returns the number of available columns.

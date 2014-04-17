@@ -22,13 +22,17 @@ public interface Node extends Comparable<Node>{
 	 * Typically the tree-GUI doesn't show it
 	 */
 	public static final String ROOT = "ROOT";
+	
+	public void init(final String treename, final Object contents);
 
 	/**
 	 * name to appear in the tree-table as node-name.
 	 * This name is non-null and non-empty
 	 * @return tree-name of this node
 	 */
-	public abstract String treename();
+	public abstract String getTreename();
+	
+	public abstract void setTreename(final String treename);
 	
 	/**
 	 * children of this node.

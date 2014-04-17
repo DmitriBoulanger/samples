@@ -5,19 +5,28 @@ import de.dbo.samples.gui.swing.treetable.records.api.NodeAbsraction;
 import de.dbo.samples.gui.swing.treetable.records.api.NodeException;
 import de.dbo.samples.gui.swing.treetable.records.api.Record;
 
-import java.util.List;
-
 public class NodeImpl extends NodeAbsraction {
 	
     private Record record;
     private Long sequence;
     
-    public NodeImpl(String treename, Record record) {
-        super(treename);
-        this.record = record;
-        this.sequence = null!=record? record.getSequence() : null;
+    public NodeImpl() {
+        super();
     }
     
+    @Override
+    public void init(final String treename, final Object o) {
+    	if (null!=o && !(o instanceof Record)) {
+    		throw new NodeException("init(final String treename="+treename
+    				+", final Object o="+o+"): Object has to be a Record");
+    	}
+		setTreename(treename);
+		this.record = (Record) o;;
+		if (null!=record) {
+			sequence = this.record.getSequence();
+		}
+	}
+   
 	public Record getContents() {
         return record;
     }
@@ -28,7 +37,9 @@ public class NodeImpl extends NodeAbsraction {
 	 * and split it in several table-cells
 	 */
 	public void setContents(Object o) {
-		 if (o instanceof String) {
+		if (null==o) {
+			this.record = null;
+		} else if (o instanceof String) {
 			 if (null!=record) {
 				 ((RecordImpl) record).setSmthAsUUID((String)o);
 			 } else {
@@ -64,10 +75,10 @@ public class NodeImpl extends NodeAbsraction {
 	 */
 	@Override
 	public StringBuilder print() {
-		final StringBuilder sb = new StringBuilder(treename() + ": ");
+		final StringBuilder sb = new StringBuilder(getTreename() + ": ");
 		final StringBuilder sb2 = new StringBuilder();
 		for (final Node node : getChildren()) {
-			sb2.append(node.treename());
+			sb2.append(node.getTreename());
 			sb2.append(" ");
 		}
 		sb.append("children=");

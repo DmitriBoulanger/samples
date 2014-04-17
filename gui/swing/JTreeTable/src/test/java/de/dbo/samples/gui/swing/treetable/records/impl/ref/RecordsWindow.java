@@ -2,6 +2,8 @@ package de.dbo.samples.gui.swing.treetable.records.impl.ref;
  
 import de.dbo.samples.gui.swing.treetable.api.TreeTable;
 import de.dbo.samples.gui.swing.treetable.api.TreeTableModel;
+import de.dbo.samples.gui.swing.treetable.records.api.Factory;
+import de.dbo.samples.gui.swing.treetable.records.api.RecordTreeGenerator;
 
 import java.awt.Color;
 import java.awt.Container;
@@ -17,10 +19,11 @@ import javax.swing.UIManager;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
  
-public class RecordWindow extends JFrame {
+public class RecordsWindow extends JFrame {
 	private static final long serialVersionUID = 4489500964556705612L;
-	private static final Logger log = LoggerFactory.getLogger(RecordWindow.class);
+	private static final Logger log = LoggerFactory.getLogger(RecordsWindow.class);
 	
 	private final Dimension size = new Dimension(1000, 400);
 	private final Font font = new Font("Consolas",Font.PLAIN, 14);
@@ -33,11 +36,15 @@ public class RecordWindow extends JFrame {
 	private final TreeTable treeTable;
 	private final JScrollPane jScrollPane;
 	
-	public RecordWindow() {
+    private final Factory factory = new Factory(
+			new ClassPathXmlApplicationContext("ReferenceImplementation.xml"));
+	
+	public RecordsWindow() {
         super("Record Tree-Table");
         final long start = System.currentTimeMillis();
 
-        treeTableModel = new RecordStructureTreeTableModel( RecordStructure.instance());
+        treeTableModel = factory.treeTableModel(new RecordTreeGenerator(factory
+        		, Records.list()).tree() );
         treeTable = new TreeTable(treeTableModel);
         jScrollPane = new JScrollPane(treeTable);
         
@@ -81,7 +88,7 @@ public class RecordWindow extends JFrame {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                new RecordWindow().setVisible(true);
+                new RecordsWindow().setVisible(true);
             }
         };
         

@@ -22,7 +22,8 @@ public final class DataStructureTreeTableModel extends TreeTableModelAbstraction
      * @param root complete data-structure 
      */
     public DataStructureTreeTableModel(Object root) {
-        super(root);
+        super();
+        setRoot(root);
     }
     
     
@@ -58,7 +59,7 @@ public final class DataStructureTreeTableModel extends TreeTableModelAbstraction
     	final DataNode datanode = (DataNode) node;
         switch (column) {
         case 0:
-            return datanode.treename();
+            return datanode.getTreename();
         case 1:
             return datanode.getContents().getTimestamp();
         case 2:
