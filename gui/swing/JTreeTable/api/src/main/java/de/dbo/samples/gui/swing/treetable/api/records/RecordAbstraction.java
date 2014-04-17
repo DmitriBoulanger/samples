@@ -4,11 +4,10 @@ import de.dbo.samples.gui.swing.treetable.api.records.Path;
 import de.dbo.samples.gui.swing.treetable.api.records.Record;
 
 /**
- * Reference (or basic) implementation of a data-record.
+ * Reference (or basic) abstract implementation of a data-record.
  * Any record has at least path, tree-name and sequence.
  * Optionally a record has a contents-object.
- * Attributes of a contents are shown as values in the table-cells
- * of a Tree-Table
+ * Attributes of a contents are shown as values in the table-cells of a Tree-Table
  * 
  * @author Dmitri Boulanger, Hombach
  *
