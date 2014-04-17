@@ -6,7 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
-final class SpellCheckerImpl implements SpellChecker  {
+public final class SpellCheckerImpl implements SpellChecker  {
 	private static final Logger log = LoggerFactory.getLogger( SpellCheckerImpl.class );
 
 	

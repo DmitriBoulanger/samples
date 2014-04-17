@@ -7,14 +7,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
-final class TextEditorImpl implements TextEditor {
+public final class TextEditorImpl implements TextEditor {
 	private static final Logger log = LoggerFactory.getLogger( SpellCheckerImpl.class );
 	
-	protected SpellChecker spellChecker = null;
+	private SpellChecker spellChecker = null;
 
 	@Override
-	public void setSpellChecker(SpellChecker spellChecker) {
-	 log.info( "setSpellChecker ... " ); 
+	public void setSpellChecker(final SpellChecker spellChecker) {
+	 log.info( "setSpellChecker in constructor ... " ); 
 	 this.spellChecker = spellChecker; 
 	} 
 	
