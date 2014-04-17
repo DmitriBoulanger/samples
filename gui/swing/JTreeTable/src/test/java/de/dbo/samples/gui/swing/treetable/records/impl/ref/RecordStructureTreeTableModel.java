@@ -3,7 +3,6 @@ package de.dbo.samples.gui.swing.treetable.records.impl.ref;
 import de.dbo.samples.gui.swing.treetable.api.TreeTableModel;
 import de.dbo.samples.gui.swing.treetable.api.TreeTableModelAbstraction;
 import de.dbo.samples.gui.swing.treetable.records.api.Node;
-import de.dbo.samples.gui.swing.treetable.records.impl.ref.NodeImpl;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -51,7 +50,7 @@ public final class RecordStructureTreeTableModel extends TreeTableModelAbstracti
         case 1:
             return ((Node) node).getSequence();
         case 2:
-            return ((NodeImpl) node).getContents();
+            return ((Node) node).getContents();
             
         default:
             throw new RuntimeException(
@@ -69,7 +68,7 @@ public final class RecordStructureTreeTableModel extends TreeTableModelAbstracti
         	 break;
         	 
          case 2:
-        	 ((NodeImpl) node).setContents(value);
+        	 ((Node) node).setContents(value);
         	 break;
          
          default:
@@ -80,12 +79,12 @@ public final class RecordStructureTreeTableModel extends TreeTableModelAbstracti
     
     @Override
     public Object getChild(Object parent, int index) {
-        return ((NodeImpl) parent).getChildren().get(index);
+        return ((Node) parent).getChildren().get(index);
     }
  
     @Override
     public int getChildCount(Object parent) {
-        return ((NodeImpl) parent).getChildren().size();
+        return ((Node) parent).getChildren().size();
     }
  
     @Override

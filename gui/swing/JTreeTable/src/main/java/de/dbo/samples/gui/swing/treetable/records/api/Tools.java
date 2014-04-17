@@ -1,8 +1,4 @@
-package de.dbo.samples.gui.swing.treetable.records.impl.ref;
-
-import de.dbo.samples.gui.swing.treetable.records.api.Node;
-import de.dbo.samples.gui.swing.treetable.records.api.Record;
-import de.dbo.samples.gui.swing.treetable.records.api.RecordTreeGenerator;
+package de.dbo.samples.gui.swing.treetable.records.api;
 
 import java.text.DecimalFormat;
 import java.util.List;
@@ -39,21 +35,21 @@ public final class Tools {
 		
 	}
 	
-	public final static StringBuilder printInternalData(final List<RecordTreeGenerator> children
+	final static StringBuilder printInternalData(final List<RecordTreeGenerator> children
 			, final int depth, final boolean onlyNodes) {
 		final StringBuilder sb = new StringBuilder();
 		final StringBuilder tab = tab(depth);
 		for (RecordTreeGenerator recordList: children) {
 			sb.append(tab);
 			sb.append("#" + depth + "#");
-			sb.append(" Node=" + recordList.getNode().print() + " sort=" + recordList.getNode().getSequence());
+			sb.append(" Node=" + recordList.node.print() + " sort=" + recordList.node.getSequence());
 			if (!onlyNodes) {
 				sb.append(" Records (" + recordList.size() + "):");
 				for (Record record : recordList.getRecords()) {
 					sb.append(print(record, depth, tab));
 				}
 			}
-			sb.append( printInternalData(recordList.getChildRecordGroups(), depth+1, onlyNodes));
+			sb.append( printInternalData(recordList.childRecordGroups, depth+1, onlyNodes));
 		}
 		return sb;
 	}

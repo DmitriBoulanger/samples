@@ -2,8 +2,8 @@ package de.dbo.samples.gui.swing.treetable.records.impl.ref;
  
 import de.dbo.samples.gui.swing.treetable.records.api.Node;
 import de.dbo.samples.gui.swing.treetable.records.api.Record;
+import de.dbo.samples.gui.swing.treetable.records.api.RecordTreeGenerator;
 import de.dbo.samples.gui.swing.treetable.records.impl.ref.RecordImpl;
-import de.dbo.samples.gui.swing.treetable.records.impl.ref.RecordTreeGeneratorImpl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,7 +45,7 @@ public class RecordStructure  {
 		
 		records.add( new RecordImpl("/A/B/C/d") );
 		
-		final RecordTreeGeneratorImpl recordList = new RecordTreeGeneratorImpl(records);
+		final RecordTreeGenerator recordList = new RecordTreeGenerator(new FactoryImpl(), records);
 		if (log.isDebugEnabled() ) {
 			log.debug("Tree-Structure: "
 					 + "\nTotal records: " + recordList.size()  

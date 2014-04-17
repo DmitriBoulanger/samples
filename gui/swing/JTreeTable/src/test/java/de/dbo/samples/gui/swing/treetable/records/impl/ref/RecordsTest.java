@@ -1,13 +1,14 @@
 package de.dbo.samples.gui.swing.treetable.records.impl.ref;
 
-import static de.dbo.samples.gui.swing.treetable.records.impl.ref.Tools.extractRecords;
+import static de.dbo.samples.gui.swing.treetable.records.api.Tools.extractRecords;
 
 import de.dbo.samples.gui.swing.treetable.records.api.Node;
 import de.dbo.samples.gui.swing.treetable.records.api.Path;
 import de.dbo.samples.gui.swing.treetable.records.api.Record;
+import de.dbo.samples.gui.swing.treetable.records.api.RecordTreeGenerator;
 import de.dbo.samples.gui.swing.treetable.records.impl.ref.PathImpl;
 import de.dbo.samples.gui.swing.treetable.records.impl.ref.RecordImpl;
-import de.dbo.samples.gui.swing.treetable.records.impl.ref.RecordTreeGeneratorImpl;
+
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -114,7 +115,8 @@ public class RecordsTest {
 			log.info( new DecimalFormat("00").format(i)+":" + record.print().toString());
 		}
 		
-		final RecordTreeGeneratorImpl recordTreeGenerator = new RecordTreeGeneratorImpl(records);
+		final RecordTreeGenerator recordTreeGenerator = 
+				new RecordTreeGenerator(new FactoryImpl(), records);
 		log.debug("Tree-Structure: "
 				 + "\nTotal records: " + recordTreeGenerator.size()  
 	             + recordTreeGenerator.print());

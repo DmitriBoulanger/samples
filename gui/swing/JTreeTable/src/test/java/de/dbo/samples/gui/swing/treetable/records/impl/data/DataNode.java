@@ -27,8 +27,6 @@ public class DataNode extends NodeAbsraction {
 		return null;
 	}
 
-	 
-
 	@Override
 	public Long getSequence() {
 		// TODO Auto-generated method stub
