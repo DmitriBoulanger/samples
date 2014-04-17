@@ -12,7 +12,7 @@ public class FactoryImpl implements Factory {
 	
 	@Override
 	public Node newNode(final String name, final Record record) {
-		return new NodeImpl(name,record,null);
+		return new NodeImpl(name, record);
 	}
 
 }

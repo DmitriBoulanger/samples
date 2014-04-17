@@ -9,8 +9,11 @@ public class DataNode extends NodeAbsraction {
 	 
     private final Data data;
     public DataNode(final String name, final String capital,  List<Node> children) {
-        super(name,children);
+        super(name);
         data = new Data(name,capital);
+        if (children != null) {
+            super.getChildren().addAll(children);
+        } 
     }
     
     public Data getContents() {

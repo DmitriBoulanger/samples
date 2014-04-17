@@ -22,14 +22,11 @@ public abstract class NodeAbsraction implements Node {
     private final String treename;
     private final List<Node> children = new ArrayList<Node>();
  
-    public NodeAbsraction(final String treename, List<Node> children) {
+    public NodeAbsraction(final String treename) {
     	if (null==treename || 0==treename.trim().length()) {
     		throw new NodeException("Node must have non-null non-empty treename");
     	}
         this.treename = treename;
-        if (children != null) {
-            this.children.addAll(children);
-        } 
     }
     
 	/**

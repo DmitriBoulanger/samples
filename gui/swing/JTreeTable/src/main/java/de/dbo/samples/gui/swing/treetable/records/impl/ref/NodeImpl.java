@@ -12,8 +12,8 @@ public class NodeImpl extends NodeAbsraction {
     private Record record;
     private Long sequence;
     
-    public NodeImpl(String treename, Record record, List<Node> children) {
-        super(treename, children);
+    public NodeImpl(String treename, Record record) {
+        super(treename);
         this.record = record;
         this.sequence = null!=record? record.getSequence() : null;
     }
