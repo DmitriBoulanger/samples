@@ -1,5 +1,8 @@
-package de.dbo.samples.spring.configuration;
+package de.dbo.samples.spring.configuration.impl;
  
+import de.dbo.samples.spring.configuration.api.SpellChecker;
+import de.dbo.samples.spring.configuration.api.TextEditor;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

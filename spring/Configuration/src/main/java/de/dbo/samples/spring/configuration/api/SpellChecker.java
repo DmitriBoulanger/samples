@@ -1,4 +1,4 @@
-package de.dbo.samples.spring.configuration;
+package de.dbo.samples.spring.configuration.api;
 
 public interface SpellChecker {
 

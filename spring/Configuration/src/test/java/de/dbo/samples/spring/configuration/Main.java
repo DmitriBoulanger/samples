@@ -1,7 +1,7 @@
 package de.dbo.samples.spring.configuration;
 
-import de.dbo.samples.spring.configuration.SpellCheckerImpl;
-import de.dbo.samples.spring.configuration.TextEditor;
+import de.dbo.samples.spring.configuration.api.TextEditor;
+import de.dbo.samples.spring.configuration.impl.SpellCheckerImpl;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
@@ -19,6 +19,7 @@ public class Main {
 	 * @param args not used
 	 */
 	public static final void main(final String[] args) {
+//		org.apache.log4j.BasicConfigurator.configure();
 		new Main().test();
 	}
 	
@@ -26,10 +27,12 @@ public class Main {
 	public final void test(){
 		log.info( "running ... " );
 			
-		final ApplicationContext ctx = new ClassPathXmlApplicationContext("beans-Configuration.xml"); 
+		final ApplicationContext ctx = new ClassPathXmlApplicationContext("Configuration.xml"); 
 		assertNotNull(ctx);
+		
 		final TextEditor textEditor = (TextEditor) ctx.getBean("textEditor"); 
 		assertNotNull(textEditor);
+		
 		textEditor.spellCheck(); 
 		assertTrue("Spellcheker is not a singelton" 
 			,ctx.getBean( SpellCheckerImpl.class ) == textEditor.getSpellChecker() );

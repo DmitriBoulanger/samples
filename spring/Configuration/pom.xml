@@ -5,13 +5,18 @@
 	<artifactId>Configuration</artifactId>
 	<packaging>jar</packaging>
 	<parent>
-		<groupId>de.dbo.spring</groupId>
+		<groupId>de.dbo.samples.spring</groupId>
 		<artifactId>top</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	
     <name>Configuration using annotations</name>
-    <description>Annoataed Spring Configuration</description>
+    <description>Annoatated Spring Configuration</description>
+    
+    <properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<spring.version>3.1.2.RELEASE</spring.version>
+	</properties>
   
   	<dependencies>
   	    <!-- COMMONS
@@ -19,10 +24,7 @@
 			<groupId>SpringFramework3Tutorial</groupId>
 			<artifactId>SimpleAbstractions</artifactId>
 		</dependency> 
-		<dependency>
-			<groupId>SpringFramework3Tutorial</groupId>
-			<artifactId>LoggingResources</artifactId>
-		</dependency>
+		 
 		-->
 		
 		 <!-- SPRING -->
