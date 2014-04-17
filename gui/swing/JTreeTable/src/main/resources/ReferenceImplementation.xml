@@ -6,11 +6,11 @@
 	<context:annotation-config />  
 
 	<!-- Definition for NodeImpl bean without constructor-arg -->
-	<bean id="node" class="de.dbo.samples.gui.swing.treetable.records.impl.ref.NodeImpl"
+	<bean id="node" class="de.dbo.samples.gui.swing.treetable.impl.ref.NodeImpl"
 		scope="prototype" >
 	</bean> 
 	
-	<bean id="treeTableModel" class="de.dbo.samples.gui.swing.treetable.records.impl.ref.RecordTreeTableModelImpl"
+	<bean id="treeTableModel" class="de.dbo.samples.gui.swing.treetable.impl.ref.RecordTreeTableModelImpl"
 		scope="prototype" >
 	</bean> 
 	
