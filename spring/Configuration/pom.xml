@@ -13,32 +13,6 @@
     <name>Configuration using annotations</name>
     <description>Annoatated Spring Configuration</description>
     
-    <properties>
-      <java.version>1.7</java.version>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<spring.version>3.1.2.RELEASE</spring.version>
-	</properties>
-	
-	<build>
-		<finalName>samples-spring-${project.artifactId}-${project.version}</finalName>
-
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.1</version>
-				<configuration>
-					<source>${java.version}</source>
-					<target>${java.version}</target>
-					<fork>true</fork>
-					<meminitial>128m</meminitial>
-					<maxmem>512m</maxmem>
-				</configuration>
-			</plugin>
-		</plugins>
-
-	</build>
-  
   	<dependencies>
   	    <!-- COMMONS
 		<dependency>
