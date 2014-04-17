@@ -1,10 +1,11 @@
-package de.dbo.samples.gui.swing.treetable.records.impl;
+package de.dbo.samples.gui.swing.treetable.records.impl.ref;
 
 import static de.dbo.samples.gui.swing.treetable.records.api.Node.ROOT;
-import static de.dbo.samples.gui.swing.treetable.records.impl.Tools.printInternalData;
+import static de.dbo.samples.gui.swing.treetable.records.impl.ref.Tools.printInternalData;
 
 import de.dbo.samples.gui.swing.treetable.records.api.Node;
 import de.dbo.samples.gui.swing.treetable.records.api.Record;
+import de.dbo.samples.gui.swing.treetable.records.api.RecordTreeGenerator;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -28,34 +29,34 @@ import java.util.Set;
  *           only incidentally for computers to execute 
  *
  */
-public final class RecordTreeGenerator implements Comparable<RecordTreeGenerator> {
+public final class RecordTreeGeneratorImpl implements Comparable<RecordTreeGeneratorImpl>, RecordTreeGenerator {
 	
 	/**
 	 * root-node to appear in a tree.
 	 * After processing the input records (in the constructor),
 	 * it contains valid complete tree.
 	 */
-	final Node node;
+	private final Node node;
 	
 	/**
 	 * representation of children nodes.
 	 * This list is only used while building the tree
 	 */
-	final List<RecordTreeGenerator> childRecordGroups = new ArrayList<RecordTreeGenerator>();
+	private final List<RecordTreeGenerator> childRecordGroups = new ArrayList<RecordTreeGenerator>();
 
-	final int depth;
+	private final int depth;
 	
 	/**
 	 * sorted input record-list
 	 */
-	final List<Record> records = new ArrayList<Record>();
+	private final List<Record> records = new ArrayList<Record>();
 	
 	/**
 	 * 
 	 * @param records
 	 * 			record-list to be converted into the record-tree
 	 */
-	public RecordTreeGenerator(final List<Record> records) {
+	public RecordTreeGeneratorImpl(final List<Record> records) {
 		this.depth = 0;
 		this.node = new NodeImpl(ROOT, null, null);
 		
@@ -76,30 +77,29 @@ public final class RecordTreeGenerator implements Comparable<RecordTreeGenerator
 	 * @param depth
 	 * @param node
 	 */
-	RecordTreeGenerator(final int depth, final Node node) {
+	RecordTreeGeneratorImpl(final int depth, final Node node) {
 		this.depth = depth;
 		this.node = node;
 	}
 	
 	@Override
-	public final int compareTo(RecordTreeGenerator another) {
+	public final int compareTo(RecordTreeGeneratorImpl another) {
 		return node.compareTo(another.node);
 	}
 	
-	/**
-	 * complete record-tree.
-	 * 
-	 * @return root of the record-tree
+	/* (non-Javadoc)
+	 * @see de.dbo.samples.gui.swing.treetable.records.impl.ref.RecordTreeGenerator#tree()
 	 */
+	@Override
 	public Node tree() {
 		clear(this);
 		return node;
 	}
 	
-	/**
-	 * site of the input record-list
-	 * @return
+	/* (non-Javadoc)
+	 * @see de.dbo.samples.gui.swing.treetable.records.impl.ref.RecordTreeGenerator#size()
 	 */
+	@Override
 	public int size() {
 		return records.size();
 	}
@@ -113,10 +113,10 @@ public final class RecordTreeGenerator implements Comparable<RecordTreeGenerator
 	private static final void process(final RecordTreeGenerator recordList,  final Long recordListSeq) {
 		Long seq = new Long( recordListSeq );
 		String group = null;
-		RecordTreeGenerator groupList = null;
+		RecordTreeGeneratorImpl groupList = null;
 		
-		final int depth = recordList.depth;
-		for (final Record record:recordList.records) {
+		final int depth = recordList.getDepth();
+		for (final Record record:recordList.getRecords()) {
 			final String name = record.treename();
 			final boolean isData = record.isDataDepth(depth);
 			final String groupNext = record.getPath().pathElement(depth);
@@ -136,23 +136,23 @@ public final class RecordTreeGenerator implements Comparable<RecordTreeGenerator
 				seq = seqNext;
 				final Node node = new NodeImpl(group, null, null);
 				node.setSequence(seq);
-				groupList = new RecordTreeGenerator(depth + 1, node );
+				groupList = new RecordTreeGeneratorImpl(depth + 1, node );
 				if (isData) {
 					groupList.node.getChildren().add(new NodeImpl(name, record, null));
 				} else {
 					groupList.records.add(record);
 				}
-				recordList.childRecordGroups.add(groupList);
+				recordList.getChildRecordGroups().add(groupList);
 			}
 		}
 		
-		final List<Node> childern = recordList.node.getChildren();
-		for (RecordTreeGenerator childRecordTreeGenerator: recordList.childRecordGroups)  {
-			childern.add(childRecordTreeGenerator.node);
+		final List<Node> childern = recordList.getNode().getChildren();
+		for (RecordTreeGenerator childRecordTreeGenerator: recordList.getChildRecordGroups())  {
+			childern.add(childRecordTreeGenerator.getNode());
 		}
 		
-		if (!recordList.childRecordGroups.isEmpty() ) {
-			for (RecordTreeGenerator recordList2:recordList.childRecordGroups) {
+		if (!recordList.getChildRecordGroups().isEmpty() ) {
+			for (RecordTreeGenerator recordList2:recordList.getChildRecordGroups()) {
 				process(recordList2,seq+1);
 			}
 		}
@@ -207,7 +207,7 @@ public final class RecordTreeGenerator implements Comparable<RecordTreeGenerator
 	 * cleans up all lists that have been used while building record-tree
 	 * @param recordList
 	 */
-	private static final void clear(final RecordTreeGenerator recordList) {
+	private static final void clear(final RecordTreeGeneratorImpl recordList) {
 		recordList.childRecordGroups.clear();
 		recordList.records.clear();
 	}
@@ -226,9 +226,27 @@ public final class RecordTreeGenerator implements Comparable<RecordTreeGenerator
 		return ret;
 		
 	}
-	
-	
 
+	@Override
+	public List<RecordTreeGenerator> getChildRecordGroups() {
+		return childRecordGroups;
+	}
+
+	@Override
+	public List<Record> getRecords() {
+		return records;
+	}
+
+	@Override
+	public Node getNode() {
+		return node;
+	}
 	
+	@Override
+	public int getDepth() {
+		return depth;
+	}
+	
+	 
 	
 }

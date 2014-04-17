@@ -1,4 +1,4 @@
-package de.dbo.samples.gui.swing.treetable.records.impl;
+package de.dbo.samples.gui.swing.treetable.records.impl.ref;
 
 import de.dbo.samples.gui.swing.treetable.records.api.Node;
 import de.dbo.samples.gui.swing.treetable.records.api.NodeAbsraction;

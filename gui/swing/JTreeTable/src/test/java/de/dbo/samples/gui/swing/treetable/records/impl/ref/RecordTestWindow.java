@@ -1,4 +1,4 @@
-package de.dbo.samples.gui.swing.treetable.data;
+package de.dbo.samples.gui.swing.treetable.records.impl.ref;
  
 import de.dbo.samples.gui.swing.treetable.api.TreeTable;
 import de.dbo.samples.gui.swing.treetable.api.TreeTableModel;
@@ -18,14 +18,13 @@ import javax.swing.UIManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
  
-public class DataWindow extends JFrame {
+public class RecordTestWindow extends JFrame {
 	private static final long serialVersionUID = 4489500964556705612L;
-	private static final Logger log = LoggerFactory.getLogger(DataWindow.class);
+	private static final Logger log = LoggerFactory.getLogger(RecordTestWindow.class);
 	
 	private final Dimension size = new Dimension(1000, 400);
 	private final Font font = new Font("Consolas",Font.PLAIN, 14);
 	private final Container contentPane = getContentPane();
-	
 	private final Color background = new Color(239,241,248);
 	private final Color selection = new Color(168,208,245);
 	private final Color foreground = Color.BLACK;
@@ -34,18 +33,19 @@ public class DataWindow extends JFrame {
 	private final TreeTable treeTable;
 	private final JScrollPane jScrollPane;
 	
-	public DataWindow() {
-        super("Tree Table Sample (adapted from http://www.hameister.org/JavaSwingTreeTable.html)");
-
-        treeTableModel = new DataStructureTreeTableModel( DataStructure.instance());
+	public RecordTestWindow() {
+        super("Record Tree-Table");
+        final long start = System.currentTimeMillis();
+        
+        treeTableModel = new RecordStructureTreeTableModel(new RecordsTest().getTreeroot() );
         treeTable = new TreeTable(treeTableModel);
         jScrollPane = new JScrollPane(treeTable);
         
-        treeTable.setRootVisible(false);
+        treeTable.setRootVisible(true);
         treeTable.setBasicUI(background, selection, foreground, font);
-        treeTable.setIntercellSpacing(new Dimension(2, 2)); 
-        treeTable.setColumnWidthNonresizable(1, 120);
-        treeTable.setColumnWidthNonresizable(2, 280);
+        treeTable.setIntercellSpacing(new Dimension(1,1)); 
+        treeTable.setColumnWidthNonresizable(1, 65);
+        treeTable.setColumnWidthNonresizable(2, 600);
        
         jScrollPane.getViewport().setBackground(background);
         
@@ -65,18 +65,12 @@ public class DataWindow extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
         this.setAlwaysOnTop(true);
-        this.setVisible(true);
         
-        log.debug("created. Background=" + background);
+        log.info("window done. Elapsed " +(System.currentTimeMillis()-start) + " ms." );
     }
-	
-	 
-   
-    
-	
-	
- 
+
     public static void main(final String[] args) {
+    	log.info("openning ..." );
         final Runnable gui = new Runnable() {
  
         	@Override
@@ -86,7 +80,7 @@ public class DataWindow extends JFrame {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                new DataWindow().setVisible(true);
+                new RecordTestWindow().setVisible(true);
             }
         };
         

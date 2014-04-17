@@ -1,4 +1,4 @@
-package de.dbo.samples.gui.swing.treetable.records.impl;
+package de.dbo.samples.gui.swing.treetable.records.impl.ref;
 
 import de.dbo.samples.gui.swing.treetable.records.api.PathAbsraction;
 import de.dbo.samples.gui.swing.treetable.records.api.PathException;
