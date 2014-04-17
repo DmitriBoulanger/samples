@@ -6,7 +6,7 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import de.dbo.samples.spring.configuration.api.TextEditor;
+import de.dbo.samples.spring.api.TextEditor;
 
 public class Main {
 	

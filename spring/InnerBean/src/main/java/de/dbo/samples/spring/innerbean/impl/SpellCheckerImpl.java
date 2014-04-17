@@ -1,6 +1,6 @@
 package de.dbo.samples.spring.innerbean.impl;
 
-import de.dbo.samples.spring.configuration.api.SpellChecker;
+import de.dbo.samples.spring.api.SpellChecker;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

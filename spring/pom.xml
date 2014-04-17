@@ -23,6 +23,7 @@
 
 
 	<modules>
+	    <module>API</module>
 		<module>Configuration</module>
 		<module>InnerBean</module>
 	</modules> 

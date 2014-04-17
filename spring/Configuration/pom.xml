@@ -14,6 +14,12 @@
     <description>Annoatated Spring Configuration</description>
     
   	<dependencies>
+  	<dependency>
+		 <groupId>de.dbo.samples.spring</groupId>
+		 <artifactId>API</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		
   	    <!-- COMMONS
 		<dependency>
 			<groupId>SpringFramework3Tutorial</groupId>

@@ -12,6 +12,12 @@
 	<dependencies>
 	
 	<dependency>
+	    <groupId>de.dbo.samples.spring</groupId>
+		 <artifactId>API</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+	
+	<dependency>
 			<groupId>de.dbo.samples.spring</groupId>
 			<artifactId>Configuration</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
