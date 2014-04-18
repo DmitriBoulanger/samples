@@ -12,7 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
  
 /**
- * TreeTable as extension of the JTable.
+ * Treetable as extension of the JTable.
  * The JTree-extension is implemented as JTree-based table-cell renderer
  * 
  * @author Dmitri Boulanger, Hombach
@@ -21,34 +21,34 @@ import org.slf4j.LoggerFactory;
  *           only incidentally for computers to execute 
  *
  */
-public class TreeTable extends JTable {
+public class Treetable extends JTable {
 	private static final long serialVersionUID = -5203756529846423026L;
-	private static final Logger log = LoggerFactory.getLogger(TreeTable.class);
+	private static final Logger log = LoggerFactory.getLogger(Treetable.class);
 	
-	private final TreeTableCell tree;
+	private final TreetableCell tree;
 	
 	/**
 	 * @param model tree-table data-model 
 	 */
-    public TreeTable(TreeTableModel model) {
+    public Treetable(TreetableModel model) {
         super();
         
         // JTree-extension
-        tree = new TreeTableCell(this, model);
+        tree = new TreetableCell(this, model);
          
         // Model
-        super.setModel(new TreeTableModelAdapter(model, tree));
+        super.setModel(new TreetableModelAdapter(model, tree));
          
         // Simultaneous selections for JTable and JTree
-        final TreeTableSelectionModel selectionModel = new TreeTableSelectionModel();
+        final TreetableSelectionModel selectionModel = new TreetableSelectionModel();
         tree.setSelectionModel(selectionModel); // For the tree
         setSelectionModel(selectionModel.getListSelectionModel()); //For the table
  
         // Renderer for JTree
-        setDefaultRenderer(TreeTableModel.class, tree);
+        setDefaultRenderer(TreetableModel.class, tree);
         
-        // Editor for the TreeTable
-        setDefaultEditor(TreeTableModel.class, new TreeTableCellEditor(tree, this));
+        // Editor for the Treetable
+        setDefaultEditor(TreetableModel.class, new TreetableCellEditor(tree, this));
          
         // No grid show
         setShowGrid(false);

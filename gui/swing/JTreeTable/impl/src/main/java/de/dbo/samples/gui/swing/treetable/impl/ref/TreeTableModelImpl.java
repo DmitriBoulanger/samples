@@ -1,14 +1,14 @@
 package de.dbo.samples.gui.swing.treetable.impl.ref;
  
-import de.dbo.samples.gui.swing.treetable.api.gui.TreeTableException;
-import de.dbo.samples.gui.swing.treetable.api.gui.TreeTableModel;
-import de.dbo.samples.gui.swing.treetable.api.gui.TreeTableModelAbstraction;
+import de.dbo.samples.gui.swing.treetable.api.gui.TreetableException;
+import de.dbo.samples.gui.swing.treetable.api.gui.TreetableModel;
+import de.dbo.samples.gui.swing.treetable.api.gui.TreetableModelAbstraction;
 import de.dbo.samples.gui.swing.treetable.api.records.Node;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
  
-public final class TreeTableModelImpl extends TreeTableModelAbstraction {
+public final class TreeTableModelImpl extends TreetableModelAbstraction {
 	private static final Logger log = LoggerFactory.getLogger(TreeTableModelImpl.class);
 	
     // Names of the columns
@@ -17,7 +17,7 @@ public final class TreeTableModelImpl extends TreeTableModelAbstraction {
  
     // Types of the columns
     private static Class<?>[] columnTypes = { 
-    	TreeTableModel.class, Long.class, Object.class };
+    	TreetableModel.class, Long.class, Object.class };
  
     /**
      * 
@@ -38,7 +38,7 @@ public final class TreeTableModelImpl extends TreeTableModelAbstraction {
         	 return true;
          
          default:
-             throw new TreeTableException(
+             throw new TreetableException(
                  	"Incorrect column in isCellEditable(Object node="+node.toString()+", int column="+column+")");
          }
     }
@@ -54,7 +54,7 @@ public final class TreeTableModelImpl extends TreeTableModelAbstraction {
             return ((Node) node).getContents();
             
         default:
-            throw new TreeTableException(
+            throw new TreetableException(
             	"Incorrect column in getValueAt(Object node="+node.toString()+", int column="+column+")");
         } 
     }
@@ -73,7 +73,7 @@ public final class TreeTableModelImpl extends TreeTableModelAbstraction {
         	 break;
          
          default:
-             throw new TreeTableException(
+             throw new TreetableException(
                  	"Incorrect column in setValueAt(Object value="+value+", Object node="+node.toString()+", int column="+column+")");
          }
     }

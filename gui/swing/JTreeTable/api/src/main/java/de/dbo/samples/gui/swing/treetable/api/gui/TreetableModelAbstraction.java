@@ -17,8 +17,8 @@ import org.slf4j.LoggerFactory;
  *           only incidentally for computers to execute 
  *
  */
-public abstract class TreeTableModelAbstraction implements TreeTableModel {
-	private static final Logger log = LoggerFactory.getLogger(TreeTableModelAbstraction.class);
+public abstract class TreetableModelAbstraction implements TreetableModel {
+	private static final Logger log = LoggerFactory.getLogger(TreetableModelAbstraction.class);
 	
     private Object root;
     protected final EventListenerList listenerList = new EventListenerList();
@@ -28,7 +28,7 @@ public abstract class TreeTableModelAbstraction implements TreeTableModel {
     private static final int REMOVED = 2;
     private static final int STRUCTURE_CHANGED = 3;
  
-    public TreeTableModelAbstraction() {
+    public TreetableModelAbstraction() {
     
     }
  

@@ -9,14 +9,14 @@ import javax.swing.tree.TreePath;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
  
-public class TreeTableModelAdapter extends AbstractTableModel {
+public class TreetableModelAdapter extends AbstractTableModel {
 	private static final long serialVersionUID = 7118812279021590634L;
-	private static final Logger log = LoggerFactory.getLogger(TreeTableModelAdapter.class);
+	private static final Logger log = LoggerFactory.getLogger(TreetableModelAdapter.class);
 	
 	final JTree tree;
-    final TreeTableModel treeTableModel;
+    final TreetableModel treeTableModel;
  
-    public TreeTableModelAdapter(TreeTableModel treeTableModel, JTree tree) {
+    public TreetableModelAdapter(TreetableModel treeTableModel, JTree tree) {
         this.tree = tree;
         this.treeTableModel = treeTableModel;
  

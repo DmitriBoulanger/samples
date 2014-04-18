@@ -8,7 +8,7 @@
 	<!-- 
 		Definition for reference Tree-Table Factory
 	-->
-	<bean id="factory" class="de.dbo.samples.gui.swing.treetable.api.factory.FactoryCtx" >
+	<bean id="factory" class="de.dbo.samples.gui.swing.treetable.api.factory.FactoryImpl" >
 		<property name="nodeClass" 
 			value="de.dbo.samples.gui.swing.treetable.impl.ref.NodeImpl"/> 
 		<property name="treetableModelClass" 

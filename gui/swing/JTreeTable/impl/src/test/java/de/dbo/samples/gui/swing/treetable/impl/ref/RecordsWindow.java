@@ -3,7 +3,7 @@ package de.dbo.samples.gui.swing.treetable.impl.ref;
 import de.dbo.samples.gui.swing.treetable.api.Window;
 import de.dbo.samples.gui.swing.treetable.api.factory.Factory;
 import de.dbo.samples.gui.swing.treetable.api.factory.FactoryMgr;
-import de.dbo.samples.gui.swing.treetable.api.gui.TreeTable;
+import de.dbo.samples.gui.swing.treetable.api.gui.Treetable;
 import de.dbo.samples.gui.swing.treetable.api.records.Node;
 import de.dbo.samples.gui.swing.treetable.api.records.RecordTreeGenerator;
 
@@ -32,14 +32,14 @@ public class RecordsWindow extends Window {
         super("Record Tree-Table - Reference Implementation");
         
         final long start1 = System.currentTimeMillis();
-        final Factory factory = FactoryMgr.instance("ReferenceImplementation.properties");
+        final Factory factory = FactoryMgr.instance("ReferenceImplementation.xml");
         log.info("Elapsed " +(System.currentTimeMillis()-start1) + " ms. to create factory" );
 
         final long start2 = System.currentTimeMillis();
         final Node root = new RecordTreeGenerator(factory, Records.list()).tree();
         log.info("Elapsed " + (System.currentTimeMillis()-start2) + " ms. to create tree-root" );
         
-        final TreeTable treeTable = new TreeTable(factory.treeTableModel(root));
+        final Treetable treeTable = new Treetable(factory.treeTableModel(root));
         treeTable.setRootVisible(true);
         treeTable.setBasicUI(background, selection, foreground, font);
         treeTable.setIntercellSpacing(new Dimension(1,1)); 

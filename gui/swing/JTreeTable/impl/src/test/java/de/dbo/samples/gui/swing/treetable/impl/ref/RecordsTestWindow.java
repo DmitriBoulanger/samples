@@ -2,8 +2,8 @@ package de.dbo.samples.gui.swing.treetable.impl.ref;
  
 import de.dbo.samples.gui.swing.treetable.api.Window;
 import de.dbo.samples.gui.swing.treetable.api.factory.FactoryMgr;
-import de.dbo.samples.gui.swing.treetable.api.gui.TreeTable;
-import de.dbo.samples.gui.swing.treetable.api.gui.TreeTableModel;
+import de.dbo.samples.gui.swing.treetable.api.gui.Treetable;
+import de.dbo.samples.gui.swing.treetable.api.gui.TreetableModel;
 import de.dbo.samples.gui.swing.treetable.api.records.Node;
 
 import java.awt.Color;
@@ -38,23 +38,16 @@ public class RecordsTestWindow extends Window {
 	public RecordsTestWindow() {
         super("Record Tree-Table Test");
         
-        try {
-			FactoryMgr.instance("ReferenceImplementation.xml");
-		} catch (Exception e) {
-			log.info(e.toString());
-		}
-        
         final long start2 = System.currentTimeMillis();
         final Node root = new RecordsTest().getTreeroot();
         log.info("Elapsed " + (System.currentTimeMillis()-start2) + " ms. to create tree-root" );
         
-        
         // Model
-        final TreeTableModel treeTableModel = new TreeTableModelImpl();
-        treeTableModel.setRoot(root);
+        final TreetableModel treetableModel = new TreeTableModelImpl();
+        treetableModel.setRoot(root);
         
         // Treetable
-        final TreeTable treeTable = new TreeTable(treeTableModel);
+        final Treetable treeTable = new Treetable(treetableModel);
         treeTable.setRootVisible(true);
         treeTable.setBasicUI(background, selection, foreground, font);
         treeTable.setIntercellSpacing(new Dimension(0,0)); 

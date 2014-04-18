@@ -21,11 +21,11 @@ import org.slf4j.LoggerFactory;
  *           only incidentally for computers to execute 
  *
  */
-public class TreeTableCell extends JTree implements TableCellRenderer {
+public class TreetableCell extends JTree implements TableCellRenderer {
 	private static final long serialVersionUID = 7501441646955414246L;
-	private static final Logger log = LoggerFactory.getLogger(TreeTableCell.class);
+	private static final Logger log = LoggerFactory.getLogger(TreetableCell.class);
 
-    private final TreeTable treeTable;
+    private final Treetable treeTable;
     private final TreeCellRenderer treeCellRenderer;
     
 	/** Die letzte Zeile, die gerendert wurde. */
@@ -34,7 +34,7 @@ public class TreeTableCell extends JTree implements TableCellRenderer {
     private final int verticalMargin = 1;
     
    
-	public TreeTableCell(TreeTable treeTable, TreeModel model) {
+	public TreetableCell(Treetable treeTable, TreeModel model) {
         super(model);
         
         this.treeTable = treeTable;

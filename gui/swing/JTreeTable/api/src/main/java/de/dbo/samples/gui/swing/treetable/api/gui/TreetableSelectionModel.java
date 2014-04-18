@@ -8,11 +8,11 @@ import javax.swing.tree.DefaultTreeSelectionModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
  
-class TreeTableSelectionModel extends DefaultTreeSelectionModel {
+class TreetableSelectionModel extends DefaultTreeSelectionModel {
 	private static final long serialVersionUID = -5304146615031760881L;
-	private static final Logger log = LoggerFactory.getLogger(TreeTableSelectionModel.class);
+	private static final Logger log = LoggerFactory.getLogger(TreetableSelectionModel.class);
 
-	TreeTableSelectionModel() {
+	TreetableSelectionModel() {
         super();
         
         listSelectionModel.addListSelectionListener(

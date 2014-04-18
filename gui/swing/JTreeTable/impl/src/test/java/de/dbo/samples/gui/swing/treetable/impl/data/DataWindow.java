@@ -1,7 +1,7 @@
 package de.dbo.samples.gui.swing.treetable.impl.data;
  
 import de.dbo.samples.gui.swing.treetable.api.Window;
-import de.dbo.samples.gui.swing.treetable.api.gui.TreeTable;
+import de.dbo.samples.gui.swing.treetable.api.gui.Treetable;
 import de.dbo.samples.gui.swing.treetable.api.records.Node;
 
 import java.awt.Color;
@@ -32,7 +32,7 @@ public class DataWindow extends Window {
         final Node root = DataStructure.treeroot();
         log.info("Elapsed " +(System.currentTimeMillis()-start) + " ms. creating tree-root" );
         
-        final TreeTable treetable = new TreeTable(new DataTreeTableModel(root));
+        final Treetable treetable = new Treetable(new DataTreetableModel(root));
         treetable.setRootVisible(false);
         treetable.setBasicUI(background, selection, foreground, font);
         treetable.setIntercellSpacing(new Dimension(0, 0)); 

@@ -1,26 +1,18 @@
 package de.dbo.samples.gui.swing.treetable.api.factory;
 
-import de.dbo.samples.gui.swing.treetable.api.gui.TreeTableModel;
+import de.dbo.samples.gui.swing.treetable.api.gui.TreetableModel;
 import de.dbo.samples.gui.swing.treetable.api.records.Node;
 import de.dbo.samples.gui.swing.treetable.api.records.Record;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Required;
 
-public abstract class FactoryAbstraction implements Factory  {
-	protected static final Logger log = LoggerFactory.getLogger(Factory.class);
-	 
-	protected static final Map<String, Factory> FACTORIES = new HashMap<String,Factory>();
-	
+final class FactoryImpl implements Factory  {
+
 	protected Class<?> nodeClass;
 	
 	protected Class<?> treetableModelClass;
 	
-	protected FactoryAbstraction() {
+	protected FactoryImpl() {
 		
 	}
 	
@@ -37,9 +29,9 @@ public abstract class FactoryAbstraction implements Factory  {
 	}
 	
 	@Override
-	public TreeTableModel treeTableModel(final Node root) {
+	public TreetableModel treeTableModel(final Node root) {
 		try {
-			final TreeTableModel treeTableModel = (TreeTableModel) treetableModelClass.newInstance();
+			final TreetableModel treeTableModel = (TreetableModel) treetableModelClass.newInstance();
 			treeTableModel.setRoot(root);
 			return treeTableModel;
 		} catch (Exception e) {

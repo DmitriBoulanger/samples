@@ -2,7 +2,7 @@ package de.dbo.samples.gui.swing.treetable.api.gui;
  
 import javax.swing.tree.TreeModel;
  
-public interface TreeTableModel extends TreeModel {
+public interface TreetableModel extends TreeModel {
 	
 	public void setRoot(Object node);
  

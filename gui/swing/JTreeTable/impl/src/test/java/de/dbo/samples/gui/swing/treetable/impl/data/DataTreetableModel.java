@@ -1,13 +1,13 @@
 package de.dbo.samples.gui.swing.treetable.impl.data;
  
-import de.dbo.samples.gui.swing.treetable.api.gui.TreeTableModel;
-import de.dbo.samples.gui.swing.treetable.api.gui.TreeTableModelAbstraction;
+import de.dbo.samples.gui.swing.treetable.api.gui.TreetableModel;
+import de.dbo.samples.gui.swing.treetable.api.gui.TreetableModelAbstraction;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
  
-public final class DataTreeTableModel extends TreeTableModelAbstraction {
-	private static final Logger log = LoggerFactory.getLogger(DataTreeTableModel.class);
+public final class DataTreetableModel extends TreetableModelAbstraction {
+	private static final Logger log = LoggerFactory.getLogger(DataTreetableModel.class);
 	
     // Names of the columns
     private static  String[] columnNames = { 
@@ -15,13 +15,13 @@ public final class DataTreeTableModel extends TreeTableModelAbstraction {
  
     // Types of the columns
     private static Class<?>[] columnTypes = { 
-    	TreeTableModel.class, Long.class,  String.class,  String.class, Object.class };
+    	TreetableModel.class, Long.class,  String.class,  String.class, Object.class };
  
     /**
      * 
      * @param root complete data-structure 
      */
-    public DataTreeTableModel(Object root) {
+    public DataTreetableModel(Object root) {
         super();
         setRoot(root);
     }

@@ -12,14 +12,14 @@ import javax.swing.table.TableCellEditor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
  
-public class TreeTableCellEditor extends AbstractCellEditor implements TableCellEditor {
+public class TreetableCellEditor extends AbstractCellEditor implements TableCellEditor {
 	private static final long serialVersionUID = -6289597470847709283L;
-	private static final Logger log = LoggerFactory.getLogger(TreeTableCellEditor.class);
+	private static final Logger log = LoggerFactory.getLogger(TreetableCellEditor.class);
 	
 	private final JTree tree;
     private final JTable table;
  
-    public TreeTableCellEditor(JTree tree, JTable table) {
+    public TreetableCellEditor(JTree tree, JTable table) {
         this.tree = tree;
         this.table = table;
     }
