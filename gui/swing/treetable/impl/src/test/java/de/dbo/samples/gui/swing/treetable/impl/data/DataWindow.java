@@ -18,6 +18,11 @@ public class DataWindow extends Window {
 	private static final long serialVersionUID = 4489500964556705612L;
 	private static final Logger log = LoggerFactory.getLogger(DataWindow.class);
 	
+	public static void main(final String[] args) {
+        SwingUtilities.invokeLater(runnable(new DataWindow()));
+    }
+	
+	
 	private final Dimension size = new Dimension(1000, 400);
 	private final Font font = new Font("Consolas",Font.PLAIN, 14);
 	
@@ -46,9 +51,5 @@ public class DataWindow extends Window {
         addToContent(jScrollPane);
         setSize(size);
         setLocationRelativeTo(null);  
-    }
-	
-    public static void main(final String[] args) {
-        SwingUtilities.invokeLater(runnable(new DataWindow()));
     }
 }

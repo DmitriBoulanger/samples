@@ -1,7 +1,6 @@
 package de.dbo.samples.gui.swing.treetable.api;
  
 import java.awt.Component;
-import java.awt.Container;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
@@ -19,15 +18,15 @@ public abstract class Window extends JFrame {
 	
 	protected Window(final String title) {
         super(title);
+        
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setAlwaysOnTop(true);
+	    setAlwaysOnTop(true);
     }
 	
 	/**
-	 * adds application-contents to the content-container in this jFrame
+	 * adds application-contents to the content of this jFrame
 	 */
 	protected final void addToContent(final Component componet) {
-        final Container contentPane = getContentPane();
         final GridBagLayout gridBagLayout = new GridBagLayout();
         final GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridx = 0;
@@ -35,21 +34,21 @@ public abstract class Window extends JFrame {
         gbc.fill = GridBagConstraints.BOTH;
         gbc.weightx = 1.0;
         gbc.weighty = 1.0;
-        contentPane.setLayout(gridBagLayout);
-        contentPane.add(componet, gbc);
+        setLayout(gridBagLayout);
+        add(componet, gbc);
 	}
 	
 	protected static final Runnable runnable(final Window window) {
-		log.info("Elapsed " +(System.currentTimeMillis()-window.start0) + " ms. before opening ..." );
+		 log.info("Elapsed " +(System.currentTimeMillis()-window.start0) + " ms. before opening ..." );
 		 return new Runnable() {
 	        	@Override
 	            public void run() {
 	                try {
 	                	final String lookAndFeelClassName = UIManager.getSystemLookAndFeelClassName();
-	                	log.info("LookAndFeel=" +lookAndFeelClassName+ "... ");
+	                	log.debug("LookAndFeel=" +lookAndFeelClassName);
 	                    UIManager.setLookAndFeel(lookAndFeelClassName);
 	                } catch (Exception e) {
-	                    e.printStackTrace();
+	                   log.error("Can't set system Look-and-Feel: ", e);
 	                }
 	                window.setVisible(true);
 	            }

@@ -1,7 +1,6 @@
 package de.dbo.samples.gui.swing.treetable.impl.ref;
  
 import de.dbo.samples.gui.swing.treetable.api.Window;
-import de.dbo.samples.gui.swing.treetable.api.factory.FactoryMgr;
 import de.dbo.samples.gui.swing.treetable.api.gui.Treetable;
 import de.dbo.samples.gui.swing.treetable.api.gui.TreetableModel;
 import de.dbo.samples.gui.swing.treetable.api.records.Node;
@@ -20,14 +19,9 @@ public class RecordsTestWindow extends Window {
 	private static final long serialVersionUID = 4489500964556705612L;
 	private static final Logger log = LoggerFactory.getLogger(RecordsTestWindow.class);
 	
-	// to avoid time elapsed to create the factory
-	static {
-		 try {
-				FactoryMgr.instance("ReferenceImplementation.xml");
-			} catch (Exception e) {
-				log.info(e.toString());
-			}
-	}
+	 public static void main(final String[] args) {
+	        SwingUtilities.invokeLater(runnable(new RecordsTestWindow()));
+	 }
 	
 	private final Dimension size = new Dimension(1000, 400);
 	private final Font font = new Font("Consolas",Font.PLAIN, 14);
@@ -43,18 +37,18 @@ public class RecordsTestWindow extends Window {
         log.info("Elapsed " + (System.currentTimeMillis()-start2) + " ms. to create tree-root" );
         
         // Model
-        final TreetableModel treetableModel = new TreeTableModelImpl();
-        treetableModel.setRoot(root);
+        final TreetableModel model = new TreeTableModelImpl();
+        model.setRoot(root);
         
         // Treetable
-        final Treetable treeTable = new Treetable(treetableModel);
-        treeTable.setRootVisible(true);
-        treeTable.setBasicUI(background, selection, foreground, font);
-        treeTable.setIntercellSpacing(new Dimension(0,0)); 
-        treeTable.setColumnWidthNonresizable(1, 65);
-        treeTable.setColumnWidthNonresizable(2, 600);
+        final Treetable treetable = new Treetable(model);
+        treetable.setRootVisible(true);
+        treetable.setBasicUI(background, selection, foreground, font);
+        treetable.setIntercellSpacing(new Dimension(0,0)); 
+        treetable.setColumnWidthNonresizable(1, 65);
+        treetable.setColumnWidthNonresizable(2, 600);
        
-        final JScrollPane jScrollPane = new JScrollPane(treeTable);
+        final JScrollPane jScrollPane = new JScrollPane(treetable);
         jScrollPane.getViewport().setBackground(background);
         
        // JFrame
@@ -62,8 +56,5 @@ public class RecordsTestWindow extends Window {
        setSize(size);
        setLocationRelativeTo(null);
     }
-
-    public static void main(final String[] args) {
-        SwingUtilities.invokeLater(runnable(new RecordsTestWindow()));
-    }
+	
 }
