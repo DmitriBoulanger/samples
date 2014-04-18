@@ -29,7 +29,7 @@ public class LoggerTest {
 	@Test
 	public void test() {
 		try {
-			final String name = org.apache.logging.log4j.Logger.class.getName();
+			final String name = org.apache.log4j.Logger.class.getName();
 			log.debug(name + " found in the class-path");
 		} catch (Throwable e) {
 			fail("No Log4j-Logger found in the class-path");

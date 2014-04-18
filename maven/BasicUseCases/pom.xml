@@ -1,20 +1,19 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+	
+	<parent>
+		<groupId>de.dbo.samples</groupId>
+		<artifactId>Samples</artifactId>
+		<version>0.0.0-SNAPSHOT</version>
+	</parent>
 
 	<groupId>de.dbo.samples.maven.basic</groupId>
 	<artifactId>BasicUseCases</artifactId>
-	<version>0.0.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
+	
 	<name>Basic use cases (INDEX)</name>
 	<url>http://books.sonatype.com/mvnex-book/reference/index.html</url>
-
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<java.version>1.7</java.version>
-		<java-compiler-plugin.version>3.1</java-compiler-plugin.version>
-	</properties>
 
 	<modules>
 		<module>00_Simple</module>
