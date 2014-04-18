@@ -2,13 +2,14 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	
-	<artifactId>API</artifactId>
-	<packaging>jar</packaging>
 	<parent>
 		<groupId>de.dbo.samples.spring</groupId>
-		<artifactId>top</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
+		<artifactId>Spring</artifactId>
+		<version>0.0.0-SNAPSHOT</version>
 	</parent>
+	
+	<artifactId>API</artifactId>
+	<packaging>jar</packaging>
 	
     <name>API to be used in other projects</name>
     <description>Sample API</description>
@@ -28,27 +29,8 @@
 			<artifactId>spring-context</artifactId>
 		</dependency>
 		
-		<!-- LOGGING -->
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-		</dependency>
-		
-			 
-		
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
-			<scope>runtime</scope>
-		</dependency>
-
+	 
 		 
-		
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<scope>test</scope>
-		</dependency>
 	</dependencies>
 	
 </project>
