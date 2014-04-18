@@ -1,4 +1,4 @@
-package de.dbo.samples.maven.basic.enterprise.weather.service;
+package de.dbo.samples.maven.basics.enterprise.weather.service;
 
 import java.io.InputStreamReader;
 import java.io.Reader;
@@ -9,8 +9,8 @@ import org.slf4j.*;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.Velocity;
 
-import de.dbo.samples.maven.basic.enterprise.weather.model.Location;
-import de.dbo.samples.maven.basic.enterprise.weather.model.Weather;
+import de.dbo.samples.maven.basics.enterprise.weather.model.Location;
+import de.dbo.samples.maven.basics.enterprise.weather.model.Weather;
 
 public class WeatherFormatter {
 

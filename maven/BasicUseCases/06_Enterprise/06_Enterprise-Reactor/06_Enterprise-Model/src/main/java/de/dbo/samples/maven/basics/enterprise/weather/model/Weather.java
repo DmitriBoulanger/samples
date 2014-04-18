@@ -1,4 +1,4 @@
-package de.dbo.samples.maven.basic.enterprise.weather.model;
+package de.dbo.samples.maven.basics.enterprise.weather.model;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
