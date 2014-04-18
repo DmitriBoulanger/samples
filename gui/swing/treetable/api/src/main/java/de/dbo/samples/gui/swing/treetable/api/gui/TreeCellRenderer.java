@@ -22,8 +22,8 @@ import javax.swing.tree.DefaultTreeCellRenderer;
 public class TreeCellRenderer extends DefaultTreeCellRenderer {
 	private static final long serialVersionUID = -8468286287964002501L;
 	
-	private Icon nodeIcon = UIManager.getIcon("FileView.directoryIcon");
-    private Icon leafIcon = null;
+	private static final Icon nodeIcon = UIManager.getIcon("FileView.directoryIcon");
+    private static final Icon leafIcon = null;
     
     private Color selectionBackground;
     
