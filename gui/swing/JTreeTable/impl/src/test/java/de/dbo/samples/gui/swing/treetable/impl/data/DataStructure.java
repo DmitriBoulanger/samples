@@ -7,7 +7,7 @@ import java.util.List;
  
 public class DataStructure  {
 	 
-    public static Node instance() {
+    public static Node treeroot() {
     	
         final List<Node> children1 = new ArrayList<Node>();
         children1.add(new DataNode("Record 12", "C12",  null));
@@ -50,7 +50,6 @@ public class DataStructure  {
         
         
         return new DataNode(Node.ROOT, "",  nodes0);
-
     }
     
 }

@@ -3,7 +3,7 @@ package de.dbo.samples.gui.swing.treetable.api.records;
 import static de.dbo.samples.gui.swing.treetable.api.records.Node.ROOT;
 import static de.dbo.samples.gui.swing.treetable.api.records.Tools.printInternalData;
 
-import de.dbo.samples.gui.swing.treetable.api.Factory;
+import de.dbo.samples.gui.swing.treetable.api.factory.Factory;
 import de.dbo.samples.gui.swing.treetable.api.records.Node;
 import de.dbo.samples.gui.swing.treetable.api.records.Record;
 import de.dbo.samples.gui.swing.treetable.api.records.RecordTreeGenerator;

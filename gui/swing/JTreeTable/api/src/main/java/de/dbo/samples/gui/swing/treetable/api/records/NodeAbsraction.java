@@ -24,7 +24,7 @@ public abstract class NodeAbsraction implements Node {
     
     private final List<Node> children = new ArrayList<Node>();
  
-    public NodeAbsraction() {
+    protected NodeAbsraction() {
     
     }
     

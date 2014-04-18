@@ -6,8 +6,8 @@ import de.dbo.samples.gui.swing.treetable.api.gui.TreeTableModelAbstraction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
  
-public final class DataStructureTreeTableModel extends TreeTableModelAbstraction {
-	private static final Logger log = LoggerFactory.getLogger(DataStructureTreeTableModel.class);
+public final class DataTreeTableModel extends TreeTableModelAbstraction {
+	private static final Logger log = LoggerFactory.getLogger(DataTreeTableModel.class);
 	
     // Names of the columns
     private static  String[] columnNames = { 
@@ -21,7 +21,7 @@ public final class DataStructureTreeTableModel extends TreeTableModelAbstraction
      * 
      * @param root complete data-structure 
      */
-    public DataStructureTreeTableModel(Object root) {
+    public DataTreeTableModel(Object root) {
         super();
         setRoot(root);
     }

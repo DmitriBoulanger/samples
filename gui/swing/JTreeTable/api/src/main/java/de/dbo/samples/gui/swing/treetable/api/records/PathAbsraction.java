@@ -29,7 +29,7 @@ public abstract class PathAbsraction implements Path {
 	 *            
 	 *  @throws PathException if the path is null or empty string
 	 */
-	public PathAbsraction(final String path) {
+	protected PathAbsraction(final String path) {
 		if (!nn(path)) {
 			throw new PathException("Null or empty path is not allowed: " + path);
 		}

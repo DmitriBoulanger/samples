@@ -21,7 +21,7 @@ public abstract class RecordAbstraction implements Record {
 	private Long sequence = null;
 	private Object contents = null;
 	
-	public RecordAbstraction(final Path path) {
+	protected RecordAbstraction(final Path path) {
 		if (null==path) {
 			throw new RecordException("Record must have non-null path");
 		}

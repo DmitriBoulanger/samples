@@ -2,7 +2,8 @@ package de.dbo.samples.gui.swing.treetable.impl.ref;
 
 import static de.dbo.samples.gui.swing.treetable.api.records.Tools.extractRecords;
 
-import de.dbo.samples.gui.swing.treetable.api.Factory;
+import de.dbo.samples.gui.swing.treetable.api.factory.Factory;
+import de.dbo.samples.gui.swing.treetable.api.factory.FactoryMgr;
 import de.dbo.samples.gui.swing.treetable.api.records.Node;
 import de.dbo.samples.gui.swing.treetable.api.records.Path;
 import de.dbo.samples.gui.swing.treetable.api.records.Record;
@@ -17,7 +18,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -41,7 +41,10 @@ public class RecordsTest {
 	
 	private Node treeroot = null;
 	
-	private final Factory factory = Factory.instance("ReferenceImplementation.xml");
+//	private static final Factory factory = FactoryMgr.instance("ReferenceImplementation.xml");
+	
+	private static final Factory factory = FactoryMgr.instance("ReferenceImplementation.properties");
+	
 	
 	public Node getTreeroot() {
 		recordTreeGenerator();
@@ -114,10 +117,10 @@ public class RecordsTest {
 		records.add( new RecordImpl(parent5 ));
 		records.add( new RecordImpl(child ));
 		i = 0;
-		log.info("Input records in recordTreeGenerator-Test ("+records.size()+"):");
+		log.debug("Input records in recordTreeGenerator-Test ("+records.size()+"):");
 		for (final Record record:records)  {
 			i++;
-			log.info( new DecimalFormat("00").format(i)+":" + record.print().toString());
+			log.debug( new DecimalFormat("00").format(i)+":" + record.print().toString());
 		}
 		
 		final RecordTreeGenerator recordTreeGenerator = new RecordTreeGenerator(factory, records);
