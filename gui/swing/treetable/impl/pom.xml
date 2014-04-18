@@ -9,6 +9,7 @@
 	</parent>
 
 	<artifactId>impl</artifactId>
+	<name>TreeTable Implementations</name>
 
 	<dependencies>
 

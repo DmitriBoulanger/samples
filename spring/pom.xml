@@ -16,41 +16,19 @@
 	<description>Top for all Spring-projects</description>
 	
 	 <properties>
-		<spring.version>3.1.2.RELEASE</spring.version>
+		
 	</properties>
+	
+	<description>Reactor for Spring Use-Cases</description>
 	
 	<modules>
 	    <module>API</module>
 		<module>Configuration</module>
 		<module>InnerBean</module>
 	</modules> 
-
 	
-
-		<!-- Common resources -->
-<!-- 
-		<module>SimpleAbstractions</module>
-		<module>LoggingResources</module>
--->
-
-		<!-- Tutorial modules -->
-<!--		
-		<module>HelloSpring</module>
-		<module>JavaConfiguration</module>
-		<module>LifeCycle</module>
-		<module>Event</module>
-		<module>InnerBean</module>
-		<module>IoC</module>
-		<module>JDBC</module>
-		<module>Transaction</module>
-		<module>MVC</module>
-
-		<module>JUnits</module>
-
--->
-
+	
    
-	
 	<build>
 		<finalName>samples-spring-${project.artifactId}-${project.version}</finalName>
 	</build>

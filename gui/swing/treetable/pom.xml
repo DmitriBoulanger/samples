@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	
+
 	<parent>
 		<groupId>de.dbo.samples</groupId>
 		<artifactId>Samples</artifactId>
@@ -12,14 +12,8 @@
 	<artifactId>TreeTable</artifactId>
 	<packaging>pom</packaging>
 	
+	<name>TreeTable Reactor</name>
 	<description>Tree-Table and Records as Data</description>
-
-	<properties>
-		<java.version>1.7</java.version>
-		<slf4j.version>1.7.6</slf4j.version>
-		<spring.version>3.1.2.RELEASE</spring.version>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	</properties>
 	
 	<modules>
 		<module>api</module>

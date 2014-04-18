@@ -9,6 +9,7 @@
 	</parent>
 
 	<artifactId>api</artifactId>
+	<name>TreeTable API</name>
 
 	<dependencies>
 		
