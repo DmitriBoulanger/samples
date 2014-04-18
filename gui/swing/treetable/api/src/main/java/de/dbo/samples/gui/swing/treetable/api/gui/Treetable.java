@@ -86,6 +86,8 @@ public class Treetable extends JTable {
     	 setForeground(foreground);
     	 setSelectionBackground(selection);
          setSelectionForeground(foreground);
+         
+         getTableHeader().setBackground(background);
 
     	// JTree
         final DefaultTreeCellRenderer renderer = (DefaultTreeCellRenderer) tree.getCellRenderer();
