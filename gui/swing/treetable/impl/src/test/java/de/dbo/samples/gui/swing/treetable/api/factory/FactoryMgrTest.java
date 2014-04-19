@@ -19,18 +19,37 @@ public class FactoryMgrTest {
 	    log.info("Elapsed " + (System.currentTimeMillis()-start) 
 	    		+ " ms. creating factory from properties");
 	    assertClassNames(nodeClass,modelClass);
+	    
+	    final Factory factory2 = FactoryMgr.instance("ReferenceImplementation.properties");
+	    assertTrue("Factory from properties is not a singelton"
+	    		,factory==factory2);
+	    
+	    FactoryMgr.clear();
+	    final Factory factory3 = FactoryMgr.instance("ReferenceImplementation.properties");
+	    assertFalse("No new factory from properties after clear"
+	    		,factory==factory3);
 	}
 	
 	@Test
 	public void testCtx() {
 		FactoryMgr.clear();
 		final long start = System.currentTimeMillis();
-		final Factory factory = FactoryMgr.instance("ReferenceImplementation.xml");
+		final Factory factory = FactoryMgr
+				.instance("ReferenceImplementation.xml");
 		final Class<?> nodeClass = factory.getNodeClass();
-	    final Class<?> modelClass = factory.getTreetableModelClass();
-		log.info("Elapsed " + (System.currentTimeMillis()-start) 
+		final Class<?> modelClass = factory.getTreetableModelClass();
+		log.info("Elapsed " + (System.currentTimeMillis() - start)
 				+ " ms. creating factory from context");
-		assertClassNames(nodeClass,modelClass);
+		assertClassNames(nodeClass, modelClass);
+
+		final Factory factory2 = FactoryMgr.instance("ReferenceImplementation.xml");
+		assertTrue("Factory from context is not a singelton",
+				factory == factory2);
+		
+		FactoryMgr.clear();
+		final Factory factory3 = FactoryMgr.instance("ReferenceImplementation.xml");
+	    assertFalse("No new factory from properties after clear"
+	    		,factory==factory3);
 	}
 	
 
@@ -40,7 +59,6 @@ public class FactoryMgrTest {
 		assertTrue("Incorrect Model class-name "+ modelClass.getSimpleName()
 				,modelClass.getSimpleName().equals("TreetableModelImpl"));
 	}
-	
 	
 	@Test(expected=FactoryException.class)
 	public void testErr() {

@@ -25,6 +25,7 @@
 		<module>InnerBean</module>
 		<module>IoC</module>
 		<module>LifeCycle</module>
+		<module>DependencyInjection</module>
 	</modules> 
 	
 	<build>
