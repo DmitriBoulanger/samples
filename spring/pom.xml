@@ -24,6 +24,7 @@
 		<module>Configuration</module>
 		<module>InnerBean</module>
 		<module>IoC</module>
+		<module>LifeCycle</module>
 	</modules> 
 	
 	<build>
