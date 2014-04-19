@@ -1,4 +1,4 @@
-package de.dbo.samples.spring.configuration.impl;
+package de.dbo.samples.spring.configuration.annotated.impl;
  
 import de.dbo.samples.spring.api.SpellChecker;
 import de.dbo.samples.spring.api.TextEditor;

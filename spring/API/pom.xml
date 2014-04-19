@@ -15,13 +15,6 @@
     <description>Sample API</description>
     
   	<dependencies>
-  	    <!-- COMMONS
-		<dependency>
-			<groupId>SpringFramework3Tutorial</groupId>
-			<artifactId>SimpleAbstractions</artifactId>
-		</dependency> 
-		 
-		-->
 		
 		 <!-- SPRING -->
 		<dependency>
@@ -30,7 +23,6 @@
 		</dependency>
 		
 	 
-		 
 	</dependencies>
 	
 </project>

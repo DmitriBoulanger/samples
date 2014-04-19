@@ -1,7 +1,7 @@
-package de.dbo.samples.spring.configuration;
+package de.dbo.samples.spring.configuration.annotated;
 
 import de.dbo.samples.spring.api.TextEditor;
-import de.dbo.samples.spring.configuration.impl.SpellCheckerImpl;
+import de.dbo.samples.spring.configuration.java.impl.SpellCheckerImpl;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;

@@ -19,16 +19,12 @@
 		
 	</properties>
 	
-	<description>Reactor for Spring Use-Cases</description>
-	
 	<modules>
 	    <module>API</module>
 		<module>Configuration</module>
 		<module>InnerBean</module>
 	</modules> 
 	
-	
-   
 	<build>
 		<finalName>samples-spring-${project.artifactId}-${project.version}</finalName>
 	</build>
