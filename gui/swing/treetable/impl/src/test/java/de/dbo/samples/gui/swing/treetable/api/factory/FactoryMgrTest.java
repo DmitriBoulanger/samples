@@ -38,7 +38,7 @@ public class FactoryMgrTest {
 		assertTrue("Incorrect Node class-name "+nodeClass.getSimpleName()
 				,nodeClass.getSimpleName().equals("NodeImpl"));
 		assertTrue("Incorrect Model class-name "+modelClass.getSimpleName()
-				,modelClass.getSimpleName().equals("TreeTableModelImpl"));
+				,modelClass.getSimpleName().equals("TreetableModelImpl"));
 	}
 	
 	

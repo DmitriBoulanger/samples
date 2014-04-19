@@ -1,57 +1,74 @@
 package de.dbo.samples.gui.swing.treetable.api;
  
-import java.awt.Component;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
+import javax.swing.JComponent;
 import javax.swing.JFrame;
-import javax.swing.UIManager;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public abstract class Window extends JFrame {
 	private static final long serialVersionUID = 8046982486171537192L;
-	private static final Logger log = LoggerFactory.getLogger(Window.class);
+	protected static final Logger log = LoggerFactory.getLogger(Window.class);
 	
-	private final long start0 = System.currentTimeMillis();
-	
+	protected final long start0 = System.currentTimeMillis();
 	protected Window(final String title) {
         super(title);
-        
+        setLayout(gbl1x1());
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    setAlwaysOnTop(true);
     }
+	 
+	/**
+	 * adds application-component to the content of this jFrame.
+	 * The component takes available space and supposed to be the only one 
+	 * 
+	 */
+	protected final void addAs1x1(final JComponent componet) {
+        this.add(componet, gbc1x1());
+	}
+
+	// HELPERS
 	
 	/**
-	 * adds application-contents to the content of this jFrame
+	 * adds component to the parent-component.
+	 * The component takes available space and supposed to be the only one 
+	 * 
 	 */
-	protected final void addToContent(final Component componet) {
-        final GridBagLayout gridBagLayout = new GridBagLayout();
+	public static final void addAs1x1(final JComponent parent, final JComponent componet) {
+        parent.setLayout(gbl1x1());
+        parent.add(componet, gbc1x1());
+	}
+	
+	private static final GridBagConstraints gbc1x1() {
         final GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.fill = GridBagConstraints.BOTH;
         gbc.weightx = 1.0;
         gbc.weighty = 1.0;
-        setLayout(gridBagLayout);
-        add(componet, gbc);
+        return gbc;
 	}
 	
-	protected static final Runnable runnable(final Window window) {
-		 log.info("Elapsed " +(System.currentTimeMillis()-window.start0) + " ms. before opening ..." );
-		 return new Runnable() {
-	        	@Override
-	            public void run() {
-	                try {
-	                	final String lookAndFeelClassName = UIManager.getSystemLookAndFeelClassName();
-	                	log.debug("LookAndFeel=" +lookAndFeelClassName);
-	                    UIManager.setLookAndFeel(lookAndFeelClassName);
-	                } catch (Exception e) {
-	                   log.error("Can't set system Look-and-Feel: ", e);
-	                }
-	                window.setVisible(true);
-	            }
-	        }; 
+	private static final GridBagLayout gbl1x1() {
+		final GridBagLayout gbl = new GridBagLayout();
+        return gbl;
 	}
+	
+	// MONOSPACE FONTS
+	public static final Font CONSOLAS12 = new Font("Consolas",Font.PLAIN, 12);
+	public static final Font CONSOLAS13 = new Font("Consolas",Font.PLAIN, 12);
+	public static final Font CONSOLAS14 = new Font("Consolas",Font.PLAIN, 14);
 }
+
+
+
+
+
+
+
+
+

@@ -10,21 +10,32 @@ import java.awt.Font;
 
 import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
  
 public class DataWindow extends Window {
 	private static final long serialVersionUID = 4489500964556705612L;
-	private static final Logger log = LoggerFactory.getLogger(DataWindow.class);
 	
 	public static void main(final String[] args) {
-        SwingUtilities.invokeLater(runnable(new DataWindow()));
-    }
-	
+		final Runnable gui = new Runnable() {
+			@Override
+			public void run() {
+				try {
+					UIManager.setLookAndFeel(UIManager
+							.getSystemLookAndFeelClassName());
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				new DataWindow().setVisible(true);
+			}
+		};
+		SwingUtilities.invokeLater(gui);
+	}
 	
 	private final Dimension size = new Dimension(1000, 400);
-	private final Font font = new Font("Consolas",Font.PLAIN, 14);
+	private final Font font = CONSOLAS12.deriveFont(13.0f);
 	
 	private final Color background = new Color(239,241,248);
 	private final Color selection = new Color(168,208,245);
@@ -48,7 +59,7 @@ public class DataWindow extends Window {
         jScrollPane.getViewport().setBackground(background);
         
         // JFrame
-        addToContent(jScrollPane);
+        addAs1x1(jScrollPane);
         setSize(size);
         setLocationRelativeTo(null);  
     }

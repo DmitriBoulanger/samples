@@ -35,7 +35,7 @@ public final class Tools {
 		
 	}
 	
-	final static StringBuilder printInternalData(final List<RecordTreeGenerator> children
+	public final static StringBuilder printInternalData(final List<RecordTreeGenerator> children
 			, final int depth, final boolean onlyNodes) {
 		final StringBuilder sb = new StringBuilder();
 		final StringBuilder tab = tab(depth);

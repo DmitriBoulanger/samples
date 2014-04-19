@@ -20,7 +20,7 @@ import org.slf4j.LoggerFactory;
 public abstract class TreetableModelAbstraction implements TreetableModel {
 	private static final Logger log = LoggerFactory.getLogger(TreetableModelAbstraction.class);
 	
-    private Object root;
+    protected Object root;
     protected final EventListenerList listenerList = new EventListenerList();
  
     private static final int CHANGED = 0;

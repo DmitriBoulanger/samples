@@ -8,8 +8,8 @@ import de.dbo.samples.gui.swing.treetable.api.records.Node;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
  
-public final class TreeTableModelImpl extends TreetableModelAbstraction {
-	private static final Logger log = LoggerFactory.getLogger(TreeTableModelImpl.class);
+public final class TreetableModelImpl extends TreetableModelAbstraction {
+	private static final Logger log = LoggerFactory.getLogger(TreetableModelImpl.class);
 	
     // Names of the columns
     private static  String[] columnNames = { 
@@ -23,7 +23,7 @@ public final class TreeTableModelImpl extends TreetableModelAbstraction {
      * 
      * @param root complete data-structure 
      */
-    public TreeTableModelImpl() {
+    public TreetableModelImpl() {
         super();
     }
     

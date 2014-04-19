@@ -12,7 +12,7 @@
 		<property name="nodeClass" 
 			value="de.dbo.samples.gui.swing.treetable.impl.ref.NodeImpl"/> 
 		<property name="treetableModelClass" 
-			value="de.dbo.samples.gui.swing.treetable.impl.ref.TreeTableModelImpl"/> 
+			value="de.dbo.samples.gui.swing.treetable.impl.ref.TreetableModelImpl"/> 
 	</bean>
 
 </beans>
