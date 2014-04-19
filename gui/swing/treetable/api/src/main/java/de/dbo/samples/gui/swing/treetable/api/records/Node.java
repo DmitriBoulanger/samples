@@ -23,6 +23,12 @@ public interface Node extends Comparable<Node>{
 	 */
 	public static final String ROOT = "ROOT";
 	
+	/**
+	 * initialization method
+	 * 
+	 * @param treename
+	 * @param contents
+	 */
 	public void init(final String treename, final Object contents);
 
 	/**
