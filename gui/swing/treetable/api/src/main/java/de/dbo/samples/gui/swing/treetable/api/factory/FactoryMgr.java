@@ -13,6 +13,15 @@ import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+/**
+ *  Manager for creating tree-table factories
+ * 
+ * @author Dmitri Boulanger, Hombach
+ *
+ * D. Knuth: Programs are meant to be read by humans and 
+ *           only incidentally for computers to execute 
+ *
+ */
 public final class FactoryMgr {
 	protected static final Logger log = LoggerFactory.getLogger(Factory.class);
 	
@@ -35,8 +44,8 @@ public final class FactoryMgr {
 			try {
 				ctx = new ClassPathXmlApplicationContext(config);
 			} catch (BeansException e) {
-				throw new FactoryException("Can't create context for " + config
-						,e);
+				throw new FactoryException("Can't create context."
+						+ " Config= " + config,e);
 			}
 			newInstance = (Factory) ctx.getBean("factory");
 			
@@ -44,15 +53,17 @@ public final class FactoryMgr {
 			
 			newInstance = new FactoryImpl();
 			final Properties properties = loadPropertiesFromResource(config);
+			final String nodeClassname = properties.getProperty("node");
 			try {
-				newInstance.setNodeClass(Class.forName(properties.getProperty("node")));
+				newInstance.setNodeClass(Class.forName(nodeClassname));
 			} catch (Exception e) {
-				throw new FactoryException("Can't set Node.class: ",e);
+				throw new FactoryException("Can't set Node.class: " + nodeClassname,e);
 			}
+			final String modelClassname = properties.getProperty("treetableModel");
 			try {
-				newInstance.setTreetableModelClass(Class.forName(properties.getProperty("treetableModel")));
+				newInstance.setTreetableModelClass(Class.forName(modelClassname));
 			} catch (Exception e) {
-				throw new FactoryException("Can't set TreetableModel.class: ",e);
+				throw new FactoryException("Can't set TreetableModel.class: " + modelClassname ,e);
 			}
 			
 		} else {

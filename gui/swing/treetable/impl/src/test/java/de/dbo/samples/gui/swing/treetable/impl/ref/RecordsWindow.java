@@ -27,7 +27,7 @@ public class RecordsWindow extends Window {
 				try {
 					UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 				} catch (Exception e) {
-					log.error("Can't use system Look-and-Feel",e);
+					log.error("Can't set the system Look-and-Feel",e);
 				}
 				new RecordsWindow().setVisible(true);
 			}
@@ -42,7 +42,7 @@ public class RecordsWindow extends Window {
 	private final Color foreground = Color.BLACK;
 	
 	public RecordsWindow() {
-        super("Record Tree-Table - Reference Implementation");
+        super("Tree-Table with Records - Reference Implementation");
         
         final long start1 = System.currentTimeMillis();
         final Factory factory = FactoryMgr.instance("ReferenceImplementation.xml");

@@ -37,7 +37,7 @@ public class FactoryMgrTest {
 	private static final void assertClassNames(final Class<?> nodeClass,final Class<?> modelClass) {
 		assertTrue("Incorrect Node class-name "+nodeClass.getSimpleName()
 				,nodeClass.getSimpleName().equals("NodeImpl"));
-		assertTrue("Incorrect Model class-name "+modelClass.getSimpleName()
+		assertTrue("Incorrect Model class-name "+ modelClass.getSimpleName()
 				,modelClass.getSimpleName().equals("TreetableModelImpl"));
 	}
 	

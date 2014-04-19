@@ -23,8 +23,9 @@ final class FactoryImpl implements Factory  {
 			node.init(treename,record);
 			return node;
 		} catch (Exception e) {
-			throw new FactoryException("Can't create node-instance. Treename=" + treename
-					, e);
+			throw new FactoryException(
+					"Can't create node-instance."
+					+ " Treename=" + treename, e);
 		} 
 	}
 	
@@ -35,8 +36,9 @@ final class FactoryImpl implements Factory  {
 			treeTableModel.setRoot(root);
 			return treeTableModel;
 		} catch (Exception e) {
-			throw new FactoryException("Can't create model-instance. Treename=" + root.getTreename()
-					, e);
+			throw new FactoryException(
+					"Can't create model-instance." 
+					 + " Root=" + root.getTreename(), e);
 		} 
 	}
 

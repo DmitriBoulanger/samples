@@ -19,12 +19,11 @@ public class RecordsTestWindow extends Window {
 	public static void main(final String[] args) {
 		final Runnable gui = new Runnable() {
 			@Override
-			public void run() {
+			public final void run() {
 				try {
-					UIManager.setLookAndFeel(UIManager
-							.getSystemLookAndFeelClassName());
+					UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 				} catch (Exception e) {
-					e.printStackTrace();
+					log.error("Can't set the system Look-and-Feel",e);
 				}
 				new RecordsTestWindow().setVisible(true);
 			}
@@ -39,7 +38,7 @@ public class RecordsTestWindow extends Window {
 	private final Color foreground = Color.BLACK;
 	
 	public RecordsTestWindow() {
-        super("Records Tree-Table Test");
+        super("Tree-Table with Records - JUnit Test");
         
         final long start2 = System.currentTimeMillis();
         final Node root = new RecordsTest().getTreeroot();
