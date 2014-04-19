@@ -1,14 +1,12 @@
 package de.dbo.samples.spring.configuration.java.impl;
 
+import de.dbo.samples.spring.api.SpellChecker;
+import de.dbo.samples.spring.api.TextEditor;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-
-import de.dbo.samples.spring.api.*;
-
- 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class Config {

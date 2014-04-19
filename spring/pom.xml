@@ -23,6 +23,7 @@
 	    <module>API</module>
 		<module>Configuration</module>
 		<module>InnerBean</module>
+		<module>IoC</module>
 	</modules> 
 	
 	<build>
