@@ -12,9 +12,6 @@ import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
- 
 public class DataWindow extends Window {
 	private static final long serialVersionUID = 4489500964556705612L;
 	

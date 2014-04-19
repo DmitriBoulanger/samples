@@ -11,7 +11,6 @@
 	<artifactId>Configuration</artifactId>
 	<packaging>jar</packaging>
 
-	
     <name>Configuration using annotations and Java-Congig</name>
     <description>Annoatated and Java-based Spring Configurations</description>
     
@@ -27,13 +26,12 @@
 			<artifactId>spring-context</artifactId>
 		</dependency>
 		
+		<!-- JavaConfiguration uses cglib -->
 		<dependency>
-				<groupId>cglib</groupId>
-				<artifactId>cglib</artifactId>
+			<groupId>cglib</groupId>
+			<artifactId>cglib</artifactId>
 		</dependency>
 		
-		 
-	  
 	</dependencies>
 	
 </project>
