@@ -4,11 +4,12 @@ import de.dbo.samples.gui.swing.treetable.api.records.Record;
 import de.dbo.samples.gui.swing.treetable.impl.ref.RecordImpl;
 
 import java.util.ArrayList;
+import java.util.List;
  
 public class Records2 extends ArrayList<Record>  {
 	private static final long serialVersionUID = 5360421989194726803L;
 
-	public Records2() {
+	public Records2(final List<Record> records) {
 	 
     	String error = "Error";
     	String warning = "Warning";
@@ -41,6 +42,6 @@ public class Records2 extends ArrayList<Record>  {
 		
 		add( new RecordImpl("/X/B/C/d") );
 		
-		addAll(new Records1());
+		addAll(records);
     }
 }

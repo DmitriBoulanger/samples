@@ -6,9 +6,12 @@ import de.dbo.samples.gui.swing.treetable.impl.ref.data.Records;
 import de.dbo.samples.gui.swing.treetable.impl.ref.data.Records1;
 import de.dbo.samples.gui.swing.treetable.impl.ref.data.Records2;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RecordProviderImpl extends RecordProviderAbstraction {
+	
+	final Records records = new Records();
 	 
  protected final List<Record> getRecords() {
 		if (!nn(transaction)) {
@@ -16,12 +19,19 @@ public class RecordProviderImpl extends RecordProviderAbstraction {
 		}
 
 		final String transactionTrimmed = transaction.trim();
+		final List<Record> ret = new ArrayList<Record>();
 		if ("0".equals(transactionTrimmed)) {
-			return new Records();
+			ret.addAll(records);
+			return ret;
 		} else if ("1".equals(transactionTrimmed)) {
-			return new Records1();
+			ret.addAll(new Records1(records));
+			return ret;
 		} else if ("2".equals(transactionTrimmed)) {
-			return new Records2();
+			ret.addAll(new Records2(records));
+			return ret;
+		} else if ("3".equals(transactionTrimmed)) {
+			ret.addAll(records);
+			return ret;
 		} else {
 			return null;
 		}

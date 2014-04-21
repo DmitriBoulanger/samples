@@ -33,6 +33,9 @@ public abstract class RecordProviderAbstraction implements RecordProvider {
 		this.transaction = transaction;
 	}
 
+	/**
+	 * all records for the transaction
+	 */
 	@Override
 	public final List<Record> transactionRecords() {
 		records = getRecords();
@@ -40,6 +43,9 @@ public abstract class RecordProviderAbstraction implements RecordProvider {
 		return records;
 	}
 	
+	/**
+	 * new records for the transaction
+	 */
 	@Override
 	public final List<Record> transactionRecordsUpdate() {
 		if (null==records) {
@@ -48,15 +54,26 @@ public abstract class RecordProviderAbstraction implements RecordProvider {
 		
 		final List<Record> recordsUpdate = getRecords();
 		if (null!=recordsUpdate) {
-			records.addAll(recordsUpdate);
+			for (final Record record:recordsUpdate) {
+				if (records.contains(record)) {
+					continue;
+				}
+				records.addAll(recordsUpdate);
+			}
 		} 
 		
 		counter();
 		return records;
 	}
 	
+	/**
+	 * records for the transaction
+	 * 
+	 * @return record-list 
+	 */
 	protected abstract List<Record> getRecords();
 		 
+	
 	protected final void counter() {
 		log.debug("records: " + (null!=records? records.size() : "NULL"));
 	} 
