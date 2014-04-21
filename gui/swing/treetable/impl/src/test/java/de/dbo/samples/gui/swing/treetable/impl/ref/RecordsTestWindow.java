@@ -53,7 +53,7 @@ public class RecordsTestWindow extends Window {
         jScrollPane.getViewport().setBackground(BACKGROUND);
         
        // JFrame
-       addAs1x1(jScrollPane);
+       setContentAs1x1(jScrollPane);
     }
 	
 	@Override

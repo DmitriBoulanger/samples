@@ -62,6 +62,10 @@ public final class RecordTreeGenerator implements Comparable<RecordTreeGenerator
 		this.depth = 0;
 		this.node = factory.newRoot();
 		
+		if (null==records || 0==records.size()) {
+			return;
+		}
+		
 		// if a record have the sequence-attribute, then it takes no new value 
 		for (final Record record:records) {
 			record.setSequence( (long) this.records.size() );

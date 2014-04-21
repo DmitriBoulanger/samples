@@ -1,21 +1,16 @@
 package de.dbo.samples.gui.swing.treetable.api;
  
+import static de.dbo.samples.gui.swing.treetable.api.Tools.gbc1x1;
+import static de.dbo.samples.gui.swing.treetable.api.Tools.gbl1x1;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
-import javax.swing.JMenuBar;
-import javax.swing.JTextField;
 import javax.swing.UIManager;
-import javax.swing.border.EmptyBorder;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -44,16 +39,6 @@ public abstract class Window extends JFrame implements ActionListener {
         setLayout(gbl1x1());
     }
 	
-	public final void setContentBackgroud(Color background) {
-		getContentPane().setBackground(background);
-	}
-	
-	public final void clearContent() {
-		getContentPane().removeAll();
-		getContentPane().repaint();
-		getContentPane().validate();
-	}
-	
 	public void showup(final Dimension preferredSize) {
 		if (null!=preferredSize) {
 			setPreferredSize(preferredSize);
@@ -71,68 +56,10 @@ public abstract class Window extends JFrame implements ActionListener {
 	 * The component takes available space and supposed to be the only one 
 	 * 
 	 */
-	protected final void addAs1x1(final JComponent componet) {
+	protected final void setContentAs1x1(final JComponent componet) {
         this.add(componet, gbc1x1());
 	}
 
-	// HELPERS
-	
-	/**
-	 * adds component to the parent-component.
-	 * The component takes available space and supposed to be the only one 
-	 * 
-	 */
-	public static final void addAs1x1(final JComponent parent, final JComponent componet) {
-        parent.setLayout(gbl1x1());
-        parent.add(componet, gbc1x1());
-	}
-	
-	private static final GridBagConstraints gbc1x1() {
-        final GridBagConstraints gbc = new GridBagConstraints();
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        gbc.fill = GridBagConstraints.BOTH;
-        gbc.weightx = 1.0;
-        gbc.weighty = 1.0;
-        return gbc;
-	}
-	
-	private static final GridBagLayout gbl1x1() {
-		final GridBagLayout gbl = new GridBagLayout();
-        return gbl;
-	}
-	
-	protected JTextField textfield(int columns) {
-		final JTextField jTextField = new JTextField();
-		jTextField.setColumns(30);
-		jTextField.setMinimumSize(new Dimension(500,20));
-		return jTextField;
-	}
-	
-	protected JTextField label(final String text) {
-		final JTextField jTextFiled = new JTextField(text);
-		jTextFiled.setBorder(new EmptyBorder(0,0,0,0));
-		jTextFiled.setEditable(false);
-		jTextFiled.setFocusable(false);
-		jTextFiled.setOpaque(false);
-		return jTextFiled;
-	}
-	
-	protected final JButton button(final String text) {
-		final JButton jButton = new JButton(text);
-		jButton.setFocusable(false);
-		jButton.setSize(120, 20);
-		return jButton;
-	}
-	
-	protected final JMenuBar menubar() {
-		final JMenuBar jMenuBar = new JMenuBar();
-		final FlowLayout flowLayout = new FlowLayout(FlowLayout.LEFT);
-		flowLayout.setHgap(3);
-		jMenuBar.setLayout(flowLayout);
-		return jMenuBar;
-	}
-	
 
 }
 

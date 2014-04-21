@@ -48,7 +48,7 @@ public class DataWindow extends Window {
         jScrollPane.getViewport().setBackground(BACKGROUND);
         
         // JFrame
-        addAs1x1(jScrollPane);
+        setContentAs1x1(jScrollPane);
         
         setPreferredSize(new Dimension(800,700));
     }
