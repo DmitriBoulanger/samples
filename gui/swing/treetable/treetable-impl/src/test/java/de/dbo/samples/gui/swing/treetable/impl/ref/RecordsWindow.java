@@ -52,8 +52,10 @@ public final class RecordsWindow extends Window {
 	/* treetable factory */
 	private final Factory factory;
 	
+	/* dynamic data */
+	private List<Record> records;
+	
 	/* dynamic treetable objects and components */
-	private Node root;
 	private TreetableModel treetableModel;
 	private Treetable treetable;
 	
@@ -103,18 +105,23 @@ public final class RecordsWindow extends Window {
 		transactionIdTextField.setText("");
 		treetableModel = null;
 		treetable = null;
-		root = null;
+		records = null;
 		scrollPane.setViewportView(null);
 		scrollPane.getViewport().revalidate();
 		System.gc();
 	}
 	
+	/**
+	 * loads records as tree-table into the scroll-pane.
+	 * 
+	 * 
+	 * @see #records
+	 * @see #scrollPane
+	 */
 	private final void loadTreetable() {
-		final List<Record> records = recordsForTransaction();
-		
 		// root
 		final long start = System.currentTimeMillis();
-		root = new RecordTreeGenerator(factory, records).tree();
+		final Node root = new RecordTreeGenerator(factory, records).tree();
 		elapsed(start, "creating tree-root");
 		
 		// treetable
@@ -133,21 +140,38 @@ public final class RecordsWindow extends Window {
 	}
 	 
 	private final List<Record> recordsForTransaction() {
-		final List<Record> records;
 		final String transaction = transactionIdTextField.getText();
 		if (null == transaction || 0 == transaction.trim().length()) {
-			records = null;
-		} else {
-			final String transactionTrimmed = transaction.trim();
-			if ("1".equals(transactionTrimmed)) {
-				records = Records.list();
-			} else if ("2".equals(transactionTrimmed)) {
-				records = Records2.list();
-			} else {
-				records = null;
-			}
+			return null;
 		}
-		return records;
+
+		final String transactionTrimmed = transaction.trim();
+		if ("1".equals(transactionTrimmed)) {
+			return Records.list();
+		} else if ("2".equals(transactionTrimmed)) {
+			return Records2.list();
+		} else {
+			return null;
+		}
+	}
+	
+	private final List<Record> recordsForTransactionUpdate() {
+		final String transaction = transactionIdTextField.getText();
+		if (null == transaction || 0 == transaction.trim().length()) {
+			return null;
+		}
+
+		final List<Record> recordsUpdate = recordsForTransaction();
+		if (null==records) {
+			return recordsUpdate;
+		} 
+		else if (null!=recordsUpdate) {
+			records.addAll(recordsUpdate);
+			return records;
+		} else {
+			return records;
+		}
+
 	}
 	
 	@Override
@@ -156,11 +180,14 @@ public final class RecordsWindow extends Window {
 			SwingUtilities.invokeLater( new Runnable() {
 				@Override
 				public void run() {
+					records = recordsForTransaction();
 					loadTreetable();
 				}
 			});
 		} 
 		else if  (e.getSource()==updateButton)  {
+			records = recordsForTransactionUpdate();
+			loadTreetable();
 			System.err.println("update");
 		} 
 		else if  (e.getSource()==expandButton)  {
