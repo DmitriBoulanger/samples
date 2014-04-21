@@ -11,6 +11,7 @@ import de.dbo.samples.gui.swing.treetable.api.gui.Treetable;
 import de.dbo.samples.gui.swing.treetable.api.gui.TreetableModel;
 import de.dbo.samples.gui.swing.treetable.api.records.Node;
 import de.dbo.samples.gui.swing.treetable.api.records.Record;
+import de.dbo.samples.gui.swing.treetable.api.records.RecordProvider;
 import de.dbo.samples.gui.swing.treetable.api.records.RecordTreeGenerator;
 
 import java.awt.Dimension;
@@ -49,8 +50,9 @@ public final class RecordsWindow extends Window {
 	private final JTextField transactionIdLabel = label("Transaction ID:");
 	private final JTextField transactionIdTextField = textfield(30);
 	
-	/* treetable factory */
-	private final Factory factory;
+	/* final treetable factory and record provider */
+	private final Factory factory = factory();
+	private final RecordProvider recordProvider = factory.getRecordProvider();
 	
 	/* dynamic data */
 	private List<Record> records;
@@ -64,11 +66,7 @@ public final class RecordsWindow extends Window {
 	 */
 	RecordsWindow() {
         super("Tree-Table with Records - Reference Implementation");
-        
-        final long start = System.currentTimeMillis();
-        factory = FactoryMgr.instance("ReferenceImplementation.xml");
-        elapsed(start, "creating tree-table factory" );
-        
+ 
          // menu-bar
         final JMenuBar jMenuBar = menubar(3);
 		jMenuBar.add(reloadButton);  
@@ -107,14 +105,21 @@ public final class RecordsWindow extends Window {
 			SwingUtilities.invokeLater( new Runnable() {
 				@Override
 				public void run() {
-					records = recordsForTransaction();
+					recordProvider.setTransaction(transactionIdTextField.getText());
+					records = recordProvider.transactionRecords();
 					loadTreetable();
 				}
 			});
 		} 
 		else if  (e.getSource()==updateButton)  {
-			records = recordsForTransactionUpdate();
-			loadTreetable();
+			SwingUtilities.invokeLater( new Runnable() {
+				@Override
+				public void run() {
+					recordProvider.setTransaction(transactionIdTextField.getText());
+					records = recordProvider.transactionRecordsUpdate();
+					loadTreetable();
+				}
+			});
 		} 
 		else if  (e.getSource()==expandButton)  {
 			if (null!=treetable) {
@@ -137,6 +142,13 @@ public final class RecordsWindow extends Window {
 		}
 	}
 	
+	private static final Factory factory() {
+		final long start = System.currentTimeMillis();
+        final Factory factory = FactoryMgr.instance("ReferenceImplementation.properties");
+        elapsed(start, "creating tree-table factory" );
+        return factory;
+	}
+	
 	private final void clearTreetable() {
 		transactionIdTextField.setText("");
 		treetableModel = null;
@@ -144,6 +156,7 @@ public final class RecordsWindow extends Window {
 		records = null;
 		scrollPane.setViewportView(null);
 		scrollPane.getViewport().revalidate();
+		recordProvider.clear();
 		System.gc();
 	}
 	
@@ -175,39 +188,6 @@ public final class RecordsWindow extends Window {
 		elapsed(start, "loading tree-table");
 	}
 	 
-	private final List<Record> recordsForTransaction() {
-		final String transaction = transactionIdTextField.getText();
-		if (null == transaction || 0 == transaction.trim().length()) {
-			return null;
-		}
-
-		final String transactionTrimmed = transaction.trim();
-		if ("1".equals(transactionTrimmed)) {
-			return Records.list();
-		} else if ("2".equals(transactionTrimmed)) {
-			return Records2.list();
-		} else {
-			return null;
-		}
-	}
-	
-	private final List<Record> recordsForTransactionUpdate() {
-		final String transaction = transactionIdTextField.getText();
-		if (null == transaction || 0 == transaction.trim().length()) {
-			return null;
-		}
-
-		final List<Record> recordsUpdate = recordsForTransaction();
-		if (null==records) {
-			return recordsUpdate;
-		} 
-		else if (null!=recordsUpdate) {
-			records.addAll(recordsUpdate);
-			return records;
-		} else {
-			return records;
-		}
-	}
 	
 	// HELPERS
 	

@@ -3,6 +3,7 @@ package de.dbo.samples.gui.swing.treetable.api.factory;
 import de.dbo.samples.gui.swing.treetable.api.gui.TreetableModel;
 import de.dbo.samples.gui.swing.treetable.api.records.Node;
 import de.dbo.samples.gui.swing.treetable.api.records.Record;
+import de.dbo.samples.gui.swing.treetable.api.records.RecordProvider;
 
 import org.springframework.beans.factory.annotation.Required;
 
@@ -13,6 +14,8 @@ final class FactoryImpl implements Factory  {
 	protected Class<?> nodeClass;
 	
 	protected Class<?> treetableModelClass;
+	
+	protected RecordProvider recordProvider;
 	
 	protected FactoryImpl() {
 		
@@ -30,9 +33,7 @@ final class FactoryImpl implements Factory  {
 			node.init(treename,record);
 			return node;
 		} catch (Exception e) {
-			throw new FactoryException(
-					"Can't create node-instance."
-					+ " Treename=" + treename, e);
+			throw new FactoryException("Can't create node-instance."+ " Treename=" + treename, e);
 		} 
 	}
 	
@@ -43,9 +44,7 @@ final class FactoryImpl implements Factory  {
 			treeTableModel.setRoot(root);
 			return treeTableModel;
 		} catch (Exception e) {
-			throw new FactoryException(
-					"Can't create model-instance." 
-					 + " Root=" + root.getTreename(), e);
+			throw new FactoryException("Can't create model-instance."  + " Root=" + root.getTreename(), e);
 		} 
 	}
 	
@@ -81,4 +80,16 @@ final class FactoryImpl implements Factory  {
 	public void setTreetableModelClass(Class<?> treetableModelClass) {
 		this.treetableModelClass = treetableModelClass;
 	}
+	
+	@Override
+	@Required
+	public RecordProvider getRecordProvider() {
+		return recordProvider;
+	}
+
+	@Override
+	public void setRecordProvider(RecordProvider recordProvider) {
+		this.recordProvider = recordProvider;
+	}
+
 }

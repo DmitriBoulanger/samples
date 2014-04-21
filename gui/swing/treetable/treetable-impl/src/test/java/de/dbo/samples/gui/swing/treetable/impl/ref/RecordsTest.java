@@ -41,10 +41,7 @@ public class RecordsTest {
 	
 	private Node treeroot = null;
 	
-//	private static final Factory factory = FactoryMgr.instance("ReferenceImplementation.xml");
-	
 	private static final Factory factory = FactoryMgr.instance("ReferenceImplementation.properties");
-	
 	
 	public Node getTreeroot() {
 		recordTreeGenerator();
@@ -144,7 +141,7 @@ public class RecordsTest {
 		
 		final List<Record> foundRecords = new ArrayList<Record>();
 		extractRecords(treeroot, foundRecords);
-		log.debug("Records extracted from the tree ("+foundRecords.size()+"):");
+		log.debug("Records1 extracted from the tree ("+foundRecords.size()+"):");
 		i = 0;
 		for (final Record foundRecord:foundRecords)  {
 			i++;

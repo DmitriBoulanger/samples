@@ -1,5 +1,7 @@
 package de.dbo.samples.gui.swing.treetable.api.factory;
 
+import de.dbo.samples.gui.swing.treetable.api.records.RecordProvider;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -67,6 +69,13 @@ public final class FactoryMgr {
 			} catch (Exception e) {
 				throw new FactoryException("Can't set TreetableModel.class: " + modelClassname ,e);
 			}
+			final String recordProviderClassname = properties.getProperty("recordProvider");
+			try {
+				newInstance.setRecordProvider( 
+						(RecordProvider) Class.forName(recordProviderClassname).newInstance() );
+			} catch (Exception e) {
+				throw new FactoryException("Can't set ProviderClassname.instance: " + modelClassname ,e);
+			}
 			
 		} else {
 			throw new FactoryException("Can't recognize type for resource: " + config);
@@ -77,7 +86,6 @@ public final class FactoryMgr {
 		return newInstance;
 	}
 	 
-
 	private static final Properties loadPropertiesFromResource(final String name) {
 		final ClassLoader classloader = ClassLoader.getSystemClassLoader();
 		if (null == classloader) {

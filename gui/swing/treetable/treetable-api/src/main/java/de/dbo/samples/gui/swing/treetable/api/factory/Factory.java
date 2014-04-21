@@ -3,6 +3,7 @@ package de.dbo.samples.gui.swing.treetable.api.factory;
 import de.dbo.samples.gui.swing.treetable.api.gui.TreetableModel;
 import de.dbo.samples.gui.swing.treetable.api.records.Node;
 import de.dbo.samples.gui.swing.treetable.api.records.Record;
+import de.dbo.samples.gui.swing.treetable.api.records.RecordProvider;
 
 /**
  * Treetable needs Nodes, Records and Models.
@@ -31,8 +32,12 @@ public interface Factory  {
 	 */
 	public Node newNode(final String treename, final Record record);
 	
+	/**
+	 * creates a new root-node possibly having no children and data-records
+	  
+	 * @return Node-instance
+	 */
 	public Node newRoot();
-	
 	
 	/**
 	 * creates a new model for a tree-table
@@ -48,10 +53,13 @@ public interface Factory  {
 	
     public Class<?> getNodeClass();
 
-	public void setNodeClass(Class<?> nodeClass);
+	public void setNodeClass(final Class<?> nodeClass);
 
 	public Class<?> getTreetableModelClass();
 
-	public void setTreetableModelClass(Class<?> treetableModelClass);
+	public void setTreetableModelClass(final Class<?> treetableModelClass);
 	
+	public RecordProvider getRecordProvider();
+
+	public void setRecordProvider(final RecordProvider recordProvider);
 }
