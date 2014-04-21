@@ -38,7 +38,7 @@ public final class RecordsWindow extends Window {
 		});
 	}
     
-	/* final basic pane and treetable-components */
+	/* final basic pane, its scrolling and menu-bar components */
 	private final JPanel pane = new JPanel();
 	private final JScrollPane scrollPane = new JScrollPane();
 	private final JButton reloadButton = button(" Reload ");
@@ -100,6 +100,42 @@ public final class RecordsWindow extends Window {
         // treetable
         loadTreetable();
     }
+	
+	@Override
+	public final void actionPerformed(final ActionEvent e) {
+		if (e.getSource()==reloadButton)  {
+			SwingUtilities.invokeLater( new Runnable() {
+				@Override
+				public void run() {
+					records = recordsForTransaction();
+					loadTreetable();
+				}
+			});
+		} 
+		else if  (e.getSource()==updateButton)  {
+			records = recordsForTransactionUpdate();
+			loadTreetable();
+		} 
+		else if  (e.getSource()==expandButton)  {
+			if (null!=treetable) {
+				treetable.expandAll();
+			}
+		} 
+		else if  (e.getSource()==collapseButton)  {
+			if (null!=treetable) {
+				treetable.collapseAll();
+			}
+		} 
+		else if (e.getSource()==clearButton)  {
+			clearTreetable();
+			SwingUtilities.invokeLater( new Runnable() {
+				@Override
+				public void run() {
+					loadTreetable();
+				}
+			});
+		}
+	}
 	
 	private final void clearTreetable() {
 		transactionIdTextField.setText("");
@@ -170,44 +206,6 @@ public final class RecordsWindow extends Window {
 			return records;
 		} else {
 			return records;
-		}
-
-	}
-	
-	@Override
-	public final void actionPerformed(final ActionEvent e) {
-		if (e.getSource()==reloadButton)  {
-			SwingUtilities.invokeLater( new Runnable() {
-				@Override
-				public void run() {
-					records = recordsForTransaction();
-					loadTreetable();
-				}
-			});
-		} 
-		else if  (e.getSource()==updateButton)  {
-			records = recordsForTransactionUpdate();
-			loadTreetable();
-			System.err.println("update");
-		} 
-		else if  (e.getSource()==expandButton)  {
-			if (null!=treetable) {
-				treetable.expandAll();
-			}
-		} 
-		else if  (e.getSource()==collapseButton)  {
-			if (null!=treetable) {
-				treetable.collapseAll();
-			}
-		} 
-		else if (e.getSource()==clearButton)  {
-			clearTreetable();
-			SwingUtilities.invokeLater( new Runnable() {
-				@Override
-				public void run() {
-					loadTreetable();
-				}
-			});
 		}
 	}
 	
