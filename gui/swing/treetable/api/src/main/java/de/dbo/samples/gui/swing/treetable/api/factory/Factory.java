@@ -16,7 +16,11 @@ import de.dbo.samples.gui.swing.treetable.api.records.Record;
  *
  */
 public interface Factory  {
-	 
+	
+	 public String getRootName();
+ 
+	 public void setRootName(String rootName);
+
 	/**
 	 * creates a new node possibly having a data-record
 	 * 
@@ -26,6 +30,8 @@ public interface Factory  {
 	 * @return Node-instance
 	 */
 	public Node newNode(final String treename, final Record record);
+	
+	public Node newRoot();
 	
 	
 	/**

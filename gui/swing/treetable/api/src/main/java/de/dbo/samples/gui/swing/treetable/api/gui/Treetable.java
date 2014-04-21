@@ -62,11 +62,29 @@ public class Treetable extends JTable {
         getTableHeader().setReorderingAllowed(false);
         
         log.debug("created");
+        
+  
     }
     
     //
     // Customization
     //
+    
+    public void expandAll() {
+        int row = 0;
+        while (row < getRowCount()) {
+            tree.expandRow(row);
+            row++;
+        }
+    }
+    
+    public void collapseAll() {
+        int row = 0;
+        while (row < getRowCount()) {
+            tree.collapseRow(row);
+            row++;
+        }
+    }
     
     public void setRootVisible(boolean visible) {
     	tree.setRootVisible(visible);
@@ -77,6 +95,11 @@ public class Treetable extends JTable {
     	tableColumn.setMaxWidth(width);
     	tableColumn.setMinWidth(width);
     	tableColumn.setResizable(false);
+    }
+    
+    public final void setColumnWidthMin(int column, int width) {
+    	final TableColumn tableColumn =  getColumnModel().getColumn(column);
+    	tableColumn.setMinWidth(width);
     }
     
     public void setBasicUI(Color background, Color selection,  Color foreground, Font font) {

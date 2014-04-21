@@ -18,12 +18,6 @@ import java.util.List;
 public interface Node extends Comparable<Node>{
 	
 	/**
-	 * tree-name of the tree-root.
-	 * Typically the tree-GUI doesn't show it
-	 */
-	public static final String ROOT = "ROOT";
-	
-	/**
 	 * initialization method
 	 * 
 	 * @param treename

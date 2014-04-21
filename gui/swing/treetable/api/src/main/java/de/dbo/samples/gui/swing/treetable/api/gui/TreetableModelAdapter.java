@@ -16,7 +16,7 @@ public class TreetableModelAdapter extends AbstractTableModel {
 	final JTree tree;
     final TreetableModel treeTableModel;
  
-    public TreetableModelAdapter(TreetableModel treeTableModel, JTree tree) {
+    public TreetableModelAdapter(final TreetableModel treeTableModel, JTree tree) {
         this.tree = tree;
         this.treeTableModel = treeTableModel;
  
@@ -34,7 +34,7 @@ public class TreetableModelAdapter extends AbstractTableModel {
             }
         });
     }
- 
+
  
     @Override
     public int getColumnCount() {

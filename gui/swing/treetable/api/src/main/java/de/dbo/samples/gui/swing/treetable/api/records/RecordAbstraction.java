@@ -37,7 +37,7 @@ public abstract class RecordAbstraction implements Record {
 	}
 	
 	/**
-	 * records are compared using their sequence-value.
+	 * records are compared using their sequence-values.
 	 * Therefore, any record must have sequence.
 	 */
 	@Override
@@ -56,9 +56,15 @@ public abstract class RecordAbstraction implements Record {
 		return sequence;
 	}
 
+	/**
+	 * sets sequence attribute if its current value is null.
+	 * Sequence of a record is immutable
+	 */
 	@Override
 	public void setSequence(Long sequence) {
-		this.sequence = sequence;
+		if (null==this.sequence) {
+			this.sequence = sequence;
+		}
 	}
 	
 	/**

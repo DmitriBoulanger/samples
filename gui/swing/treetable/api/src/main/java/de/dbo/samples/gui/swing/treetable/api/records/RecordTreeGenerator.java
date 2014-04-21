@@ -1,6 +1,5 @@
 package de.dbo.samples.gui.swing.treetable.api.records;
 
-import static de.dbo.samples.gui.swing.treetable.api.records.Node.ROOT;
 import static de.dbo.samples.gui.swing.treetable.api.records.Tools.printInternalData;
 
 import de.dbo.samples.gui.swing.treetable.api.factory.Factory;
@@ -61,17 +60,19 @@ public final class RecordTreeGenerator implements Comparable<RecordTreeGenerator
 	public RecordTreeGenerator(final Factory factory, final List<Record> records) {
 		this.factory = factory;
 		this.depth = 0;
-		this.node = factory.newNode(ROOT, null);
+		this.node = factory.newRoot();
 		
+		// if a record have the sequence-attribute, then it takes no new value 
 		for (final Record record:records) {
 			record.setSequence( (long) this.records.size() );
 			this.records.add(record);
 		}
+		
 		Collections.sort(this.records); // sort records using the sequence-attribute
 		
 		process(this, 0L); // generate initial brunches
 		sort(this.node);   // sort children in nodes to ensure the original record-order
-		merge(this.node);  // merge siblings with the same tree-names if possible
+		merge(this.node);  // if possible merge all siblings with the same tree-names 
 	}
 	
 	/**

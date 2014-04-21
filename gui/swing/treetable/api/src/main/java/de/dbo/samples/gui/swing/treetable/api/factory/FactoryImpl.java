@@ -7,6 +7,8 @@ import de.dbo.samples.gui.swing.treetable.api.records.Record;
 import org.springframework.beans.factory.annotation.Required;
 
 final class FactoryImpl implements Factory  {
+	
+	protected String rootName;
 
 	protected Class<?> nodeClass;
 	
@@ -14,6 +16,11 @@ final class FactoryImpl implements Factory  {
 	
 	protected FactoryImpl() {
 		
+	}
+	
+	@Override
+	public Node newRoot() {
+		return newNode(getRootName(),null);
 	}
 	
 	@Override
@@ -40,6 +47,17 @@ final class FactoryImpl implements Factory  {
 					"Can't create model-instance." 
 					 + " Root=" + root.getTreename(), e);
 		} 
+	}
+	
+	@Override
+	@Required
+    public String getRootName() {
+		return rootName;
+	}
+
+	@Override
+	public void setRootName(String rootName) {
+		this.rootName = rootName;
 	}
 
 	@Override

@@ -51,4 +51,5 @@ public interface TreetableModel extends TreeModel {
      * @param column Column number
      */
     public void setValueAt(Object aValue, Object node, int column);
+
 }

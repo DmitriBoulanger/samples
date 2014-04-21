@@ -56,7 +56,8 @@ public abstract class NodeAbsraction implements Node {
 	}
     
     /**
-     * nodes are compared using their sequence-attributes
+     * nodes are compared using their sequence-attributes.
+     * Important to ensure correct appearance of records in the tree
      */
 	@Override
 	public final int compareTo(final Node another) {
@@ -64,7 +65,8 @@ public abstract class NodeAbsraction implements Node {
 	}
     
 	/**
-	 * ordered list of children
+	 * ordered list of children.
+	 * Children are ordered using the sequence attribute
 	 */
     @Override
     public final List<Node> getChildren() {

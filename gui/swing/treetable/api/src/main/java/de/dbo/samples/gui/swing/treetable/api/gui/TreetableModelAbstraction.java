@@ -28,9 +28,8 @@ public abstract class TreetableModelAbstraction implements TreetableModel {
     private static final int REMOVED = 2;
     private static final int STRUCTURE_CHANGED = 3;
  
-    public TreetableModelAbstraction() {
     
-    }
+
  
     @Override
     public Object getRoot() {
@@ -68,8 +67,6 @@ public abstract class TreetableModelAbstraction implements TreetableModel {
     public void removeTreeModelListener(TreeModelListener l) {
         listenerList.remove(TreeModelListener.class, l);
     }
- 
-
  
     protected void fireTreeNodesChanged(Object source, Object[] path, int[] childIndices, Object[] children) {
         fireTreeNode(CHANGED, source, path, childIndices, children);

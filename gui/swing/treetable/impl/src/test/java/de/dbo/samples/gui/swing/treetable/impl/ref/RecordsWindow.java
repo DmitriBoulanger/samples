@@ -4,73 +4,148 @@ import de.dbo.samples.gui.swing.treetable.api.Window;
 import de.dbo.samples.gui.swing.treetable.api.factory.Factory;
 import de.dbo.samples.gui.swing.treetable.api.factory.FactoryMgr;
 import de.dbo.samples.gui.swing.treetable.api.gui.Treetable;
+import de.dbo.samples.gui.swing.treetable.api.gui.TreetableModel;
 import de.dbo.samples.gui.swing.treetable.api.records.Node;
+import de.dbo.samples.gui.swing.treetable.api.records.Record;
 import de.dbo.samples.gui.swing.treetable.api.records.RecordTreeGenerator;
 
-import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.util.List;
 
-import javax.swing.JFrame;
+import javax.swing.JButton;
+import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
-import javax.swing.UIManager;
 
-public class RecordsWindow extends Window {
+public final class RecordsWindow extends Window {
 	private static final long serialVersionUID = 4489500964556705612L;
 	
 	public static void main(final String[] args) {
-		final Runnable gui = new Runnable() {
+		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				try {
-					UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-				} catch (Exception e) {
-					log.error("Can't set the system Look-and-Feel",e);
-				}
-				new RecordsWindow().setVisible(true);
+				setLookAndFeel();
+				new RecordsWindow().showup(new Dimension(800,800));
 			}
-		};
-		SwingUtilities.invokeLater(gui);
+		});
 	}
     
-	private final Dimension size = new Dimension(1000, 400);
-	private final Font font = CONSOLAS13;
-	private final Color background = new Color(239,241,248);
-	private final Color selection = new Color(168,208,245);
-	private final Color foreground = Color.BLACK;
+	private final Factory factory;
+	private Node root;
+	private TreetableModel treetableModel;
+	private Treetable treetable;
 	
-	public RecordsWindow() {
+	private final JPanel pane = new JPanel();
+	private final JButton reloadButton = button(" Reload ");
+	private final JButton updateButton = button(" Update ");
+	private final JButton expandButton = button(" Exapnd ");
+	private final JButton collapseButton = button(" Collapse ");
+	private final JButton clearButton = button(" Clear ");
+	private final JTextField transactionIdLabel = label("Transaction ID:");
+	private final JTextField transactionIdTextField = textfield(30);
+	
+	RecordsWindow() {
         super("Tree-Table with Records - Reference Implementation");
         
         final long start1 = System.currentTimeMillis();
-        final Factory factory = FactoryMgr.instance("ReferenceImplementation.xml");
+        factory = FactoryMgr.instance("ReferenceImplementation.xml");
         log.debug("Elapsed " + (System.currentTimeMillis()-start1) + " ms. to create factory" );
 
-        final long start2 = System.currentTimeMillis();
-        final Node root = new RecordTreeGenerator(factory, Records.list()).tree();
-        log.debug("Elapsed " + (System.currentTimeMillis()-start2) + " ms. to create tree-root" );
+//        loadTreetable(root);
         
-        final Treetable treetable = new Treetable(factory.treeTableModel(root));
-        treetable.setRootVisible(false);
-        treetable.setBasicUI(background, selection, foreground, font);
-        treetable.setIntercellSpacing(new Dimension(1,1)); 
-        treetable.setColumnWidthNonresizable(1, 75);
-        
-        final JScrollPane jScrollPane = new JScrollPane(treetable);
-        jScrollPane.getViewport().setBackground(treetable.getBackground());
-        final JPanel pane = new JPanel();
-        addAs1x1(pane, jScrollPane);
-        addAs1x1(pane);
+        // JMenuBar
+        final JMenuBar jMenuBar = menubar();
+		jMenuBar.add(reloadButton);  
+		jMenuBar.add(updateButton);  
+		jMenuBar.add(expandButton);  
+		jMenuBar.add(collapseButton);  
+		jMenuBar.add(clearButton);  
+		jMenuBar.add(transactionIdLabel);
+		jMenuBar.add(transactionIdTextField);
+        setJMenuBar(jMenuBar);
         
         // JFrame
+//        setContentBackgroud(BACKGROUND);
+        pane.setBackground(BACKGROUND);
+        addAs1x1(pane);
         
-        setSize(size);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
-        setAlwaysOnTop(true);
-        log.info("Elapsed " + (System.currentTimeMillis()-start0) + " ms." );
+        // Actions
+        reloadButton.addActionListener(this);
+        updateButton.addActionListener(this);
+        expandButton.addActionListener(this);
+        collapseButton.addActionListener(this);
+        clearButton.addActionListener(this);
     }
+	
+	private final void loadTreetable() {
+		    final long start = System.currentTimeMillis();
+		    final List<Record> records;
+		    final String transaction = transactionIdTextField.getText();
+		    if (null==transaction || 0==transaction.trim().length()) {
+		    	records = Records.list();
+		    } else {
+		    	records = Records2.list();
+		    }
+	        root = new RecordTreeGenerator(factory, records).tree();
+	        log.debug("Elapsed " + (System.currentTimeMillis()-start) + " ms. to create tree-root" );
+		    treetableModel = factory.treeTableModel(root);
+	        treetable = new Treetable(treetableModel);
+	        treetable.setRootVisible(false);
+	        treetable.setBasicUI(BACKGROUND, SELECTION, FOREGROUND, FONT);
+	        treetable.setIntercellSpacing(new Dimension(1,1)); 
+	        treetable.setColumnWidthMin(0, 190);
+	        treetable.setColumnWidthNonresizable(1, 75);
+
+	        final JScrollPane jScrollPane = new JScrollPane();
+	        jScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+	        jScrollPane.setViewportView(treetable);
+	        jScrollPane.getViewport().setBackground(BACKGROUND);
+	        addAs1x1(pane, jScrollPane);
+	       
+	}
+	
+	
+	@Override
+	public final void actionPerformed(final ActionEvent e) {
+		if (e.getSource()==reloadButton)  {
+			SwingUtilities.invokeLater( new Runnable() {
+				@Override
+				public void run() {
+					final long start = System.currentTimeMillis();
+					pane.removeAll();
+					loadTreetable();
+					validate();
+					log.debug("Elapsed " + (System.currentTimeMillis()-start) + " ms. to reload" );
+				}
+			});
+		} 
+		else if  (e.getSource()==updateButton)  {
+			System.err.println("update");
+		} 
+		else if  (e.getSource()==expandButton)  {
+			treetable.expandAll();
+		} 
+		else if  (e.getSource()==collapseButton)  {
+			treetable.collapseAll();
+		} 
+		else if (e.getSource()==clearButton)  {
+			SwingUtilities.invokeLater( new Runnable() {
+				@Override
+				public void run() {
+					transactionIdTextField.setText("");
+					root = null;
+					pane.removeAll();
+					getContentPane().repaint();
+					getContentPane().validate();
+					System.gc();
+				}
+			});
+		}
+	}
+	
+
 	
 }

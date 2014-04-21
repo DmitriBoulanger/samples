@@ -5,7 +5,10 @@ import java.util.List;
 import java.util.ArrayList;
 
 /**
- * Reference (basic) implementation of the paths used in data-records
+ * Reference (basic) implementation of the paths used in data-records.
+ * Canonical path is a string of the form /A/B/C.../Z
+ * with path-elements as /A, /B, /C, ... /Z.
+ * The names are A, B, C, ... Z
  * 
  * @author Dmitri Boulanger, Hombach
  *
@@ -15,17 +18,26 @@ import java.util.ArrayList;
  */
 public abstract class PathAbsraction implements Path {
 	
+	/*
+	 * names of the path-elements
+	 */
 	private List<String> elements = new ArrayList<String>();
 	
+	/*
+	 * Any path has non-null canonical value
+	 */
 	private String canonicalValue;
+	
+	/*
+	 * Any path can have non-null parent canonical value
+	 */
 	private String parentCanonicalValue;
 	
 	/**
 	 * creates an 
-	 * @param path
-	 *            e.g /A/B/C with A as a root
+	 * @param path path-string,  e.g /A/B/C with A as a root
 	 *            Any other structure is considered an immediate
-	 *            child of the tree-root
+	 *            child of the tree-root.
 	 *            
 	 *  @throws PathException if the path is null or empty string
 	 */
@@ -76,12 +88,15 @@ public abstract class PathAbsraction implements Path {
 				&& !this.canonicalValue.equals(sibling.canonicalValue());
 	}
 	
+	/**
+	 * name of the path element at the specified depth
+	 */
 	@Override
-	public String pathElement(int depth) {
+	public String pathElement(final int depth) {
 		if (elements.isEmpty()) {
 			return 0==depth? canonicalValue : null;
 		}
-		if (depth<elements.size()) {
+		if (depth < elements.size()) {
 			return elements.get(depth);
 		}
 		return null;

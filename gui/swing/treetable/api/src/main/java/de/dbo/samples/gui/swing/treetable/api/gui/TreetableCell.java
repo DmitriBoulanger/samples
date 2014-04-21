@@ -25,7 +25,7 @@ public class TreetableCell extends JTree implements TableCellRenderer {
 	private static final long serialVersionUID = 7501441646955414246L;
 	private static final Logger log = LoggerFactory.getLogger(TreetableCell.class);
 
-    private final Treetable treeTable;
+    private final Treetable treetable;
     private final TreeCellRenderer treeCellRenderer;
     
 	/** Die letzte Zeile, die gerendert wurde. */
@@ -37,11 +37,11 @@ public class TreetableCell extends JTree implements TableCellRenderer {
 	public TreetableCell(Treetable treeTable, TreeModel model) {
         super(model);
         
-        this.treeTable = treeTable;
+        this.treetable = treeTable;
         this.treeCellRenderer = new TreeCellRenderer(this);
          
         // Setzen der Zeilenhoehe fuer die JTable
-        // Muss explizit aufgerufen werden, weil treeTable noch null ist, wenn super(model) setRowHeight aufruft!
+        // Muss explizit aufgerufen werden, weil treetable noch null ist, wenn super(model) setRowHeight aufruft!
         setRowHeight(getRowHeight());
         
         setCellRenderer(treeCellRenderer);
@@ -61,8 +61,8 @@ public class TreetableCell extends JTree implements TableCellRenderer {
     public void setRowHeight(int rowHeight) {
         if (rowHeight > 0) {
             super.setRowHeight(rowHeight + verticalMargin);
-            if (treeTable != null && treeTable.getRowHeight() != rowHeight) {
-                treeTable.setRowHeight(getRowHeight());
+            if (treetable != null && treetable.getRowHeight() != rowHeight) {
+                treetable.setRowHeight(getRowHeight());
             }
         }
     }
@@ -72,7 +72,7 @@ public class TreetableCell extends JTree implements TableCellRenderer {
      */
     @Override
     public void setBounds(int x, int y, int w, int h) {
-        super.setBounds(x, 0, w, treeTable.getHeight());
+        super.setBounds(x, 0, w, treetable.getHeight());
     }
  
     /**

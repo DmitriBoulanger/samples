@@ -53,6 +53,8 @@ public final class FactoryMgr {
 			
 			newInstance = new FactoryImpl();
 			final Properties properties = loadPropertiesFromResource(config);
+			final String rootName = properties.getProperty("rootName");
+			newInstance.setRootName(rootName);
 			final String nodeClassname = properties.getProperty("node");
 			try {
 				newInstance.setNodeClass(Class.forName(nodeClassname));

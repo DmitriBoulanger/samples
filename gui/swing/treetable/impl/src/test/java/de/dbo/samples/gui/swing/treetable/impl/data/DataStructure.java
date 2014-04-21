@@ -49,7 +49,7 @@ public class DataStructure  {
         nodes0.add(new DataNode("Root 17", "CXXX bla bla"	, null));
         
         
-        return new DataNode(Node.ROOT, "",  nodes0);
+        return new DataNode("Data records", "",  nodes0);
     }
     
 }

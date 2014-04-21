@@ -5,9 +5,8 @@ import de.dbo.samples.gui.swing.treetable.api.gui.Treetable;
 import de.dbo.samples.gui.swing.treetable.api.gui.TreetableModel;
 import de.dbo.samples.gui.swing.treetable.api.records.Node;
 
-import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
+import java.awt.event.ActionEvent;
 
 import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
@@ -25,18 +24,13 @@ public class RecordsTestWindow extends Window {
 				} catch (Exception e) {
 					log.error("Can't set the system Look-and-Feel",e);
 				}
-				new RecordsTestWindow().setVisible(true);
+				new RecordsTestWindow().showup(new Dimension(600,500));
+				
 			}
 		};
 		SwingUtilities.invokeLater(gui);
 	}
-	
-	private final Dimension size = new Dimension(1000, 400);
-	private final Font font = CONSOLAS12;
-	private final Color background = new Color(239,241,248);
-	private final Color selection = new Color(168,208,245);
-	private final Color foreground = Color.BLACK;
-	
+	 
 	public RecordsTestWindow() {
         super("Tree-Table with Records - JUnit Test");
         
@@ -51,19 +45,20 @@ public class RecordsTestWindow extends Window {
         // Treetable
         final Treetable treetable = new Treetable(model);
         treetable.setRootVisible(true);
-        treetable.setBasicUI(background, selection, foreground, font);
+        treetable.setBasicUI(BACKGROUND, SELECTION, FOREGROUND, FONT);
         treetable.setIntercellSpacing(new Dimension(0,0)); 
         treetable.setColumnWidthNonresizable(1, 75);
        
         final JScrollPane jScrollPane = new JScrollPane(treetable);
-        jScrollPane.getViewport().setBackground(background);
+        jScrollPane.getViewport().setBackground(BACKGROUND);
         
        // JFrame
        addAs1x1(jScrollPane);
-       setSize(size);
-       setLocationRelativeTo(null);
-       
-       log.info("Elapsed " + (System.currentTimeMillis()-start0) + " ms." );
     }
+	
+	@Override
+	public final void actionPerformed(final ActionEvent e) {
+		
+	}
 	
 }
