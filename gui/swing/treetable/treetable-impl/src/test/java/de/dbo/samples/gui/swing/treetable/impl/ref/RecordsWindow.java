@@ -144,7 +144,8 @@ public final class RecordsWindow extends Window {
 	
 	private static final Factory factory() {
 		final long start = System.currentTimeMillis();
-        final Factory factory = FactoryMgr.instance("ReferenceImplementation.properties");
+//        final Factory factory = FactoryMgr.instance("ReferenceImplementation.properties");
+        final Factory factory = FactoryMgr.instance("ReferenceImplementation.xml");
         elapsed(start, "creating tree-table factory" );
         return factory;
 	}
