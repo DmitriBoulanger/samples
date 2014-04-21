@@ -1,7 +1,7 @@
 package de.dbo.samples.gui.swing.treetable.api;
  
-import static de.dbo.samples.gui.swing.treetable.api.Tools.gbc1x1;
-import static de.dbo.samples.gui.swing.treetable.api.Tools.gbl1x1;
+import static de.dbo.samples.gui.swing.treetable.api.WindowTools.gbc1x1;
+import static de.dbo.samples.gui.swing.treetable.api.WindowTools.gbl1x1;
 
 import java.awt.Color;
 import java.awt.Dimension;

@@ -62,8 +62,6 @@ public class Treetable extends JTable {
         getTableHeader().setReorderingAllowed(false);
         
         log.debug("created");
-        
-  
     }
     
     //
@@ -127,7 +125,4 @@ public class Treetable extends JTable {
         // Node in the tree
         tree.getTreeCellRenderer().setBackgroundselection(selection);
     }
-    
-   
-   
 }

@@ -1,7 +1,8 @@
 package de.dbo.samples.gui.swing.treetable.impl.ref;
 
-import static de.dbo.samples.gui.swing.treetable.api.Tools.menubar;
-import static de.dbo.samples.gui.swing.treetable.api.Tools.addAs1x1;
+import static de.dbo.samples.gui.swing.treetable.api.WindowTools.menubar;
+import static de.dbo.samples.gui.swing.treetable.api.WindowTools.addAs1x1;
+import static de.dbo.samples.gui.swing.treetable.api.WindowTools.elapsed;
 
 import de.dbo.samples.gui.swing.treetable.api.Window;
 import de.dbo.samples.gui.swing.treetable.api.factory.Factory;
@@ -32,16 +33,12 @@ public final class RecordsWindow extends Window {
 			@Override
 			public void run() {
 				setLookAndFeel();
-				new RecordsWindow().showup(new Dimension(800,800));
+				new RecordsWindow().showup(new Dimension(800,500));
 			}
 		});
 	}
     
-	private final Factory factory;
-	private Node root;
-	private TreetableModel treetableModel;
-	private Treetable treetable;
-	
+	/* final basic pane and treetable-components */
 	private final JPanel pane = new JPanel();
 	private final JScrollPane scrollPane = new JScrollPane();
 	private final JButton reloadButton = button(" Reload ");
@@ -52,6 +49,17 @@ public final class RecordsWindow extends Window {
 	private final JTextField transactionIdLabel = label("Transaction ID:");
 	private final JTextField transactionIdTextField = textfield(30);
 	
+	/* treetable factory */
+	private final Factory factory;
+	
+	/* dynamic treetable objects and components */
+	private Node root;
+	private TreetableModel treetableModel;
+	private Treetable treetable;
+	
+	/**
+	 * GUI with childless treetable-root
+	 */
 	RecordsWindow() {
         super("Tree-Table with Records - Reference Implementation");
         
@@ -59,7 +67,7 @@ public final class RecordsWindow extends Window {
         factory = FactoryMgr.instance("ReferenceImplementation.xml");
         elapsed(start, "creating tree-table factory" );
         
-         // MenuBar
+         // menu-bar
         final JMenuBar jMenuBar = menubar(3);
 		jMenuBar.add(reloadButton);  
 		jMenuBar.add(updateButton);  
@@ -69,24 +77,25 @@ public final class RecordsWindow extends Window {
 		jMenuBar.add(transactionIdLabel);
 		jMenuBar.add(transactionIdTextField);
         
-        // Pane with scrolling
+        // pane with scrolling
         pane.setBackground(BACKGROUND);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         scrollPane.getViewport().setBackground(BACKGROUND);
         scrollPane.getViewport().setView(null);;
         addAs1x1(pane, scrollPane);
         
-        // Actions
+        // actions
         reloadButton.addActionListener(this);
         updateButton.addActionListener(this);
         expandButton.addActionListener(this);
         collapseButton.addActionListener(this);
         clearButton.addActionListener(this);
         
-        // Frame
+        // frame
         setJMenuBar(jMenuBar);
         setContentAs1x1(pane);
         
+        // treetable
         loadTreetable();
     }
 	
@@ -101,11 +110,14 @@ public final class RecordsWindow extends Window {
 	}
 	
 	private final void loadTreetable() {
-		final long start = System.currentTimeMillis();
 		final List<Record> records = recordsForTransaction();
+		
+		// root
+		final long start = System.currentTimeMillis();
 		root = new RecordTreeGenerator(factory, records).tree();
 		elapsed(start, "creating tree-root");
 		
+		// treetable
 		treetableModel = factory.treeTableModel(root);
 		treetable = new Treetable(treetableModel);
 		treetable.setRootVisible(false);
@@ -114,11 +126,12 @@ public final class RecordsWindow extends Window {
 		treetable.setColumnWidthMin(0, 190);
 		treetable.setColumnWidthNonresizable(1, 75);
 
+		// scrolling
 		scrollPane.setViewportView(treetable);
 		scrollPane.getViewport().revalidate();
 		elapsed(start, "loading tree-table");
 	}
-	
+	 
 	private final List<Record> recordsForTransaction() {
 		final List<Record> records;
 		final String transaction = transactionIdTextField.getText();
@@ -136,7 +149,6 @@ public final class RecordsWindow extends Window {
 		}
 		return records;
 	}
-	
 	
 	@Override
 	public final void actionPerformed(final ActionEvent e) {
@@ -172,16 +184,16 @@ public final class RecordsWindow extends Window {
 		}
 	}
 	
+	// HELPERS
 	
-	
-	protected JTextField textfield(int columns) {
+	protected static JTextField textfield(int columns) {
 		final JTextField jTextField = new JTextField();
 		jTextField.setColumns(30);
 		jTextField.setMinimumSize(new Dimension(500,20));
 		return jTextField;
 	}
 	
-	protected JTextField label(final String text) {
+	protected static JTextField label(final String text) {
 		final JTextField jTextFiled = new JTextField(text);
 		jTextFiled.setBorder(new EmptyBorder(0,0,0,0));
 		jTextFiled.setEditable(false);
@@ -190,18 +202,11 @@ public final class RecordsWindow extends Window {
 		return jTextFiled;
 	}
 	
-	protected final JButton button(final String text) {
+	protected static final JButton button(final String text) {
 		final JButton jButton = new JButton(text);
 		jButton.setFocusable(false);
-		jButton.setSize(120, 20);
+		jButton.setSize(new Dimension(120, 20));
 		return jButton;
 	}
-	
-	private static void elapsed(final long start, final String comment) {
-		log.debug("Elapsed " + (System.currentTimeMillis() - start)+ " ms. " + (null!=comment? comment :""));
-	}
-	
-	
-
 	
 }

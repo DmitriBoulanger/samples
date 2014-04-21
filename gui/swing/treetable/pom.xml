@@ -9,15 +9,15 @@
 	</parent>
 	
 	<groupId>de.dbo.samples.gui.treetable</groupId>
-	<artifactId>TreeTable</artifactId>
+	<artifactId>treetable</artifactId>
 	<packaging>pom</packaging>
 	
 	<name>TreeTable Reactor</name>
 	<description>Tree-Table and Records as Data</description>
 	
 	<modules>
-		<module>api</module>
-		<module>impl</module>
+		<module>treetable-api</module>
+		<module>treetable-impl</module>
 	</modules>
 	
 	<build>
