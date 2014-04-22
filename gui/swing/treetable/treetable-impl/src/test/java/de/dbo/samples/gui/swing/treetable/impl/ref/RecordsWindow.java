@@ -1,16 +1,29 @@
 package de.dbo.samples.gui.swing.treetable.impl.ref;
 
 import static de.dbo.samples.gui.swing.treetable.api.WindowTools.addAs1x1;
-import static de.dbo.samples.gui.swing.treetable.api.WindowTools.createIcon;
-import static de.dbo.samples.gui.swing.treetable.api.WindowTools.createIconLabel;
 import static de.dbo.samples.gui.swing.treetable.api.WindowTools.elapsed;
 import static de.dbo.samples.gui.swing.treetable.api.WindowTools.gbc1xManyLeft;
 import static de.dbo.samples.gui.swing.treetable.api.WindowTools.gbc1xManyRight;
 import static de.dbo.samples.gui.swing.treetable.api.WindowTools.gbl1xMany;
+import static de.dbo.samples.gui.swing.treetable.impl.ref.RecordsWindowResources.DONE;
+import static de.dbo.samples.gui.swing.treetable.impl.ref.RecordsWindowResources.ICON_CLEAR;
+import static de.dbo.samples.gui.swing.treetable.impl.ref.RecordsWindowResources.ICON_COLLAPSE;
+import static de.dbo.samples.gui.swing.treetable.impl.ref.RecordsWindowResources.ICON_DONE;
+import static de.dbo.samples.gui.swing.treetable.impl.ref.RecordsWindowResources.ICON_EXPAND;
+import static de.dbo.samples.gui.swing.treetable.impl.ref.RecordsWindowResources.ICON_LOCKED;
+import static de.dbo.samples.gui.swing.treetable.impl.ref.RecordsWindowResources.ICON_REFRESH;
+import static de.dbo.samples.gui.swing.treetable.impl.ref.RecordsWindowResources.ICON_UNLOCKED;
+import static de.dbo.samples.gui.swing.treetable.impl.ref.RecordsWindowResources.ICON_UPDATE;
+import static de.dbo.samples.gui.swing.treetable.impl.ref.RecordsWindowResources.LOCKED;
+import static de.dbo.samples.gui.swing.treetable.impl.ref.RecordsWindowResources.UNLOCKED;
+import static de.dbo.samples.gui.swing.treetable.impl.ref.RecordsWindowResources.button;
+import static de.dbo.samples.gui.swing.treetable.impl.ref.RecordsWindowResources.factory;
+import static de.dbo.samples.gui.swing.treetable.impl.ref.RecordsWindowResources.label;
+import static de.dbo.samples.gui.swing.treetable.impl.ref.RecordsWindowResources.space;
+import static de.dbo.samples.gui.swing.treetable.impl.ref.RecordsWindowResources.textfield;
 
 import de.dbo.samples.gui.swing.treetable.api.Window;
 import de.dbo.samples.gui.swing.treetable.api.factory.Factory;
-import de.dbo.samples.gui.swing.treetable.api.factory.FactoryMgr;
 import de.dbo.samples.gui.swing.treetable.api.gui.Treetable;
 import de.dbo.samples.gui.swing.treetable.api.gui.TreetableModel;
 import de.dbo.samples.gui.swing.treetable.api.records.Node;
@@ -24,15 +37,12 @@ import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.util.List;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
-import javax.swing.border.EmptyBorder;
 
 public final class RecordsWindow extends Window {
 	private static final long serialVersionUID = 4489500964556705612L;
@@ -47,35 +57,11 @@ public final class RecordsWindow extends Window {
 		});
 	}
 	
-	public static final Factory factory(final String ctx) {
-		final long start = System.currentTimeMillis();
-        final Factory factory = FactoryMgr.instance(ctx);
-        elapsed(start, "creating tree-table factory" );
-        return factory;
-	}
-	
-	// button-icons
-	private static final ImageIcon ICON_REFRESH = createIcon(RecordsWindow.class,"icons/refresh.png");
-	private static final ImageIcon ICON_UPDATE = createIcon(RecordsWindow.class,"icons/update.png");
-	private static final ImageIcon ICON_EXPAND = createIcon(RecordsWindow.class,"icons/expand.png");
-	private static final ImageIcon ICON_COLLAPSE = createIcon(RecordsWindow.class,"icons/collapse.png");
-	private static final ImageIcon ICON_CLEAR = createIcon(RecordsWindow.class,"icons/clear.png");
-	
-	// status and status-icons
-	private static final int UNLOCKED = 0;
-	private static final int LOCKED = 1;
-	private static final int DONE = 2;
-	private static final JLabel ICON_DONE = createIconLabel(RecordsWindow.class,"icons/done.png");
-	private static final JLabel ICON_LOCKED = createIconLabel(RecordsWindow.class,"icons/lock.png");
-	private static final JLabel ICON_UNLOCKED = createIconLabel(RecordsWindow.class,"icons/unlock.png");
-
 	/* final treetable factory and record provider */
 	private final Factory factory = factory("ReferenceImplementation.xml");
 	private final RecordProvider recordProvider = factory.getRecordProvider();
 	
-	/* final basic pane with scrolling and menu-bar components */
-	private final JPanel pane = new JPanel();
-	private final JScrollPane scrollPane = new JScrollPane();
+	/* final menu-bar components */
 	private final JButton reloadButton = button(ICON_REFRESH);
 	private final JButton updateButton = button(ICON_UPDATE);
 	private final JButton expandButton = button(ICON_EXPAND);
@@ -86,6 +72,10 @@ public final class RecordsWindow extends Window {
 	private final JTextField recordCounterLabel = label(" Record counter:");
 	private final JTextField recordCounterTextField = space(4);
 	
+	/* final basic pane with internal scrolling */
+	private final JPanel pane = new JPanel();
+	private final JScrollPane scrollPane = new JScrollPane();
+	
 	/* dynamic data */
 	private List<Record> records = null;
 	
@@ -94,7 +84,8 @@ public final class RecordsWindow extends Window {
 	private Treetable treetable = null;
 	
 	/**
-	 * GUI with childless treetable-root
+	 * GUI with childless treetable-root.
+	 * Initial status is UNLOCKED, records = null
 	 */
 	RecordsWindow() {
         super("Tree-Table with Records - Reference Implementation");
@@ -153,7 +144,6 @@ public final class RecordsWindow extends Window {
 		}
 		
 		if  (null==event || null==event.getSource())  {
-			
 			log.error("SYSTEM ERROR: event is null or it has no source " + event);
 		}
 		
@@ -231,8 +221,7 @@ public final class RecordsWindow extends Window {
 	}
 	
 	/**
-	 * loads records as tree-table into the scroll-pane.
-	 * 
+	 * loads records as a tree-table into the view of the scroll-pane.
 	 * 
 	 * @see #records
 	 * @see #scrollPane
@@ -257,8 +246,6 @@ public final class RecordsWindow extends Window {
 		scrollPane.getViewport().revalidate();
 		elapsed(start, "loading tree-table");
 	}
-	
-	
 	
 	private final void setStatus(final int status) {
 		final Component icon;
@@ -285,50 +272,4 @@ public final class RecordsWindow extends Window {
 		final Integer recordCounter = recordProvider.recordCounter();
 		recordCounterTextField.setText("" + recordCounter);
 	}
-	 
-	// HELPERS
-	
-	protected static JTextField textfield(int columns) {
-		final JTextField jTextField = new JTextField();
-		jTextField.setColumns(columns);
-		return jTextField;
-	}
-	
-	protected static JTextField space(int columns) {
-		final JTextField jTextField = new JTextField();
-		jTextField.setColumns(columns);
-		jTextField.setBorder(new EmptyBorder(0,0,0,0));
-		jTextField.setEditable(false);
-		jTextField.setFocusable(false);
-		jTextField.setOpaque(false);
-		return jTextField;
-	}
-	
-	protected static JTextField info(Dimension size) {
-		final JTextField jTextField = new JTextField();
-		jTextField.setPreferredSize(size); 
-		jTextField.setBorder(new EmptyBorder(0,0,0,0));
-		jTextField.setEditable(false);
-		jTextField.setFocusable(false);
-		jTextField.setOpaque(false);
-		return jTextField;
-	}
-	
-	protected static JTextField label(final String text) {
-		final JTextField jTextFiled = new JTextField(text);
-		jTextFiled.setBorder(new EmptyBorder(0,0,0,0));
-		jTextFiled.setEditable(false);
-		jTextFiled.setFocusable(false);
-		jTextFiled.setOpaque(false);
-		return jTextFiled;
-	}
-	
-	protected static final JButton button(final ImageIcon icon) {
-		final JButton jButton = new JButton(icon);
-		jButton.setBackground(BACKGROUND);
-		jButton.setFocusable(false);
-		return jButton;
-	}
-	
-
 }
