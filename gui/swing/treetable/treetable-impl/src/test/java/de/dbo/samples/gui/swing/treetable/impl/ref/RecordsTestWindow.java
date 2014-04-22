@@ -24,14 +24,14 @@ public class RecordsTestWindow extends Window {
 				} catch (Exception e) {
 					log.error("Can't set the system Look-and-Feel",e);
 				}
-				new RecordsTestWindow().showup(new Dimension(600,500));
+				new RecordsTestWindow().showup();
 			}
 		};
 		SwingUtilities.invokeLater(gui);
 	}
 	 
 	public RecordsTestWindow() {
-        super("Tree-Table with Records1 - JUnit Test");
+        super("Tree-Table with Records - JUnit Test Data");
         
         final long start2 = System.currentTimeMillis();
         final Node root = new RecordsTest().getTreeroot();

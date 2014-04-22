@@ -1,8 +1,8 @@
 package de.dbo.samples.gui.swing.treetable.api;
 
-import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.image.ImageObserver;
 
 import javax.swing.ImageIcon;
@@ -37,18 +37,39 @@ public class WindowTools {
 		gbc.weighty = 1.0;
 		return gbc;
 	}
+	
+	public static final GridBagConstraints gbc1xManyLeft(final int x, final int inset) {
+		final GridBagConstraints gbc = new GridBagConstraints();
+		gbc.gridx = x;
+		gbc.gridy = 0;
+		gbc.insets = new Insets(inset,inset,inset,inset);
+		gbc.anchor = GridBagConstraints.LINE_START;
+		gbc.fill = GridBagConstraints.WEST;
+		gbc.weightx = 0.9;
+		gbc.weighty = 1.0;
+		return gbc;
+	}
+	
+	public static final GridBagConstraints gbc1xManyRight(final int x, final int inset) {
+		final GridBagConstraints gbc = new GridBagConstraints();
+		gbc.gridx = x;
+		gbc.gridy = 0;
+		gbc.insets = new Insets(inset,inset,inset,inset);
+		gbc.anchor = GridBagConstraints.LINE_END;
+		gbc.fill = GridBagConstraints.EAST;
+		gbc.weightx = 0.1;
+		gbc.weighty = 1.0;
+		return gbc;
+	}
 
 	public static final GridBagLayout gbl1x1() {
 		final GridBagLayout gbl = new GridBagLayout();
 		return gbl;
 	}
-
-	public static final JMenuBar menubar(final int horizontalGap) {
-		final JMenuBar jMenuBar = new JMenuBar();
-		final FlowLayout flowLayout = new FlowLayout(FlowLayout.LEFT);
-		flowLayout.setHgap(horizontalGap);
-		jMenuBar.setLayout(flowLayout);
-		return jMenuBar;
+	
+	public static final GridBagLayout gbl1xMany() {
+		final GridBagLayout gbl = new GridBagLayout();
+		return gbl;
 	}
 
 	public static void elapsed(final long start, final String comment) {

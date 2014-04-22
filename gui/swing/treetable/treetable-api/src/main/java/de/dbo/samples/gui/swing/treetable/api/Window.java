@@ -4,7 +4,6 @@ import static de.dbo.samples.gui.swing.treetable.api.WindowTools.gbc1x1;
 import static de.dbo.samples.gui.swing.treetable.api.WindowTools.gbl1x1;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 
@@ -39,13 +38,10 @@ public abstract class Window extends JFrame implements ActionListener {
         setLayout(gbl1x1());
     }
 	
-	public void showup(final Dimension preferredSize) {
-		if (null!=preferredSize) {
-			setMinimumSize(preferredSize);
-		}
-		setAlwaysOnTop(true);
+	public void showup() {
 	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		pack();
+		setAlwaysOnTop(true);
 		setLocationRelativeTo(null);
 		setVisible(true);
 		log.info("Elapsed " + (System.currentTimeMillis()-start0) + " ms." );
@@ -59,8 +55,6 @@ public abstract class Window extends JFrame implements ActionListener {
 	protected final void setContentAs1x1(final JComponent componet) {
         this.add(componet, gbc1x1());
 	}
-
-
 }
 
 

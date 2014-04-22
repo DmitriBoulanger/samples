@@ -24,7 +24,7 @@ public class DataWindow extends Window {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-				new DataWindow().showup(new Dimension(800,400));
+				new DataWindow().showup();
 			}
 		};
 		SwingUtilities.invokeLater(gui);

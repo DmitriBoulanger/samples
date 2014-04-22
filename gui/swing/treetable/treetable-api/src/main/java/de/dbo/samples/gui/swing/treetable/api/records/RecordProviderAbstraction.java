@@ -3,10 +3,8 @@ package de.dbo.samples.gui.swing.treetable.api.records;
 import de.dbo.samples.gui.swing.treetable.api.records.Record;
 import de.dbo.samples.gui.swing.treetable.api.records.RecordProvider;
 
-
-
-
 import java.util.List;
+import java.util.concurrent.CountDownLatch;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,6 +37,13 @@ public abstract class RecordProviderAbstraction implements RecordProvider {
 		return transaction;
 	}
 
+	/**
+	 * sets transaction ID.
+	 * If it is a new one, the method transactionChanged() is called
+	 * 
+	 * @param transaction new (possibly null) transaction ID
+	 * @see #transactionChanged()
+	 */
 	@Override
 	public void setTransaction(final String transaction) {
 		this.previousTransaction = this.transaction;
@@ -55,6 +60,9 @@ public abstract class RecordProviderAbstraction implements RecordProvider {
 	 */
 	@Override
 	public final List<Record> transactionRecords() {
+		if (!nn(transaction)) {
+			return null;
+		}
 		records = getRecords();
 		counter();
 		return records;
@@ -65,6 +73,9 @@ public abstract class RecordProviderAbstraction implements RecordProvider {
 	 */
 	@Override
 	public final List<Record> transactionRecordsUpdate() {
+		if (!nn(transaction)) {
+			return null;
+		}
 		if (null==records) {
 			return transactionRecords();
 		} 
@@ -92,21 +103,45 @@ public abstract class RecordProviderAbstraction implements RecordProvider {
 	 * 			Otherwise possibly empty record-list 
 	 */
 	protected abstract List<Record> getRecords();
+	
+	protected final void loadRecordsInWorkerThread(final List<Record> ret) {
+		final CountDownLatch countDown = new CountDownLatch(1);
+		final Thread workerThread = new Thread(new Runnable() {
+			@Override
+			public void run() {
+				final List<Record> records = getRecords();
+				if (null!=records && !records.isEmpty()) {
+					ret.addAll(records);
+				}
+				countDown.countDown();
+			}
+		});
+		workerThread.start();
+		try {
+			countDown.await();
+		} catch (InterruptedException e) {
+			throw new RecordProviderException("Can't wait for worker-thread: ", e);
+		}
+	}
 		 
 	
 	protected final void counter() {
 		log.debug("records: " + (null!=records? records.size() : "NULL"));
 	} 
 	
+	// HELPERS
+	
 	protected static final boolean nn(final String x) {
 		return null!=x && 0!=x.trim().length();
 	}
+	
 	protected static final String nnv(final String x) {
 		if (nn(x)) {
 			return x.trim();
 		}
 		return null;
 	}
+	
 	private static final boolean diff(final String x, final String x2) {
 		if (null==x && null==x2) {
 			return false;
