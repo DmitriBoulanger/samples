@@ -59,7 +59,7 @@ public class WindowTools {
 	/** 
 	 * @return an ImageIcon, or null if the path was invalid. 
 	 */
-	public static final ImageIcon createIcon(Object anchor, String path) {
+	public static final ImageIcon createIcon(final Object anchor, final String path) {
 	    return createIcon(anchor.getClass(), path);
 	}
 	
@@ -78,13 +78,21 @@ public class WindowTools {
 	   
 	}
 	
+	public static final JLabel createIconLabel(final Object anchor, final String path) {
+		return createIconLabel(anchor.getClass(), path, null);
+	}
+	
 	public static final JLabel createIconLabel(final Object anchor, final String path
-			, ImageObserver imageObserver) {
+			, final ImageObserver imageObserver) {
 		return createIconLabel(anchor.getClass(), path, imageObserver);
 	}
 	
+	public static final JLabel createIconLabel(final Class<?> anchor, final String path) {
+		 return createIconLabel(anchor,path,null);
+	}
+	
 	public static final JLabel createIconLabel(final Class<?> anchor, final String path
-			, ImageObserver imageObserver) {
+			, final ImageObserver imageObserver) {
 	    final ImageIcon icon = createIcon(anchor,path);
 	    if (null==icon) {
 	    	return null;

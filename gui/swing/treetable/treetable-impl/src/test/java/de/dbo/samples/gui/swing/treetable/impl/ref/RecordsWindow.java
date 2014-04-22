@@ -1,10 +1,6 @@
 package de.dbo.samples.gui.swing.treetable.impl.ref;
 
-import static de.dbo.samples.gui.swing.treetable.api.WindowTools.addAs1x1;
-import static de.dbo.samples.gui.swing.treetable.api.WindowTools.createIconLabel;
-import static de.dbo.samples.gui.swing.treetable.api.WindowTools.createIcon;
-import static de.dbo.samples.gui.swing.treetable.api.WindowTools.elapsed;
-import static de.dbo.samples.gui.swing.treetable.api.WindowTools.menubar;
+import static de.dbo.samples.gui.swing.treetable.api.WindowTools.*;
 
 import de.dbo.samples.gui.swing.treetable.api.Window;
 import de.dbo.samples.gui.swing.treetable.api.factory.Factory;
@@ -30,6 +26,8 @@ import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
+import org.springframework.expression.spel.ast.Ternary;
+
 public final class RecordsWindow extends Window {
 	private static final long serialVersionUID = 4489500964556705612L;
 	
@@ -51,9 +49,7 @@ public final class RecordsWindow extends Window {
         return factory;
 	}
 	
-	
-	
-	/* final basic pane, its scrolling and menu-bar components */
+	/* final basic pane with scrolling and menu-bar components */
 	private final JPanel pane = new JPanel();
 	private final JScrollPane scrollPane = new JScrollPane();
 	private final JButton reloadButton = button(" Reload ");
@@ -67,8 +63,8 @@ public final class RecordsWindow extends Window {
 	private final JTextField recordCounterTextField = info(6,new Dimension(40,20));
 	
 	// status icons
-	private final JLabel iconDone = createIconLabel(this,"icons/done.png",  scrollPane);
-	private final JLabel iconRunning = createIconLabel(this,"icons/running.png",  scrollPane);
+	private final JLabel iconDone = createIconLabel(this,"icons/done.png");
+	private final JLabel iconRunning = createIconLabel(this,"icons/running.png");
 	
 	/* final treetable factory and record provider */
 	private final Factory factory = factory();
@@ -129,6 +125,7 @@ public final class RecordsWindow extends Window {
 		recordProvider.setTransaction(transactionIdTextField.getText());
 		
 		if  (null==event || null==event.getSource())  {
+			
 			log.error("SYSTEM ERROR: event is null or it has no source " + event);
 		}
 		
@@ -151,6 +148,9 @@ public final class RecordsWindow extends Window {
 		// hard actions
 		
 		else if (event.getSource()==clearButton)  {
+			if (null==records) {
+				return;
+			}
 			setStatus(RUNNING);
 			SwingUtilities.invokeLater( new Runnable() {
 				@Override
@@ -200,10 +200,10 @@ public final class RecordsWindow extends Window {
 	}
 	
 	private final void clearTreetable() {
-		transactionIdTextField.setText("");
 		treetableModel = null;
 		treetable = null;
 		records = null;
+		transactionIdTextField.setText("");
 		scrollPane.setViewportView(null);
 		scrollPane.getViewport().revalidate();
 		recordProvider.clear();
