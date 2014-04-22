@@ -120,10 +120,8 @@ public final class DataTreetableModel extends TreetableModelAbstraction {
          default:
              throw new RuntimeException(
                  	"Incorrect column in setValueAt(Object value="+value+", Object node="+node.toString()+", int column="+column+")");
-
-       
-             
+ 
          }
     }
- 
+  
 }

@@ -8,7 +8,6 @@ import java.awt.image.ImageObserver;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
-import javax.swing.JMenuBar;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

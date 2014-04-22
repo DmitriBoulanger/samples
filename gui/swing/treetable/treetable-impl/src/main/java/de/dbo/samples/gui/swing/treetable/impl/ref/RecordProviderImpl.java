@@ -30,7 +30,7 @@ public class RecordProviderImpl extends RecordProviderAbstraction {
 		final List<Record> ret = new ArrayList<Record>();
 		final long start = System.currentTimeMillis();
 		doLoadRecordsInWorkerThread(ret);
-		log.info("elapsed " + (System.currentTimeMillis()-start)+ " ms. loading records");
+		log.debug("elapsed " + (System.currentTimeMillis()-start)+ " ms. loading records");
 		return ret;
 	}
 	
@@ -70,9 +70,9 @@ public class RecordProviderImpl extends RecordProviderAbstraction {
 			} catch (InterruptedException e) {
 				log.warn("Can't sleep: " + e);
 			}
+			record.setTimestamp(System.currentTimeMillis());
 			ret.add(record);
 		}
 	}
-
-
+	
 }

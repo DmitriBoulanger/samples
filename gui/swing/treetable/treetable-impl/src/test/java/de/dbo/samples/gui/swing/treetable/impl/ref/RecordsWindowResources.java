@@ -41,13 +41,14 @@ public final class RecordsWindowResources {
 
 	// HELPERS
 	
-	protected static JTextField textfield(int columns) {
+	protected static JTextField textfield(final int columns, final String tooltip) {
 		final JTextField jTextField = new JTextField();
 		jTextField.setColumns(columns);
+		jTextField.setToolTipText(tooltip);
 		return jTextField;
 	}
 	
-	protected static JTextField space(int columns) {
+	protected static JTextField space(final int columns) {
 		final JTextField jTextField = new JTextField();
 		jTextField.setColumns(columns);
 		jTextField.setBorder(new EmptyBorder(0,0,0,0));
@@ -76,8 +77,9 @@ public final class RecordsWindowResources {
 		return jTextFiled;
 	}
 	
-	protected static final JButton button(final ImageIcon icon) {
+	protected static final JButton button(final ImageIcon icon, final String tooltip) {
 		final JButton jButton = new JButton(icon);
+		jButton.setToolTipText(tooltip);
 		jButton.setFocusable(false);
 		return jButton;
 	}

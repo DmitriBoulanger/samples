@@ -39,12 +39,16 @@ public interface Record extends Comparable<Record> {
 	 */
 	public abstract Long getSequence();
 
-	public abstract void setSequence(Long sequence);
+	public abstract void setSequence(final Long sequence);
 	
 	public abstract Object getContents();
-
-	public abstract void setContents(Object contents);
 	
+	public abstract void setContents(Object contents);
+
+	public abstract void setTimestamp(final Long timestamp);
+	
+	public abstract Long getTimestamp();
+
 	/**
 	 * pretty-print of this record.
 	 * Mostly used for debugging/logging

@@ -62,13 +62,19 @@ public final class RecordsWindow extends Window {
 	private final RecordProvider recordProvider = factory.getRecordProvider();
 	
 	/* final menu-bar components */
-	private final JButton reloadButton = button(ICON_REFRESH);
-	private final JButton updateButton = button(ICON_UPDATE);
-	private final JButton expandButton = button(ICON_EXPAND);
-	private final JButton collapseButton = button(ICON_COLLAPSE);
-	private final JButton clearButton = button(ICON_CLEAR);
+	private final JButton reloadButton = button(ICON_REFRESH
+			,"Reload all records for the specified transaction");
+	private final JButton updateButton = button(ICON_UPDATE
+			,"Update already available records for the specified transaction");
+	private final JButton expandButton = button(ICON_EXPAND
+			,"Exapnd all tree-node");
+	private final JButton collapseButton = button(ICON_COLLAPSE
+			,"Collapse all tree-nodes");
+	private final JButton clearButton = button(ICON_CLEAR
+			,"Clean-up record-provider and UI");
 	private final JTextField transactionIdLabel = label(" Transaction ID:");
-	private final JTextField transactionIdTextField = textfield(30);
+	private final JTextField transactionIdTextField = textfield(30
+			,"Transaction ID (should be available)");
 	private final JTextField recordCounterLabel = label(" Record counter:");
 	private final JTextField recordCounterTextField = space(4);
 	
@@ -83,13 +89,17 @@ public final class RecordsWindow extends Window {
 	private TreetableModel treetableModel = null;
 	private Treetable treetable = null;
 	
+	// UI state
+	private final Integer[] columnWidths = new Integer[]{150,35,35,35,300};
+	private boolean expanded = false;
+	
 	/**
 	 * GUI with childless treetable-root.
 	 * Initial status is UNLOCKED, records = null
 	 */
 	RecordsWindow() {
         super("Tree-Table with Records - Reference Implementation");
- 
+
         // menu-bar
         final JPanel controlsPane = new JPanel(new FlowLayout(FlowLayout.LEFT));
         controlsPane.setOpaque(false);
@@ -152,11 +162,13 @@ public final class RecordsWindow extends Window {
 		else if (event.getSource()==expandButton)  {
 			if (null!=treetable) {
 				treetable.expandAll();
+				expanded = true;
 			}
 		} 
 		else if (event.getSource()==collapseButton)  {
 			if (null!=treetable) {
 				treetable.collapseAll();
+				expanded = false;
 			}
 		} 
 		else if (event.getSource()==transactionIdTextField)  {
@@ -173,8 +185,10 @@ public final class RecordsWindow extends Window {
 			SwingUtilities.invokeLater( new Runnable() {
 				@Override
 				public void run() {
+					saveColumWidths();
 					clearTreetable();
 					loadTreetable();
+					expanded = false;
 					setStatus(UNLOCKED);
 				}
 			});
@@ -186,7 +200,11 @@ public final class RecordsWindow extends Window {
 				@Override
 				public void run() {
 					records = recordProvider.transactionRecords();
+					saveColumWidths();
 					loadTreetable();
+					if (expanded) {
+						treetable.expandAll();
+					}
 					setStatus(DONE);
 				}
 			});
@@ -197,7 +215,11 @@ public final class RecordsWindow extends Window {
 				@Override
 				public void run() {
 					records = recordProvider.transactionRecordsUpdate();
+					saveColumWidths();
 					loadTreetable();
+					if (expanded) {
+						treetable.expandAll();
+					}
 					setStatus(DONE);
 				}
 			});
@@ -234,17 +256,32 @@ public final class RecordsWindow extends Window {
 		
 		// treetable
 		treetableModel = factory.treeTableModel(root);
+		if (null!=records && !records.isEmpty()) {
+			treetableModel.setFirstTimestamp(records.get(0).getTimestamp());
+		}
 		treetable = new Treetable(treetableModel);
 		treetable.setRootVisible(false);
 		treetable.setBasicUI(BACKGROUND, SELECTION, FOREGROUND, FONT);
 		treetable.setIntercellSpacing(new Dimension(1, 1));
-		treetable.setColumnWidthMin(0, 190);
-		treetable.setColumnWidthNonresizable(1, 75);
+		treetable.setColumnWidth(0, columnWidths[0]);
+		treetable.setColumnWidthNonresizable(1, columnWidths[1]);
+		treetable.setColumnWidthNonresizable(2, columnWidths[2]);
+		treetable.setColumnWidthNonresizable(3, columnWidths[3]);
+		treetable.setColumnWidthMin(4, columnWidths[4]);
 
 		// scrolling
 		scrollPane.setViewportView(treetable);
 		scrollPane.getViewport().revalidate();
 		elapsed(start, "loading tree-table");
+	}
+	
+	private final void saveColumWidths() {
+		if (null==treetable) {
+			return;
+		}
+		for (int column=0; column<columnWidths.length; column++) {
+			columnWidths[column] = treetable.getColunWidth(column);
+		}
 	}
 	
 	private final void setStatus(final int status) {

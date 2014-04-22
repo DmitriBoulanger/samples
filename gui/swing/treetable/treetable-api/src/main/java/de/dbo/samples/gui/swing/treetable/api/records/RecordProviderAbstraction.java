@@ -126,7 +126,7 @@ public abstract class RecordProviderAbstraction implements RecordProvider {
 		 
 	
 	protected final void counter() {
-		log.debug("records: " + (null!=records? records.size() : "NULL"));
+		log.info("records: " + (null!=records? records.size() : "NULL"));
 	} 
 	
 	// HELPERS

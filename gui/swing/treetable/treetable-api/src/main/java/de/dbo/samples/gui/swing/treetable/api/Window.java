@@ -18,7 +18,7 @@ public abstract class Window extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 8046982486171537192L;
 	protected static final Logger log = LoggerFactory.getLogger(Window.class);
 	
-	protected static final Font FONT = new Font("Consolas",Font.PLAIN, 12);;
+	protected static final Font FONT = new Font("Consolas",Font.PLAIN, 13);
 	protected static final Color BACKGROUND = new Color(239,241,248);
 	protected static final Color SELECTION = new Color(168,208,245);
 	protected static final Color FOREGROUND = Color.BLACK;
@@ -44,7 +44,7 @@ public abstract class Window extends JFrame implements ActionListener {
 		setAlwaysOnTop(true);
 		setLocationRelativeTo(null);
 		setVisible(true);
-		log.info("Elapsed " + (System.currentTimeMillis()-start0) + " ms." );
+		log.info("elapsed " + (System.currentTimeMillis()-start0) + " ms." );
 	}
 	 
 	/**

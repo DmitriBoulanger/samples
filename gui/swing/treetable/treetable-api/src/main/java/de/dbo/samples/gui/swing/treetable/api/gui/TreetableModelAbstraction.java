@@ -20,6 +20,7 @@ import org.slf4j.LoggerFactory;
 public abstract class TreetableModelAbstraction implements TreetableModel {
 	private static final Logger log = LoggerFactory.getLogger(TreetableModelAbstraction.class);
 	
+	protected Long timestamp;
     protected Object root;
     protected final EventListenerList listenerList = new EventListenerList();
  
@@ -29,8 +30,6 @@ public abstract class TreetableModelAbstraction implements TreetableModel {
     private static final int STRUCTURE_CHANGED = 3;
  
     
-
- 
     @Override
     public Object getRoot() {
         return root;
@@ -40,8 +39,18 @@ public abstract class TreetableModelAbstraction implements TreetableModel {
     public void setRoot(Object root) {
         this.root = root;
     }
- 
+    
     @Override
+    public Long getFirstTimestamp() {
+		return timestamp;
+	}
+
+    @Override
+	public void setFirstTimestamp(final Long timestamp) {
+		this.timestamp = timestamp;
+	}
+
+	@Override
     public boolean isLeaf(Object node) {
         return getChildCount(node) == 0;
     }

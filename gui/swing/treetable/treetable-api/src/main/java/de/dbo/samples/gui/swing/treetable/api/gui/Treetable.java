@@ -88,6 +88,11 @@ public class Treetable extends JTable {
     	tree.setRootVisible(visible);
     }
     
+    public final Integer getColunWidth(int column) {
+    	final TableColumn tableColumn =  getColumnModel().getColumn(column);
+    	return tableColumn.getWidth();
+    }
+    
     public final void setColumnWidthNonresizable(int column, int width) {
     	final TableColumn tableColumn =  getColumnModel().getColumn(column);
     	tableColumn.setMaxWidth(width);
@@ -98,6 +103,11 @@ public class Treetable extends JTable {
     public final void setColumnWidthMin(int column, int width) {
     	final TableColumn tableColumn =  getColumnModel().getColumn(column);
     	tableColumn.setMinWidth(width);
+    }
+    
+    public final void setColumnWidth(int column, int preferredWidth) {
+    	final TableColumn tableColumn =  getColumnModel().getColumn(column);
+    	tableColumn.setPreferredWidth(preferredWidth);
     }
     
     public void setBasicUI(Color background, Color selection,  Color foreground, Font font) {

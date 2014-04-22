@@ -17,9 +17,11 @@ import de.dbo.samples.gui.swing.treetable.api.records.Record;
  */
 public abstract class RecordAbstraction implements Record {
 	
-	private final Path path;
 	private Long sequence = null;
 	private Object contents = null;
+	private Long timestamp = null;
+	
+	private final Path path;
 	
 	protected RecordAbstraction(final Path path) {
 		if (null==path) {
@@ -61,11 +63,22 @@ public abstract class RecordAbstraction implements Record {
 	 * Sequence of a record is immutable
 	 */
 	@Override
-	public void setSequence(Long sequence) {
+	public void setSequence(final Long sequence) {
 		if (null==this.sequence) {
 			this.sequence = sequence;
 		}
 	}
+	
+	@Override
+	public Long getTimestamp() {
+		return timestamp;
+	}
+	
+	@Override
+	public void setTimestamp(final Long timestamp) {
+		this.timestamp = timestamp;
+	}
+	
 	
 	/**
 	 * contents of this record
@@ -76,7 +89,7 @@ public abstract class RecordAbstraction implements Record {
 	}
 
 	@Override
-	public void setContents(Object contents) {
+	public void setContents(final Object contents) {
 		this.contents = contents;
 	}
 
