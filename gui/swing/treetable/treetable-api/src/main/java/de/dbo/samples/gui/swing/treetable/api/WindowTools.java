@@ -3,8 +3,11 @@ package de.dbo.samples.gui.swing.treetable.api;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.image.ImageObserver;
 
+import javax.swing.ImageIcon;
 import javax.swing.JComponent;
+import javax.swing.JLabel;
 import javax.swing.JMenuBar;
 
 import org.slf4j.Logger;
@@ -49,8 +52,47 @@ public class WindowTools {
 	}
 
 	public static void elapsed(final long start, final String comment) {
-		log.debug("Elapsed " + (System.currentTimeMillis() - start) + " ms. " 
+		log.debug("elapsed " + (System.currentTimeMillis() - start) + " ms. " 
 				+ (null != comment ? comment : ""));
 	}
+	
+	/** 
+	 * @return an ImageIcon, or null if the path was invalid. 
+	 */
+	public static final ImageIcon createIcon(Object anchor, String path) {
+	    return createIcon(anchor.getClass(), path);
+	}
+	
+	public static final ImageIcon createIcon(final Class<?> anchor, final String path) {
+		ImageIcon ret;
+		try {
+			ret = new ImageIcon(anchor.getResource(path));
+		} catch (Exception e) {
+			log.error("Couldn't find icon-file: path" + path + " ancor=" +anchor.getName());
+			return null;
+		}
+	    
+	    log.debug(path+": "  + (null==ret? "NULL" 
+	    		: ret.getIconWidth() +"x"+ ret.getIconHeight()));
+	    return ret;
+	   
+	}
+	
+	public static final JLabel createIconLabel(final Object anchor, final String path
+			, ImageObserver imageObserver) {
+		return createIconLabel(anchor.getClass(), path, imageObserver);
+	}
+	
+	public static final JLabel createIconLabel(final Class<?> anchor, final String path
+			, ImageObserver imageObserver) {
+	    final ImageIcon icon = createIcon(anchor,path);
+	    if (null==icon) {
+	    	return null;
+	    }
+	    final JLabel iconLabel = new JLabel(icon, JLabel.CENTER);
+	    icon.setImageObserver(imageObserver);
+	    return iconLabel;
+	}
+	
 
 }

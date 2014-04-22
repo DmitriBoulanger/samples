@@ -41,7 +41,7 @@ public abstract class Window extends JFrame implements ActionListener {
 	
 	public void showup(final Dimension preferredSize) {
 		if (null!=preferredSize) {
-			setPreferredSize(preferredSize);
+			setMinimumSize(preferredSize);
 		}
 		setAlwaysOnTop(true);
 	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
