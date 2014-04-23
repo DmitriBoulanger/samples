@@ -1,7 +1,11 @@
 package de.dbo.samples.gui.swing.treetable.api.factory;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -47,30 +51,30 @@ public final class FactoryMgr {
 		return newInstance;
 	}
 	 
-//	private static final Properties loadPropertiesFromResource(final String name) {
-//		final ClassLoader classloader = ClassLoader.getSystemClassLoader();
-//		if (null == classloader) {
-//			throw new FactoryException("Can't get system classloader");
-//		}
-//
-//		final Properties properrties = new Properties();
-//
-//		URL url = classloader.getResource(name);
-//		if (null == url) {
-//			url = classloader.getResource("/" + name);
-//		}
-//		if (null != url) {
-//			try {
-//				final InputStream in = url.openStream();
-//				properrties.load(in);
-//				return properrties;
-//			} catch (IOException e) {
-//				throw new FactoryException(
-//						"Can't load contents from resouce " + name + ": ",e);
-//			}
-//		} else {
-//			throw new FactoryException(
-//					"Resouce " + name + " doesn't exist anywhre in classpath?");
-//		}
-//	}
+	public static final Properties loadPropertiesFromResource(final String name) {
+		final ClassLoader classloader = ClassLoader.getSystemClassLoader();
+		if (null == classloader) {
+			throw new FactoryException("Can't get system classloader");
+		}
+
+		final Properties properrties = new Properties();
+
+		URL url = classloader.getResource(name);
+		if (null == url) {
+			url = classloader.getResource("/" + name);
+		}
+		if (null != url) {
+			try {
+				final InputStream in = url.openStream();
+				properrties.load(in);
+				return properrties;
+			} catch (IOException e) {
+				throw new FactoryException(
+						"Can't load contents from resouce " + name + ": ",e);
+			}
+		} else {
+			throw new FactoryException(
+					"Resouce " + name + " doesn't exist anywhre in classpath?");
+		}
+	}
 }

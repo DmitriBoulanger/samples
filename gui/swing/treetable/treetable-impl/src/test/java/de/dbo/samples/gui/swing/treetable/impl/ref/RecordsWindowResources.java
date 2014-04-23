@@ -26,10 +26,10 @@ public final class RecordsWindowResources {
 	
 	// button-icons
 	static final ImageIcon ICON_REFRESH = createIcon(RecordsWindowResources.class,"icons/refresh.png");
-	static final ImageIcon ICON_UPDATE = createIcon(RecordsWindowResources.class,"icons/update.png");
+	static final ImageIcon ICON_UPDATE = createIcon(RecordsWindowResources.class,"icons/add.png");
 	static final ImageIcon ICON_EXPAND = createIcon(RecordsWindowResources.class,"icons/expand.png");
 	static final ImageIcon ICON_COLLAPSE = createIcon(RecordsWindowResources.class,"icons/collapse.png");
-	static final ImageIcon ICON_CLEAR = createIcon(RecordsWindowResources.class,"icons/clear.png");
+	static final ImageIcon ICON_CLEAR = createIcon(RecordsWindowResources.class,"icons/cancel.png");
 	
 	// status and status-icons
 	static final int UNLOCKED = 0;

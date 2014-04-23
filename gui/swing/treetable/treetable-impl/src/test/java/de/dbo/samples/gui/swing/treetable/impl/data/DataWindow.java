@@ -35,7 +35,7 @@ public class DataWindow extends Window {
          
         final long start = System.currentTimeMillis();
         final Node root = DataStructure.treeroot();
-        log.info("Elapsed " +(System.currentTimeMillis()-start) + " ms. creating tree-root" );
+        log.info("elapsed " +(System.currentTimeMillis()-start) + " ms. creating tree-root" );
         
         final Treetable treetable = new Treetable(new DataTreetableModel(root));
         treetable.setRootVisible(false);
