@@ -7,24 +7,20 @@ import de.dbo.samples.gui.swing.treetable.api.records.Node;
 import de.dbo.samples.gui.swing.treetable.api.records.Record;
 
 
+import de.dbo.samples.gui.swing.treetable.api.records.RecordRelativeTimestamp;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import static java.util.concurrent.TimeUnit.HOURS;
-import static java.util.concurrent.TimeUnit.MILLISECONDS;
-import static java.util.concurrent.TimeUnit.MINUTES;
-import static java.util.concurrent.TimeUnit.SECONDS;
- 
 public final class TreetableModelImpl extends TreetableModelAbstraction {
 	private static final Logger log = LoggerFactory.getLogger(TreetableModelImpl.class);
 	
     // Names of the columns
-    private static  String[] columnNames = { 
-    	"Path", "min", "sec", "ms", "Record" };
+    private static  String[] columnNames = {"Path", "MM", "SS", "MS", "Record" };
  
     // Types of the columns
     private static Class<?>[] columnTypes = { 
-    	TreetableModel.class, Integer.class, Integer.class, Integer.class, Object.class };
+    	TreetableModel.class, Integer.class, Integer.class, Integer.class, Record.class};
     
     /**
      * 
@@ -59,9 +55,15 @@ public final class TreetableModelImpl extends TreetableModelAbstraction {
         case 1:
         case 2:
         case 3:
-        	final String[] timestamp = formatTimestamp(node);
-        	return integer(timestamp[column-1]);
-        case 4:
+        	final Record record = (Record) ((Node) node).getContents();
+        	final RecordRelativeTimestamp timestamp;
+        	if (null!=record) {
+				timestamp = record.relativeTimestamp();
+			} else {
+				timestamp =  RecordRelativeTimestamp.TIMESTAMP_NULL;
+			}
+        	return timestamp.get(column);
+		case 4:
        	     return ((Node) node).getContents();
             
         default:
@@ -69,35 +71,7 @@ public final class TreetableModelImpl extends TreetableModelAbstraction {
             	"Incorrect column in getValueAt(Object node="+node.toString()+", int column="+column+")");
         } 
     }
-    
-    private static final Integer integer(final String value) {
-    	if (null==value || 0==value.trim().length()) {
-    		return null;
-    	}
-    	return Integer.parseInt(value.trim());
-    }
-    
    
-	private final String[] formatTimestamp(final Object o) {
-		final String ret;
-		if (null == o) {
-			ret = TIMESTAMP_NULL;
-		} else {
-			final Long firstTimestamp = getFirstTimestamp();
-			if (null == firstTimestamp) {
-				ret = TIMESTAMP_NULL;
-			} else {
-				final Record record = (Record) ((Node)o).getContents();
-				if (null == record) {
-					ret = TIMESTAMP_NULL;
-				} else {
-					ret = formatMs(record.getTimestamp() - firstTimestamp);
-				}
-			}
-		}
-		return ret.split(TIMESTAMP_SEPARATOR);
-	}
-    
     @Override
     public void setValueAt(Object value, Object node, int column) {
     	 log.debug("setValueAt(Object value="+value+", Object node="+node.toString()+", int column="+column+") ...");
@@ -144,46 +118,5 @@ public final class TreetableModelImpl extends TreetableModelAbstraction {
         return columnTypes[column];
     }
     
-    private static final String TIMESTAMP_SEPARATOR = "-";
-    private static final String TIMESTAMP_NULL = " "
-    		+ " " + TIMESTAMP_SEPARATOR
-    		+ " " + TIMESTAMP_SEPARATOR
-    		+ " " + TIMESTAMP_SEPARATOR
-            + " " + TIMESTAMP_SEPARATOR;
     
-    /**
-     * Convert a millisecond duration to a string format
-     * 
-     * @param time A duration in milliseconds to convert to a string form
-     * @return A string of the form "X h. Y min. Z sec. W ms. ".
-     */
-    private static String formatMs(final long time) {
-        if (time < 0) {
-            return TIMESTAMP_NULL;
-        }
-        
-        long millliseconds = time;
-
-        final long hours = MILLISECONDS.toHours(millliseconds);
-        millliseconds -= HOURS.toMillis(hours);
-
-        final long minutes = MILLISECONDS.toMinutes(millliseconds);
-        millliseconds -= MINUTES.toMillis(minutes);
-
-        final long seconds = MILLISECONDS.toSeconds(millliseconds);
-        millliseconds -= SECONDS.toMillis(seconds);
-      
-        final StringBuilder sb = new StringBuilder();
-        sb.append(0 < minutes? padRight(minutes,2) : "");
-        sb.append(TIMESTAMP_SEPARATOR);
-        sb.append(0 < seconds? padRight(seconds,2) : "");
-        sb.append(TIMESTAMP_SEPARATOR);
-        sb.append(padRight(millliseconds,3));
-
-        return (sb.toString());
-    }
-    
-    private static String padRight(final long s, int n) {
-        return String.format("%1$-" + n + "s", s);
-      }
 }

@@ -40,16 +40,6 @@ public abstract class TreetableModelAbstraction implements TreetableModel {
         this.root = root;
     }
     
-    @Override
-    public Long getFirstTimestamp() {
-		return timestamp;
-	}
-
-    @Override
-	public void setFirstTimestamp(final Long timestamp) {
-		this.timestamp = timestamp;
-	}
-
 	@Override
     public boolean isLeaf(Object node) {
         return getChildCount(node) == 0;

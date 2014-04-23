@@ -66,10 +66,8 @@ public final class RecordsWindow extends Window {
 			,"Reload all records for the specified transaction");
 	private final JButton updateButton = button(ICON_UPDATE
 			,"Update already available records for the specified transaction");
-	private final JButton expandButton = button(ICON_EXPAND
-			,"Exapnd all tree-node");
-	private final JButton collapseButton = button(ICON_COLLAPSE
-			,"Collapse all tree-nodes");
+	private final JButton expadCollapseButton = button(ICON_EXPAND
+			,"Exapnd/collapse all tree-node");
 	private final JButton clearButton = button(ICON_CLEAR
 			,"Clean-up record-provider and UI");
 	private final JTextField transactionIdLabel = label(" Transaction ID:");
@@ -89,8 +87,9 @@ public final class RecordsWindow extends Window {
 	private TreetableModel treetableModel = null;
 	private Treetable treetable = null;
 	
-	// UI state
-	private final Integer[] columnWidths = new Integer[]{150,35,35,35,300};
+	// initial UI state
+	private static final int MS_WIDTH = 24;
+	private final Integer[] columnWidths = new Integer[]{140,MS_WIDTH,MS_WIDTH,MS_WIDTH,300};
 	private boolean expanded = false;
 	
 	/**
@@ -105,8 +104,7 @@ public final class RecordsWindow extends Window {
         controlsPane.setOpaque(false);
         controlsPane.add(reloadButton);  
         controlsPane.add(updateButton);  
-        controlsPane.add(expandButton);  
-        controlsPane.add(collapseButton);  
+        controlsPane.add(expadCollapseButton);   
         controlsPane.add(clearButton); 
         controlsPane.add(transactionIdLabel);
         controlsPane.add(transactionIdTextField);
@@ -132,8 +130,7 @@ public final class RecordsWindow extends Window {
         // actions
         reloadButton.addActionListener(this);
         updateButton.addActionListener(this);
-        expandButton.addActionListener(this);
-        collapseButton.addActionListener(this);
+        expadCollapseButton.addActionListener(this);
         clearButton.addActionListener(this);
         transactionIdTextField.addActionListener(this);
         
@@ -159,16 +156,18 @@ public final class RecordsWindow extends Window {
 		
 		// quick actions, no status update
 		
-		else if (event.getSource()==expandButton)  {
+		else if (event.getSource()==expadCollapseButton)  {
 			if (null!=treetable) {
-				treetable.expandAll();
-				expanded = true;
-			}
-		} 
-		else if (event.getSource()==collapseButton)  {
-			if (null!=treetable) {
-				treetable.collapseAll();
-				expanded = false;
+				if (expanded) {
+					treetable.collapseAll();
+					expanded = false;
+					expadCollapseButton.setIcon(ICON_EXPAND);
+				}
+				else {
+					treetable.expandAll();
+					expanded = true;
+					expadCollapseButton.setIcon(ICON_COLLAPSE);
+				}
 			}
 		} 
 		else if (event.getSource()==transactionIdTextField)  {
@@ -189,6 +188,7 @@ public final class RecordsWindow extends Window {
 					clearTreetable();
 					loadTreetable();
 					expanded = false;
+					expadCollapseButton.setIcon(ICON_EXPAND);
 					setStatus(UNLOCKED);
 				}
 			});
@@ -256,13 +256,10 @@ public final class RecordsWindow extends Window {
 		
 		// treetable
 		treetableModel = factory.treeTableModel(root);
-		if (null!=records && !records.isEmpty()) {
-			treetableModel.setFirstTimestamp(records.get(0).getTimestamp());
-		}
 		treetable = new Treetable(treetableModel);
 		treetable.setRootVisible(false);
 		treetable.setBasicUI(BACKGROUND, SELECTION, FOREGROUND, FONT);
-		treetable.setIntercellSpacing(new Dimension(1, 1));
+		treetable.setIntercellSpacing(new Dimension(0, 1));
 		treetable.setColumnWidth(0, columnWidths[0]);
 		treetable.setColumnWidthNonresizable(1, columnWidths[1]);
 		treetable.setColumnWidthNonresizable(2, columnWidths[2]);

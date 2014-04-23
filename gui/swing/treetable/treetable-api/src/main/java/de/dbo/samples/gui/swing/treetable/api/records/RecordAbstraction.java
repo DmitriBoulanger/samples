@@ -2,7 +2,7 @@ package de.dbo.samples.gui.swing.treetable.api.records;
 
 import de.dbo.samples.gui.swing.treetable.api.records.Path;
 import de.dbo.samples.gui.swing.treetable.api.records.Record;
-
+ 
 /**
  * Reference (or basic) abstract implementation of a data-record.
  * Any record has at least path, tree-name and sequence.
@@ -20,6 +20,7 @@ public abstract class RecordAbstraction implements Record {
 	private Long sequence = null;
 	private Object contents = null;
 	private Long timestamp = null;
+	private RecordRelativeTimestamp recordRelativeTimestamp;
 	
 	private final Path path;
 	
@@ -75,10 +76,15 @@ public abstract class RecordAbstraction implements Record {
 	}
 	
 	@Override
-	public void setTimestamp(final Long timestamp) {
+	public void setTimestamp(final Long timestamp, final Long firstTimestamp) {
 		this.timestamp = timestamp;
+		this.recordRelativeTimestamp = RecordRelativeTimestamp.newInstance( timestamp - firstTimestamp );
 	}
 	
+	@Override
+	public RecordRelativeTimestamp relativeTimestamp() {
+		return recordRelativeTimestamp;
+	}
 	
 	/**
 	 * contents of this record
@@ -103,6 +109,7 @@ public abstract class RecordAbstraction implements Record {
 	public boolean isDataDepth(final int depth) {
 		 return depth == getPath().depth();
 	}
+	
 
 
 }

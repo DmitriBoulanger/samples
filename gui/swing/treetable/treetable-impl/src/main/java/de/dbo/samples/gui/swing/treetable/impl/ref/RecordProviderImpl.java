@@ -64,13 +64,14 @@ public class RecordProviderImpl extends RecordProviderAbstraction {
 	}
 
 	private static final void loadWithDelay(final List<Record> ret, final List<Record> records) {
+		final Long firstTimestamp = System.currentTimeMillis();
 		for (final Record record : records) {
 			try {
 				Thread.sleep(110);
 			} catch (InterruptedException e) {
 				log.warn("Can't sleep: " + e);
 			}
-			record.setTimestamp(System.currentTimeMillis());
+			record.setTimestamp(System.currentTimeMillis(),firstTimestamp);
 			ret.add(record);
 		}
 	}

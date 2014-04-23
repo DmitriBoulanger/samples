@@ -45,9 +45,11 @@ public interface Record extends Comparable<Record> {
 	
 	public abstract void setContents(Object contents);
 
-	public abstract void setTimestamp(final Long timestamp);
+	public abstract void setTimestamp(final Long timestamp, final Long firstTimestamp);
 	
 	public abstract Long getTimestamp();
+	
+	public RecordRelativeTimestamp relativeTimestamp();
 
 	/**
 	 * pretty-print of this record.

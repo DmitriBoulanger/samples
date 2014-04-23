@@ -25,7 +25,7 @@ public final class RecordImpl extends RecordAbstraction {
 	
 	@Override
     public final String toString() {
-    	return uuid;
+    	return "    UUID=" + uuid;
     }
 	
 	public void setSmthAsUUID(final String smth) {
