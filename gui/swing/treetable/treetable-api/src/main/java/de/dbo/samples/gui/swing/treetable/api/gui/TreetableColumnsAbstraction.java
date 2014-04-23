@@ -11,8 +11,6 @@ import org.slf4j.LoggerFactory;
 public abstract class TreetableColumnsAbstraction implements TreetableColumns {
 	protected static final Logger log = LoggerFactory.getLogger(TreetableColumns.class);
 	
-	protected Integer[] columnWidths; 
-	
 	public TreetableColumnsAbstraction (final String[] columnNames) {
 		log.trace("created: " + Arrays.toString(columnNames));
 	}
@@ -22,17 +20,9 @@ public abstract class TreetableColumnsAbstraction implements TreetableColumns {
 		if (null==treetable) {
 			return;
 		}
+		final Integer[] columnWidths = getColumnWidths();
 		for (int column=0; column<getColumnWidths().length; column++) {
 			columnWidths[column] = treetable.getColunWidth(column);
 		}
 	}
-	
-//	TODO
-//	@Override 
-//	public final TreetableColumns clone() {
-//		final TreetableColumns ret = this;
-//		
-//		return ret;
-//	}
-	
 }
