@@ -23,13 +23,13 @@ public class TreetableModelAdapter extends AbstractTableModel {
         tree.addTreeExpansionListener(new TreeExpansionListener() {
         	@Override
             public void treeExpanded(TreeExpansionEvent event) {
-        		log.debug("treeExpanded(TreeExpansionEvent event"+event.toString()+") ...");
+        		log.trace("treeExpanded(TreeExpansionEvent event"+event.toString()+") ...");
                 fireTableDataChanged();
             }
         	
         	@Override
             public void treeCollapsed(TreeExpansionEvent event) {
-        		log.debug("fireTableDataChanged() event"+event.toString()+") ...");
+        		log.trace("fireTableDataChanged() event"+event.toString()+") ...");
                 fireTableDataChanged();
             }
         });
@@ -73,7 +73,7 @@ public class TreetableModelAdapter extends AbstractTableModel {
  
     @Override
     public void setValueAt(Object value, int row, int column) {
-    	log.debug("setValueAt(Object value="+value+", int row="+row+", int column="+column+") ...");
+    	log.trace("setValueAt(Object value="+value+", int row="+row+", int column="+column+") ...");
         treeTableModel.setValueAt(value, nodeForRow(row), column);
     }
 }

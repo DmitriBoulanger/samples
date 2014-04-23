@@ -16,11 +16,11 @@ public final class TreetableModelImpl extends TreetableModelAbstraction {
 	private static final Logger log = LoggerFactory.getLogger(TreetableModelImpl.class);
 	
     // Names of the columns
-    private static  String[] columnNames = {"Path", "MM", "SS", "MS", "Record" };
+    private static  String[] columnNames = {"Path", "NR", "MM", "SS", "MS", "Record" };
  
     // Types of the columns
     private static Class<?>[] columnTypes = { 
-    	TreetableModel.class, Integer.class, Integer.class, Integer.class, Record.class};
+    	TreetableModel.class, Long.class, Integer.class, Integer.class, Integer.class, Record.class};
     
     /**
      * 
@@ -38,9 +38,11 @@ public final class TreetableModelImpl extends TreetableModelAbstraction {
          case 1:
          case 2:
          case 3:
-        	 return false;
          case 4:
+        	 return false; // sequence/timestamp-attributes are immutable
+         case 5:
         	 return true;
+        	 
          default:
              throw new TreetableException(
                 "Incorrect column in isCellEditable(Object node="+node.toString()+", int column="+column+")");
@@ -49,12 +51,15 @@ public final class TreetableModelImpl extends TreetableModelAbstraction {
     
     @Override
     public Object getValueAt(Object node, int column) {
+    	log.trace("setValueAt(Object node="+node.toString()+", int column="+column+")");
         switch (column) {
         case 0:
             return ((Node) node).getTreename();
         case 1:
+        	return ((Node) node).getSequence();
         case 2:
         case 3:
+        case 4:
         	final Record record = (Record) ((Node) node).getContents();
         	final RecordRelativeTimestamp timestamp;
         	if (null!=record) {
@@ -62,8 +67,8 @@ public final class TreetableModelImpl extends TreetableModelAbstraction {
 			} else {
 				timestamp =  RecordRelativeTimestamp.TIMESTAMP_NULL;
 			}
-        	return timestamp.get(column);
-		case 4:
+        	return timestamp.get(column-1);
+		case 5:
        	     return ((Node) node).getContents();
             
         default:
@@ -74,16 +79,17 @@ public final class TreetableModelImpl extends TreetableModelAbstraction {
    
     @Override
     public void setValueAt(Object value, Object node, int column) {
-    	 log.debug("setValueAt(Object value="+value+", Object node="+node.toString()+", int column="+column+") ...");
+    	 log.trace("setValueAt(Object value="+value+", Object node="+node.toString()+", int column="+column+")");
     	 switch (column) {
          case 0:
          case 1:
          case 2:
          case 3:
+         case 4:
         	 log.error("setValueAt(Object value="+value+", Object node="+node.toString()+", int column="+column+") rejected");
         	 break;
         	 
-         case 4:
+         case 5:
         	 ((Node) node).setContents(value);
         	 break;
          
@@ -117,6 +123,4 @@ public final class TreetableModelImpl extends TreetableModelAbstraction {
     public Class<?> getColumnClass(int column) {
         return columnTypes[column];
     }
-    
-    
 }

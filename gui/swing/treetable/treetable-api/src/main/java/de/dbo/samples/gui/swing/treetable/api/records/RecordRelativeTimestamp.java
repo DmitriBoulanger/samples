@@ -1,25 +1,38 @@
 package de.dbo.samples.gui.swing.treetable.api.records;
 
+import java.text.DecimalFormat;
+
 import static java.util.concurrent.TimeUnit.HOURS;
 import static java.util.concurrent.TimeUnit.MILLISECONDS;
 import static java.util.concurrent.TimeUnit.MINUTES;
 import static java.util.concurrent.TimeUnit.SECONDS;
 
+/**
+ * 
+ * Convert a millisecond duration to a string format
+ *  Duration in milliseconds to convert to a string form
+ *  form "X h. Y min. Z sec. W ms. ".
+ * 
+ * @author Dmitri Boulanger, Hombach
+ * 
+ * D. Knuth: Programs are meant to be read by humans and only
+ * incidentally for computers to execute
+ * 
+ */
 public final class RecordRelativeTimestamp {
+	
+	public static final int FORMAT_CANONICAL = 0;
+	public static final int FORMAT_CANONICAL_MINIMIZED = 1;
+	public static final int FORMAT_CANONICAL_NO_ZERO = 2;
+	
+	public static final int FORMAT_COMPRESSED = 10;
 	
 	public static final RecordRelativeTimestamp TIMESTAMP_NULL = 
 			new RecordRelativeTimestamp("","","","");
 	
 	public static final RecordRelativeTimestamp TIMESTAMP_ERROR =
-			new RecordRelativeTimestamp("99","999", "99","999");
+			new RecordRelativeTimestamp("99","99", "99","999");
 	
-	/**
-	 * Convert a millisecond duration to a string format
-	 * 
-	 * @param time
-	 *            A duration in milliseconds to convert to a string form
-	 * @return A string of the form "X h. Y min. Z sec. W ms. ".
-	 */
 	public static final RecordRelativeTimestamp newInstance(long time) {
 		if (time < 0) {
 			return RecordRelativeTimestamp.TIMESTAMP_ERROR;
@@ -37,18 +50,16 @@ public final class RecordRelativeTimestamp {
 		millliseconds -= SECONDS.toMillis(seconds);
 		
 		return new RecordRelativeTimestamp(
-				   0 < hours   ? padRight(hours, 2)     : "0"
-				,  0 < minutes ? padRight(minutes, 2) : "0"
-				,  0 < seconds ? padRight(seconds, 2) : "0"
-				, padRight(millliseconds, 3));
-		 
+				   0 < hours   ? "" + hours   : "0"
+				,  0 < minutes ? "" + minutes : "0"
+				,  0 < seconds ? "" + seconds : "0"
+				, "" + millliseconds);
 	}
 
 	private final Integer hh;
 	private final Integer mm;
 	private final Integer ss;
 	private final Integer sss;
-	
 	
 	private RecordRelativeTimestamp(final String hh, final String mm, final String ss, final String sss) {
 		this.hh = integer(hh);
@@ -57,13 +68,28 @@ public final class RecordRelativeTimestamp {
 		this.sss = integer(sss);
 	}
 	
-	public RecordRelativeTimestamp(final RecordRelativeTimestamp relativeTimestamp) {
-		this.hh = relativeTimestamp.hh;
-		this.mm = relativeTimestamp.mm;
-		this.ss = relativeTimestamp.ss;
-		this.sss = relativeTimestamp.sss;
+	public StringBuilder print(final int format) {
+		switch (format) {
+		case FORMAT_CANONICAL:
+			return canonical();
+		case FORMAT_CANONICAL_MINIMIZED: 
+			return canonicalMinimized();
+		case FORMAT_CANONICAL_NO_ZERO: 
+			return canonicalNoZero();
+		case FORMAT_COMPRESSED: 
+			return compressed();
+		
+		default:
+				throw new RecordException("Unknown format:" + format);
+		}
 	}
 	
+	/**
+	 * index values: 0:HH, 1:MM, 2:SS, 3:SSS
+	 * 
+	 * @param index
+	 * @return specified attribute of this timestamp
+	 */
 	public Integer get(final int index) {
 		 switch(index) {
 		 case 0:
@@ -80,34 +106,55 @@ public final class RecordRelativeTimestamp {
 	 }
 	
 	/**
-	 * canonical representation as HH MM SS SSS
-	 * @return
+	 * canonical representation as HH h. MM min. SS sec. SSS ms.
 	 */
-	public StringBuilder print() {
+	private StringBuilder canonical() {
+		final boolean ishh = null != hh;
+		final boolean ismm = null != mm;
+		final boolean isss = null != ss;
+		final boolean issss = null != sss;
+
 		final StringBuilder ret = new StringBuilder();
-			ret.append(null != hh ? padLeft(hh, 3) + " h." : "");
-		    ret.append(null != mm ? padLeft(mm, 3) + " min." : "");
-		    ret.append(null != ss ? padLeft(ss, 3) + " sec." : "");
-		    ret.append(padLeft(sss, 4) + " ms.");
+		ret.append(ishh ? padLeft(hh, 3) + " h." : "");
+		ret.append(ismm ? padLeft(mm, 3) + " min." : "");
+		ret.append(isss ? padLeft(ss, 3) + " sec." : "");
+		ret.append(issss ? padLeft(sss, 4) + " ms." : "");
+
 		return ret;
 	}
 	
 	/**
-	 * minimized representation of HH MM SS SSS.
-	 * Zero-values are omitted is a natural way
-	 * 
-	 * @param optimization flag
-	 * 
-	 * @return 
+	 * canonical representation as HH.MM.SS:SSS
 	 */
-	public StringBuilder print(boolean minimized) {
-		if (!minimized) {
-			return print();
-		}
+	private StringBuilder compressed() {
+		final boolean ishh = null != hh;
+		final boolean ismm = null != mm;
+		final boolean isss = null != ss;
+		final boolean issss = null != sss;
+
+		final StringBuilder ret = new StringBuilder();
+		ret.append(ishh ? df(hh, DF2) + "." : "");
+		ret.append(ismm ? df(mm, DF2) + "." : "");
+		ret.append(isss ? df(ss, DF2) + ":" : "");
+		ret.append(issss ? df(sss, DF3) : "");
+		return ret;
+	}
+	
+	/**
+	 * canonical representation as HH h. MM min. SS sec. SSS ms. 
+	 * but zero-values are omitted is a natural way
+	 */
+	private StringBuilder canonicalMinimized() {
+		 
 		final boolean ishh =  null != hh  && 0 != hh.intValue();
 		final boolean ismm =  null != mm  && 0 != mm.intValue();
 		final boolean isss =  null != ss  && 0 != ss.intValue();
 		final boolean issss = null != sss && 0 != sss.intValue();
+		
+		final boolean ishh0 =  null != hh  && 0 == hh.intValue();
+		final boolean ismm0 =  null != mm  && 0 == mm.intValue();
+		final boolean isss0 =  null != ss  && 0 == ss.intValue();
+		final boolean issss0 = null != sss && 0 == sss.intValue();
 		
 		final StringBuilder ret = new StringBuilder();
 		if (ishh) {
@@ -116,14 +163,54 @@ public final class RecordRelativeTimestamp {
 		if (ismm || ishh) {
 			ret.append(padLeft(mm, 3) + " min.");
 		}
-		if ( isss || issss ) {
+		if ( isss  ||  ((ishh || ismm) && issss)  ) {
 			ret.append(padLeft(ss, 3) + " sec.");
 		}
 		if (issss) {
 			ret.append(padLeft(sss, 4) + " ms.");
 		}
+		if ( ishh0  && ismm0 && isss0 && issss0) {
+			ret.append(padLeft(0, 4) + " ms.");
+		}
 		return ret;
 	}
+	
+	/**
+	 * canonical representation as HH h. MM min. SS sec. SSS ms. 
+	 * but all zero-values are omitted
+	 */
+	private StringBuilder canonicalNoZero() {
+		 
+		final boolean ishh =  null != hh  && 0 != hh.intValue();
+		final boolean ismm =  null != mm  && 0 != mm.intValue();
+		final boolean isss =  null != ss  && 0 != ss.intValue();
+		final boolean issss = null != sss && 0 != sss.intValue();
+		
+		final boolean ishh0 =  null != hh  && 0 == hh.intValue();
+		final boolean ismm0 =  null != mm  && 0 == mm.intValue();
+		final boolean isss0 =  null != ss  && 0 == ss.intValue();
+		final boolean issss0 = null != sss && 0 == sss.intValue();
+		
+		final StringBuilder ret = new StringBuilder();
+		if (ishh) {
+			ret.append(padLeft(hh, 3) + " h.");
+		}
+		if (ismm) {
+			ret.append(padLeft(mm, 3) + " min.");
+		}
+		if (isss) {
+			ret.append(padLeft(ss, 3) + " sec.");
+		}
+		if (issss) {
+			ret.append(padLeft(sss, 4) + " ms.");
+		}
+		if ( ishh0  && ismm0 && isss0 && issss0) {
+			ret.append(padLeft(0, 4) + " ms.");
+		}
+		return ret;
+	}
+	
+	// HELPERS
 	
 	private static final Integer integer(final String value) {
 		if (null == value || 0 == value.trim().length()) {
@@ -131,13 +218,15 @@ public final class RecordRelativeTimestamp {
 		}
 		return Integer.parseInt(value.trim());
 	}
-	 
-	private static String padRight(final long s, int n) {
-		return String.format("%1$-" + n + "s", s);
+	
+	private static final String DF2 = "00";
+	private static final String DF3 = "000";
+	
+	private static final String df(final Integer value, final String df) {
+		return new DecimalFormat(df).format(value);
 	}
 	
     private static String padLeft(final int s, int n) {
         return String.format("%1$" + n + "s", s);
     }
-
 }

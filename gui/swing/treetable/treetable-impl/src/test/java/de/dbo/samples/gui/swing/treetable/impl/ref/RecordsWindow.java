@@ -89,7 +89,7 @@ public final class RecordsWindow extends Window {
 	
 	// initial UI state
 	private static final int MS_WIDTH = 24;
-	private final Integer[] columnWidths = new Integer[]{140,MS_WIDTH,MS_WIDTH,MS_WIDTH,300};
+	private final Integer[] columnWidths = new Integer[]{140,MS_WIDTH,MS_WIDTH,MS_WIDTH,MS_WIDTH,300};
 	private boolean expanded = false;
 	
 	/**
@@ -259,12 +259,13 @@ public final class RecordsWindow extends Window {
 		treetable = new Treetable(treetableModel);
 		treetable.setRootVisible(false);
 		treetable.setBasicUI(BACKGROUND, SELECTION, FOREGROUND, FONT);
-		treetable.setIntercellSpacing(new Dimension(0, 1));
+		treetable.setIntercellSpacing(new Dimension(1, 1));
 		treetable.setColumnWidth(0, columnWidths[0]);
 		treetable.setColumnWidthNonresizable(1, columnWidths[1]);
 		treetable.setColumnWidthNonresizable(2, columnWidths[2]);
 		treetable.setColumnWidthNonresizable(3, columnWidths[3]);
-		treetable.setColumnWidthMin(4, columnWidths[4]);
+		treetable.setColumnWidthNonresizable(4, columnWidths[4]);
+		treetable.setColumnWidthMin(5, columnWidths[5]);
 
 		// scrolling
 		scrollPane.setViewportView(treetable);

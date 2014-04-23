@@ -19,7 +19,7 @@ class TreetableSelectionModel extends DefaultTreeSelectionModel {
         		new ListSelectionListener() {
         			@Override
         			public void valueChanged(ListSelectionEvent e) {
-        				log.debug("valueChanged: " + e.toString() + " no action!");  
+        				log.trace("valueChanged: " + e.toString() + " no action!");  
         			}
         });
     }

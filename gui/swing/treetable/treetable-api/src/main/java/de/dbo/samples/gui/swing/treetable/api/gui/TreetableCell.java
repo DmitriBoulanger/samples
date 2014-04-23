@@ -90,7 +90,7 @@ public class TreetableCell extends JTree implements TableCellRenderer {
      */
     @Override
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-        log.debug("getTableCellRendererComponent(JTable table, Object value="+value+", boolean isSelected="+isSelected+", boolean hasFocus, int row="+ row +", int column="+column+")");
+        log.trace("getTableCellRendererComponent(JTable table, Object value="+value+", boolean isSelected="+isSelected+", boolean hasFocus="+hasFocus+", int row="+ row +", int column="+column+")");
     	if (isSelected) {
             setBackground(table.getSelectionBackground());
         }

@@ -84,7 +84,7 @@ public abstract class TreetableModelAbstraction implements TreetableModel {
     }
     
     private final void fireTreeNode(int changeType, Object source, Object[] path, int[] childIndices, Object[] children) {
-    	log.debug("fireTreeNode(int changeType, Object source, Object[] path, int[] childIndices, Object[] children)");
+    	log.trace("fireTreeNode(int changeType="+changeType+", Object source, Object[] path="+path+", int[] childIndices, Object[] children)");
     	Object[] listeners = listenerList.getListenerList();
         TreeModelEvent e = new TreeModelEvent(source, path, childIndices, children);
         for (int i = listeners.length - 2; i >= 0; i -= 2) {

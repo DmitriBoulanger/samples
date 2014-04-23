@@ -20,7 +20,7 @@ public abstract class RecordAbstraction implements Record {
 	private Long sequence = null;
 	private Object contents = null;
 	private Long timestamp = null;
-	private RecordRelativeTimestamp recordRelativeTimestamp;
+	private RecordRelativeTimestamp recordRelativeTimestamp = null;
 	
 	private final Path path;
 	

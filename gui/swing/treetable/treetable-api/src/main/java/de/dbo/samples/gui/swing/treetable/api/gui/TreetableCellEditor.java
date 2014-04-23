@@ -26,7 +26,7 @@ public class TreetableCellEditor extends AbstractCellEditor implements TableCell
  
     @Override
     public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int r, int c) {
-    	 log.debug("getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int r, int c)");
+    	 log.trace("getTableCellEditorComponent(JTable table, Object value="+value+", boolean isSelected="+isSelected+", int r, int c)");
     	return tree;
     }
  
@@ -39,17 +39,17 @@ public class TreetableCellEditor extends AbstractCellEditor implements TableCell
             int doubleClick = 2;
             final MouseEvent newME = 
             		new MouseEvent(tree, me.getID(), me.getWhen(), me.getModifiers(), me.getX() - table.getCellRect(0, colunm1, true).x, me.getY(), doubleClick, me.isPopupTrigger());
-            log.debug("isCellEditable(EventObject e=" + e +"): dispatching ...");
+            log.trace("isCellEditable(EventObject e=" + e +"): dispatching ...");
             tree.dispatchEvent(newME);
         } else {
-        	 log.debug("isCellEditable(EventObject e="+e+"): ignoring ...");
+        	 log.trace("isCellEditable(EventObject e="+e+"): ignoring ...");
         }
         return false;
     }
  
     @Override
     public Object getCellEditorValue() {
-    	log.debug("getCellEditorValue(): returning null");
+    	log.trace("getCellEditorValue(): returning null");
         return null;
     }
  
