@@ -20,7 +20,7 @@ public final class TreetableModelImpl extends TreetableModelAbstraction {
  
     // Types of the columns
     private static Class<?>[] columnTypes = { 
-    	TreetableModel.class, Long.class, Integer.class, Integer.class, Integer.class, Record.class};
+    	TreetableModel.class, Long.class, Integer.class, Integer.class, Integer.class, Object.class};
     
     /**
      * 
@@ -79,7 +79,6 @@ public final class TreetableModelImpl extends TreetableModelAbstraction {
    
     @Override
     public void setValueAt(Object value, Object node, int column) {
-    	 log.trace("setValueAt(Object value="+value+", Object node="+node.toString()+", int column="+column+")");
     	 switch (column) {
          case 0:
          case 1:
@@ -90,6 +89,7 @@ public final class TreetableModelImpl extends TreetableModelAbstraction {
         	 break;
         	 
          case 5:
+        	 log.trace("setValueAt(Object value="+value+", Object node="+node.toString()+", int column="+column+")");
         	 ((Node) node).setContents(value);
         	 break;
          

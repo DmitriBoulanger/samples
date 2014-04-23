@@ -1,5 +1,7 @@
 package de.dbo.samples.gui.swing.treetable.api.records;
 
+import static de.dbo.samples.gui.swing.treetable.api.records.RecordRelativeTimestamp.*;
+
 import de.dbo.samples.gui.swing.treetable.api.records.Path;
 import de.dbo.samples.gui.swing.treetable.api.records.Record;
  
@@ -83,7 +85,7 @@ public abstract class RecordAbstraction implements Record {
 	
 	@Override
 	public RecordRelativeTimestamp relativeTimestamp() {
-		return recordRelativeTimestamp;
+		return null != recordRelativeTimestamp? recordRelativeTimestamp : TIMESTAMP_NULL;
 	}
 	
 	/**
