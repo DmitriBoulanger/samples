@@ -59,7 +59,7 @@ public final class TreetableModelImpl extends TreetableModelAbstraction {
         case 1:
         case 2:
         case 3:
-        	final String[] timestamp = getTimestamp( (Node) node) .split("-");
+        	final String[] timestamp = formatTimestamp(node);
         	return integer(timestamp[column-1]);
         case 4:
        	     return ((Node) node).getContents();
@@ -78,20 +78,25 @@ public final class TreetableModelImpl extends TreetableModelAbstraction {
     }
     
    
-    private final String getTimestamp(final Node node) {
-    	if (null==node) {
-    		return TIMESTAMP_NULL;
-    	}
-    	final Long firstTimestamp = getFirstTimestamp();
-    	if (null==firstTimestamp) {
-    		return TIMESTAMP_NULL;
-    	}
-    	final Record record = (Record) node.getContents();
-    	if (null==record) {
-    		return TIMESTAMP_NULL;
-    	}
-    	return formatMs( record.getTimestamp() - firstTimestamp) ;
-    }
+	private final String[] formatTimestamp(final Object o) {
+		final String ret;
+		if (null == o) {
+			ret = TIMESTAMP_NULL;
+		} else {
+			final Long firstTimestamp = getFirstTimestamp();
+			if (null == firstTimestamp) {
+				ret = TIMESTAMP_NULL;
+			} else {
+				final Record record = (Record) ((Node)o).getContents();
+				if (null == record) {
+					ret = TIMESTAMP_NULL;
+				} else {
+					ret = formatMs(record.getTimestamp() - firstTimestamp);
+				}
+			}
+		}
+		return ret.split(TIMESTAMP_SEPARATOR);
+	}
     
     @Override
     public void setValueAt(Object value, Object node, int column) {
