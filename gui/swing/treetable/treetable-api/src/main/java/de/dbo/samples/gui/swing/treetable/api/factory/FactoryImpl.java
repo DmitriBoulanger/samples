@@ -1,5 +1,7 @@
 package de.dbo.samples.gui.swing.treetable.api.factory;
 
+import java.lang.reflect.*;
+import de.dbo.samples.gui.swing.treetable.api.gui.TreetableColumns;
 import de.dbo.samples.gui.swing.treetable.api.gui.TreetableModel;
 import de.dbo.samples.gui.swing.treetable.api.records.Node;
 import de.dbo.samples.gui.swing.treetable.api.records.Record;
@@ -16,6 +18,8 @@ final class FactoryImpl implements Factory  {
 	protected Class<?> treetableModelClass;
 	
 	protected RecordProvider recordProvider;
+	
+	protected TreetableColumns treetableColumns;
 	
 	protected FactoryImpl() {
 		
@@ -38,9 +42,14 @@ final class FactoryImpl implements Factory  {
 	}
 	
 	@Override
-	public TreetableModel treeTableModel(final Node root) {
+	public TreetableModel newTreeTableModel(final Node root) {
+		final TreetableColumns treetableColumns = getTreetableColumns();
+		if (null==treetableColumns) {
+			throw new FactoryException("Can't get treetableColumns (NULL)");
+		}
 		try {
-			final TreetableModel treeTableModel = (TreetableModel) treetableModelClass.newInstance();
+			final Constructor<?> constructor = treetableModelClass.getConstructor(TreetableColumns.class);
+			final TreetableModel treeTableModel = (TreetableModel) constructor.newInstance(treetableColumns);
 			treeTableModel.setRoot(root);
 			return treeTableModel;
 		} catch (Exception e) {
@@ -91,5 +100,18 @@ final class FactoryImpl implements Factory  {
 	public void setRecordProvider(RecordProvider recordProvider) {
 		this.recordProvider = recordProvider;
 	}
+
+	@Override
+	@Required
+	public TreetableColumns getTreetableColumns() {
+		return treetableColumns;
+	}
+
+	@Override
+	public void setTreetableColumns(final TreetableColumns treetableColumns) {
+		this.treetableColumns = treetableColumns;
+	}
+	
+	
 
 }

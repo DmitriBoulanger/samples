@@ -41,7 +41,7 @@ public class RecordsTest {
 	
 	private Node treeroot = null;
 	
-	private static final Factory factory = FactoryMgr.instance("ReferenceImplementation.properties");
+	private static final Factory factory = FactoryMgr.instance("ReferenceImplementation.xml");
 	
 	public Node getTreeroot() {
 		recordTreeGenerator();

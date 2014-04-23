@@ -1,34 +1,18 @@
 package de.dbo.samples.gui.swing.treetable.impl.data;
  
-import de.dbo.samples.gui.swing.treetable.api.gui.TreetableModel;
 import de.dbo.samples.gui.swing.treetable.api.gui.TreetableModelAbstraction;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
- 
 public final class DataTreetableModel extends TreetableModelAbstraction {
-	private static final Logger log = LoggerFactory.getLogger(DataTreetableModel.class);
 	
-    // Names of the columns
-    private static  String[] columnNames = { 
-    	"PathAbsraction", "Timestamp", "UUID" ,"Tag/Component", "Object" };
- 
-    // Types of the columns
-    private static Class<?>[] columnTypes = { 
-    	TreetableModel.class, Long.class,  String.class,  String.class, Object.class };
- 
     /**
      * 
      * @param root complete data-structure 
      */
     public DataTreetableModel(Object root) {
-        super();
+        super(new DataTreetableColumns()); 
         setRoot(root);
     }
     
-    
-   
- 
     @Override
     public Object getChild(Object parent, int index) {
         return ((DataNode) parent).getChildren().get(index);
@@ -37,21 +21,6 @@ public final class DataTreetableModel extends TreetableModelAbstraction {
     @Override
     public int getChildCount(Object parent) {
         return ((DataNode) parent).getChildren().size();
-    }
- 
-    @Override
-    public int getColumnCount() {
-        return columnNames.length;
-    }
- 
-    @Override
-    public String getColumnName(int column) {
-        return columnNames[column];
-    }
- 
-    @Override
-    public Class<?> getColumnClass(int column) {
-        return columnTypes[column];
     }
  
     @Override
@@ -98,12 +67,12 @@ public final class DataTreetableModel extends TreetableModelAbstraction {
  
     @Override
     public void setValueAt(Object value, Object node, int column) {
-    	 log.debug("setValueAt(Object value="+value+", Object node="+node.toString()+", int column="+column+") ...");
+    	 log.trace("setValueAt(Object value="+value+", Object node="+node.toString()+", int column="+column+") ...");
     	 final DataNode datanode = (DataNode) node;
     	 switch (column) {
          case 0:
          case 1:
-        	 log.debug("setValueAt(Object value="+value+", Object node="+node.toString()+", int column="+column+") rejected");
+        	 log.trace("setValueAt(Object value="+value+", Object node="+node.toString()+", int column="+column+") rejected");
         	 break;
         	 
          case 2:

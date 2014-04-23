@@ -1,6 +1,7 @@
 package de.dbo.samples.gui.swing.treetable.impl.ref;
 
 import de.dbo.samples.gui.swing.treetable.api.records.Record;
+import de.dbo.samples.gui.swing.treetable.api.records.RecordProvider;
 import de.dbo.samples.gui.swing.treetable.api.records.RecordProviderAbstraction;
 import de.dbo.samples.gui.swing.treetable.impl.ref.data.Records;
 import de.dbo.samples.gui.swing.treetable.impl.ref.data.Records1;
@@ -9,12 +10,16 @@ import de.dbo.samples.gui.swing.treetable.impl.ref.data.Records2;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class RecordProviderImpl extends RecordProviderAbstraction {
+	private static final Logger log = LoggerFactory.getLogger(RecordProvider.class);
 
 	final Records records = new Records();
 	
 	public RecordProviderImpl() {
-		super();
+		log.trace("created");
 	}
 	
 	@Override

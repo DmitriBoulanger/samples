@@ -1,33 +1,19 @@
 package de.dbo.samples.gui.swing.treetable.impl.ref;
  
+import de.dbo.samples.gui.swing.treetable.api.gui.TreetableColumns;
 import de.dbo.samples.gui.swing.treetable.api.gui.TreetableException;
-import de.dbo.samples.gui.swing.treetable.api.gui.TreetableModel;
 import de.dbo.samples.gui.swing.treetable.api.gui.TreetableModelAbstraction;
 import de.dbo.samples.gui.swing.treetable.api.records.Node;
 import de.dbo.samples.gui.swing.treetable.api.records.Record;
-
-
 import de.dbo.samples.gui.swing.treetable.api.records.RecordRelativeTimestamp;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 public final class TreetableModelImpl extends TreetableModelAbstraction {
-	private static final Logger log = LoggerFactory.getLogger(TreetableModelImpl.class);
 	
-    // Names of the columns
-    private static  String[] columnNames = {"Path", "NR", "MM", "SS", "MS", "Record" };
- 
-    // Types of the columns
-    private static Class<?>[] columnTypes = { 
-    	TreetableModel.class, Long.class, Integer.class, Integer.class, Integer.class, Object.class};
-    
     /**
      * 
-     * @param root complete data-structure 
      */
-    public TreetableModelImpl() {
-        super();
+    public TreetableModelImpl(final TreetableColumns treetableColumnsUI) {
+        super(treetableColumnsUI);
     }
     
     @Override
@@ -109,18 +95,5 @@ public final class TreetableModelImpl extends TreetableModelAbstraction {
         return ((Node) parent).getChildren().size();
     }
  
-    @Override
-    public int getColumnCount() {
-        return columnNames.length;
-    }
- 
-    @Override
-    public String getColumnName(int column) {
-        return columnNames[column];
-    }
- 
-    @Override
-    public Class<?> getColumnClass(int column) {
-        return columnTypes[column];
-    }
+  
 }

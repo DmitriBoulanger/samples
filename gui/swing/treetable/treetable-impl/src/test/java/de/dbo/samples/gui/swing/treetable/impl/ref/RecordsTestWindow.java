@@ -1,5 +1,7 @@
 package de.dbo.samples.gui.swing.treetable.impl.ref;
 
+import static de.dbo.samples.gui.swing.treetable.impl.ref.RecordsWindowResources.*;
+
 import de.dbo.samples.gui.swing.treetable.api.Window;
 import de.dbo.samples.gui.swing.treetable.api.gui.Treetable;
 import de.dbo.samples.gui.swing.treetable.api.gui.TreetableModel;
@@ -38,8 +40,7 @@ public class RecordsTestWindow extends Window {
         log.info("Elapsed " + (System.currentTimeMillis()-start2) + " ms. to create tree-root" );
         
         // Model
-        final TreetableModel model = new TreetableModelImpl();
-        model.setRoot(root);
+        final TreetableModel model = factory("ReferenceImplementation.xml").newTreeTableModel(root);
         
         // Treetable
         final Treetable treetable = new Treetable(model);

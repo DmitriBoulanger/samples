@@ -1,5 +1,6 @@
 package de.dbo.samples.gui.swing.treetable.api.factory;
 
+import de.dbo.samples.gui.swing.treetable.api.gui.TreetableColumns;
 import de.dbo.samples.gui.swing.treetable.api.gui.TreetableModel;
 import de.dbo.samples.gui.swing.treetable.api.records.Node;
 import de.dbo.samples.gui.swing.treetable.api.records.Record;
@@ -47,7 +48,7 @@ public interface Factory  {
 	 *         
 	 * @return mode-instance
 	 */
-	public TreetableModel treeTableModel(final Node root);
+	public TreetableModel newTreeTableModel(final Node root);
 
 	// configuration methods
 	
@@ -60,6 +61,12 @@ public interface Factory  {
 	public void setTreetableModelClass(final Class<?> treetableModelClass);
 	
 	public RecordProvider getRecordProvider();
-
+	
 	public void setRecordProvider(final RecordProvider recordProvider);
+	
+	public TreetableColumns getTreetableColumns();
+	
+	public void setTreetableColumns(TreetableColumns treetableColumns);
+
+	
 }

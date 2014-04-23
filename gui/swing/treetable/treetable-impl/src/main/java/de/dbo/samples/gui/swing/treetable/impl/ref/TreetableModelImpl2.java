@@ -1,34 +1,21 @@
 package de.dbo.samples.gui.swing.treetable.impl.ref;
  
+import de.dbo.samples.gui.swing.treetable.api.gui.TreetableColumns;
 import de.dbo.samples.gui.swing.treetable.api.gui.TreetableException;
-import de.dbo.samples.gui.swing.treetable.api.gui.TreetableModel;
 import de.dbo.samples.gui.swing.treetable.api.gui.TreetableModelAbstraction;
 import de.dbo.samples.gui.swing.treetable.api.records.Node;
 import de.dbo.samples.gui.swing.treetable.api.records.Record;
 
-
 import de.dbo.samples.gui.swing.treetable.api.records.RecordRelativeTimestamp;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 public final class TreetableModelImpl2 extends TreetableModelAbstraction {
-	private static final Logger log = LoggerFactory.getLogger(TreetableModelImpl.class);
 	
-    // Names of the columns
-    private static  String[] columnNames = {"Path", "NR", "Timestamp", "Record" };
- 
-    // Types of the columns
-    private static Class<?>[] columnTypes = { 
-    	TreetableModel.class, Long.class, String.class, Object.class};
-    
     /**
      * 
-     * @param root complete data-structure 
      */
-    public TreetableModelImpl2() {
-        super();
-    }
+	 public TreetableModelImpl2(final TreetableColumns treetableColumnsUI) {
+	        super(treetableColumnsUI);
+	 }
     
     @Override
     public boolean isCellEditable(Object node, int column) {
@@ -103,20 +90,5 @@ public final class TreetableModelImpl2 extends TreetableModelAbstraction {
     @Override
     public int getChildCount(Object parent) {
         return ((Node) parent).getChildren().size();
-    }
- 
-    @Override
-    public int getColumnCount() {
-        return columnNames.length;
-    }
- 
-    @Override
-    public String getColumnName(int column) {
-        return columnNames[column];
-    }
- 
-    @Override
-    public Class<?> getColumnClass(int column) {
-        return columnTypes[column];
     }
 }

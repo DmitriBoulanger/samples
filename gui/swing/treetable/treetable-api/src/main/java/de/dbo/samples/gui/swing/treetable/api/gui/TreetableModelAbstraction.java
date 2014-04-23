@@ -18,7 +18,7 @@ import org.slf4j.LoggerFactory;
  *
  */
 public abstract class TreetableModelAbstraction implements TreetableModel {
-	private static final Logger log = LoggerFactory.getLogger(TreetableModelAbstraction.class);
+	protected static final Logger log = LoggerFactory.getLogger(TreetableModel.class);
 	
 	protected Long timestamp;
     protected Object root;
@@ -28,20 +28,29 @@ public abstract class TreetableModelAbstraction implements TreetableModel {
     private static final int INSERTED = 1;
     private static final int REMOVED = 2;
     private static final int STRUCTURE_CHANGED = 3;
- 
+    
+    private final TreetableColumns treetableColumns;
+    
+    protected TreetableModelAbstraction(final TreetableColumns treetableColumns) {
+    	if (null==treetableColumns) {
+    		throw new TreetableException("treetableColumns is null");
+    	}
+    	this.treetableColumns = treetableColumns;
+    	log.trace("created");
+    }
     
     @Override
-    public Object getRoot() {
+    public final Object getRoot() {
         return root;
     }
     
     @Override
-    public void setRoot(Object root) {
+    public final void setRoot(Object root) {
         this.root = root;
     }
     
 	@Override
-    public boolean isLeaf(Object node) {
+    public final boolean isLeaf(Object node) {
         return getChildCount(node) == 0;
     }
  
@@ -106,9 +115,24 @@ public abstract class TreetableModelAbstraction implements TreetableModel {
                 default:
                     break;
                 }
- 
             }
         }
+    }
+    
+    
+    @Override
+    public final int getColumnCount() {
+        return treetableColumns.getColumnNames().length;
+    }
+ 
+    @Override
+    public final String getColumnName(int column) {
+        return treetableColumns.getColumnNames()[column];
+    }
+ 
+    @Override
+    public final Class<?> getColumnClass(int column) {
+        return treetableColumns.getColumnTypes()[column];
     }
  
 }

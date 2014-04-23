@@ -61,7 +61,7 @@ public class Treetable extends JTable {
         
         getTableHeader().setReorderingAllowed(false);
         
-        log.debug("created");
+        log.trace("created");
     }
     
     //

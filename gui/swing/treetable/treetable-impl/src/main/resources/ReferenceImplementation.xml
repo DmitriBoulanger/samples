@@ -17,9 +17,16 @@
 			value="de.dbo.samples.gui.swing.treetable.impl.ref.TreetableModelImpl"/> 
 		<property name="recordProvider" 
 			ref="recordProvider"/> 
+		<property name="treetableColumns" 
+			ref="treetableColumns"/> 
+	</bean>
+	
+	<bean id="treetableColumns" class="de.dbo.samples.gui.swing.treetable.impl.ref.TreetableColumnsImpl">
 	</bean>
 	
 	<bean id="recordProvider" class="de.dbo.samples.gui.swing.treetable.impl.ref.RecordProviderImpl" >
 	</bean>
+	
+	
 
 </beans>
