@@ -10,27 +10,6 @@ public class FactoryMgrTest {
 	private static final Logger log = LoggerFactory.getLogger(FactoryMgrTest.class);
 	
 	@Test
-	public void testProperties() {
-		FactoryMgr.clear();
-		final long start = System.currentTimeMillis();
-	    final Factory factory = FactoryMgr.instance("ReferenceImplementation.properties");
-	    final Class<?> nodeClass = factory.getNodeClass();
-	    final Class<?> modelClass = factory.getTreetableModelClass();
-	    log.info("Elapsed " + (System.currentTimeMillis()-start) 
-	    		+ " ms. creating factory from properties");
-	    assertClassNames(nodeClass,modelClass);
-	    
-	    final Factory factory2 = FactoryMgr.instance("ReferenceImplementation.properties");
-	    assertTrue("Factory from properties is not a singelton"
-	    		,factory==factory2);
-	    
-	    FactoryMgr.clear();
-	    final Factory factory3 = FactoryMgr.instance("ReferenceImplementation.properties");
-	    assertFalse("No new factory from properties after clear"
-	    		,factory==factory3);
-	}
-	
-	@Test
 	public void testCtx() {
 		FactoryMgr.clear();
 		final long start = System.currentTimeMillis();
