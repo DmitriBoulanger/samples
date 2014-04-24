@@ -171,19 +171,52 @@ public final class TreetablePane extends JPanel implements ActionListener {
 	 *  
 	 * @param jFrame
 	 */
-	public void setup(final JFrame jFrame) {
+	public final void allocateItselfInside(final JFrame jFrame, boolean createMenuBar) {
+		jFrame.setLayout(new GridBagLayout());
+		if (createMenuBar) {
+			// menu-bar
+			final JMenuBar jMenuBar = new JMenuBar();
+			jMenuBar.setLayout(new GridBagLayout());
+			int x = 0;
+			jMenuBar.add(getControlsPane(), gbc1xManyLeft_X(x++, 0));
+			jMenuBar.add(getStatusPane(), gbc1xManyRight_X(x++, 0));
+
+			// frame
+			jFrame.setJMenuBar(jMenuBar);
+			jFrame.add(this, gbc1x1());
+		} else {
+			final JPanel pane = new JPanel();
+			allocateItselfInside(pane);
+			jFrame.add(pane,gbc1x1());
+		}
+	}
+	
+    public final void allocateItselfInside(final JPanel jPanel) {
+    	jPanel.setLayout(new GridBagLayout());
+        jPanel.setBackground(getBackground());
 		
 		// menu-bar
-		final JMenuBar jMenuBar =  new JMenuBar();
-        jMenuBar.setLayout(new GridBagLayout());
-        int x = 0;
-        jMenuBar.add(getControlsPane(),gbc1xManyLeft(x++,0));
-        jMenuBar.add(getStatusPane(),gbc1xManyRight(x++,0));
+    	int x = 0;
+		final JPanel menuBar =  new JPanel();
+		menuBar.setBackground(getBackground());
+        menuBar.setLayout(new GridBagLayout());
+        menuBar.add(getControlsPane(),gbc1xManyLeft_X(x++,0));
+        menuBar.add(getStatusPane(),gbc1xManyRight_X(x++,0));
+        menuBar.setMaximumSize(new Dimension(25,10000));
 
-        // frame
-        jFrame.setJMenuBar(jMenuBar);
-        jFrame.setLayout(new GridBagLayout());
-        jFrame.add(this,gbc1x1());
+        // parent
+        int y = 0;
+        GridBagConstraints gbc = null;
+        final GridBagLayout gbl = new GridBagLayout();
+        jPanel.setLayout(gbl);
+        gbc = gbc1xMany_Y(y++);
+        gbc.weighty = 0.0;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        jPanel.add(menuBar,gbc);
+        gbc = gbc1xMany_Y(y++);
+        gbc.weighty = 1.0;
+        gbc.fill = GridBagConstraints.BOTH;
+        jPanel.add(this,gbc1xMany_Y(y++));
 	}
 	
 	@Override
@@ -338,8 +371,7 @@ public final class TreetablePane extends JPanel implements ActionListener {
 		recordCounterTextField.setText("" + recordCounter);
 	}
 	
-	
-	// HELPERS (used in constructor)
+	// HELPERS (components used in the constructor)
 	
 	protected static JTextField textfield(final int columns, final String tooltip) {
 		final JTextField jTextField = new JTextField();
@@ -381,8 +413,11 @@ public final class TreetablePane extends JPanel implements ActionListener {
 		final JButton jButton = new JButton(icon);
 		jButton.setToolTipText(tooltip);
 		jButton.setFocusable(false);
+		jButton.setPreferredSize(new Dimension(20, 20));
 		return jButton;
 	}
+	
+	// HELPERS (GridBag-constraints used in the constructor)
 	
 	private static final GridBagConstraints gbc1x1() {
 		final GridBagConstraints gbc = new GridBagConstraints();
@@ -394,7 +429,17 @@ public final class TreetablePane extends JPanel implements ActionListener {
 		return gbc;
 	}
 	
-	private static final GridBagConstraints gbc1xManyLeft(final int x, final int inset) {
+	private static final GridBagConstraints gbc1xMany_Y(int y) {
+		final GridBagConstraints gbc = new GridBagConstraints();
+		gbc.gridx = 0;
+		gbc.gridy = y;
+		gbc.fill = GridBagConstraints.BOTH;
+		gbc.weightx = 1.0;
+		gbc.weighty = 1.0;
+		return gbc;
+	}
+	
+	private static final GridBagConstraints gbc1xManyLeft_X(final int x, final int inset) {
 		final GridBagConstraints gbc = new GridBagConstraints();
 		gbc.gridx = x;
 		gbc.gridy = 0;
@@ -406,7 +451,7 @@ public final class TreetablePane extends JPanel implements ActionListener {
 		return gbc;
 	}
 	
-	private static final GridBagConstraints gbc1xManyRight(final int x, final int inset) {
+	private static final GridBagConstraints gbc1xManyRight_X(final int x, final int inset) {
 		final GridBagConstraints gbc = new GridBagConstraints();
 		gbc.gridx = x;
 		gbc.gridy = 0;

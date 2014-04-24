@@ -15,6 +15,15 @@ import java.awt.GridBagConstraints;
 import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
 
+/**
+ * Using plain Treetable-API (no Spring)
+ * 
+ * @author Dmitri Boulanger, Hombach
+ *
+ * D. Knuth: Programs are meant to be read by humans and 
+ *           only incidentally for computers to execute 
+ *
+ */
 public class DataWindow extends Window {
 	private static final long serialVersionUID = 4489500964556705612L;
 
@@ -47,18 +56,13 @@ public class DataWindow extends Window {
         jScrollPane.getViewport().setBackground(BACKGROUND);
         
         // JFrame
-        add(jScrollPane, gbc1x1());
-        setPreferredSize(new Dimension(800,700));
-    }
-	
-	private static final GridBagConstraints gbc1x1() {
-		final GridBagConstraints gbc = new GridBagConstraints();
+        final GridBagConstraints gbc = new GridBagConstraints();
 		gbc.gridx = 0;
 		gbc.gridy = 0;
 		gbc.fill = GridBagConstraints.BOTH;
 		gbc.weightx = 1.0;
 		gbc.weighty = 1.0;
-		return gbc;
-	}
-	
+        add(jScrollPane, gbc);
+        setPreferredSize(new Dimension(800,700));
+    }
 }

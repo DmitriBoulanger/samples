@@ -8,20 +8,60 @@ import javax.swing.JLabel;
 
 public interface TreetableUI {
 
+	/**
+	 * 16x16 icon
+	 * 
+	 * @return icon
+	 */
 	public abstract ImageIcon getIconRefresh();
 
+	/**
+	 * 16x16 icon
+	 * 
+	 * @return icon
+	 */
 	public abstract ImageIcon getIconUpdate();
 
+	/**
+	 * 16x16 icon
+	 * 
+	 * @return icon
+	 */
 	public abstract ImageIcon getIconExpand();
 
+	/**
+	 * 16x16 icon
+	 * 
+	 * @return icon
+	 */
 	public abstract ImageIcon getIconCollapse();
 
+	/**
+	 * 16x16 icon
+	 * 
+	 * @return icon
+	 */
 	public abstract ImageIcon getIconClear();
 
+	/**
+	 * JLabel with 16x16 icon inside
+	 * 
+	 * @return icon
+	 */
 	public abstract JLabel getIconLabelDone();
 
+	/**
+	 * JLabel with 16x16 icon inside
+	 * 
+	 * @return icon
+	 */
 	public abstract JLabel getIconLabelLocked();
 
+	/**
+	 * JLabel with 16x16 icon inside
+	 * 
+	 * @return icon
+	 */
 	public abstract JLabel getIconLabelUnlocked();
 	
 	public abstract Color getBackground();
@@ -30,6 +70,11 @@ public interface TreetableUI {
 	
 	public abstract Color getSelection();
 	
+	/**
+	 * mono-space, e.g CONSOLAS
+	 * 
+	 * @return icon
+	 */
 	public abstract Font getFont();
 	
 }

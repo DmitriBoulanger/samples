@@ -11,6 +11,15 @@ import javax.swing.UIManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * Default window for treetable-components.
+ * 
+ * @author Dmitri Boulanger, Hombach
+ *
+ * D. Knuth: Programs are meant to be read by humans and 
+ *           only incidentally for computers to execute 
+ *
+ */
 public abstract class Window extends JFrame {
 	protected static final long serialVersionUID = 4489500964556705612L;
 	protected static final Logger log = LoggerFactory.getLogger(Window.class);
@@ -23,10 +32,15 @@ public abstract class Window extends JFrame {
 	 * 
 	 * @param context  Spring-context to initialize Treetable-Factory
 	 */
-	protected Window(final String context, final String title) {
+	protected Window(final String context, final String title
+			, final boolean createMenuBar) {
         super(title + " - " + context);
         setLayout(new GridBagLayout());
-        new TreetablePane(factory(context)).setup(this);
+        new TreetablePane(factory(context)).allocateItselfInside(this, createMenuBar);
+    }
+	
+	protected Window(final String context, final String title) {
+        this(context,title,false);
     }
 	
 	/**
@@ -38,14 +52,18 @@ public abstract class Window extends JFrame {
         super(title);
         setLayout(new GridBagLayout());
     }
-	 
+	
+	/**
+	 * pack everything, 
+	 * locate in the screen-center on the top and make itself visible
+	 */
 	public void showup() {
 	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		pack();
 		setAlwaysOnTop(true);
 		setLocationRelativeTo(null);
 		setVisible(true);
-		log.info("elapsed " + (System.currentTimeMillis()-start0) + " ms." );
+		log.debug("elapsed " + (System.currentTimeMillis()-start0) + " ms." );
 	}
 	
 	//
@@ -55,7 +73,7 @@ public abstract class Window extends JFrame {
 	protected static final Factory factory(final String ctx) {
 		final long start = System.currentTimeMillis();
         final Factory factory = FactoryManager.instance(ctx);
-        log.trace("elapsed " 
+        log.debug("elapsed " 
         		+ (System.currentTimeMillis() - start) + " ms. creating tree-table factory" );
         return factory;
 	}
