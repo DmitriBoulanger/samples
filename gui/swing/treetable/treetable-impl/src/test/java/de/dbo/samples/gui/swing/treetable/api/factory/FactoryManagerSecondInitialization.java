@@ -13,8 +13,8 @@ import org.slf4j.LoggerFactory;
  *           only incidentally for computers to execute 
  *
  */
-public class FactoryMgrSecondInitialization {
-	private static final Logger log = LoggerFactory.getLogger(FactoryMgrSecondInitialization.class);
+public class FactoryManagerSecondInitialization {
+	private static final Logger log = LoggerFactory.getLogger(FactoryManagerSecondInitialization.class);
 	
 	
 	/*
@@ -23,13 +23,13 @@ public class FactoryMgrSecondInitialization {
     @Test
 	public void testCtxSecondInitialization() {
 		FactoryManager.clear();
-		FactoryManager.instance("ReferenceImplementation.xml");
+		FactoryManager.getFactory("ReferenceImplementation.xml");
 		FactoryManager.clear();
 		final long start = System.currentTimeMillis();
-		final Factory factory = FactoryManager.instance("ReferenceImplementation.xml");
+		final Factory factory = FactoryManager.getFactory("ReferenceImplementation.xml");
 		factory.getNodeClass();
 	    factory.getTreetableModelClass();
-		log.info("Elapsed " + (System.currentTimeMillis()-start) 
-				+ " ms. creating factory from context (second initialization)");
+		log.info("elapsed " + (System.currentTimeMillis()-start) 
+				+ " ms. creating factory (second initialization)");
 	}
 }

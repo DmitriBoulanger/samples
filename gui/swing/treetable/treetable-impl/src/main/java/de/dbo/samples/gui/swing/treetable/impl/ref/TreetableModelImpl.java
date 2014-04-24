@@ -12,8 +12,8 @@ public final class TreetableModelImpl extends TreetableModelAbstraction {
     /**
      * 
      */
-    public TreetableModelImpl(final TreetableColumns treetableColumnsUI) {
-        super(treetableColumnsUI);
+    public TreetableModelImpl(final TreetableColumns treetableColumns) {
+        super(treetableColumns);
     }
     
     @Override

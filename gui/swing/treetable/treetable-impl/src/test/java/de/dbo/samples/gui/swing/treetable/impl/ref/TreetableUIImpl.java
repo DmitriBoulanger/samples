@@ -33,6 +33,10 @@ public class TreetableUIImpl implements TreetableUI {
 	public static final Color SELECTION = new Color(168,208,245);
 	public static final Color FOREGROUND = Color.BLACK;
 	
+	public TreetableUIImpl(){
+		log.trace("created");
+	}
+	
 	@Override
 	public ImageIcon getIconRefresh() {
 		return iconRefresh;

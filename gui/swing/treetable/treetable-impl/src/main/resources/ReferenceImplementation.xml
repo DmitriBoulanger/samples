@@ -15,18 +15,17 @@
 			value="de.dbo.samples.gui.swing.treetable.impl.ref.NodeImpl"/> 
 		<property name="treetableModelClass" 
 			value="de.dbo.samples.gui.swing.treetable.impl.ref.TreetableModelImpl"/> 
-			
-		<property name="recordProvider" ref="recordProvider"/> 
-		<property name="treetableColumns" ref="treetableColumns"/> 
-		<property name="treetableUI" ref="treetableUI"/> 
-	</bean>
-	
-	<bean id="treetableColumns" class="de.dbo.samples.gui.swing.treetable.impl.ref.TreetableColumnsImpl"
-		scope="prototype">
+		
+		<property name="treetableUI" ref="treetableUI"/>   
+		
 	</bean>
 	
 	<bean id="treetableUI" class="de.dbo.samples.gui.swing.treetable.impl.ref.TreetableUIImpl"
 		scope="singleton">
+	</bean>
+	
+	<bean id="treetableColumns" class="de.dbo.samples.gui.swing.treetable.impl.ref.TreetableColumnsImpl"
+		scope="prototype">
 	</bean>
 	
 	<bean id="recordProvider" class="de.dbo.samples.gui.swing.treetable.impl.ref.RecordProviderImpl" 

@@ -15,25 +15,25 @@ import static org.junit.Assert.*;
  *           only incidentally for computers to execute 
  *
  */
-public class FactoryMgrTest {
-	private static final Logger log = LoggerFactory.getLogger(FactoryMgrTest.class);
+public class FactoryManagerTest {
+	private static final Logger log = LoggerFactory.getLogger(FactoryManagerTest.class);
 	
 	@Test
 	public void testCtx() {
 		FactoryManager.clear();
 		final long start = System.currentTimeMillis();
-		final Factory factory = FactoryManager.instance("ReferenceImplementation.xml");
+		final Factory factory = FactoryManager.getFactory("ReferenceImplementation.xml");
 		final Class<?> nodeClass = factory.getNodeClass();
 		final Class<?> modelClass = factory.getTreetableModelClass();
-		log.info("Elapsed " + (System.currentTimeMillis() - start)+ " ms. creating factory from context");
+		log.info("elapsed " + (System.currentTimeMillis() - start)+ " ms. creating factory from context");
 		assertClassNames(nodeClass, modelClass);
 
-		final Factory factory2 = FactoryManager.instance("ReferenceImplementation.xml");
+		final Factory factory2 = FactoryManager.getFactory("ReferenceImplementation.xml");
 		assertTrue("Factory from context is not a singelton",
 				factory == factory2);
 		
 		FactoryManager.clear();
-		final Factory factory3 = FactoryManager.instance("ReferenceImplementation.xml");
+		final Factory factory3 = FactoryManager.getFactory("ReferenceImplementation.xml");
 	    assertFalse("No new factory from properties after clear",factory==factory3);
 	}
 	
@@ -48,18 +48,27 @@ public class FactoryMgrTest {
 	@Test(expected=FactoryException.class)
 	public void testErr() {
 		FactoryManager.clear();
-	    FactoryManager.instance("bla.bla");
+	    FactoryManager.getFactory("bla.bla");
 	}
 	
-	@Test(expected=FactoryException.class)
-	public void testErrProperties() {
-		FactoryManager.clear();
-	    FactoryManager.instance("x.properties");
+	@Test
+	public void treetableUI() {
+		final Factory factory = FactoryManager.getFactory("ReferenceImplementation.xml");
+		assertTrue("TreetableUI should be a singelton"
+				,factory.getTreetableUI()==factory.getTreetableUI());
 	}
 	
-	@Test(expected=FactoryException.class)
-	public void testErrCtx() {
-		FactoryManager.clear();
-	    FactoryManager.instance("x.xml");
+	@Test
+	public void treetableColumns() {
+		final Factory factory = FactoryManager.getFactory("ReferenceImplementation.xml");
+		assertFalse("TreetableColumns should not be a singelton"
+				,factory.newTreetableColumns()==factory.newTreetableColumns());
+	}
+	
+	@Test
+	public void recordProvider() {
+		final Factory factory = FactoryManager.getFactory("ReferenceImplementation.xml");
+		assertFalse("TreetableColumns should not be a singelton"
+				,factory.newRecordProvider()==factory.newRecordProvider());
 	}
 }

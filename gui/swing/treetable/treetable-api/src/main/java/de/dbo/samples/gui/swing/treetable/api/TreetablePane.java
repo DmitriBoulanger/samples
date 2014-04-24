@@ -36,7 +36,11 @@ import org.slf4j.LoggerFactory;
 /**
  * Default Treetable-pane.
  * It consists of pane with tree-records (this), controls-pane
- * and status-pane
+ * and status-pane. An instance can performs self-deployment
+ * to a parent component.
+ * 
+ * @see #selfDeployTo(JPanel)
+ * @see #selfDeployTo(JFrame, boolean)
  * 
  * @author Dmitri Boulanger, Hombach
  *
@@ -97,7 +101,7 @@ public final class TreetablePane extends JPanel implements ActionListener {
 	 */
 	protected TreetablePane(final Factory factory) {
         this.factory = factory;
-        this.recordProvider = factory.getRecordProvider();
+        this.recordProvider = factory.newRecordProvider();
         this.treetableUI = factory.getTreetableUI();
         
         reloadButton = button(treetableUI.getIconRefresh()
@@ -142,7 +146,7 @@ public final class TreetablePane extends JPanel implements ActionListener {
         add(scrollPane, gbc1x1());
         
         // initialize treetable and UI
-        treetableColumns = factory.getTreetableColumns();
+        treetableColumns = factory.newTreetableColumns();
         loadTreetable();
         setStatus(UNLOCKED);
     }
@@ -171,9 +175,10 @@ public final class TreetablePane extends JPanel implements ActionListener {
 	 *  
 	 * @param jFrame
 	 */
-	public final void allocateItselfInside(final JFrame jFrame, boolean createMenuBar) {
+	public final void selfDeployTo(final JFrame jFrame, boolean createMenuBar) {
 		jFrame.setLayout(new GridBagLayout());
 		if (createMenuBar) {
+			log.trace("self-deployment to JFrame with JMenuBar-creation ...");
 			// menu-bar
 			final JMenuBar jMenuBar = new JMenuBar();
 			jMenuBar.setLayout(new GridBagLayout());
@@ -181,17 +186,18 @@ public final class TreetablePane extends JPanel implements ActionListener {
 			jMenuBar.add(getControlsPane(), gbc1xManyLeft_X(x++, 0));
 			jMenuBar.add(getStatusPane(), gbc1xManyRight_X(x++, 0));
 
-			// frame
 			jFrame.setJMenuBar(jMenuBar);
 			jFrame.add(this, gbc1x1());
 		} else {
+			log.trace("self-deployment to JFrame ...");
 			final JPanel pane = new JPanel();
-			allocateItselfInside(pane);
+			selfDeployTo(pane);
 			jFrame.add(pane,gbc1x1());
 		}
 	}
 	
-    public final void allocateItselfInside(final JPanel jPanel) {
+    public final void selfDeployTo(final JPanel jPanel) {
+    	log.trace("self-deployment to JPanel ...");
     	jPanel.setLayout(new GridBagLayout());
         jPanel.setBackground(getBackground());
 		
@@ -331,7 +337,7 @@ public final class TreetablePane extends JPanel implements ActionListener {
 		log.trace("elapsed " + (System.currentTimeMillis() - start) + " ms. creating tree-root"); 
 		
 		// treetable
-		treetableModel = factory.newTreeTableModel(root);
+		treetableModel = factory.newTreeTableModel(root,treetableColumns);
 		treetable = new Treetable(treetableModel);
 		treetable.setRootVisible(false);
 		treetable.setBasicUI(treetableUI);

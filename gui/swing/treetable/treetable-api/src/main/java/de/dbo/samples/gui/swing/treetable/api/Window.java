@@ -1,6 +1,5 @@
 package de.dbo.samples.gui.swing.treetable.api;
 
-import de.dbo.samples.gui.swing.treetable.api.factory.Factory;
 import de.dbo.samples.gui.swing.treetable.api.factory.FactoryManager;
 
 import java.awt.GridBagLayout;
@@ -36,7 +35,7 @@ public abstract class Window extends JFrame {
 			, final boolean createMenuBar) {
         super(title + " - " + context);
         setLayout(new GridBagLayout());
-        new TreetablePane(factory(context)).allocateItselfInside(this, createMenuBar);
+        new TreetablePane(FactoryManager.getFactory(context)).selfDeployTo(this, createMenuBar);
     }
 	
 	protected Window(final String context, final String title) {
@@ -69,14 +68,6 @@ public abstract class Window extends JFrame {
 	//
 	// HELPERS
 	// 
-	
-	protected static final Factory factory(final String ctx) {
-		final long start = System.currentTimeMillis();
-        final Factory factory = FactoryManager.instance(ctx);
-        log.debug("elapsed " 
-        		+ (System.currentTimeMillis() - start) + " ms. creating tree-table factory" );
-        return factory;
-	}
 	
 	protected static final void setLookAndFeel() {
 		try {

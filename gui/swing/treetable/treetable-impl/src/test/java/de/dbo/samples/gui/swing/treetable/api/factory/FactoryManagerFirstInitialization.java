@@ -14,8 +14,8 @@ import org.slf4j.LoggerFactory;
  *
  */
 
-public class FactoryMgrFirstInitialization {
-	private static final Logger log = LoggerFactory.getLogger(FactoryMgrFirstInitialization.class);
+public class FactoryManagerFirstInitialization {
+	private static final Logger log = LoggerFactory.getLogger(FactoryManagerFirstInitialization.class);
 	
 	
 	/*
@@ -25,11 +25,10 @@ public class FactoryMgrFirstInitialization {
 	public void testCtx() {
 		FactoryManager.clear();
 		final long start = System.currentTimeMillis();
-		final Factory factory = FactoryManager.instance("ReferenceImplementation.xml");
+		final Factory factory = FactoryManager.getFactory("ReferenceImplementation.xml");
 		factory.getNodeClass();
 	    factory.getTreetableModelClass();
-		log.info("Elapsed " + (System.currentTimeMillis()-start) 
-				+ " ms. creating factory from context");
+		log.info("elapsed " + (System.currentTimeMillis()-start) + " ms. creating factory");
 		 
 	}
 	

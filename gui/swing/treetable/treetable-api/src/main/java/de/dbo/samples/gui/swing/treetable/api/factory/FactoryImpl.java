@@ -10,6 +10,7 @@ import de.dbo.samples.gui.swing.treetable.api.records.Record;
 import de.dbo.samples.gui.swing.treetable.api.records.RecordProvider;
 
 import org.springframework.beans.factory.annotation.Required;
+import org.springframework.context.ApplicationContext;
 
 /**
  * Treetable Factory Implementation.
@@ -28,17 +29,19 @@ final class FactoryImpl implements Factory  {
 	
 	protected Class<?> treetableModelClass;
 	
-	protected RecordProvider recordProvider;
-	
-	protected TreetableColumns treetableColumns;
-	
 	protected TreetableUI treetableUI;
+	
+	private ApplicationContext ctx;
 	
 	/**
 	 * singleton instance initialized by Spring
 	 */
 	protected FactoryImpl() {
 		
+	}
+	
+	protected final void setApplicationContext(final ApplicationContext ctx) {
+		this.ctx = ctx;
 	}
 	
 	/**
@@ -70,8 +73,7 @@ final class FactoryImpl implements Factory  {
 	 * It is created using reflection (not Spring-bean prototype)
 	 */
 	@Override
-	public TreetableModel newTreeTableModel(final Node root) {
-		final TreetableColumns treetableColumns = getTreetableColumns();
+	public TreetableModel newTreeTableModel(final Node root, final TreetableColumns treetableColumns) {
 		if (null==treetableColumns) {
 			throw new FactoryException("Can't get treetableColumns (NULL)");
 		}
@@ -84,6 +86,25 @@ final class FactoryImpl implements Factory  {
 			throw new FactoryException("Can't create model-instance."  + " Root=" + root.getTreename(), e);
 		} 
 	}
+	
+	/**
+	 * new instance of record-provider.
+	 * Instance is created with the Spring-prototype bean 
+	 */
+	@Override
+	public RecordProvider newRecordProvider() {
+		return  (RecordProvider) ctx.getBean("recordProvider");
+	}
+
+	/**
+	 * new instance of column manager.
+	 * Instance is created with the Spring-prototype bean 
+	 */
+	@Override
+	public TreetableColumns newTreetableColumns() {
+		return (TreetableColumns) ctx.getBean("treetableColumns"); 
+	}
+	
 	
 	/**
 	 * tree-name of the root
@@ -128,39 +149,7 @@ final class FactoryImpl implements Factory  {
 	}
 	
 	/**
-	 * new instance of record-provider.
-	 * Instance is created with the Spring-prototype bean 
-	 */
-	@Override
-	@Required
-	public RecordProvider getRecordProvider() {
-		return recordProvider;
-	}
-
-	@Override
-	public void setRecordProvider(RecordProvider recordProvider) {
-		this.recordProvider = recordProvider;
-	}
-
-	/**
-	 * new instance of column manager.
-	 * Instance is created with the Spring-prototype bean 
-	 */
-	@Override
-	@Required
-	public TreetableColumns getTreetableColumns() {
-		return treetableColumns;
-	}
-
-	@Override
-	public void setTreetableColumns(final TreetableColumns treetableColumns) {
-		this.treetableColumns = treetableColumns;
-	}
-	
-	
-	/**
-	 * new instance of column manager.
-	 * Instance is created with the Spring-prototype bean 
+	 * UI constants.
 	 */
 	@Override
 	@Required

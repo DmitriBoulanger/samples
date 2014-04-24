@@ -3,7 +3,6 @@ package de.dbo.samples.spring.dependencyinjection.impl;
 import de.dbo.samples.spring.api.SpellChecker;
 import de.dbo.samples.spring.api.TextEditor;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

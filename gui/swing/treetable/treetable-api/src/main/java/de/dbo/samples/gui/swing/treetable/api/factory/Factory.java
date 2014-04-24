@@ -52,9 +52,13 @@ public interface Factory  {
 	 * @param root root-node of the tree. The complete
 	 *         tree is accessible using its children recursively
 	 *         
-	 * @return mode-instance
+	 * @return new node-instance
 	 */
-	public TreetableModel newTreeTableModel(final Node root);
+	public TreetableModel newTreeTableModel(final Node root, final TreetableColumns treetableColumns);
+	
+    public RecordProvider newRecordProvider();
+	
+	public TreetableColumns newTreetableColumns();
 
 	// configuration methods
 	
@@ -66,15 +70,7 @@ public interface Factory  {
 
 	public void setTreetableModelClass(final Class<?> treetableModelClass);
 	
-	public RecordProvider getRecordProvider();
-	
-	public void setRecordProvider(final RecordProvider recordProvider);
-	
-	public TreetableColumns getTreetableColumns();
-	
-	public void setTreetableColumns(TreetableColumns treetableColumns);
-	
-	public void setTreetableUI(TreetableUI treetableUI);
+    public void setTreetableUI(final TreetableUI treetableUI);
 	
 	public TreetableUI getTreetableUI();
 	

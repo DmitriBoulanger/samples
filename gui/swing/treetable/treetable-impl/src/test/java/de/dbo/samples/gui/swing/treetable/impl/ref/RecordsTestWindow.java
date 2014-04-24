@@ -6,6 +6,8 @@ import static de.dbo.samples.gui.swing.treetable.impl.ref.TreetableUIImpl.FOREGR
 import static de.dbo.samples.gui.swing.treetable.impl.ref.TreetableUIImpl.SELECTION;
 
 import de.dbo.samples.gui.swing.treetable.api.Window;
+import de.dbo.samples.gui.swing.treetable.api.factory.Factory;
+import de.dbo.samples.gui.swing.treetable.api.factory.FactoryManager;
 import de.dbo.samples.gui.swing.treetable.api.gui.Treetable;
 import de.dbo.samples.gui.swing.treetable.api.gui.TreetableModel;
 import de.dbo.samples.gui.swing.treetable.api.records.Node;
@@ -38,7 +40,9 @@ public class RecordsTestWindow extends Window {
         log.info("Elapsed " + (System.currentTimeMillis()-start2) + " ms. to create tree-root" );
         
         // Model
-        final TreetableModel model = factory("ReferenceImplementation.xml").newTreeTableModel(root);
+        final Factory factory = FactoryManager.getFactory("ReferenceImplementation.xml");
+        final TreetableModel model = 
+        		factory.newTreeTableModel(root, factory.newTreetableColumns());
         
         // Treetable
         final Treetable treetable = new Treetable(model);

@@ -27,9 +27,11 @@ public final class FactoryManager {
 		FACTORIES.clear();
 	}
 
-	public static final Factory instance(final String config) {
+	public static final Factory getFactory(final String config) {
+		final long start = System.currentTimeMillis();
 		final Factory exsistingInstance = FACTORIES.get(config);
 		if (null != exsistingInstance) {
+			log.trace("instance exists. Config="+ config);
 			return exsistingInstance;
 		}
 
@@ -40,13 +42,15 @@ public final class FactoryManager {
 			throw new FactoryException("Can't create context." + " Config="+ config, e);
 		}
 		
-		final Factory newInstance = (Factory) ctx.getBean("factory");
+		final FactoryImpl newInstance = (FactoryImpl) ctx.getBean("factory");
 		if (null==newInstance) {
 			throw new FactoryException("New factory instance is NULL. Config="+ config);
 		}
+		newInstance.setApplicationContext(ctx);
 		
 		FACTORIES.put(config, newInstance);
-		log.trace("created from " + config);
+		log.trace("elapsed "+(System.currentTimeMillis()-start)+" ms. creating from " + config);
+		
 		return newInstance;
 	}
 
