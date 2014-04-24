@@ -1,36 +1,35 @@
 package de.dbo.samples.gui.swing.treetable.impl.data;
- 
+
+import static de.dbo.samples.gui.swing.treetable.impl.ref.TreetableUIImpl.BACKGROUND;
+import static de.dbo.samples.gui.swing.treetable.impl.ref.TreetableUIImpl.FONT;
+import static de.dbo.samples.gui.swing.treetable.impl.ref.TreetableUIImpl.FOREGROUND;
+import static de.dbo.samples.gui.swing.treetable.impl.ref.TreetableUIImpl.SELECTION;
+
 import de.dbo.samples.gui.swing.treetable.api.Window;
 import de.dbo.samples.gui.swing.treetable.api.gui.Treetable;
 import de.dbo.samples.gui.swing.treetable.api.records.Node;
 
 import java.awt.Dimension;
-import java.awt.event.ActionEvent;
+import java.awt.GridBagConstraints;
 
 import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
-import javax.swing.UIManager;
 
 public class DataWindow extends Window {
 	private static final long serialVersionUID = 4489500964556705612L;
-	
+
 	public static void main(final String[] args) {
 		final Runnable gui = new Runnable() {
 			@Override
 			public void run() {
-				try {
-					UIManager.setLookAndFeel(UIManager
-							.getSystemLookAndFeelClassName());
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
+				setLookAndFeel();
 				new DataWindow().showup();
 			}
 		};
 		SwingUtilities.invokeLater(gui);
 	}
 	
-	public DataWindow() {
+	DataWindow() {
         super("Tree-Table Sample (adapted from http://www.hameister.org/JavaSwingTreeTable.html)");
          
         final long start = System.currentTimeMillis();
@@ -48,13 +47,18 @@ public class DataWindow extends Window {
         jScrollPane.getViewport().setBackground(BACKGROUND);
         
         // JFrame
-        setContentAs1x1(jScrollPane);
-        
+        add(jScrollPane, gbc1x1());
         setPreferredSize(new Dimension(800,700));
     }
 	
-	@Override
-	public final void actionPerformed(final ActionEvent e) {
-		
+	private static final GridBagConstraints gbc1x1() {
+		final GridBagConstraints gbc = new GridBagConstraints();
+		gbc.gridx = 0;
+		gbc.gridy = 0;
+		gbc.fill = GridBagConstraints.BOTH;
+		gbc.weightx = 1.0;
+		gbc.weighty = 1.0;
+		return gbc;
 	}
+	
 }

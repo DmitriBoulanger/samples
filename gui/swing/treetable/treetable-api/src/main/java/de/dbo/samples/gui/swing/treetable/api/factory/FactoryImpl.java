@@ -1,8 +1,10 @@
 package de.dbo.samples.gui.swing.treetable.api.factory;
 
 import java.lang.reflect.*;
+
 import de.dbo.samples.gui.swing.treetable.api.gui.TreetableColumns;
 import de.dbo.samples.gui.swing.treetable.api.gui.TreetableModel;
+import de.dbo.samples.gui.swing.treetable.api.gui.TreetableUI;
 import de.dbo.samples.gui.swing.treetable.api.records.Node;
 import de.dbo.samples.gui.swing.treetable.api.records.Record;
 import de.dbo.samples.gui.swing.treetable.api.records.RecordProvider;
@@ -29,6 +31,8 @@ final class FactoryImpl implements Factory  {
 	protected RecordProvider recordProvider;
 	
 	protected TreetableColumns treetableColumns;
+	
+	protected TreetableUI treetableUI;
 	
 	/**
 	 * singleton instance initialized by Spring
@@ -151,6 +155,22 @@ final class FactoryImpl implements Factory  {
 	@Override
 	public void setTreetableColumns(final TreetableColumns treetableColumns) {
 		this.treetableColumns = treetableColumns;
+	}
+	
+	
+	/**
+	 * new instance of column manager.
+	 * Instance is created with the Spring-prototype bean 
+	 */
+	@Override
+	@Required
+	public TreetableUI getTreetableUI() {
+		return treetableUI;
+	}
+
+	@Override
+	public void setTreetableUI(final TreetableUI treetableUI) {
+		this.treetableUI = treetableUI;
 	}
 	
 }

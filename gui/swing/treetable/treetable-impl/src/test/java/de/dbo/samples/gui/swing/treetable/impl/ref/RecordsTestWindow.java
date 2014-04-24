@@ -1,46 +1,35 @@
 package de.dbo.samples.gui.swing.treetable.impl.ref;
 
-import static de.dbo.samples.gui.swing.treetable.api.WindowTools.elapsed;
+import static de.dbo.samples.gui.swing.treetable.impl.ref.TreetableUIImpl.BACKGROUND;
+import static de.dbo.samples.gui.swing.treetable.impl.ref.TreetableUIImpl.FONT;
+import static de.dbo.samples.gui.swing.treetable.impl.ref.TreetableUIImpl.FOREGROUND;
+import static de.dbo.samples.gui.swing.treetable.impl.ref.TreetableUIImpl.SELECTION;
 
 import de.dbo.samples.gui.swing.treetable.api.Window;
-import de.dbo.samples.gui.swing.treetable.api.factory.Factory;
-import de.dbo.samples.gui.swing.treetable.api.factory.FactoryManager;
 import de.dbo.samples.gui.swing.treetable.api.gui.Treetable;
 import de.dbo.samples.gui.swing.treetable.api.gui.TreetableModel;
 import de.dbo.samples.gui.swing.treetable.api.records.Node;
 
 import java.awt.Dimension;
-import java.awt.event.ActionEvent;
+import java.awt.GridBagConstraints;
 
 import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
-import javax.swing.UIManager;
  
 public class RecordsTestWindow extends Window {
-	private static final long serialVersionUID = 4489500964556705612L;
+	private static final long serialVersionUID = -5484087161360300717L;
 	
 	public static void main(final String[] args) {
 		final Runnable gui = new Runnable() {
 			@Override
 			public final void run() {
-				try {
-					UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-				} catch (Exception e) {
-					log.error("Can't set the system Look-and-Feel",e);
-				}
+				setLookAndFeel();
 				new RecordsTestWindow().showup();
 			}
 		};
 		SwingUtilities.invokeLater(gui);
 	}
 	
-	public static final Factory factory(final String ctx) {
-		final long start = System.currentTimeMillis();
-        final Factory factory = FactoryManager.instance(ctx);
-        elapsed(start, "creating tree-table factory" );
-        return factory;
-	}
-	 
 	public RecordsTestWindow() {
         super("Tree-Table with Records - JUnit Test Data");
         
@@ -61,13 +50,17 @@ public class RecordsTestWindow extends Window {
         final JScrollPane jScrollPane = new JScrollPane(treetable);
         jScrollPane.getViewport().setBackground(BACKGROUND);
         
-       // JFrame
-       setContentAs1x1(jScrollPane);
+        // JFrame
+        this.add(jScrollPane, gbc1x1());
     }
 	
-	@Override
-	public final void actionPerformed(final ActionEvent e) {
-		
+	private static final GridBagConstraints gbc1x1() {
+		final GridBagConstraints gbc = new GridBagConstraints();
+		gbc.gridx = 0;
+		gbc.gridy = 0;
+		gbc.weightx = 1.0;
+		gbc.weighty = 1.0;
+		gbc.fill = GridBagConstraints.BOTH;
+		return gbc;
 	}
-	
 }

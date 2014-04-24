@@ -1,4 +1,4 @@
-package de.dbo.samples.gui.swing.treetable.impl.ref;
+package de.dbo.samples.gui.swing.treetable.api;
 
 import de.dbo.samples.gui.swing.treetable.api.factory.Factory;
 import de.dbo.samples.gui.swing.treetable.api.gui.Treetable;
@@ -15,13 +15,15 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JComponent;
+import javax.swing.JFrame;
+import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
@@ -31,6 +33,17 @@ import javax.swing.border.EmptyBorder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * Default Treetable-pane.
+ * It consists of pane with tree-records (this), controls-pane
+ * and status-pane
+ * 
+ * @author Dmitri Boulanger, Hombach
+ *
+ * D. Knuth: Programs are meant to be read by humans and 
+ *           only incidentally for computers to execute 
+ *
+ */
 public final class TreetablePane extends JPanel implements ActionListener {
 	private static final long serialVersionUID = 3272112506751761942L;
 	private static final Logger log = LoggerFactory.getLogger(TreetablePane.class);
@@ -39,9 +52,9 @@ public final class TreetablePane extends JPanel implements ActionListener {
 	private final Factory factory;
 	private final RecordProvider recordProvider;
 	private final TreetableColumns treetableColumns;
-	private final TreetableUI treetablePaneUI;
+	private final TreetableUI treetableUI;
 	
-	/* final menu-bar components */
+	/* control-pane components */
 	private final JButton reloadButton;
 	private final JButton updateButton ;
 	private final JButton expadCollapseButton;
@@ -49,19 +62,24 @@ public final class TreetablePane extends JPanel implements ActionListener {
 	private final JTextField transactionIdLabel = label(" Transaction ID:");
 	private final JTextField transactionIdTextField = textfield(30
 			,"Transaction ID (should be available)");
+	
+	/* status-pane components */
 	private final JTextField recordCounterLabel = label(" Record counter:");
 	private final JTextField recordCounterTextField = space(4);
 	
-	/* final basic pane with internal scrolling */
+	/* left-pane with buttons and other controls */
     private final JPanel controlsPane = new JPanel(new FlowLayout(FlowLayout.LEFT));
+    
+    /* right-pane with record-status */
     private final JPanel statusPane = new JPanel(new FlowLayout(FlowLayout.RIGHT));
     
+    /* scrolling for this pane */
 	private final JScrollPane scrollPane = new JScrollPane();
 	
-	/* dynamic data */
+	/* dynamic data from record-provider */
 	private List<Record> records = null;
 	
-	/* dynamic treetable objects and components */
+	/* dynamic treetable components */
 	private TreetableModel treetableModel = null;
 	private Treetable treetable = null;
 	
@@ -70,8 +88,6 @@ public final class TreetablePane extends JPanel implements ActionListener {
 	private static final int LOCKED = 1;
 	private static final int DONE = 2;
 	
-
-
 	// initial UI state
 	private boolean expanded = false;
 	
@@ -79,21 +95,21 @@ public final class TreetablePane extends JPanel implements ActionListener {
 	 * GUI with childless treetable-root.
 	 * Initial status is UNLOCKED, records = null
 	 */
-	protected TreetablePane(Factory factory) {
+	protected TreetablePane(final Factory factory) {
         this.factory = factory;
         this.recordProvider = factory.getRecordProvider();
-        this.treetablePaneUI = new TreetablePaneUIImpl(); //TODO from factory
+        this.treetableUI = factory.getTreetableUI();
         
-        reloadButton = button(treetablePaneUI.getIconRefresh()
+        reloadButton = button(treetableUI.getIconRefresh()
     			,"Reload all records for the specified transaction");
-    	updateButton = button(treetablePaneUI.getIconUpdate()
+    	updateButton = button(treetableUI.getIconUpdate()
     			,"Update already available records for the specified transaction");
-    	expadCollapseButton = button(treetablePaneUI.getIconExpand()
+    	expadCollapseButton = button(treetableUI.getIconExpand()
     			,"Exapnd/collapse all tree-node");
-    	clearButton = button(treetablePaneUI.getIconClear()
+    	clearButton = button(treetableUI.getIconClear()
     			,"Clean-up record-provider and UI");
         
-        // menu-bar
+        // left control-pane
         controlsPane.setOpaque(false);
         controlsPane.add(reloadButton);  
         controlsPane.add(updateButton);  
@@ -102,19 +118,18 @@ public final class TreetablePane extends JPanel implements ActionListener {
         controlsPane.add(transactionIdLabel);
         controlsPane.add(transactionIdTextField);
       
+        // right status-pane
         statusPane.setOpaque(false);
         statusPane.add(recordCounterLabel);
         statusPane.add(recordCounterTextField);
         
-        
-        // pane with internal scrolling
-        setBackground(treetablePaneUI.getBackground());
+        // scrolling in this pane
+        setBackground(treetableUI.getBackground());
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        scrollPane.getViewport().setBackground(treetablePaneUI.getBackground());
+        scrollPane.getViewport().setBackground(treetableUI.getBackground());
         scrollPane.getViewport().setView(null);
-        addAs1x1(this, scrollPane);
-         
+
         // actions
         reloadButton.addActionListener(this);
         updateButton.addActionListener(this);
@@ -122,19 +137,53 @@ public final class TreetablePane extends JPanel implements ActionListener {
         clearButton.addActionListener(this);
         transactionIdTextField.addActionListener(this);
         
-       
+        // allocate
+        setLayout(new GridBagLayout());
+        add(scrollPane, gbc1x1());
+        
         // initialize treetable and UI
         treetableColumns = factory.getTreetableColumns();
         loadTreetable();
         setStatus(UNLOCKED);
     }
 	
+	/**
+	 * left-pane with controls
+	 * 
+	 * @return complete pane connected with this pane
+	 */
 	public JPanel getControlsPane() {
 		return controlsPane;
 	}
 	
+	/**
+	 * right-pane with record-status 
+	 * 
+	 * @return complete pane connected with this pane
+	 */
 	public JPanel getStatusPane() {
 		return statusPane;
+	}
+	
+	/**
+	 * setup itself in the JFrame.
+	 * Controls and status are allocated in the menu-bar
+	 *  
+	 * @param jFrame
+	 */
+	public void setup(final JFrame jFrame) {
+		
+		// menu-bar
+		final JMenuBar jMenuBar =  new JMenuBar();
+        jMenuBar.setLayout(new GridBagLayout());
+        int x = 0;
+        jMenuBar.add(getControlsPane(),gbc1xManyLeft(x++,0));
+        jMenuBar.add(getStatusPane(),gbc1xManyRight(x++,0));
+
+        // frame
+        jFrame.setJMenuBar(jMenuBar);
+        jFrame.setLayout(new GridBagLayout());
+        jFrame.add(this,gbc1x1());
 	}
 	
 	@Override
@@ -155,12 +204,12 @@ public final class TreetablePane extends JPanel implements ActionListener {
 				if (expanded) {
 					treetable.collapseAll();
 					expanded = false;
-					expadCollapseButton.setIcon(treetablePaneUI.getIconExpand());
+					expadCollapseButton.setIcon(treetableUI.getIconExpand());
 				}
 				else {
 					treetable.expandAll();
 					expanded = true;
-					expadCollapseButton.setIcon(treetablePaneUI.getIconCollapse());
+					expadCollapseButton.setIcon(treetableUI.getIconCollapse());
 				}
 			}
 		} 
@@ -182,7 +231,7 @@ public final class TreetablePane extends JPanel implements ActionListener {
 					clearTreetable();
 					loadTreetable();
 					expanded = false;
-					expadCollapseButton.setIcon(treetablePaneUI.getIconExpand());
+					expadCollapseButton.setIcon(treetableUI.getIconExpand());
 					setStatus(UNLOCKED);
 				}
 			});
@@ -252,7 +301,7 @@ public final class TreetablePane extends JPanel implements ActionListener {
 		treetableModel = factory.newTreeTableModel(root);
 		treetable = new Treetable(treetableModel);
 		treetable.setRootVisible(false);
-		treetable.setBasicUI(treetablePaneUI);
+		treetable.setBasicUI(treetableUI);
 		treetable.setIntercellSpacing(new Dimension(1, 1));
 		treetableColumns.arrangeColumnWidths(treetable);
 
@@ -266,21 +315,21 @@ public final class TreetablePane extends JPanel implements ActionListener {
 		final Component icon;
 		switch(status) {
 		case 0: 
-			icon = treetablePaneUI.getIconLabelUnlocked();
+			icon = treetableUI.getIconLabelUnlocked();
 			setEnabled(true);
 			break;
 		case 1: 
-			icon = treetablePaneUI.getIconLabelLocked();
+			icon = treetableUI.getIconLabelLocked();
 			setEnabled(false);
 			break;
 		case 2: 
-			icon= null!=recordProvider.recordCounter()? treetablePaneUI.getIconLabelDone()
+			icon= null!=recordProvider.recordCounter()? treetableUI.getIconLabelDone()
 					: null;
 			setEnabled(true);
 			break;
 			
 		default:
-			icon =  treetablePaneUI.getIconLabelUnlocked();
+			icon =  treetableUI.getIconLabelUnlocked();
 			setEnabled(true);
 		}
 		
@@ -290,7 +339,7 @@ public final class TreetablePane extends JPanel implements ActionListener {
 	}
 	
 	
-	// HELPERS
+	// HELPERS (used in constructor)
 	
 	protected static JTextField textfield(final int columns, final String tooltip) {
 		final JTextField jTextField = new JTextField();
@@ -309,7 +358,7 @@ public final class TreetablePane extends JPanel implements ActionListener {
 		return jTextField;
 	}
 	
-	protected static JTextField info(Dimension size) {
+	protected static JTextField info(final Dimension size) {
 		final JTextField jTextField = new JTextField();
 		jTextField.setPreferredSize(size); 
 		jTextField.setBorder(new EmptyBorder(0,0,0,0));
@@ -335,12 +384,7 @@ public final class TreetablePane extends JPanel implements ActionListener {
 		return jButton;
 	}
 	
-	protected static final void addAs1x1(final JComponent parent, final JComponent componet) {
-		parent.setLayout(gbl1x1());
-		parent.add(componet, gbc1x1());
-	}
-
-	protected static final GridBagConstraints gbc1x1() {
+	private static final GridBagConstraints gbc1x1() {
 		final GridBagConstraints gbc = new GridBagConstraints();
 		gbc.gridx = 0;
 		gbc.gridy = 0;
@@ -350,8 +394,27 @@ public final class TreetablePane extends JPanel implements ActionListener {
 		return gbc;
 	}
 	
-	protected static final GridBagLayout gbl1x1() {
-		final GridBagLayout gbl = new GridBagLayout();
-		return gbl;
+	private static final GridBagConstraints gbc1xManyLeft(final int x, final int inset) {
+		final GridBagConstraints gbc = new GridBagConstraints();
+		gbc.gridx = x;
+		gbc.gridy = 0;
+		gbc.insets = new Insets(inset,inset,inset,inset);
+		gbc.anchor = GridBagConstraints.LINE_START;
+		gbc.fill = GridBagConstraints.WEST;
+		gbc.weightx = 0.9;
+		gbc.weighty = 1.0;
+		return gbc;
+	}
+	
+	private static final GridBagConstraints gbc1xManyRight(final int x, final int inset) {
+		final GridBagConstraints gbc = new GridBagConstraints();
+		gbc.gridx = x;
+		gbc.gridy = 0;
+		gbc.insets = new Insets(inset,inset,inset,inset);
+		gbc.anchor = GridBagConstraints.LINE_END;
+		gbc.fill = GridBagConstraints.EAST;
+		gbc.weightx = 0.1;
+		gbc.weighty = 1.0;
+		return gbc;
 	}
 }

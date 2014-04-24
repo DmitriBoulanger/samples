@@ -2,6 +2,7 @@ package de.dbo.samples.gui.swing.treetable.api.factory;
 
 import de.dbo.samples.gui.swing.treetable.api.gui.TreetableColumns;
 import de.dbo.samples.gui.swing.treetable.api.gui.TreetableModel;
+import de.dbo.samples.gui.swing.treetable.api.gui.TreetableUI;
 import de.dbo.samples.gui.swing.treetable.api.records.Node;
 import de.dbo.samples.gui.swing.treetable.api.records.Record;
 import de.dbo.samples.gui.swing.treetable.api.records.RecordProvider;
@@ -72,6 +73,9 @@ public interface Factory  {
 	public TreetableColumns getTreetableColumns();
 	
 	public void setTreetableColumns(TreetableColumns treetableColumns);
-
+	
+	public void setTreetableUI(TreetableUI treetableUI);
+	
+	public TreetableUI getTreetableUI();
 	
 }

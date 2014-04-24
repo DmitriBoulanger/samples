@@ -1,10 +1,10 @@
 package de.dbo.samples.gui.swing.treetable.impl.ref;
 
-import java.awt.event.ActionEvent;
+import de.dbo.samples.gui.swing.treetable.api.Window;
 
 import javax.swing.SwingUtilities;
 
-public final class RecordsWindow2 extends RecordsWindowAbstraction {
+public final class RecordsWindow2 extends Window {
 	private static final long serialVersionUID = 4489500964556705612L;
 	
 	public static void main(final String[] args) {
@@ -24,10 +24,4 @@ public final class RecordsWindow2 extends RecordsWindowAbstraction {
 	RecordsWindow2() {
 		super("ReferenceImplementation2.xml", "Tree-Table with Records");
     }
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-	 
-		
-	}
 }

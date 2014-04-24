@@ -1,43 +1,44 @@
 package de.dbo.samples.gui.swing.treetable.api;
- 
-import static de.dbo.samples.gui.swing.treetable.api.WindowTools.gbc1x1;
-import static de.dbo.samples.gui.swing.treetable.api.WindowTools.gbl1x1;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.event.ActionListener;
+import de.dbo.samples.gui.swing.treetable.api.factory.Factory;
+import de.dbo.samples.gui.swing.treetable.api.factory.FactoryManager;
 
-import javax.swing.JComponent;
+import java.awt.GridBagLayout;
+
 import javax.swing.JFrame;
 import javax.swing.UIManager;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public abstract class Window extends JFrame implements ActionListener {
-	private static final long serialVersionUID = 8046982486171537192L;
+public abstract class Window extends JFrame {
+	protected static final long serialVersionUID = 4489500964556705612L;
 	protected static final Logger log = LoggerFactory.getLogger(Window.class);
-	
-	protected static final Font FONT = new Font("Consolas",Font.PLAIN, 13);
-	protected static final Color BACKGROUND = new Color(239,241,248);
-	protected static final Color SELECTION = new Color(168,208,245);
-	protected static final Color FOREGROUND = Color.BLACK;
 	
 	private final long start0 = System.currentTimeMillis();
 	
-	protected static final void setLookAndFeel() {
-		try {
-			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-		} catch (Exception e) {
-			log.error("Can't set the system Look-and-Feel", e);
-		}
-	}
-	
-	protected Window(final String title) {
-        super(title);
-        setLayout(gbl1x1());
+	/**
+	 * GUI with childless treetable-root.
+	 * Initial status is UNLOCKED, records = null
+	 * 
+	 * @param context  Spring-context to initialize Treetable-Factory
+	 */
+	protected Window(final String context, final String title) {
+        super(title + " - " + context);
+        setLayout(new GridBagLayout());
+        new TreetablePane(factory(context)).setup(this);
     }
 	
+	/**
+	 * plain window with GridBag-Layout
+	 * 
+	 * @param title window title
+	 */
+	protected Window(final String title) {
+        super(title);
+        setLayout(new GridBagLayout());
+    }
+	 
 	public void showup() {
 	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		pack();
@@ -46,22 +47,24 @@ public abstract class Window extends JFrame implements ActionListener {
 		setVisible(true);
 		log.info("elapsed " + (System.currentTimeMillis()-start0) + " ms." );
 	}
-	 
-	/**
-	 * adds application-component to the content of this jFrame.
-	 * The component takes available space and supposed to be the only one 
-	 * 
-	 */
-	protected final void setContentAs1x1(final JComponent componet) {
-        this.add(componet, gbc1x1());
+	
+	//
+	// HELPERS
+	// 
+	
+	protected static final Factory factory(final String ctx) {
+		final long start = System.currentTimeMillis();
+        final Factory factory = FactoryManager.instance(ctx);
+        log.trace("elapsed " 
+        		+ (System.currentTimeMillis() - start) + " ms. creating tree-table factory" );
+        return factory;
+	}
+	
+	protected static final void setLookAndFeel() {
+		try {
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		} catch (Exception e) {
+			log.error("Can't set the system Look-and-Feel", e);
+		}
 	}
 }
-
-
-
-
-
-
-
-
-
