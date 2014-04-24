@@ -18,9 +18,8 @@ public final class ClassPathProperties extends Properties {
 			url = classloader.getResource("/" + name);
 		}
 		if (null != url) {
-			final InputStream inputStream;
 			try {
-				inputStream = url.openStream();
+				final InputStream inputStream = url.openStream();
 				load(inputStream);
 				inputStream.close();
 			} catch (Exception e) {
