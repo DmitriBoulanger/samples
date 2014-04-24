@@ -18,7 +18,7 @@ import static java.util.concurrent.TimeUnit.SECONDS;
  * incidentally for computers to execute
  * 
  */
-public final class RecordRelativeTimestamp {
+public final class RecordTimestampFormat {
 	
 	public static final int FORMAT_CANONICAL = 0;
 	public static final int FORMAT_CANONICAL_MINIMIZED = 1;
@@ -26,15 +26,15 @@ public final class RecordRelativeTimestamp {
 	
 	public static final int FORMAT_COMPRESSED = 10;
 	
-	public static final RecordRelativeTimestamp TIMESTAMP_NULL = 
-			new RecordRelativeTimestamp("","","","");
+	public static final RecordTimestampFormat TIMESTAMP_NULL = 
+			new RecordTimestampFormat("","","","");
 	
-	public static final RecordRelativeTimestamp TIMESTAMP_ERROR =
-			new RecordRelativeTimestamp("99","99", "99","999");
+	public static final RecordTimestampFormat TIMESTAMP_ERROR =
+			new RecordTimestampFormat("99","99", "99","999");
 	
-	public static final RecordRelativeTimestamp newInstance(long time) {
+	public static final RecordTimestampFormat newInstance(long time) {
 		if (time < 0) {
-			return RecordRelativeTimestamp.TIMESTAMP_ERROR;
+			return RecordTimestampFormat.TIMESTAMP_ERROR;
 		}
 
 		long millliseconds = time;
@@ -48,7 +48,7 @@ public final class RecordRelativeTimestamp {
 		final long seconds = MILLISECONDS.toSeconds(millliseconds);
 		millliseconds -= SECONDS.toMillis(seconds);
 		
-		return new RecordRelativeTimestamp(
+		return new RecordTimestampFormat(
 				   0 < hours   ? "" + hours   : "0"
 				,  0 < minutes ? "" + minutes : "0"
 				,  0 < seconds ? "" + seconds : "0"
@@ -60,7 +60,7 @@ public final class RecordRelativeTimestamp {
 	private final Integer ss;
 	private final Integer sss;
 	
-	private RecordRelativeTimestamp(final String hh, final String mm, final String ss, final String sss) {
+	private RecordTimestampFormat(final String hh, final String mm, final String ss, final String sss) {
 		this.hh = integer(hh);
 		this.mm = integer(mm);
 		this.ss = integer(ss);

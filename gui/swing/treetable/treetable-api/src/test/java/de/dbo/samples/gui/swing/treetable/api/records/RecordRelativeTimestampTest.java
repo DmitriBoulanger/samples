@@ -1,17 +1,26 @@
 package de.dbo.samples.gui.swing.treetable.api.records;
 
-import static de.dbo.samples.gui.swing.treetable.api.records.RecordRelativeTimestamp.*;
+import static de.dbo.samples.gui.swing.treetable.api.records.RecordTimestampFormat.*;
 
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * Formatter for relative time-stamps
+ * 
+ * @author Dmitri Boulanger, Hombach
+ *
+ * D. Knuth: Programs are meant to be read by humans and 
+ *           only incidentally for computers to execute 
+ *
+ */
 public class RecordRelativeTimestampTest {
 	private static final Logger log = LoggerFactory.getLogger(RecordRelativeTimestampTest.class);
 	
-	private static final long SEC = 1000;
-	private static final long MIN = 60 * SEC;
-	private static final long HOUR = 60 * MIN;
+	public static final long SEC = 1000;
+	public static final long MIN = 60 * SEC;
+	public static final long HOUR = 60 * MIN;
 	
 	@Test
 	public void show() {

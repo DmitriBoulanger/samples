@@ -5,7 +5,7 @@ import de.dbo.samples.gui.swing.treetable.api.gui.TreetableException;
 import de.dbo.samples.gui.swing.treetable.api.gui.TreetableModelAbstraction;
 import de.dbo.samples.gui.swing.treetable.api.records.Node;
 import de.dbo.samples.gui.swing.treetable.api.records.Record;
-import de.dbo.samples.gui.swing.treetable.api.records.RecordRelativeTimestamp;
+import de.dbo.samples.gui.swing.treetable.api.records.RecordTimestampFormat;
 
 public final class TreetableModelImpl extends TreetableModelAbstraction {
 	
@@ -47,11 +47,11 @@ public final class TreetableModelImpl extends TreetableModelAbstraction {
         case 3:
         case 4:
         	final Record record = (Record) ((Node) node).getContents();
-        	final RecordRelativeTimestamp timestamp;
+        	final RecordTimestampFormat timestamp;
         	if (null!=record) {
 				timestamp = record.relativeTimestamp();
 			} else {
-				timestamp =  RecordRelativeTimestamp.TIMESTAMP_NULL;
+				timestamp =  RecordTimestampFormat.TIMESTAMP_NULL;
 			}
         	return timestamp.get(column-1);
 		case 5:

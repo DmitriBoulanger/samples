@@ -1,5 +1,7 @@
 package de.dbo.samples.gui.swing.treetable.impl.ref;
 
+import java.awt.event.ActionEvent;
+
 import javax.swing.SwingUtilities;
 
 public final class RecordsWindow2 extends RecordsWindowAbstraction {
@@ -22,4 +24,10 @@ public final class RecordsWindow2 extends RecordsWindowAbstraction {
 	RecordsWindow2() {
 		super("ReferenceImplementation2.xml", "Tree-Table with Records");
     }
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+	 
+		
+	}
 }

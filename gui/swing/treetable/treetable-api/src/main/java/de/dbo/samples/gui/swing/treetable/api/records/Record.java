@@ -49,7 +49,7 @@ public interface Record extends Comparable<Record> {
 	
 	public abstract Long getTimestamp();
 	
-	public RecordRelativeTimestamp relativeTimestamp();
+	public RecordTimestampFormat relativeTimestamp();
 
 	/**
 	 * pretty-print of this record.

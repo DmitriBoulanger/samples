@@ -1,8 +1,10 @@
 package de.dbo.samples.gui.swing.treetable.impl.ref;
 
-import static de.dbo.samples.gui.swing.treetable.impl.ref.RecordsWindowResources.*;
+import static de.dbo.samples.gui.swing.treetable.api.WindowTools.elapsed;
 
 import de.dbo.samples.gui.swing.treetable.api.Window;
+import de.dbo.samples.gui.swing.treetable.api.factory.Factory;
+import de.dbo.samples.gui.swing.treetable.api.factory.FactoryManager;
 import de.dbo.samples.gui.swing.treetable.api.gui.Treetable;
 import de.dbo.samples.gui.swing.treetable.api.gui.TreetableModel;
 import de.dbo.samples.gui.swing.treetable.api.records.Node;
@@ -30,6 +32,13 @@ public class RecordsTestWindow extends Window {
 			}
 		};
 		SwingUtilities.invokeLater(gui);
+	}
+	
+	public static final Factory factory(final String ctx) {
+		final long start = System.currentTimeMillis();
+        final Factory factory = FactoryManager.instance(ctx);
+        elapsed(start, "creating tree-table factory" );
+        return factory;
 	}
 	 
 	public RecordsTestWindow() {

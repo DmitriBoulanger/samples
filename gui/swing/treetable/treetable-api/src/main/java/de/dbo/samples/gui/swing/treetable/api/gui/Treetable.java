@@ -110,6 +110,10 @@ public class Treetable extends JTable {
     	tableColumn.setPreferredWidth(preferredWidth);
     }
     
+    public void setBasicUI(final TreetableUI ui) {
+    	setBasicUI(ui.getBackground(),ui.getSelection(), ui.getForeround(), ui.getFont());
+    }
+    
     public void setBasicUI(Color background, Color selection,  Color foreground, Font font) {
     	 // JTable
     	 setFont(font);

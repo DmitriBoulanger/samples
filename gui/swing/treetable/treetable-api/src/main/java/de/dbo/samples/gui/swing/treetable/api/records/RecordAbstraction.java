@@ -1,6 +1,6 @@
 package de.dbo.samples.gui.swing.treetable.api.records;
 
-import static de.dbo.samples.gui.swing.treetable.api.records.RecordRelativeTimestamp.*;
+import static de.dbo.samples.gui.swing.treetable.api.records.RecordTimestampFormat.*;
 
 import de.dbo.samples.gui.swing.treetable.api.records.Path;
 import de.dbo.samples.gui.swing.treetable.api.records.Record;
@@ -22,7 +22,7 @@ public abstract class RecordAbstraction implements Record {
 	private Long sequence = null;
 	private Object contents = null;
 	private Long timestamp = null;
-	private RecordRelativeTimestamp recordRelativeTimestamp = null;
+	private RecordTimestampFormat recordRelativeTimestamp = null;
 	
 	private final Path path;
 	
@@ -80,11 +80,11 @@ public abstract class RecordAbstraction implements Record {
 	@Override
 	public void setTimestamp(final Long timestamp, final Long firstTimestamp) {
 		this.timestamp = timestamp;
-		this.recordRelativeTimestamp = RecordRelativeTimestamp.newInstance( timestamp - firstTimestamp );
+		this.recordRelativeTimestamp = RecordTimestampFormat.newInstance( timestamp - firstTimestamp );
 	}
 	
 	@Override
-	public RecordRelativeTimestamp relativeTimestamp() {
+	public RecordTimestampFormat relativeTimestamp() {
 		return null != recordRelativeTimestamp? recordRelativeTimestamp : TIMESTAMP_NULL;
 	}
 	
