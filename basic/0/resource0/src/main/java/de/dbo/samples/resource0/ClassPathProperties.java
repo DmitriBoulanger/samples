@@ -4,8 +4,12 @@ import java.io.InputStream;
 import java.net.URL;
 import java.util.Properties;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public final class ClassPathProperties extends Properties {
 	private static final long serialVersionUID = -8751260544114537907L;
+	private static final Logger log = LoggerFactory.getLogger(ClassPathProperties.class);
 
 	public ClassPathProperties(final String name) throws Exception {
 		final ClassLoader classloader = ClassLoader.getSystemClassLoader();
@@ -14,10 +18,13 @@ public final class ClassPathProperties extends Properties {
 		}
 
 		URL url = classloader.getResource(name);
+		log.trace("Resource " +name+ ". URL="+url);
 		if (null == url) {
 			url = classloader.getResource("/" + name);
+			log.trace("Resource " +name+ " not found. URL="+url);
 		}
 		if (null != url) {
+			log.trace("Loading from URL="+url + "...");
 			try {
 				final InputStream inputStream = url.openStream();
 				load(inputStream);

@@ -18,7 +18,7 @@ public class ClassPathPropertiesTest {
 	public void loading() throws Exception {
 		final Properties properties = new ClassPathProperties("log4j.properties");
 		log.info(Print.lines(properties).toString());
-		final Properties properties2 = new ClassPathProperties("data.properties");
+		final Properties properties2 = new ClassPathProperties("de/dbo/samples/resource0/data/data.properties");
 		log.info(Print.lines(properties2).toString());
 	}
 }
