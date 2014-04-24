@@ -23,9 +23,9 @@ public class FactoryMgrFirstInitialization {
 	 */
 	@Test
 	public void testCtx() {
-		FactoryMgr.clear();
+		FactoryManager.clear();
 		final long start = System.currentTimeMillis();
-		final Factory factory = FactoryMgr.instance("ReferenceImplementation.xml");
+		final Factory factory = FactoryManager.instance("ReferenceImplementation.xml");
 		factory.getNodeClass();
 	    factory.getTreetableModelClass();
 		log.info("Elapsed " + (System.currentTimeMillis()-start) 

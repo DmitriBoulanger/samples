@@ -9,9 +9,8 @@ import static java.util.concurrent.TimeUnit.SECONDS;
 
 /**
  * 
- * Convert a millisecond duration to a string format
- *  Duration in milliseconds to convert to a string form
- *  form "X h. Y min. Z sec. W ms. ".
+ * Convert a millisecond duration to a string format.
+ * Canonical format is "HH h. MM min. SS sec. SSS ms. ".
  * 
  * @author Dmitri Boulanger, Hombach
  * 
@@ -68,6 +67,19 @@ public final class RecordRelativeTimestamp {
 		this.sss = integer(sss);
 	}
 	
+	/**
+	 * formatted representation of this timestamp.
+	 * 
+	 * @param format format-index
+	 * @return formatted string
+	 * 
+	 * @see #FORMAT_CANONICAL
+	 * @see #FORMAT_CANONICAL_MINIMIZED
+	 * @see #FORMAT_CANONICAL_NO_ZERO
+	 * @see #FORMAT_COMPRESSED
+	 * 
+	 * 
+	 */
 	public StringBuilder print(final int format) {
 		switch (format) {
 		case FORMAT_CANONICAL:
@@ -85,9 +97,10 @@ public final class RecordRelativeTimestamp {
 	}
 	
 	/**
-	 * index values: 0:HH, 1:MM, 2:SS, 3:SSS
+	 * index values: 0:HH, 1:MM, 2:SS, 3:SSS.
 	 * 
-	 * @param index
+	 * @param position-index
+	 * 
 	 * @return specified attribute of this timestamp
 	 */
 	public Integer get(final int index) {

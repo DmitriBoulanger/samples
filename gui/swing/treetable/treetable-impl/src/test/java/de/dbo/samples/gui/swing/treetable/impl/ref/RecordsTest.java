@@ -3,7 +3,7 @@ package de.dbo.samples.gui.swing.treetable.impl.ref;
 import static de.dbo.samples.gui.swing.treetable.api.records.Tools.extractRecords;
 
 import de.dbo.samples.gui.swing.treetable.api.factory.Factory;
-import de.dbo.samples.gui.swing.treetable.api.factory.FactoryMgr;
+import de.dbo.samples.gui.swing.treetable.api.factory.FactoryManager;
 import de.dbo.samples.gui.swing.treetable.api.records.Node;
 import de.dbo.samples.gui.swing.treetable.api.records.Path;
 import de.dbo.samples.gui.swing.treetable.api.records.Record;
@@ -41,7 +41,7 @@ public class RecordsTest {
 	
 	private Node treeroot = null;
 	
-	private static final Factory factory = FactoryMgr.instance("ReferenceImplementation.xml");
+	private static final Factory factory = FactoryManager.instance("ReferenceImplementation.xml");
 	
 	public Node getTreeroot() {
 		recordTreeGenerator();

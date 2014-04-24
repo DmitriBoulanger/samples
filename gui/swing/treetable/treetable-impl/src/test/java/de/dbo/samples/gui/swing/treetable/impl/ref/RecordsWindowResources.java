@@ -5,7 +5,7 @@ import static de.dbo.samples.gui.swing.treetable.api.WindowTools.createIconLabel
 import static de.dbo.samples.gui.swing.treetable.api.WindowTools.elapsed;
 
 import de.dbo.samples.gui.swing.treetable.api.factory.Factory;
-import de.dbo.samples.gui.swing.treetable.api.factory.FactoryMgr;
+import de.dbo.samples.gui.swing.treetable.api.factory.FactoryManager;
 
 import java.awt.Dimension;
 
@@ -19,7 +19,7 @@ public final class RecordsWindowResources {
 	 
 	public static final Factory factory(final String ctx) {
 		final long start = System.currentTimeMillis();
-        final Factory factory = FactoryMgr.instance(ctx);
+        final Factory factory = FactoryManager.instance(ctx);
         elapsed(start, "creating tree-table factory" );
         return factory;
 	}

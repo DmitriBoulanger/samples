@@ -19,6 +19,11 @@ import de.dbo.samples.gui.swing.treetable.api.records.RecordProvider;
  */
 public interface Factory  {
 	
+	 /**
+	  * tree-name of the root.
+	  * 
+	  * @return string to appear in the UI as a root-name
+	  */
 	 public String getRootName();
  
 	 public void setRootName(String rootName);
@@ -41,7 +46,7 @@ public interface Factory  {
 	public Node newRoot();
 	
 	/**
-	 * creates a new model for a tree-table
+	 * creates a new model for a tree-table.
 	 * 
 	 * @param root root-node of the tree. The complete
 	 *         tree is accessible using its children recursively

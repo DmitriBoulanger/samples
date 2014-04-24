@@ -14,6 +14,10 @@ public abstract class RecordProviderAbstraction implements RecordProvider {
 	
 	private String previousTransaction;
 	protected String transaction;
+	
+	/*
+	 * internal record-cache
+	 */
 	protected List<Record> records; 
 	
 	@Override
@@ -51,7 +55,7 @@ public abstract class RecordProviderAbstraction implements RecordProvider {
 		final boolean diff = diff(this.previousTransaction, this.transaction);
 		if (diff) {
 			transactionChanged();
-			log.debug("transaction: " + this.transaction + " changed=" + diff);
+			log.trace("transaction: " + this.transaction + " changed=" + diff);
 		}
 	}
 
@@ -91,7 +95,7 @@ public abstract class RecordProviderAbstraction implements RecordProvider {
 				cnt++;
 			}
 		} 
-		log.debug("records update: " + cnt);
+		log.trace("records update: " + cnt);
 		counter();
 		return records;
 	}
@@ -124,9 +128,8 @@ public abstract class RecordProviderAbstraction implements RecordProvider {
 		}
 	}
 		 
-	
 	protected final void counter() {
-		log.info("records: " + (null!=records? records.size() : "NULL"));
+		log.trace("records: " + (null!=records? records.size() : "NULL"));
 	} 
 	
 	// HELPERS

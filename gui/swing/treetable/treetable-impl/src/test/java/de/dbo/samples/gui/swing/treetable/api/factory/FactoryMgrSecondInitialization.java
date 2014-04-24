@@ -22,11 +22,11 @@ public class FactoryMgrSecondInitialization {
 	 */
     @Test
 	public void testCtxSecondInitialization() {
-		FactoryMgr.clear();
-		FactoryMgr.instance("ReferenceImplementation.xml");
-		FactoryMgr.clear();
+		FactoryManager.clear();
+		FactoryManager.instance("ReferenceImplementation.xml");
+		FactoryManager.clear();
 		final long start = System.currentTimeMillis();
-		final Factory factory = FactoryMgr.instance("ReferenceImplementation.xml");
+		final Factory factory = FactoryManager.instance("ReferenceImplementation.xml");
 		factory.getNodeClass();
 	    factory.getTreetableModelClass();
 		log.info("Elapsed " + (System.currentTimeMillis()-start) 

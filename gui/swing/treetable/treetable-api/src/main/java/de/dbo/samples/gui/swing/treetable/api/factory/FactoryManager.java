@@ -10,7 +10,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
- *  Manager for creating tree-table factories
+ *  Manager for creating tree-table factories.
  * 
  * @author Dmitri Boulanger, Hombach
  *
@@ -18,7 +18,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  *           only incidentally for computers to execute 
  *
  */
-public final class FactoryMgr {
+public final class FactoryManager {
 	protected static final Logger log = LoggerFactory.getLogger(Factory.class);
 	
 	private static final Map<String,Factory> FACTORIES = new HashMap<String,Factory>();
