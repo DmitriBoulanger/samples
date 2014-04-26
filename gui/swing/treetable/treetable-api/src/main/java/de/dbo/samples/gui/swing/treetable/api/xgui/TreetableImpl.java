@@ -32,16 +32,16 @@ import org.slf4j.LoggerFactory;
  *           only incidentally for computers to execute 
  *
  */
-public class TreetableXImpl extends JXTreeTable implements TreetableUIManager, Treetable {
+public class TreetableImpl extends JXTreeTable implements TreetableUIManager, Treetable {
 	private static final long serialVersionUID = -5203756529846423026L;
-	private static final Logger log = LoggerFactory.getLogger(TreetableXImpl.class);
+	private static final Logger log = LoggerFactory.getLogger(TreetableImpl.class);
 	
 //	private final TreetableCell tree;
 	
 	/**
 	 * @param model tree-table data-model 
 	 */
-    public TreetableXImpl(TreetableModel model) {
+    public TreetableImpl(TreetableModel model) {
         super(model);
         
         // JTree-extension
@@ -72,6 +72,8 @@ public class TreetableXImpl extends JXTreeTable implements TreetableUIManager, T
         
         getTableHeader().setReorderingAllowed(false);
         
+        setTreeCellRenderer(new TreeCellRenderer());
+        
         log.trace("created");
     }
     
@@ -79,9 +81,6 @@ public class TreetableXImpl extends JXTreeTable implements TreetableUIManager, T
     // Customization
     //
     
-    /* (non-Javadoc)
-	 * @see de.dbo.samples.gui.swing.treetable.api.xgui.Treetable#expandAll()
-	 */
     @Override
 	public void expandAll() {
         int row = 0;
@@ -133,7 +132,7 @@ public class TreetableXImpl extends JXTreeTable implements TreetableUIManager, T
     
     @Override
 	public void setBasicUI(Color background, Color selection,  Color foreground, Font font) {
-    	 // JTable
+    	
     	 setFont(font);
     	 setBackground(background);
     	 setForeground(foreground);
@@ -144,17 +143,7 @@ public class TreetableXImpl extends JXTreeTable implements TreetableUIManager, T
          getTableHeader().setBackground(background);
          getTableHeader().setFont(font);
          getTableHeader().setForeground(foreground);
-
-//    	// JTree
-//        final DefaultTreeCellRenderer renderer = (DefaultTreeCellRenderer) getCellRenderer();
-//        renderer.setFont(font);
-//    	renderer.setBackground(background);
-//    	renderer.setForeground(foreground);
-//    	renderer.setTextSelectionColor(foreground);
-//    	renderer.setTextNonSelectionColor(foreground);
-//        renderer.setBackgroundSelectionColor(selection);
-//        
-//        // Node in the tree
-//        getTreeCellRenderer().setBackgroundselection(selection);
+         
+         
     }
 }

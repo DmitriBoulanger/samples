@@ -6,11 +6,11 @@ import static de.dbo.samples.gui.swing.treetable.impl.ref.XTreetableUIImpl.FOREG
 import static de.dbo.samples.gui.swing.treetable.impl.ref.XTreetableUIImpl.SELECTION;
 
 import de.dbo.samples.gui.swing.treetable.api.TreetableModel;
-import de.dbo.samples.gui.swing.treetable.api.XWindow;
+import de.dbo.samples.gui.swing.treetable.api.Window;
 import de.dbo.samples.gui.swing.treetable.api.factory.Factory;
 import de.dbo.samples.gui.swing.treetable.api.factory.FactoryManager;
 import de.dbo.samples.gui.swing.treetable.api.records.Node;
-import de.dbo.samples.gui.swing.treetable.api.xgui.TreetableXImpl;
+import de.dbo.samples.gui.swing.treetable.api.xgui.TreetableImpl;
 
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
@@ -18,7 +18,7 @@ import java.awt.GridBagConstraints;
 import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
  
-public class XRecordsTestWindow extends XWindow {
+public class XRecordsTestWindow extends Window {
 	private static final long serialVersionUID = -5484087161360300717L;
 	
 	public static void main(final String[] args) {
@@ -45,7 +45,7 @@ public class XRecordsTestWindow extends XWindow {
         		factory.newTreeTableModel(root, factory.newTreetableColumns());
         
         // Treetable
-        final TreetableXImpl treetable = new TreetableXImpl(model);
+        final TreetableImpl treetable = new TreetableImpl(model);
         treetable.setRootVisible(true);
         treetable.setBasicUI(BACKGROUND, SELECTION, FOREGROUND, FONT);
         treetable.setIntercellSpacing(new Dimension(0,0)); 

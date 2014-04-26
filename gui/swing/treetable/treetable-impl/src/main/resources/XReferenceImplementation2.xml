@@ -13,7 +13,9 @@
 		
 	    <property name="rootName" value="Records"/> 
 		<property name="nodeClass" value="de.dbo.samples.gui.swing.treetable.impl.ref.NodeImpl"/> 
-		<property name="treetableModelClass" value="de.dbo.samples.gui.swing.treetable.impl.ref.XTreetableModelImpl2"/> 
+		<property name="treetableModelClass" value="de.dbo.samples.gui.swing.treetable.impl.ref.XTreetableModelImpl2"/>
+		<property name="treetableClass" value="de.dbo.samples.gui.swing.treetable.api.xgui.TreetableImpl"/>  
+		
 		<property name="treetableUI" ref="treetableUI"/>  
 	</bean>
 	

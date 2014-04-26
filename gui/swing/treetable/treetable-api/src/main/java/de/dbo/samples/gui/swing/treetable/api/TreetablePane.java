@@ -1,7 +1,6 @@
 package de.dbo.samples.gui.swing.treetable.api;
 
 import de.dbo.samples.gui.swing.treetable.api.factory.Factory;
-import de.dbo.samples.gui.swing.treetable.api.gui.TreetableImpl;
 import de.dbo.samples.gui.swing.treetable.api.records.Node;
 import de.dbo.samples.gui.swing.treetable.api.records.Record;
 import de.dbo.samples.gui.swing.treetable.api.records.RecordProvider;
@@ -82,7 +81,7 @@ public final class TreetablePane extends JPanel implements ActionListener {
 	
 	/* dynamic treetable components */
 	private TreetableModel treetableModel = null;
-	private TreetableImpl treetable = null;
+	private Treetable treetable = null;
 	
 	// status indices
 	private static final int UNLOCKED = 0;
@@ -335,14 +334,14 @@ public final class TreetablePane extends JPanel implements ActionListener {
 		
 		// treetable
 		treetableModel = factory.newTreeTableModel(root,treetableColumns);
-		treetable = new TreetableImpl(treetableModel);
+		treetable = factory.newTreetable(treetableModel);
 		treetable.setRootVisible(false);
 		treetable.setBasicUI(treetableUI);
 		treetable.setIntercellSpacing(new Dimension(1, 1));
 		treetableColumns.arrangeColumnWidths(treetable);
 
 		// scrolling
-		scrollPane.setViewportView(treetable);
+		scrollPane.setViewportView((Component)treetable);
 		scrollPane.getViewport().revalidate();
 		log.trace("elapsed " + (System.currentTimeMillis() - start) + " ms. loading tree-table"); 
 	}

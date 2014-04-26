@@ -1,5 +1,6 @@
 package de.dbo.samples.gui.swing.treetable.api.factory;
 
+import de.dbo.samples.gui.swing.treetable.api.Treetable;
 import de.dbo.samples.gui.swing.treetable.api.TreetableColumns;
 import de.dbo.samples.gui.swing.treetable.api.TreetableModel;
 import de.dbo.samples.gui.swing.treetable.api.TreetableUI;
@@ -20,15 +21,9 @@ import de.dbo.samples.gui.swing.treetable.api.records.RecordProvider;
  */
 public interface Factory extends NodeFactory {
 	
-	/**
-	 * creates a new model for a tree-table.
-	 * 
-	 * @param root root-node of the tree. The complete
-	 *         tree is accessible using its children recursively
-	 *         
-	 * @return new node-instance
-	 */
 	public TreetableModel newTreeTableModel(final Node root, final TreetableColumns treetableColumns);
+	
+	public Treetable newTreetable(TreetableModel treetableModel);
 	
     public RecordProvider newRecordProvider();
 	
@@ -43,6 +38,10 @@ public interface Factory extends NodeFactory {
 	public Class<?> getTreetableModelClass();
 
 	public void setTreetableModelClass(final Class<?> treetableModelClass);
+	
+	public Class<?> getTreetableClass();
+
+	public void setTreetableClass(Class<?> treetableClass);
 	
     public void setTreetableUI(final TreetableUI treetableUI);
 	

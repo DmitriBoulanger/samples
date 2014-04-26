@@ -11,10 +11,9 @@
 	<bean id="factory" class="de.dbo.samples.gui.swing.treetable.api.factory.FactoryImpl" >
 	    <property name="rootName" value="Records"/> 
 	    
-		<property name="nodeClass" 
-			value="de.dbo.samples.gui.swing.treetable.impl.ref.NodeImpl"/> 
-		<property name="treetableModelClass" 
-			value="de.dbo.samples.gui.swing.treetable.impl.ref.TreetableModelImpl"/> 
+		<property name="nodeClass" value="de.dbo.samples.gui.swing.treetable.impl.ref.NodeImpl"/> 
+		<property name="treetableModelClass" value="de.dbo.samples.gui.swing.treetable.impl.ref.TreetableModelImpl"/> 
+		<property name="treetableClass" value="de.dbo.samples.gui.swing.treetable.api.gui.TreetableImpl"/> 
 		
 		<property name="treetableUI" ref="treetableUI"/>   
 		

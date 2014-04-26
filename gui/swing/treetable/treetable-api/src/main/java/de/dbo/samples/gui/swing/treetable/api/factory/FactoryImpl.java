@@ -2,6 +2,7 @@ package de.dbo.samples.gui.swing.treetable.api.factory;
 
 import java.lang.reflect.*;
 
+import de.dbo.samples.gui.swing.treetable.api.Treetable;
 import de.dbo.samples.gui.swing.treetable.api.TreetableColumns;
 import de.dbo.samples.gui.swing.treetable.api.TreetableModel;
 import de.dbo.samples.gui.swing.treetable.api.TreetableUI;
@@ -28,6 +29,8 @@ final class FactoryImpl implements Factory  {
 	protected Class<?> nodeClass;
 	
 	protected Class<?> treetableModelClass;
+	
+	protected Class<?> treetableClass;
 	
 	protected TreetableUI treetableUI;
 	
@@ -75,16 +78,39 @@ final class FactoryImpl implements Factory  {
 	@Override
 	public TreetableModel newTreeTableModel(final Node root, final TreetableColumns treetableColumns) {
 		if (null==treetableColumns) {
-			throw new FactoryException("Can't get treetableColumns (NULL)");
+			throw new FactoryException("Can't make TreetableModel-instace if treetableColumns (NULL)");
 		}
 		try {
 			final Constructor<?> constructor = treetableModelClass.getConstructor(TreetableColumns.class);
 			final TreetableModel treeTableModel = (TreetableModel) constructor.newInstance(treetableColumns);
 			treeTableModel.setRoot(root);
 			return treeTableModel;
-		} catch (Exception e) {
+		} 
+		catch (Exception e) {
 			throw new FactoryException("Can't create model-instance."  + " Root=" + root.getTreename(), e);
 		} 
+	}
+	
+	/**
+	 * new instance of Treetable.
+	 * It is created using reflection (not Spring-bean prototype)
+	 */
+	@Override
+	public Treetable newTreetable(TreetableModel treetableModel) {
+		if (null == treetableModel) {
+			throw new FactoryException(
+					"Can't make Treetable-instace if treetableModel (NULL)");
+		}
+
+		try {
+			final Constructor<?> constructor = treetableClass.getConstructor(TreetableModel.class);
+			final Treetable treetable = (Treetable) constructor
+					.newInstance(treetableModel);
+			return treetable;
+		} catch (Exception e) {
+			throw new FactoryException("Can't create model-instance."
+					+ " Model=" + treetableModel, e);
+		}
 	}
 	
 	/**
@@ -148,6 +174,21 @@ final class FactoryImpl implements Factory  {
 		this.treetableModelClass = treetableModelClass;
 	}
 	
+
+	/**
+	 * class to be used for data-models of the Treetable
+	 */
+	@Override
+	@Required
+	public Class<?> getTreetableClass() {
+		return treetableClass;
+	}
+
+	@Override
+	public void setTreetableClass(Class<?> treetableClass) {
+		this.treetableClass = treetableClass;
+	}
+
 	/**
 	 * UI constants.
 	 */
