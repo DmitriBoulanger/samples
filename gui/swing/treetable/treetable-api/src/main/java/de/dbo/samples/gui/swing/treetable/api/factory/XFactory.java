@@ -1,9 +1,9 @@
 package de.dbo.samples.gui.swing.treetable.api.factory;
 
 import de.dbo.samples.gui.swing.treetable.api.gui.XTreetableColumns;
-import de.dbo.samples.gui.swing.treetable.api.gui.TreetableModel;
 import de.dbo.samples.gui.swing.treetable.api.gui.XTreetableModel;
 import de.dbo.samples.gui.swing.treetable.api.gui.XTreetableUI;
+
 import de.dbo.samples.gui.swing.treetable.api.records.Node;
 import de.dbo.samples.gui.swing.treetable.api.records.Record;
 import de.dbo.samples.gui.swing.treetable.api.records.RecordProvider;
