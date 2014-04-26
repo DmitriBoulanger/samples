@@ -54,6 +54,25 @@ public final class Tools {
 		return sb;
 	}
 	
+	public final static StringBuilder printXInternalData(final List<XRecordTreeGenerator> children
+			, final int depth, final boolean onlyNodes) {
+		final StringBuilder sb = new StringBuilder();
+		final StringBuilder tab = tab(depth);
+		for (XRecordTreeGenerator recordList: children) {
+			sb.append(tab);
+			sb.append("#" + depth + "#");
+			sb.append(" Node=" + recordList.node.print() + " sort=" + recordList.node.getSequence());
+			if (!onlyNodes) {
+				sb.append(" Records (" + recordList.size() + "):");
+				for (Record record : recordList.records) {
+					sb.append(print(record, depth, tab));
+				}
+			}
+			sb.append( printXInternalData(recordList.childRecordGroups, depth+1, onlyNodes));
+		}
+		return sb;
+	}
+	
 	private static final StringBuilder print(final Record record
 			, final int depth, final StringBuilder tab) {
 		final StringBuilder sb = new StringBuilder();
