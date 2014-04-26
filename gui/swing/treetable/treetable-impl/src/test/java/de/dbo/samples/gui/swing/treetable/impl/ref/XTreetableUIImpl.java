@@ -1,6 +1,6 @@
 package de.dbo.samples.gui.swing.treetable.impl.ref;
 
-import de.dbo.samples.gui.swing.treetable.api.gui.XTreetableUI;
+import de.dbo.samples.gui.swing.treetable.api.TreetableUI;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -12,8 +12,8 @@ import javax.swing.JLabel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class XTreetableUIImpl implements XTreetableUI {
-	protected static final Logger log = LoggerFactory.getLogger(XTreetableUI.class);
+public class XTreetableUIImpl implements TreetableUI {
+	protected static final Logger log = LoggerFactory.getLogger(TreetableUI.class);
 
 	// button icons
 	private static final ImageIcon iconRefresh = createIcon(XTreetableUIImpl.class,"icons/refresh.png");

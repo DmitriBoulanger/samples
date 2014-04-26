@@ -6,7 +6,7 @@ import static de.dbo.samples.gui.swing.treetable.impl.ref.TreetableUIImpl.FOREGR
 import static de.dbo.samples.gui.swing.treetable.impl.ref.TreetableUIImpl.SELECTION;
 
 import de.dbo.samples.gui.swing.treetable.api.Window;
-import de.dbo.samples.gui.swing.treetable.api.gui.Treetable;
+import de.dbo.samples.gui.swing.treetable.api.gui.TreetableImpl;
 import de.dbo.samples.gui.swing.treetable.api.records.Node;
 
 import java.awt.Dimension;
@@ -45,7 +45,7 @@ public class DataWindow extends Window {
         final Node root = DataStructure.treeroot();
         log.info("elapsed " +(System.currentTimeMillis()-start) + " ms. creating tree-root" );
         
-        final Treetable treetable = new Treetable(new DataTreetableModel(root));
+        final TreetableImpl treetable = new TreetableImpl(new DataTreetableModel(root));
         treetable.setRootVisible(false);
         treetable.setBasicUI(BACKGROUND, SELECTION, FOREGROUND, FONT);
         treetable.setIntercellSpacing(new Dimension(0, 0)); 

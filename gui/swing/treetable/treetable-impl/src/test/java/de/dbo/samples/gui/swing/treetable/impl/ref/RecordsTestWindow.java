@@ -5,11 +5,11 @@ import static de.dbo.samples.gui.swing.treetable.impl.ref.TreetableUIImpl.FONT;
 import static de.dbo.samples.gui.swing.treetable.impl.ref.TreetableUIImpl.FOREGROUND;
 import static de.dbo.samples.gui.swing.treetable.impl.ref.TreetableUIImpl.SELECTION;
 
+import de.dbo.samples.gui.swing.treetable.api.TreetableModel;
 import de.dbo.samples.gui.swing.treetable.api.Window;
 import de.dbo.samples.gui.swing.treetable.api.factory.Factory;
 import de.dbo.samples.gui.swing.treetable.api.factory.FactoryManager;
-import de.dbo.samples.gui.swing.treetable.api.gui.Treetable;
-import de.dbo.samples.gui.swing.treetable.api.gui.TreetableModel;
+import de.dbo.samples.gui.swing.treetable.api.gui.TreetableImpl;
 import de.dbo.samples.gui.swing.treetable.api.records.Node;
 
 import java.awt.Dimension;
@@ -45,7 +45,7 @@ public class RecordsTestWindow extends Window {
         		factory.newTreeTableModel(root, factory.newTreetableColumns());
         
         // Treetable
-        final Treetable treetable = new Treetable(model);
+        final TreetableImpl treetable = new TreetableImpl(model);
         treetable.setRootVisible(true);
         treetable.setBasicUI(BACKGROUND, SELECTION, FOREGROUND, FONT);
         treetable.setIntercellSpacing(new Dimension(0,0)); 

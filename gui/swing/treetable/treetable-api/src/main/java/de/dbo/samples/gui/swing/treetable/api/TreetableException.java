@@ -1,4 +1,4 @@
-package de.dbo.samples.gui.swing.treetable.api.gui;
+package de.dbo.samples.gui.swing.treetable.api;
 
 public class TreetableException extends RuntimeException {
 	private static final long serialVersionUID = 1L;

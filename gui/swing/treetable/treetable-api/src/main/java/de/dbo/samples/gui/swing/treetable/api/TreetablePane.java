@@ -1,14 +1,11 @@
 package de.dbo.samples.gui.swing.treetable.api;
 
 import de.dbo.samples.gui.swing.treetable.api.factory.Factory;
-import de.dbo.samples.gui.swing.treetable.api.gui.Treetable;
-import de.dbo.samples.gui.swing.treetable.api.gui.TreetableColumns;
-import de.dbo.samples.gui.swing.treetable.api.gui.TreetableModel;
-import de.dbo.samples.gui.swing.treetable.api.gui.TreetableUI;
+import de.dbo.samples.gui.swing.treetable.api.gui.TreetableImpl;
 import de.dbo.samples.gui.swing.treetable.api.records.Node;
 import de.dbo.samples.gui.swing.treetable.api.records.Record;
 import de.dbo.samples.gui.swing.treetable.api.records.RecordProvider;
-import de.dbo.samples.gui.swing.treetable.api.records.RecordTreeGenerator;
+import de.dbo.samples.gui.swing.treetable.api.records.NodeGenerator;
 
 import java.awt.Component;
 import java.awt.Dimension;
@@ -85,7 +82,7 @@ public final class TreetablePane extends JPanel implements ActionListener {
 	
 	/* dynamic treetable components */
 	private TreetableModel treetableModel = null;
-	private Treetable treetable = null;
+	private TreetableImpl treetable = null;
 	
 	// status indices
 	private static final int UNLOCKED = 0;
@@ -333,12 +330,12 @@ public final class TreetablePane extends JPanel implements ActionListener {
 	private final void loadTreetable() {
 		// root
 		final long start = System.currentTimeMillis();
-		final Node root = new RecordTreeGenerator(factory, records).tree();
+		final Node root = new NodeGenerator(factory, records).tree();
 		log.trace("elapsed " + (System.currentTimeMillis() - start) + " ms. creating tree-root"); 
 		
 		// treetable
 		treetableModel = factory.newTreeTableModel(root,treetableColumns);
-		treetable = new Treetable(treetableModel);
+		treetable = new TreetableImpl(treetableModel);
 		treetable.setRootVisible(false);
 		treetable.setBasicUI(treetableUI);
 		treetable.setIntercellSpacing(new Dimension(1, 1));

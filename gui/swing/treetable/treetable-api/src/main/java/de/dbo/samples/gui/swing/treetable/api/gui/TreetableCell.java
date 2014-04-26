@@ -25,7 +25,7 @@ public class TreetableCell extends JTree implements TableCellRenderer {
 	private static final long serialVersionUID = 7501441646955414246L;
 	private static final Logger log = LoggerFactory.getLogger(TreetableCell.class);
 
-    private final Treetable treetable;
+    private final TreetableImpl treetable;
     private final TreeCellRenderer treeCellRenderer;
     
 	/** Die letzte Zeile, die gerendert wurde. */
@@ -34,7 +34,7 @@ public class TreetableCell extends JTree implements TableCellRenderer {
     private final int verticalMargin = 1;
     
    
-	public TreetableCell(Treetable treeTable, TreeModel model) {
+	public TreetableCell(TreetableImpl treeTable, TreeModel model) {
         super(model);
         
         this.treetable = treeTable;

@@ -1,7 +1,7 @@
 package de.dbo.samples.gui.swing.treetable.impl.ref;
  
-import de.dbo.samples.gui.swing.treetable.api.gui.TreetableColumns;
-import de.dbo.samples.gui.swing.treetable.api.gui.TreetableException;
+import de.dbo.samples.gui.swing.treetable.api.TreetableColumns;
+import de.dbo.samples.gui.swing.treetable.api.TreetableException;
 import de.dbo.samples.gui.swing.treetable.api.gui.TreetableModelAbstraction;
 import de.dbo.samples.gui.swing.treetable.api.records.Node;
 import de.dbo.samples.gui.swing.treetable.api.records.Record;

@@ -5,12 +5,12 @@ import static de.dbo.samples.gui.swing.treetable.impl.ref.XTreetableUIImpl.FONT;
 import static de.dbo.samples.gui.swing.treetable.impl.ref.XTreetableUIImpl.FOREGROUND;
 import static de.dbo.samples.gui.swing.treetable.impl.ref.XTreetableUIImpl.SELECTION;
 
+import de.dbo.samples.gui.swing.treetable.api.TreetableModel;
 import de.dbo.samples.gui.swing.treetable.api.XWindow;
-import de.dbo.samples.gui.swing.treetable.api.factory.XFactory;
-import de.dbo.samples.gui.swing.treetable.api.factory.XFactoryManager;
-import de.dbo.samples.gui.swing.treetable.api.gui.XTreetable;
-import de.dbo.samples.gui.swing.treetable.api.gui.XTreetableModel;
+import de.dbo.samples.gui.swing.treetable.api.factory.Factory;
+import de.dbo.samples.gui.swing.treetable.api.factory.FactoryManager;
 import de.dbo.samples.gui.swing.treetable.api.records.Node;
+import de.dbo.samples.gui.swing.treetable.api.xgui.TreetableXImpl;
 
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
@@ -40,12 +40,12 @@ public class XRecordsTestWindow extends XWindow {
         log.info("Elapsed " + (System.currentTimeMillis()-start2) + " ms. to create tree-root" );
         
         // Model
-        final XFactory factory = XFactoryManager.getFactory("XReferenceImplementation.xml");
-        final XTreetableModel model = 
+        final Factory factory = FactoryManager.getFactory("XReferenceImplementation.xml");
+        final TreetableModel model = 
         		factory.newTreeTableModel(root, factory.newTreetableColumns());
         
         // Treetable
-        final XTreetable treetable = new XTreetable(model);
+        final TreetableXImpl treetable = new TreetableXImpl(model);
         treetable.setRootVisible(true);
         treetable.setBasicUI(BACKGROUND, SELECTION, FOREGROUND, FONT);
         treetable.setIntercellSpacing(new Dimension(0,0)); 

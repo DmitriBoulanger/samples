@@ -1,8 +1,7 @@
-package de.dbo.samples.gui.swing.treetable.api.gui;
+package de.dbo.samples.gui.swing.treetable.api;
  
-import javax.swing.tree.TreeModel;
- 
-public interface TreetableModel extends TreeModel {
+public interface TreetableModel extends javax.swing.tree.TreeModel
+	, org.jdesktop.swingx.treetable.TreeTableModel {
 	
 	public void setRoot(Object node);
  

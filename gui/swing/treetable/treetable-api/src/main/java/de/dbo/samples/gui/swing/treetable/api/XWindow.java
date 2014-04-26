@@ -1,6 +1,6 @@
 package de.dbo.samples.gui.swing.treetable.api;
 
-import de.dbo.samples.gui.swing.treetable.api.factory.XFactoryManager;
+import de.dbo.samples.gui.swing.treetable.api.factory.FactoryManager;
 
 import java.awt.GridBagLayout;
 
@@ -35,7 +35,7 @@ public abstract class XWindow extends JFrame {
 			, final boolean createMenuBar) {
         super(title + " - " + context);
         setLayout(new GridBagLayout());
-        new XTreetablePane(XFactoryManager.getFactory(context)).selfDeployTo(this, createMenuBar);
+        new XTreetablePane(FactoryManager.getFactory(context)).selfDeployTo(this, createMenuBar);
     }
 	
 	protected XWindow(final String context, final String title) {

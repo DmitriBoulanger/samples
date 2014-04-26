@@ -1,8 +1,8 @@
 package de.dbo.samples.gui.swing.treetable.impl.ref;
 
-import de.dbo.samples.gui.swing.treetable.api.gui.Treetable;
-import de.dbo.samples.gui.swing.treetable.api.gui.TreetableColumnsAbstraction;
-import de.dbo.samples.gui.swing.treetable.api.gui.TreetableModel;
+import de.dbo.samples.gui.swing.treetable.api.TreetableColumnsAbstraction;
+import de.dbo.samples.gui.swing.treetable.api.TreetableModel;
+import de.dbo.samples.gui.swing.treetable.api.TreetableUIManager;
 
 import java.awt.Dimension;
 
@@ -20,7 +20,7 @@ public final class TreetableColumnsImpl2 extends TreetableColumnsAbstraction {
 	}
 
 	@Override
-	public void arrangeColumnWidths(final Treetable treetable) {
+	public void arrangeColumnWidths(final TreetableUIManager treetable) {
 		treetable.setIntercellSpacing(new Dimension(1, 1));
 		treetable.setColumnWidth(0, columnWidths[0]);
 		treetable.setColumnWidthNonresizable(1, columnWidths[1]);

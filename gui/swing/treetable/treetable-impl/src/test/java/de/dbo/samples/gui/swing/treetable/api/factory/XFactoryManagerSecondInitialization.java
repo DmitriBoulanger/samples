@@ -22,11 +22,11 @@ public class XFactoryManagerSecondInitialization {
 	 */
     @Test
 	public void testCtxSecondInitialization() {
-		XFactoryManager.clear();
-		XFactoryManager.getFactory("XReferenceImplementation.xml");
-		XFactoryManager.clear();
+		FactoryManager.clear();
+		FactoryManager.getFactory("XReferenceImplementation.xml");
+		FactoryManager.clear();
 		final long start = System.currentTimeMillis();
-		final XFactory factory = XFactoryManager.getFactory("XReferenceImplementation.xml");
+		final Factory factory = FactoryManager.getFactory("XReferenceImplementation.xml");
 		factory.getNodeClass();
 	    factory.getTreetableModelClass();
 		log.info("elapsed " + (System.currentTimeMillis()-start) 

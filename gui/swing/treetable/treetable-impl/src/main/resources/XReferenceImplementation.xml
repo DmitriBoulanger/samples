@@ -8,7 +8,7 @@
 	<!-- 
 		Definition for reference Tree-Table Factory
 	-->
-	<bean id="factory" class="de.dbo.samples.gui.swing.treetable.api.factory.XFactoryImpl" >
+	<bean id="factory" class="de.dbo.samples.gui.swing.treetable.api.factory.FactoryImpl" >
 	    <property name="rootName" value="Records"/> 
 	    
 		<property name="nodeClass" 
@@ -20,11 +20,11 @@
 		
 	</bean>
 	
-	<bean id="treetableUI" class="de.dbo.samples.gui.swing.treetable.impl.ref.XTreetableUIImpl"
+	<bean id="treetableUI" class="de.dbo.samples.gui.swing.treetable.impl.ref.TreetableUIImpl"
 		scope="singleton">
 	</bean>
 	
-	<bean id="treetableColumns" class="de.dbo.samples.gui.swing.treetable.impl.ref.XTreetableColumnsImpl"
+	<bean id="treetableColumns" class="de.dbo.samples.gui.swing.treetable.impl.ref.TreetableColumnsImpl"
 		scope="prototype">
 	</bean>
 	

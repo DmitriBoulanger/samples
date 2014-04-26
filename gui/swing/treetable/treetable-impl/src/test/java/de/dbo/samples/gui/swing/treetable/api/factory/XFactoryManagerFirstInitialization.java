@@ -23,9 +23,9 @@ public class XFactoryManagerFirstInitialization {
 	 */
 	@Test
 	public void testCtx() {
-		XFactoryManager.clear();
+		FactoryManager.clear();
 		final long start = System.currentTimeMillis();
-		final XFactory factory = XFactoryManager.getFactory("ReferenceImplementation.xml");
+		final Factory factory = FactoryManager.getFactory("XReferenceImplementation.xml");
 		factory.getNodeClass();
 	    factory.getTreetableModelClass();
 		log.info("elapsed " + (System.currentTimeMillis()-start) + " ms. creating factory");

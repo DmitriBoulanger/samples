@@ -1,5 +1,9 @@
 package de.dbo.samples.gui.swing.treetable.api.gui;
  
+import de.dbo.samples.gui.swing.treetable.api.TreetableColumns;
+import de.dbo.samples.gui.swing.treetable.api.TreetableException;
+import de.dbo.samples.gui.swing.treetable.api.TreetableModel;
+
 import javax.swing.event.EventListenerList;
 import javax.swing.event.TreeModelEvent;
 import javax.swing.event.TreeModelListener;
@@ -133,6 +137,16 @@ public abstract class TreetableModelAbstraction implements TreetableModel {
     @Override
     public final Class<?> getColumnClass(int column) {
         return treetableColumns.getColumnTypes()[column];
+    }
+    
+    // from X
+    @Override
+    public int getHierarchicalColumn() {
+        if (getColumnCount() == 0) {
+            return -1;
+        }
+        
+        return 0;
     }
  
 }

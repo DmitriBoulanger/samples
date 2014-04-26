@@ -1,11 +1,10 @@
 package de.dbo.samples.gui.swing.treetable.api.records;
 
-import static de.dbo.samples.gui.swing.treetable.api.records.Tools.printXInternalData;
+import static de.dbo.samples.gui.swing.treetable.api.records.Tools.printInternalData;
 
-import de.dbo.samples.gui.swing.treetable.api.factory.XFactory;
 import de.dbo.samples.gui.swing.treetable.api.records.Node;
 import de.dbo.samples.gui.swing.treetable.api.records.Record;
-import de.dbo.samples.gui.swing.treetable.api.records.XRecordTreeGenerator;
+import de.dbo.samples.gui.swing.treetable.api.records.NodeGenerator;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -28,7 +27,7 @@ import java.util.Set;
  *           only incidentally for computers to execute 
  *
  */
-public final class XRecordTreeGenerator implements Comparable<XRecordTreeGenerator>  {
+public final class NodeGenerator implements Comparable<NodeGenerator>  {
 	
 	/**
 	 * root-node to appear in a tree.
@@ -41,7 +40,7 @@ public final class XRecordTreeGenerator implements Comparable<XRecordTreeGenerat
 	 * representation of children nodes.
 	 * This list is only used while building the tree
 	 */
-	final List<XRecordTreeGenerator> childRecordGroups = new ArrayList<XRecordTreeGenerator>();
+	final List<NodeGenerator> childRecordGroups = new ArrayList<NodeGenerator>();
 
 	final int depth;
 	
@@ -50,14 +49,14 @@ public final class XRecordTreeGenerator implements Comparable<XRecordTreeGenerat
 	 */
 	final List<Record> records = new ArrayList<Record>();
 	
-	final XFactory factory;
+	final NodeFactory factory;
 	
 	/**
 	 * 
 	 * @param records
 	 * 			record-list to be converted into the record-tree
 	 */
-	public XRecordTreeGenerator(final XFactory factory, final List<Record> records) {
+	public NodeGenerator(final NodeFactory factory, final List<Record> records) {
 		this.factory = factory;
 		this.depth = 0;
 		this.node = factory.newRoot();
@@ -85,13 +84,13 @@ public final class XRecordTreeGenerator implements Comparable<XRecordTreeGenerat
 	 * @param depth
 	 * @param node
 	 */
-	XRecordTreeGenerator(final XFactory factory, final int depth, final Node node) {
+	NodeGenerator(final NodeFactory factory, final int depth, final Node node) {
 		this.factory = factory;
 		this.depth = depth;
 		this.node = node;
 	}
 	
-	public final int compareTo(XRecordTreeGenerator another) {
+	public final int compareTo(NodeGenerator another) {
 		return node.compareTo(another.node);
 	}
 	
@@ -110,11 +109,11 @@ public final class XRecordTreeGenerator implements Comparable<XRecordTreeGenerat
 	 * @param recordList
 	 * @param recordListSeq
 	 */
-	private static final void process(final XRecordTreeGenerator recordList,  final Long recordListSeq) {
-		final XFactory factory = recordList.factory;
+	private static final void process(final NodeGenerator recordList,  final Long recordListSeq) {
+		final NodeFactory factory = recordList.factory;
 		Long seq = new Long( recordListSeq );
 		String group = null;
-		XRecordTreeGenerator groupList = null;
+		NodeGenerator groupList = null;
 		
 		final int depth = recordList.depth;
 		for (final Record record:recordList.records) {
@@ -137,7 +136,7 @@ public final class XRecordTreeGenerator implements Comparable<XRecordTreeGenerat
 				seq = seqNext;
 				final Node node = factory.newNode(group, null);
 				node.setSequence(seq);
-				groupList = new XRecordTreeGenerator(recordList.factory, depth + 1, node );
+				groupList = new NodeGenerator(recordList.factory, depth + 1, node );
 				if (isData) {
 					groupList.node.getChildren().add(factory.newNode(name, record));
 				} else {
@@ -148,12 +147,12 @@ public final class XRecordTreeGenerator implements Comparable<XRecordTreeGenerat
 		}
 		
 		final List<Node> childern = recordList.node.getChildren();
-		for (XRecordTreeGenerator childRecordTreeGenerator: recordList.childRecordGroups)  {
+		for (NodeGenerator childRecordTreeGenerator: recordList.childRecordGroups)  {
 			childern.add(childRecordTreeGenerator.node);
 		}
 		
 		if (!recordList.childRecordGroups.isEmpty() ) {
-			for (XRecordTreeGenerator recordList2:recordList.childRecordGroups) {
+			for (NodeGenerator recordList2:recordList.childRecordGroups) {
 				process(recordList2,seq+1);
 			}
 		}
@@ -208,7 +207,7 @@ public final class XRecordTreeGenerator implements Comparable<XRecordTreeGenerat
 	 * cleans up all lists that have been used while building record-tree
 	 * @param recordList
 	 */
-	private static final void clear(final XRecordTreeGenerator recordList) {
+	private static final void clear(final NodeGenerator recordList) {
 		recordList.childRecordGroups.clear();
 		recordList.records.clear();
 	}
@@ -221,7 +220,7 @@ public final class XRecordTreeGenerator implements Comparable<XRecordTreeGenerat
 	 */
 	public final StringBuilder print() {
 		final StringBuilder ret = new StringBuilder();
-		final StringBuilder sb =  printXInternalData(this.childRecordGroups
+		final StringBuilder sb =  printInternalData(this.childRecordGroups
 				,0 ,true /* only nodes */);
 		ret.append(sb);
 		return ret;

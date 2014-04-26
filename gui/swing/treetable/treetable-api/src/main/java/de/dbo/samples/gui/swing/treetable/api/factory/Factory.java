@@ -1,10 +1,10 @@
 package de.dbo.samples.gui.swing.treetable.api.factory;
 
-import de.dbo.samples.gui.swing.treetable.api.gui.TreetableColumns;
-import de.dbo.samples.gui.swing.treetable.api.gui.TreetableModel;
-import de.dbo.samples.gui.swing.treetable.api.gui.TreetableUI;
+import de.dbo.samples.gui.swing.treetable.api.TreetableColumns;
+import de.dbo.samples.gui.swing.treetable.api.TreetableModel;
+import de.dbo.samples.gui.swing.treetable.api.TreetableUI;
 import de.dbo.samples.gui.swing.treetable.api.records.Node;
-import de.dbo.samples.gui.swing.treetable.api.records.Record;
+import de.dbo.samples.gui.swing.treetable.api.records.NodeFactory;
 import de.dbo.samples.gui.swing.treetable.api.records.RecordProvider;
 
 /**
@@ -18,33 +18,7 @@ import de.dbo.samples.gui.swing.treetable.api.records.RecordProvider;
  *           only incidentally for computers to execute 
  *
  */
-public interface Factory  {
-	
-	 /**
-	  * tree-name of the root.
-	  * 
-	  * @return string to appear in the UI as a root-name
-	  */
-	 public String getRootName();
- 
-	 public void setRootName(String rootName);
-
-	/**
-	 * creates a new node possibly having a data-record
-	 * 
-	 * @param treename node-name to appear in tree
-	 * @param record data of the node (can be null)
-	 * 
-	 * @return Node-instance
-	 */
-	public Node newNode(final String treename, final Record record);
-	
-	/**
-	 * creates a new root-node possibly having no children and data-records
-	  
-	 * @return Node-instance
-	 */
-	public Node newRoot();
+public interface Factory extends NodeFactory {
 	
 	/**
 	 * creates a new model for a tree-table.

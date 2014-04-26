@@ -1,8 +1,8 @@
 package de.dbo.samples.gui.swing.treetable.impl.data;
 
-import de.dbo.samples.gui.swing.treetable.api.gui.Treetable;
-import de.dbo.samples.gui.swing.treetable.api.gui.TreetableColumnsAbstraction;
-import de.dbo.samples.gui.swing.treetable.api.gui.TreetableModel;
+import de.dbo.samples.gui.swing.treetable.api.TreetableColumnsAbstraction;
+import de.dbo.samples.gui.swing.treetable.api.TreetableModel;
+import de.dbo.samples.gui.swing.treetable.api.TreetableUIManager;
 
 public final class DataTreetableColumns extends TreetableColumnsAbstraction {
 	
@@ -20,7 +20,7 @@ public final class DataTreetableColumns extends TreetableColumnsAbstraction {
 	}
 
 	@Override
-	public void arrangeColumnWidths(final Treetable treetable) {
+	public void arrangeColumnWidths(final TreetableUIManager treetable) {
 		
 	}
 

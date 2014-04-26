@@ -35,11 +35,11 @@ public final class Tools {
 		
 	}
 	
-	public final static StringBuilder printInternalData(final List<RecordTreeGenerator> children
+	public final static StringBuilder printInternalData(final List<NodeGenerator> children
 			, final int depth, final boolean onlyNodes) {
 		final StringBuilder sb = new StringBuilder();
 		final StringBuilder tab = tab(depth);
-		for (RecordTreeGenerator recordList: children) {
+		for (NodeGenerator recordList: children) {
 			sb.append(tab);
 			sb.append("#" + depth + "#");
 			sb.append(" Node=" + recordList.node.print() + " sort=" + recordList.node.getSequence());
@@ -50,25 +50,6 @@ public final class Tools {
 				}
 			}
 			sb.append( printInternalData(recordList.childRecordGroups, depth+1, onlyNodes));
-		}
-		return sb;
-	}
-	
-	public final static StringBuilder printXInternalData(final List<XRecordTreeGenerator> children
-			, final int depth, final boolean onlyNodes) {
-		final StringBuilder sb = new StringBuilder();
-		final StringBuilder tab = tab(depth);
-		for (XRecordTreeGenerator recordList: children) {
-			sb.append(tab);
-			sb.append("#" + depth + "#");
-			sb.append(" Node=" + recordList.node.print() + " sort=" + recordList.node.getSequence());
-			if (!onlyNodes) {
-				sb.append(" Records (" + recordList.size() + "):");
-				for (Record record : recordList.records) {
-					sb.append(print(record, depth, tab));
-				}
-			}
-			sb.append( printXInternalData(recordList.childRecordGroups, depth+1, onlyNodes));
 		}
 		return sb;
 	}

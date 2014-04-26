@@ -1,6 +1,6 @@
 package de.dbo.samples.gui.swing.treetable.impl.ref;
 
-import de.dbo.samples.gui.swing.treetable.api.gui.TreetableUI;
+import de.dbo.samples.gui.swing.treetable.api.TreetableUI;
 
 import java.awt.Color;
 import java.awt.Font;

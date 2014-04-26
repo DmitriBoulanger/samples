@@ -1,5 +1,7 @@
 package de.dbo.samples.gui.swing.treetable.api.gui;
  
+import de.dbo.samples.gui.swing.treetable.api.TreetableModel;
+
 import javax.swing.JTree;
 import javax.swing.event.TreeExpansionEvent;
 import javax.swing.event.TreeExpansionListener;

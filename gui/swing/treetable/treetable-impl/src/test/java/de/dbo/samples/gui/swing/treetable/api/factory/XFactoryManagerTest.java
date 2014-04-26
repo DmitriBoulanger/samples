@@ -20,20 +20,20 @@ public class XFactoryManagerTest {
 	
 	@Test
 	public void testCtx() {
-		XFactoryManager.clear();
+		FactoryManager.clear();
 		final long start = System.currentTimeMillis();
-		final XFactory factory = XFactoryManager.getFactory("XReferenceImplementation.xml");
+		final Factory factory = FactoryManager.getFactory("XReferenceImplementation.xml");
 		final Class<?> nodeClass = factory.getNodeClass();
 		final Class<?> modelClass = factory.getTreetableModelClass();
 		log.info("elapsed " + (System.currentTimeMillis() - start)+ " ms. creating factory from context");
 		assertClassNames(nodeClass, modelClass);
 
-		final XFactory factory2 = XFactoryManager.getFactory("XReferenceImplementation.xml");
+		final Factory factory2 = FactoryManager.getFactory("XReferenceImplementation.xml");
 		assertTrue("Factory from context is not a singelton",
 				factory == factory2);
 		
-		XFactoryManager.clear();
-		final XFactory factory3 = XFactoryManager.getFactory("XReferenceImplementation.xml");
+		FactoryManager.clear();
+		final Factory factory3 = FactoryManager.getFactory("XReferenceImplementation.xml");
 	    assertFalse("No new factory from properties after clear",factory==factory3);
 	}
 	
@@ -47,27 +47,27 @@ public class XFactoryManagerTest {
 	
 	@Test(expected=FactoryException.class)
 	public void testErr() {
-		XFactoryManager.clear();
-	    XFactoryManager.getFactory("bla.bla");
+		FactoryManager.clear();
+	    FactoryManager.getFactory("bla.bla");
 	}
 	
 	@Test
 	public void treetableUI() {
-		final XFactory factory = XFactoryManager.getFactory("XReferenceImplementation.xml");
+		final Factory factory = FactoryManager.getFactory("XReferenceImplementation.xml");
 		assertTrue("TreetableUI should be a singelton"
 				,factory.getTreetableUI()==factory.getTreetableUI());
 	}
 	
 	@Test
 	public void treetableColumns() {
-		final XFactory factory = XFactoryManager.getFactory("XReferenceImplementation.xml");
+		final Factory factory = FactoryManager.getFactory("XReferenceImplementation.xml");
 		assertFalse("TreetableColumns should not be a singelton"
 				,factory.newTreetableColumns()==factory.newTreetableColumns());
 	}
 	
 	@Test
 	public void recordProvider() {
-		final XFactory factory = XFactoryManager.getFactory("XReferenceImplementation.xml");
+		final Factory factory = FactoryManager.getFactory("XReferenceImplementation.xml");
 		assertFalse("TreetableColumns should not be a singelton"
 				,factory.newRecordProvider()==factory.newRecordProvider());
 	}

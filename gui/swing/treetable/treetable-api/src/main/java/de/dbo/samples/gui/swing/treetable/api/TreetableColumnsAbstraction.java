@@ -1,7 +1,4 @@
-package de.dbo.samples.gui.swing.treetable.api.gui;
-
-import de.dbo.samples.gui.swing.treetable.api.gui.Treetable;
-import de.dbo.samples.gui.swing.treetable.api.gui.TreetableColumns;
+package de.dbo.samples.gui.swing.treetable.api;
 
 import java.util.Arrays;
 
@@ -16,7 +13,7 @@ public abstract class TreetableColumnsAbstraction implements TreetableColumns {
 	}
 
 	@Override
-	public final void setColumnWidths(final Treetable treetable) {
+	public final void setColumnWidths(final TreetableUIManager treetable) {
 		if (null==treetable) {
 			return;
 		}

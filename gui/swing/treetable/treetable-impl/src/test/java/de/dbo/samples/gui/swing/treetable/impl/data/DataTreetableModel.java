@@ -92,5 +92,11 @@ public final class DataTreetableModel extends TreetableModelAbstraction {
  
          }
     }
+
+	@Override
+	public int getHierarchicalColumn() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
   
 }

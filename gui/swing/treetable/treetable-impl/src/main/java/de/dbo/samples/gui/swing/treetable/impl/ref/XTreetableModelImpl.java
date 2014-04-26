@@ -1,15 +1,15 @@
 package de.dbo.samples.gui.swing.treetable.impl.ref;
  
-import de.dbo.samples.gui.swing.treetable.api.gui.TreetableException;
-import de.dbo.samples.gui.swing.treetable.api.gui.XTreetableColumns;
-import de.dbo.samples.gui.swing.treetable.api.gui.XTreetableModelAbstraction;
+import de.dbo.samples.gui.swing.treetable.api.TreetableException;
 import de.dbo.samples.gui.swing.treetable.api.records.Node;
 import de.dbo.samples.gui.swing.treetable.api.records.Record;
 import de.dbo.samples.gui.swing.treetable.api.records.RecordTimestampFormat;
+import de.dbo.samples.gui.swing.treetable.api.TreetableColumns;
+import de.dbo.samples.gui.swing.treetable.api.xgui.TreetableModelAbstraction;
 
-public final class XTreetableModelImpl extends XTreetableModelAbstraction {
+public final class XTreetableModelImpl extends TreetableModelAbstraction {
 	
-    public XTreetableModelImpl(final XTreetableColumns treetableColumns) {
+    public XTreetableModelImpl(final TreetableColumns treetableColumns) {
         super(treetableColumns);
     }
     

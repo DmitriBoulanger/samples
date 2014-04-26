@@ -1,4 +1,4 @@
-package de.dbo.samples.gui.swing.treetable.api.gui;
+package de.dbo.samples.gui.swing.treetable.api;
 
 import java.awt.Color;
 import java.awt.Font;

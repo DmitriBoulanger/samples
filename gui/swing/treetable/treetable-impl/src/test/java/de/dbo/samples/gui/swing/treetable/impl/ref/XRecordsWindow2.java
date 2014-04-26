@@ -11,7 +11,7 @@ public final class XRecordsWindow2 extends XWindow {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				setLookAndFeel();
+//				setLookAndFeel();
 				new XRecordsWindow2().showup();
 			}
 		});

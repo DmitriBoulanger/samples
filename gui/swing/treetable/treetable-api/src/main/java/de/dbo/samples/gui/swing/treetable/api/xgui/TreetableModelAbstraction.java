@@ -1,9 +1,8 @@
-package de.dbo.samples.gui.swing.treetable.api.gui;
+package de.dbo.samples.gui.swing.treetable.api.xgui;
  
-import javax.swing.event.EventListenerList;
-//import javax.swing.event.TreeModelEvent;
-//import javax.swing.event.TreeModelListener;
-//import javax.swing.tree.TreePath;
+import de.dbo.samples.gui.swing.treetable.api.TreetableColumns;
+import de.dbo.samples.gui.swing.treetable.api.TreetableException;
+import de.dbo.samples.gui.swing.treetable.api.TreetableModel;
 
 import org.jdesktop.swingx.treetable.AbstractTreeTableModel;
 import org.slf4j.Logger;
@@ -18,15 +17,15 @@ import org.slf4j.LoggerFactory;
  *           only incidentally for computers to execute 
  *
  */
-public abstract class XTreetableModelAbstraction 
-	extends AbstractTreeTableModel  implements XTreetableModel{
-	protected static final Logger log = LoggerFactory.getLogger(XTreetableModel.class);
+public abstract class TreetableModelAbstraction extends AbstractTreeTableModel  
+	implements TreetableModel {
+	protected static final Logger log = LoggerFactory.getLogger(TreetableModel.class);
 	
     protected Object root;
    
-    private final XTreetableColumns treetableColumns;
+    private final TreetableColumns treetableColumns;
     
-    protected XTreetableModelAbstraction(final XTreetableColumns treetableColumns) {
+    protected TreetableModelAbstraction(final TreetableColumns treetableColumns) {
     	if (null==treetableColumns) {
     		throw new TreetableException("xtreetableColumns is null");
     	}

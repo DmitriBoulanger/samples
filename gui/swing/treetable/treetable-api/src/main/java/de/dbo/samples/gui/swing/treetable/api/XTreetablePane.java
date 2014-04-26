@@ -1,14 +1,13 @@
 package de.dbo.samples.gui.swing.treetable.api;
 
-import de.dbo.samples.gui.swing.treetable.api.factory.XFactory;
-import de.dbo.samples.gui.swing.treetable.api.gui.XTreetable;
-import de.dbo.samples.gui.swing.treetable.api.gui.XTreetableColumns;
-import de.dbo.samples.gui.swing.treetable.api.gui.XTreetableModel;
-import de.dbo.samples.gui.swing.treetable.api.gui.XTreetableUI;
+import de.dbo.samples.gui.swing.treetable.api.factory.Factory;
 import de.dbo.samples.gui.swing.treetable.api.records.Node;
 import de.dbo.samples.gui.swing.treetable.api.records.Record;
 import de.dbo.samples.gui.swing.treetable.api.records.RecordProvider;
-import de.dbo.samples.gui.swing.treetable.api.records.XRecordTreeGenerator;
+import de.dbo.samples.gui.swing.treetable.api.records.NodeGenerator;
+import de.dbo.samples.gui.swing.treetable.api.xgui.TreetableXImpl;
+import de.dbo.samples.gui.swing.treetable.api.TreetableColumns;
+import de.dbo.samples.gui.swing.treetable.api.TreetableUI;
 
 import java.awt.Component;
 import java.awt.Dimension;
@@ -53,10 +52,10 @@ public final class XTreetablePane extends JPanel implements ActionListener {
 	private static final Logger log = LoggerFactory.getLogger(XTreetablePane.class);
 
 	/* treetable factory and record provider */
-	private final XFactory factory;
+	private final Factory factory;
 	private final RecordProvider recordProvider;
-	private final XTreetableColumns treetableColumns;
-	private final XTreetableUI treetableUI;
+	private final TreetableColumns treetableColumns;
+	private final TreetableUI treetableUI;
 	
 	/* control-pane components */
 	private final JButton reloadButton;
@@ -84,8 +83,8 @@ public final class XTreetablePane extends JPanel implements ActionListener {
 	private List<Record> records = null;
 	
 	/* dynamic treetable components */
-	private XTreetableModel treetableModel = null;
-	private XTreetable treetable = null;
+	private TreetableModel treetableModel = null;
+	private Treetable treetable = null;
 	
 	// status indices
 	private static final int UNLOCKED = 0;
@@ -99,7 +98,7 @@ public final class XTreetablePane extends JPanel implements ActionListener {
 	 * GUI with childless treetable-root.
 	 * Initial status is UNLOCKED, records = null
 	 */
-	protected XTreetablePane(final XFactory factory) {
+	protected XTreetablePane(final Factory factory) {
         this.factory = factory;
         this.recordProvider = factory.newRecordProvider();
         this.treetableUI = factory.getTreetableUI();
@@ -333,19 +332,19 @@ public final class XTreetablePane extends JPanel implements ActionListener {
 	private final void loadTreetable() {
 		// root
 		final long start = System.currentTimeMillis();
-		final Node root = new XRecordTreeGenerator(factory, records).tree();
+		final Node root = new NodeGenerator(factory, records).tree();
 		log.trace("elapsed " + (System.currentTimeMillis() - start) + " ms. creating tree-root"); 
 		
 		// treetable
 		treetableModel = factory.newTreeTableModel(root,treetableColumns);
-		treetable = new XTreetable(treetableModel);
+		treetable = new TreetableXImpl(treetableModel);
 		treetable.setRootVisible(false);
 		treetable.setBasicUI(treetableUI);
 		treetable.setIntercellSpacing(new Dimension(1, 1));
 		treetableColumns.arrangeColumnWidths(treetable);
 
 		// scrolling
-		scrollPane.setViewportView(treetable);
+		scrollPane.setViewportView((Component)treetable);
 		scrollPane.getViewport().revalidate();
 		log.trace("elapsed " + (System.currentTimeMillis() - start) + " ms. loading tree-table"); 
 	}

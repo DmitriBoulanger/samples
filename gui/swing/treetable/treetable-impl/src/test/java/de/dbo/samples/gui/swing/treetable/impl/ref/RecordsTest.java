@@ -7,7 +7,7 @@ import de.dbo.samples.gui.swing.treetable.api.factory.FactoryManager;
 import de.dbo.samples.gui.swing.treetable.api.records.Node;
 import de.dbo.samples.gui.swing.treetable.api.records.Path;
 import de.dbo.samples.gui.swing.treetable.api.records.Record;
-import de.dbo.samples.gui.swing.treetable.api.records.RecordTreeGenerator;
+import de.dbo.samples.gui.swing.treetable.api.records.NodeGenerator;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -120,7 +120,7 @@ public class RecordsTest {
 			log.debug( new DecimalFormat("00").format(i)+":" + record.print().toString());
 		}
 		
-		final RecordTreeGenerator recordTreeGenerator = new RecordTreeGenerator(factory, records);
+		final NodeGenerator recordTreeGenerator = new NodeGenerator(factory, records);
 		log.debug("Tree-Structure: "
 				 + "\nTotal records: " + recordTreeGenerator.size()  
 	             + recordTreeGenerator.print());
