@@ -27,7 +27,7 @@ public abstract class TreetableModelAbstraction extends AbstractTreeTableModel
     
     protected TreetableModelAbstraction(final TreetableColumns treetableColumns) {
     	if (null==treetableColumns) {
-    		throw new TreetableException("xtreetableColumns is null");
+    		throw new TreetableException("treetableColumns is NULL");
     	}
     	this.treetableColumns = treetableColumns;
     	log.trace("created");

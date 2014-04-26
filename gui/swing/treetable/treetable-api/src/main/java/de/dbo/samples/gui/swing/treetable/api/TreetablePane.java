@@ -2,9 +2,9 @@ package de.dbo.samples.gui.swing.treetable.api;
 
 import de.dbo.samples.gui.swing.treetable.api.factory.Factory;
 import de.dbo.samples.gui.swing.treetable.api.records.Node;
+import de.dbo.samples.gui.swing.treetable.api.records.NodeGenerator;
 import de.dbo.samples.gui.swing.treetable.api.records.Record;
 import de.dbo.samples.gui.swing.treetable.api.records.RecordProvider;
-import de.dbo.samples.gui.swing.treetable.api.records.NodeGenerator;
 
 import java.awt.Component;
 import java.awt.Dimension;
@@ -18,6 +18,7 @@ import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JPanel;
@@ -95,7 +96,7 @@ public final class TreetablePane extends JPanel implements ActionListener {
 	 * GUI with childless treetable-root.
 	 * Initial status is UNLOCKED, records = null
 	 */
-	protected TreetablePane(final Factory factory) {
+	public TreetablePane(final Factory factory) {
         this.factory = factory;
         this.recordProvider = factory.newRecordProvider();
         this.treetableUI = factory.getTreetableUI();
@@ -110,7 +111,7 @@ public final class TreetablePane extends JPanel implements ActionListener {
     			,"Clean-up record-provider and UI");
         
         // left control-pane
-        controlsPane.setOpaque(false);
+//        controlsPane.setOpaque(false);
         controlsPane.add(reloadButton);  
         controlsPane.add(updateButton);  
         controlsPane.add(expadCollapseButton);   
@@ -119,16 +120,21 @@ public final class TreetablePane extends JPanel implements ActionListener {
         controlsPane.add(transactionIdTextField);
       
         // right status-pane
-        statusPane.setOpaque(false);
+//        statusPane.setOpaque(false);
         statusPane.add(recordCounterLabel);
         statusPane.add(recordCounterTextField);
         
         // scrolling in this pane
-        setBackground(treetableUI.getBackground());
+       
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        scrollPane.getViewport().setBackground(treetableUI.getBackground());
         scrollPane.getViewport().setView(null);
+       
+        // UI
+        if (null!=treetableUI.getBackground()) {
+        	setBackground(treetableUI.getBackground());
+        	scrollPane.getViewport().setBackground(treetableUI.getBackground());
+        }
 
         // actions
         reloadButton.addActionListener(this);
@@ -192,10 +198,10 @@ public final class TreetablePane extends JPanel implements ActionListener {
 		}
 	}
 	
-    public final void selfDeployTo(final JPanel jPanel) {
+    public final void selfDeployTo(final JComponent jComponent) {
     	log.trace("self-deployment to JPanel ...");
-    	jPanel.setLayout(new GridBagLayout());
-        jPanel.setBackground(getBackground());
+    	jComponent.setLayout(new GridBagLayout());
+        jComponent.setBackground(getBackground());
 		
 		// menu-bar
     	int x = 0;
@@ -210,15 +216,15 @@ public final class TreetablePane extends JPanel implements ActionListener {
         int y = 0;
         GridBagConstraints gbc = null;
         final GridBagLayout gbl = new GridBagLayout();
-        jPanel.setLayout(gbl);
+        jComponent.setLayout(gbl);
         gbc = gbc1xMany_Y(y++);
         gbc.weighty = 0.0;
         gbc.fill = GridBagConstraints.HORIZONTAL;
-        jPanel.add(menuBar,gbc);
+        jComponent.add(menuBar,gbc);
         gbc = gbc1xMany_Y(y++);
         gbc.weighty = 1.0;
         gbc.fill = GridBagConstraints.BOTH;
-        jPanel.add(this,gbc1xMany_Y(y++));
+        jComponent.add(this,gbc1xMany_Y(y++));
 	}
 	
 	@Override
@@ -336,9 +342,10 @@ public final class TreetablePane extends JPanel implements ActionListener {
 		treetableModel = factory.newTreeTableModel(root,treetableColumns);
 		treetable = factory.newTreetable(treetableModel);
 		treetable.setRootVisible(false);
-		treetable.setBasicUI(treetableUI);
+//		treetable.setBasicUI(treetableUI);
 		treetable.setIntercellSpacing(new Dimension(1, 1));
 		treetableColumns.arrangeColumnWidths(treetable);
+//		treetable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
 
 		// scrolling
 		scrollPane.setViewportView((Component)treetable);

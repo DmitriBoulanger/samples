@@ -6,11 +6,11 @@ import static de.dbo.samples.gui.swing.treetable.impl.ref.TreetableUIImpl.FOREGR
 import static de.dbo.samples.gui.swing.treetable.impl.ref.TreetableUIImpl.SELECTION;
 
 import de.dbo.samples.gui.swing.treetable.api.TreetableModel;
-import de.dbo.samples.gui.swing.treetable.api.Window;
 import de.dbo.samples.gui.swing.treetable.api.factory.Factory;
 import de.dbo.samples.gui.swing.treetable.api.factory.FactoryManager;
 import de.dbo.samples.gui.swing.treetable.api.gui.TreetableImpl;
 import de.dbo.samples.gui.swing.treetable.api.records.Node;
+import de.dbo.samples.gui.swing.treetable.impl.Window;
 
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;

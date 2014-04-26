@@ -84,21 +84,18 @@ public class TreetableUIImpl implements TreetableUI {
 
 	@Override
 	public Color getForeround() {
-		return FOREGROUND;
+		return null; //FOREGROUND;
 	}
 
 	@Override
 	public Color getSelection() {
-		return SELECTION;
+		return null; //SELECTION;
 	}
 
 	@Override
 	public Font getFont() {
 		return FONT;
 	}
-	
-	
-	
 	
 	/** 
 	 * @return an ImageIcon, or null if the path was invalid. 

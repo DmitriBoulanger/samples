@@ -36,31 +36,12 @@ public class TreetableImpl extends JXTreeTable implements TreetableUIManager, Tr
 	private static final long serialVersionUID = -5203756529846423026L;
 	private static final Logger log = LoggerFactory.getLogger(TreetableImpl.class);
 	
-//	private final TreetableCell tree;
-	
 	/**
 	 * @param model tree-table data-model 
 	 */
     public TreetableImpl(TreetableModel model) {
         super(model);
-        
-        // JTree-extension
-//        tree = new TreetableCell(this, model);
-         
-        // Model
-//        super.setModel(new TreetableModelAdapter(model, tree));
-         
-        // Simultaneous selections for JTable and JTree
-//        final TreetableSelectionModel selectionModel = new TreetableSelectionModel();
-//        tree.setSelectionModel(selectionModel); // For the tree
-//        setSelectionModel(selectionModel.getListSelectionModel()); //For the table
  
-        // Renderer for JTree
-//        setDefaultRenderer(TreetableModel.class, tree);
-        
-        // Editor for the Treetable
-//        setDefaultEditor(TreetableModel.class, new TreetableCellEditor(tree, this));
-         
         // No grid show
         setShowGrid(false);
         
@@ -80,24 +61,6 @@ public class TreetableImpl extends JXTreeTable implements TreetableUIManager, Tr
     //
     // Customization
     //
-    
-    @Override
-	public void expandAll() {
-        int row = 0;
-        while (row < getRowCount()) {
-            expandRow(row);
-            row++;
-        }
-    }
-    
-    @Override
-	public void collapseAll() {
-        int row = 0;
-        while (row < getRowCount()) {
-            collapseRow(row);
-            row++;
-        }
-    }
     
     @Override
 	public final Integer getColunWidth(int column) {
@@ -131,19 +94,23 @@ public class TreetableImpl extends JXTreeTable implements TreetableUIManager, Tr
     }
     
     @Override
-	public void setBasicUI(Color background, Color selection,  Color foreground, Font font) {
-    	
-    	 setFont(font);
-    	 setBackground(background);
-    	 setForeground(foreground);
-    	 setSelectionBackground(selection);
-         setSelectionForeground(foreground);
-         
-         // JTable Header
-         getTableHeader().setBackground(background);
-         getTableHeader().setFont(font);
-         getTableHeader().setForeground(foreground);
-         
-         
-    }
+	public void setBasicUI(Color background, Color selection, Color foreground, Font font) {
+
+		if (null != background) {
+			setBackground(background);
+			getTableHeader().setBackground(background);
+		}
+		if (null != background) {
+			setSelectionForeground(foreground);
+			getTableHeader().setForeground(foreground);
+			setForeground(foreground);
+		}
+		if (null != font) {
+			setFont(font);
+			getTableHeader().setFont(font);
+		}
+		if (null != selection) {
+			setSelectionBackground(selection);
+		}
+	}
 }

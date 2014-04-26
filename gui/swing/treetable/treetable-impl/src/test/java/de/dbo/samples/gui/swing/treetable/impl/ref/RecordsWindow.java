@@ -1,6 +1,6 @@
 package de.dbo.samples.gui.swing.treetable.impl.ref;
 
-import de.dbo.samples.gui.swing.treetable.api.Window;
+import de.dbo.samples.gui.swing.treetable.impl.Window;
 
 import javax.swing.SwingUtilities;
 

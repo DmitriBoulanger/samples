@@ -1,5 +1,6 @@
-package de.dbo.samples.gui.swing.treetable.api;
+package de.dbo.samples.gui.swing.treetable.impl;
 
+import de.dbo.samples.gui.swing.treetable.api.TreetablePane;
 import de.dbo.samples.gui.swing.treetable.api.factory.FactoryManager;
 
 import java.awt.GridBagLayout;

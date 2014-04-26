@@ -1,16 +1,16 @@
 package de.dbo.samples.gui.swing.treetable.impl.ref;
 
-import static de.dbo.samples.gui.swing.treetable.impl.ref.XTreetableUIImpl.BACKGROUND;
-import static de.dbo.samples.gui.swing.treetable.impl.ref.XTreetableUIImpl.FONT;
-import static de.dbo.samples.gui.swing.treetable.impl.ref.XTreetableUIImpl.FOREGROUND;
-import static de.dbo.samples.gui.swing.treetable.impl.ref.XTreetableUIImpl.SELECTION;
+import static de.dbo.samples.gui.swing.treetable.impl.ref.TreetableUIImpl.BACKGROUND;
+import static de.dbo.samples.gui.swing.treetable.impl.ref.TreetableUIImpl.FONT;
+import static de.dbo.samples.gui.swing.treetable.impl.ref.TreetableUIImpl.FOREGROUND;
+import static de.dbo.samples.gui.swing.treetable.impl.ref.TreetableUIImpl.SELECTION;
 
 import de.dbo.samples.gui.swing.treetable.api.TreetableModel;
-import de.dbo.samples.gui.swing.treetable.api.Window;
 import de.dbo.samples.gui.swing.treetable.api.factory.Factory;
 import de.dbo.samples.gui.swing.treetable.api.factory.FactoryManager;
 import de.dbo.samples.gui.swing.treetable.api.records.Node;
 import de.dbo.samples.gui.swing.treetable.api.xgui.TreetableImpl;
+import de.dbo.samples.gui.swing.treetable.impl.Window;
 
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;

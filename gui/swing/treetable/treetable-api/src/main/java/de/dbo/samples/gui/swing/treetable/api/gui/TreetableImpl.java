@@ -120,28 +120,32 @@ public class TreetableImpl extends JTable implements Treetable, TreetableUIManag
     }
     
     public void setBasicUI(Color background, Color selection,  Color foreground, Font font) {
-    	 // JTable
-    	 setFont(font);
-    	 setBackground(background);
-    	 setForeground(foreground);
-    	 setSelectionBackground(selection);
-         setSelectionForeground(foreground);
-         
-         // JTable Header
-         getTableHeader().setBackground(background);
-         getTableHeader().setFont(font);
-         getTableHeader().setForeground(foreground);
+    	
+		final DefaultTreeCellRenderer renderer = (DefaultTreeCellRenderer) tree
+				.getCellRenderer();
 
-    	// JTree
-        final DefaultTreeCellRenderer renderer = (DefaultTreeCellRenderer) tree.getCellRenderer();
-        renderer.setFont(font);
-    	renderer.setBackground(background);
-    	renderer.setForeground(foreground);
-    	renderer.setTextSelectionColor(foreground);
-    	renderer.setTextNonSelectionColor(foreground);
-        renderer.setBackgroundSelectionColor(selection);
-        
-        // Node in the tree
-        tree.getTreeCellRenderer().setBackgroundselection(selection);
-    }
+		if (null != background) {
+			setBackground(background);
+			getTableHeader().setBackground(background);
+			renderer.setBackground(background);
+		}
+		if (null != foreground) {
+			setSelectionForeground(foreground);
+			getTableHeader().setForeground(foreground);
+			setForeground(foreground);
+			renderer.setForeground(foreground);
+			renderer.setTextSelectionColor(foreground);
+			renderer.setTextNonSelectionColor(foreground);
+		}
+		if (null != font) {
+			setFont(font);
+			getTableHeader().setFont(font);
+			renderer.setFont(font);
+		}
+		if (null != selection) {
+			setSelectionBackground(selection);
+			renderer.setBackgroundSelectionColor(selection);
+			tree.getTreeCellRenderer().setBackgroundselection(selection);
+		}
+	}
 }

@@ -17,7 +17,7 @@ public class TreeTableTest extends JFrame {
 		// we use a no root model
 		NoRootTreeTableModel noRootTreeTableModel = new NoRootTreeTableModel(new Data());
 		treeTable = new JXTreeTable(noRootTreeTableModel);
-		treeTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		treeTable.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
 		treeTable.setRootVisible(false); // hide the root
 		
 		// special renderer

@@ -5,9 +5,9 @@ import static de.dbo.samples.gui.swing.treetable.impl.ref.TreetableUIImpl.FONT;
 import static de.dbo.samples.gui.swing.treetable.impl.ref.TreetableUIImpl.FOREGROUND;
 import static de.dbo.samples.gui.swing.treetable.impl.ref.TreetableUIImpl.SELECTION;
 
-import de.dbo.samples.gui.swing.treetable.api.Window;
 import de.dbo.samples.gui.swing.treetable.api.gui.TreetableImpl;
 import de.dbo.samples.gui.swing.treetable.api.records.Node;
+import de.dbo.samples.gui.swing.treetable.impl.Window;
 
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
