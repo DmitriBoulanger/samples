@@ -31,15 +31,12 @@ public class TreeIcon implements IconValue {
 			return LEAF_ICON;
 		}
 		
-		// node-icons
+		// try to get special node-icon
 		final Icon nodeIcon =  treetableUI.getIcon((Node) node);
 		if (null!=nodeIcon) {
 			return nodeIcon;
 		}
 		
 		return NODE_ICON;
-
 	}
- 
-
 }
