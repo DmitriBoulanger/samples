@@ -28,10 +28,14 @@ public class TreetableUIImpl implements TreetableUI {
 	private static final JLabel iconLabelUnlocked = createIconLabel(TreetableUIImpl.class,"icons/unlock.png");
 	
 	// colors and font
-	public static final Font FONT = new Font("Consolas",Font.PLAIN, 13);
-	public static final Color BACKGROUND = new Color(239,241,248);
-	public static final Color SELECTION = new Color(168,208,245);
-	public static final Color FOREGROUND = Color.BLACK;
+	private static final Font FONT = new Font("Consolas",Font.PLAIN, 13);
+	private static final Color BACKGROUND = new Color(239,241,248);
+	
+	@SuppressWarnings("unused")
+	private static final Color SELECTION = new Color(168,208,245);
+	
+	@SuppressWarnings("unused")
+	private static final Color FOREGROUND = Color.BLACK;
 	
 	public TreetableUIImpl(){
 		log.trace("created");
@@ -81,6 +85,11 @@ public class TreetableUIImpl implements TreetableUI {
 	public Color getBackground() {
 		return BACKGROUND;
 	}
+	
+	@Override
+	public Color getBackgroundTreetable() {
+		return Color.WHITE;
+	}
 
 	@Override
 	public Color getForeround() {
@@ -88,7 +97,7 @@ public class TreetableUIImpl implements TreetableUI {
 	}
 
 	@Override
-	public Color getSelection() {
+	public Color getBackgroundSelection() {
 		return null; //SELECTION;
 	}
 

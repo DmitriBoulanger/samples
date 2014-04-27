@@ -42,7 +42,7 @@ public class XFactoryManagerTest {
 		assertTrue("Incorrect Node class-name "+nodeClass.getSimpleName()
 				,nodeClass.getSimpleName().equals("NodeImpl"));
 		assertTrue("Incorrect Model class-name "+ modelClass.getSimpleName()
-				,modelClass.getSimpleName().equals("XTreetableModelImpl"));
+				,modelClass.getSimpleName().equals("TreetableModelImpl"));
 	}
 	
 	@Test(expected=FactoryException.class)

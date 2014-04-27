@@ -44,7 +44,7 @@ public class RecordsTest {
 	private static final Factory factory = FactoryManager.getFactory("ReferenceImplementation.xml");
 	
 	public Node getTreeroot() {
-		recordTreeGenerator();
+		nodeGenerator();
 		return treeroot;
 	}
 	
@@ -94,7 +94,7 @@ public class RecordsTest {
 	
 	
 	@Test 
-	public void recordTreeGenerator() {
+	public void nodeGenerator() {
 		int i = 0;
 		long j = 0;
 		

@@ -1,39 +1,42 @@
-package de.dbo.samples.gui.swing.treetable.impl.ref;
-
-import static de.dbo.samples.gui.swing.treetable.impl.ref.TreetableUIImpl.BACKGROUND;
-import static de.dbo.samples.gui.swing.treetable.impl.ref.TreetableUIImpl.FONT;
-import static de.dbo.samples.gui.swing.treetable.impl.ref.TreetableUIImpl.FOREGROUND;
-import static de.dbo.samples.gui.swing.treetable.impl.ref.TreetableUIImpl.SELECTION;
+package de.dbo.samples.gui.swing.treetable.impl.ref.x;
 
 import de.dbo.samples.gui.swing.treetable.api.TreetableModel;
+import de.dbo.samples.gui.swing.treetable.api.TreetableUI;
 import de.dbo.samples.gui.swing.treetable.api.factory.Factory;
 import de.dbo.samples.gui.swing.treetable.api.factory.FactoryManager;
+import de.dbo.samples.gui.swing.treetable.api.guix.TreetableImpl;
 import de.dbo.samples.gui.swing.treetable.api.records.Node;
-import de.dbo.samples.gui.swing.treetable.api.xgui.TreetableImpl;
 import de.dbo.samples.gui.swing.treetable.impl.Window;
+import de.dbo.samples.gui.swing.treetable.impl.ref.RecordsTest;
+import de.dbo.samples.gui.swing.treetable.impl.ref.TreetableUIImpl;
 
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 
 import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
  
-public class XRecordsTestWindow extends Window {
+public class RecordsTestWindow extends Window {
 	private static final long serialVersionUID = -5484087161360300717L;
 	
 	public static void main(final String[] args) {
 		final Runnable gui = new Runnable() {
 			@Override
 			public final void run() {
-				setLookAndFeel();
-				new XRecordsTestWindow().showup();
+				try {
+					UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+				} catch (Exception e) {
+					log.error("Can't set the system Look-and-Feel", e);
+				}
+				new RecordsTestWindow().showup(0.6D);
 			}
 		};
 		SwingUtilities.invokeLater(gui);
 	}
 	
-	public XRecordsTestWindow() {
-        super("XTreetable with Records - JUnit Test Data");
+	public RecordsTestWindow() {
+        super("XTreetable with Records - JUnit Test Data - System LookAndFeel");
         
         final long start2 = System.currentTimeMillis();
         final Node root = new RecordsTest().getTreeroot();
@@ -46,13 +49,13 @@ public class XRecordsTestWindow extends Window {
         
         // Treetable
         final TreetableImpl treetable = new TreetableImpl(model);
+        final TreetableUI treetableUI = new TreetableUIImpl();
         treetable.setRootVisible(true);
-        treetable.setBasicUI(BACKGROUND, SELECTION, FOREGROUND, FONT);
         treetable.setIntercellSpacing(new Dimension(0,0)); 
         treetable.setColumnWidthNonresizable(1, 75);
        
         final JScrollPane jScrollPane = new JScrollPane(treetable);
-        jScrollPane.getViewport().setBackground(BACKGROUND);
+        jScrollPane.getViewport().setBackground(treetableUI.getBackgroundTreetable());
         
         // JFrame
         this.add(jScrollPane, gbc1x1());

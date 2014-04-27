@@ -1,4 +1,4 @@
-package de.dbo.samples.gui.swing.treetable.impl.xexample;
+package de.dbo.samples.gui.swing.treetable.origins.xexample;
 
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;

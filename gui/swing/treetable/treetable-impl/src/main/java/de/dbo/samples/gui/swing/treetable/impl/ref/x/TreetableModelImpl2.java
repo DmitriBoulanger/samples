@@ -1,17 +1,17 @@
-package de.dbo.samples.gui.swing.treetable.impl.ref;
+package de.dbo.samples.gui.swing.treetable.impl.ref.x;
  
 import de.dbo.samples.gui.swing.treetable.api.TreetableException;
+import de.dbo.samples.gui.swing.treetable.api.guix.TreetableModelAbstraction;
 import de.dbo.samples.gui.swing.treetable.api.records.Node;
 import de.dbo.samples.gui.swing.treetable.api.records.Record;
 import de.dbo.samples.gui.swing.treetable.api.records.RecordTimestampFormat;
 import de.dbo.samples.gui.swing.treetable.api.TreetableColumns;
-import de.dbo.samples.gui.swing.treetable.api.xgui.TreetableModelAbstraction;
 
-public final class XTreetableModelImpl extends TreetableModelAbstraction {
+public final class TreetableModelImpl2 extends TreetableModelAbstraction {
 	
-    public XTreetableModelImpl(final TreetableColumns treetableColumns) {
-        super(treetableColumns);
-    }
+	 public TreetableModelImpl2(final TreetableColumns treetableColumnsUI) {
+	        super(treetableColumnsUI);
+	 }
     
     @Override
     public boolean isCellEditable(Object node, int column) {
@@ -20,10 +20,8 @@ public final class XTreetableModelImpl extends TreetableModelAbstraction {
         	 return true; // Important to activate the TreeExpandListener
          case 1:
          case 2:
-         case 3:
-         case 4:
         	 return false; // sequence/timestamp-attributes are immutable
-         case 5:
+         case 3:
         	 return true;
         	 
          default:
@@ -38,11 +36,11 @@ public final class XTreetableModelImpl extends TreetableModelAbstraction {
         switch (column) {
         case 0:
             return ((Node) node).getTreename();
+            
         case 1:
         	return ((Node) node).getSequence();
+        	
         case 2:
-        case 3:
-        case 4:
         	final Record record = (Record) ((Node) node).getContents();
         	final RecordTimestampFormat timestamp;
         	if (null!=record) {
@@ -50,8 +48,9 @@ public final class XTreetableModelImpl extends TreetableModelAbstraction {
 			} else {
 				timestamp =  RecordTimestampFormat.TIMESTAMP_NULL;
 			}
-        	return timestamp.get(column-1);
-		case 5:
+        	return timestamp.print(RecordTimestampFormat.FORMAT_COMPRESSED);
+        	
+		case 3:
        	     return ((Node) node).getContents();
             
         default:
@@ -65,13 +64,10 @@ public final class XTreetableModelImpl extends TreetableModelAbstraction {
     	 switch (column) {
          case 0:
          case 1:
-         case 2:
-         case 3:
-         case 4:
         	 log.error("setValueAt(Object value="+value+", Object node="+node.toString()+", int column="+column+") rejected");
         	 break;
         	 
-         case 5:
+         case 3:
         	 log.trace("setValueAt(Object value="+value+", Object node="+node.toString()+", int column="+column+")");
         	 ((Node) node).setContents(value);
         	 break;
@@ -97,5 +93,4 @@ public final class XTreetableModelImpl extends TreetableModelAbstraction {
     	return ((Node) parent).getChildren().indexOf(child);
     }
  
-  
 }

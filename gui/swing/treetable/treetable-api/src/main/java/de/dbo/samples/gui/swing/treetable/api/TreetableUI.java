@@ -66,14 +66,16 @@ public interface TreetableUI {
 	
 	public abstract Color getBackground();
 	
+	public abstract Color getBackgroundTreetable();
+	
+	public abstract Color getBackgroundSelection();
+	
 	public abstract Color getForeround();
 	
-	public abstract Color getSelection();
-	
 	/**
-	 * mono-space, e.g CONSOLAS
+	 * mono-space font, e.g CONSOLAS
 	 * 
-	 * @return icon
+	 * @return mono-space font
 	 */
 	public abstract Font getFont();
 	

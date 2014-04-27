@@ -1,4 +1,4 @@
-package de.dbo.samples.gui.swing.treetable.impl.ref;
+package de.dbo.samples.gui.swing.treetable.impl.ref.x;
 
 import de.dbo.samples.gui.swing.treetable.impl.Window;
 
@@ -11,13 +11,13 @@ public final class RecordsWindow2 extends Window {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				try {
-					javax.swing.UIManager
-						.setLookAndFeel(
-								javax.swing.UIManager.getSystemLookAndFeelClassName());
-				} catch (Exception e) {
-					log.error("Can't set system Look-and-Feel", e);
-				}
+//				try {
+//					javax.swing.UIManager
+//						.setLookAndFeel(
+//								javax.swing.UIManager.getSystemLookAndFeelClassName());
+//				} catch (Exception e) {
+//					log.error("Can't set system Look-and-Feel", e);
+//				}
 				new RecordsWindow2().showup(0.6);
 			}
 		});
@@ -28,7 +28,7 @@ public final class RecordsWindow2 extends Window {
 	 * Initial status is UNLOCKED, records = null
 	 */
 	RecordsWindow2() {
-		super("ReferenceImplementation2.xml", 
-				"Treetable 2 with test-records - System LookAndFeel");
+		super("XReferenceImplementation2.xml"
+				, "XTreetable 2 with test-records");
     }
 }

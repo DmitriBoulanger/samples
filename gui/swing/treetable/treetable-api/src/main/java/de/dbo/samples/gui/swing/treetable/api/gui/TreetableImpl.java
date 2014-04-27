@@ -66,7 +66,7 @@ public class TreetableImpl extends JTable implements Treetable, TreetableUIManag
         
         getTableHeader().setReorderingAllowed(false);
         
-        log.trace("created");
+        log.trace("created: " + this.toString());
     }
     
     //
@@ -116,20 +116,16 @@ public class TreetableImpl extends JTable implements Treetable, TreetableUIManag
     }
     
     public void setBasicUI(final TreetableUI ui) {
-    	setBasicUI(ui.getBackground(),ui.getSelection(), ui.getForeround(), ui.getFont());
-    }
-    
-    public void setBasicUI(Color background, Color selection,  Color foreground, Font font) {
-    	
-		final DefaultTreeCellRenderer renderer = (DefaultTreeCellRenderer) tree
-				.getCellRenderer();
+     	
+		final DefaultTreeCellRenderer renderer = (DefaultTreeCellRenderer) tree.getCellRenderer();
 
-		if (null != background) {
-			setBackground(background);
+		if (null != ui.getBackground()) {
+			final Color background = ui.getBackground();
 			getTableHeader().setBackground(background);
 			renderer.setBackground(background);
 		}
-		if (null != foreground) {
+		if (null != ui.getForeround()) {
+			final Color foreground = ui.getForeround();
 			setSelectionForeground(foreground);
 			getTableHeader().setForeground(foreground);
 			setForeground(foreground);
@@ -137,15 +133,23 @@ public class TreetableImpl extends JTable implements Treetable, TreetableUIManag
 			renderer.setTextSelectionColor(foreground);
 			renderer.setTextNonSelectionColor(foreground);
 		}
-		if (null != font) {
+		if (null != ui.getFont()) {
+			final Font font =  ui.getFont();
 			setFont(font);
 			getTableHeader().setFont(font);
 			renderer.setFont(font);
 		}
-		if (null != selection) {
-			setSelectionBackground(selection);
-			renderer.setBackgroundSelectionColor(selection);
-			tree.getTreeCellRenderer().setBackgroundselection(selection);
+		if (null != ui.getBackgroundSelection()) {
+			final Color background = ui.getBackgroundSelection();
+			setSelectionBackground(background);
+			renderer.setBackgroundSelectionColor(background);
+			tree.getTreeCellRenderer().setBackgroundselection(background);
+		}
+		if (null != ui.getBackgroundTreetable()) {
+			final Color background = ui.getBackgroundTreetable();
+			setBackground(background);
+			getTableHeader().setBackground(background);
+			renderer.setBackground(background);
 		}
 	}
 }

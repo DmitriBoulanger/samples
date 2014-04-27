@@ -1,4 +1,4 @@
-package de.dbo.samples.gui.swing.treetable.api.xgui;
+package de.dbo.samples.gui.swing.treetable.api.guix;
  
 import de.dbo.samples.gui.swing.treetable.api.Treetable;
 import de.dbo.samples.gui.swing.treetable.api.TreetableModel;
@@ -55,7 +55,7 @@ public class TreetableImpl extends JXTreeTable implements TreetableUIManager, Tr
         
         setTreeCellRenderer(new TreeCellRenderer());
         
-        log.trace("created");
+        log.trace("created: " + this.toString());
     }
     
     //
@@ -90,17 +90,16 @@ public class TreetableImpl extends JXTreeTable implements TreetableUIManager, Tr
     
     @Override
 	public void setBasicUI(final TreetableUI ui) {
-    	setBasicUI(ui.getBackground(),ui.getSelection(), ui.getForeround(), ui.getFont());
+    	setBasicUI(ui.getBackground(),ui.getBackgroundSelection(), ui.getForeround(), ui.getFont());
     }
     
-    @Override
-	public void setBasicUI(Color background, Color selection, Color foreground, Font font) {
+	private void setBasicUI(Color background, Color selection, Color foreground, Font font) {
 
 		if (null != background) {
-			setBackground(background);
+//			setBackground(background);
 			getTableHeader().setBackground(background);
 		}
-		if (null != background) {
+		if (null != foreground) {
 			setSelectionForeground(foreground);
 			getTableHeader().setForeground(foreground);
 			setForeground(foreground);

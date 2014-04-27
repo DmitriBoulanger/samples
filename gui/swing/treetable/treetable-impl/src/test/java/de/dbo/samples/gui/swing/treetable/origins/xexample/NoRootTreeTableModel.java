@@ -1,4 +1,4 @@
-package de.dbo.samples.gui.swing.treetable.impl.xexample;
+package de.dbo.samples.gui.swing.treetable.origins.xexample;
 
 import java.util.List;
 import org.jdesktop.swingx.treetable.AbstractTreeTableModel;

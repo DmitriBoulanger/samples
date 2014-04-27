@@ -111,16 +111,16 @@ public final class TreetablePane extends JPanel implements ActionListener {
     			,"Clean-up record-provider and UI");
         
         // left control-pane
-//        controlsPane.setOpaque(false);
+        controlsPane.setBackground(treetableUI.getBackground());
         controlsPane.add(reloadButton);  
         controlsPane.add(updateButton);  
         controlsPane.add(expadCollapseButton);   
         controlsPane.add(clearButton); 
         controlsPane.add(transactionIdLabel);
         controlsPane.add(transactionIdTextField);
-      
+        
         // right status-pane
-//        statusPane.setOpaque(false);
+        statusPane.setBackground(treetableUI.getBackground());
         statusPane.add(recordCounterLabel);
         statusPane.add(recordCounterTextField);
         
@@ -131,9 +131,9 @@ public final class TreetablePane extends JPanel implements ActionListener {
         scrollPane.getViewport().setView(null);
        
         // UI
-        if (null!=treetableUI.getBackground()) {
-        	setBackground(treetableUI.getBackground());
-        	scrollPane.getViewport().setBackground(treetableUI.getBackground());
+        if (null!=treetableUI.getBackgroundTreetable()) {
+        	setBackground(treetableUI.getBackgroundTreetable());
+        	scrollPane.getViewport().setBackground(treetableUI.getBackgroundTreetable());
         }
 
         // actions
@@ -151,6 +151,8 @@ public final class TreetablePane extends JPanel implements ActionListener {
         treetableColumns = factory.newTreetableColumns();
         loadTreetable();
         setStatus(UNLOCKED);
+        
+        log.trace("created: " + this.toString());
     }
 	
 	/**
@@ -198,15 +200,15 @@ public final class TreetablePane extends JPanel implements ActionListener {
 		}
 	}
 	
-    public final void selfDeployTo(final JComponent jComponent) {
+    public final void selfDeployTo(final JComponent parentJComponent) {
     	log.trace("self-deployment to JPanel ...");
-    	jComponent.setLayout(new GridBagLayout());
-        jComponent.setBackground(getBackground());
+    	parentJComponent.setLayout(new GridBagLayout());
+        parentJComponent.setBackground(treetableUI.getBackground());
 		
 		// menu-bar
     	int x = 0;
 		final JPanel menuBar =  new JPanel();
-		menuBar.setBackground(getBackground());
+		menuBar.setBackground(treetableUI.getBackground());
         menuBar.setLayout(new GridBagLayout());
         menuBar.add(getControlsPane(),gbc1xManyLeft_X(x++,0));
         menuBar.add(getStatusPane(),gbc1xManyRight_X(x++,0));
@@ -216,15 +218,15 @@ public final class TreetablePane extends JPanel implements ActionListener {
         int y = 0;
         GridBagConstraints gbc = null;
         final GridBagLayout gbl = new GridBagLayout();
-        jComponent.setLayout(gbl);
+        parentJComponent.setLayout(gbl);
         gbc = gbc1xMany_Y(y++);
         gbc.weighty = 0.0;
         gbc.fill = GridBagConstraints.HORIZONTAL;
-        jComponent.add(menuBar,gbc);
+        parentJComponent.add(menuBar,gbc);
         gbc = gbc1xMany_Y(y++);
         gbc.weighty = 1.0;
         gbc.fill = GridBagConstraints.BOTH;
-        jComponent.add(this,gbc1xMany_Y(y++));
+        parentJComponent.add(this,gbc1xMany_Y(y++));
 	}
 	
 	@Override
@@ -341,8 +343,7 @@ public final class TreetablePane extends JPanel implements ActionListener {
 		// treetable
 		treetableModel = factory.newTreeTableModel(root,treetableColumns);
 		treetable = factory.newTreetable(treetableModel);
-		treetable.setRootVisible(false);
-//		treetable.setBasicUI(treetableUI);
+		treetable.setBasicUI(treetableUI);
 		treetable.setIntercellSpacing(new Dimension(1, 1));
 		treetableColumns.arrangeColumnWidths(treetable);
 //		treetable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);

@@ -1,13 +1,9 @@
-package de.dbo.samples.gui.swing.treetable.impl.data;
-
-import static de.dbo.samples.gui.swing.treetable.impl.ref.TreetableUIImpl.BACKGROUND;
-import static de.dbo.samples.gui.swing.treetable.impl.ref.TreetableUIImpl.FONT;
-import static de.dbo.samples.gui.swing.treetable.impl.ref.TreetableUIImpl.FOREGROUND;
-import static de.dbo.samples.gui.swing.treetable.impl.ref.TreetableUIImpl.SELECTION;
+package de.dbo.samples.gui.swing.treetable.origins.data;
 
 import de.dbo.samples.gui.swing.treetable.api.gui.TreetableImpl;
 import de.dbo.samples.gui.swing.treetable.api.records.Node;
 import de.dbo.samples.gui.swing.treetable.impl.Window;
+import de.dbo.samples.gui.swing.treetable.impl.ref.TreetableUIImpl;
 
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
@@ -31,7 +27,13 @@ public class DataWindow extends Window {
 		final Runnable gui = new Runnable() {
 			@Override
 			public void run() {
-				setLookAndFeel();
+//				try {
+//					javax.swing.UIManager
+//						.setLookAndFeel(
+//								javax.swing.UIManager.getSystemLookAndFeelClassName());
+//				} catch (Exception e) {
+//					log.error("Can't set system Look-and-Feel", e);
+//				}
 				new DataWindow().showup();
 			}
 		};
@@ -39,7 +41,7 @@ public class DataWindow extends Window {
 	}
 	
 	DataWindow() {
-        super("Tree-Table Sample (adapted from http://www.hameister.org/JavaSwingTreeTable.html)");
+        super("Treetable sample (http://www.hameister.org/JavaSwingTreeTable.html)");
          
         final long start = System.currentTimeMillis();
         final Node root = DataStructure.treeroot();
@@ -47,13 +49,12 @@ public class DataWindow extends Window {
         
         final TreetableImpl treetable = new TreetableImpl(new DataTreetableModel(root));
         treetable.setRootVisible(false);
-        treetable.setBasicUI(BACKGROUND, SELECTION, FOREGROUND, FONT);
         treetable.setIntercellSpacing(new Dimension(0, 0)); 
         treetable.setColumnWidthNonresizable(1, 120);
         treetable.setColumnWidthNonresizable(2, 280);
        
         final JScrollPane jScrollPane = new JScrollPane(treetable);
-        jScrollPane.getViewport().setBackground(BACKGROUND);
+        jScrollPane.getViewport().setBackground(new TreetableUIImpl().getBackgroundTreetable());
         
         // JFrame
         final GridBagConstraints gbc = new GridBagConstraints();

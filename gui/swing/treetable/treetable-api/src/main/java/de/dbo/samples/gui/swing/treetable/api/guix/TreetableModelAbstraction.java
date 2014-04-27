@@ -1,4 +1,4 @@
-package de.dbo.samples.gui.swing.treetable.api.xgui;
+package de.dbo.samples.gui.swing.treetable.api.guix;
  
 import de.dbo.samples.gui.swing.treetable.api.TreetableColumns;
 import de.dbo.samples.gui.swing.treetable.api.TreetableException;

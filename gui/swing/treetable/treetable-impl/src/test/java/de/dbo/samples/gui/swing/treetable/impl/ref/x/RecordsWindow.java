@@ -1,8 +1,9 @@
-package de.dbo.samples.gui.swing.treetable.impl.ref;
+package de.dbo.samples.gui.swing.treetable.impl.ref.x;
 
 import de.dbo.samples.gui.swing.treetable.impl.Window;
 
 import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
 
 public final class RecordsWindow extends Window {
 	private static final long serialVersionUID = 4489500964556705612L;
@@ -12,13 +13,11 @@ public final class RecordsWindow extends Window {
 			@Override
 			public void run() {
 				try {
-					javax.swing.UIManager
-						.setLookAndFeel(
-								javax.swing.UIManager.getSystemLookAndFeelClassName());
+					UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 				} catch (Exception e) {
-					log.error("Can't set system Look-and-Feel", e);
+					log.error("Can't set the system Look-and-Feel", e);
 				}
-				new RecordsWindow().showup();
+				new RecordsWindow().showup(0.6D);
 			}
 		});
 	}
@@ -28,8 +27,8 @@ public final class RecordsWindow extends Window {
 	 * Initial status is UNLOCKED, records = null
 	 */
 	RecordsWindow() {
-        super("ReferenceImplementation.xml", 
-        		"Treetable with test-records - System LookAndFeel");
+        super("XReferenceImplementation.xml"
+        , "XTreetable with test-records - System LookAndFeel");
     }
 	
 	
