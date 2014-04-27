@@ -11,13 +11,14 @@ public final class RecordsWindow2 extends Window {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				try {
-					javax.swing.UIManager
-						.setLookAndFeel(
-								javax.swing.UIManager.getSystemLookAndFeelClassName());
-				} catch (Exception e) {
-					log.error("Can't set system Look-and-Feel", e);
-				}
+// System LF: not a good idea? If no system LF, treetable-selection doesn't work properly!
+//				try {
+//					javax.swing.UIManager
+//						.setLookAndFeel(
+//								javax.swing.UIManager.getSystemLookAndFeelClassName());
+//				} catch (Exception e) {
+//					log.error("Can't set system Look-and-Feel", e);
+//				}
 				new RecordsWindow2().showup(0.6);
 			}
 		});
@@ -29,6 +30,6 @@ public final class RecordsWindow2 extends Window {
 	 */
 	RecordsWindow2() {
 		super("ReferenceImplementation2.xml", 
-				"Treetable 2 with test-records - System LookAndFeel");
+				"Treetable 2 with test-records");
     }
 }

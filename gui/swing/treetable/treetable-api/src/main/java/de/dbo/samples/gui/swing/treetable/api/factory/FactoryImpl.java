@@ -96,16 +96,18 @@ final class FactoryImpl implements Factory  {
 	 * It is created using reflection (not Spring-bean prototype)
 	 */
 	@Override
-	public Treetable newTreetable(TreetableModel treetableModel) {
+	public Treetable newTreetable(final TreetableModel treetableModel) {
 		if (null == treetableModel) {
 			throw new FactoryException(
 					"Can't make Treetable-instace if treetableModel (NULL)");
 		}
 
+		final TreetableUI treetableUI = getTreetableUI();
 		try {
-			final Constructor<?> constructor = treetableClass.getConstructor(TreetableModel.class);
+			final Constructor<?> constructor = treetableClass.getConstructor(
+					TreetableModel.class, TreetableUI.class);
 			final Treetable treetable = (Treetable) constructor
-					.newInstance(treetableModel);
+					.newInstance(treetableModel,treetableUI);
 			return treetable;
 		} catch (Exception e) {
 			throw new FactoryException("Can't create model-instance."

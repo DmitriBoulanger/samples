@@ -47,7 +47,7 @@ public class DataWindow extends Window {
         final Node root = DataStructure.treeroot();
         log.info("elapsed " +(System.currentTimeMillis()-start) + " ms. creating tree-root" );
         
-        final TreetableImpl treetable = new TreetableImpl(new DataTreetableModel(root));
+        final TreetableImpl treetable = new TreetableImpl(new DataTreetableModel(root),null);
         treetable.setRootVisible(false);
         treetable.setIntercellSpacing(new Dimension(0, 0)); 
         treetable.setColumnWidthNonresizable(1, 120);

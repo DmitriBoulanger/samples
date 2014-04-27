@@ -35,7 +35,7 @@ public class TreetableImpl extends JTable implements Treetable, TreetableUIManag
 	/**
 	 * @param model tree-table data-model 
 	 */
-    public TreetableImpl(TreetableModel model) {
+    public TreetableImpl(final TreetableModel model, final TreetableUI treetableUI) {
         super();
         
         // JTree-extension
@@ -148,7 +148,6 @@ public class TreetableImpl extends JTable implements Treetable, TreetableUIManag
 		if (null != ui.getBackgroundTreetable()) {
 			final Color background = ui.getBackgroundTreetable();
 			setBackground(background);
-			getTableHeader().setBackground(background);
 			renderer.setBackground(background);
 		}
 	}

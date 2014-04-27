@@ -23,7 +23,7 @@ public interface Factory extends NodeFactory {
 	
 	public TreetableModel newTreeTableModel(final Node root, final TreetableColumns treetableColumns);
 	
-	public Treetable newTreetable(TreetableModel treetableModel);
+	public Treetable newTreetable(final TreetableModel treetableModel);
 	
     public RecordProvider newRecordProvider();
 	

@@ -1,13 +1,18 @@
 package de.dbo.samples.gui.swing.treetable.api;
 
+import de.dbo.samples.gui.swing.treetable.api.records.Node;
+
 import java.awt.Color;
 import java.awt.Font;
 
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 public interface TreetableUI {
-
+	
+	public abstract Icon getIcon(Node node);
+	
 	/**
 	 * 16x16 icon
 	 * 
@@ -64,9 +69,21 @@ public interface TreetableUI {
 	 */
 	public abstract JLabel getIconLabelUnlocked();
 	
+	/**
+	 * background color for non-treetable components.
+	 * 
+	 * @return color
+	 */
 	public abstract Color getBackground();
 	
+	/**
+	 * background color for treetable component.
+	 * In X-implementation this color is ignored
+	 * 
+	 * @return color
+	 */
 	public abstract Color getBackgroundTreetable();
+	
 	
 	public abstract Color getBackgroundSelection();
 	

@@ -1,4 +1,4 @@
-package de.dbo.samples.gui.swing.treetable.origins.xexample;
+package de.dbo.samples.gui.swing.treetable.origins.xexamples.treetable;
 
 import java.awt.Component;
 

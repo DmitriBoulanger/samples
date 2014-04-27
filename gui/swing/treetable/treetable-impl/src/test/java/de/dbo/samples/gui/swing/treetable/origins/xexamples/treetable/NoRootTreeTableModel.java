@@ -1,6 +1,7 @@
-package de.dbo.samples.gui.swing.treetable.origins.xexample;
+package de.dbo.samples.gui.swing.treetable.origins.xexamples.treetable;
 
 import java.util.List;
+
 import org.jdesktop.swingx.treetable.AbstractTreeTableModel;
 
 public class NoRootTreeTableModel extends AbstractTreeTableModel {

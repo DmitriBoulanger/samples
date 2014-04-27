@@ -1,5 +1,7 @@
 package de.dbo.samples.gui.swing.treetable.api.guix;
 
+import de.dbo.samples.gui.swing.treetable.api.TreetableUI;
+
 import java.awt.Component;
 
 import javax.swing.JTree;
@@ -18,8 +20,8 @@ import org.jdesktop.swingx.renderer.DefaultTreeRenderer;
 public class TreeCellRenderer extends DefaultTreeRenderer {
 	private static final long serialVersionUID = -8468286287964002501L;
 	
-   public TreeCellRenderer () {
-	   super(new TreeIcon());
+   public TreeCellRenderer (final TreetableUI treetableU) {
+	   super(new TreeIcon(treetableU));
    }
    
    @Override

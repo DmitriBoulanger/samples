@@ -46,7 +46,7 @@ public class RecordsTestWindow extends Window {
         		factory.newTreeTableModel(root, factory.newTreetableColumns());
         
         // Treetable
-        final TreetableImpl treetable = new TreetableImpl(model);
+        final TreetableImpl treetable = new TreetableImpl(model,factory.getTreetableUI());
         treetable.setRootVisible(true);
         treetable.setIntercellSpacing(new Dimension(0,0)); 
         treetable.setColumnWidthNonresizable(1, 75);

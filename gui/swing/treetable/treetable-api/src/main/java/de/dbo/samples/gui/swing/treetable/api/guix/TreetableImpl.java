@@ -39,7 +39,7 @@ public class TreetableImpl extends JXTreeTable implements TreetableUIManager, Tr
 	/**
 	 * @param model tree-table data-model 
 	 */
-    public TreetableImpl(TreetableModel model) {
+    public TreetableImpl(TreetableModel model, final TreetableUI treetableUI) {
         super(model);
  
         // No grid show
@@ -53,7 +53,7 @@ public class TreetableImpl extends JXTreeTable implements TreetableUIManager, Tr
         
         getTableHeader().setReorderingAllowed(false);
         
-        setTreeCellRenderer(new TreeCellRenderer());
+        setTreeCellRenderer(new TreeCellRenderer(treetableUI));
         
         log.trace("created: " + this.toString());
     }
@@ -90,25 +90,26 @@ public class TreetableImpl extends JXTreeTable implements TreetableUIManager, Tr
     
     @Override
 	public void setBasicUI(final TreetableUI ui) {
-    	setBasicUI(ui.getBackground(),ui.getBackgroundSelection(), ui.getForeround(), ui.getFont());
-    }
     
-	private void setBasicUI(Color background, Color selection, Color foreground, Font font) {
-
-		if (null != background) {
+		if (null != ui.getBackground()) {
+			final Color background = ui.getBackground();
 //			setBackground(background);
 			getTableHeader().setBackground(background);
 		}
-		if (null != foreground) {
+		if (null != ui.getForeround()) {
+			final Color foreground = ui.getForeround();
 			setSelectionForeground(foreground);
 			getTableHeader().setForeground(foreground);
 			setForeground(foreground);
 		}
-		if (null != font) {
+		if (null != ui.getFont()) {
+			final Font font = ui.getFont();
 			setFont(font);
 			getTableHeader().setFont(font);
 		}
-		if (null != selection) {
+		
+		if (null != ui.getBackgroundSelection()) {
+			final Color selection = ui.getBackgroundSelection();
 			setSelectionBackground(selection);
 		}
 	}

@@ -1,11 +1,13 @@
 package de.dbo.samples.gui.swing.treetable.impl.ref;
 
 import de.dbo.samples.gui.swing.treetable.api.TreetableUI;
+import de.dbo.samples.gui.swing.treetable.api.records.Node;
 
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.image.ImageObserver;
 
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
@@ -14,8 +16,12 @@ import org.slf4j.LoggerFactory;
 
 public class TreetableUIImpl implements TreetableUI {
 	protected static final Logger log = LoggerFactory.getLogger(TreetableUI.class);
+	
+	// node-icons
+	private static final ImageIcon iconError = createIcon(TreetableUIImpl.class,"icons/red-flag.png");
+	private static final ImageIcon iconWarning = createIcon(TreetableUIImpl.class,"icons/warning.png");
 
-	// button icons
+    // button icons
 	private static final ImageIcon iconRefresh = createIcon(TreetableUIImpl.class,"icons/refresh.png");
 	private static final ImageIcon iconUpdate = createIcon(TreetableUIImpl.class,"icons/add.png");
 	private static final ImageIcon iconExpand = createIcon(TreetableUIImpl.class,"icons/expand.png");
@@ -36,6 +42,22 @@ public class TreetableUIImpl implements TreetableUI {
 	
 	@SuppressWarnings("unused")
 	private static final Color FOREGROUND = Color.BLACK;
+	
+	@Override
+    public Icon getIcon(final Node node) {
+		if (null==node) {
+			 return null;
+		 }
+		 if ("Error".equals(node.getTreename())) {
+			 return iconError;
+		 } 
+		 else if ("Warning".equals(node.getTreename())) {
+			 return iconWarning;
+		 } 
+		 else {
+			 return null;
+		 }
+    }
 	
 	public TreetableUIImpl(){
 		log.trace("created");
@@ -80,6 +102,7 @@ public class TreetableUIImpl implements TreetableUI {
 	public JLabel getIconLabelUnlocked() {
 		return iconLabelUnlocked;
 	}
+
 
 	@Override
 	public Color getBackground() {
@@ -150,4 +173,7 @@ public class TreetableUIImpl implements TreetableUI {
 	    icon.setImageObserver(imageObserver);
 	    return iconLabel;
 	}
+	
+  
+	
 }
