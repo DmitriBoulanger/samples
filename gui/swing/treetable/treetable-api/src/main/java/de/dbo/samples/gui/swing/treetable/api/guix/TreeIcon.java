@@ -6,13 +6,12 @@ import de.dbo.samples.gui.swing.treetable.api.records.Node;
 import javax.swing.Icon;
 import javax.swing.UIManager;
 
-import org.jdesktop.swingx.renderer.IconValue;
 import org.jdesktop.swingx.icon.EmptyIcon;
+import org.jdesktop.swingx.renderer.IconValue;
 
 public class TreeIcon implements IconValue {
 	private static final long serialVersionUID = 8218192615206835643L;
 
-	private static final Icon NODE_ICON = UIManager.getIcon("FileView.directoryIcon");
 	private static final Icon LEAF_ICON = new EmptyIcon();
 	
 	private final TreetableUI treetableUI;
@@ -26,8 +25,7 @@ public class TreeIcon implements IconValue {
 		if (null == node) {
 			return null;
 		}
-
-		if (((Node) node).getChildren().isEmpty()) {
+		else if (((Node) node).getChildren().isEmpty()) {
 			return LEAF_ICON;
 		}
 		
@@ -35,8 +33,8 @@ public class TreeIcon implements IconValue {
 		final Icon nodeIcon =  treetableUI.getIcon((Node) node);
 		if (null!=nodeIcon) {
 			return nodeIcon;
+		} else {
+			return null;
 		}
-		
-		return NODE_ICON;
 	}
 }
