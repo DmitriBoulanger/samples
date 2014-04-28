@@ -6,6 +6,15 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 
+/**
+ * Renderer of the data in the table-cells.
+ * 
+ * @author Dmitri Boulanger, Hombach
+ *
+ * D. Knuth: Programs are meant to be read by humans and 
+ *           only incidentally for computers to execute 
+ *
+ */
 public class TableCellRenderer extends JLabel implements  javax.swing.table.TableCellRenderer {
 	private static final long serialVersionUID = -8002360634064245051L;
 

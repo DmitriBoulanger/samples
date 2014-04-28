@@ -1,4 +1,7 @@
 
+Version is not stable, it has strange effects if LF changes
+===========================================================
+
 12.06.2011
 Java Swing TreeTable Tutorial mit Beispiel
 http://www.hameister.org/JavaSwingTreeTable.html

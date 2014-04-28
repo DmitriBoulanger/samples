@@ -6,7 +6,7 @@ public class TreetableException extends RuntimeException {
 	public TreetableException(final String message) {
 		super(message);
 	}
-	public TreetableException(final String message,Throwable e) {
+	public TreetableException(final String message, final Throwable e) {
 		super(message,e);
 	}
 }

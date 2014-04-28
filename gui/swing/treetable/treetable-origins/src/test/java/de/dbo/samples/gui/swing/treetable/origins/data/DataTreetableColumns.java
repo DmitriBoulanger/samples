@@ -20,7 +20,7 @@ public final class DataTreetableColumns extends TreetableColumnsAbstraction {
 	}
 
 	@Override
-	public void arrangeColumnWidths(final TreetableUIManager treetable) {
+	public void setupColumns(final TreetableUIManager treetable) {
 		
 	}
 

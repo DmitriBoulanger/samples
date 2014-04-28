@@ -30,7 +30,7 @@ public class TreeCellRenderer extends DefaultTreeCellRenderer {
 		final BasicTreeUI ui = (BasicTreeUI) tree.getUI();
 		ui.setCollapsedIcon(null);
 		ui.setExpandedIcon(null);
-		// ui.setRightChildIndent(3);
+		ui.setRightChildIndent(3);
 	}
 
 	/**

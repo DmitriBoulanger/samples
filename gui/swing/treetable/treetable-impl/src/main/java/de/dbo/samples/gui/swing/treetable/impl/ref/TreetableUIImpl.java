@@ -17,21 +17,26 @@ import org.slf4j.LoggerFactory;
 public class TreetableUIImpl implements TreetableUI {
 	protected static final Logger log = LoggerFactory.getLogger(TreetableUI.class);
 	
+	/**
+	 * resource-directory with icons
+	 */
+	private static final String ICONS = "icons/";
+	
 	// node-icons
-	private static final ImageIcon iconError = createIcon(TreetableUIImpl.class,"icons/red-flag.png");
-	private static final ImageIcon iconWarning = createIcon(TreetableUIImpl.class,"icons/warning.png");
+	private static final ImageIcon iconError = createIcon(TreetableUIImpl.class,ICONS+"red-flag.png");
+	private static final ImageIcon iconWarning = createIcon(TreetableUIImpl.class,ICONS+"warning.png");
 
     // button icons
-	private static final ImageIcon iconRefresh = createIcon(TreetableUIImpl.class,"icons/refresh.png");
-	private static final ImageIcon iconUpdate = createIcon(TreetableUIImpl.class,"icons/add.png");
-	private static final ImageIcon iconExpand = createIcon(TreetableUIImpl.class,"icons/expand.png");
-	private static final ImageIcon iconCollapse = createIcon(TreetableUIImpl.class,"icons/collapse.png");
-	private static final ImageIcon iconClear = createIcon(TreetableUIImpl.class,"icons/cancel.png");
+	private static final ImageIcon iconRefresh = createIcon(TreetableUIImpl.class,ICONS+"refresh.png");
+	private static final ImageIcon iconUpdate = createIcon(TreetableUIImpl.class,ICONS+"add.png");
+	private static final ImageIcon iconExpand = createIcon(TreetableUIImpl.class,ICONS+"expand.png");
+	private static final ImageIcon iconCollapse = createIcon(TreetableUIImpl.class,ICONS+"collapse.png");
+	private static final ImageIcon iconClear = createIcon(TreetableUIImpl.class,ICONS+"cancel.png");
 	
 	// status label-icons
-	private static final JLabel iconLabelDone = createIconLabel(TreetableUIImpl.class,"icons/done.png");
-	private static final JLabel iconLabelLocked = createIconLabel(TreetableUIImpl.class,"icons/lock.png");
-	private static final JLabel iconLabelUnlocked = createIconLabel(TreetableUIImpl.class,"icons/unlock.png");
+	private static final JLabel iconLabelDone = createIconLabel(TreetableUIImpl.class,ICONS+"done.png");
+	private static final JLabel iconLabelLocked = createIconLabel(TreetableUIImpl.class,ICONS+"lock.png");
+	private static final JLabel iconLabelUnlocked = createIconLabel(TreetableUIImpl.class,ICONS+"unlock.png");
 	
 	// colors and font
 	private static final Font FONT = new Font("Consolas",Font.PLAIN, 13);

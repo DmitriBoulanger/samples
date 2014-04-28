@@ -20,7 +20,7 @@ public final class TreetableColumnsImpl2 extends TreetableColumnsAbstraction {
 	}
 
 	@Override
-	public void arrangeColumnWidths(final TreetableUIManager treetable) {
+	public void setupColumns(final TreetableUIManager treetable) {
 		treetable.setIntercellSpacing(new Dimension(1, 1));
 		treetable.setColumnWidth(0, columnWidths[0]);
 		treetable.setColumnWidthNonresizable(1, columnWidths[1]);

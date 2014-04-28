@@ -13,7 +13,7 @@ public abstract class TreetableColumnsAbstraction implements TreetableColumns {
 	}
 
 	@Override
-	public final void setColumnWidths(final TreetableUIManager treetable) {
+	public final void saveColumnWidths(final TreetableUIManager treetable) {
 		if (null==treetable) {
 			return;
 		}

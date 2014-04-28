@@ -24,24 +24,22 @@ public class DataWindow extends Window {
 	private static final long serialVersionUID = 4489500964556705612L;
 
 	public static void main(final String[] args) {
-		final Runnable gui = new Runnable() {
+		SwingUtilities.invokeLater(	new Runnable() {
 			@Override
 			public void run() {
-//				try {
-//					javax.swing.UIManager
-//						.setLookAndFeel(
-//								javax.swing.UIManager.getSystemLookAndFeelClassName());
-//				} catch (Exception e) {
-//					log.error("Can't set system Look-and-Feel", e);
-//				}
+				try {
+					javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager
+							.getSystemLookAndFeelClassName());
+				} catch (Exception e) {
+					log.error("Can't set system Look-and-Feel", e);
+				}
 				new DataWindow().showup();
 			}
-		};
-		SwingUtilities.invokeLater(gui);
+		});
 	}
 	
 	DataWindow() {
-        super("Treetable sample (http://www.hameister.org/JavaSwingTreeTable.html)");
+        super("Treetable sample - System LF  (http://www.hameister.org/JavaSwingTreeTable.html)");
          
         final long start = System.currentTimeMillis();
         final Node root = DataStructure.treeroot();

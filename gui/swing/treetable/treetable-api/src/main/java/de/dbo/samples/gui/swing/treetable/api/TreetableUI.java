@@ -9,6 +9,15 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
+/**
+ * Treetable UI resources
+ * 
+ * @author Dmitri Boulanger, Hombach
+ *
+ * D. Knuth: Programs are meant to be read by humans and 
+ *           only incidentally for computers to execute 
+ *
+ */
 public interface TreetableUI {
 	
 	public abstract Icon getIcon(Node node);
@@ -77,8 +86,8 @@ public interface TreetableUI {
 	public abstract Color getBackground();
 	
 	/**
-	 * background color for treetable component.
-	 * In X-implementation this color is ignored
+	 * background color for the treetable component.
+	 * In the X-implementation this color is ignored
 	 * 
 	 * @return color
 	 */

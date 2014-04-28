@@ -272,7 +272,7 @@ public final class TreetablePane extends JPanel implements ActionListener {
 			SwingUtilities.invokeLater( new Runnable() {
 				@Override
 				public void run() {
-					treetableColumns.setColumnWidths(treetable);
+					treetableColumns.saveColumnWidths(treetable);
 					clearTreetable();
 					loadTreetable();
 					expanded = false;
@@ -288,7 +288,7 @@ public final class TreetablePane extends JPanel implements ActionListener {
 				@Override
 				public void run() {
 					records = recordProvider.transactionRecords();
-					treetableColumns.setColumnWidths(treetable);
+					treetableColumns.saveColumnWidths(treetable);
 					loadTreetable();
 					if (expanded) {
 						treetable.expandAll();
@@ -303,7 +303,7 @@ public final class TreetablePane extends JPanel implements ActionListener {
 				@Override
 				public void run() {
 					records = recordProvider.transactionRecordsUpdate();
-					treetableColumns.setColumnWidths(treetable);
+					treetableColumns.saveColumnWidths(treetable);
 					loadTreetable();
 					if (expanded) {
 						treetable.expandAll();
@@ -347,7 +347,7 @@ public final class TreetablePane extends JPanel implements ActionListener {
 		treetable = factory.newTreetable(treetableModel);
 		treetable.setBasicUI(treetableUI);
 		treetable.setIntercellSpacing(new Dimension(1, 1));
-		treetableColumns.arrangeColumnWidths(treetable);
+		treetableColumns.setupColumns(treetable);
 //		treetable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
 
 		// scrolling
@@ -368,8 +368,7 @@ public final class TreetablePane extends JPanel implements ActionListener {
 			setEnabled(false);
 			break;
 		case 2:
-			icon= null!=recordProvider.recordCounter()? treetableUI.getIconLabelDone()
-					: null;
+			icon= null!=recordProvider.recordCounter()? treetableUI.getIconLabelDone(): null;
 			setEnabled(true);
 			break;
 
