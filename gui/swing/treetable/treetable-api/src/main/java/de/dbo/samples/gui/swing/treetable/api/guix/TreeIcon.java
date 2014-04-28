@@ -4,7 +4,6 @@ import de.dbo.samples.gui.swing.treetable.api.TreetableUI;
 import de.dbo.samples.gui.swing.treetable.api.records.Node;
 
 import javax.swing.Icon;
-import javax.swing.UIManager;
 
 import org.jdesktop.swingx.icon.EmptyIcon;
 import org.jdesktop.swingx.renderer.IconValue;
@@ -29,7 +28,7 @@ public class TreeIcon implements IconValue {
 			return LEAF_ICON;
 		}
 		
-		// try to get special node-icon
+		// try to get node-specific icon (if any)
 		final Icon nodeIcon =  treetableUI.getIcon((Node) node);
 		if (null!=nodeIcon) {
 			return nodeIcon;
