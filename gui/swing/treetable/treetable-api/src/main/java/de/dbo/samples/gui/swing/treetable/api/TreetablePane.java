@@ -59,7 +59,8 @@ public final class TreetablePane extends JPanel implements ActionListener {
 	/* control-pane components */
 	private final JButton reloadButton;
 	private final JButton updateButton ;
-	private final JButton expadCollapseButton;
+	private final JButton expadButton;
+	private final JButton collapseButton;
 	private final JButton clearButton;
 	private final JTextField transactionIdLabel = label(" Transaction ID:");
 	private final JTextField transactionIdTextField = textfield(30
@@ -106,8 +107,10 @@ public final class TreetablePane extends JPanel implements ActionListener {
     			,"Reload all records for the specified transaction");
     	updateButton = button(treetableUI.getIconUpdate()
     			,"Update already available records for the specified transaction");
-    	expadCollapseButton = button(treetableUI.getIconExpand()
-    			,"Exapnd/collapse all tree-node");
+    	expadButton = button(treetableUI.getIconExpand()
+    			,"Exapnd all tree-node");
+    	collapseButton = button(treetableUI.getIconCollapse()
+    			,"Collapse all tree-node");
     	clearButton = button(treetableUI.getIconClear()
     			,"Clean-up record-provider and UI");
 
@@ -115,7 +118,8 @@ public final class TreetablePane extends JPanel implements ActionListener {
         controlsPane.setBackground(treetableUI.getBackground());
         controlsPane.add(reloadButton);
         controlsPane.add(updateButton);
-        controlsPane.add(expadCollapseButton);
+        controlsPane.add(expadButton);
+        controlsPane.add(collapseButton);
         controlsPane.add(clearButton);
         controlsPane.add(transactionIdLabel);
         controlsPane.add(transactionIdTextField);
@@ -140,7 +144,8 @@ public final class TreetablePane extends JPanel implements ActionListener {
         // actions
         reloadButton.addActionListener(this);
         updateButton.addActionListener(this);
-        expadCollapseButton.addActionListener(this);
+        expadButton.addActionListener(this);
+        collapseButton.addActionListener(this);
         clearButton.addActionListener(this);
         transactionIdTextField.addActionListener(this);
 
@@ -244,18 +249,16 @@ public final class TreetablePane extends JPanel implements ActionListener {
 
 		// quick actions, no status update
 
-		else if (event.getSource()==expadCollapseButton)  {
+		else if (event.getSource()==collapseButton)  {
 			if (null!=treetable) {
-				if (expanded) {
 					treetable.collapseAll();
 					expanded = false;
-					expadCollapseButton.setIcon(treetableUI.getIconExpand());
-				}
-				else {
+			}
+		}
+		else if (event.getSource()==expadButton)  {
+			if (null!=treetable) {
 					treetable.expandAll();
 					expanded = true;
-					expadCollapseButton.setIcon(treetableUI.getIconCollapse());
-				}
 			}
 		}
 		else if (event.getSource()==transactionIdTextField)  {
@@ -276,7 +279,6 @@ public final class TreetablePane extends JPanel implements ActionListener {
 					clearTreetable();
 					loadTreetable();
 					expanded = false;
-					expadCollapseButton.setIcon(treetableUI.getIconExpand());
 					setStatus(UNLOCKED);
 				}
 			});
