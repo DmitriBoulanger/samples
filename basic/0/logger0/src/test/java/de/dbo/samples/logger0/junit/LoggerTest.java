@@ -28,6 +28,9 @@ public class LoggerTest {
 	
 	@Test
 	public void test() {
+		log.error("test error-message");
+		log.warn("test warning-message");
+		log.trace("test trace-message");
 		try {
 			final String name = org.apache.log4j.Logger.class.getName();
 			log.debug(name + " found in the class-path");
