@@ -20,7 +20,7 @@
 	</modules>
 
 	<build>
-		<finalName>samples-basic-0-${project.version}</finalName>
+		<finalName>samples-basic-${project.version}</finalName>
 		<pluginManagement>
 			<plugins>
 				
