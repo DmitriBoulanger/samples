@@ -2,39 +2,33 @@ package de.dbo.samples.elk.logstash.es.client;
  
 
 import java.util.Date;
-import java.util.Map;
 
-import org.elasticsearch.action.admin.indices.mapping.put.PutMappingRequestBuilder;
-//import org.elasticsearch.action.admin.indices.settings.UpdateSettingsRequestBuilder;
-//import org.elasticsearch.action.admin.indices.settings.UpdateSettingsResponse;
+
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.action.search.SearchType;
-import org.elasticsearch.client.Client;
 import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.common.joda.time.DateTime;
-import org.elasticsearch.common.joda.time.format.DateTimeFormat;
-import org.elasticsearch.common.joda.time.format.DateTimeFormatter;
 import org.elasticsearch.common.settings.ImmutableSettings;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.transport.InetSocketTransportAddress;
-import org.elasticsearch.common.unit.TimeValue;
-import org.elasticsearch.common.xcontent.XContentBuilder;
-import org.elasticsearch.common.xcontent.XContentFactory;
-import org.elasticsearch.index.query.*;
-import org.elasticsearch.node.Node;
+import org.elasticsearch.index.query.FilterBuilders;
+import org.elasticsearch.index.query.QueryBuilder;
+import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.index.query.RangeFilterBuilder;
 import org.elasticsearch.search.SearchHit;
-import org.elasticsearch.search.SearchHits;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import static org.elasticsearch.common.xcontent.XContentFactory.jsonBuilder;
-import static org.elasticsearch.index.query.FilterBuilders.andFilter;
-import static org.elasticsearch.index.query.FilterBuilders.orFilter;
-import static org.elasticsearch.index.query.FilterBuilders.rangeFilter;
-import static org.elasticsearch.index.query.QueryBuilders.filteredQuery;
-import static org.elasticsearch.index.query.QueryBuilders.matchAllQuery;
-import static org.elasticsearch.node.NodeBuilder.nodeBuilder;
-
+/**
+ * Simple client for ElasticSearch Server.
+ * This client uses indices created from Logstash
+ * 
+ * @author Dmitri Boulanger, Hombach
+ *
+ * D. Knuth: Programs are meant to be read by humans and 
+ *           only incidentally for computers to execute 
+ *
+ */
 public class ESClient {
 	private final static Logger log = LoggerFactory.getLogger(ESClient.class);
 	
@@ -52,6 +46,10 @@ public class ESClient {
 		log.info("settings and server address set");
 	}
 	
+	/**
+	 * open this client.
+	 * To run a query, client should be already opened
+	 */
 	public final void open() {
 		if (null==client) {
 			client = new TransportClient(settings); 
@@ -60,6 +58,10 @@ public class ESClient {
 		} 
 	}
 	
+	/**
+	 * closes this client.
+	 * When query is finished, this client should be closed
+	 */
 	public void close() {
 		if (null!=client) {
 			client.close(); 
@@ -71,6 +73,7 @@ public class ESClient {
 	public QueryBuilder query() {
 	     return QueryBuilders.matchAllQuery();
 	}
+	
 	
 	public RangeFilterBuilder range(final int minFromNow) {
 		 final DateTime dt1 =  DateTime.now().minus(1000*60*minFromNow);
@@ -85,7 +88,8 @@ public class ESClient {
 			return;
 		}
 		log.info("query ... ");
-		final SearchResponse response = client.prepareSearch("logstash-2014.03.23")
+		final SearchResponse response = client
+				.prepareSearch("logstash-2014.03.23")
                 .setSearchType(SearchType.QUERY_AND_FETCH)
                 .setQuery(queryBuilder)
                 .setExplain(false)
@@ -96,7 +100,6 @@ public class ESClient {
 		for (final SearchHit searchHit :searchHits) {
 			log.info(searchHit.getId());
 		}
-		
 	}
     
 }
