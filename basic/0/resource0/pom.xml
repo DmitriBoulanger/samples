@@ -2,13 +2,13 @@
   <modelVersion>4.0.0</modelVersion>
   
   	<parent>
-		<groupId>de.dbo.samples.basic</groupId>
+		<groupId>de.dbo.samples.basic.0</groupId>
 		<artifactId>0</artifactId>
 		<version>0.0.0-SNAPSHOT</version>
 	</parent>
   
   <artifactId>resouce0</artifactId>
-  <name>Basic utilities. Resource-package</name>
+  <name>Basic 0 Resource-package</name>
  
 	
 	<!-- =====================

@@ -3,15 +3,16 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>de.dbo.samples.basic</groupId>
+		<groupId>de.dbo.samples.basic.0</groupId>
 		<artifactId>0</artifactId>
 		<version>0.0.0-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>test0</artifactId>
-	<name>All Basic-Tests for Eclipse</name>
+	<name>Basic 0 tests for Eclipse</name>
+	
 	<description>
-A special ecipse-project to run all workspace JUnit-tests. 
+A special project to run all workspace JUnit-tests. 
 If a test starts from this project, only error messages are send to the console. 
 All messages can be found in the target/logs directory
     </description>
@@ -84,6 +85,17 @@ All messages can be found in the target/logs directory
 		<dependency>
 			<groupId>${project.groupId}</groupId>
 			<artifactId>xml0</artifactId>
+			<type>test-jar</type>
+			<scope>test</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>resource0</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>resource0</artifactId>
 			<type>test-jar</type>
 			<scope>test</scope>
 		</dependency>
