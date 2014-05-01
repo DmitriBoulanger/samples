@@ -9,7 +9,7 @@
 	</parent>
 
 	<groupId>de.dbo.samples.maven.basic</groupId>
-	<artifactId>BasicUseCases</artifactId>
+	<artifactId>basic</artifactId>
 	<packaging>pom</packaging>
 	<name>Maven basic use cases</name>
 	<url>http://books.sonatype.com/mvnex-book/reference/index.html</url>

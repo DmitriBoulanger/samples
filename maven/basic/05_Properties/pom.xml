@@ -6,17 +6,18 @@
 
 	<parent>
 		<groupId>de.dbo.samples.maven.basic</groupId>
-		<artifactId>BasicUseCases</artifactId>
+		<artifactId>basic</artifactId>
 		<version>0.0.0-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>02_Web</artifactId>
+	<artifactId>05_Properties</artifactId>
 	<packaging>pom</packaging>
-	<name>Web</name>
-	<description>HelloWorld WEB-Application</description>
+	<name>Properties</name>
 
 	<modules>
-		<module>02_Web-HelloWorld</module>
+		<module>05_Properties-Filtering</module>
+		<module>05_Properties-FilteringProfile</module>
+		<module>05_Properties-PropertiesAntrun</module>
 	</modules>
 
 </project>

@@ -16,7 +16,7 @@
 	<description>Maven Samples</description>
 
 	<modules>
-		<module>BasicUseCases</module>
+		<module>basic</module>
 	</modules>
 
 	<build>

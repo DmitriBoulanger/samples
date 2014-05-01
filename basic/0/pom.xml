@@ -11,8 +11,8 @@
 	<groupId>de.dbo.samples.basic.0</groupId>
 	<artifactId>0</artifactId>
 	<packaging>pom</packaging>
-	<name>Basic samples 0</name>
-	<description>Version and plug-in management for all  samples</description>
+	<name>Basic 0 reactor</name>
+	
 	
 	<!--  ========================
 	      MODULES WITH JUnit-TESTS
@@ -231,4 +231,6 @@
 		</dependency>
 	</dependencies>
 
+	<description>Reactor for all basic-0 samples.
+No changes in basic maven featues</description>
 </project>

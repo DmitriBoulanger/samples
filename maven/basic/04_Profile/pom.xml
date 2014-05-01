@@ -6,17 +6,17 @@
 
 	<parent>
 		<groupId>de.dbo.samples.maven.basic</groupId>
-		<artifactId>BasicUseCases</artifactId>
+		<artifactId>basic</artifactId>
 		<version>0.0.0-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>06_Enterprise</artifactId>
+	<artifactId>04_Profile</artifactId>
 	<packaging>pom</packaging>
-	<name>Enterprise (SUPER POM)</name>
-	<description>Sample Enterprise Project with Model, Persist and WEB componenten</description>
-	<url>http://books.sonatype.com/mvnex-book/reference/multimodule-web-spring.html</url>
-	
+	<name>Profile</name>
+
 	<modules>
-		<module>06_Enterprise-Reactor</module>
+		<module>04_Profile-Profile-Activation</module>
+		<module>04_Profile-Profile</module>
 	</modules>
+
 </project>

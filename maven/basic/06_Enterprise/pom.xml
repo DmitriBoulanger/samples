@@ -3,28 +3,20 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
                              http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	
+
 	<parent>
 		<groupId>de.dbo.samples.maven.basic</groupId>
-		<artifactId>BasicUseCases</artifactId>
+		<artifactId>basic</artifactId>
 		<version>0.0.0-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>00_Simple</artifactId>
+	<artifactId>06_Enterprise</artifactId>
 	<packaging>pom</packaging>
-	<name>Simple</name>
-	<url>http://books.sonatype.com/mvnex-book/reference/simple-project.html</url>
-	<description>Parent of the HelloWorld-project</description>
+	<name>Enterprise (SUPER POM)</name>
+	<description>Sample Enterprise Project with Model, Persist and WEB componenten</description>
+	<url>http://books.sonatype.com/mvnex-book/reference/multimodule-web-spring.html</url>
 	
 	<modules>
-		<module>00_Simple-HelloWorld</module>
+		<module>06_Enterprise-Reactor</module>
 	</modules>
-	
-	<build>
-		<plugins>
-		
-
-		</plugins>
-	</build>
-
 </project>

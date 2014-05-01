@@ -1,3 +1,3 @@
-Top-level project for Maven Use-Cases
-=====================================
+Top-level project for Maven Basic Use-Cases
+===========================================
 
