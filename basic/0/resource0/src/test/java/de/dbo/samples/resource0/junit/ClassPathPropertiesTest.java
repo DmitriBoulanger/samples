@@ -1,8 +1,10 @@
-package de.dbo.samples.resource0;
+package de.dbo.samples.resource0.junit;
 
+import de.dbo.samples.resource0.ClassPathProperties;
 import de.dbo.samples.util0.Print;
 
 import java.util.Properties;
+
 
 
 
