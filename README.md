@@ -1,4 +1,4 @@
-samples Repository
+Samples Repository
 ===================
 
 This project fixes the basic properties for all samples:
@@ -7,7 +7,8 @@ This project fixes the basic properties for all samples:
 	- spring.version 
 	- junit.version
 	
-Encoding is UTF-8
+and encoding as UTF-8
 
-Some important hints:
+Important hints
+===============
 	- logger resource-itself is only available with test-scope
