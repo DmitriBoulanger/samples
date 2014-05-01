@@ -41,7 +41,7 @@ public class LoggerTest {
 		 main.log(); // this does not work in the Main
 		 
 		 final Class<?> mainLoggerClass = main.logger();
-		 final Class<?> expectedLoggerClass = Logger.class; // org.slf4j.impl.Log4jLoggerAdapter.class;
+		 final Class<?> expectedLoggerClass = org.slf4j.impl.Log4jLoggerAdapter.class;
 		 assertSame("Expected logger is " + expectedLoggerClass.getName()
 				 + " but found " +  mainLoggerClass.getName()
 				 ,mainLoggerClass,   expectedLoggerClass);

@@ -41,7 +41,7 @@ public class ProfilerTest {
     }
 
     private static final long INTERVAL = 12733L;
-    private static final String ELAPSED_INTERVAL_EXPECTED = "Elapsed: 12 sec. 73";
+    private static final String ELAPSED_INTERVAL_EXPECTED = "Elapsed: 12 sec. 7";
     @Test
     public void test_elapsed() {
         final String elapsed = elapsed(currentTimeMillis() - INTERVAL);

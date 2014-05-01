@@ -19,6 +19,21 @@ However, the JUnit-test uses the log4j-logger
 	<!-- =====================
 	     ONLY COMMON RESOURCES 
 	     ===================== -->
+	     
+<dependencies>
+    <dependency>
+       	<groupId>de.dbo.samples</groupId>
+		<artifactId>samples</artifactId>
+		<version>0.0.0-SNAPSHOT</version>
+	    <type>pom</type>
+        <exclusions>
+            <exclusion>
+               <groupId>org.slf4j</groupId>
+				<artifactId>slf4j-log4j12</artifactId>                    
+            </exclusion>
+        </exclusions>
+    </dependency>
+</dependencies>
 	
 
 </project>
