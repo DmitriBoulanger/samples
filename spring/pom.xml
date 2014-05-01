@@ -12,8 +12,8 @@
 	<artifactId>Spring</artifactId>
 	<packaging>pom</packaging>
 
-	<name>Basic Spring Use-Cases</name>
-	<description>Top for all Spring-projects</description>
+	<name>Spring</name>
+	<description>Top for all Spring-samples</description>
 	
 	 <properties>
 		
