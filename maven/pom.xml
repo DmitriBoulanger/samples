@@ -5,15 +5,14 @@
 	
 	<parent>
 		<groupId>de.dbo.samples</groupId>
-		<artifactId>Samples</artifactId>
+		<artifactId>samples</artifactId>
 		<version>0.0.0-SNAPSHOT</version>
 	</parent>
 
 	<groupId>de.dbo.samples.maven</groupId>
-	<artifactId>Maven</artifactId>
+	<artifactId>maven</artifactId>
 	<packaging>pom</packaging>
-	
-	<name>Maven</name>
+	<name>Maven reactor</name>
 	<description>Maven Samples</description>
 
 	<modules>

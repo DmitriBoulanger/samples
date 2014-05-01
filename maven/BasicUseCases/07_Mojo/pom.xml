@@ -10,7 +10,7 @@
 
 	<artifactId>07_Mojo</artifactId>
 	<packaging>pom</packaging>
-	<name>Mojo (INDEX)</name>
+	<name>Mojo</name>
 	<url>http://www.torsten-horn.de/techdocs/maven.htm#Mojo</url>
 	<description>POM uses the Timestamp Mojo to show time-stamps and elapsed ms. of different phases</description>
 

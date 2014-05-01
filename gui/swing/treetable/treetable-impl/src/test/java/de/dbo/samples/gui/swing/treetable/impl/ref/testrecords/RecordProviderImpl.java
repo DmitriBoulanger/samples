@@ -1,11 +1,8 @@
-package de.dbo.samples.gui.swing.treetable.impl.ref;
+package de.dbo.samples.gui.swing.treetable.impl.ref.testrecords;
 
 import de.dbo.samples.gui.swing.treetable.api.records.Record;
 import de.dbo.samples.gui.swing.treetable.api.records.RecordProvider;
 import de.dbo.samples.gui.swing.treetable.api.records.RecordProviderAbstraction;
-import de.dbo.samples.gui.swing.treetable.impl.ref.testrecords.Records;
-import de.dbo.samples.gui.swing.treetable.impl.ref.testrecords.Records1;
-import de.dbo.samples.gui.swing.treetable.impl.ref.testrecords.Records2;
 
 import java.util.ArrayList;
 import java.util.List;

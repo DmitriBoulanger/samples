@@ -11,7 +11,7 @@
 	<groupId>de.dbo.samples.gui.swing</groupId>
 	<artifactId>swing</artifactId>
 	<packaging>pom</packaging>
-	<name>SWING reactor</name>
+	<name>GUI Swing reactor</name>
 
 	<properties>
 		 
