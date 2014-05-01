@@ -52,6 +52,10 @@
 			<artifactId>slf4j-api</artifactId>
 			<version>${slf4j.version}</version>
 		</dependency>
+		<!-- 
+		    Logger-itself should not be used in any way in the main code.
+		    However, it has to appear in the tests
+	    -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
@@ -69,10 +73,7 @@
 	</dependencyManagement>
 
 	<dependencies>
-	
-		<!-- 
-			LOGGING
-		 -->
+
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
@@ -80,18 +81,13 @@
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
-			<scope>test</scope>
 		</dependency>
 		
-		<!-- 
-			TEST
-		 -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<scope>test</scope>
 		</dependency>
-		
 		
 	</dependencies>
 	
