@@ -1,7 +1,6 @@
 package de.dbo.samples.elk.logstash.es.client;
 
-import static dbo.samples.elk.logstash.config.ConfigurationFactory.es;
-import static dbo.samples.elk.logstash.config.ConfigurationFactory.logstash;
+
 import static java.util.concurrent.TimeUnit.HOURS;
 import static java.util.concurrent.TimeUnit.MILLISECONDS;
 import static java.util.concurrent.TimeUnit.MINUTES;
@@ -43,12 +42,13 @@ final class Tool {
      *
      * @throws ParseException
      */
-    public static final long timestamp(final String timestampLog4j) throws ParseException {
-        final DateTimeZone esDateTimeZone = DateTimeZone.forID(es().getTimezone());
-        final String estTmestampPattern = es().getTimestampFormat();
+    public static final long timestamp(final String timestampLog4j, final ElasticSearch es) 
+    		throws ParseException {
+        final DateTimeZone esDateTimeZone = DateTimeZone.forID(es.getTimezone());
+        final String estTmestampPattern = es.getTimestampFormat();
         final DateTimeFormatter formatter = DateTimeFormat.forPattern(estTmestampPattern).withZone(esDateTimeZone);
         final long ret = formatter.parseDateTime(timestampLog4j).getMillis();
-        log.debug("timestamp.log4j " + esDateTimeZone + " : " + timestampLog4j + "  => " + ret);
+        log.trace("timestamp.log4j " + esDateTimeZone + " : " + timestampLog4j + "  => " + ret);
         return ret;
     }
 
@@ -69,21 +69,21 @@ final class Tool {
     }
 
 
-    public static final String todayLogstashIndex() {
-        return logstashIndex(new Date());
+    public static final String todayLogstashIndex(final Logstash logstash) {
+        return logstashIndex(new Date(), logstash);
     }
 
-    public static final String beforetodayLogstashIndex() {
-        return logstashIndex(subtractDays(new Date(), 1));
+    public static final String beforetodayLogstashIndex(final Logstash logstash) {
+        return logstashIndex(subtractDays(new Date(), 1), logstash);
     }
 
-    public static final String logstashIndex(final Date date) {
-        final SimpleDateFormat formatter = new SimpleDateFormat(logstash().getIndexSufffix());
-        return indexName() + "-" + formatter.format(date);
+    public static final String logstashIndex(final Date date, final Logstash logstash) {
+        final SimpleDateFormat formatter = new SimpleDateFormat(logstash.getIndexSufffix());
+        return indexName(logstash) + "-" + formatter.format(date);
     }
 
-    public static final StringBuilder indexName() {
-        final String indexNameExtension = logstash().getIndexNameExrension();
+    public static final StringBuilder indexName(final Logstash logstash) {
+        final String indexNameExtension = logstash.getIndexNameExrension();
         final StringBuilder ret = new StringBuilder("logstash");
         if (null != indexNameExtension && 0 != indexNameExtension.trim().length()) {
             ret.append("-" + indexNameExtension.trim());

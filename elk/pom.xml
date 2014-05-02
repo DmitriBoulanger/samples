@@ -16,7 +16,7 @@
 	<description>ElasticSearch Logstash Kibana</description>
 
 	<modules>
-		 
+		 <module>logstash</module>
 	</modules>
 	
 	<dependencies>

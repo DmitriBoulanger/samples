@@ -1,20 +1,15 @@
 package de.dbo.samples.elk.logstash.es.client;
  
-
-import java.util.Date;
-
+import static de.dbo.samples.elk.logstash.es.client.Tool.todayLogstashIndex;
+import static de.dbo.samples.elk.logstash.es.client.Query.*;
 
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.action.search.SearchType;
 import org.elasticsearch.client.transport.TransportClient;
-import org.elasticsearch.common.joda.time.DateTime;
 import org.elasticsearch.common.settings.ImmutableSettings;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.transport.InetSocketTransportAddress;
-import org.elasticsearch.index.query.FilterBuilders;
 import org.elasticsearch.index.query.QueryBuilder;
-import org.elasticsearch.index.query.QueryBuilders;
-import org.elasticsearch.index.query.RangeFilterBuilder;
 import org.elasticsearch.search.SearchHit;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,6 +27,9 @@ import org.slf4j.LoggerFactory;
 public class ESClient {
 	private final static Logger log = LoggerFactory.getLogger(ESClient.class);
 	
+	private static final ElasticSearch es = new ElasticSearch("elasticsearch-hombach", "localhost", 9300);
+	private static final Logstash logstash = new Logstash();
+	
 	private final Settings settings;
 	private final InetSocketTransportAddress inetSocketTransportAddress;
 	
@@ -39,10 +37,10 @@ public class ESClient {
 	 
 	public ESClient() {
 		settings = ImmutableSettings.settingsBuilder()
-		        .put("cluster.name", "elasticsearch-hombach")
+		        .put("cluster.name", es.getCluster())
 		        .build();
 		inetSocketTransportAddress = 
-				new InetSocketTransportAddress("127.0.0.1", 9300);
+				new InetSocketTransportAddress(es.getHost(), es.getPort());
 		log.info("settings and server address set");
 	}
 	
@@ -71,34 +69,28 @@ public class ESClient {
 	}
 	
 	public QueryBuilder query() {
-	     return QueryBuilders.matchAllQuery();
+	     return messages("AnotherLogger", "WARN"
+	    		 , timeRange(1)
+	    		 , logstash);
 	}
 	
-	
-	public RangeFilterBuilder range(final int minFromNow) {
-		 final DateTime dt1 =  DateTime.now().minus(1000*60*minFromNow);
-	     final DateTime dt2 =  DateTime.now(); 
-	     log.info("range from=" + new Date(dt1.getMillis())  + " to=" + new Date(dt2.getMillis()) );
-	     return FilterBuilders.rangeFilter("@timestamp").from(dt1).to(dt2);
-	}
-	
-	public void run(final QueryBuilder queryBuilder) {
+	public void run(final QueryBuilder query) {
 		if (null==client) {
 			log.warn("can't run query: no client opend");
 			return;
 		}
 		log.info("query ... ");
 		final SearchResponse response = client
-				.prepareSearch("logstash-2014.03.23")
+				.prepareSearch(todayLogstashIndex(logstash))
                 .setSearchType(SearchType.QUERY_AND_FETCH)
-                .setQuery(queryBuilder)
+                .setQuery(query)
                 .setExplain(false)
                 .execute()
                 .actionGet();
 		final SearchHit[] searchHits = response.getHits().getHits();
 		log.info("query hits: " + searchHits.length);
-		for (final SearchHit searchHit :searchHits) {
-			log.info(searchHit.getId());
+		for (final SearchHit searchHit : searchHits) {
+			log.info(searchHit.getId() +":" +searchHit.getSourceAsString());
 		}
 	}
     
