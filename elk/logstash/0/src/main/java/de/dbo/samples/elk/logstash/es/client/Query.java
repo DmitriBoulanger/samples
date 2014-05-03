@@ -68,7 +68,7 @@ public final class Query {
     }
     
     public static FilterBuilder timeRangeBeoreHours(final int hours) {
-		 final DateTime from =  DateTime.now().minus(1*HOUR);
+		 final DateTime from =  DateTime.now().minus(hours*HOUR);
 	     final DateTime to =  DateTime.now(); 
 	     return timeRange(from, to);
 	}
@@ -90,6 +90,7 @@ public final class Query {
         rangeFilterBuilder.from(from);
         rangeFilterBuilder.to(to);
         final FilterBuilder rangeFilter = andFilter(rangeFilterBuilder);
+        log.trace("time-range: " + from + "  --  " + to);
         return rangeFilter;
     }
 }
