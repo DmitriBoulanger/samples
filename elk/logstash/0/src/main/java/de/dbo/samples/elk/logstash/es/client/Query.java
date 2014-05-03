@@ -10,6 +10,8 @@ import org.elasticsearch.index.query.FilterBuilder;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.RangeFilterBuilder;
 import org.joda.time.DateTime;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import static org.elasticsearch.index.query.FilterBuilders.andFilter;
 import static org.elasticsearch.index.query.FilterBuilders.rangeFilter;
@@ -26,7 +28,8 @@ import static org.elasticsearch.index.query.QueryBuilders.prefixQuery;
  * Programs are meant to be read by humans and only incidentally for computers to execute (D. Knuth)
  *
  */
-final class Query {
+public final class Query {
+	private final static Logger log = LoggerFactory.getLogger(Query.class);
 	
 	private static final long SEC = 1000;
 	private static final long MIN = 60*SEC;
@@ -36,10 +39,8 @@ final class Query {
                     prefixQuery(LOGGER_NAME_FIELD, "org")
                   , prefixQuery(LOGGER_NAME_FIELD, "com") };
 
-    /**
-     * @return query
-     */
-    static final QueryBuilder messages(final String logger
+   
+    public static final QueryBuilder messages(final String logger
     		, final String priority
             , final long fromMilliseconds, final long toMilliseconds
             , final Logstash logstash) {
@@ -47,7 +48,7 @@ final class Query {
         		, timeRange(fromMilliseconds, toMilliseconds), logstash);
     }
     
-    static final QueryBuilder messages(final String logger
+    public static final QueryBuilder messages(final String logger
     		, final String priority
             , final FilterBuilder filterBuilder
             , final Logstash logstash) {
@@ -66,19 +67,19 @@ final class Query {
         return boolQuery;
     }
     
-    static FilterBuilder timeRange() {
+    public static FilterBuilder timeRangeBeoreHours(final int hours) {
 		 final DateTime from =  DateTime.now().minus(1*HOUR);
 	     final DateTime to =  DateTime.now(); 
 	     return timeRange(from, to);
 	}
     
-    static FilterBuilder timeRange(final int minFromNow) {
+    public static FilterBuilder timeRangeBeforeMinutes(final int minFromNow) {
 		 final DateTime from =  DateTime.now().minus(MIN*minFromNow);
 	     final DateTime to =  DateTime.now(); 
 	     return timeRange(from, to);
 	}
 
-    private static final FilterBuilder timeRange(final long fromMillis, final long toMillis) {
+    public static final FilterBuilder timeRange(final long fromMillis, final long toMillis) {
         final DateTime from = new DateTime(fromMillis);
         final DateTime to = new DateTime(toMillis);
         return timeRange(from, to);

@@ -1,10 +1,12 @@
 package de.dbo.samples.elk.logstash.es.client;
  
+import static de.dbo.samples.elk.logstash.es.client.Tool.formatMs;
 import static de.dbo.samples.elk.logstash.es.client.Tool.todayLogstashIndex;
-import static de.dbo.samples.elk.logstash.es.client.Query.*;
 
+import org.elasticsearch.ElasticsearchException;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.action.search.SearchType;
+import org.elasticsearch.client.transport.NoNodeAvailableException;
 import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.common.settings.ImmutableSettings;
 import org.elasticsearch.common.settings.Settings;
@@ -30,18 +32,29 @@ public class ESClient {
 	private static final ElasticSearch es = new ElasticSearch("elasticsearch-hombach", "localhost", 9300);
 	private static final Logstash logstash = new Logstash();
 	
-	private final Settings settings;
-	private final InetSocketTransportAddress inetSocketTransportAddress;
+    /**
+     * creates transport client for remote ES-server
+     *
+     * @param esServer parameters of the remote ElasticSearch server
+     * @return new transport client
+     */
+    public static final TransportClient elasticsearchClient(final ElasticSearch esServer) {
+        final Settings settings = ImmutableSettings.settingsBuilder()
+                .put("cluster.name", esServer.getCluster())
+                .put("network.host", esServer.getHost())
+                .build();
+        
+        final TransportClient ret = new TransportClient(settings);
+        ret.addTransportAddress(new InetSocketTransportAddress(esServer.getHost(), esServer.getPort()));
+        return ret;
+    }
 	
+	 
 	private TransportClient client = null;
 	 
 	public ESClient() {
-		settings = ImmutableSettings.settingsBuilder()
-		        .put("cluster.name", es.getCluster())
-		        .build();
-		inetSocketTransportAddress = 
-				new InetSocketTransportAddress(es.getHost(), es.getPort());
-		log.info("settings and server address set");
+		client = elasticsearchClient(es);
+		log.trace("settings and server address set. " + es.print());
 	}
 	
 	/**
@@ -50,9 +63,8 @@ public class ESClient {
 	 */
 	public final void open() {
 		if (null==client) {
-			client = new TransportClient(settings); 
-			client.addTransportAddress(inetSocketTransportAddress);
-			log.info("opened");
+			client =  elasticsearchClient(es);
+			log.trace("opened");
 		} 
 	}
 	
@@ -64,34 +76,35 @@ public class ESClient {
 		if (null!=client) {
 			client.close(); 
 			client = null;
-			log.info("closed");
+			log.trace("closed");
 		} 
 	}
 	
-	public QueryBuilder query() {
-	     return messages("AnotherLogger", "WARN"
-	    		 , timeRange(1)
-	    		 , logstash);
-	}
-	
-	public void run(final QueryBuilder query) {
-		if (null==client) {
-			log.warn("can't run query: no client opend");
-			return;
+	public SearchHit[] run(final QueryBuilder query) {
+		final long start = System.currentTimeMillis();
+		final String queryInfo = "query "+ todayLogstashIndex(logstash);
+		try {
+			log.trace(queryInfo + " ... ");
+			final SearchHit[] ret;
+			if (null==client) {
+				ret = new SearchHit[]{};
+				log.warn(queryInfo + "rejected: no client opend");
+			} else {
+				final SearchResponse response = client
+					.prepareSearch(todayLogstashIndex(logstash))
+			        .setSearchType(SearchType.QUERY_AND_FETCH)
+			        .setQuery(query)
+			        .setExplain(false)
+			        .execute()
+			        .actionGet();
+			   ret = response.getHits().getHits();
+			   log.trace(queryInfo + " done. Elapsed " + formatMs(System.currentTimeMillis()-start));
+			}
+			return ret;
+		} catch (NoNodeAvailableException e) {
+			throw new ESClientException(
+					"Can't run query for " + es.print() + "\nThe ES-server is down?"
+					,e );
 		}
-		log.info("query ... ");
-		final SearchResponse response = client
-				.prepareSearch(todayLogstashIndex(logstash))
-                .setSearchType(SearchType.QUERY_AND_FETCH)
-                .setQuery(query)
-                .setExplain(false)
-                .execute()
-                .actionGet();
-		final SearchHit[] searchHits = response.getHits().getHits();
-		log.info("query hits: " + searchHits.length);
-		for (final SearchHit searchHit : searchHits) {
-			log.info(searchHit.getId() +":" +searchHit.getSourceAsString());
-		}
-	}
-    
+	 }
 }

@@ -4,8 +4,8 @@ import java.util.UUID;
 
 import org.slf4j.*;
 
-public class Log4jMessageTest {
-	private static final Logger log = LoggerFactory.getLogger(Log4jMessageTest.class);
+public class ESLogsatshMessages {
+	private static final Logger log = LoggerFactory.getLogger(ESLogsatshMessages.class);
 	private static final Logger log2 = LoggerFactory.getLogger("AnotherLogger");
 	private static final Logger log3 = LoggerFactory.getLogger("java.x.bla.bla.XLoger");
 	private static final Logger log4 = LoggerFactory.getLogger("java.x.bla.bla.XXXXLoger");

@@ -29,9 +29,9 @@ public final class ElasticSearch  {
     
     public StringBuilder print() {
         final StringBuilder ret = new StringBuilder("ES-Server:");
-        ret.append(" Cluster=" + cluster);
-        ret.append(" Host=" + host);
-        ret.append(" Port=" + port);
+        ret.append("\n\t- cluster: " + cluster);
+        ret.append("\n\t- host: " + host);
+        ret.append("\n\t- port: " + port);
         return ret;
     }
 

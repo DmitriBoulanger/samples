@@ -31,7 +31,7 @@ import org.slf4j.LoggerFactory;
  * Programs are meant to be read by humans and only incidentally for computers to execute (D. Knuth)
  *
  */
-final class Tool {
+public final class Tool {
     private static final Logger log = LoggerFactory.getLogger(Tool.class);
 
     /**
@@ -52,21 +52,7 @@ final class Tool {
         return ret;
     }
 
-    /**
-     * creates transport client for remote ES-server
-     *
-     * @param esServer remote ElasticSearch server
-     * @return new transport client
-     */
-    public static final Client elasticsearchClient(final ElasticSearch esServer) {
-        final Settings settings = ImmutableSettings.settingsBuilder()
-                .put("cluster.name", esServer.getCluster())
-                .put("network.host", esServer.getHost())
-                .build();
-        final TransportClient ret = new TransportClient(settings);
-        ret.addTransportAddress(new InetSocketTransportAddress(esServer.getHost(), esServer.getPort()));
-        return ret;
-    }
+
 
 
     public static final String todayLogstashIndex(final Logstash logstash) {
@@ -155,5 +141,9 @@ final class Tool {
         ret.append(x);
         ret.append("\"");
         return ret.toString();
+    }
+    
+    public static final boolean nn(final String x) {
+        return null!=x && 0!=x.trim().length();
     }
 }
