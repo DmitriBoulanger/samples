@@ -21,7 +21,7 @@ public class ESClientTest {
 	    public static void main(String[] args) {
 	    	final ESClient esClient = new ESClient();
 	    	final Logstash logstash = new Logstash();
-	    	final FilterBuilder filter = timeRangeBeforeMinutes(300);
+	    	final FilterBuilder filter = timeRangeBeforeMinutes(3);
 	    	final QueryBuilder query = messages("AnotherLogger","WARN",filter,logstash);
 	    	esClient.open();
 	    	final SearchHit[] searchHits = esClient.run(query);

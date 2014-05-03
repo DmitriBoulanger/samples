@@ -1,30 +1,24 @@
 package de.dbo.samples.elk.logstash.es.client;
 
-
-import static java.util.concurrent.TimeUnit.HOURS;
-import static java.util.concurrent.TimeUnit.MILLISECONDS;
-import static java.util.concurrent.TimeUnit.MINUTES;
-import static java.util.concurrent.TimeUnit.SECONDS;
-
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-import org.elasticsearch.client.Client;
-import org.elasticsearch.client.transport.TransportClient;
-import org.elasticsearch.common.settings.ImmutableSettings;
-import org.elasticsearch.common.settings.Settings;
-import org.elasticsearch.common.transport.InetSocketTransportAddress;
 import org.joda.time.DateTimeZone;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import static java.util.concurrent.TimeUnit.HOURS;
+import static java.util.concurrent.TimeUnit.MILLISECONDS;
+import static java.util.concurrent.TimeUnit.MINUTES;
+import static java.util.concurrent.TimeUnit.SECONDS;
+
 /**
- * Package-private utilities used in the client-implementation
+ * Utilities used in the client-implementation
  *
  * @author Dmitri Boulanger
  *
@@ -51,9 +45,6 @@ public final class Tool {
         log.trace("timestamp.log4j " + esDateTimeZone + " : " + timestampLog4j + "  => " + ret);
         return ret;
     }
-
-
-
 
     public static final String todayLogstashIndex(final Logstash logstash) {
         return logstashIndex(new Date(), logstash);
