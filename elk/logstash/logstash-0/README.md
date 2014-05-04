@@ -17,13 +17,19 @@ To run the test, do the following:
 - run the test itself
 
 ###Optional Kibana-based Monitor
+
 Copy the file **Log4JMonitor-test.json** from  *src/main/scripts/* into 
-the Kibana directory <HOME>src/app/dashboards/ and then use the following link 
-to monitor test-events
+the Kibana directory <HOME>src/app/dashboards/ and then use the following link to monitor test-events
 
 [http://localhost:9200/_plugin/kibana3/src/index.html#/dashboard/file/Log4jMonitor-test.json](http://localhost:9200/_plugin/kibana3/src/index.html#/dashboard/file/Log4jMonitor-test.json)
 
-**Note:** The bowser should support HTML5
+Another way is to install the Log4JMonitor from the GitHub-Gist
+
+[https://gist.github.com/DmitriBoulanger/2803b71ae2a5d6bcd15f](https://gist.github.com/DmitriBoulanger/2803b71ae2a5d6bcd15f)
+
+To do that, start default Kibana and use *Load/Advanced/Gist* menu to install the above
+
+**Note:** The browser should support HTML5
 
 ###Maven features
 This Maven-project a leaf. It inherits most of all its resources from the parent.
