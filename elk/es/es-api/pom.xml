@@ -9,6 +9,7 @@
   
   <groupId>de.dbo.samples.elk</groupId>
   <artifactId>es-api</artifactId>
+  <name>ElasticSearch API</name>
   
   <dependencies>
   

@@ -9,6 +9,8 @@
   
   <groupId>de.dbo.samples.elk</groupId>
   <artifactId>logstash-api</artifactId>
+  <name>Logstash API</name>
+
   
   <dependencies>
   
