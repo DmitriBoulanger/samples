@@ -34,8 +34,9 @@ public class ElasticSearchClientTest {
 		
 		@Before
 		public void init() {
+			logstash = new LogstashImpl();
 		    es = new ElasticSearchImpl("elasticsearch-hombach", "localhost", 9300);
-	    	logstash = new LogstashImpl();
+	    	logstash.setIndexNameExrension("test");
 	    	filter = timeRangeBeforeMinutes(3);
 		}
 		
@@ -45,8 +46,8 @@ public class ElasticSearchClientTest {
 		 */
 		@Test
 		public void pickupMessages1() {
-			final ElasticSearchClient esClient = new ElasticSearchClient(es);
-	    	final QueryBuilder query = messages("AnotherLogger","WARN",filter,logstash);
+			final ElasticSearchClient esClient = new ElasticSearchClient(logstash,es);
+	    	final QueryBuilder query = messages("AnotherLogger", "WARN", filter, logstash);
 	    	esClient.open();
 	    	final SearchHit[] searchHits = esClient.run(query);
 	    	esClient.close();
@@ -67,7 +68,7 @@ public class ElasticSearchClientTest {
 		 */
 		@Test
 		public void pickupMessages2() {
-			final ElasticSearchClient esClient = new ElasticSearchClient(es);
+			final ElasticSearchClient esClient =  new ElasticSearchClient(logstash,es);
 	    	final QueryBuilder query = messages("AnotherLoggerX","ERROR",filter,logstash);
 	    	esClient.open();
 	    	final SearchHit[] searchHits = esClient.run(query);

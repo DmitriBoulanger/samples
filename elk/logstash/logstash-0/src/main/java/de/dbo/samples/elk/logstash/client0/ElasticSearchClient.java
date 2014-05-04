@@ -33,15 +33,15 @@ import org.slf4j.LoggerFactory;
 public class ElasticSearchClient {
 	private final static Logger log = LoggerFactory.getLogger(ElasticSearchClient.class);
 	
-	private static final Logstash logstash = new LogstashImpl();
-	
+ 
     /**
      * creates transport client for the remote ES-server
      *
      * @param esServer parameters of the remote ElasticSearch server
      * @return new transport client
      */
-    private static final Client elasticsearchClient(final ElasticSearch esServer) {
+    private static final Client elasticsearchClient(
+    		final ElasticSearch esServer) {
         final Settings settings = ImmutableSettings.settingsBuilder()
                 .put("cluster.name", esServer.getCluster())
                 .put("network.host", esServer.getHost())
@@ -52,10 +52,12 @@ public class ElasticSearchClient {
         return ret;
     }
 	
+    private final Logstash logstash;
     private final ElasticSearch es;
 	private Client client = null;
 	 
-	public ElasticSearchClient(final ElasticSearch es) {
+	public ElasticSearchClient(final Logstash logstash, final ElasticSearch es) {
+		this.logstash = logstash;
 		this.es = es;
 		log.trace("settings and server address set. " + this.es.print());
 		open();
@@ -86,7 +88,8 @@ public class ElasticSearchClient {
 	
 	public SearchHit[] run(final QueryBuilder query) {
 		final long start = System.currentTimeMillis();
-		final String queryInfo = "query "+ todayLogstashIndex(logstash);
+		final String index = todayLogstashIndex(logstash);
+		final String queryInfo = "query "+ index;
 		try {
 			log.trace(queryInfo + " ... ");
 			final SearchHit[] ret;
@@ -95,7 +98,7 @@ public class ElasticSearchClient {
 				log.warn(queryInfo + "rejected: no client opend");
 			} else {
 				final SearchResponse response = client
-					.prepareSearch(todayLogstashIndex(logstash))
+					.prepareSearch(index)
 			        .setSearchType(SearchType.QUERY_AND_FETCH)
 			        .setQuery(query)
 			        .setExplain(false)

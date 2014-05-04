@@ -34,7 +34,7 @@ public final class LogstashImpl implements Logstash  {
 
     @Override
     public void setIndexNameExrension(final String indexNameExrension) {
-       
+    	this.indexNameExrension = indexNameExrension;
     }
     
     @Override
