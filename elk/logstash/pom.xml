@@ -16,7 +16,8 @@
 	<description>Logstash</description>
 
 	<modules>
-		 <module>0</module>
+		 <module>logstash-api</module>
+		 <module>logstash-0</module>
 	</modules>
 
 	<build>
