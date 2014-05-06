@@ -21,7 +21,7 @@ To run the test, do the following:
 Copy the file **Log4JMonitor-test.json** from *src/main/scripts/* into 
 the directory *<Kibana-HOME>src/app/dashboards/* and then use the below link to monitor test-events
 
-[http://localhost:9200/_plugin/kibana3/src/index.html#/dashboard/file/Log4jMonitor-test.json](http://localhost:9200/_plugin/kibana3/src/index.html#/dashboard/file/Log4jMonitor-test.json)
+[http://localhost:9200/_plugin/kibana3/src/index.html#/dashboard/file/Log4jMonitor.json](http://localhost:9200/_plugin/kibana3/src/index.html#/dashboard/file/Log4jMonitor.json)
 
 Another way is to install the Log4JMonitor from the GitHub.Gist
 

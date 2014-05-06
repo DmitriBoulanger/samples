@@ -36,7 +36,7 @@ public class ElasticSearchClientTest {
 		public void init() {
 			logstash = new LogstashImpl();
 		    es = new ElasticSearchImpl("elasticsearch-hombach", "localhost", 9300);
-	    	logstash.setIndexNameExrension("test");
+	    	logstash.setIndexNameExrension("log4j");
 	    	filter = timeRangeBeforeMinutes(3);
 		}
 		

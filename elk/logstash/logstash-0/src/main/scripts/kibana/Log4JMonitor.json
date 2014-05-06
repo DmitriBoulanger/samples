@@ -3,7 +3,7 @@
   "refresh": false,
   "index": {
     "interval": "day",
-    "pattern": "[logstash-ix-]YYYY.MM.DD",
+    "pattern": "[logstash-log4j-]YYYY.MM.DD",
     "default": "NO_TIME_FILTER_OR_INDEX_PATTERN_NOT_MATCHED",
     "warm_fields": true
   },
