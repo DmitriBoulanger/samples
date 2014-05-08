@@ -31,7 +31,7 @@ public class ElasticSearchClientTest {
 		@Before
 		public void init() {
 			logstash = new LogstashImpl();
-        es = new ElasticSearchImpl("dboArtemisCluster", "localhost", 9300);
+			es = new ElasticSearchImpl("dboArtemisCluster", "localhost", 9300);
 	    	logstash.setIndexNameExrension("log4j");
 	    	filter = timeRangeBeforeMinutes(3);
 		}
