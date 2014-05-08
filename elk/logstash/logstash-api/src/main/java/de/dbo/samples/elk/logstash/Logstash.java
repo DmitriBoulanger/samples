@@ -46,7 +46,7 @@ public interface Logstash {
 	 * optional name-extension of the logstash index-name. Default is no extension.
 	 * If extension is set, e.g as "my", then the corresponding index-name is "logstash-my".
 	 * The complete logstash index-name is the index-name plus indexSufffix.
-	 * Its format: logstash-[-IndexNameExtension]YYYY.MM.dd, e.g. logstash-my-2014.05.04
+	 * Its format: logstash-[IndexNameExtension-]YYYY.MM.dd, e.g. logstash-my-2014.05.04
 	 * 
 	 * @see #getIndexSufffix()
 	 */
