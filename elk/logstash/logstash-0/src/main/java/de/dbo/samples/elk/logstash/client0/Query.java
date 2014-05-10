@@ -4,6 +4,8 @@ import static de.dbo.samples.elk.logstash.Logstash.LOGGER_NAME_FIELD;
 import static de.dbo.samples.elk.logstash.Logstash.LOGGER_TYPE_FIELD;
 import static de.dbo.samples.elk.logstash.Logstash.PRIORITY_FIELD;
 import static de.dbo.samples.elk.logstash.Logstash.TIMESTAMP_FIELD;
+import static de.dbo.samples.elk.logstash.client0.Tool.HOUR;
+import static de.dbo.samples.elk.logstash.client0.Tool.MIN;
 
 import de.dbo.samples.elk.logstash.Logstash;
 
@@ -33,10 +35,6 @@ import static org.elasticsearch.index.query.QueryBuilders.prefixQuery;
 public final class Query {
 	private final static Logger log = LoggerFactory.getLogger(Query.class);
 	
-	private static final long SEC = 1000;
-	private static final long MIN = 60*SEC;
-	private static final long HOUR = 60*MIN;
-   
     private static final QueryBuilder NEGATIVE_QUERIES[] = new QueryBuilder[] {
                     prefixQuery(LOGGER_NAME_FIELD, "org")
                   , prefixQuery(LOGGER_NAME_FIELD, "com") };
@@ -45,7 +43,7 @@ public final class Query {
     public static final QueryBuilder messages(final String logger
     		, final String priority
             , final long fromMilliseconds, final long toMilliseconds
-            , final LogstashImpl logstash) {
+            , final Logstash logstash) {
         return messages(logger, priority
         		, timeRange(fromMilliseconds, toMilliseconds), logstash);
     }

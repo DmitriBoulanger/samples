@@ -1,16 +1,13 @@
 package de.dbo.samples.elk.logstash.client0;
 
+import de.dbo.samples.elk.es.ElasticSearch;
 import de.dbo.samples.elk.logstash.Logstash;
 
 import java.text.DecimalFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-import org.joda.time.DateTimeZone;
-import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -29,48 +26,35 @@ import static java.util.concurrent.TimeUnit.SECONDS;
  */
 public final class Tool {
     private static final Logger log = LoggerFactory.getLogger(Tool.class);
-
+    
+    static final long SEC = 1000;
+	static final long MIN = 60*SEC;
+	static final long HOUR = 60*MIN;
+   
     /**
-     * converts Log4j-timestamp into standard milliseconds
+     * converts ES-timestamp into standard milliseconds
      *
-     * @param timestampLog4j
+     * @param timestampES
      * @return milliseconds
      *
      * @throws ParseException
      */
-    public static final long timestamp(final String timestampLog4j, final ElasticSearchImpl es) 
+    public static final long timestamp(final String timestampES, final ElasticSearch ES) 
     		throws ParseException {
-        final DateTimeZone esDateTimeZone = DateTimeZone.forID(es.getTimezone());
-        final String estTmestampPattern = es.getTimestampFormat();
-        final DateTimeFormatter formatter = DateTimeFormat.forPattern(estTmestampPattern).withZone(esDateTimeZone);
-        final long ret = formatter.parseDateTime(timestampLog4j).getMillis();
-        log.trace("timestamp.log4j " + esDateTimeZone + " : " + timestampLog4j + "  => " + ret);
+        final long ret = ES.timestamp(timestampES);
+        log.trace("timestamp.es " + ES.getTimezone() + " : " + timestampES + "  => " + ret);
         return ret;
     }
 
     public static final String todayLogstashIndex(final Logstash logstash) {
-        return logstashIndex(new Date(), logstash);
+        return logstash.index(new Date());
     }
 
     public static final String beforetodayLogstashIndex(final Logstash logstash) {
-        return logstashIndex(subtractDays(new Date(), 1), logstash);
+        return logstash.index(subtractDays(new Date(), 1));
     }
 
-    public static final String logstashIndex(final Date date, final Logstash logstash) {
-        final SimpleDateFormat formatter = new SimpleDateFormat(logstash.getIndexSufffix());
-        return indexName(logstash) + "-" + formatter.format(date);
-    }
-
-    public static final StringBuilder indexName(final Logstash logstash) {
-        final String indexNameExtension = logstash.getIndexNameExrension();
-        final StringBuilder ret = new StringBuilder("logstash");
-        if (null != indexNameExtension && 0 != indexNameExtension.trim().length()) {
-            ret.append("-" + indexNameExtension.trim());
-        }
-        return ret;
-    }
-
-    public static Date subtractDays(final Date date, final int n) {
+    private static Date subtractDays(final Date date, final int n) {
         Calendar cal = Calendar.getInstance();
         cal.setTime(date);
         cal.add(Calendar.DAY_OF_MONTH, -n);

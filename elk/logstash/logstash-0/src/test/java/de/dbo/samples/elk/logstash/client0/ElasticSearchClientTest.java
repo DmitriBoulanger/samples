@@ -6,6 +6,7 @@ import static de.dbo.samples.elk.logstash.Logstash.TIMESTAMP_FIELD;
 import static de.dbo.samples.elk.logstash.client0.Query.messages;
 import static de.dbo.samples.elk.logstash.client0.Query.timeRangeBeforeMinutes;
 import static de.dbo.samples.elk.logstash.client0.Tool.nn;
+
 import static org.junit.Assert.assertTrue;
 
 import java.util.Map;
@@ -19,7 +20,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import de.dbo.samples.elk.es.ElasticSearch;
+import de.dbo.samples.elk.es.ElasticSearchDefault;
 import de.dbo.samples.elk.logstash.Logstash;
+import de.dbo.samples.elk.logstash.LogstashDefault;
 
 public class ElasticSearchClientTest {
 	   final static Logger log = LoggerFactory.getLogger(ElasticSearchClientTest.class);
@@ -30,9 +33,13 @@ public class ElasticSearchClientTest {
 
 		@Before
 		public void init() {
-			logstash = new LogstashImpl();
-			es = new ElasticSearchImpl("dboArtemisCluster", "localhost", 9300);
-	    	logstash.setIndexNameExrension("log4j");
+			
+			logstash = new LogstashDefault();
+			logstash.setIndexNameExrension("log4j");
+			
+			es = new ElasticSearchDefault();
+			es.setCluster("elasticsearch-hombach");
+	    	
 	    	filter = timeRangeBeforeMinutes(3);
 		}
 

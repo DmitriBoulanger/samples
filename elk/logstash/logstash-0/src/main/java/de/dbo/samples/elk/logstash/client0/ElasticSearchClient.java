@@ -33,25 +33,6 @@ import org.slf4j.LoggerFactory;
 public class ElasticSearchClient {
 	private final static Logger log = LoggerFactory.getLogger(ElasticSearchClient.class);
 	
- 
-    /**
-     * creates transport client for the remote ES-server
-     *
-     * @param esServer parameters of the remote ElasticSearch server
-     * @return new transport client
-     */
-    private static final Client elasticsearchClient(
-    		final ElasticSearch esServer) {
-        final Settings settings = ImmutableSettings.settingsBuilder()
-                .put("cluster.name", esServer.getCluster())
-                .put("network.host", esServer.getHost())
-                .build();
-        
-        final TransportClient ret = new TransportClient(settings);
-        ret.addTransportAddress(new InetSocketTransportAddress(esServer.getHost(), esServer.getPort()));
-        return ret;
-    }
-	
     private final Logstash logstash;
     private final ElasticSearch es;
 	private Client client = null;
@@ -59,7 +40,7 @@ public class ElasticSearchClient {
 	public ElasticSearchClient(final Logstash logstash, final ElasticSearch es) {
 		this.logstash = logstash;
 		this.es = es;
-		log.trace("settings and server address set. " + this.es.print());
+		log.trace("created. " + this.es.print());
 		open();
 	}
 	
@@ -69,7 +50,7 @@ public class ElasticSearchClient {
 	 */
 	public final void open() {
 		if (null==client) {
-			client =  elasticsearchClient(es);
+			client =  es.elasticsearchClient();
 			log.trace("opened");
 		} 
 	}
