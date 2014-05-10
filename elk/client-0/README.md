@@ -5,9 +5,9 @@ The most simple usage of the Log4j socket-appender with Logstash as a remote ser
 ### Test description
 The test in the *src/test/java/de.dbo.samples.elk.client0* consists of:
 
-		message generator **Messages**
+		message generator Messages
 
-		test itself **ClientTest**
+		test itself ClientTest
 
 To run the test, do the following:
 
@@ -32,9 +32,9 @@ To do that, start default Kibana and use *Load/Advanced/Gist* menu to install th
 
 *Note:* The browser should support HTML5, e,g. FireFox
 
-###Maven features
+### Maven features
 This Maven-project a leaf. It inherits most of all its basic resources from the parent.
 Special resources are:
 
-- logstash-api
-- es-api 
+	logstash-api
+	es-api 
