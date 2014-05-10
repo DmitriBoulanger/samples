@@ -16,8 +16,9 @@
 	<description>ElasticSearch Logstash Kibana</description>
 
 	<modules>
-		 <module>logstash</module>
-		 <module>es</module>
+		 <module>logstash-api</module>
+		 <module>es-api</module>
+		 <module>client-0</module>
 	</modules>
 	
 	<dependencies>

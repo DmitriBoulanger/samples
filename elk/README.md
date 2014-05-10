@@ -8,7 +8,7 @@ ELK resources consisting of the following components:
 
 
 ###Maven features
-This Maven-project a top ELK-reactor. It inherits basic resources from its parent.
+This Maven-project a top ELK-reactor. It inherits basic resources from samples-parent.
 ELK-specific resources used in the ELK are:
 
 - elasticsearch
