@@ -1,11 +1,9 @@
 package de.dbo.samples.elk.client0;
 
-import static de.dbo.samples.elk.client0.Tool.HOUR;
-import static de.dbo.samples.elk.client0.Tool.MIN;
-import static de.dbo.samples.elk.logstash.Logstash.LOGGER_NAME_FIELD;
-import static de.dbo.samples.elk.logstash.Logstash.LOGGER_TYPE_FIELD;
-import static de.dbo.samples.elk.logstash.Logstash.PRIORITY_FIELD;
-import static de.dbo.samples.elk.logstash.Logstash.TIMESTAMP_FIELD;
+import static de.dbo.samples.elk.logstash.LogstashLog4jFields.NAME_FIELD;
+import static de.dbo.samples.elk.logstash.LogstashLog4jFields.TYPE_FIELD;
+import static de.dbo.samples.elk.logstash.LogstashLog4jFields.PRIORITY_FIELD;
+import static de.dbo.samples.elk.logstash.LogstashLog4jFields.TIMESTAMP_FIELD;
 
 import de.dbo.samples.elk.logstash.Logstash;
 
@@ -34,10 +32,14 @@ import static org.elasticsearch.index.query.QueryBuilders.prefixQuery;
  */
 public final class Query {
 	private final static Logger log = LoggerFactory.getLogger(Query.class);
+
+	private static final long SEC = 1000;
+	private static final long MIN = 60 * SEC;
+	private static final long HOUR = 60 * MIN;
 	
     private static final QueryBuilder NEGATIVE_QUERIES[] = new QueryBuilder[] {
-                    prefixQuery(LOGGER_NAME_FIELD, "org")
-                  , prefixQuery(LOGGER_NAME_FIELD, "com") };
+                    prefixQuery(NAME_FIELD, "org")
+                  , prefixQuery(NAME_FIELD, "com") };
 
    
     public static final QueryBuilder messages(final String logger
@@ -49,22 +51,17 @@ public final class Query {
     }
     
     public static final QueryBuilder messages(final String logger
-    		, final String priority
-            , final FilterBuilder filterBuilder
+    		, final String priority , final FilterBuilder filter
             , final Logstash logstash) {
-        final QueryBuilder query = negative()
-                .must(matchQuery(LOGGER_NAME_FIELD, logger))
-                .must(matchQuery(LOGGER_TYPE_FIELD, logstash.getLogType()))
+    	BoolQueryBuilder boolQuery = boolQuery();
+    	 for (QueryBuilder negative : NEGATIVE_QUERIES) {
+             boolQuery = boolQuery.mustNot(negative);
+         }
+        final QueryBuilder query = boolQuery
+                .must(matchQuery(NAME_FIELD, logger))
+                .must(matchQuery(TYPE_FIELD, logstash.getLogType()))
                 .must(matchQuery(PRIORITY_FIELD, priority));
-        return filteredQuery(query, filterBuilder);
-    }
-    
-    private static final BoolQueryBuilder negative() {
-        BoolQueryBuilder boolQuery = boolQuery();
-        for (QueryBuilder negative : NEGATIVE_QUERIES) {
-            boolQuery = boolQuery.mustNot(negative);
-        }
-        return boolQuery;
+        return filteredQuery(query, filter);
     }
     
     public static FilterBuilder timeRangeBeoreHours(final int hours) {

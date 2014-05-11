@@ -2,6 +2,8 @@ package de.dbo.samples.elk.logstash;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 public class LogstashDefault implements Logstash {
 	
@@ -13,18 +15,37 @@ public class LogstashDefault implements Logstash {
     protected String indexSufffix = "YYYY.MM.dd";
     
     @Override
-    public final String indexName() {
+	public final StringBuilder print(final Map<String,Object> fieldValues, final List<String> names) {
+		final StringBuilder sb = new StringBuilder();
+		for (final String name:names) {
+			final Object value = fieldValues.get(name);
+			if (nn(value)) {
+				sb.append("\n - "+name+": " + value);
+			}
+		}
+		return sb;
+	}
+    
+    public static final boolean nn(final Object o) {
+        return null!=o && 0!= ((String)o).trim().length();
+    }
+    
+    @Override
+    public final StringBuilder indexName() {
         final String indexNameExtension = getIndexNameExrension();
         final StringBuilder ret = new StringBuilder(Logstash.LOGSTASH);
         if (null != indexNameExtension && 0 != indexNameExtension.trim().length()) {
             ret.append("-" + indexNameExtension.trim());
         }
-        return ret.toString();
+        return ret;
     }
     
-    public final String index(final Date date) {
-        final SimpleDateFormat formatter = new SimpleDateFormat(getIndexSufffix());
-        return indexName() + "-" + formatter.format(date);
+    @Override
+    public final StringBuilder index(final Date date) {
+        final StringBuilder ret = new StringBuilder(indexName());
+        ret.append("-");
+        ret.append(new SimpleDateFormat(getIndexSufffix()).format(date));
+        return ret;
     }
 
     /**

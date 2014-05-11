@@ -27,10 +27,6 @@ import static java.util.concurrent.TimeUnit.SECONDS;
 public final class Tool {
     private static final Logger log = LoggerFactory.getLogger(Tool.class);
     
-    static final long SEC = 1000;
-	static final long MIN = 60*SEC;
-	static final long HOUR = 60*MIN;
-   
     /**
      * converts ES-timestamp into standard milliseconds
      *
@@ -46,11 +42,11 @@ public final class Tool {
         return ret;
     }
 
-    public static final String todayLogstashIndex(final Logstash logstash) {
+    public static final StringBuilder todayLogstashIndex(final Logstash logstash) {
         return logstash.index(new Date());
     }
 
-    public static final String beforetodayLogstashIndex(final Logstash logstash) {
+    public static final StringBuilder beforetodayLogstashIndex(final Logstash logstash) {
         return logstash.index(subtractDays(new Date(), 1));
     }
 

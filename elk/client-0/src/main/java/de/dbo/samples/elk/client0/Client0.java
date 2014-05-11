@@ -8,10 +8,13 @@ import de.dbo.samples.elk.es.ElasticSearchException;
 import de.dbo.samples.elk.logstash.Logstash;
 
 import org.elasticsearch.action.search.SearchResponse;
-import org.elasticsearch.action.search.SearchType;
+
+import static org.elasticsearch.action.search.SearchType.*;
+
 import org.elasticsearch.client.Client;
 import org.elasticsearch.client.transport.NoNodeAvailableException;
 import org.elasticsearch.index.query.QueryBuilder;
+import org.elasticsearch.indices.IndexMissingException;
 import org.elasticsearch.search.SearchHit;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,7 +40,6 @@ public class Client0 {
 		this.logstash = logstash;
 		this.es = es;
 		log.trace("created. " + this.es.print());
-		open();
 	}
 	
 	/**
@@ -47,7 +49,7 @@ public class Client0 {
 	public final void open() {
 		if (null==client) {
 			client =  es.elasticsearchClient();
-			log.trace("opened");
+			log.trace("opened. " + this.es.print());
 		} 
 	}
 	
@@ -65,7 +67,7 @@ public class Client0 {
 	
 	public SearchHit[] run(final QueryBuilder query) {
 		final long start = System.currentTimeMillis();
-		final String index = todayLogstashIndex(logstash);
+		final StringBuilder index = todayLogstashIndex(logstash);
 		final String queryInfo = "query "+ index;
 		try {
 			log.trace(queryInfo + " ... ");
@@ -75,8 +77,8 @@ public class Client0 {
 				log.warn(queryInfo + "rejected: no client opend");
 			} else {
 				final SearchResponse response = client
-					.prepareSearch(index)
-			        .setSearchType(SearchType.QUERY_AND_FETCH)
+					.prepareSearch(index.toString())
+			        .setSearchType(QUERY_AND_FETCH)
 			        .setQuery(query)
 			        .setExplain(false)
 			        .execute()
@@ -85,10 +87,14 @@ public class Client0 {
 			   log.trace(queryInfo + " done. Elapsed " + formatMs(System.currentTimeMillis()-start));
 			}
 			return ret;
+		} catch(IndexMissingException e) {
+			final String msg = "Can't run query. " + es.print() + ". No index found?";
+			log.error(msg,e);
+			throw new ElasticSearchException(msg,e);
 		} catch (NoNodeAvailableException e) {
-			throw new ElasticSearchException(
-					"Can't run query for " + es.print() + "\nThe ES-server is down?"
-					,e );
+			final String msg = "Can't run query. " + es.print() + ". Server is down?";
+			log.error(msg,e);
+			throw new ElasticSearchException(msg,e);
 		}
 	 }
 }

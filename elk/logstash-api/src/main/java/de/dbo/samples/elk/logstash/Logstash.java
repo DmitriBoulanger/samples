@@ -1,6 +1,8 @@
 package de.dbo.samples.elk.logstash;
 
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Logstash with Log4J-Logger.
@@ -16,39 +18,18 @@ public interface Logstash {
 	
 	public static final String LOGSTASH = "logstash";
 
-	/**
-	 * standard logstash field containing logger-name
-	 */
-	public static final String LOGGER_NAME_FIELD = "logger_name";
+	public abstract StringBuilder indexName();
+	
+	public abstract StringBuilder index(final Date date);
 	
 	/**
-	 * standard logstash field containing message itself
+	 * prints values in the hit-fields
+	 *   
+	 * @param fieldValues map with name-value pairs from the server
+	 * @param fieldNames expected field-names to print out
+	 * 
 	 */
-	public static final String MESSAGE_FIELD = "message";
-	
-	/**
-	 * standard logstash field containing logger-type, e.g. log4j
-	 */
-	public static final String LOGGER_TYPE_FIELD = "type";
-	
-	/**
-	 * standard logstash field containing message priority
-	 */
-	public static final String PRIORITY_FIELD = "priority";
-	
-	/**
-	 * standard logstash field containing timestamp
-	 */
-	public static final String TIMESTAMP_FIELD = "@timestamp";
-	
-	/**
-	 * standard logstash field possibly containing stack-trace of an exception
-	 */
-	public static final String STACK_TRACE_FIELD = "stack_trace";
-	
-	public abstract String indexName();
-	
-	public abstract String index(final Date date);
+	public abstract StringBuilder print(final Map<String, Object> fieldValues, final List<String> fieldNames);
 
 	/**
 	 * optional name-extension of the logstash index-name. 

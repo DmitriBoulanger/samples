@@ -47,9 +47,9 @@ public class ElasticSearchDefault implements ElasticSearch {
 
 	@Override
 	 public StringBuilder print() {
-        final StringBuilder ret = new StringBuilder("ES:");
-        ret.append("  cluster: " + cluster);
-        ret.append("  host: " + host + ":" + port);
+        final StringBuilder ret = new StringBuilder();
+        ret.append(" cluster: " + cluster);
+        ret.append(" host: " + host + ":" + port);
         return ret;
     }
 	

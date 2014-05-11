@@ -11,7 +11,7 @@ The test in the *src/test/java/de.dbo.samples.elk.client0* consists of:
 
 To run the test, do the following:
 
-- check parameters of the ElasticSerach-server in ESLClientTest.init() - method
+- check parameters of the ElasticSerach-server in ClientTest.init() - method
 - start stand-alone ElasticSerach-server
 - start Logstash
 - run the Messages a little bit and then stop it
