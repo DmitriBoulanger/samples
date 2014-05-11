@@ -86,8 +86,9 @@ public class ClientTest {
 	public void deleteIndex() {
 		final String index = beforeThisDayLogstashIndex(logstash, 0).toString();
 		esClient.open();
-		esClient.deleteIndex(index);
+		final boolean done = esClient.deleteIndex(index);
 		log.info("indices: " + esClient.printIndices().toString());
+		assertTrue("Index " + index + " was not deleted", done);
 		esClient.close();
 		try {
 			final int seconds = 7;

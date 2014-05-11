@@ -76,20 +76,12 @@ public class Client0 {
 	}
 	
 	public StringBuilder printIndices() {
-		final StringBuilder sb = new StringBuilder();
-		final AdminClient adminClient = client.admin();
-		if (null == adminClient) {
-			sb.append("ERROR: Can't get admin-client");
-			return sb;
-		}
-		final IndicesAdminClient indicesAdminClient = client.admin().indices();
-		if (null == indicesAdminClient) {
-			sb.append("ERROR: Can't get indices from admin-client");
-			return sb;
+		final Map<String, IndexStatus> indicesStatus =  getIndicesStatus();
+		if (null==indicesStatus) {
+			return  new StringBuilder("NULL");
 		}
 		
-		final IndicesStatusResponse indicesStatusResponse = indicesAdminClient.prepareStatus().get();
-		final Map<String, IndexStatus> indicesStatus = indicesStatusResponse.getIndices();
+		final StringBuilder sb = new StringBuilder();
 		final SortedSet<String> names = new TreeSet<String>( indicesStatus.keySet() );
 		for (final String key : names) {
 			sb.append("\n\t - ");
@@ -98,6 +90,23 @@ public class Client0 {
 			sb.append(" KB.");
 		}
 		return sb;
+	}
+	
+	public  Map<String, IndexStatus> getIndicesStatus() {
+		final AdminClient adminClient = client.admin();
+		if (null == adminClient) {
+			log.error("Can't get admin-client");
+			return null;
+		}
+		final IndicesAdminClient indicesAdminClient = client.admin().indices();
+		if (null == indicesAdminClient) {
+			log.error("Can't get indices from admin-client");
+			return null;
+		}
+		
+		final IndicesStatusResponse indicesStatusResponse = indicesAdminClient.prepareStatus().get();
+		final Map<String, IndexStatus> indicesStatus = indicesStatusResponse.getIndices();
+		return indicesStatus;
 	}
 		
 	public boolean deleteIndex(final String index) {
