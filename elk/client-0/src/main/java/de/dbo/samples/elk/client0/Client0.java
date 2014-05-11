@@ -1,7 +1,7 @@
 package de.dbo.samples.elk.client0;
  
 import static de.dbo.samples.elk.client0.Tool.formatMs;
-import static de.dbo.samples.elk.client0.Tool.todayLogstashIndex;
+import static de.dbo.samples.elk.client0.Tool.*;
 
 import de.dbo.samples.elk.es.ElasticSearch;
 import de.dbo.samples.elk.es.ElasticSearchException;
@@ -93,8 +93,8 @@ public class Client0 {
 		final SortedSet<String> names = new TreeSet<String>( indicesStatus.keySet() );
 		for (final String key : names) {
 			sb.append("\n\t - ");
-			sb.append(String.format("%1$-" + 40 + "s",key));
-			sb.append(String.format("%1$" + 7 + "s", indicesStatus.get(key).getStoreSize().getKb()));
+			sb.append(padRight(key,35));
+			sb.append(padLeft(""+ indicesStatus.get(key).getStoreSize().getKb(), 8) );
 			sb.append(" KB.");
 		}
 		return sb;
