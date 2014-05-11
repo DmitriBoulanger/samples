@@ -5,8 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Logstash with Log4J-Logger.
- * Standard fields and options
+ * Logstash with Log4J-Logger. Standard fields and options
  * 
  * @author Dmitri Boulanger, Hombach
  *
@@ -32,18 +31,17 @@ public interface Logstash {
 	public abstract StringBuilder print(final Map<String, Object> fieldValues, final List<String> fieldNames);
 
 	/**
-	 * optional name-extension of the logstash index-name. 
-	 * Default is no extension.
-	 * If an extension is set, e.g as "my", then the corresponding index-name is "logstash-my".
+	 * optional name-extension of the logstash index-name. Default is no extension.
+	 * If an extension is set, e.g as "log4j", then the corresponding index-name is "logstash-log4j".
 	 * The complete logstash index-name is the index-name plus indexSufffix.
-	 * Its format: logstash-[IndexNameExtension-]YYYY.MM.dd, e.g. logstash-my-2014.05.04
+	 * Its format: logstash-[IndexNameExtension-]YYYY.MM.dd, e.g. logstash-log4j-2014.05.04
 	 * 
 	 * @see #getIndexSufffix()
 	 */
 	public abstract String getIndexNameExrension();
 
 	/**
-	 * logstash dynamic index-suffix.
+	 * format of dynamic suffix of logstash index-name.
 	 * The actual value is changed automatically, i.e it rolls over at midnight UTC. 
 	 * Default is YYYY.MM.dd
 	 */

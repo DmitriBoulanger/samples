@@ -2,7 +2,7 @@ package de.dbo.samples.elk.client0;
 
 import static de.dbo.samples.elk.client0.Query.messages;
 import static de.dbo.samples.elk.client0.Query.timeRangeBeforeMinutes;
-
+import static de.dbo.samples.elk.client0.Tool.*;
 import static de.dbo.samples.elk.logstash.LogstashLog4jFields.MESSAGE_FIELD;
 import static de.dbo.samples.elk.logstash.LogstashLog4jFields.EXCEPTION_FIELD;
 import static de.dbo.samples.elk.logstash.LogstashLog4jFields.TIMESTAMP_FIELD;
@@ -81,11 +81,28 @@ public class ClientTest {
 		assertTrue("Picked-up too few messages. Expected at least 3 messages",
 				messageCnt > 2);
 	}
-
+	
+	@Test 
+	public void deleteIndex() {
+		final String index = beforeThisDayLogstashIndex(logstash, 0).toString();
+		esClient.open();
+		esClient.deleteIndex(index);
+		log.info("indices: " + esClient.printIndices().toString());
+		esClient.close();
+		try {
+			final int seconds = 7;
+			log.info("pause " +seconds +" sec. ...");
+			Thread.sleep(seconds*1000);
+		} catch (InterruptedException e) {
+			log.error("Pause interrupred", e);
+		}
+	}
+	
 	private int pickupMessages(final QueryBuilder query) {
 		esClient.open();
 		final SearchHit[] hits = esClient.run(query);
 		esClient.close();
+		
 		final int hitsCnt = hits.length;
 		log.info("query hits: " + hitsCnt);
 		for (final SearchHit hit : hits) {

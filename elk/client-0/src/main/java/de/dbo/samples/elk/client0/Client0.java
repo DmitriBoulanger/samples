@@ -7,17 +7,27 @@ import de.dbo.samples.elk.es.ElasticSearch;
 import de.dbo.samples.elk.es.ElasticSearchException;
 import de.dbo.samples.elk.logstash.Logstash;
 
+import java.util.Map;
+import java.util.SortedSet;
+import java.util.TreeSet;
+
+import org.elasticsearch.action.ActionFuture;
+import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequest;
+import org.elasticsearch.action.admin.indices.delete.DeleteIndexResponse;
+import org.elasticsearch.action.admin.indices.status.IndexStatus;
+import org.elasticsearch.action.admin.indices.status.IndicesStatusResponse;
 import org.elasticsearch.action.search.SearchResponse;
-
-import static org.elasticsearch.action.search.SearchType.*;
-
+import org.elasticsearch.client.AdminClient;
 import org.elasticsearch.client.Client;
+import org.elasticsearch.client.IndicesAdminClient;
 import org.elasticsearch.client.transport.NoNodeAvailableException;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.indices.IndexMissingException;
 import org.elasticsearch.search.SearchHit;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import static org.elasticsearch.action.search.SearchType.QUERY_AND_FETCH;
 
 /**
  * Simple client for ElasticSearch Server.
@@ -63,6 +73,67 @@ public class Client0 {
 			client = null;
 			log.trace("closed");
 		} 
+	}
+	
+	public StringBuilder printIndices() {
+		final StringBuilder sb = new StringBuilder();
+		final AdminClient adminClient = client.admin();
+		if (null == adminClient) {
+			sb.append("ERROR: Can't get admin-client");
+			return sb;
+		}
+		final IndicesAdminClient indicesAdminClient = client.admin().indices();
+		if (null == indicesAdminClient) {
+			sb.append("ERROR: Can't get indices from admin-client");
+			return sb;
+		}
+		
+		final IndicesStatusResponse indicesStatusResponse = indicesAdminClient.prepareStatus().get();
+		final Map<String, IndexStatus> indicesStatus = indicesStatusResponse.getIndices();
+		final SortedSet<String> names = new TreeSet<String>( indicesStatus.keySet() );
+		for (final String key : names) {
+			sb.append("\n\t - ");
+			sb.append(String.format("%1$-" + 40 + "s",key));
+			sb.append(String.format("%1$" + 7 + "s", indicesStatus.get(key).getStoreSize().getKb()));
+			sb.append(" KB.");
+		}
+		return sb;
+	}
+		
+	public boolean deleteIndex(final String index) {
+		final AdminClient adminClient = client.admin();
+		if (null == adminClient) {
+			log.error("Can't get admin-client");
+			return false;
+		}
+		final IndicesAdminClient indicesAdminClient = client.admin().indices();
+		if (null == indicesAdminClient) {
+			log.error("Can't get admin-indices");
+			return false;
+		}
+		
+		log.trace("index " + index + " delete ...");
+		try {
+			final IndicesStatusResponse indicesStatusResponse = indicesAdminClient.prepareStatus().get();
+			final IndexStatus indexStatus = indicesStatusResponse.getIndex(index);
+			if (null==indexStatus) {
+				log.trace("index " + index + " not found");
+				return false;
+			}
+		} catch (IndexMissingException e) {
+			 log.trace(e.toString());
+			 return false;
+		}
+	
+		final DeleteIndexRequest deleteIndexRequest = new DeleteIndexRequest(index.toString());
+		final ActionFuture<DeleteIndexResponse> delete = indicesAdminClient.delete(deleteIndexRequest);
+		if (!delete.actionGet().isAcknowledged()) {
+			log.error("Index wasn't deleted");
+			return false;
+		} else {
+			log.trace("index " + index + " delete done");
+			return true;
+		}
 	}
 	
 	public SearchHit[] run(final QueryBuilder query) {

@@ -1,21 +1,23 @@
 
-Customization of ELK-installation
-=================================
+Customized ELK-installation
+===========================
 
 The ELK-installation includes
 
-- ElasticSearch
-- Logstash
-- Kibana (ES plug-in)
-- Maven (ES plug-in)
+	ElasticSearch server
+	Logstash server
+	Kibana3 (ES plug-in)
+	Marvel (ES plug-in)
 
-Kibana and Maven are parts of the ES-server.
-They are installed as the corresponding plug-ins. 
+Kibana3 and Maven are parts of the ES-server. They are installed as plug-ins. 
 
-Kibana and Mavel are extended with several application-specific dashboards.
-Logstash customization consists of special configuration files and the corresponding
-start-up files. ES-customization needs configuration file.
+Kibana3 and Marvel are extended with customized dash-boards (JSON-files).
+Logstash customization includes customized configuration file and the corresponding
+start-up file. ES-customization needs configuration file.
 
-The actual customization is performed as synchonization of the direcrory **ELK**
+The customization can be done as synchonization of the directories 
+
+	elasticsearch-1.0.1
+	logstash-1.3.3
+	
 with actual ELK-installation
-

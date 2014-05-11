@@ -46,14 +46,27 @@ public final class Tool {
         return logstash.index(new Date());
     }
 
-    public static final StringBuilder beforetodayLogstashIndex(final Logstash logstash) {
-        return logstash.index(subtractDays(new Date(), 1));
+    public static final StringBuilder beforeThisDayLogstashIndex(final Logstash logstash
+    		, final int n) {
+        return logstash.index(subtractDays(new Date(), n));
+    }
+    
+    public static final StringBuilder beforeThisHourLogstashIndex(final Logstash logstash
+    		, final int n) {
+        return logstash.index(subtractHours(new Date(), n));
     }
 
     private static Date subtractDays(final Date date, final int n) {
         Calendar cal = Calendar.getInstance();
         cal.setTime(date);
         cal.add(Calendar.DAY_OF_MONTH, -n);
+        return cal.getTime();
+    }
+    
+    private static Date subtractHours(final Date date, final int n) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        cal.add(Calendar.HOUR_OF_DAY, -n);
         return cal.getTime();
     }
 
