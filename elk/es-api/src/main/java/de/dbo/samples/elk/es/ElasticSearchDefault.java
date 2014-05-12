@@ -13,27 +13,27 @@ import org.joda.time.format.DateTimeFormatter;
 
 /**
  * Default standalone ElasticSearch at the localhost
- * 
+ *
  * @author Dmitri Boulanger, Hombach
  *
- * D. Knuth: Programs are meant to be read by humans and 
- *           only incidentally for computers to execute 
+ * D. Knuth: Programs are meant to be read by humans and
+ *           only incidentally for computers to execute
  *
  */
 public class ElasticSearchDefault implements ElasticSearch {
-	
+
 	protected String host = "localhost";
 	protected String cluster = "elasticsearch";
 	protected String node = null;
 	protected Integer port = 9300;
-	protected String timestampFormat = "";
-	protected String timezone = "";
+    protected String  timestampFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
+    protected String  timezone        = "UTC";
 	protected int maxReturn = 1000;
-	
+
 	public ElasticSearchDefault() {
-		
+
 	}
-	
+
 	@Override
 	public final Client elasticsearchClient() {
         final Settings settings = ImmutableSettings.settingsBuilder()
@@ -52,7 +52,7 @@ public class ElasticSearchDefault implements ElasticSearch {
         ret.append(" host: " + host + ":" + port);
         return ret;
     }
-	
+
 	@Override
     public final long timestamp(final String timestampES) throws ParseException {
         final DateTimeZone esDateTimeZone = DateTimeZone.forID(getTimezone());
@@ -102,7 +102,7 @@ public class ElasticSearchDefault implements ElasticSearch {
 		this.host = host;
 
 	}
-	
+
 	@Override
 	public void setNode(String node) {
 		this.node = node;

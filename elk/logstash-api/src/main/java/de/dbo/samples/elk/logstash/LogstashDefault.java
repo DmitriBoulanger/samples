@@ -6,14 +6,14 @@ import java.util.List;
 import java.util.Map;
 
 public class LogstashDefault implements Logstash {
-	
+
 	/*
 	 * default values from Logstash-configuration
 	 */
     protected String logType  = "log4j";
     protected String indexNameExrension = "log4j";
     protected String indexSufffix = "YYYY.MM.dd";
-    
+
     @Override
 	public final StringBuilder print(final Map<String,Object> fieldValues, final List<String> names) {
 		final StringBuilder sb = new StringBuilder();
@@ -25,11 +25,11 @@ public class LogstashDefault implements Logstash {
 		}
 		return sb;
 	}
-    
-    public static final boolean nn(final Object o) {
+
+    protected static final boolean nn(final Object o) {
         return null!=o && 0!= ((String)o).trim().length();
     }
-    
+
     @Override
     public final StringBuilder indexName() {
         final String indexNameExtension = getIndexNameExrension();
@@ -39,7 +39,7 @@ public class LogstashDefault implements Logstash {
         }
         return ret;
     }
-    
+
     @Override
     public final StringBuilder index(final Date date) {
         final StringBuilder ret = new StringBuilder(indexName());
@@ -81,6 +81,6 @@ public class LogstashDefault implements Logstash {
 
     @Override
     public void setLogType(final String logType) {
-    	this.logType = logType; 
+    	this.logType = logType;
     }
 }
