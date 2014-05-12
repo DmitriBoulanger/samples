@@ -11,7 +11,8 @@ The test in the *src/test/java/de.dbo.samples.elk.client0* consists of:
 
 To run the test, do the following:
 
-- check parameters of the ElasticSerach-server in ClientTest.init() - method
+- check parameters of the ElasticSerach-server in ClientTest.init() - method. If the default ELK is in use,
+  then only cluster-name should be checked
 - start stand-alone ElasticSerach-server
 - start Logstash
 - run the Messages a little bit and then stop it
@@ -33,8 +34,7 @@ Start default Kibana and use *Load/Advanced/Gist* menu to install the above
 *Note:* The browser should support HTML5, e,g. FireFox
 
 ### Maven features
-This Maven-project a leaf. It inherits most of all its basic resources from the parent.
-Special resources are:
+This Maven-project inherits its basic resources from the parent. Special resources:
 
-	logstash-api
-	es-api 
+		logstash-api
+		es-api 
