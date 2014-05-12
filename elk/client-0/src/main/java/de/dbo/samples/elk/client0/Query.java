@@ -38,7 +38,6 @@ public final class Query {
                     prefixQuery(NAME_FIELD, "org")
                   , prefixQuery(NAME_FIELD, "com") };
 
-
     public static final QueryBuilder messages(final String logger
     		, final String priority
             , final long fromMilliseconds, final long toMilliseconds

@@ -21,6 +21,13 @@ public interface Logstash {
 	
 	public abstract StringBuilder index(final Date date);
 	
+    public abstract StringBuilder todayIndex();
+
+    public abstract StringBuilder beforeThisDayIndex(final int n);
+
+    public abstract StringBuilder beforeThisHourIndex(final int n);
+   
+	
 	/**
 	 * prints values in the hit-fields
 	 *   

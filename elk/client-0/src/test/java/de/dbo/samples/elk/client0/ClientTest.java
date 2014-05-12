@@ -5,7 +5,7 @@ import static de.dbo.samples.elk.client0.Query.timeRangeBeforeMinutes;
 import static de.dbo.samples.elk.client0.Time.MIN;
 import static de.dbo.samples.elk.client0.Time.SEC;
 import static de.dbo.samples.elk.client0.Time.formatMs;
-import static de.dbo.samples.elk.client0.Tool.beforeThisDayLogstashIndex;
+
 import static de.dbo.samples.elk.logstash.LogstashLog4jFields.EXCEPTION_FIELD;
 import static de.dbo.samples.elk.logstash.LogstashLog4jFields.MESSAGE_FIELD;
 import static de.dbo.samples.elk.logstash.LogstashLog4jFields.TIMESTAMP_FIELD;
@@ -63,7 +63,8 @@ public class ClientTest {
      */
 	@Before
 	public void init() {
-        es.setCluster("dboArtemisCluster");
+        es.setCluster("elasticsearch-hombach");
+        logstash.setIndexSufffix("YYYY.MM.dd.HH");
         filter = timeRangeBeforeMinutes(3 /* how many minutes ago should be taken into account*/);
 	}
 
@@ -95,8 +96,8 @@ public class ClientTest {
 
 	@Test
 	public void deleteIndex() {
-		final String index = beforeThisDayLogstashIndex(logstash, 0).toString();
 		esClient.open();
+		final String index = logstash.beforeThisHourIndex(0).toString();
 		final boolean done = esClient.deleteIndex(index);
 		log.info("indices: " + esClient.printIndices().toString());
 		assertTrue("Index " + index + " was not deleted", done);
@@ -111,7 +112,7 @@ public class ClientTest {
 
     private int pickupMessages(final QueryBuilder query) throws Exception {
 		esClient.open();
-		final SearchHit[] hits = esClient.run(query);
+		final SearchHit[] hits = esClient.run(query,logstash.beforeThisHourIndex(0).toString());
 		esClient.close();
 
 		final int hitsCnt = hits.length;
@@ -141,5 +142,6 @@ public class ClientTest {
 		} catch (AssertionError e) {
 			log.error("test2 failure: ", e);
 		}
+		test.deleteIndex();
 	}
 }

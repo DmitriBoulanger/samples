@@ -1,16 +1,11 @@
 package de.dbo.samples.elk.client0;
 
-import static de.dbo.samples.elk.client0.Time.subtractDays;
-import static de.dbo.samples.elk.client0.Time.subtractHours;
+import de.dbo.samples.elk.es.ElasticSearch;
 
 import java.text.ParseException;
-import java.util.Date;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import de.dbo.samples.elk.es.ElasticSearch;
-import de.dbo.samples.elk.logstash.Logstash;
 
 /**
  * Utilities used in the client-implementation
@@ -37,21 +32,6 @@ public final class Tool {
         log.trace("timestamp.es " + ES.getTimezone() + " : " + timestampES + "  => " + ret);
         return ret;
     }
-
-    public static final StringBuilder todayLogstashIndex(final Logstash logstash) {
-        return logstash.index(new Date());
-    }
-
-    public static final StringBuilder beforeThisDayLogstashIndex(final Logstash logstash
-    		, final int n) {
-        return logstash.index(subtractDays(new Date(), n));
-    }
-
-    public static final StringBuilder beforeThisHourLogstashIndex(final Logstash logstash
-    		, final int n) {
-        return logstash.index(subtractHours(new Date(), n));
-    }
-
 
     public static String padLeft(final String s, final int n) {
         return String.format("%1$" + n + "s", s);

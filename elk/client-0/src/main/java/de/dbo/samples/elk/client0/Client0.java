@@ -3,7 +3,6 @@ package de.dbo.samples.elk.client0;
 import static de.dbo.samples.elk.client0.Time.formatMs;
 import static de.dbo.samples.elk.client0.Tool.padLeft;
 import static de.dbo.samples.elk.client0.Tool.padRight;
-import static de.dbo.samples.elk.client0.Tool.todayLogstashIndex;
 import static org.elasticsearch.action.search.SearchType.QUERY_AND_FETCH;
 
 import java.util.Map;
@@ -146,9 +145,8 @@ public class Client0 {
 		}
 	}
 
-	public SearchHit[] run(final QueryBuilder query) {
+	public SearchHit[] run(final QueryBuilder query, final String index) {
 		final long start = System.currentTimeMillis();
-		final StringBuilder index = todayLogstashIndex(logstash);
 		final String queryInfo = "query "+ index;
 		try {
 			log.trace(queryInfo + " ... ");
