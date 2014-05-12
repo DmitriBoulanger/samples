@@ -57,10 +57,14 @@ public class ClientTest {
         beforeMin = 3;
 	}
 
+    /**
+     * installs important test-parameters.
+     * The values should be customized
+     */
 	@Before
 	public void init() {
         es.setCluster("dboArtemisCluster");
-		filter = timeRangeBeforeMinutes(3);
+        filter = timeRangeBeforeMinutes(3 /* how many minutes ago should be taken into account*/);
 	}
 
 	/**
