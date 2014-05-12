@@ -47,7 +47,7 @@ public class ClientTest {
 	public ClientTest() {
 		logstash = new LogstashDefault();
 		es = new ElasticSearchDefault();
-		esClient = new Client0(logstash, es);
+		esClient = new Client0(es);
 
 		// standard log4j-fields
 		expectedFieldNames.add(TIMESTAMP_FIELD);

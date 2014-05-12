@@ -27,7 +27,6 @@ import org.slf4j.LoggerFactory;
 
 import de.dbo.samples.elk.es.ElasticSearch;
 import de.dbo.samples.elk.es.ElasticSearchException;
-import de.dbo.samples.elk.logstash.Logstash;
 
 /**
  * Simple client for ElasticSearch Server.
@@ -42,12 +41,10 @@ import de.dbo.samples.elk.logstash.Logstash;
 public class Client0 {
 	private final static Logger log = LoggerFactory.getLogger(Client0.class);
 
-    private final Logstash logstash;
     private final ElasticSearch es;
 	private Client client = null;
 
-	public Client0(final Logstash logstash, final ElasticSearch es) {
-		this.logstash = logstash;
+	public Client0(final ElasticSearch es) {
 		this.es = es;
 		log.trace("created. " + this.es.print());
 	}
