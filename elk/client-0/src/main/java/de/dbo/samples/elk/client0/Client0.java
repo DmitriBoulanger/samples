@@ -3,6 +3,7 @@ package de.dbo.samples.elk.client0;
 import static de.dbo.samples.elk.client0.Time.formatMs;
 import static de.dbo.samples.elk.client0.Tool.padLeft;
 import static de.dbo.samples.elk.client0.Tool.padRight;
+
 import static org.elasticsearch.action.search.SearchType.QUERY_AND_FETCH;
 
 import java.util.Map;
@@ -26,7 +27,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import de.dbo.samples.elk.es.ElasticSearch;
-import de.dbo.samples.elk.es.ElasticSearchException;
 
 /**
  * Simple client for ElasticSearch Server.
@@ -142,7 +142,7 @@ public class Client0 {
 		}
 	}
 
-	public SearchHit[] run(final QueryBuilder query, final String index) {
+	public SearchHit[] run(final QueryBuilder query, final String index) throws Exception{
 		final long start = System.currentTimeMillis();
 		final String queryInfo = "query "+ index;
 		try {
@@ -150,7 +150,7 @@ public class Client0 {
 			final SearchHit[] ret;
 			if (null==client) {
 				ret = new SearchHit[]{};
-				log.warn(queryInfo + "rejected: no client opend");
+				log.warn(queryInfo + " rejected: no client opend");
 			} else {
 				final SearchResponse response = client
 					.prepareSearch(index.toString())
@@ -164,13 +164,13 @@ public class Client0 {
 			}
 			return ret;
 		} catch(IndexMissingException e) {
-			final String msg = "Can't run query. " + es.print() + ". No index found?";
+			final String msg = "Can't run "+ queryInfo + " " + es.print() + ". No index found?";
 			log.error(msg,e);
-			throw new ElasticSearchException(msg,e);
+			throw new Exception(msg,e);
 		} catch (NoNodeAvailableException e) {
-			final String msg = "Can't run query. " + es.print() + ". Server is down?";
+			final String msg = "Can't run "+ queryInfo + " " +  es.print() + ". Server is down?";
 			log.error(msg,e);
-			throw new ElasticSearchException(msg,e);
+			throw new Exception(msg,e);
 		}
 	 }
 }
