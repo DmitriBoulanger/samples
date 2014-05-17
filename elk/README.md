@@ -1,5 +1,5 @@
 
-###Contents
+### Contents
 ELK resources consisting of the following components:
 
 - ElasticSearch
@@ -7,7 +7,7 @@ ELK resources consisting of the following components:
 - Kibana
 
 
-###Maven features
+### Maven features
 This Maven-project a top ELK-reactor. It inherits basic resources from samples-parent.
 ELK-specific resources used in the ELK are:
 
