@@ -3,45 +3,34 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>de.dbo.samples.image.filter</groupId>
-		<artifactId>super</artifactId>
+		<groupId>de.dbo.samples.image</groupId>
+		<artifactId>filter</artifactId>
 		<version>0.0.0-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>AutoLocalThreshold</artifactId>
+	<name>Samples Image Filter AutoLocalThreshold</name>
+	<description>Auto-threshold Filter</description>
 
 	<dependencies>
 
-<!-- 
+
 		<dependency>
 			<groupId>gov.nih.imagej</groupId>
 			<artifactId>imagej</artifactId>
 			<version>1.47</version>
 		</dependency>  
--->
 
-     	<!-- SLF4J Logging -->
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.logging.log4j</groupId>
-			<artifactId>slf4j-impl</artifactId>
-		</dependency>
+
+     	
+		
 
 	</dependencies>
 	
 	<build>
 	
 	<plugins>
-        <plugin>
-            <artifactId>maven-compiler-plugin</artifactId>
-            <configuration>
-                <source>1.7</source>
-                <target>1.7</target>
-            </configuration>
-        </plugin>
+        
     </plugins>
     </build>
        
