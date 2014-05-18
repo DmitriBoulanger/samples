@@ -12,7 +12,7 @@
 
 	<artifactId>03_Multi-Web</artifactId>
 	<packaging>war</packaging>
-	<name>Multi - Web Application</name>
+	<name>Samples Basic 0 Maven Multi Multi Web Application</name>
 
 	<dependencies>
 

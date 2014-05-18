@@ -13,7 +13,7 @@
   
   <artifactId>00_Simple-HelloWorld</artifactId>
   <packaging>jar</packaging>
-  <name>Simple - Executable Hello World</name>
+  <name>Samples Basic 0 Maven Simple Hello World</name>
   
   <build>
     <plugins>

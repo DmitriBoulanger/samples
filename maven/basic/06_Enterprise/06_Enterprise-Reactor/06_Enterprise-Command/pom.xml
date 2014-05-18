@@ -12,7 +12,7 @@
 
 	<artifactId>06_Enterprise-Command</artifactId>
 	<packaging>jar</packaging>
-	<name>Enterprise - Command Line Tool</name>
+	<name>Samples Basic 0 Maven Enterprise Command Line Tool</name>
 	<description>Command-line Weather Application</description>
 	<url>http://books.sonatype.com/mvnex-book/reference/multimodule-web-spring-sect-simple-command.html</url>
 

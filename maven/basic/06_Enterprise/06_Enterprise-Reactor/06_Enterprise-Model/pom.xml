@@ -13,7 +13,7 @@
   
   <artifactId>06_Enterprise-Model</artifactId>
   <packaging>jar</packaging>
-  <name>Enterprise - Object Model</name>
+  <name>Samples Basic 0 Maven Enterprise Object Model</name>
 
   <dependencies>
     <dependency>

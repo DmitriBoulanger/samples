@@ -13,7 +13,7 @@
   
   <artifactId>05_Properties-Filtering</artifactId>
   <packaging>jar</packaging>
-  <name>Properties - Filtering</name>
+  <name>Samples Basic 0 Maven Properties Filtering</name>
   <url>http://maven.apache.org</url>
   
    <properties>

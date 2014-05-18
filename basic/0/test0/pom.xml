@@ -9,7 +9,7 @@
 	</parent>
 
 	<artifactId>test0</artifactId>
-	<name>Basic 0 tests for Eclipse</name>
+	<name>Samples Basic 0 tests for Eclipse</name>
 	
 	<description>
 A special project to run all workspace JUnit-tests. 

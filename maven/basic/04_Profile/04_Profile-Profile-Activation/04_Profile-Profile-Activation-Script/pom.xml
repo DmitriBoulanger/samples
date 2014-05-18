@@ -13,7 +13,7 @@
   
   <artifactId>04_Profile-Profile-Activation-Script</artifactId>
   <packaging>jar</packaging>
-  <name>Profile - Profile Activation - Script</name>
+  <name>Samples Basic 0 Maven Profile Script</name>
   <url>http://maven.apache.org</url>
   
   <build>

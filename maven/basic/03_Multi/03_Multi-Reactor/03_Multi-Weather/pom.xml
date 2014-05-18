@@ -13,7 +13,7 @@
   
   <artifactId>03_Multi-Weather</artifactId>
   <packaging>jar</packaging>
-  <name>Multi - Weather API</name>
+  <name>Samples Basic 0 Maven Multi Multi Weather API</name>
 
   <build>
     <pluginManagement>

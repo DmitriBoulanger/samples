@@ -8,7 +8,8 @@
 	</parent>
   
   <artifactId>html0</artifactId>
-  <name>XHTML(ecs) Pages</name>
+  <name>Samples Basic 0 XHTML</name>
+  <description>XHTML(ecs) Pages</description>
 
 	<dependencies>
 		<dependency>

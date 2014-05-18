@@ -11,7 +11,7 @@
 	<artifactId>Configuration</artifactId>
 	<packaging>jar</packaging>
 
-    <name>Samples Basic 0 Spring Configuration using annotations and Java-Congig</name>
+    <name>Samples Basic 0 Spring Configuration</name>
     <description>Annoatated and Java-based Spring Configurations</description>
     
   	<dependencies>

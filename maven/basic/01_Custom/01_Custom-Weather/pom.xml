@@ -13,7 +13,7 @@
   
   <artifactId>01_Custom-Weather</artifactId>
   <packaging>jar</packaging>
-  <name>Custom - Weather</name>
+  <name>Samples Basic 0 Maven Custom Weather</name>
   <url>http://sonatype.com/book</url>
 
   <licenses>

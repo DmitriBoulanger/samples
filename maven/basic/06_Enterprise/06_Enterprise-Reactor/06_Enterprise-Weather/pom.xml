@@ -13,7 +13,7 @@
   
   <artifactId>06_Enterprise-Weather</artifactId>
   <packaging>jar</packaging>
-  <name>Enterprise - Weather API</name>
+  <name>Samples Basic 0 Maven Enterprise Weather API</name>
   
   <dependencies>
   

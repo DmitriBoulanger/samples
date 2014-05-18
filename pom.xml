@@ -6,8 +6,11 @@
 	<artifactId>samples</artifactId>
 	<version>0.0.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
-	<name>Samples reactor</name>
-	<description>Basic settings and dependencies for all samples</description>
+	<name>Samples</name>
+	<description>
+Basic settings and dependency-management for all samples
+Reactor for all sample titles
+	</description>
 
 	<properties>
 		<java.version>1.7</java.version>

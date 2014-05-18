@@ -13,7 +13,7 @@
   
   <artifactId>05_Properties-FilteringProfile</artifactId>
   <packaging>jar</packaging>
-  <name>Properties - Filtering Profile</name>
+  <name>Samples Basic 0 Maven Properties Filtering Profile</name>
   
   <build>
     <resources>

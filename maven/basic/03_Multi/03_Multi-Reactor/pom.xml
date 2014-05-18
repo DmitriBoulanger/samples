@@ -13,7 +13,7 @@
   
   <artifactId>03_Multi-Reactor</artifactId>
   <packaging>pom</packaging>
-  <name>Multi - Reactor</name>
+  <name>Samples Basic 0 Maven Multi reactor</name>
  
   <modules>
     <module>03_Multi-Weather</module>

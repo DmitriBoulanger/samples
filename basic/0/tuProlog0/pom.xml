@@ -9,7 +9,7 @@
 	</parent>
 	
 	<artifactId>tuProlog0</artifactId>
-    <name>Basic 0 tuProlog use-cases</name>
+    <name>Samples Basic 0 tuProlog use-cases</name>
 
 	<dependencies>
 		<dependency>

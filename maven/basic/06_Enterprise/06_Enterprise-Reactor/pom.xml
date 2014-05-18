@@ -12,7 +12,7 @@
 
 	<artifactId>06_Enterprise-Reactor</artifactId>
 	<packaging>pom</packaging>
-	<name>Enterprise (REACTOR POM) </name>
+	<name>Samples Basic 0 Maven Enterprise reactor</name>
 
 	<modules>
 		<module>06_Enterprise-Command</module>

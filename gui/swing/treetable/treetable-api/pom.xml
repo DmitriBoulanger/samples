@@ -9,7 +9,7 @@
 	</parent>
 
 	<artifactId>treetable-api</artifactId>
-	<name>TreeTable API</name>
+	<name>Samples GUI Swing Treetable API</name>
 
 	<dependencies>
 		

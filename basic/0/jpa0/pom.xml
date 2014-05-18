@@ -9,7 +9,8 @@
 	</parent>
 	
 	<artifactId>jpa0</artifactId>
-	<name>JPA and serialized objects in JUnits</name>
+	<name>Samples Basic 0 JPA</name>
+	<description>JPA and serialized objects in JUnits</description>
 
 	<dependencies>
 

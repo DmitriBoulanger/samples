@@ -12,7 +12,7 @@
 	<groupId>de.dbo.samples.basic</groupId>
 	<artifactId>basic</artifactId>
 	<packaging>pom</packaging>
-	<name>Basic reactor</name>
+	<name>Samples Basic</name>
 	<description>Basic Samples Reactor</description>
 
 	<modules>

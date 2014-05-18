@@ -8,7 +8,7 @@
 </parent>
 	
   <artifactId>xml0</artifactId>
-  <name>XML-Unit test/examples</name>
+  <name>Samples Basic 0 XML-Unit test/examples</name>
 
 	<dependencies>
 		

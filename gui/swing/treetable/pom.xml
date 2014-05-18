@@ -10,7 +10,7 @@
 	
 	<artifactId>treetable</artifactId>
 	<packaging>pom</packaging>
-	<name>GUI Swing Treetable reactor</name>
+	<name>Samples GUI Swing Treetable</name>
 	<description>Tree-Table and Records as Data</description>
 	
 	<modules>

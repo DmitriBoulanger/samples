@@ -12,7 +12,7 @@
 
 	<artifactId>02_Web-HelloWorld</artifactId>
 	<packaging>war</packaging>
-	<name>Web - Hello World</name>
+	<name>Samples Basic 0 Maven Web Hello World</name>
 
 	<dependencies>
 		<dependency>

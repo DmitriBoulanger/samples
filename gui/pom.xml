@@ -11,7 +11,7 @@
 	<groupId>de.dbo.samples.gui</groupId>
 	<artifactId>gui</artifactId>
 	<packaging>pom</packaging>
-	<name>GUI reactor</name>
+	<name>Samples GUI</name>
 	<description>Top for all GUI-samples</description>
 
 	<properties>
