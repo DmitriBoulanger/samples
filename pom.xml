@@ -25,7 +25,6 @@ Reactor for all sample titles
 	<modules>
 	    <module>util</module>
 	    <module>basic</module>
-		<module>maven</module>
 		<module>gui</module>
 		<module>image</module>
 		
