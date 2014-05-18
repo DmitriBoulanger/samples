@@ -3,15 +3,14 @@
 	<modelVersion>4.0.0</modelVersion>
 	
 	<parent>
-		<groupId>de.dbo.samples</groupId>
-		<artifactId>samples</artifactId>
+		<groupId>de.dbo.samples.basic.1</groupId>
+		<artifactId>1</artifactId>
 		<version>0.0.0-SNAPSHOT</version>
 	</parent>
 
-	<groupId>de.dbo.samples.spring</groupId>
 	<artifactId>spring</artifactId>
 	<packaging>pom</packaging>
-	<name>Samples Basic 0 Spring</name>
+	<name>Samples Basic 1 Spring</name>
 	<description>Top for all Spring-samples</description>
 	
 	 <properties>
