@@ -3,8 +3,10 @@ Basic Samples
 
 ### Contents
 Basic samples mostly coming as transformed tutorials.
-These samples are separated into levels 0, ... .
-The level 0 contains the most standard samples.
+These samples are separated into levels 0, ... :
+
+- level 0 contains the most simple samples
+- level 1 consists of more complex tutorials
 
 ### Maven features - parent: samples
 

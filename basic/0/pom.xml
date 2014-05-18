@@ -214,10 +214,6 @@ The projects generates test-jars for all its modules
 	     ==================================== -->
 	     
 	<dependencies>
-		<dependency>
-			<groupId>net.sf.jtidy</groupId>
-			<artifactId>jtidy</artifactId>
-		</dependency>
 
 	</dependencies>
 

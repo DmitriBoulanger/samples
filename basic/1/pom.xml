@@ -22,10 +22,5 @@ Reactor for all basic-1 samples.
 		<module>spring</module>
 	</modules>
 
-	<!-- =======================
-	         RESORCE MANAGMENT 
-	     ======================= -->
-
-	
 
 </project>
