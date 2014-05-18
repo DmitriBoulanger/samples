@@ -28,7 +28,6 @@
 	</dependencyManagement>
 
 	<build>
-		<finalName>samples-image-${project.artifactId}-${project.version}</finalName>
 		<pluginManagement>
 			<plugins>
 				

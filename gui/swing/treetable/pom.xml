@@ -19,7 +19,7 @@
 	</modules>
 	
 	<build>
-		<finalName>samples-gui-swing-${project.artifactId}-${project.version}</finalName>
+		
 	</build>
 
 	<dependencies>

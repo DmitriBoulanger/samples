@@ -9,6 +9,7 @@
 	</parent>
 
 	<artifactId>maven</artifactId>
+	<groupId>de.dbo.samples.basic.1.maven</groupId>
 	<packaging>pom</packaging>
 	<name>Samples Basic 1 Maven basic use cases</name>
 	<url>http://books.sonatype.com/mvnex-book/reference/index.html</url>
@@ -25,8 +26,7 @@
 	</modules>
 
 	<build>
-	    <finalName>samples-maven-${project.artifactId}-${project.version}</finalName>
-		<pluginManagement>
+	   <pluginManagement>
 			<plugins>
 				
 

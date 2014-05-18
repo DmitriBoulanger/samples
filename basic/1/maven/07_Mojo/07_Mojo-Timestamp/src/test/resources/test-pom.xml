@@ -5,7 +5,7 @@
   <build>
     <plugins>
       <plugin>
-        <groupId>de.dbo.samples.basic.1</groupId>
+        <groupId>de.dbo.samples.basic.1.maven</groupId>
         <artifactId>07_Mojo-Timestamp</artifactId>
         <configuration>
           <prefix>+++</prefix>

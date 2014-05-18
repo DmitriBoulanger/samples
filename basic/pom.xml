@@ -29,7 +29,6 @@
 	</dependencies>
 
 	<build>
-		<finalName>samples-basic-${project.version}</finalName>
 		<pluginManagement>
 			<plugins>
 			</plugins>

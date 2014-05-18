@@ -9,6 +9,7 @@
 	</parent>
 
 	<artifactId>spring</artifactId>
+	<groupId>de.dbo.samples.basic.1.spring</groupId>
 	<packaging>pom</packaging>
 	<name>Samples Basic 1 Spring</name>
 	<description>Top for all Spring-samples</description>
@@ -27,7 +28,7 @@
 	</modules> 
 	
 	<build>
-		<finalName>samples-spring-${project.artifactId}-${project.version}</finalName>
+		
 	</build>
 
 	<dependencyManagement>
@@ -37,13 +38,6 @@
 				<groupId>com.oracle</groupId>
 				<artifactId>ojdbc14</artifactId>
 				<version>10.2.0.3.0</version>
-			</dependency>
-
-			<!-- COMMONS -->
-			<dependency>
-				<groupId>SpringFramework3Tutorial</groupId>
-				<artifactId>SimpleAbstractions</artifactId>
-				<version>0.0.1-SNAPSHOT</version>
 			</dependency>
 
 			<!-- SPRING REFS -->
@@ -58,28 +52,6 @@
 				<version>1.6.8</version>
 			</dependency>
 
-			<!-- SPRING -->
-			<dependency>
-				<groupId>org.springframework</groupId>
-				<artifactId>spring-context</artifactId>
-				<version>${spring.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.springframework</groupId>
-				<artifactId>spring-jdbc</artifactId>
-				<version>${spring.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.springframework</groupId>
-				<artifactId>spring-web</artifactId>
-				<version>${spring.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.springframework</groupId>
-				<artifactId>spring-webmvc</artifactId>
-				<version>${spring.version}</version>
-			</dependency>
-			
 		</dependencies>
 	</dependencyManagement>
 

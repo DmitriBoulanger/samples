@@ -175,11 +175,7 @@ The projects generates test-jars for all its modules
 		</dependencies>
 	</dependencyManagement>
 
-	<!--  =============
-	          BUILD
-	      ============= -->
 	<build>
-		<finalName>samples-basic-${project.artifactId}-${project.version}</finalName>
 		<pluginManagement>
 			<plugins>
 
