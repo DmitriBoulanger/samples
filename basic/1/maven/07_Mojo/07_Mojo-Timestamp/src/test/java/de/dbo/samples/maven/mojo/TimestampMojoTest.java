@@ -1,52 +1,60 @@
 package de.dbo.samples.maven.mojo;
+
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.maven.plugin.logging.SystemStreamLog;
 import org.apache.maven.plugin.testing.AbstractMojoTestCase;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-public class TimestampMojoTest extends AbstractMojoTestCase
-{
-   public void testTimestampMojo() throws Exception
-   {
-      final Map<?,?> pluginContext = new HashMap<>();
-      String log1 = executeMojo( pluginContext );
-      String log2 = executeMojo( pluginContext );
-      assertTrue(  log1.length() < log2.length() );
-      assertTrue( !log1.contains( "Elapsed" ) );
-      assertTrue(  log2.contains( "Elapsed" ) );
-   }
+public class TimestampMojoTest extends AbstractMojoTestCase {
+	private static final Logger log = LoggerFactory.getLogger(TimestampMojoTest.class);
+	
+	public void testTimestampMojo() throws Exception {
+		final Map<?, ?> pluginContext = new HashMap<>();
+		String log1 = executeMojo(pluginContext, "executeMojo1");
+		log.info("log1: " + log1);
+		String log2 = executeMojo(pluginContext, "executeMojo2");
+		log.info("log2: " + log2);
+		
+		assertTrue(log1.length() < log2.length());
+		assertTrue(!log1.contains("Elapsed"));
+		assertTrue(log2.contains("Elapsed"));
+	}
 
-   private String executeMojo( final Map<?,?> pluginContext ) throws Exception
-   {
-      final String        testPom = getBasedir() + "/src/test/resources/test-pom.xml";
-      final String        artifactId = "07_Mojo-Timestamp";
-      final StringBuffer  log  = new StringBuffer();
-      final TimestampMojo mojo = new TimestampMojo();
-      configureMojo( mojo, artifactId, new File( testPom ) );
-      mojo.setPluginContext( pluginContext );
-      mojo.setLog( new TestLog( log ) );
-      mojo.execute();
-      final String prefix = (String) getVariableValueFromObject( mojo, "prefix" );
-      assertNotNull( prefix );
-      assertEquals( prefix, log.substring( 0, prefix.length() ) );
-      return log.toString();
-   }
+	private String executeMojo(final Map<?, ?> pluginContext, final String comment) throws Exception {
+		final String testPom = getBasedir() + "/src/test/resources/test-pom.xml";
+		log.info(comment + " testPom=" + testPom);
+		final File testPomFile = new File(testPom);
+		assertTrue("Can't read file "+testPom, testPomFile.canRead());
+		final String artifactId = "07_Mojo-Timestamp";
+		final StringBuffer testlog = new StringBuffer();
+		final TimestampMojo mojo = new TimestampMojo();
+		configureMojo(mojo, artifactId, new File(testPom));
+		mojo.setPluginContext(pluginContext);
+		mojo.setLog(new TestLog(testlog));
+		mojo.execute();
+		log.info(comment + " testlog: " + testlog);
+		final String prefix = (String) getVariableValueFromObject(mojo,"prefix");
+		log.info(comment + " prefix: " + prefix);
+		assertNotNull(prefix);
+		assertEquals(prefix, testlog.substring(0, prefix.length()));
+		return testlog.toString();
+	}
 
-   class TestLog extends SystemStreamLog
-   {
-      StringBuffer log;
+	final class TestLog extends SystemStreamLog {
+		
+		final StringBuffer log;
 
-      public TestLog( StringBuffer log )
-      {
-         this.log = log;
-      }
+		public TestLog(final StringBuffer log) {
+			this.log = log;
+		}
 
-      @Override
-      public void info( CharSequence content )
-      {
-         log.append( content );
-      }
-   }
+		@Override
+		public void info(final CharSequence content) {
+			log.append(content);
+		}
+	}
 }

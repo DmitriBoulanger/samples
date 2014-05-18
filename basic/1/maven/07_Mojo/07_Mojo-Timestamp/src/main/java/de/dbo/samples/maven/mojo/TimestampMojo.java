@@ -21,10 +21,10 @@ public final class TimestampMojo extends AbstractMojo
 public final void execute() {
       final String CTX_TIME_KEY = "TimestampMojo-Time";
       final Date  date = new Date();
-      final Long  timeZuletzt = (Long) getPluginContext().get( CTX_TIME_KEY );
+      final Long  lasttime = (Long) getPluginContext().get( CTX_TIME_KEY );
       getPluginContext().put( CTX_TIME_KEY, new Long( date.getTime() ) );
-      final String elapsed = ( timeZuletzt == null ) ? "" :
-            " Elapsed: " + (date.getTime() - timeZuletzt.longValue()) + " ms.";
+      final String elapsed = ( lasttime == null ) ? "" :
+            " Elapsed: " + (date.getTime() - lasttime.longValue()) + " ms.";
       getLog().info( prefix + " " +
             (new SimpleDateFormat( datetimePattern ).format( date )) + elapsed );
    }
