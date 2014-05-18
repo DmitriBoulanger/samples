@@ -37,6 +37,8 @@
 							<goal>timestamp</goal>
 						</goals>
 					</execution>
+<!-- 	
+These goals have eclipse-error!				
 					<execution>
 						<id>after process-sources</id>
 						<phase>process-sources</phase>
@@ -50,7 +52,8 @@
 						<goals>
 							<goal>timestamp</goal>
 						</goals>
-					</execution>
+					</execution> 
+-->
 					<execution>
 						<id>after verify</id>
 						<phase>verify</phase>
