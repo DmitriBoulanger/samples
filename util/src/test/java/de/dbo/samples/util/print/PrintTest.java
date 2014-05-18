@@ -1,20 +1,20 @@
-package de.dbo.samples.basic.util.print;
+package de.dbo.samples.util.print;
 
-import static de.dbo.samples.basic.util.print.Print.cpCardinality;
-import static de.dbo.samples.basic.util.print.Print.line;
-import static de.dbo.samples.basic.util.print.Print.lines;
-import static de.dbo.samples.basic.util.print.Print.linesNumbered;
-import static de.dbo.samples.basic.util.print.Print.linesSorted;
-import static de.dbo.samples.basic.util.print.Print.padLeft;
-import static de.dbo.samples.basic.util.print.Print.padRight;
-import static de.dbo.samples.basic.util.print.PrintConversions.toColllectionOfPrintables;
-import static de.dbo.samples.basic.util.print.PrintConversions.toMapOfPrintables;
-import static de.dbo.samples.basic.util.print.PrintConversions.toPrintable;
+import static de.dbo.samples.util.print.Print.cpCardinality;
+import static de.dbo.samples.util.print.Print.line;
+import static de.dbo.samples.util.print.Print.lines;
+import static de.dbo.samples.util.print.Print.linesNumbered;
+import static de.dbo.samples.util.print.Print.linesSorted;
+import static de.dbo.samples.util.print.Print.padLeft;
+import static de.dbo.samples.util.print.Print.padRight;
+import static de.dbo.samples.util.print.PrintConversions.toColllectionOfPrintables;
+import static de.dbo.samples.util.print.PrintConversions.toMapOfPrintables;
+import static de.dbo.samples.util.print.PrintConversions.toPrintable;
 
-import de.dbo.samples.basic.util.print.Print;
-import de.dbo.samples.basic.util.print.Printable;
-import de.dbo.samples.basic.util.print.PrintableMap;
-import de.dbo.samples.basic.util.print.PrintableObject;
+import de.dbo.samples.util.print.Print;
+import de.dbo.samples.util.print.Printable;
+import de.dbo.samples.util.print.PrintableMap;
+import de.dbo.samples.util.print.PrintableObject;
 
 import java.util.ArrayList;
 import java.util.Calendar;

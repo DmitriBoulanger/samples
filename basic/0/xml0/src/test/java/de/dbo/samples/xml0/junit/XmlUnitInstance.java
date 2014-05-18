@@ -36,7 +36,7 @@ POSSIBILITY OF SUCH DAMAGE.
 ******************************************************************
 */
  
-import static de.dbo.samples.basic.util.print.Print.lines;
+import static de.dbo.samples.util.print.Print.lines;
 import static de.dbo.samples.xml0.junit.FileSystemUtils.path;
 import static de.dbo.samples.xml0.junit.FileSystemUtils.read;
 

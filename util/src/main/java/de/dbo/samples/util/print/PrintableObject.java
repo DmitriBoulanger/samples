@@ -1,9 +1,9 @@
-package de.dbo.samples.basic.util.print;
+package de.dbo.samples.util.print;
 
-import static de.dbo.samples.basic.util.print.Print.line;
-import static de.dbo.samples.basic.util.print.Print.lines;
-import static de.dbo.samples.basic.util.print.PrintConversions.toColllectionOfPrintables;
-import static de.dbo.samples.basic.util.print.PrintConversions.toMapOfPrintables;
+import static de.dbo.samples.util.print.Print.line;
+import static de.dbo.samples.util.print.Print.lines;
+import static de.dbo.samples.util.print.PrintConversions.toColllectionOfPrintables;
+import static de.dbo.samples.util.print.PrintConversions.toMapOfPrintables;
 
 import java.util.Collection;
 import java.util.Map;

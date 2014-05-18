@@ -1,4 +1,4 @@
-package de.dbo.samples.basic.util.resource;
+package de.dbo.samples.util.resource;
  
 import java.io.InputStream;
 import java.net.URL;

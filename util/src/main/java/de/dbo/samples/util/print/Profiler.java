@@ -1,4 +1,4 @@
-package de.dbo.samples.basic.util.print;
+package de.dbo.samples.util.print;
 
 import static java.lang.System.currentTimeMillis;
 import static java.util.concurrent.TimeUnit.MILLISECONDS;

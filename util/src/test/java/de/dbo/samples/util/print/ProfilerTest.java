@@ -1,7 +1,7 @@
-package de.dbo.samples.basic.util.print;
+package de.dbo.samples.util.print;
 
-import static de.dbo.samples.basic.util.print.Profiler.elapsed;
-import static de.dbo.samples.basic.util.print.Profiler.formatMs;
+import static de.dbo.samples.util.print.Profiler.elapsed;
+import static de.dbo.samples.util.print.Profiler.formatMs;
 
 import static org.junit.Assert.assertTrue;
 

@@ -1,9 +1,9 @@
-package de.dbo.samples.basic.util.print;
+package de.dbo.samples.util.print;
 
-import static de.dbo.samples.basic.util.print.Print.line;
-import static de.dbo.samples.basic.util.print.Print.lines;
-import static de.dbo.samples.basic.util.print.PrintConversions.keyToString;
-import static de.dbo.samples.basic.util.print.PrintConversions.toPrintable;
+import static de.dbo.samples.util.print.Print.line;
+import static de.dbo.samples.util.print.Print.lines;
+import static de.dbo.samples.util.print.PrintConversions.keyToString;
+import static de.dbo.samples.util.print.PrintConversions.toPrintable;
 
 import java.util.HashMap;
 import java.util.Map;

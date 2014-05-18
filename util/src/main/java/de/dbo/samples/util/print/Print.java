@@ -1,8 +1,8 @@
-package de.dbo.samples.basic.util.print;
+package de.dbo.samples.util.print;
 
-import static de.dbo.samples.basic.util.print.PrintConversions.sortedKeys;
-import static de.dbo.samples.basic.util.print.PrintConversions.toPrintable;
-import static de.dbo.samples.basic.util.print.PrintConversions.toSortedList;
+import static de.dbo.samples.util.print.PrintConversions.sortedKeys;
+import static de.dbo.samples.util.print.PrintConversions.toPrintable;
+import static de.dbo.samples.util.print.PrintConversions.toSortedList;
 
 import java.text.DecimalFormat;
 import java.util.Collection;

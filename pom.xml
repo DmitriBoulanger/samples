@@ -23,6 +23,7 @@ Reactor for all sample titles
 	</properties>
 	
 	<modules>
+	    <module>util</module>
 	    <module>basic</module>
 		<module>maven</module>
 		<module>spring</module>

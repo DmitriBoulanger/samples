@@ -1,7 +1,7 @@
-package de.dbo.samples.basic.util.resource;
+package de.dbo.samples.util.resource;
 
-import de.dbo.samples.basic.util.resource.ClassPathProperties;
-import de.dbo.samples.basic.util.print.Print;
+import de.dbo.samples.util.print.Print;
+import de.dbo.samples.util.resource.ClassPathProperties;
 
 import java.util.Properties;
 

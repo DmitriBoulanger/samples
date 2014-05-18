@@ -1,4 +1,4 @@
-package de.dbo.samples.basic.util.print;
+package de.dbo.samples.util.print;
 
 import java.util.ArrayList;
 import java.util.Collection;
