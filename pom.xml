@@ -23,10 +23,12 @@ Reactor for all sample titles
 	</properties>
 	
 	<modules>
+	    <module>basic</module>
 		<module>maven</module>
 		<module>spring</module>
 		<module>gui</module>
-		<module>basic</module>
+		<module>image</module>
+		
 	</modules>
 
 	<build>

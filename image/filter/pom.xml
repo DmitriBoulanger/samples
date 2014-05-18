@@ -2,35 +2,28 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	
-
-	<groupId>de.dbo.samples.image.filter</groupId>
-	<artifactId>super</artifactId>
-	<version>0.0.0-SNAPSHOT</version>
-	<name>Image Filters - Super</name>
-	<description>Super-POM for alles</description>
+	<parent>
+		<groupId>de.dbo.samples.image</groupId>
+		<artifactId>image</artifactId>
+		<version>0.0.0-SNAPSHOT</version>
+	</parent>
+	
+	<artifactId>filter</artifactId>
 	<packaging>pom</packaging>
-
+	<name>Samples Image Filter</name>
+	<description>Image Filters</description>
+	
+	<modules>
+		<module>AutoLocalThreshold</module>
+	</modules>
+	
 	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		
-		<!-- VERSIONS -->
 
 	</properties>
 
 	<dependencyManagement>
 		<dependencies>
-			<!-- SLF4J Logging -->
-			<dependency>
-				<groupId>org.slf4j</groupId>
-				<artifactId>slf4j-api</artifactId>
-				<version>1.6.1</version>
-			</dependency>
-			<dependency>
-				<groupId>org.apache.logging.log4j</groupId>
-				<artifactId>slf4j-impl</artifactId>
-				<version>2.0-alpha2</version>
-			</dependency>
+			
 		</dependencies>
 	</dependencyManagement>
 
@@ -38,24 +31,11 @@
 		<finalName>samples-image-${project.artifactId}-${project.version}</finalName>
 		<pluginManagement>
 			<plugins>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-compiler-plugin</artifactId>
-					<version>3.1</version>
-					<configuration>
-						<source>${java.version}</source>
-						<target>${java.version}</target>
-						<fork>true</fork>
-						<meminitial>128m</meminitial>
-						<maxmem>512m</maxmem>
-					</configuration>
-				</plugin>
+				
 			</plugins>
 		</pluginManagement>
 	    <plugins>
-        <plugin>
-            <artifactId>maven-compiler-plugin</artifactId>
-        </plugin>
+        
      </plugins>
     </build>
 
