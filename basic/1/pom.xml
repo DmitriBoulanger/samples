@@ -18,6 +18,7 @@ Reactor for all basic-1 samples.
 	</description>
 	
 	<modules>
+		<module>maven</module>
 		<module>spring</module>
 	</modules>
 

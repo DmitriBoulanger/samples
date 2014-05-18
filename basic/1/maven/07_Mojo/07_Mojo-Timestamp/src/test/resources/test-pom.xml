@@ -1,0 +1,17 @@
+<project>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>test</groupId>
+  <artifactId>Test</artifactId>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>de.dbo.samples.maven.basic</groupId>
+        <artifactId>07_Mojo-Timestamp</artifactId>
+        <configuration>
+          <prefix>+++</prefix>
+          <datetimePattern>HH:mm:ss</datetimePattern>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>
