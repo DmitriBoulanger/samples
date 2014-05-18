@@ -16,7 +16,6 @@ import org.junit.runners.Suite.SuiteClasses;
 @SuiteClasses({
           de.dbo.samples.logger0.junit.Alles.class
         , de.dbo.samples.jpa0.junit.Alles.class
-        , de.dbo.samples.util0.junit.Alles.class
         , de.dbo.samples.xml0.junit.Alles.class
         , de.dbo.samples.html0.junit.Alles.class
         , de.dbo.samples.tuprolog0.junit.Alles.class})

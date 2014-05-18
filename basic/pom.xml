@@ -13,10 +13,11 @@
 	<artifactId>basic</artifactId>
 	<packaging>pom</packaging>
 	<name>Basic reactor</name>
-	<description>Basic Samples</description>
+	<description>Basic Samples Reactor</description>
 
 	<modules>
 		<module>0</module>
+		<module>util</module>
 	</modules>
 
 	<build>

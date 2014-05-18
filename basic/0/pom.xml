@@ -15,7 +15,7 @@
 	
 	<description>
 Reactor for all basic-0 samples.
-The projects specifies test-jars for all its modules
+The projects generates test-jars for all its modules
 	</description>
 	
 	
@@ -26,10 +26,8 @@ The projects specifies test-jars for all its modules
 		<module>jpa0</module>
         <module>logger0</module>
 		<module>tuProlog0</module>
-		<module>util0</module>
 		<module>xml0</module>
 		<module>html0</module>
-        <module>resource0</module> 
         
 		<module>test0</module>
 	</modules>
@@ -137,6 +135,12 @@ The projects specifies test-jars for all its modules
 				<version>${project.version}</version>
 			</dependency>
 			
+			<dependency>
+				<groupId>de.dbo.samples.basic</groupId>
+				<artifactId>util</artifactId>
+				<version>0.0.0-SNAPSHOT</version>
+			</dependency>
+			
 			<!-- PROJECTS TESTS -->
 
 			<dependency>
@@ -156,13 +160,6 @@ The projects specifies test-jars for all its modules
 			<dependency>
 				<groupId>${project.groupId}</groupId>
 				<artifactId>tuProlog0</artifactId>
-				<version>${project.version}</version>
-				<type>test-jar</type>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>${project.groupId}</groupId>
-				<artifactId>util0</artifactId>
 				<version>${project.version}</version>
 				<type>test-jar</type>
 				<scope>test</scope>
@@ -234,6 +231,10 @@ The projects specifies test-jars for all its modules
 		<dependency>
 			<groupId>net.sf.jtidy</groupId>
 			<artifactId>jtidy</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>de.dbo.samples.basic</groupId>
+			<artifactId>util</artifactId>
 		</dependency>
 	</dependencies>
 

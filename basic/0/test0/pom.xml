@@ -49,6 +49,7 @@ All messages can be found in the target/logs directory
 			<groupId>${project.groupId}</groupId>
 			<artifactId>tuProlog0</artifactId>
 		</dependency>
+		
 		<dependency>
 			<groupId>${project.groupId}</groupId>
 			<artifactId>tuProlog0</artifactId>
@@ -56,16 +57,7 @@ All messages can be found in the target/logs directory
 			<scope>test</scope>
 		</dependency>
 		
-		<dependency>
-			<groupId>${project.groupId}</groupId>
-			<artifactId>util0</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>${project.groupId}</groupId>
-			<artifactId>util0</artifactId>
-			<type>test-jar</type>
-			<scope>test</scope>
-		</dependency>
+
 		
 		<dependency>
 			<groupId>${project.groupId}</groupId>
@@ -89,16 +81,6 @@ All messages can be found in the target/logs directory
 			<scope>test</scope>
 		</dependency>
 		
-		<dependency>
-			<groupId>${project.groupId}</groupId>
-			<artifactId>resource0</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>${project.groupId}</groupId>
-			<artifactId>resource0</artifactId>
-			<type>test-jar</type>
-			<scope>test</scope>
-		</dependency>
 
 		<dependency>
 				<groupId>org.apache.derby</groupId>
