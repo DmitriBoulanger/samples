@@ -15,7 +15,7 @@ public final class TreetableColumnsImpl extends TreetableColumnsAbstraction {
     private static final int SMALL = 24;
     private final Integer[] columnWidths = new Integer[]{140,SMALL,90,300};
     
-    public TTreetableColumnsImpl () {
+    public TreetableColumnsImpl () {
         super(COLUMN_NAMES);
     }
 
