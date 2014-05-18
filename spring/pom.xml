@@ -11,7 +11,7 @@
 	<groupId>de.dbo.samples.spring</groupId>
 	<artifactId>spring</artifactId>
 	<packaging>pom</packaging>
-	<name>Spring reactor</name>
+	<name>Samples Basic 0 Spring</name>
 	<description>Top for all Spring-samples</description>
 	
 	 <properties>

@@ -12,7 +12,7 @@
 
 	<artifactId>00_Simple</artifactId>
 	<packaging>pom</packaging>
-	<name>Simple</name>
+	<name>Samples Basic 0 Maven Simple</name>
 	<url>http://books.sonatype.com/mvnex-book/reference/simple-project.html</url>
 	<description>Parent of the HelloWorld-project</description>
 	

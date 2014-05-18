@@ -11,10 +11,6 @@
   <name>XML-Unit test/examples</name>
 
 	<dependencies>
-		<dependency>
-			<groupId>${project.groupId}</groupId>
-			<artifactId>util0</artifactId>
-		</dependency>
 		
 		<dependency>
 			<groupId>xmlunit</groupId>

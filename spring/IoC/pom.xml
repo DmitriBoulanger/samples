@@ -9,6 +9,7 @@
 	</parent>
 
   <artifactId>IoC</artifactId>
+  <name>Samples Basic 0 Spring IoC</name>
   
 	<dependencies>
 	

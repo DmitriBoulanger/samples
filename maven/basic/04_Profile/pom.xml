@@ -12,7 +12,7 @@
 
 	<artifactId>04_Profile</artifactId>
 	<packaging>pom</packaging>
-	<name>Profile</name>
+	<name>Samples Basic 0 Maven Profile</name>
 
 	<modules>
 		<module>04_Profile-Profile-Activation</module>

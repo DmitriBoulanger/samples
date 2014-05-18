@@ -12,7 +12,7 @@
 
 	<artifactId>02_Web</artifactId>
 	<packaging>pom</packaging>
-	<name>Web</name>
+	<name>Samples Basic 0 Maven Web</name>
 	<description>HelloWorld WEB-Application</description>
 
 	<modules>

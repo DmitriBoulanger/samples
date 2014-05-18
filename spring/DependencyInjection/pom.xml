@@ -7,7 +7,7 @@
   </parent>
   
   <artifactId>DependencyInjection</artifactId>
-  <name>Dependency Injection</name>
+  <name>Samples Basic 0 Spring Dependency Injection</name>
   <description>Constructor and Setter Dependency Injection</description>
   
   	<dependencies>

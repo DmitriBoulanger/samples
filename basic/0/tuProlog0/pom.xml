@@ -16,10 +16,6 @@
 			<groupId>it.unibo.alice.tuprolog</groupId>
 			<artifactId>tuprolog</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>${project.groupId}</groupId>
-			<artifactId>util0</artifactId>
-		</dependency>
 	</dependencies>
 
 </project>

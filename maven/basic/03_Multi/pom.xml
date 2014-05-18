@@ -12,7 +12,7 @@
 
 	<artifactId>03_Multi</artifactId>
 	<packaging>pom</packaging>
-	<name>Multi</name>
+	<name>Samples Basic 0 Maven Multi</name>
 	<url>http://books.sonatype.com/mvnex-book/reference/multimodule.html</url>
 
 	<modules>

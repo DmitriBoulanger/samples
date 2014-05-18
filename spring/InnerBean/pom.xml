@@ -9,6 +9,7 @@
 	</parent>
 
   <artifactId>InnerBean</artifactId>
+  <name>Samples Basic 0 Spring Inner Bean</name>
   
 	<dependencies>
 	

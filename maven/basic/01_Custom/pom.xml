@@ -13,7 +13,7 @@
 	<artifactId>01_Custom</artifactId>
 
 	<packaging>pom</packaging>
-	<name>Custom</name>
+	<name>Samples Basic 0 Maven Custom</name>
 	<url>http://books.sonatype.com/mvnex-book/reference/customizing.html</url>
 
 	<modules>

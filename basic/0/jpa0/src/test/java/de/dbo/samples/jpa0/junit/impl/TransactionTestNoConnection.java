@@ -2,7 +2,7 @@ package de.dbo.samples.jpa0.junit.impl;
 
 import static de.dbo.samples.jpa0.config.PersistenceConfigurationFactory.persistence;
 import static de.dbo.samples.jpa0.config.PersistenceConfigurations.PRODUCTION;
-import static de.dbo.samples.util0.Print.lines;
+import static de.dbo.samples.basic.util.print.Print.lines;
 
 import de.dbo.samples.jpa0.TransactionRunner;
 

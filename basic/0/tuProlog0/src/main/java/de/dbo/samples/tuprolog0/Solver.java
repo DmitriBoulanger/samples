@@ -1,8 +1,8 @@
 package de.dbo.samples.tuprolog0;
 
 import static java.lang.System.currentTimeMillis;
-import static de.dbo.samples.util0.Profiler.elapsed;
-import static de.dbo.samples.util0.Print.lines;
+import static de.dbo.samples.basic.util.print.Profiler.elapsed;
+import static de.dbo.samples.basic.util.print.Print.lines;
 
 import java.io.IOException;
 import java.text.DecimalFormat;

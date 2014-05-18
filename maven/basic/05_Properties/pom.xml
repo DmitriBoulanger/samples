@@ -12,7 +12,7 @@
 
 	<artifactId>05_Properties</artifactId>
 	<packaging>pom</packaging>
-	<name>Properties</name>
+	<name>Samples Basic 0 Maven Properties</name>
 
 	<modules>
 		<module>05_Properties-Filtering</module>

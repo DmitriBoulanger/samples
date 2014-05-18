@@ -114,11 +114,7 @@ The projects generates test-jars for all its modules
 				<artifactId>tuProlog0</artifactId>
 				<version>${project.version}</version>
 			</dependency>
-			<dependency>
-				<groupId>${project.groupId}</groupId>
-				<artifactId>util0</artifactId>
-				<version>${project.version}</version>
-			</dependency>
+			
 			<dependency>
 				<groupId>${project.groupId}</groupId>
 				<artifactId>xml0</artifactId>

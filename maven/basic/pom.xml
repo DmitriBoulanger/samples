@@ -11,7 +11,7 @@
 	<groupId>de.dbo.samples.maven.basic</groupId>
 	<artifactId>basic</artifactId>
 	<packaging>pom</packaging>
-	<name>Maven basic use cases</name>
+	<name>Samples Basic 0 Maven basic use cases</name>
 	<url>http://books.sonatype.com/mvnex-book/reference/index.html</url>
 
 	<modules>

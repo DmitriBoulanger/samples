@@ -11,7 +11,7 @@
 	<artifactId>LifeCycle</artifactId>
 	<packaging>jar</packaging>
 
-	<name>Bean Life-Cycle</name>
+	<name>Samples Basic 0 Spring Bean Life-Cycle</name>
 	<description>Life-Cycle of a Bean</description>
 
 	<dependencies>

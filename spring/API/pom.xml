@@ -12,7 +12,7 @@
 	<packaging>jar</packaging>
 	
     <name>API to be used in other projects</name>
-    <description>Sample API</description>
+    <description>Samples Basic 0 Spring Sample API</description>
     
   	<dependencies>
 		

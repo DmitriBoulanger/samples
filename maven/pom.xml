@@ -12,7 +12,7 @@
 	<groupId>de.dbo.samples.maven</groupId>
 	<artifactId>maven</artifactId>
 	<packaging>pom</packaging>
-	<name>Maven reactor</name>
+	<name>Samples Basic 0 Maven reactor</name>
 	<description>Maven Samples</description>
 
 	<modules>
