@@ -16,6 +16,11 @@
 			<groupId>xmlunit</groupId>
 			<artifactId>xmlunit</artifactId>
 		</dependency>
+		
+		<dependency>
+				<groupId>net.sf.jtidy</groupId>
+				<artifactId>jtidy</artifactId>
+		</dependency>
 	</dependencies>
 
 </project>
