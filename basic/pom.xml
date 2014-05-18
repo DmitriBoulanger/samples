@@ -17,28 +17,32 @@
 
 	<modules>
 		<module>0</module>
+		<module>1</module>
 	</modules>
+
+	<dependencies>
+		<dependency>
+			<groupId>de.dbo.samples</groupId>
+			<artifactId>util</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+	</dependencies>
 
 	<build>
 		<finalName>samples-basic-${project.version}</finalName>
 		<pluginManagement>
 			<plugins>
-				
 			</plugins>
 		</pluginManagement>
 
 		<plugins>
-			
 		</plugins>
-
 	</build>
 
 	<profiles>
-
 	</profiles>
 
 	<reporting>
-		
 	</reporting>
 
 </project>

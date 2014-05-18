@@ -38,12 +38,7 @@ The projects generates test-jars for all its modules
 
 	<dependencyManagement>
 		<dependencies>
-			<dependency>
-				<groupId>de.dbo.samples</groupId>
-				<artifactId>parent</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-
+			 
 			<dependency>
 				<groupId>org.eclipse.persistence</groupId>
 				<artifactId>eclipselink</artifactId>
@@ -223,11 +218,7 @@ The projects generates test-jars for all its modules
 			<groupId>net.sf.jtidy</groupId>
 			<artifactId>jtidy</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>de.dbo.samples</groupId>
-			<artifactId>util</artifactId>
-			<version>${project.version}</version>
-		</dependency>
+
 	</dependencies>
 
 </project>

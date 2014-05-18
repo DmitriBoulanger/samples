@@ -116,5 +116,14 @@
 			</plugins>
 		</pluginManagement>
   	</build>
+  	
+  	<dependencies>
+  	<dependency>
+  		<groupId>de.dbo.samples.maven.basic</groupId>
+  		<artifactId>07_Mojo-Timestamp</artifactId>
+  		<version>${project.version}</version>
+  	</dependency>
+  		
+  	</dependencies>
   
 </project>
