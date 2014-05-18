@@ -1,0 +1,40 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>de.dbo.samples.gui.swing</groupId>
+		<artifactId>swing</artifactId>
+		<version>0.0.0-SNAPSHOT</version>
+	</parent>
+	
+	<artifactId>treetable</artifactId>
+	<packaging>pom</packaging>
+	<name>Samples GUI Swing Treetable</name>
+	<description>Tree-Table and Records as Data</description>
+	
+	<modules>
+		<module>treetable-api</module>
+		<module>treetable-impl</module>
+	</modules>
+	
+	<build>
+		
+	</build>
+
+	<dependencies>
+		 
+		<dependency>
+			<groupId>org.swinglabs.swingx</groupId>
+			<artifactId>swingx-all</artifactId>
+			<version>1.6.4</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+	</dependencies>
+</project>
