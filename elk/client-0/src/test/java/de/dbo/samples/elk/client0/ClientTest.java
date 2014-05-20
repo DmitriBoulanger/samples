@@ -5,7 +5,6 @@ import static de.dbo.samples.elk.client0.Query.timeRangeBeforeMinutes;
 import static de.dbo.samples.elk.client0.Time.MIN;
 import static de.dbo.samples.elk.client0.Time.SEC;
 import static de.dbo.samples.elk.client0.Time.formatMs;
-
 import static de.dbo.samples.elk.logstash.LogstashLog4jFields.EXCEPTION_FIELD;
 import static de.dbo.samples.elk.logstash.LogstashLog4jFields.MESSAGE_FIELD;
 import static de.dbo.samples.elk.logstash.LogstashLog4jFields.TIMESTAMP_FIELD;
@@ -63,7 +62,7 @@ public class ClientTest {
      */
 	@Before
 	public void init() {
-        es.setCluster("elasticsearch-hombach");
+        es.setCluster("dboArtemisCluster");
         logstash.setIndexSufffix("YYYY.MM.dd.HH");
         filter = timeRangeBeforeMinutes(3 /* how many minutes ago should be taken into account*/);
 	}
