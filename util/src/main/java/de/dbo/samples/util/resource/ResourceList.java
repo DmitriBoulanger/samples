@@ -10,6 +10,8 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipException;
 import java.util.zip.ZipFile;
 
+import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
+
 /*
  http://stackoverflow.com/questions/3923129/get-a-list-of-resources-from-classpath-directory
 
@@ -19,7 +21,7 @@ import java.util.zip.ZipFile;
  * list resources available from the classpath @ *
  */
 public class ResourceList{
-
+	
     /**
      * for all elements of java.class.path get a Collection of resources Pattern
      * pattern = Pattern.compile(".*"); gets all resources
