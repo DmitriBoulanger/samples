@@ -92,11 +92,10 @@ public abstract class HoughLineAbstraction implements Constants, HoughLine {
         final float centerY = height / 2;
 
         // Draw edges in output array
-        double tsin = Math.sin(this.theta);
-        double tcos = Math.cos(this.theta);
+        final double tsin = Math.sin(this.theta);
+        final double tcos = Math.cos(this.theta);
 
-        if (this.theta < PI4 || this.theta > PI4x3) {
-            // Draw vertical lines
+        if (this.theta < PI4 || this.theta > PI4x3) {  // Draw vertical lines
             for (int y = 0; y < height; y++) {
                 int x = (int) ((((this.r - this.hough.houghHeight) - ((y - centerY) * tsin)) / tcos) + centerX);
                 if (x < width && x >= 0) {
@@ -104,8 +103,7 @@ public abstract class HoughLineAbstraction implements Constants, HoughLine {
                 }
             }
         }
-        else {
-            // Draw horizontal lines
+        else { // Draw horizontal lines
             for (int x = 0; x < width; x++) {
                 int y = (int) ((((this.r - this.hough.houghHeight) - ((x - centerX) * tcos)) / tsin) + centerY);
                 if (y < height && y >= 0) {
