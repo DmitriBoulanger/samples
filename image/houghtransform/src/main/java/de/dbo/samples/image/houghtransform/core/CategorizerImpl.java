@@ -10,10 +10,10 @@ import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import de.dbo.samples.image.houghtransform.api.HTCategorizer;
-import de.dbo.samples.image.houghtransform.api.HTException;
-import de.dbo.samples.image.houghtransform.api.HTCategorizerWorker;
-import de.dbo.samples.image.houghtransform.api.HTCategory;
+import de.dbo.samples.image.houghtransform.api.Categorizer;
+import de.dbo.samples.image.houghtransform.api.CategorizerWorker;
+import de.dbo.samples.image.houghtransform.api.Category;
+import de.dbo.samples.image.houghtransform.api.HoughTransformException;
 import de.dbo.samples.image.houghtransform.api.ImageInfo;
 import de.dbo.samples.image.houghtransform.api.ShapeFilter;
 
@@ -22,15 +22,15 @@ import de.dbo.samples.image.houghtransform.api.ShapeFilter;
  * images in two steps. The first step is the shape categorization, while the
  * second step is the content categorization
  *
- * @see HTCategory
+ * @see Category
  *
  * @author D.Boulanger ITyX GmbH
  */
-public class Categorizer implements HTCategorizer {
-    private static final Logger      log                = LoggerFactory.getLogger(Categorizer.class);
+public class CategorizerImpl implements Categorizer {
+    private static final Logger      log                = LoggerFactory.getLogger(CategorizerImpl.class);
 
-    protected HTCategorizerWorker   shapeCategorizer   = null;
-    protected HTCategorizerWorker   contentCategorizer = null;
+    protected CategorizerWorker   shapeCategorizer   = null;
+    protected CategorizerWorker   contentCategorizer = null;
     protected BufferedImage          shapeFilteredImage = null;
     protected ShapeFilter         shapeFilter        = null;
 
@@ -46,15 +46,15 @@ public class Categorizer implements HTCategorizer {
     /**
      * @param ctxname
      *            name of the XML-file (Spring resource)
-     * @throws HTException
+     * @throws HoughTransformException
      */
-    public Categorizer(final String ctxname) throws HTException {
+    public CategorizerImpl(final String ctxname) throws HoughTransformException {
         try {
             this.ctxname = ctxname;
             this.ctx = new ClassPathXmlApplicationContext(ctxname);
         }
         catch(Exception exception) {
-            throw new HTException(HTException.BEANS_CTX_INITILIZATION,
+            throw new HoughTransformException(HoughTransformException.BEANS_CTX_INITILIZATION,
                     "Initialization of Spring-CTX " + ctxname + " failed", exception);
         }
     }
@@ -67,7 +67,7 @@ public class Categorizer implements HTCategorizer {
      * @param ctx
      *            initialized Spring-context
      */
-    public Categorizer(final String ctxname, final ApplicationContext ctx) {
+    public CategorizerImpl(final String ctxname, final ApplicationContext ctx) {
         this.ctxname = ctxname;
         this.ctx = ctx;
     }
@@ -100,18 +100,18 @@ public class Categorizer implements HTCategorizer {
     }
 
     @Override
-    public final HTCategory getCategory(final BufferedImage image) throws HTException {
+    public final Category getCategory(final BufferedImage image) throws HoughTransformException {
         try {
             cfg = (CategorizerConfiguration) this.ctx.getBean(bean);
         }
         catch(BeansException e) {
-            throw new HTException(HTException.BEANS_CONTENT_INITILIZATION,
+            throw new HoughTransformException(HoughTransformException.BEANS_CONTENT_INITILIZATION,
                     "Failure while creating " + bean + " config-bean from the Spring-CTX " + this.ctxname, e);
         }
         shapeCategorizer = getCategorizerWorker(cropImage(image, cfg.getWhiteBorder()), null, cfg);
         if (0 == cfg.getWhiteBorder()) {
             if (!shapeCategorizer.isShapeFound()) {
-                return HTCategory.UNKNOWN;
+                return Category.UNKNOWN;
             }
             if (!cfg.shapeFilterUsage()) {
                 return shapeCategorizer.category();
@@ -126,7 +126,7 @@ public class Categorizer implements HTCategorizer {
             cfg2 = (CategorizerConfiguration) this.ctx.getBean(bean2);
         }
         catch(BeansException e) {
-            throw new HTException(HTException.BEANS_CONTENT_INITILIZATION,
+            throw new HoughTransformException(HoughTransformException.BEANS_CONTENT_INITILIZATION,
                     "Failure while creating " + bean2 + " config-bean from the Spring-CTX " + this.ctxname, e);
         }
         if (0 == cfg.getWhiteBorder()) {
@@ -142,8 +142,8 @@ public class Categorizer implements HTCategorizer {
     }
 
     protected CategorizerWorker getCategorizerWorker(final BufferedImage image, final ImageInfo info, final CategorizerConfiguration cfg)
-            throws HTException {
-        return new CategorizerWorker(image, cfg);
+            throws HoughTransformException {
+        return new CategorizerWorkerImpl(image, cfg);
     }
 
 }

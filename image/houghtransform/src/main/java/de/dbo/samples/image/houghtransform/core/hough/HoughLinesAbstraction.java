@@ -4,7 +4,7 @@ import java.awt.Rectangle;
 import java.lang.reflect.Constructor;
 import java.util.Vector;
 
-import de.dbo.samples.image.houghtransform.api.HTException;
+import de.dbo.samples.image.houghtransform.api.HoughTransformException;
 import de.dbo.samples.image.houghtransform.api.Shape;
 import de.dbo.samples.image.houghtransform.api.ShapeFilter;
 import de.dbo.samples.image.houghtransform.core.CategorizerConfiguration;
@@ -27,7 +27,7 @@ public abstract class HoughLinesAbstraction implements HoughLines {
 
     private Hough                            hough        = null;
 
-    protected HoughLinesAbstraction(final CategorizerConfiguration cfg) throws HTException {
+    protected HoughLinesAbstraction(final CategorizerConfiguration cfg) throws HoughTransformException {
         this.shape = cfg.shape();
         this.cfg = cfg;
     }
@@ -48,14 +48,14 @@ public abstract class HoughLinesAbstraction implements HoughLines {
     }
 
     @Override
-    public final ShapeFilter getShapeFilter() throws HTException {
+    public final ShapeFilter getShapeFilter() throws HoughTransformException {
         if (!isShapeFilter()) {
             return null;
         }
         final String classname = cfg.getShapeFilterClassname();
         if (null == classname || 0 == classname.trim().length()) {
-            throw new HTException(
-                    HTException.CONFIG_CORRECTNESS,
+            throw new HoughTransformException(
+                    HoughTransformException.CONFIG_CORRECTNESS,
                     "No class-name for shape-filter found in the transform configuration");
         }
         try {
@@ -69,7 +69,7 @@ public abstract class HoughLinesAbstraction implements HoughLines {
             return (ShapeFilter) constructor.newInstance(fileterParameters);
         }
         catch(Exception e) {
-            throw new HTException(HTException.SYSTEM,
+            throw new HoughTransformException(HoughTransformException.SYSTEM,
                     "Cannot create instance for " + classname, e);
         }
     }

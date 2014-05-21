@@ -4,12 +4,12 @@ import java.awt.image.BufferedImage;
 import java.util.Vector;
 
 /**
- * Categorizer Worker.
+ * CategorizerImpl Worker.
  * 
  * @author D.Boulanger ITyX GmbH
  * 
  */
-public interface HTCategorizerWorker {
+public interface CategorizerWorker {
 
     /**
      * Mode of this worker. It can be an initial mode (shape finder) or it can
@@ -20,9 +20,9 @@ public interface HTCategorizerWorker {
      * shape is checked)
      * 
      * @return categorizer mode
-     * @see HTCategory
+     * @see Category
      */
-    public abstract HTCategorizerMode getMode();
+    public abstract CategorizerMode getMode();
 
     /**
      * 
@@ -47,7 +47,7 @@ public interface HTCategorizerWorker {
      * @see #isShapeFilterWelldefined()
      */
     public abstract BufferedImage getShapeFilteredImage()
-            throws HTException;
+            throws HoughTransformException;
 
     /**
      * 
@@ -56,7 +56,7 @@ public interface HTCategorizerWorker {
      * 
      * @see #isShapeFilterWelldefined()
      */
-    public BufferedImage getShapeCroppedImage() throws HTException;
+    public BufferedImage getShapeCroppedImage() throws HoughTransformException;
 
     /**
      * 
@@ -66,14 +66,14 @@ public interface HTCategorizerWorker {
      * @see #isShapeFilterWelldefined()
      */
     public abstract ShapeFilter getShapeFilter()
-            throws HTException;
+            throws HoughTransformException;
 
     /**
      * image classification/categorization
      * 
      * @return image category (type).
      */
-    public abstract HTCategory category();
+    public abstract Category category();
 
     /**
      * Basic description of the transformation/categorization

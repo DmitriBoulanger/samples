@@ -5,24 +5,24 @@ import java.util.Vector;
 
 import org.springframework.context.ApplicationContext;
 
-import de.dbo.samples.image.houghtransform.api.HTException;
-import de.dbo.samples.image.houghtransform.api.HTCategory;
+import de.dbo.samples.image.houghtransform.api.HoughTransformException;
+import de.dbo.samples.image.houghtransform.api.Category;
 import de.dbo.samples.image.houghtransform.api.ImageInfo;
 import de.dbo.samples.image.houghtransform.api.Shape;
-import de.dbo.samples.image.houghtransform.core.Categorizer;
+import de.dbo.samples.image.houghtransform.core.CategorizerImpl;
 import de.dbo.samples.image.houghtransform.core.CategorizerConfiguration;
-import de.dbo.samples.image.houghtransform.core.CategorizerWorker;
+import de.dbo.samples.image.houghtransform.core.CategorizerWorkerImpl;
 import de.dbo.samples.image.houghtransform.core.hough.HoughLines;
 import de.dbo.samples.image.houghtransform.core.hough.HoughTransform;
 import de.dbo.samples.image.houghtransform.data.ImageProvider;
 
-final class CategorizerGui extends Categorizer {
+final class CategorizerGui extends CategorizerImpl {
 
     private final ImageProvider imageProvider;
     private final ImageInfo  info;
 
     CategorizerGui(final ImageProvider imageProvider, final ImageInfo info,
-            final String ctxname, final ApplicationContext ctx) throws HTException {
+            final String ctxname, final ApplicationContext ctx) throws HoughTransformException {
         super(ctxname, ctx);
         this.imageProvider = imageProvider;
         this.info = info;
@@ -30,8 +30,8 @@ final class CategorizerGui extends Categorizer {
     }
 
     @Override
-    protected CategorizerWorker getCategorizerWorker(final BufferedImage _0, final ImageInfo _1
-            , final CategorizerConfiguration cfg) throws HTException {
+    protected CategorizerWorkerImpl getCategorizerWorker(final BufferedImage _0, final ImageInfo _1
+            , final CategorizerConfiguration cfg) throws HoughTransformException {
         if (null == shapeFilteredImage) {
             return new CategorizerGuiWorker(this.imageProvider, this.info, cfg);
         }
@@ -41,7 +41,7 @@ final class CategorizerGui extends Categorizer {
         }
     }
 
-    final HTCategory category() throws HTException {
+    final Category category() throws HoughTransformException {
         return getCategory(imageProvider.getImageFromResource(info));
     }
 
@@ -115,7 +115,7 @@ final class CategorizerGui extends Categorizer {
         }
     }
 
-    final HTCategory expectedCategory() {
+    final Category expectedCategory() {
         if (null != this.contentCategorizer) {
             return ((CategorizerGuiWorker) this.contentCategorizer).expectedCategory();
         }

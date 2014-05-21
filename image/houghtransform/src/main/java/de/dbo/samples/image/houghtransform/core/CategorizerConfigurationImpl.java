@@ -7,8 +7,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Required;
 
-import de.dbo.samples.image.houghtransform.api.HTException;
-import de.dbo.samples.image.houghtransform.api.HTCategorizerMode;
+import de.dbo.samples.image.houghtransform.api.HoughTransformException;
+import de.dbo.samples.image.houghtransform.api.CategorizerMode;
 import de.dbo.samples.image.houghtransform.api.ImageQuality;
 import de.dbo.samples.image.houghtransform.api.Shape;
 import de.dbo.samples.image.houghtransform.core.hough.HoughLines;
@@ -17,14 +17,14 @@ import de.dbo.samples.image.houghtransform.core.hough.Util;
 public final class CategorizerConfigurationImpl implements CategorizerConfiguration {
     private static final Logger      log = LoggerFactory.getLogger(CategorizerConfiguration.class);
 
-    private final HTCategorizerMode type;
+    private final CategorizerMode type;
 
-    protected CategorizerConfigurationImpl(final HTCategorizerMode type) {
+    protected CategorizerConfigurationImpl(final CategorizerMode type) {
         this.type = type;
     }
 
     @Override
-    public HTCategorizerMode type() {
+    public CategorizerMode type() {
         return type;
     }
 
@@ -74,7 +74,7 @@ public final class CategorizerConfigurationImpl implements CategorizerConfigurat
 
     @Override
     public final int neighbourhoodSize(ImageQuality quality)
-            throws HTException {
+            throws HoughTransformException {
         switch (quality) {
             case HIGH:
                 return getNeighbourhoodSizeHigh();
@@ -84,7 +84,7 @@ public final class CategorizerConfigurationImpl implements CategorizerConfigurat
                 return getNeighbourhoodSizeLow();
             default:
                 if (0 == whiteBorder) {
-                    throw new HTException(HTException.SYSTEM,
+                    throw new HoughTransformException(HoughTransformException.SYSTEM,
                             "Cannot determine neighbourhood size for image quality " + quality.name());
                 }
                 else {
@@ -95,7 +95,7 @@ public final class CategorizerConfigurationImpl implements CategorizerConfigurat
     }
 
     @Override
-    public final int neighbourhoodSize(int width, int height) throws HTException {
+    public final int neighbourhoodSize(int width, int height) throws HoughTransformException {
         return neighbourhoodSize(imageQuality(width, height));
     }
 
@@ -324,11 +324,11 @@ public final class CategorizerConfigurationImpl implements CategorizerConfigurat
     // SHAPE AND ITS CONSTRAINTS
 
     @Override
-    public Shape shape() throws HTException {
+    public Shape shape() throws HoughTransformException {
         final String classname = getShapeClassname();
         if (!nn(classname)) {
-            throw new HTException(
-                    HTException.CONFIG_CORRECTNESS,
+            throw new HoughTransformException(
+                    HoughTransformException.CONFIG_CORRECTNESS,
                     "No classname for shape (Shape) found in the transform configuration."
                             + " Mode=" + type().name());
         }
@@ -341,19 +341,19 @@ public final class CategorizerConfigurationImpl implements CategorizerConfigurat
             return (Shape) constructor.newInstance(parameters);
         }
         catch(Exception e) {
-            throw new HTException(
-                    HTException.CONFIG_CORRECTNESS,
+            throw new HoughTransformException(
+                    HoughTransformException.CONFIG_CORRECTNESS,
                     "Cannot create instance for " + classname + "." + " Mode="
                             + type().name(), e);
         }
     }
 
     @Override
-    public HoughLines shapeLines() throws HTException {
+    public HoughLines shapeLines() throws HoughTransformException {
         final String classname = getShapeLinesClassname();
         if (!nn(classname)) {
-            throw new HTException(
-                    HTException.CONFIG_CORRECTNESS,
+            throw new HoughTransformException(
+                    HoughTransformException.CONFIG_CORRECTNESS,
                     "No classname for shape-lines (HoughLines) found in the transform configuration."
                             + " Mode=" + type().name());
         }
@@ -366,7 +366,7 @@ public final class CategorizerConfigurationImpl implements CategorizerConfigurat
             return (HoughLines) constructor.newInstance(parameters);
         }
         catch(Exception e) {
-            throw new HTException(HTException.SYSTEM,
+            throw new HoughTransformException(HoughTransformException.SYSTEM,
                     "Cannot create instance for " + classname + "." + " Mode="
                             + type().name(), e);
         }

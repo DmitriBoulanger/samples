@@ -9,8 +9,8 @@ import java.awt.image.BufferedImage;
  * @author D.Boulanger ITyX GmbH
  *
  */
-public interface HTCategorizer {
+public interface Categorizer {
 
-    public abstract HTCategory getCategory(final BufferedImage image) throws HTException;
+    public abstract Category getCategory(final BufferedImage image) throws HoughTransformException;
 
 }

@@ -14,7 +14,7 @@ public class BoxSamplesNormalNegative extends GuiShowUp {
     public static void main(String[] args) throws Exception {
         final long start0 = System.currentTimeMillis();
 
-        final String CTX = "omr-box-cfg.xml";
+        final String CTX = "box-cfg.xml";
         final ApplicationContext ctx = new ClassPathXmlApplicationContext(CTX);
         showUp(ImageCollections.BOX_SAMPLES_NORMAL_NEGATIVE, CTX, ctx);
 

@@ -1,6 +1,6 @@
 package de.dbo.samples.image.houghtransform.core.box;
 
-import de.dbo.samples.image.houghtransform.api.HTException;
+import de.dbo.samples.image.houghtransform.api.HoughTransformException;
 import de.dbo.samples.image.houghtransform.core.CategorizerConfiguration;
 import de.dbo.samples.image.houghtransform.core.hough.HoughLine;
 import de.dbo.samples.image.houghtransform.core.hough.HoughLines;
@@ -28,7 +28,7 @@ public final class BoxHoughLines extends HoughLinesAbstraction implements
     private int check10LinesCnt   = 0;
 
     public BoxHoughLines(final CategorizerConfiguration cfg)
-            throws HTException {
+            throws HoughTransformException {
         super(cfg);
     }
 

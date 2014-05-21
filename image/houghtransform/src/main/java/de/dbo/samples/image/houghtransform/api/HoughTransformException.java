@@ -3,12 +3,12 @@ package de.dbo.samples.image.houghtransform.api;
 import org.springframework.beans.BeansException;
 
 /**
- * Exception from ORM-Categorizer.
+ * Exception from ORM-CategorizerImpl.
  * 
  * @author D.Boulanger ITyX GmbH
  * 
  */
-public final class HTException extends Exception {
+public final class HoughTransformException extends Exception {
     private static final long serialVersionUID            = -6050886052379079011L;
 
     public static final int   BEANS_CTX_INITILIZATION     = 10;
@@ -21,13 +21,13 @@ public final class HTException extends Exception {
 
     private final int         type;
 
-    public HTException(final int type, final String message,
+    public HoughTransformException(final int type, final String message,
             final Throwable e) {
         super(message(type, message, e), exception(type, e));
         this.type = type;
     }
 
-    public HTException(final int type, final String message) {
+    public HoughTransformException(final int type, final String message) {
         super(message);
         this.type = type;
     }
@@ -59,7 +59,7 @@ public final class HTException extends Exception {
     /*
      * message extraction. Messages from spring-framework exceptions are
      * extracted as they are and possible prefixed with the message from the
-     * OMR-Exception.
+     * HT-Exception.
      */
     private static final String message(int type, final String message,
             final Throwable e) {

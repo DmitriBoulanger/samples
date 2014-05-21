@@ -3,47 +3,47 @@ package de.dbo.samples.image.houghtransform.testimpl;
 import java.awt.image.BufferedImage;
 import java.util.Vector;
 
-import de.dbo.samples.image.houghtransform.api.HTException;
-import de.dbo.samples.image.houghtransform.api.HTCategory;
+import de.dbo.samples.image.houghtransform.api.HoughTransformException;
+import de.dbo.samples.image.houghtransform.api.Category;
 import de.dbo.samples.image.houghtransform.api.ImageInfo;
 import de.dbo.samples.image.houghtransform.api.ShapeFilter;
-import de.dbo.samples.image.houghtransform.core.Categorizer;
+import de.dbo.samples.image.houghtransform.core.CategorizerImpl;
 import de.dbo.samples.image.houghtransform.core.CategorizerConfiguration;
-import de.dbo.samples.image.houghtransform.core.CategorizerWorker;
+import de.dbo.samples.image.houghtransform.core.CategorizerWorkerImpl;
 import de.dbo.samples.image.houghtransform.core.hough.HoughLine;
 import de.dbo.samples.image.houghtransform.core.hough.HoughLines;
 import de.dbo.samples.image.houghtransform.data.ImageProvider;
 
-final class CategorizerGuiWorker extends CategorizerWorker {
+final class CategorizerGuiWorker extends CategorizerWorkerImpl {
 
     final BufferedImage       imageFilteredWithLines;
-    private final HTCategory imageCategoryExpected;
+    private final Category imageCategoryExpected;
 
     /**
      * developer constructor. It is only used in the GUI-mode
      * @param info
      * @param imageProvider
-     * @throws HTException
+     * @throws HoughTransformException
      * @throws Exception
      */
     CategorizerGuiWorker(final ImageProvider imageProvider, final ImageInfo info
-            , CategorizerConfiguration cfg) throws HTException {
-        super(Categorizer.preprocess(imageProvider.getImageFromResource(info), cfg), info, cfg);
-        this.imageFilteredWithLines = applyFilters(Categorizer.preprocess(imageProvider.getImageFromResource(info), cfg), this.cfg);
+            , CategorizerConfiguration cfg) throws HoughTransformException {
+        super(CategorizerImpl.preprocess(imageProvider.getImageFromResource(info), cfg), info, cfg);
+        this.imageFilteredWithLines = applyFilters(CategorizerImpl.preprocess(imageProvider.getImageFromResource(info), cfg), this.cfg);
         this.imageCategoryExpected = info.category;
         drawHoughTransformLines();
     }
 
 
     CategorizerGuiWorker(final BufferedImage image, final ShapeFilter shape, final ImageInfo info, final CategorizerConfiguration cfg)
-            throws HTException {
-        super(Categorizer.preprocess(cropImage(image, shape, cfg), cfg), info, cfg);
-        this.imageFilteredWithLines = applyFilters(Categorizer.preprocess(cropImage(image, shape, cfg), cfg), this.cfg);
+            throws HoughTransformException {
+        super(CategorizerImpl.preprocess(cropImage(image, shape, cfg), cfg), info, cfg);
+        this.imageFilteredWithLines = applyFilters(CategorizerImpl.preprocess(cropImage(image, shape, cfg), cfg), this.cfg);
         this.imageCategoryExpected = info.category;
         drawHoughTransformLines();
     }
 
-    final HTCategory expectedCategory() {
+    final Category expectedCategory() {
         return this.imageCategoryExpected;
     }
 

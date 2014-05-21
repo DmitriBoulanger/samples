@@ -14,7 +14,7 @@ public final class BracketsTest extends GuiShowUp {
     public static void main(String[] args) throws Exception {
         final long start0 = System.currentTimeMillis();
 
-        final String CTX = "omr-brackets-cfg.xml";
+        final String CTX = "brackets-cfg.xml";
         final ApplicationContext ctx = new ClassPathXmlApplicationContext(CTX);
         showUp(ImageCollections.BRACKETS_TEST, CTX, ctx);
 

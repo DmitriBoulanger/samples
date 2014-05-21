@@ -2,8 +2,8 @@ package de.dbo.samples.image.houghtransform.core;
 
 import java.util.List;
 
-import de.dbo.samples.image.houghtransform.api.HTException;
-import de.dbo.samples.image.houghtransform.api.HTCategorizerMode;
+import de.dbo.samples.image.houghtransform.api.HoughTransformException;
+import de.dbo.samples.image.houghtransform.api.CategorizerMode;
 import de.dbo.samples.image.houghtransform.api.ImageQuality;
 import de.dbo.samples.image.houghtransform.api.Shape;
 import de.dbo.samples.image.houghtransform.core.hough.HoughLines;
@@ -14,7 +14,7 @@ public interface CategorizerConfiguration {
     // Transform type
     //
 
-    public abstract HTCategorizerMode type();
+    public abstract CategorizerMode type();
 
     //
     // Hough Configuration
@@ -32,9 +32,9 @@ public interface CategorizerConfiguration {
 
     public abstract void setHoughClassname(String classname);
 
-    public abstract int neighbourhoodSize(ImageQuality quality) throws HTException;
+    public abstract int neighbourhoodSize(ImageQuality quality) throws HoughTransformException;
 
-    public abstract int neighbourhoodSize(int width, int height) throws HTException;
+    public abstract int neighbourhoodSize(int width, int height) throws HoughTransformException;
 
     /*
      * threshold (percentage) determines lines that are extracted from the hough
@@ -143,9 +143,9 @@ public interface CategorizerConfiguration {
     // shape and its constraints
     //
 
-    public abstract Shape shape() throws HTException;
+    public abstract Shape shape() throws HoughTransformException;
 
-    public abstract HoughLines shapeLines() throws HTException;
+    public abstract HoughLines shapeLines() throws HoughTransformException;
 
     public abstract String getShapeClassname();
 

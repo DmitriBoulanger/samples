@@ -1,11 +1,11 @@
 package de.dbo.samples.image.houghtransform;
 
-import de.dbo.samples.image.houghtransform.api.HTCategorizer;
-import de.dbo.samples.image.houghtransform.api.HTException;
-import de.dbo.samples.image.houghtransform.api.HTCategory;
+import de.dbo.samples.image.houghtransform.api.Categorizer;
+import de.dbo.samples.image.houghtransform.api.Category;
+import de.dbo.samples.image.houghtransform.api.HoughTransformException;
 import de.dbo.samples.image.houghtransform.api.Marker;
-import de.dbo.samples.image.houghtransform.core.Categorizer;
 import de.dbo.samples.image.houghtransform.core.CategorizerConfiguration;
+import de.dbo.samples.image.houghtransform.core.CategorizerImpl;
 import de.dbo.samples.image.houghtransform.core.hough.HoughAlgorithmCircle;
 import de.dbo.samples.image.houghtransform.core.hough.HoughAlgorithmLinear;
 
@@ -41,7 +41,7 @@ import de.dbo.samples.image.houghtransform.core.hough.HoughAlgorithmLinear;
  * linear Hough-algorithm in the second phase
  *
  * @see Marker
- * @see HTCategory
+ * @see Category
  * @see CategorizerConfiguration
  * @see HoughAlgorithmLinear
  * @see HoughAlgorithmCircle
@@ -51,29 +51,29 @@ import de.dbo.samples.image.houghtransform.core.hough.HoughAlgorithmLinear;
 
 public final class HoughCategorizerFactory {
 
-    public static final HTCategorizer newInstance(final Marker marker)
-            throws HTException {
+    public static final Categorizer newInstance(final Marker marker)
+            throws HoughTransformException {
         if (null == marker) {
-            throw new HTException(HTException.CONFIG_INITILIZATION
-                    , "OMR-Marker is NULL! Cannot create instance of the HTCategorizer");
+            throw new HoughTransformException(HoughTransformException.CONFIG_INITILIZATION
+                    , "Marker is NULL! Cannot create instance of the CategorizerImpl");
         }
         switch (marker) {
 
             case SIGNATURE:
-                return new Categorizer("omr-signature-cfg.xml");
+                return new CategorizerImpl("signature-cfg.xml");
 
             case BOX:
-                return new Categorizer("omr-box-cfg.xml");
+                return new CategorizerImpl("box-cfg.xml");
 
             case CIRCLE:
-                return new Categorizer("omr-circle-cfg.xml");
+                return new CategorizerImpl("circle-cfg.xml");
 
             case BRACKETS:
-                return new Categorizer("omr-brackets-cfg.xml");
+                return new CategorizerImpl("brackets-cfg.xml");
 
             default:
-                throw new HTException(
-                        HTException.CONFIG_INITILIZATION,
+                throw new HoughTransformException(
+                        HoughTransformException.CONFIG_INITILIZATION,
                         "Can't create categorizer instance for the marker-type "
                                 + marker.name());
         }

@@ -11,9 +11,9 @@ import java.util.Vector;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.dbo.samples.image.houghtransform.api.HTException;
-import de.dbo.samples.image.houghtransform.api.HTCategorizerMode;
-import de.dbo.samples.image.houghtransform.api.HTCategory;
+import de.dbo.samples.image.houghtransform.api.HoughTransformException;
+import de.dbo.samples.image.houghtransform.api.CategorizerMode;
+import de.dbo.samples.image.houghtransform.api.Category;
 import de.dbo.samples.image.houghtransform.api.ImageInfo;
 import de.dbo.samples.image.houghtransform.api.ImageQuality;
 import de.dbo.samples.image.houghtransform.api.Shape;
@@ -30,8 +30,8 @@ import de.dbo.samples.image.houghtransform.core.hough.Util;
  * @author D. Boulanger ITyX GmbH
  *
  */
-public class CategorizerWorker implements HoughTransform {
-    private static final Logger              log           = LoggerFactory.getLogger(CategorizerWorker.class);
+public class CategorizerWorkerImpl implements HoughTransform {
+    private static final Logger              log           = LoggerFactory.getLogger(CategorizerWorkerImpl.class);
 
     protected final int                      imageWidth;
     protected final int                      imageHeight;
@@ -43,7 +43,7 @@ public class CategorizerWorker implements HoughTransform {
     protected final BufferedImage            imageFiltered;
     protected final Hough                    hough;
 
-    private HTCategory                      imageCategory = null;
+    private Category                      imageCategory = null;
 
     /**
      * production constructor for marker-image categorization
@@ -53,17 +53,17 @@ public class CategorizerWorker implements HoughTransform {
      *
      * @throws Exception
      */
-    public CategorizerWorker(final BufferedImage imageOrigin, final CategorizerConfiguration cfg) throws HTException {
+    public CategorizerWorkerImpl(final BufferedImage imageOrigin, final CategorizerConfiguration cfg) throws HoughTransformException {
         this(imageOrigin, (ImageInfo) null, cfg);
     }
 
-    protected CategorizerWorker(final BufferedImage image, final ImageInfo info, final CategorizerConfiguration cfg) throws HTException {
+    protected CategorizerWorkerImpl(final BufferedImage image, final ImageInfo info, final CategorizerConfiguration cfg) throws HoughTransformException {
         this.imageWidth = image.getWidth();
         this.imageHeight = image.getHeight();
 
         if (cfg.getImageErrorMax() < Util.error(this.imageWidth, this.imageHeight)) {
             if (0 == cfg.getWhiteBorder()) {
-                throw new HTException(HTException.IMANGE_ERROR, "Ratio "
+                throw new HoughTransformException(HoughTransformException.IMANGE_ERROR, "Ratio "
                         + this.imageWidth
                         + "x"
                         + this.imageHeight + " of the Marker-image "
@@ -111,7 +111,7 @@ public class CategorizerWorker implements HoughTransform {
         return this.hough.getHoughLines().isShapeWelldefined();
     }
 
-    protected final BufferedImage applyFilters(BufferedImage image, CategorizerConfiguration cfg) throws HTException {
+    protected final BufferedImage applyFilters(BufferedImage image, CategorizerConfiguration cfg) throws HoughTransformException {
         BufferedImageOp[] imageFilters;
         try {
             final List<String> filterClassnames = cfg.getImageFilters();
@@ -125,7 +125,7 @@ public class CategorizerWorker implements HoughTransform {
             }
         }
         catch(Exception e) {
-            throw new HTException(HTException.SYSTEM, "Cannot initilize image filters", e);
+            throw new HoughTransformException(HoughTransformException.SYSTEM, "Cannot initilize image filters", e);
         }
         BufferedImage ret = image;
         for (final BufferedImageOp op : imageFilters) {
@@ -135,33 +135,33 @@ public class CategorizerWorker implements HoughTransform {
     }
 
     @Override
-    public final HTCategory category() {
+    public final Category category() {
         if (null != this.imageCategory) {
             return this.imageCategory;
         }
-        final HTCategory ret;
+        final Category ret;
         final HoughLines lines = this.hough.getHoughLines();
         switch (this.cfg.type()) {
             case SHAPE:
                 if (lines.isShapeFound() && !lines.isContentFound()) {
-                    ret = HTCategory.UNCHECKED;
+                    ret = Category.UNCHECKED;
                 }
                 else if (lines.isContentFound() && lines.isContentFound()) {
-                    ret = HTCategory.CHECKED;
+                    ret = Category.CHECKED;
                 }
                 else {
-                    ret = HTCategory.UNKNOWN;
+                    ret = Category.UNKNOWN;
                 }
                 break;
             case CONTENT:
                 if (!lines.isContentFound()) {
-                    ret = HTCategory.UNCHECKED;
+                    ret = Category.UNCHECKED;
                 }
                 else if (lines.isContentFound()) {
-                    ret = HTCategory.CHECKED;
+                    ret = Category.CHECKED;
                 }
                 else {
-                    ret = HTCategory.UNKNOWN;
+                    ret = Category.UNKNOWN;
                 }
                 break;
             default:
@@ -192,7 +192,7 @@ public class CategorizerWorker implements HoughTransform {
         return ret;
     }
 
-    private final Hough getHoughTransformation() throws HTException {
+    private final Hough getHoughTransformation() throws HoughTransformException {
         final HoughLines houghLines = cfg.shapeLines();
         // create a hough transform object with the right dimensions
         final Hough hough = houghInstance(houghLines);
@@ -203,11 +203,11 @@ public class CategorizerWorker implements HoughTransform {
         return hough;
     }
 
-    private Hough houghInstance(HoughLines lines) throws HTException {
+    private Hough houghInstance(HoughLines lines) throws HoughTransformException {
         final Hough ret;
         final String classname = cfg.getHoughClassname();
         if (null == classname || 0 == classname.trim().length()) {
-            throw new HTException(HTException.CONFIG_CORRECTNESS,
+            throw new HoughTransformException(HoughTransformException.CONFIG_CORRECTNESS,
                     "No class-name for hough found in the transform configuration");
         }
         try {
@@ -218,7 +218,7 @@ public class CategorizerWorker implements HoughTransform {
             ret = (Hough) constructor.newInstance(lineParameters);
         }
         catch(Exception e) {
-            throw new HTException(HTException.SYSTEM,
+            throw new HoughTransformException(HoughTransformException.SYSTEM,
                     "Cannot create instance for " + classname, e);
         }
         lines.setHough(ret);
@@ -235,7 +235,7 @@ public class CategorizerWorker implements HoughTransform {
     }
 
     @Override
-    public BufferedImage getShapeFilteredImage() throws HTException {
+    public BufferedImage getShapeFilteredImage() throws HoughTransformException {
         if (!this.cfg.shapeFilterUsage()) {
             return this.imageFiltered;
         }
@@ -247,7 +247,7 @@ public class CategorizerWorker implements HoughTransform {
     }
 
     @Override
-    public BufferedImage getShapeCroppedImage() throws HTException {
+    public BufferedImage getShapeCroppedImage() throws HoughTransformException {
         if (!this.cfg.shapeFilterUsage()) {
             return this.imageFiltered;
         }
@@ -284,7 +284,7 @@ public class CategorizerWorker implements HoughTransform {
     }
 
     @Override
-    public ShapeFilter getShapeFilter() throws HTException {
+    public ShapeFilter getShapeFilter() throws HoughTransformException {
         if (!this.cfg.shapeFilterUsage()) {
             return null;
         }
@@ -303,7 +303,7 @@ public class CategorizerWorker implements HoughTransform {
     }
 
     @Override
-    public HTCategorizerMode getMode() {
+    public CategorizerMode getMode() {
         return this.cfg.type();
     }
 

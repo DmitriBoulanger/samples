@@ -6,7 +6,7 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.lang.reflect.Constructor;
 
-import de.dbo.samples.image.houghtransform.api.HTException;
+import de.dbo.samples.image.houghtransform.api.HoughTransformException;
 import de.dbo.samples.image.houghtransform.core.CategorizerConfiguration;
 
 /**
@@ -77,7 +77,7 @@ public class HoughAlgorithmCircle extends HoughAbstraction {
     }
 
     @Override
-    public final void generateLines() throws HTException {
+    public final void generateLines() throws HoughTransformException {
         // Only proceed if the hough array is not empty
         if (this.numPoints == 0) {
             return;
@@ -130,11 +130,11 @@ public class HoughAlgorithmCircle extends HoughAbstraction {
     }
 
     private HoughLine houghLineInstance(Rectangle rectangle, int peak)
-            throws HTException {
+            throws HoughTransformException {
         final String classname = cfg.getShapeLineClassname();
         if (null == classname || 0 == classname.trim().length()) {
-            throw new HTException(
-                    HTException.CONFIG_CORRECTNESS,
+            throw new HoughTransformException(
+                    HoughTransformException.CONFIG_CORRECTNESS,
                     "No class-name for shape-line found in the transform configuration");
         }
         try {
@@ -146,7 +146,7 @@ public class HoughAlgorithmCircle extends HoughAbstraction {
             return (HoughLine) constructor.newInstance(params);
         }
         catch(Exception e) {
-            throw new HTException(HTException.SYSTEM,
+            throw new HoughTransformException(HoughTransformException.SYSTEM,
                     "Cannot create instance for " + classname, e);
         }
     }

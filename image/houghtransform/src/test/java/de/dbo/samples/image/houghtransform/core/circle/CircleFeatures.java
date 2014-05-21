@@ -14,7 +14,7 @@ public class CircleFeatures extends GuiShowUp {
     public static void main(String[] args) throws Exception {
         final long start0 = System.currentTimeMillis();
 
-        final String CTX = "omr-circle-cfg.xml";
+        final String CTX = "circle-cfg.xml";
         final ApplicationContext ctx = new ClassPathXmlApplicationContext(CTX);
         showUp(ImageCollections.CIRCLE_FEATURES, CTX, ctx);
 

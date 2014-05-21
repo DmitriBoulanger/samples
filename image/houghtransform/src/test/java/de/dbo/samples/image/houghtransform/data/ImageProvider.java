@@ -11,8 +11,8 @@ import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.dbo.samples.image.houghtransform.api.HTException;
-import de.dbo.samples.image.houghtransform.api.HTCategory;
+import de.dbo.samples.image.houghtransform.api.HoughTransformException;
+import de.dbo.samples.image.houghtransform.api.Category;
 import de.dbo.samples.image.houghtransform.api.ImageInfo;
 import de.dbo.samples.image.houghtransform.api.ImageQuality;
 import de.dbo.samples.image.houghtransform.filter.PointBasedThresholdFilter;
@@ -164,9 +164,9 @@ public final class ImageProvider {
     // TEST -------------------------------------------------------------------
 
     private final void test() {
-        this.imageInfos.add(new ImageInfo("top_left", HTCategory.UNKNOWN));
-        this.imageInfos.add(new ImageInfo("bottom_right", HTCategory.UNKNOWN));
-        this.imageInfos.add(new ImageInfo("left_right", HTCategory.UNCHECKED));
+        this.imageInfos.add(new ImageInfo("top_left", Category.UNKNOWN));
+        this.imageInfos.add(new ImageInfo("bottom_right", Category.UNKNOWN));
+        this.imageInfos.add(new ImageInfo("left_right", Category.UNCHECKED));
     }
 
     // SINATURE ---------------------------------------------------------------
@@ -185,7 +185,7 @@ public final class ImageProvider {
                 final List<String> uncheckedImages = files(data);
                 for (final String name : uncheckedImages) {
                     png(name);
-                    this.imageInfos.add(new ImageInfo(name.replaceAll(PNG, ""), HTCategory.UNCHECKED));
+                    this.imageInfos.add(new ImageInfo(name.replaceAll(PNG, ""), Category.UNCHECKED));
                 }
                 break;
 
@@ -193,7 +193,7 @@ public final class ImageProvider {
                 final List<String> checkedImages = files(data);
                 for (final String name : checkedImages) {
                     png(name);
-                    this.imageInfos.add(new ImageInfo(name.replaceAll(PNG, ""), HTCategory.CHECKED));
+                    this.imageInfos.add(new ImageInfo(name.replaceAll(PNG, ""), Category.CHECKED));
                 }
                 break;
 
@@ -201,45 +201,45 @@ public final class ImageProvider {
                 final List<String> errorImages = files(data);
                 for (final String name : errorImages) {
                     png(name);
-                    this.imageInfos.add(new ImageInfo(name.replaceAll(PNG, ""), HTCategory.UNCHECKED));
+                    this.imageInfos.add(new ImageInfo(name.replaceAll(PNG, ""), Category.UNCHECKED));
                 }
                 break;
 
             case 0:
-                this.imageInfos.add(new ImageInfo("4", HTCategory.CHECKED));
-                this.imageInfos.add(new ImageInfo("46", HTCategory.CHECKED));
-                this.imageInfos.add(new ImageInfo("303", HTCategory.UNCHECKED));
-                this.imageInfos.add(new ImageInfo("307", HTCategory.UNCHECKED));
-                this.imageInfos.add(new ImageInfo("314", HTCategory.UNCHECKED));
-                this.imageInfos.add(new ImageInfo("317", HTCategory.UNCHECKED));
-                this.imageInfos.add(new ImageInfo("319", HTCategory.UNCHECKED));
-                this.imageInfos.add(new ImageInfo("68", HTCategory.CHECKED));
-                this.imageInfos.add(new ImageInfo("69", HTCategory.CHECKED));
+                this.imageInfos.add(new ImageInfo("4", Category.CHECKED));
+                this.imageInfos.add(new ImageInfo("46", Category.CHECKED));
+                this.imageInfos.add(new ImageInfo("303", Category.UNCHECKED));
+                this.imageInfos.add(new ImageInfo("307", Category.UNCHECKED));
+                this.imageInfos.add(new ImageInfo("314", Category.UNCHECKED));
+                this.imageInfos.add(new ImageInfo("317", Category.UNCHECKED));
+                this.imageInfos.add(new ImageInfo("319", Category.UNCHECKED));
+                this.imageInfos.add(new ImageInfo("68", Category.CHECKED));
+                this.imageInfos.add(new ImageInfo("69", Category.CHECKED));
                 break;
 
             case 1:
-                this.imageInfos.add(new ImageInfo("319", HTCategory.UNCHECKED));
-                this.imageInfos.add(new ImageInfo("331", HTCategory.UNCHECKED));
-                this.imageInfos.add(new ImageInfo("8", HTCategory.CHECKED));
-                this.imageInfos.add(new ImageInfo("91", HTCategory.CHECKED));
+                this.imageInfos.add(new ImageInfo("319", Category.UNCHECKED));
+                this.imageInfos.add(new ImageInfo("331", Category.UNCHECKED));
+                this.imageInfos.add(new ImageInfo("8", Category.CHECKED));
+                this.imageInfos.add(new ImageInfo("91", Category.CHECKED));
                 break;
 
             case 2:
-                this.imageInfos.add(new ImageInfo("cross", HTCategory.UNCHECKED));
-                this.imageInfos.add(new ImageInfo("normal", HTCategory.CHECKED));
-                this.imageInfos.add(new ImageInfo("empty", HTCategory.UNCHECKED));
-                this.imageInfos.add(new ImageInfo("left", HTCategory.CHECKED));
-                this.imageInfos.add(new ImageInfo("weak", HTCategory.CHECKED));
-                this.imageInfos.add(new ImageInfo("bad", HTCategory.UNCHECKED));
-                this.imageInfos.add(new ImageInfo("bad2", HTCategory.UNCHECKED));
+                this.imageInfos.add(new ImageInfo("cross", Category.UNCHECKED));
+                this.imageInfos.add(new ImageInfo("normal", Category.CHECKED));
+                this.imageInfos.add(new ImageInfo("empty", Category.UNCHECKED));
+                this.imageInfos.add(new ImageInfo("left", Category.CHECKED));
+                this.imageInfos.add(new ImageInfo("weak", Category.CHECKED));
+                this.imageInfos.add(new ImageInfo("bad", Category.UNCHECKED));
+                this.imageInfos.add(new ImageInfo("bad2", Category.UNCHECKED));
                 break;
 
             case 99:
-                this.imageInfos.add(new ImageInfo("306", HTCategory.UNCHECKED));
-                this.imageInfos.add(new ImageInfo("303", HTCategory.UNCHECKED));
-                this.imageInfos.add(new ImageInfo("317", HTCategory.UNCHECKED));
-                this.imageInfos.add(new ImageInfo("319", HTCategory.UNCHECKED));
-                this.imageInfos.add(new ImageInfo("8", HTCategory.CHECKED));
+                this.imageInfos.add(new ImageInfo("306", Category.UNCHECKED));
+                this.imageInfos.add(new ImageInfo("303", Category.UNCHECKED));
+                this.imageInfos.add(new ImageInfo("317", Category.UNCHECKED));
+                this.imageInfos.add(new ImageInfo("319", Category.UNCHECKED));
+                this.imageInfos.add(new ImageInfo("8", Category.CHECKED));
                 break;
         }
 
@@ -251,25 +251,25 @@ public final class ImageProvider {
         switch (collection) {
             case 0:
 
-                this.imageInfos.add(new ImageInfo("kross", HTCategory.UNKNOWN));
-                this.imageInfos.add(new ImageInfo("kross_01", HTCategory.UNKNOWN));
-                this.imageInfos.add(new ImageInfo("kross_10", HTCategory.UNKNOWN));
-                this.imageInfos.add(new ImageInfo("top_left", HTCategory.UNKNOWN));
-                this.imageInfos.add(new ImageInfo("bottom_right", HTCategory.UNKNOWN));
-                this.imageInfos.add(new ImageInfo("top_bottom", HTCategory.UNKNOWN));
-                this.imageInfos.add(new ImageInfo("left_right", HTCategory.UNKNOWN));
-                this.imageInfos.add(new ImageInfo("circle", HTCategory.UNKNOWN, null, false, null, false/* no JUnit-test */));
+                this.imageInfos.add(new ImageInfo("kross", Category.UNKNOWN));
+                this.imageInfos.add(new ImageInfo("kross_01", Category.UNKNOWN));
+                this.imageInfos.add(new ImageInfo("kross_10", Category.UNKNOWN));
+                this.imageInfos.add(new ImageInfo("top_left", Category.UNKNOWN));
+                this.imageInfos.add(new ImageInfo("bottom_right", Category.UNKNOWN));
+                this.imageInfos.add(new ImageInfo("top_bottom", Category.UNKNOWN));
+                this.imageInfos.add(new ImageInfo("left_right", Category.UNKNOWN));
+                this.imageInfos.add(new ImageInfo("circle", Category.UNKNOWN, null, false, null, false/* no JUnit-test */));
 
                 break;
 
             case 1:
 
-                this.imageInfos.add(new ImageInfo("box", HTCategory.UNCHECKED));
-                this.imageInfos.add(new ImageInfo("box_small_bad_postion", HTCategory.UNKNOWN));
-                this.imageInfos.add(new ImageInfo("box_kross", HTCategory.CHECKED));
-                this.imageInfos.add(new ImageInfo("empty", HTCategory.UNKNOWN));
+                this.imageInfos.add(new ImageInfo("box", Category.UNCHECKED));
+                this.imageInfos.add(new ImageInfo("box_small_bad_postion", Category.UNKNOWN));
+                this.imageInfos.add(new ImageInfo("box_kross", Category.CHECKED));
+                this.imageInfos.add(new ImageInfo("empty", Category.UNKNOWN));
 
-                this.imageInfos.add(new ImageInfo("empty_black", HTCategory.UNKNOWN, null, false, null, false/* no JUnit-test */));
+                this.imageInfos.add(new ImageInfo("empty_black", Category.UNKNOWN, null, false, null, false/* no JUnit-test */));
 
                 break;
 
@@ -278,62 +278,62 @@ public final class ImageProvider {
     }
 
     private final void box_features() {
-        this.imageInfos.add(new ImageInfo("box", HTCategory.UNCHECKED));
-        this.imageInfos.add(new ImageInfo("box_done", HTCategory.CHECKED));
-        this.imageInfos.add(new ImageInfo("box_done2", HTCategory.CHECKED));
-        this.imageInfos.add(new ImageInfo("box_done3", HTCategory.CHECKED));
-        this.imageInfos.add(new ImageInfo("box_ball", HTCategory.CHECKED));
-        this.imageInfos.add(new ImageInfo("box_circle", HTCategory.CHECKED));
-        this.imageInfos.add(new ImageInfo("empty", HTCategory.UNKNOWN));
-        this.imageInfos.add(new ImageInfo("box_kross", HTCategory.CHECKED));
+        this.imageInfos.add(new ImageInfo("box", Category.UNCHECKED));
+        this.imageInfos.add(new ImageInfo("box_done", Category.CHECKED));
+        this.imageInfos.add(new ImageInfo("box_done2", Category.CHECKED));
+        this.imageInfos.add(new ImageInfo("box_done3", Category.CHECKED));
+        this.imageInfos.add(new ImageInfo("box_ball", Category.CHECKED));
+        this.imageInfos.add(new ImageInfo("box_circle", Category.CHECKED));
+        this.imageInfos.add(new ImageInfo("empty", Category.UNKNOWN));
+        this.imageInfos.add(new ImageInfo("box_kross", Category.CHECKED));
     }
 
     private final void box_samplesnormal(final int collection) {
         switch (collection) {
             case 0:
-                this.imageInfos.add(new ImageInfo("s00", HTCategory.UNCHECKED));
-                this.imageInfos.add(new ImageInfo("s01", HTCategory.CHECKED));
-                this.imageInfos.add(new ImageInfo("s02", HTCategory.UNCHECKED));
-                this.imageInfos.add(new ImageInfo("s03", HTCategory.CHECKED));
-                this.imageInfos.add(new ImageInfo("s04", HTCategory.UNCHECKED));
-                this.imageInfos.add(new ImageInfo("s05", HTCategory.CHECKED));
-                this.imageInfos.add(new ImageInfo("s06", HTCategory.UNCHECKED));
-                this.imageInfos.add(new ImageInfo("s07", HTCategory.CHECKED));
-                this.imageInfos.add(new ImageInfo("s08", HTCategory.CHECKED));
-                this.imageInfos.add(new ImageInfo("s09", HTCategory.UNCHECKED));
+                this.imageInfos.add(new ImageInfo("s00", Category.UNCHECKED));
+                this.imageInfos.add(new ImageInfo("s01", Category.CHECKED));
+                this.imageInfos.add(new ImageInfo("s02", Category.UNCHECKED));
+                this.imageInfos.add(new ImageInfo("s03", Category.CHECKED));
+                this.imageInfos.add(new ImageInfo("s04", Category.UNCHECKED));
+                this.imageInfos.add(new ImageInfo("s05", Category.CHECKED));
+                this.imageInfos.add(new ImageInfo("s06", Category.UNCHECKED));
+                this.imageInfos.add(new ImageInfo("s07", Category.CHECKED));
+                this.imageInfos.add(new ImageInfo("s08", Category.CHECKED));
+                this.imageInfos.add(new ImageInfo("s09", Category.UNCHECKED));
                 break;
             case 1:
-                this.imageInfos.add(new ImageInfo("s00", HTCategory.UNCHECKED));
-                this.imageInfos.add(new ImageInfo("s01", HTCategory.UNCHECKED));
-                this.imageInfos.add(new ImageInfo("s02", HTCategory.UNCHECKED));
-                this.imageInfos.add(new ImageInfo("s03", HTCategory.CHECKED));
-                this.imageInfos.add(new ImageInfo("s04", HTCategory.CHECKED));
-                this.imageInfos.add(new ImageInfo("s05", HTCategory.CHECKED));
-                this.imageInfos.add(new ImageInfo("s06", HTCategory.UNCHECKED));
-                this.imageInfos.add(new ImageInfo("s07", HTCategory.UNCHECKED));
-                this.imageInfos.add(new ImageInfo("s08", HTCategory.UNCHECKED));
-                this.imageInfos.add(new ImageInfo("s09", HTCategory.CHECKED));
+                this.imageInfos.add(new ImageInfo("s00", Category.UNCHECKED));
+                this.imageInfos.add(new ImageInfo("s01", Category.UNCHECKED));
+                this.imageInfos.add(new ImageInfo("s02", Category.UNCHECKED));
+                this.imageInfos.add(new ImageInfo("s03", Category.CHECKED));
+                this.imageInfos.add(new ImageInfo("s04", Category.CHECKED));
+                this.imageInfos.add(new ImageInfo("s05", Category.CHECKED));
+                this.imageInfos.add(new ImageInfo("s06", Category.UNCHECKED));
+                this.imageInfos.add(new ImageInfo("s07", Category.UNCHECKED));
+                this.imageInfos.add(new ImageInfo("s08", Category.UNCHECKED));
+                this.imageInfos.add(new ImageInfo("s09", Category.CHECKED));
                 break;
 
             case 2:
-                this.imageInfos.add(new ImageInfo("s00", HTCategory.CHECKED));
-                this.imageInfos.add(new ImageInfo("s01", HTCategory.CHECKED));
-                this.imageInfos.add(new ImageInfo("s02", HTCategory.CHECKED));
-                this.imageInfos.add(new ImageInfo("s03", HTCategory.CHECKED, "Very poor image. If transforamtion is not precise, classification fails"));
-                this.imageInfos.add(new ImageInfo("s04", HTCategory.CHECKED));
-                this.imageInfos.add(new ImageInfo("s05", HTCategory.CHECKED));
-                this.imageInfos.add(new ImageInfo("s06", HTCategory.UNCHECKED));
-                this.imageInfos.add(new ImageInfo("s07", HTCategory.UNCHECKED));
-                this.imageInfos.add(new ImageInfo("s08", HTCategory.UNCHECKED));
-                this.imageInfos.add(new ImageInfo("s09", HTCategory.UNCHECKED));
+                this.imageInfos.add(new ImageInfo("s00", Category.CHECKED));
+                this.imageInfos.add(new ImageInfo("s01", Category.CHECKED));
+                this.imageInfos.add(new ImageInfo("s02", Category.CHECKED));
+                this.imageInfos.add(new ImageInfo("s03", Category.CHECKED, "Very poor image. If transforamtion is not precise, classification fails"));
+                this.imageInfos.add(new ImageInfo("s04", Category.CHECKED));
+                this.imageInfos.add(new ImageInfo("s05", Category.CHECKED));
+                this.imageInfos.add(new ImageInfo("s06", Category.UNCHECKED));
+                this.imageInfos.add(new ImageInfo("s07", Category.UNCHECKED));
+                this.imageInfos.add(new ImageInfo("s08", Category.UNCHECKED));
+                this.imageInfos.add(new ImageInfo("s09", Category.UNCHECKED));
                 break;
 
             case 3:
-                this.imageInfos.add(new ImageInfo("s00", HTCategory.CHECKED, true /*needs binary filter*/));
-                this.imageInfos.add(new ImageInfo("s01", HTCategory.CHECKED, true /*needs binary filter*/));
-                this.imageInfos.add(new ImageInfo("s02", HTCategory.UNCHECKED, true /*needs binary filter*/));
-                this.imageInfos.add(new ImageInfo("s03", HTCategory.CHECKED, true /*needs binary filter*/));
-                this.imageInfos.add(new ImageInfo("s04", HTCategory.UNCHECKED, true /*needs binary filter*/));
+                this.imageInfos.add(new ImageInfo("s00", Category.CHECKED, true /*needs binary filter*/));
+                this.imageInfos.add(new ImageInfo("s01", Category.CHECKED, true /*needs binary filter*/));
+                this.imageInfos.add(new ImageInfo("s02", Category.UNCHECKED, true /*needs binary filter*/));
+                this.imageInfos.add(new ImageInfo("s03", Category.CHECKED, true /*needs binary filter*/));
+                this.imageInfos.add(new ImageInfo("s04", Category.UNCHECKED, true /*needs binary filter*/));
                 break;
         }
     }
@@ -342,86 +342,86 @@ public final class ImageProvider {
         switch (collection) {
 
             case 0:
-                this.imageInfos.add(new ImageInfo("s00", HTCategory.UNCHECKED,
+                this.imageInfos.add(new ImageInfo("s00", Category.UNCHECKED,
                         true, ImageQuality.LOW));
-                this.imageInfos.add(new ImageInfo("s01", HTCategory.CHECKED,
+                this.imageInfos.add(new ImageInfo("s01", Category.CHECKED,
                         true, ImageQuality.LOW));
-                this.imageInfos.add(new ImageInfo("s02", HTCategory.CHECKED,
+                this.imageInfos.add(new ImageInfo("s02", Category.CHECKED,
                         true, ImageQuality.LOW));
-                this.imageInfos.add(new ImageInfo("s03", HTCategory.CHECKED,
+                this.imageInfos.add(new ImageInfo("s03", Category.CHECKED,
                         true, ImageQuality.LOW));
-                this.imageInfos.add(new ImageInfo("s04", HTCategory.CHECKED,
+                this.imageInfos.add(new ImageInfo("s04", Category.CHECKED,
                         true, ImageQuality.LOW));
-                this.imageInfos.add(new ImageInfo("s05", HTCategory.UNCHECKED,
+                this.imageInfos.add(new ImageInfo("s05", Category.UNCHECKED,
                         true, ImageQuality.LOW));
-                this.imageInfos.add(new ImageInfo("s06", HTCategory.CHECKED,
+                this.imageInfos.add(new ImageInfo("s06", Category.CHECKED,
                         true, ImageQuality.LOW));
-                this.imageInfos.add(new ImageInfo("s07", HTCategory.UNCHECKED,
+                this.imageInfos.add(new ImageInfo("s07", Category.UNCHECKED,
                         true, ImageQuality.LOW));
-                this.imageInfos.add(new ImageInfo("s08", HTCategory.UNCHECKED,
+                this.imageInfos.add(new ImageInfo("s08", Category.UNCHECKED,
                         true, ImageQuality.LOW));
-                this.imageInfos.add(new ImageInfo("s09", HTCategory.CHECKED,
+                this.imageInfos.add(new ImageInfo("s09", Category.CHECKED,
                         true, ImageQuality.LOW));
                 break;
         }
     }
 
     private final void box_samplesnormalnegative() {
-        this.imageInfos.add(new ImageInfo("s00", HTCategory.UNCHECKED));
+        this.imageInfos.add(new ImageInfo("s00", Category.UNCHECKED));
 
-        this.imageInfos.add(new ImageInfo("empty", HTCategory.UNKNOWN));
-        this.imageInfos.add(new ImageInfo("empty", HTCategory.UNKNOWN));
-        this.imageInfos.add(new ImageInfo("empty", HTCategory.UNKNOWN));
-        this.imageInfos.add(new ImageInfo("empty", HTCategory.UNKNOWN));
-        this.imageInfos.add(new ImageInfo("empty", HTCategory.UNKNOWN));
-        this.imageInfos.add(new ImageInfo("empty", HTCategory.UNKNOWN));
-        this.imageInfos.add(new ImageInfo("empty", HTCategory.UNKNOWN));
-        this.imageInfos.add(new ImageInfo("empty", HTCategory.UNKNOWN));
-        this.imageInfos.add(new ImageInfo("empty", HTCategory.UNKNOWN));
+        this.imageInfos.add(new ImageInfo("empty", Category.UNKNOWN));
+        this.imageInfos.add(new ImageInfo("empty", Category.UNKNOWN));
+        this.imageInfos.add(new ImageInfo("empty", Category.UNKNOWN));
+        this.imageInfos.add(new ImageInfo("empty", Category.UNKNOWN));
+        this.imageInfos.add(new ImageInfo("empty", Category.UNKNOWN));
+        this.imageInfos.add(new ImageInfo("empty", Category.UNKNOWN));
+        this.imageInfos.add(new ImageInfo("empty", Category.UNKNOWN));
+        this.imageInfos.add(new ImageInfo("empty", Category.UNKNOWN));
+        this.imageInfos.add(new ImageInfo("empty", Category.UNKNOWN));
     }
 
     // BRACKETS --------------------------------------------------------
 
     private final void brackets_test() {
-        this.imageInfos.add(new ImageInfo("kross", HTCategory.UNKNOWN));
-        this.imageInfos.add(new ImageInfo("kross_01", HTCategory.UNKNOWN));
-        this.imageInfos.add(new ImageInfo("kross_10", HTCategory.UNKNOWN));
-        this.imageInfos.add(new ImageInfo("top_left", HTCategory.UNKNOWN));
+        this.imageInfos.add(new ImageInfo("kross", Category.UNKNOWN));
+        this.imageInfos.add(new ImageInfo("kross_01", Category.UNKNOWN));
+        this.imageInfos.add(new ImageInfo("kross_10", Category.UNKNOWN));
+        this.imageInfos.add(new ImageInfo("top_left", Category.UNKNOWN));
         this.imageInfos.add(new ImageInfo("bottom_right",
-                HTCategory.UNKNOWN));
+                Category.UNKNOWN));
         this.imageInfos
-                .add(new ImageInfo("top_bottom", HTCategory.UNKNOWN));
+                .add(new ImageInfo("top_bottom", Category.UNKNOWN));
         this.imageInfos.add(new ImageInfo("left_right",
-                HTCategory.UNCHECKED));
+                Category.UNCHECKED));
         this.imageInfos
-                .add(new ImageInfo("brackets", HTCategory.UNCHECKED));
+                .add(new ImageInfo("brackets", Category.UNCHECKED));
         this.imageInfos.add(new ImageInfo("brackets_kross",
-                HTCategory.CHECKED));
+                Category.CHECKED));
     }
 
     private final void brackets_samplesnormal(final int collection) {
         switch (collection) {
             case 0:
-                this.imageInfos.add(new ImageInfo("s00", HTCategory.UNCHECKED,
+                this.imageInfos.add(new ImageInfo("s00", Category.UNCHECKED,
                         true, ImageQuality.LOW));
-                this.imageInfos.add(new ImageInfo("s01", HTCategory.UNCHECKED,
+                this.imageInfos.add(new ImageInfo("s01", Category.UNCHECKED,
                         true, ImageQuality.LOW));
-                this.imageInfos.add(new ImageInfo("s02", HTCategory.CHECKED,
+                this.imageInfos.add(new ImageInfo("s02", Category.CHECKED,
                         true, ImageQuality.LOW));
-                this.imageInfos.add(new ImageInfo("s03", HTCategory.CHECKED,
+                this.imageInfos.add(new ImageInfo("s03", Category.CHECKED,
                         true, ImageQuality.LOW));
-                this.imageInfos.add(new ImageInfo("s05", HTCategory.CHECKED,
+                this.imageInfos.add(new ImageInfo("s05", Category.CHECKED,
                         true, ImageQuality.LOW));
-                this.imageInfos.add(new ImageInfo("s06", HTCategory.CHECKED,
+                this.imageInfos.add(new ImageInfo("s06", Category.CHECKED,
                         true, ImageQuality.LOW));
-                this.imageInfos.add(new ImageInfo("s04", HTCategory.UNKNOWN,
+                this.imageInfos.add(new ImageInfo("s04", Category.UNKNOWN,
                         true, ImageQuality.LOW));
 
-                this.imageInfos.add(new ImageInfo("s07", HTCategory.UNKNOWN,
+                this.imageInfos.add(new ImageInfo("s07", Category.UNKNOWN,
                         true, ImageQuality.LOW, false/* no JUnit-test */));
-                this.imageInfos.add(new ImageInfo("s08", HTCategory.UNKNOWN,
+                this.imageInfos.add(new ImageInfo("s08", Category.UNKNOWN,
                         true, ImageQuality.LOW, false/* no JUnit-test */));
-                this.imageInfos.add(new ImageInfo("s09", HTCategory.UNKNOWN,
+                this.imageInfos.add(new ImageInfo("s09", Category.UNKNOWN,
                         true, ImageQuality.LOW, false/* no JUnit-test */));
                 break;
         }
@@ -432,41 +432,41 @@ public final class ImageProvider {
     private final void circle_test(int collection) {
         switch (collection) {
             case 0:
-                this.imageInfos.add(new ImageInfo("circle", HTCategory.UNCHECKED));
+                this.imageInfos.add(new ImageInfo("circle", Category.UNCHECKED));
                 this.imageInfos.add(new ImageInfo("circle_bad",
-                        HTCategory.UNCHECKED));
+                        Category.UNCHECKED));
                 this.imageInfos
-                        .add(new ImageInfo("circle_bad2", HTCategory.CHECKED));
+                        .add(new ImageInfo("circle_bad2", Category.CHECKED));
                 this.imageInfos
-                        .add(new ImageInfo("circle_done", HTCategory.CHECKED));
+                        .add(new ImageInfo("circle_done", Category.CHECKED));
                 this.imageInfos.add(new ImageInfo("circle_done2",
-                        HTCategory.CHECKED));
+                        Category.CHECKED));
                 this.imageInfos.add(new ImageInfo("circle_kross",
-                        HTCategory.CHECKED));
+                        Category.CHECKED));
                 this.imageInfos.add(new ImageInfo("circle_check",
-                        HTCategory.CHECKED));
+                        Category.CHECKED));
                 this.imageInfos.add(new ImageInfo("box",
-                        HTCategory.UNKNOWN));
+                        Category.UNKNOWN));
                 this.imageInfos.add(new ImageInfo("circle_kross_big",
-                        HTCategory.CHECKED));
+                        Category.CHECKED));
                 break;
 
             case 1:
-                this.imageInfos.add(new ImageInfo("kross", HTCategory.UNKNOWN));
-                this.imageInfos.add(new ImageInfo("kross_01", HTCategory.UNKNOWN));
-                this.imageInfos.add(new ImageInfo("kross_10", HTCategory.UNKNOWN));
-                this.imageInfos.add(new ImageInfo("top_left", HTCategory.UNKNOWN));
+                this.imageInfos.add(new ImageInfo("kross", Category.UNKNOWN));
+                this.imageInfos.add(new ImageInfo("kross_01", Category.UNKNOWN));
+                this.imageInfos.add(new ImageInfo("kross_10", Category.UNKNOWN));
+                this.imageInfos.add(new ImageInfo("top_left", Category.UNKNOWN));
                 this.imageInfos.add(new ImageInfo("bottom_right",
-                        HTCategory.UNKNOWN));
+                        Category.UNKNOWN));
                 this.imageInfos
-                        .add(new ImageInfo("top_bottom", HTCategory.UNKNOWN));
+                        .add(new ImageInfo("top_bottom", Category.UNKNOWN));
                 this.imageInfos
-                        .add(new ImageInfo("left_right", HTCategory.UNKNOWN));
+                        .add(new ImageInfo("left_right", Category.UNKNOWN));
                 this.imageInfos
-                        .add(new ImageInfo("circle", HTCategory.UNKNOWN, null, false, null
+                        .add(new ImageInfo("circle", Category.UNKNOWN, null, false, null
                                 , false/* no JUnit-test */));
                 this.imageInfos
-                        .add(new ImageInfo("empty_black", HTCategory.UNKNOWN, null, false, null
+                        .add(new ImageInfo("empty_black", Category.UNKNOWN, null, false, null
                                 , false/* no JUnit-test ! */));
 
                 break;
@@ -488,32 +488,32 @@ public final class ImageProvider {
     }
 
     private final void circle_features() {
-        this.imageInfos.add(new ImageInfo("circle", HTCategory.UNCHECKED));
-        this.imageInfos.add(new ImageInfo("circle_done", HTCategory.CHECKED));
-        this.imageInfos.add(new ImageInfo("circle_done2", HTCategory.CHECKED));
-        this.imageInfos.add(new ImageInfo("circle_done3", HTCategory.CHECKED));
-        this.imageInfos.add(new ImageInfo("circle_ball", HTCategory.CHECKED));
-        this.imageInfos.add(new ImageInfo("circle_circle", HTCategory.CHECKED));
-        this.imageInfos.add(new ImageInfo("circle_dirty", HTCategory.UNCHECKED));
-        this.imageInfos.add(new ImageInfo("circle_kross", HTCategory.CHECKED));
+        this.imageInfos.add(new ImageInfo("circle", Category.UNCHECKED));
+        this.imageInfos.add(new ImageInfo("circle_done", Category.CHECKED));
+        this.imageInfos.add(new ImageInfo("circle_done2", Category.CHECKED));
+        this.imageInfos.add(new ImageInfo("circle_done3", Category.CHECKED));
+        this.imageInfos.add(new ImageInfo("circle_ball", Category.CHECKED));
+        this.imageInfos.add(new ImageInfo("circle_circle", Category.CHECKED));
+        this.imageInfos.add(new ImageInfo("circle_dirty", Category.UNCHECKED));
+        this.imageInfos.add(new ImageInfo("circle_kross", Category.CHECKED));
         return;
     }
 
     private final void circle_samplesnormal(final int collection) {
         switch (collection) {
             case 0:
-                this.imageInfos.add(new ImageInfo("s00", HTCategory.UNCHECKED));
-                this.imageInfos.add(new ImageInfo("s01", HTCategory.CHECKED));
-                this.imageInfos.add(new ImageInfo("s02", HTCategory.CHECKED));
-                this.imageInfos.add(new ImageInfo("s03", HTCategory.CHECKED));
-                this.imageInfos.add(new ImageInfo("s04", HTCategory.CHECKED));
-                this.imageInfos.add(new ImageInfo("s05", HTCategory.CHECKED));
-                this.imageInfos.add(new ImageInfo("s06", HTCategory.CHECKED));
-                //                this.imageInfos.add(new ImageInfo("s07", HTCategory.UNCHECKED));
+                this.imageInfos.add(new ImageInfo("s00", Category.UNCHECKED));
+                this.imageInfos.add(new ImageInfo("s01", Category.CHECKED));
+                this.imageInfos.add(new ImageInfo("s02", Category.CHECKED));
+                this.imageInfos.add(new ImageInfo("s03", Category.CHECKED));
+                this.imageInfos.add(new ImageInfo("s04", Category.CHECKED));
+                this.imageInfos.add(new ImageInfo("s05", Category.CHECKED));
+                this.imageInfos.add(new ImageInfo("s06", Category.CHECKED));
+                //                this.imageInfos.add(new ImageInfo("s07", Category.UNCHECKED));
 
-                this.imageInfos.add(new ImageInfo("s01", HTCategory.CHECKED));
-                this.imageInfos.add(new ImageInfo("s00", HTCategory.UNCHECKED));
-                this.imageInfos.add(new ImageInfo("s01", HTCategory.CHECKED));
+                this.imageInfos.add(new ImageInfo("s01", Category.CHECKED));
+                this.imageInfos.add(new ImageInfo("s00", Category.UNCHECKED));
+                this.imageInfos.add(new ImageInfo("s01", Category.CHECKED));
                 break;
         }
     }
@@ -522,25 +522,25 @@ public final class ImageProvider {
         switch (collection) {
 
             case 0:
-                this.imageInfos.add(new ImageInfo("s00", HTCategory.CHECKED,
+                this.imageInfos.add(new ImageInfo("s00", Category.CHECKED,
                         true, ImageQuality.LOW));
-                this.imageInfos.add(new ImageInfo("s01", HTCategory.CHECKED,
+                this.imageInfos.add(new ImageInfo("s01", Category.CHECKED,
                         true, ImageQuality.LOW));
-                this.imageInfos.add(new ImageInfo("s01", HTCategory.CHECKED,
+                this.imageInfos.add(new ImageInfo("s01", Category.CHECKED,
                         true, ImageQuality.LOW));
-                this.imageInfos.add(new ImageInfo("s01", HTCategory.CHECKED,
+                this.imageInfos.add(new ImageInfo("s01", Category.CHECKED,
                         true, ImageQuality.LOW));
-                this.imageInfos.add(new ImageInfo("s01", HTCategory.CHECKED,
+                this.imageInfos.add(new ImageInfo("s01", Category.CHECKED,
                         true, ImageQuality.LOW));
-                this.imageInfos.add(new ImageInfo("s01", HTCategory.CHECKED,
+                this.imageInfos.add(new ImageInfo("s01", Category.CHECKED,
                         true, ImageQuality.LOW));
-                this.imageInfos.add(new ImageInfo("s01", HTCategory.CHECKED,
+                this.imageInfos.add(new ImageInfo("s01", Category.CHECKED,
                         true, ImageQuality.LOW));
-                this.imageInfos.add(new ImageInfo("s01", HTCategory.CHECKED,
+                this.imageInfos.add(new ImageInfo("s01", Category.CHECKED,
                         true, ImageQuality.LOW));
-                this.imageInfos.add(new ImageInfo("s01", HTCategory.CHECKED,
+                this.imageInfos.add(new ImageInfo("s01", Category.CHECKED,
                         true, ImageQuality.LOW));
-                this.imageInfos.add(new ImageInfo("s01", HTCategory.CHECKED,
+                this.imageInfos.add(new ImageInfo("s01", Category.CHECKED,
                         true, ImageQuality.LOW));
                 break;
         }
@@ -563,13 +563,13 @@ public final class ImageProvider {
     /**
      * image names with expected categories
      *
-     * @see HTCategory
+     * @see Category
      */
     public Vector<ImageInfo> getImageInfos() {
         return this.imageInfos;
     }
 
-    public final BufferedImage getImageFromResource(final ImageInfo info) throws HTException {
+    public final BufferedImage getImageFromResource(final ImageInfo info) throws HoughTransformException {
         final String imageName = info.name;
         final String filename = imageName + PNG;
         final String resource = RESOURCE_DIR + this.data + filename;
@@ -579,12 +579,12 @@ public final class ImageProvider {
         try {
             is = ClassLoader.getSystemClassLoader().getResourceAsStream(resource);
             if (null == is) {
-                throw new HTException(HTException.SYSTEM, "stream for  resource " + resource + " is null");
+                throw new HoughTransformException(HoughTransformException.SYSTEM, "stream for  resource " + resource + " is null");
             }
             image = javax.imageio.ImageIO.read(is);
         }
         catch(Exception e) {
-            throw new HTException(HTException.SYSTEM, "while reading " + resource, e);
+            throw new HoughTransformException(HoughTransformException.SYSTEM, "while reading " + resource, e);
         }
         finally {
             if (null != is) {
@@ -592,7 +592,7 @@ public final class ImageProvider {
                     is.close();
                 }
                 catch(IOException e) {
-                    throw new HTException(HTException.SYSTEM
+                    throw new HoughTransformException(HoughTransformException.SYSTEM
                             , "while closing " + resource, e);
                 }
             }

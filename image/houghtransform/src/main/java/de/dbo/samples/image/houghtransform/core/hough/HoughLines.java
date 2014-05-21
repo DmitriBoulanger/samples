@@ -1,6 +1,6 @@
 package de.dbo.samples.image.houghtransform.core.hough;
 
-import de.dbo.samples.image.houghtransform.api.HTException;
+import de.dbo.samples.image.houghtransform.api.HoughTransformException;
 import de.dbo.samples.image.houghtransform.api.Shape;
 import de.dbo.samples.image.houghtransform.api.ShapeFilter;
 
@@ -89,7 +89,7 @@ public interface HoughLines {
      * 
      * @return shape
      */
-    public ShapeFilter getShapeFilter() throws HTException;
+    public ShapeFilter getShapeFilter() throws HoughTransformException;
 
     /**
      * shape to draw

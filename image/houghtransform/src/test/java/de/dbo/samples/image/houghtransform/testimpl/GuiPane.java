@@ -1,6 +1,6 @@
 package de.dbo.samples.image.houghtransform.testimpl;
 
-import de.dbo.samples.image.houghtransform.api.HTCategory;
+import de.dbo.samples.image.houghtransform.api.Category;
 import de.dbo.samples.image.houghtransform.api.ImageInfo;
 import de.dbo.samples.image.houghtransform.api.Shape;
 import de.dbo.samples.image.houghtransform.core.hough.Constants;
@@ -21,8 +21,8 @@ final class GuiPane extends JPanel implements Constants {
     private Shape          shape            = null;
     private Vector<String>    text             = null;
     private ImageInfo      imageInfo        = null;
-    private HTCategory       category         = null;
-    private HTCategory       categoryExpected = null;
+    private Category       category         = null;
+    private Category       categoryExpected = null;
 
     GuiPane() {
 
@@ -51,7 +51,7 @@ final class GuiPane extends JPanel implements Constants {
         repaint();
     }
 
-    void mydraw(HTCategory category, ImageInfo info) {
+    void mydraw(Category category, ImageInfo info) {
         this.imageInfo = info;
         this.category = category;
         this.categoryExpected = info.category;
@@ -104,7 +104,7 @@ final class GuiPane extends JPanel implements Constants {
         else if (this.category == this.categoryExpected) {
             setForeground(GREEN);
         }
-        else if (HTCategory.UNKNOWN == this.categoryExpected) {
+        else if (Category.UNKNOWN == this.categoryExpected) {
             setForeground(GRAY);
         }
         else {

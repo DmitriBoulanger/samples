@@ -14,7 +14,7 @@ public final class SignatureTest extends GuiShowUp {
     public static void main(String[] args) throws Exception {
         final long start0 = System.currentTimeMillis();
 
-        final String CTX = "omr-signature-cfg.xml";
+        final String CTX = "signature-cfg.xml";
         final ApplicationContext ctx = new ClassPathXmlApplicationContext(CTX);
         showUpSignature(ImageCollections.SIGNATURE_PROBLEM, CTX, ctx);
 

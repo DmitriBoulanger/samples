@@ -9,8 +9,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import de.dbo.samples.image.houghtransform.HoughCategorizerFactory;
-import de.dbo.samples.image.houghtransform.api.HTCategorizer;
-import de.dbo.samples.image.houghtransform.api.HTCategory;
+import de.dbo.samples.image.houghtransform.api.Categorizer;
+import de.dbo.samples.image.houghtransform.api.Category;
 import de.dbo.samples.image.houghtransform.api.ImageInfo;
 import de.dbo.samples.image.houghtransform.api.Marker;
 import de.dbo.samples.image.houghtransform.data.ImageProvider;
@@ -39,9 +39,9 @@ public abstract class JUnit {
             log.debug(messageHead + " ... ");
             final BufferedImage image = imageProvider.getImageFromResource(info);
             final long start = System.currentTimeMillis();
-            final HTCategorizer categorizer = HoughCategorizerFactory.newInstance(marker);
-            final HTCategory categoryExpected = info.category;
-            final HTCategory category = categorizer.getCategory(image);
+            final Categorizer categorizer = HoughCategorizerFactory.newInstance(marker);
+            final Category categoryExpected = info.category;
+            final Category category = categorizer.getCategory(image);
             final long elapsed = System.currentTimeMillis() - start;
             elapsedAccumulazed += elapsed;
             final Boolean ok = new Boolean(category == categoryExpected);
@@ -76,9 +76,9 @@ public abstract class JUnit {
             log.debug(messageHead + " ... ");
             final BufferedImage image = imageProvider.getImageFromResource(info);
             final long start = System.currentTimeMillis();
-            final HTCategorizer categorizer = HoughCategorizerFactory.newInstance(marker);
-            final HTCategory categoryExpected = info.category;
-            final HTCategory category = categorizer.getCategory(image);
+            final Categorizer categorizer = HoughCategorizerFactory.newInstance(marker);
+            final Category categoryExpected = info.category;
+            final Category category = categorizer.getCategory(image);
             final long elapsed = System.currentTimeMillis() - start;
             elapsedAccumulazed += elapsed;
             final Boolean ok = new Boolean(category == categoryExpected);
