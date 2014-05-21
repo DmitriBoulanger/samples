@@ -33,11 +33,8 @@ public final class SignatureHoughLine extends HoughLineAbstraction {
             return SignatureHoughLineType.UNKNOWN;
         }
 
-        if (isCheck01()) {
-            return SignatureHoughLineType.CHECK_01;
-        }
-        else if (isCheck10()) {
-            return SignatureHoughLineType.CHECK_10;
+        if (isCheck()) {
+            return SignatureHoughLineType.CHECK;
         }
         else {
             return SignatureHoughLineType.UNKNOWN;
@@ -56,8 +53,7 @@ public final class SignatureHoughLine extends HoughLineAbstraction {
     @Override
     public boolean isContent() {
         switch (type()) {
-            case CHECK_01:
-            case CHECK_10:
+            case CHECK:
                 return true;
 
             default:
@@ -89,29 +85,9 @@ public final class SignatureHoughLine extends HoughLineAbstraction {
     private final double peakRatio() {
         return (((double) hough.peakMax()) / ((double) peak));
     }
-
-    private boolean isCheck01() {
-        if (isPeakRationHigh())
-            return false;
-
-        return equalThetaContent(this.theta, PI4)
-        //                 && equalThetaContent(this.theta, PI4)
-        //                                && this.peak > this.hough.getContentPeakMin()
-        //                        && (ONE - this.hough.cfg.getContentLineCenterTolerance()) * hough.h < this.r
-        //                        && this.r < (ONE + this.hough.cfg.getContentLineCenterTolerance()) * hough.h
-        ;
-    }
-
-    private boolean isCheck10() {
-        if (isPeakRationHigh())
-            return false;
-
-        return equalThetaContent(this.theta, PI4x3)
-        //                                && equalThetaContent(this.theta, PI4x3)
-        //                                && this.peak > this.hough.getContentPeakMin()
-        //                        && (ONE - this.hough.cfg.getContentLineCenterTolerance()) * hough.h < this.r
-        //                        && this.r < (ONE + this.hough.cfg.getContentLineCenterTolerance()) * hough.h
-        ;
+    
+    private boolean isCheck() {
+        return !isPeakRationHigh();
     }
 
     /**
@@ -131,6 +107,7 @@ public final class SignatureHoughLine extends HoughLineAbstraction {
         sb.append("\tmaxPeak=" + hough.peakMax());
         sb.append("\tratioPeak=" + new DecimalFormat("00.00").format(peakRatio()));
         sb.append("\tposition=" + position());
+        sb.append("\ttheta=" + new DecimalFormat("00.00").format(theta));
         sb.append("\ttype=" + type().name().toUpperCase());
         return sb.toString();
     }

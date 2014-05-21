@@ -11,6 +11,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import de.dbo.samples.image.houghtransform.api.Categorizer;
+import de.dbo.samples.image.houghtransform.api.CategorizerConfiguration;
 import de.dbo.samples.image.houghtransform.api.CategorizerWorker;
 import de.dbo.samples.image.houghtransform.api.Category;
 import de.dbo.samples.image.houghtransform.api.HoughTransformException;

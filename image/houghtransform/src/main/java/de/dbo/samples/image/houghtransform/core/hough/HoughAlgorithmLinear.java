@@ -4,8 +4,8 @@ import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.lang.reflect.Constructor;
 
+import de.dbo.samples.image.houghtransform.api.CategorizerConfiguration;
 import de.dbo.samples.image.houghtransform.api.HoughTransformException;
-import de.dbo.samples.image.houghtransform.core.CategorizerConfiguration;
 
 /*
 
@@ -178,7 +178,7 @@ public final class HoughAlgorithmLinear extends HoughAbstraction {
      */
     @Override
     public final BufferedImage getHoughArrayImage() {
-        final int max = getHighestValue().value;
+        final int max = getMaxHoughValue().value;
         final BufferedImage image = new BufferedImage(this.cfg.getMaxTheta(), this.doubleHeight, BufferedImage.TYPE_INT_ARGB);
         for (int t = 0; t < this.cfg.getMaxTheta(); t++) {
             for (int r = 0; r < this.doubleHeight; r++) {

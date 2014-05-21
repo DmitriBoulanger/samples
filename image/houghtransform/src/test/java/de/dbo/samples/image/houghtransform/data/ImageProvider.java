@@ -240,6 +240,10 @@ public final class ImageProvider {
                 this.imageInfos.add(new ImageInfo("317", Category.UNCHECKED));
                 this.imageInfos.add(new ImageInfo("319", Category.UNCHECKED));
                 this.imageInfos.add(new ImageInfo("8", Category.CHECKED));
+                this.imageInfos.add(new ImageInfo("009", Category.CHECKED));
+                this.imageInfos.add(new ImageInfo("029", Category.CHECKED));
+                this.imageInfos.add(new ImageInfo("035", Category.CHECKED));
+                this.imageInfos.add(new ImageInfo("095", Category.CHECKED));
                 break;
         }
 

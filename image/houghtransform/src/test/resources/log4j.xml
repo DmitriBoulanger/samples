@@ -25,7 +25,7 @@
 		</layout>
 	</appender>
 	
-	<logger name="de.ityx">
+	<logger name="de.dbo">
 		<level value="info" />
 		<appender-ref ref="CONSOLE" />
 	</logger>

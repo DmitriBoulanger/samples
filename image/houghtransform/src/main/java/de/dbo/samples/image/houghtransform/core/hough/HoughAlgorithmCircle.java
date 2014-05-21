@@ -6,8 +6,8 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.lang.reflect.Constructor;
 
+import de.dbo.samples.image.houghtransform.api.CategorizerConfiguration;
 import de.dbo.samples.image.houghtransform.api.HoughTransformException;
-import de.dbo.samples.image.houghtransform.core.CategorizerConfiguration;
 
 /**
  * Hough transform for searching circles
@@ -189,7 +189,7 @@ public class HoughAlgorithmCircle extends HoughAbstraction {
      */
     @Override
     public BufferedImage getHoughArrayImage() {
-        final int max = getHighestValue().value;
+        final int max = getMaxHoughValue().value;
         final BufferedImage image = new BufferedImage(this.getWidth(),
                 this.getHeight(), BufferedImage.TYPE_INT_ARGB);
         for (int t = 0; t < this.getWidth(); t++) {

@@ -3,12 +3,12 @@ package de.dbo.samples.image.houghtransform.testimpl;
 import java.awt.image.BufferedImage;
 import java.util.Vector;
 
+import de.dbo.samples.image.houghtransform.api.CategorizerConfiguration;
 import de.dbo.samples.image.houghtransform.api.HoughTransformException;
 import de.dbo.samples.image.houghtransform.api.Category;
 import de.dbo.samples.image.houghtransform.api.ImageInfo;
 import de.dbo.samples.image.houghtransform.api.ShapeFilter;
 import de.dbo.samples.image.houghtransform.core.CategorizerImpl;
-import de.dbo.samples.image.houghtransform.core.CategorizerConfiguration;
 import de.dbo.samples.image.houghtransform.core.CategorizerWorkerImpl;
 import de.dbo.samples.image.houghtransform.core.hough.HoughLine;
 import de.dbo.samples.image.houghtransform.core.hough.HoughLines;

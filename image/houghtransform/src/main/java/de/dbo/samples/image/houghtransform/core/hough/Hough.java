@@ -3,8 +3,17 @@ package de.dbo.samples.image.houghtransform.core.hough;
 import java.awt.image.BufferedImage;
 
 import de.dbo.samples.image.houghtransform.api.HoughTransformException;
-import de.dbo.samples.image.houghtransform.core.CategorizerConfiguration;
 
+/**
+ * 
+ * Basics of the Hough Algorithm
+ * 
+ * @author Dmitri Boulanger, Hombach
+ *
+ * D. Knuth: Programs are meant to be read by humans and 
+ *           only incidentally for computers to execute 
+ *
+ */
 public interface Hough {
 
     public abstract int[][] getHoughArray();
@@ -36,7 +45,7 @@ public interface Hough {
      * Once points have been added in some way,
      * this method gets the highest value in the hough array
      */
-    public abstract HoughValue getHighestValue();
+    public abstract HoughValue getMaxHoughValue();
 
     /**
      * Gets the hough array as an image, in case you want to have a look at it.
@@ -63,11 +72,6 @@ public interface Hough {
     public abstract int getContentPeakMin();
 
     public int peakMax();
-
-    /**
-     * @return reference to the configuration bean
-     */
-    public CategorizerConfiguration getCfg();
 
     /**
      * @return width of the image
@@ -97,7 +101,7 @@ public interface Hough {
     public double getCenterY();
 
     /**
-     * @return lenght of the image diagonal
+     * @return length of the image diagonal
      */
     public double getDiagonal();
 

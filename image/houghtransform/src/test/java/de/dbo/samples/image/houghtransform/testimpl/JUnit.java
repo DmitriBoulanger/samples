@@ -8,7 +8,7 @@ import java.util.Vector;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.dbo.samples.image.houghtransform.HoughCategorizerFactory;
+import de.dbo.samples.image.houghtransform.CategorizerFactory;
 import de.dbo.samples.image.houghtransform.api.Categorizer;
 import de.dbo.samples.image.houghtransform.api.Category;
 import de.dbo.samples.image.houghtransform.api.ImageInfo;
@@ -39,7 +39,7 @@ public abstract class JUnit {
             log.debug(messageHead + " ... ");
             final BufferedImage image = imageProvider.getImageFromResource(info);
             final long start = System.currentTimeMillis();
-            final Categorizer categorizer = HoughCategorizerFactory.newInstance(marker);
+            final Categorizer categorizer = CategorizerFactory.newInstance(marker);
             final Category categoryExpected = info.category;
             final Category category = categorizer.getCategory(image);
             final long elapsed = System.currentTimeMillis() - start;
@@ -76,7 +76,7 @@ public abstract class JUnit {
             log.debug(messageHead + " ... ");
             final BufferedImage image = imageProvider.getImageFromResource(info);
             final long start = System.currentTimeMillis();
-            final Categorizer categorizer = HoughCategorizerFactory.newInstance(marker);
+            final Categorizer categorizer = CategorizerFactory.newInstance(marker);
             final Category categoryExpected = info.category;
             final Category category = categorizer.getCategory(image);
             final long elapsed = System.currentTimeMillis() - start;

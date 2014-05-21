@@ -1,7 +1,7 @@
 package de.dbo.samples.image.houghtransform.core.signature;
 
+import de.dbo.samples.image.houghtransform.api.CategorizerConfiguration;
 import de.dbo.samples.image.houghtransform.api.HoughTransformException;
-import de.dbo.samples.image.houghtransform.core.CategorizerConfiguration;
 import de.dbo.samples.image.houghtransform.core.hough.HoughLine;
 import de.dbo.samples.image.houghtransform.core.hough.HoughLines;
 import de.dbo.samples.image.houghtransform.core.hough.HoughLinesAbstraction;
@@ -14,9 +14,7 @@ import de.dbo.samples.image.houghtransform.core.hough.HoughLinesAbstraction;
  */
 public final class SignatureHoughLines extends HoughLinesAbstraction implements HoughLines {
 
-
-    private int check01LinesCnt   = 0;
-    private int check10LinesCnt   = 0;
+    private int checkLinesCnt   = 0;
 
     public SignatureHoughLines(final CategorizerConfiguration cfg) throws HoughTransformException {
         super(cfg);
@@ -38,12 +36,8 @@ public final class SignatureHoughLines extends HoughLinesAbstraction implements 
         return 0;
     }
 
-    public int getCheck01LinesCnt() {
-        return this.check01LinesCnt;
-    }
-
-    public int getCheck10LinesCnt() {
-        return this.check10LinesCnt;
+    public int getCheckLinesCnt() {
+        return this.checkLinesCnt;
     }
 
     @Override
@@ -56,15 +50,9 @@ public final class SignatureHoughLines extends HoughLinesAbstraction implements 
         return true;
     }
 
-    /*
-     * total number of lines is high enough,
-     * or each line type is high enough
-     */
     @Override
     public boolean isContentFound() {
         return this.contentLines.size() >= this.cfg.getContentLineCntTotal()
-                && (this.check01LinesCnt >= this.cfg.getContentLineCntMin()
-                && this.check10LinesCnt >= this.cfg.getContentLineCntMin())
                 && super.getHough().getNumPoints() > 2000;
     }
 
@@ -78,12 +66,8 @@ public final class SignatureHoughLines extends HoughLinesAbstraction implements 
         final SignatureHoughLine line = (SignatureHoughLine) houghLine;
         this.lines.add(line);
         switch (line.type()) {
-            case CHECK_01:
-                this.check01LinesCnt++;
-                this.contentLines.add(line);
-                break;
-            case CHECK_10:
-                this.check10LinesCnt++;
+            case CHECK:
+                this.checkLinesCnt++;
                 this.contentLines.add(line);
                 break;
 
@@ -102,7 +86,7 @@ public final class SignatureHoughLines extends HoughLinesAbstraction implements 
     @Override
     public final String printContentLineCounters() {
         final StringBuilder ret = new StringBuilder();
-        ret.append(" 01=" + getCheck01LinesCnt() + " 10=" + getCheck10LinesCnt() + " TOTAL=" + getContentLines().size());
+        ret.append(" " + getContentLines().size());
         return ret.toString();
     }
 }

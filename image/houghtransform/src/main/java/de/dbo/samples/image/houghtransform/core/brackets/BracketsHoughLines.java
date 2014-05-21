@@ -1,7 +1,7 @@
 package de.dbo.samples.image.houghtransform.core.brackets;
 
+import de.dbo.samples.image.houghtransform.api.CategorizerConfiguration;
 import de.dbo.samples.image.houghtransform.api.HoughTransformException;
-import de.dbo.samples.image.houghtransform.core.CategorizerConfiguration;
 import de.dbo.samples.image.houghtransform.core.hough.HoughLine;
 import de.dbo.samples.image.houghtransform.core.hough.HoughLines;
 import de.dbo.samples.image.houghtransform.core.hough.HoughLinesAbstraction;

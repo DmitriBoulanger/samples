@@ -2,9 +2,9 @@ package de.dbo.samples.image.houghtransform.core.hough;
 
 import java.awt.image.BufferedImage;
 
+import de.dbo.samples.image.houghtransform.api.CategorizerConfiguration;
 import de.dbo.samples.image.houghtransform.api.CategorizerWorker;
 import de.dbo.samples.image.houghtransform.api.ImageQuality;
-import de.dbo.samples.image.houghtransform.core.CategorizerConfiguration;
 
 public interface HoughTransform extends CategorizerWorker {
 

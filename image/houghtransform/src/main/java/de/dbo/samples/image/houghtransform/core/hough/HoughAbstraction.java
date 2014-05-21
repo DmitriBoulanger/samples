@@ -2,8 +2,8 @@ package de.dbo.samples.image.houghtransform.core.hough;
 
 import java.awt.image.BufferedImage;
 
+import de.dbo.samples.image.houghtransform.api.CategorizerConfiguration;
 import de.dbo.samples.image.houghtransform.api.HoughTransformException;
-import de.dbo.samples.image.houghtransform.core.CategorizerConfiguration;
 
 /**
  *
@@ -64,7 +64,7 @@ public abstract class HoughAbstraction implements Constants, Hough {
     public final int                      h;
 
     // generated value of the maximum in the hough array
-    private HoughValue                    hh;
+    private HoughValue                    maxHoughValue;
 
     // configuration parameter adjusted the diagonal of the image
     protected final double                threshold;
@@ -105,6 +105,11 @@ public abstract class HoughAbstraction implements Constants, Hough {
         // Set all needed parameters, values, etc.
         initialise();
     }
+    
+    /**
+     * Initializes the hough array. Called in the constructor
+     */
+    protected abstract void initialise();
 
     @Override
     public final int[][] getHoughArray() {
@@ -115,9 +120,9 @@ public abstract class HoughAbstraction implements Constants, Hough {
      * Gets the highest value in the hough array
      */
     @Override
-    public final HoughValue getHighestValue() {
-        if (null != hh) {
-            return hh;
+    public final HoughValue getMaxHoughValue() {
+        if (null != maxHoughValue) {
+            return maxHoughValue;
         }
         int max = 0;
         int maxX = -1;
@@ -134,10 +139,7 @@ public abstract class HoughAbstraction implements Constants, Hough {
         return new HoughValue(max, maxX, maxY);
     }
 
-    /**
-     * Initializes the hough array. Called in the constructor
-     */
-    protected abstract void initialise();
+
 
     @Override
     public final void addPoints(final BufferedImage image) {
@@ -152,9 +154,9 @@ public abstract class HoughAbstraction implements Constants, Hough {
             }
         }
 
-        this.shapePeakMin = (int) (this.cfg.getShapeLinePeakTolerance() * (this.getHighestValue().value));
-        this.contentPeakMin = (int) (this.cfg.getContentLinePeakTolerance() * (this.getHighestValue().value));
-        this.peakMax = (int) (1.0D * (this.getHighestValue().value));
+        this.shapePeakMin = (int) (this.cfg.getShapeLinePeakTolerance() * (this.getMaxHoughValue().value));
+        this.contentPeakMin = (int) (this.cfg.getContentLinePeakTolerance() * (this.getMaxHoughValue().value));
+        this.peakMax = (int) (1.0D * (this.getMaxHoughValue().value));
     }
 
     /**
@@ -186,11 +188,6 @@ public abstract class HoughAbstraction implements Constants, Hough {
         sb.append(" diagonal=" + ((int) Util.round1(this.diagonal)));
         sb.append(" center=[" + ((int) this.centerX) + "," + ((int) this.centerY) + "]");
         return sb.toString();
-    }
-
-    @Override
-    public CategorizerConfiguration getCfg() {
-        return cfg;
     }
 
     @Override

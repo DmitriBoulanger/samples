@@ -5,12 +5,12 @@ import java.util.Vector;
 
 import org.springframework.context.ApplicationContext;
 
+import de.dbo.samples.image.houghtransform.api.CategorizerConfiguration;
 import de.dbo.samples.image.houghtransform.api.HoughTransformException;
 import de.dbo.samples.image.houghtransform.api.Category;
 import de.dbo.samples.image.houghtransform.api.ImageInfo;
 import de.dbo.samples.image.houghtransform.api.Shape;
 import de.dbo.samples.image.houghtransform.core.CategorizerImpl;
-import de.dbo.samples.image.houghtransform.core.CategorizerConfiguration;
 import de.dbo.samples.image.houghtransform.core.CategorizerWorkerImpl;
 import de.dbo.samples.image.houghtransform.core.hough.HoughLines;
 import de.dbo.samples.image.houghtransform.core.hough.HoughTransform;

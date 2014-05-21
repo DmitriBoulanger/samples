@@ -4,10 +4,10 @@ import java.awt.Rectangle;
 import java.lang.reflect.Constructor;
 import java.util.Vector;
 
+import de.dbo.samples.image.houghtransform.api.CategorizerConfiguration;
 import de.dbo.samples.image.houghtransform.api.HoughTransformException;
 import de.dbo.samples.image.houghtransform.api.Shape;
 import de.dbo.samples.image.houghtransform.api.ShapeFilter;
-import de.dbo.samples.image.houghtransform.core.CategorizerConfiguration;
 
 /**
  * JUnit of hough-Lines extracted form an image
@@ -145,8 +145,9 @@ public abstract class HoughLinesAbstraction implements HoughLines {
     public final String printHoughLines() {
         final StringBuilder ret = new StringBuilder();
         for (final HoughLine houghLine : this.lines) {
-            //            if (houghLine.isContent())
+                        if (houghLine.isContent()) {
                 ret.append("\n\t - " + houghLine.print());
+                        }
 
         }
         return ret.toString();

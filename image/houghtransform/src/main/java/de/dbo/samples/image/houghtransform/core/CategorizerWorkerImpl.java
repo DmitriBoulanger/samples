@@ -11,6 +11,7 @@ import java.util.Vector;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import de.dbo.samples.image.houghtransform.api.CategorizerConfiguration;
 import de.dbo.samples.image.houghtransform.api.HoughTransformException;
 import de.dbo.samples.image.houghtransform.api.CategorizerMode;
 import de.dbo.samples.image.houghtransform.api.Category;
@@ -93,7 +94,7 @@ public class CategorizerWorkerImpl implements HoughTransform {
 
         log.debug("Mode=" + cfg.type().name() + " Image=" + imageNameOrSize()
                 + " Quality=" + imageQuality.name() + " HOUGH: "
-                + " max=" + this.hough.getHighestValue().print()
+                + " max=" + this.hough.getMaxHoughValue().print()
                 + " points=" + this.hough.getNumPoints()
                 + " radius=" + this.hough.getRadius()
                 + " shapePeakMin=" + this.hough.getShapePeakMin()
@@ -184,7 +185,7 @@ public class CategorizerWorkerImpl implements HoughTransform {
                 + Util.round100(Util.error(this.imageWidth, this.imageHeight)));
         ret.add("\nHough Points = " + this.hough.getNumPoints()
                 + "  Lines = " + houghLines.getSize() + "  HH = "
-                + this.hough.getHighestValue().print());
+                + this.hough.getMaxHoughValue().print());
         ret.add("\nShape: " + houghLines.printShape());
         ret.add("\nShape lines: " + houghLines.printShapeLineCounters());
         ret.add("\nContent lines: " + houghLines.printContentLineCounters());

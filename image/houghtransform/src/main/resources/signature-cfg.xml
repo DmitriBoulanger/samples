@@ -37,7 +37,7 @@
 				value=0.00: line runs through the center
 			</description>
 		</property>
-		<property name="shapeLineThetaEps" value="0.35" />
+		<property name="shapeLineThetaEps" value="0.00" />
 
 		<!-- CONTENT-LINE RECOGNITION -->
 		<property name="contentLinePeakTolerance" value="0.00" />
@@ -131,7 +131,7 @@
 				value=0.00: line runs through the center
 			</description>
 		</property>
-		<property name="shapeLineThetaEps" value="0.00" />
+		<property name="shapeLineThetaEps" value="0.20" />
 		
 		<!-- SHAPE RECOGNITION ## NOT USED ## -->
 		<property name="shapeLineCntMin" value="0"/>

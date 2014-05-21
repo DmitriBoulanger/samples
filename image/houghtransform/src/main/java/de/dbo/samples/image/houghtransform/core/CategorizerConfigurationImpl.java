@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Required;
 
+import de.dbo.samples.image.houghtransform.api.CategorizerConfiguration;
 import de.dbo.samples.image.houghtransform.api.HoughTransformException;
 import de.dbo.samples.image.houghtransform.api.CategorizerMode;
 import de.dbo.samples.image.houghtransform.api.ImageQuality;
