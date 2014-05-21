@@ -1,8 +1,6 @@
 Hough Image Transformation
 ==========================
 
- 
-
 ### Maven features
 Dependencies:
 
