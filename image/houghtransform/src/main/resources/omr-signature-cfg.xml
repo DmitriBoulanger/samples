@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+	<description>
+		Signature-Marker Categorizer with Hough-Linear algorithm
+	</description>
+	
+	<context:annotation-config />
+
+	<bean id="shapeFinderConfig" class="de.dbo.samples.image.houghtransform.core.CategorizerConfigurationImpl" scope="singleton">
+
+		<constructor-arg value="SHAPE" />
+		<property name="whiteBorder" value="20" />
+		<property name="split" value="false" />
+
+		<!-- HOUGH PARAMETRS -->
+		<property name="houghClassname" value="de.dbo.samples.image.houghtransform.core.hough.HoughAlgorithmLinear"/>
+		<property name="maxTheta" value="180" />
+		<property name="threshold" value="1" >
+			<description>
+			 Threshold determines lines to be extracted from hough-array. Its value is % of the image diagonal. 
+			 Thus, only lines longer than threshold are considered as lines
+			 to be categorized in shape-lines, content-lines or unknown lines
+			</description>
+		</property>
+		<property name="neighbourhoodSizeHigh" value="3" />
+		<property name="neighbourhoodSizeNormal" value="1" />
+		<property name="neighbourhoodSizeLow" value="1" />
+
+		<!-- SHAPE-LINE RECOGNITION (SIGNATURE-BOX) -->
+		<property name="shapeLinePeakTolerance" value="0.25" />
+		<property name="shapeLineCenterTolerance" value="0.85">
+			<description> 
+				value=1.00: line is at the image-border
+				value=0.00: line runs through the center
+			</description>
+		</property>
+		<property name="shapeLineThetaEps" value="0.35" />
+
+		<!-- CONTENT-LINE RECOGNITION -->
+		<property name="contentLinePeakTolerance" value="0.00" />
+		<property name="contentLineCenterTolerance" value="0.75" />
+		<property name="contentLineThetaEps" value="0.30" />
+
+		<!-- SHAPE RECOGNITION (SIGNATURE-BOX) -->
+		<property name="shapeLineCntMin" value="4"></property>
+		<property name="shapeLineCntTotal" value="4" />
+
+		<!-- CONTENT RECOGNITION -->
+		<property name="contentLineCntMin" value="1" />
+		<property name="contentLineCntTotal" value="2" />
+
+		<!-- SHAPE AND ITS CONSRAINTS -->
+		<property name="shapeClassname" value="de.dbo.samples.image.houghtransform.core.signature.Signature" />
+		<property name="shapeLineClassname" value="de.dbo.samples.image.houghtransform.core.signature.SignatureHoughLine" />
+		<property name="shapeLinesClassname" value="de.dbo.samples.image.houghtransform.core.signature.SignatureHoughLines" />
+		<property name="shapeRectangularRatioMax" value="0.00" >
+			<description> 
+			        Constraint for a shape to be well-defined: width/height in [1 - ratioMax ,  1 + ratioMax]
+			</description>
+		</property>
+		<property name="shapeRadius" value="0.00" />
+
+		<!-- SHAPE FILTER -->
+		<property name="shapeFilterClassname" value="de.dbo.samples.image.houghtransform.core.signature.SignatureFilter" />
+		<property name="shapeFilterMargin" value="0" />
+
+		<!-- IMAGE ERROR, ITS CLASSIFICATION AND FILTERS -->
+		<property name="imageErrorMax" value="100.00" />
+		<property name="imageHighMax" value="2000" />
+		<property name="imageNormalMax" value="1000" />
+		<property name="imageLowMax" value="50" />
+		<property name="imageLowMin" value="10" />
+		
+		
+		<property name="imageFilters">
+			<description>
+				Sequence of image-filters to to applied to the input marker-image
+				before any other operation. 
+				Image filter are only from the com.jhlabs.image-package
+			</description>
+			<list>
+			</list>
+		</property>
+		
+	</bean>
+
+	<bean id="contentProcessorConfig" class="de.dbo.samples.image.houghtransform.core.CategorizerConfigurationImpl" scope="singleton">
+
+		<constructor-arg value="CONTENT" />
+		<property name="whiteBorder" value="20" />
+		<property name="split" value="false" />
+
+		<!-- HOUGH PARAMETRS -->
+		<property name="houghClassname" value="de.dbo.samples.image.houghtransform.core.hough.HoughAlgorithmLinear"/>
+		<property name="maxTheta" value="180" />
+		<property name="threshold" value="3" >
+	   		<description>
+			 	Threshold determines lines to be extracted from hough-array.
+			 	Its value is % of the image diagonal. 
+			 	Only lines longer than threshold are considered as lines
+			 	to be categorized in content-lines or unknown lines
+			</description>
+		</property>
+		
+		<property name="neighbourhoodSizeHigh" value="5" />
+		<property name="neighbourhoodSizeNormal" value="5" />
+		<property name="neighbourhoodSizeLow" value="5" />
+
+		<!-- CONTENT-LINE RECOGNITION -->
+		<property name="contentLinePeakTolerance" value="0.10" />
+		<property name="contentLineCenterTolerance" value="0.10" >
+		<description> 
+				value=1.00: line is at the image-border
+				value=0.00: line runs through the center
+		</description>
+		</property>
+		<property name="contentLineThetaEps" value="0.60" />
+		
+		<!-- CONTENT RECOGNITION -->
+		<property name="contentLineCntMin" value="2" />
+		<property name="contentLineCntTotal" value="10" />
+		
+		<!-- SHAPE-LINE RECOGNITION - ## NOT USED ## -->
+		<property name="shapeLinePeakTolerance" value="0.00" />
+		<property name="shapeLineCenterTolerance" value="0.00">
+			<description> 
+				value=1.00: line is at the image-border
+				value=0.00: line runs through the center
+			</description>
+		</property>
+		<property name="shapeLineThetaEps" value="0.00" />
+		
+		<!-- SHAPE RECOGNITION ## NOT USED ## -->
+		<property name="shapeLineCntMin" value="0"/>
+		<property name="shapeLineCntTotal" value="0" />
+
+		<!-- SHAPE AND ITS CONSTRAINTS ## NOT USED ## -->
+		<property name="shapeClassname" value="de.dbo.samples.image.houghtransform.core.signature.Signature" />
+		<property name="shapeLineClassname" value="de.dbo.samples.image.houghtransform.core.signature.SignatureHoughLine" />
+		<property name="shapeLinesClassname" value="de.dbo.samples.image.houghtransform.core.signature.SignatureHoughLines" />
+		<property name="shapeRectangularRatioMax" value="0.00" />
+		<property name="shapeRadius" value="0.00" />
+
+		<!-- SHAPE FILTER (never used in the second phase) ## NOT USED ## -->
+		<property name="shapeFilterClassname" value="" />
+		<property name="shapeFilterMargin" value="0" />
+
+		<!-- IMAGE ERROR, ITS CLASSIFICATION -->
+		<property name="imageErrorMax" value="100.00" />
+		<property name="imageHighMax" value="2000" />
+		<property name="imageNormalMax" value="2000" />
+		<property name="imageLowMax" value="50" />
+		<property name="imageLowMin" value="10" />
+		
+		<property name="imageFilters">
+			<description>
+				Sequence of image-filters to be applied at the input marker-image
+				before any other operation
+			</description>
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+</beans>

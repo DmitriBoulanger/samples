@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd" >
+
+<log4j:configuration xmlns:log4j='http://jakarta.apache.org/log4j/'>
+
+	<!-- no errors neither warnings -->
+	<appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+		<param name="threshold" value="TRACE" />
+		<param name="target" value="System.out" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{HH:mm:ss.SSS} %-5p %40c{1}: %m %n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+            <param name="LevelMin" value="TRACE" />
+            <param name="LevelMax" value="INFO" />
+        </filter>
+	</appender>
+	
+	<!-- errors and warnings in red-color -->
+	<appender name="CONSOLE_ERROR" class="org.apache.log4j.ConsoleAppender">
+		<param name="threshold" value="WARN" />
+		<param name="target" value="System.err" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{HH:mm:ss.SSS} %-5p %40c{1}: %m %n" />
+		</layout>
+	</appender>
+	
+	<logger name="de.ityx">
+		<level value="info" />
+		<appender-ref ref="CONSOLE" />
+	</logger>
+	
+	<root>
+		<level value="warn" />
+		<appender-ref ref="CONSOLE_ERROR" />
+	</root> 
+
+</log4j:configuration>

@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+	<description>
+		Configuration Circle-Marker categorization.
+		The first phase (worker) uses the circle Hough algorithm,
+		while second phase (worker) uses linear algorithm
+	</description>
+
+	<context:annotation-config />
+
+	<bean id="shapeFinderConfig"
+		class="de.dbo.samples.image.houghtransform.core.CategorizerConfigurationImpl"
+		scope="singleton">
+
+		<constructor-arg value="SHAPE"/>
+		<property name="whiteBorder" value="0" />
+		<property name="split" value="false" />
+
+	<!-- HOUGH PARAMETRS -->
+	<property name="houghClassname" 
+		value="de.dbo.samples.image.houghtransform.core.hough.HoughAlgorithmCircle"/>
+	<property name="threshold" value="90">
+		<description>
+			Threshold determines lines which are extracted from hough-array.
+			Its value is % of the image diagonal.
+			Thus, only lines longer than threshold are considered as lines
+			to be categorized in shape-lines, content-lines or unknown lines.
+		</description>
+	</property>
+		<property name="maxTheta" value="180" />
+		<property name="neighbourhoodSizeHigh" value="4" />
+		<property name="neighbourhoodSizeNormal" value="1" />
+		<property name="neighbourhoodSizeLow" value="1" />
+
+		<!-- SHAPE-LINE RECOGNITION -->
+		<property name="shapeLinePeakTolerance" value="0.00" />
+		<property name="shapeLineCenterTolerance" value="1.15">
+			<description> 
+				Radius corridor: maximal value.
+				All black pixel with location above ( further from the image-center)
+				are not processed while building the hough array
+			</description>
+		</property>
+		<property name="shapeLineThetaEps" value="0.00" />
+	
+		<!-- SHAPE RECOGNITION -->
+		<property name="shapeLineCntMin" value="0"/>
+		<property name="shapeLineCntTotal" value="1" />
+		
+		<!-- SHAPE AND ITS CONSRAINTS -->
+		<property name="shapeClassname" value="de.dbo.samples.image.houghtransform.core.circle.Circle" />
+		<property name="shapeLineClassname" value="de.dbo.samples.image.houghtransform.core.circle.CircleHoughLine" />
+		<property name="shapeLinesClassname" value="de.dbo.samples.image.houghtransform.core.circle.CircleHoughLines" />
+		<property name="shapeRadius" value="0.26" >
+			<description>
+				Expected radius as ratio of the length of the image-diagonal
+			</description>
+		</property>
+		<property name="shapeRectangularRatioMax" value="0.10" >
+			<description> 
+		    Constraint for a shape to be well-defined:
+      		width/height in [1 - ratioMax ,   1 + ratioMax]
+			</description>
+		</property>
+		
+
+		<!-- CONTENT-LINE RECOGNITION -->
+		<property name="contentLinePeakTolerance" value="0.00" />
+		<property name="contentLineCenterTolerance" value="0.80" >
+		<description> 
+				Radius corridor: minimal value.
+				All black pixel with location under (more close to the image-center) 
+				are not processed while building hough array
+			</description>
+		</property>
+		<property name="contentLineThetaEps" value="0.00" />
+
+		<!-- CONTENT RECOGNITION -->
+		<property name="contentLineCntMin" value="0" />
+		<property name="contentLineCntTotal" value="0" />
+
+		<!-- SHAPE FILTER -->
+		<property name="shapeFilterClassname" 
+			value="de.dbo.samples.image.houghtransform.core.circle.CircleFilter" >
+			<description>
+			Usage of the Shape-filer.
+			If it is true, the second phase runs using 
+			the filtered and cropped image
+			</description>
+		</property>
+		<property name="shapeFilterMargin" value="12" >
+			<description>
+				Vales of the margin is interpreted as % of the circle radius
+			</description>
+		</property>
+
+		<!-- IMAGE CLASSIFICATION AND FILTERS -->
+		<property name="imageErrorMax" value="0.30" />
+		<property name="imageHighMax" value="180" />
+		<property name="imageNormalMax" value="140" />
+		<property name="imageLowMax" value="50" />
+		<property name="imageLowMin" value="10" />
+		<property name="imageFilters">
+			<list/>
+		</property>
+	</bean>
+
+	<bean id="contentProcessorConfig"
+		class="de.dbo.samples.image.houghtransform.core.CategorizerConfigurationImpl"
+		scope="singleton">
+
+		<constructor-arg value="CONTENT" />
+		<property name="whiteBorder" value="0" />
+		<property name="split" value="false" />
+
+		<!-- HOUGH PARAMETRS -->
+		<property name="houghClassname" 
+			value="de.dbo.samples.image.houghtransform.core.hough.HoughAlgorithmLinear"/>
+		<property name="threshold" value="50" />
+		<property name="maxTheta" value="180" />
+		<property name="neighbourhoodSizeHigh" value="3" />
+		<property name="neighbourhoodSizeNormal" value="1" />
+		<property name="neighbourhoodSizeLow" value="1" />
+		
+		<!-- CONTENT-LINE RECOGNITION -->
+		<property name="contentLinePeakTolerance" value="0.00" />
+		<property name="contentLineCenterTolerance" value="0.95" />
+		<property name="contentLineThetaEps" value="0.50" />
+		
+		<!-- CONTENT RECOGNITION -->
+		<property name="contentLineCntMin" value="1" />
+		<property name="contentLineCntTotal" value="4" />
+
+		<!-- SHAPE-LINE RECOGNITION -->
+		<property name="shapeLinePeakTolerance" value="0.00" />
+		<property name="shapeLineCenterTolerance" value="0.85">
+			<description> 
+				value=1.00: line is at the image-border
+				value=0.00: line runs through the center
+			</description>
+		</property>
+		<property name="shapeLineThetaEps" value="0.35" />
+
+		<!-- SHAPE RECOGNITION -->
+		<property name="shapeLineCntMin" value="1"/>
+		<property name="shapeLineCntTotal" value="2" />
+
+		<!-- SHAPE AND ITS CONSTRAINTS -->
+		<property name="shapeClassname" value="de.dbo.samples.image.houghtransform.core.box.Box" />
+		<property name="shapeLineClassname" value="de.dbo.samples.image.houghtransform.core.box.BoxHoughLine" />
+		<property name="shapeLinesClassname" value="de.dbo.samples.image.houghtransform.core.box.BoxHoughLines" />
+		<property name="shapeRectangularRatioMax" value="0.50" />
+		<property name="shapeRadius" value="0.30" />
+
+		<!-- SHAPE FILTER (never used in the second phase)-->
+		<property name="shapeFilterClassname" value="" />
+		<property name="shapeFilterMargin" value="0" />
+
+		<!-- IMAGE CLASSIFICATION AND FILTERS -->
+		<property name="imageErrorMax" value="0.30" />
+		<property name="imageHighMax" value="180" />
+		<property name="imageNormalMax" value="140" />
+		<property name="imageLowMax" value="50" />
+		<property name="imageLowMin" value="10" />
+		<property name="imageFilters">
+			<list>
+				<!-- <value>com.jhlabs.image.ReduceNoiseFilter</value> -->
+				<!-- <value>com.jhlabs.image.ContrastFilter</value> -->
+				<!-- <value>com.jhlabs.image.MaximumFilter</value> -->
+				<!-- <value>com.jhlabs.image.MinimumFilter</value> -->
+				<!-- <value>com.jhlabs.image.MedianFilter</value> -->
+			</list>
+		</property>
+	</bean>
+	
+</beans>
