@@ -2,7 +2,7 @@ package de.dbo.samples.image.houghtransform.core.signature;
 
 import java.awt.Rectangle;
 
-import de.dbo.samples.image.houghtransform.api.OMRShape;
+import de.dbo.samples.image.houghtransform.api.Shape;
 import de.dbo.samples.image.houghtransform.core.hough.HoughFilter;
 
 /**
@@ -13,7 +13,7 @@ public final class SignatureFilter extends HoughFilter {
 
     private static final int BORDER = 30;
 
-    public SignatureFilter(final OMRShape shape, Integer marginprocent) {
+    public SignatureFilter(final Shape shape, Integer marginprocent) {
         super(shape, marginprocent);
     }
 

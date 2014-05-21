@@ -7,6 +7,6 @@ package de.dbo.samples.image.houghtransform.api;
  * @author D. Boulanger ITyX GmbH
  *
  */
-public enum OMRMarker {
+public enum Marker {
     BOX, BRACKETS, CIRCLE, SIGNATURE
 }

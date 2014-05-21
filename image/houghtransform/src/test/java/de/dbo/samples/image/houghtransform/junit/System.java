@@ -1,7 +1,7 @@
 package de.dbo.samples.image.houghtransform.junit;
 
 import de.dbo.samples.image.houghtransform.HoughCategorizerFactory;
-import de.dbo.samples.image.houghtransform.api.OMRCategorizerException;
+import de.dbo.samples.image.houghtransform.api.HTException;
 import de.dbo.samples.image.houghtransform.core.Categorizer;
 import de.dbo.samples.image.houghtransform.testimpl.JUnit;
 
@@ -9,7 +9,7 @@ import org.junit.Test;
 
 public class System extends JUnit {
 
-    @Test(expected = OMRCategorizerException.class)
+    @Test(expected = HTException.class)
     public void incorrectCtxName() throws Exception {
         try {
             new Categorizer("bla bla bla ... ");
@@ -20,7 +20,7 @@ public class System extends JUnit {
         }
     }
 
-    @Test(expected = OMRCategorizerException.class)
+    @Test(expected = HTException.class)
     public void noOMRMarker() throws Exception {
         try {
             HoughCategorizerFactory.newInstance(null);

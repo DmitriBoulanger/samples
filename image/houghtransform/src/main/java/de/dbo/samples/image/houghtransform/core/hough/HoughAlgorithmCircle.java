@@ -1,17 +1,17 @@
 package de.dbo.samples.image.houghtransform.core.hough;
 
-import de.dbo.samples.image.houghtransform.api.OMRCategorizerException;
-import de.dbo.samples.image.houghtransform.core.CategorizerConfiguration;
-
 import java.awt.Color;
 import java.awt.Polygon;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.lang.reflect.Constructor;
 
+import de.dbo.samples.image.houghtransform.api.HTException;
+import de.dbo.samples.image.houghtransform.core.CategorizerConfiguration;
+
 /**
  * Hough transform for searching circles
- * 
+ *
  * @author D. Boulanger ITyX GmbH
  *
  */
@@ -23,15 +23,15 @@ public class HoughAlgorithmCircle extends HoughAbstraction {
     private final int r2Min;
     private final int r2Max;
 
-    public HoughAlgorithmCircle(Integer width, Integer height,
+    public HoughAlgorithmCircle(final Integer width, final Integer height,
             final CategorizerConfiguration cfg, HoughLines houghLines) {
         super(width, height, cfg, houghLines);
         this.r = (int) super.getRadius();
         this.r2 = this.r * this.r;
-        this.r2Min = (int) ((((double) this.r) * cfg.getContentLineCenterTolerance())
-            * (((double) this.r) * cfg.getContentLineCenterTolerance()));
-        this.r2Max = (int) ((((double) this.r) * cfg.getShapeLineCenterTolerance())
-            * (((double) this.r) * cfg.getShapeLineCenterTolerance()));
+        this.r2Min = (int) (((this.r) * cfg.getContentLineCenterTolerance())
+            * ((this.r) * cfg.getContentLineCenterTolerance()));
+        this.r2Max = (int) (((this.r) * cfg.getShapeLineCenterTolerance())
+            * ((this.r) * cfg.getShapeLineCenterTolerance()));
         this.accSize = cfg.getShapeLineCntTotal();
     }
 
@@ -77,7 +77,7 @@ public class HoughAlgorithmCircle extends HoughAbstraction {
     }
 
     @Override
-    public final void generateLines() throws OMRCategorizerException {
+    public final void generateLines() throws HTException {
         // Only proceed if the hough array is not empty
         if (this.numPoints == 0) {
             return;
@@ -130,11 +130,11 @@ public class HoughAlgorithmCircle extends HoughAbstraction {
     }
 
     private HoughLine houghLineInstance(Rectangle rectangle, int peak)
-            throws OMRCategorizerException {
+            throws HTException {
         final String classname = cfg.getShapeLineClassname();
         if (null == classname || 0 == classname.trim().length()) {
-            throw new OMRCategorizerException(
-                    OMRCategorizerException.CONFIG_CORRECTNESS,
+            throw new HTException(
+                    HTException.CONFIG_CORRECTNESS,
                     "No class-name for shape-line found in the transform configuration");
         }
         try {
@@ -146,7 +146,7 @@ public class HoughAlgorithmCircle extends HoughAbstraction {
             return (HoughLine) constructor.newInstance(params);
         }
         catch(Exception e) {
-            throw new OMRCategorizerException(OMRCategorizerException.SYSTEM,
+            throw new HTException(HTException.SYSTEM,
                     "Cannot create instance for " + classname, e);
         }
     }
@@ -187,6 +187,7 @@ public class HoughAlgorithmCircle extends HoughAbstraction {
      * Gets the hough array as an image, in case you want to have a look at it.
      * This method is only needed for developing/debugging/testing
      */
+    @Override
     public BufferedImage getHoughArrayImage() {
         final int max = getHighestValue().value;
         final BufferedImage image = new BufferedImage(this.getWidth(),

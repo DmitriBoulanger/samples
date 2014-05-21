@@ -10,6 +10,6 @@ package de.dbo.samples.image.houghtransform.api;
  * @author D. Boulanger ITyX GmbH
  * 
  */
-public enum OMRCategory {
+public enum HTCategory {
     UNKNOWN, UNCHECKED, CHECKED
 }

@@ -5,24 +5,24 @@ import java.util.Vector;
 
 import org.springframework.context.ApplicationContext;
 
-import de.dbo.samples.image.houghtransform.ImageProvider;
-import de.dbo.samples.image.houghtransform.api.OMRCategorizerException;
-import de.dbo.samples.image.houghtransform.api.OMRCategory;
-import de.dbo.samples.image.houghtransform.api.OMRImageInfo;
-import de.dbo.samples.image.houghtransform.api.OMRShape;
+import de.dbo.samples.image.houghtransform.api.HTException;
+import de.dbo.samples.image.houghtransform.api.HTCategory;
+import de.dbo.samples.image.houghtransform.api.ImageInfo;
+import de.dbo.samples.image.houghtransform.api.Shape;
 import de.dbo.samples.image.houghtransform.core.Categorizer;
 import de.dbo.samples.image.houghtransform.core.CategorizerConfiguration;
 import de.dbo.samples.image.houghtransform.core.CategorizerWorker;
 import de.dbo.samples.image.houghtransform.core.hough.HoughLines;
 import de.dbo.samples.image.houghtransform.core.hough.HoughTransform;
+import de.dbo.samples.image.houghtransform.data.ImageProvider;
 
 final class CategorizerGui extends Categorizer {
 
     private final ImageProvider imageProvider;
-    private final OMRImageInfo  info;
+    private final ImageInfo  info;
 
-    CategorizerGui(final ImageProvider imageProvider, final OMRImageInfo info,
-            final String ctxname, final ApplicationContext ctx) throws OMRCategorizerException {
+    CategorizerGui(final ImageProvider imageProvider, final ImageInfo info,
+            final String ctxname, final ApplicationContext ctx) throws HTException {
         super(ctxname, ctx);
         this.imageProvider = imageProvider;
         this.info = info;
@@ -30,8 +30,8 @@ final class CategorizerGui extends Categorizer {
     }
 
     @Override
-    protected CategorizerWorker getCategorizerWorker(final BufferedImage _0, final OMRImageInfo _1
-            , final CategorizerConfiguration cfg) throws OMRCategorizerException {
+    protected CategorizerWorker getCategorizerWorker(final BufferedImage _0, final ImageInfo _1
+            , final CategorizerConfiguration cfg) throws HTException {
         if (null == shapeFilteredImage) {
             return new CategorizerGuiWorker(this.imageProvider, this.info, cfg);
         }
@@ -41,11 +41,11 @@ final class CategorizerGui extends Categorizer {
         }
     }
 
-    final OMRCategory category() throws OMRCategorizerException {
+    final HTCategory category() throws HTException {
         return getCategory(imageProvider.getImageFromResource(info));
     }
 
-    final OMRImageInfo info() {
+    final ImageInfo info() {
         return this.info;
     }
 
@@ -57,7 +57,7 @@ final class CategorizerGui extends Categorizer {
         return ((HoughTransform) this.shapeCategorizer).imageFiltered();
     }
 
-    final OMRShape getShape() {
+    final Shape getShape() {
         return this.shapeCategorizer.getShape();
     }
 
@@ -115,7 +115,7 @@ final class CategorizerGui extends Categorizer {
         }
     }
 
-    final OMRCategory expectedCategory() {
+    final HTCategory expectedCategory() {
         if (null != this.contentCategorizer) {
             return ((CategorizerGuiWorker) this.contentCategorizer).expectedCategory();
         }

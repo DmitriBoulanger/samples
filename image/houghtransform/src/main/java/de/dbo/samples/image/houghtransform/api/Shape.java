@@ -10,12 +10,12 @@ import java.awt.Rectangle;
  * Typically these instances are used in developing/testing to show the
  * ShapeFilter above the marker-image
  * 
- * @see OMRShapeFilter
+ * @see ShapeFilter
  * 
  * @author D.Boulanger ITyX GmbH
  * 
  */
-public interface OMRShape {
+public interface Shape {
 
     public abstract Rectangle getRectangle();
 

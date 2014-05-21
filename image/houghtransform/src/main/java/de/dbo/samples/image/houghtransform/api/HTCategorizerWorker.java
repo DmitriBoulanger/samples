@@ -9,7 +9,7 @@ import java.util.Vector;
  * @author D.Boulanger ITyX GmbH
  * 
  */
-public interface OMRCategorizerWorker {
+public interface HTCategorizerWorker {
 
     /**
      * Mode of this worker. It can be an initial mode (shape finder) or it can
@@ -20,9 +20,9 @@ public interface OMRCategorizerWorker {
      * shape is checked)
      * 
      * @return categorizer mode
-     * @see OMRCategory
+     * @see HTCategory
      */
-    public abstract OMRCategorizerMode getMode();
+    public abstract HTCategorizerMode getMode();
 
     /**
      * 
@@ -47,7 +47,7 @@ public interface OMRCategorizerWorker {
      * @see #isShapeFilterWelldefined()
      */
     public abstract BufferedImage getShapeFilteredImage()
-            throws OMRCategorizerException;
+            throws HTException;
 
     /**
      * 
@@ -56,7 +56,7 @@ public interface OMRCategorizerWorker {
      * 
      * @see #isShapeFilterWelldefined()
      */
-    public BufferedImage getShapeCroppedImage() throws OMRCategorizerException;
+    public BufferedImage getShapeCroppedImage() throws HTException;
 
     /**
      * 
@@ -65,15 +65,15 @@ public interface OMRCategorizerWorker {
      * 
      * @see #isShapeFilterWelldefined()
      */
-    public abstract OMRShapeFilter getShapeFilter()
-            throws OMRCategorizerException;
+    public abstract ShapeFilter getShapeFilter()
+            throws HTException;
 
     /**
      * image classification/categorization
      * 
      * @return image category (type).
      */
-    public abstract OMRCategory category();
+    public abstract HTCategory category();
 
     /**
      * Basic description of the transformation/categorization
@@ -82,6 +82,6 @@ public interface OMRCategorizerWorker {
      */
     public abstract Vector<String> description();
 
-    public abstract OMRShape getShape();
+    public abstract Shape getShape();
 
 }

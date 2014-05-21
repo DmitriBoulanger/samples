@@ -4,12 +4,13 @@ import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.lang.reflect.Constructor;
 
-import de.dbo.samples.image.houghtransform.api.OMRCategorizerException;
+import de.dbo.samples.image.houghtransform.api.HTException;
 import de.dbo.samples.image.houghtransform.core.CategorizerConfiguration;
 
 /*
 
  Implementation of the Linear Hough-Algorithm
+
  This algorithm is used to find straight lines in an image
  Its implementation is based on original code from: http://homepages.inf.ed.ac.uk/rbf/HIPR2/hough.htm
  See also: Finding Straight Lines with the Hough Transform http://vase.essex.ac.uk/software/HoughTransform/
@@ -19,20 +20,17 @@ import de.dbo.samples.image.houghtransform.core.CategorizerConfiguration;
  If you plot the values of r on a graph for every value of theta you get a sinusoidal curve.
  This is the Hough transformation.
 
- The hough transform works by looking at a number of such x,y coordinates, which are usually
- found by some kind of edge detection. Each of these coordinates is transformed into
- an r, theta curve. This curve is discreet, so we actually only look at a certain discrete
- number of theta values. "Accumulator" cells in a hough array along this curve are incremented
- for X and Y coordinate.
+ The hough transform works by looking at a number of such x,y coordinates, which are usually found by some kind of edge detection.
+ Each of these coordinates is transformed into an r, theta curve. This curve is discreet,
+ so we actually only look at a certain discrete number of theta values.
+ "Accumulator" cells in a hough array along this curve are incremented for X and Y coordinate.
 
  The accumulator space is plotted rectangularly with theta on one axis and r on the other.
- Each point in the array represents an (r, theta) value which can be used to represent a line
- using the formula above.
+ Each point in the array represents an (r, theta) value which can be used to represent a line using the formula above.
 
- Once all the points have been added the transform should be full of curves.
+ Once all the points have been added the transform, it should be full of curves.
  The algorithm then searches for local peaks in the array.
- The higher the peak the more values of x and y crossed along that curve,
- so high peaks give good indications of a line.
+ The higher the peak the more values of x and y crossed along that curve, so high peaks give good indications of a line.
 
  */
 
@@ -106,7 +104,7 @@ public final class HoughAlgorithmLinear extends HoughAbstraction {
      * generates lines saving them in the corresponding HoughLines-instance
      */
     @Override
-    public final void generateLines() throws OMRCategorizerException {
+    public final void generateLines() throws HTException {
 
         // Only proceed if the hough array is not empty
         if (this.numPoints == 0) {
@@ -154,10 +152,10 @@ public final class HoughAlgorithmLinear extends HoughAbstraction {
     }
 
     // this linear hough-algorithms needs the corresponding linear HoughLines instance
-    private HoughLine houghLineInstance(double theta, double r, int peak) throws OMRCategorizerException {
+    private HoughLine houghLineInstance(double theta, double r, int peak) throws HTException {
         final String classname = cfg.getShapeLineClassname();
         if (null == classname || 0 == classname.trim().length()) {
-            throw new OMRCategorizerException(OMRCategorizerException.CONFIG_CORRECTNESS,
+            throw new HTException(HTException.CONFIG_CORRECTNESS,
                     "No class-name for shape-line found in the transform configuration");
         }
         try {
@@ -169,7 +167,7 @@ public final class HoughAlgorithmLinear extends HoughAbstraction {
             return (HoughLine) constructor.newInstance(lineParameters);
         }
         catch(Exception e) {
-            throw new OMRCategorizerException(OMRCategorizerException.SYSTEM,
+            throw new HTException(HTException.SYSTEM,
                     "Cannot create linear HoughLine-instance for " + classname, e);
         }
     }

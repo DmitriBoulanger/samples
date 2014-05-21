@@ -1,8 +1,8 @@
 package de.dbo.samples.image.houghtransform.core.hough;
 
-import de.dbo.samples.image.houghtransform.api.OMRCategorizerException;
-import de.dbo.samples.image.houghtransform.api.OMRShape;
-import de.dbo.samples.image.houghtransform.api.OMRShapeFilter;
+import de.dbo.samples.image.houghtransform.api.HTException;
+import de.dbo.samples.image.houghtransform.api.Shape;
+import de.dbo.samples.image.houghtransform.api.ShapeFilter;
 
 import java.util.Vector;
 
@@ -89,14 +89,14 @@ public interface HoughLines {
      * 
      * @return shape
      */
-    public OMRShapeFilter getShapeFilter() throws OMRCategorizerException;
+    public ShapeFilter getShapeFilter() throws HTException;
 
     /**
      * shape to draw
      * 
      * @return shape
      */
-    public OMRShape getShape();
+    public Shape getShape();
 
     /**
      * @return true only if the contents has been recognized

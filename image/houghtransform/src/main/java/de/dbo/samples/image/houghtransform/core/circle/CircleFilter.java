@@ -2,7 +2,7 @@ package de.dbo.samples.image.houghtransform.core.circle;
 
 import java.awt.Rectangle;
 
-import de.dbo.samples.image.houghtransform.api.OMRShape;
+import de.dbo.samples.image.houghtransform.api.Shape;
 import de.dbo.samples.image.houghtransform.core.hough.HoughFilter;
 import de.dbo.samples.image.houghtransform.core.hough.Util;
 
@@ -16,7 +16,7 @@ public final class CircleFilter extends HoughFilter {
     private final double centerY;
     private final double radius2;
 
-    public CircleFilter(final OMRShape shape, Integer marginprocent) {
+    public CircleFilter(final Shape shape, Integer marginprocent) {
         super(shape, marginprocent);
         final double diagonal = Util
                 .diagonal(rectangle.width, rectangle.height);

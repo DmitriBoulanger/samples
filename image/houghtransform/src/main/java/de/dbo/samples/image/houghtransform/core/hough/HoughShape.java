@@ -1,10 +1,10 @@
 package de.dbo.samples.image.houghtransform.core.hough;
 
-import de.dbo.samples.image.houghtransform.api.OMRShape;
+import de.dbo.samples.image.houghtransform.api.Shape;
 
 import java.awt.Rectangle;
 
-public abstract class HoughShape implements OMRShape, Constants {
+public abstract class HoughShape implements Shape, Constants {
 
     protected int          top    = -1;
     protected int          bottom = -1;

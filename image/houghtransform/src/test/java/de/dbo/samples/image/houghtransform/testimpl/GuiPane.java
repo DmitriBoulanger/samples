@@ -1,8 +1,8 @@
 package de.dbo.samples.image.houghtransform.testimpl;
 
-import de.dbo.samples.image.houghtransform.api.OMRCategory;
-import de.dbo.samples.image.houghtransform.api.OMRImageInfo;
-import de.dbo.samples.image.houghtransform.api.OMRShape;
+import de.dbo.samples.image.houghtransform.api.HTCategory;
+import de.dbo.samples.image.houghtransform.api.ImageInfo;
+import de.dbo.samples.image.houghtransform.api.Shape;
 import de.dbo.samples.image.houghtransform.core.hough.Constants;
 
 import javax.swing.JPanel;
@@ -18,11 +18,11 @@ final class GuiPane extends JPanel implements Constants {
     private static final long serialVersionUID = 1695601968261320308L;
 
     private BufferedImage     image            = null;
-    private OMRShape          shape            = null;
+    private Shape          shape            = null;
     private Vector<String>    text             = null;
-    private OMRImageInfo      imageInfo        = null;
-    private OMRCategory       category         = null;
-    private OMRCategory       categoryExpected = null;
+    private ImageInfo      imageInfo        = null;
+    private HTCategory       category         = null;
+    private HTCategory       categoryExpected = null;
 
     GuiPane() {
 
@@ -40,7 +40,7 @@ final class GuiPane extends JPanel implements Constants {
         mydraw(image, null);
     }
 
-    void mydraw(BufferedImage image, OMRShape shape) {
+    void mydraw(BufferedImage image, Shape shape) {
         this.shape = shape;
         this.image = image;
         repaint();
@@ -51,7 +51,7 @@ final class GuiPane extends JPanel implements Constants {
         repaint();
     }
 
-    void mydraw(OMRCategory category, OMRImageInfo info) {
+    void mydraw(HTCategory category, ImageInfo info) {
         this.imageInfo = info;
         this.category = category;
         this.categoryExpected = info.category;
@@ -104,7 +104,7 @@ final class GuiPane extends JPanel implements Constants {
         else if (this.category == this.categoryExpected) {
             setForeground(GREEN);
         }
-        else if (OMRCategory.UNKNOWN == this.categoryExpected) {
+        else if (HTCategory.UNKNOWN == this.categoryExpected) {
             setForeground(GRAY);
         }
         else {

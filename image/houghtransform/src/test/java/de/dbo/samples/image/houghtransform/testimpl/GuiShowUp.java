@@ -5,9 +5,9 @@ import java.util.List;
 
 import org.springframework.context.ApplicationContext;
 
-import de.dbo.samples.image.houghtransform.ImageCollections;
-import de.dbo.samples.image.houghtransform.ImageProvider;
-import de.dbo.samples.image.houghtransform.api.OMRImageInfo;
+import de.dbo.samples.image.houghtransform.api.ImageInfo;
+import de.dbo.samples.image.houghtransform.data.ImageCollections;
+import de.dbo.samples.image.houghtransform.data.ImageProvider;
 
 public abstract class GuiShowUp {
 
@@ -16,7 +16,7 @@ public abstract class GuiShowUp {
 
         final ImageProvider imageProvider = new ImageProvider(collection);
         final List<CategorizerGui> categorizers = new ArrayList<CategorizerGui>();
-        for (final OMRImageInfo info : imageProvider.getImageInfos()) {
+        for (final ImageInfo info : imageProvider.getImageInfos()) {
             categorizers.add(new CategorizerGui(imageProvider, info, ctxname, ctx));
         }
 
@@ -28,7 +28,7 @@ public abstract class GuiShowUp {
 
         final ImageProvider imageProvider = new ImageProvider(collection);
         final List<CategorizerGui> categorizers = new ArrayList<CategorizerGui>();
-        for (final OMRImageInfo info : imageProvider.getImageInfos()) {
+        for (final ImageInfo info : imageProvider.getImageInfos()) {
             categorizers.add(new CategorizerGui(imageProvider, info, ctxname, ctx));
         }
 

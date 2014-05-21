@@ -9,8 +9,8 @@ import java.awt.image.BufferedImage;
  * @author D.Boulanger ITyX GmbH
  *
  */
-public interface OMRCategorizer {
+public interface HTCategorizer {
 
-    public abstract OMRCategory getCategory(final BufferedImage image) throws OMRCategorizerException;
+    public abstract HTCategory getCategory(final BufferedImage image) throws HTException;
 
 }

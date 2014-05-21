@@ -4,18 +4,18 @@ import java.awt.Rectangle;
 
 import com.jhlabs.image.WholeImageFilter;
 
-import de.dbo.samples.image.houghtransform.api.OMRShape;
-import de.dbo.samples.image.houghtransform.api.OMRShapeFilter;
+import de.dbo.samples.image.houghtransform.api.Shape;
+import de.dbo.samples.image.houghtransform.api.ShapeFilter;
 
 /**
  * Abstract filter which drops all pixels outside the shape.
  */
 
-public abstract class HoughFilter extends WholeImageFilter implements OMRShapeFilter, Constants {
+public abstract class HoughFilter extends WholeImageFilter implements ShapeFilter, Constants {
 
     protected final Rectangle rectangle;
 
-    protected HoughFilter(final OMRShape shape, Integer marginprocent) {
+    protected HoughFilter(final Shape shape, Integer marginprocent) {
         final Rectangle shapeRectangular = shape.getRectangle();
         final double diagonal = Math.sqrt(shapeRectangular.width * shapeRectangular.width + shapeRectangular.height * shapeRectangular.height);
         final int margin = (int) (diagonal * ((marginprocent.intValue()) / HUNDRED));

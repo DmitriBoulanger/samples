@@ -2,7 +2,7 @@ package de.dbo.samples.image.houghtransform.core.hough;
 
 import java.awt.image.BufferedImage;
 
-import de.dbo.samples.image.houghtransform.api.OMRCategorizerException;
+import de.dbo.samples.image.houghtransform.api.HTException;
 import de.dbo.samples.image.houghtransform.core.CategorizerConfiguration;
 
 /**
@@ -169,7 +169,7 @@ public abstract class HoughAbstraction implements Constants, Hough {
     }
 
     @Override
-    public abstract void generateLines() throws OMRCategorizerException;
+    public abstract void generateLines() throws HTException;
 
     @Override
     public abstract BufferedImage getHoughArrayImage();

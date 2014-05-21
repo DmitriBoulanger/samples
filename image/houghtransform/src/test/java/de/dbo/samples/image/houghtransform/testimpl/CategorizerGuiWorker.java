@@ -3,31 +3,31 @@ package de.dbo.samples.image.houghtransform.testimpl;
 import java.awt.image.BufferedImage;
 import java.util.Vector;
 
-import de.dbo.samples.image.houghtransform.ImageProvider;
-import de.dbo.samples.image.houghtransform.api.OMRCategorizerException;
-import de.dbo.samples.image.houghtransform.api.OMRCategory;
-import de.dbo.samples.image.houghtransform.api.OMRImageInfo;
-import de.dbo.samples.image.houghtransform.api.OMRShapeFilter;
+import de.dbo.samples.image.houghtransform.api.HTException;
+import de.dbo.samples.image.houghtransform.api.HTCategory;
+import de.dbo.samples.image.houghtransform.api.ImageInfo;
+import de.dbo.samples.image.houghtransform.api.ShapeFilter;
 import de.dbo.samples.image.houghtransform.core.Categorizer;
 import de.dbo.samples.image.houghtransform.core.CategorizerConfiguration;
 import de.dbo.samples.image.houghtransform.core.CategorizerWorker;
 import de.dbo.samples.image.houghtransform.core.hough.HoughLine;
 import de.dbo.samples.image.houghtransform.core.hough.HoughLines;
+import de.dbo.samples.image.houghtransform.data.ImageProvider;
 
 final class CategorizerGuiWorker extends CategorizerWorker {
 
     final BufferedImage       imageFilteredWithLines;
-    private final OMRCategory imageCategoryExpected;
+    private final HTCategory imageCategoryExpected;
 
     /**
      * developer constructor. It is only used in the GUI-mode
      * @param info
      * @param imageProvider
-     * @throws OMRCategorizerException
+     * @throws HTException
      * @throws Exception
      */
-    CategorizerGuiWorker(final ImageProvider imageProvider, final OMRImageInfo info
-            , CategorizerConfiguration cfg) throws OMRCategorizerException {
+    CategorizerGuiWorker(final ImageProvider imageProvider, final ImageInfo info
+            , CategorizerConfiguration cfg) throws HTException {
         super(Categorizer.preprocess(imageProvider.getImageFromResource(info), cfg), info, cfg);
         this.imageFilteredWithLines = applyFilters(Categorizer.preprocess(imageProvider.getImageFromResource(info), cfg), this.cfg);
         this.imageCategoryExpected = info.category;
@@ -35,15 +35,15 @@ final class CategorizerGuiWorker extends CategorizerWorker {
     }
 
 
-    CategorizerGuiWorker(final BufferedImage image, final OMRShapeFilter shape, final OMRImageInfo info, final CategorizerConfiguration cfg)
-            throws OMRCategorizerException {
+    CategorizerGuiWorker(final BufferedImage image, final ShapeFilter shape, final ImageInfo info, final CategorizerConfiguration cfg)
+            throws HTException {
         super(Categorizer.preprocess(cropImage(image, shape, cfg), cfg), info, cfg);
         this.imageFilteredWithLines = applyFilters(Categorizer.preprocess(cropImage(image, shape, cfg), cfg), this.cfg);
         this.imageCategoryExpected = info.category;
         drawHoughTransformLines();
     }
 
-    final OMRCategory expectedCategory() {
+    final HTCategory expectedCategory() {
         return this.imageCategoryExpected;
     }
 

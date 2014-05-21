@@ -13,7 +13,7 @@ import java.awt.image.BufferedImageOp;
  * @author D.Boulanger ITyX GmbH
  * 
  */
-public interface OMRShapeFilter extends BufferedImageOp {
+public interface ShapeFilter extends BufferedImageOp {
 
     /**
      * 

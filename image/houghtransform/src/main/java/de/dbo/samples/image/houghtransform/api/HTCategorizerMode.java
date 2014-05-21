@@ -8,11 +8,11 @@ package de.dbo.samples.image.houghtransform.api;
  * at objects inside the shape that has been discovered during the first step.
  * Any categorizer worker has the mode indicating what it is doing
  * 
- * @see OMRCategorizerWorker
+ * @see HTCategorizerWorker
  * 
  * @author D.Boulanger ITyX GmbH
  * 
  */
-public enum OMRCategorizerMode {
+public enum HTCategorizerMode {
     SHAPE, CONTENT
 }

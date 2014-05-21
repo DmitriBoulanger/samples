@@ -10,29 +10,29 @@ import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import de.dbo.samples.image.houghtransform.api.OMRCategorizer;
-import de.dbo.samples.image.houghtransform.api.OMRCategorizerException;
-import de.dbo.samples.image.houghtransform.api.OMRCategorizerWorker;
-import de.dbo.samples.image.houghtransform.api.OMRCategory;
-import de.dbo.samples.image.houghtransform.api.OMRImageInfo;
-import de.dbo.samples.image.houghtransform.api.OMRShapeFilter;
+import de.dbo.samples.image.houghtransform.api.HTCategorizer;
+import de.dbo.samples.image.houghtransform.api.HTException;
+import de.dbo.samples.image.houghtransform.api.HTCategorizerWorker;
+import de.dbo.samples.image.houghtransform.api.HTCategory;
+import de.dbo.samples.image.houghtransform.api.ImageInfo;
+import de.dbo.samples.image.houghtransform.api.ShapeFilter;
 
 /**
  * Marker categorization. The module performs classification of the marker
  * images in two steps. The first step is the shape categorization, while the
  * second step is the content categorization
  *
- * @see OMRCategory
+ * @see HTCategory
  *
  * @author D.Boulanger ITyX GmbH
  */
-public class Categorizer implements OMRCategorizer {
+public class Categorizer implements HTCategorizer {
     private static final Logger      log                = LoggerFactory.getLogger(Categorizer.class);
 
-    protected OMRCategorizerWorker   shapeCategorizer   = null;
-    protected OMRCategorizerWorker   contentCategorizer = null;
+    protected HTCategorizerWorker   shapeCategorizer   = null;
+    protected HTCategorizerWorker   contentCategorizer = null;
     protected BufferedImage          shapeFilteredImage = null;
-    protected OMRShapeFilter         shapeFilter        = null;
+    protected ShapeFilter         shapeFilter        = null;
 
     private final ApplicationContext ctx;
     private final String             ctxname;
@@ -46,15 +46,15 @@ public class Categorizer implements OMRCategorizer {
     /**
      * @param ctxname
      *            name of the XML-file (Spring resource)
-     * @throws OMRCategorizerException
+     * @throws HTException
      */
-    public Categorizer(final String ctxname) throws OMRCategorizerException {
+    public Categorizer(final String ctxname) throws HTException {
         try {
             this.ctxname = ctxname;
             this.ctx = new ClassPathXmlApplicationContext(ctxname);
         }
         catch(Exception exception) {
-            throw new OMRCategorizerException(OMRCategorizerException.BEANS_CTX_INITILIZATION,
+            throw new HTException(HTException.BEANS_CTX_INITILIZATION,
                     "Initialization of Spring-CTX " + ctxname + " failed", exception);
         }
     }
@@ -100,18 +100,18 @@ public class Categorizer implements OMRCategorizer {
     }
 
     @Override
-    public final OMRCategory getCategory(final BufferedImage image) throws OMRCategorizerException {
+    public final HTCategory getCategory(final BufferedImage image) throws HTException {
         try {
             cfg = (CategorizerConfiguration) this.ctx.getBean(bean);
         }
         catch(BeansException e) {
-            throw new OMRCategorizerException(OMRCategorizerException.BEANS_CONTENT_INITILIZATION,
+            throw new HTException(HTException.BEANS_CONTENT_INITILIZATION,
                     "Failure while creating " + bean + " config-bean from the Spring-CTX " + this.ctxname, e);
         }
         shapeCategorizer = getCategorizerWorker(cropImage(image, cfg.getWhiteBorder()), null, cfg);
         if (0 == cfg.getWhiteBorder()) {
             if (!shapeCategorizer.isShapeFound()) {
-                return OMRCategory.UNKNOWN;
+                return HTCategory.UNKNOWN;
             }
             if (!cfg.shapeFilterUsage()) {
                 return shapeCategorizer.category();
@@ -126,7 +126,7 @@ public class Categorizer implements OMRCategorizer {
             cfg2 = (CategorizerConfiguration) this.ctx.getBean(bean2);
         }
         catch(BeansException e) {
-            throw new OMRCategorizerException(OMRCategorizerException.BEANS_CONTENT_INITILIZATION,
+            throw new HTException(HTException.BEANS_CONTENT_INITILIZATION,
                     "Failure while creating " + bean2 + " config-bean from the Spring-CTX " + this.ctxname, e);
         }
         if (0 == cfg.getWhiteBorder()) {
@@ -141,8 +141,8 @@ public class Categorizer implements OMRCategorizer {
         }
     }
 
-    protected CategorizerWorker getCategorizerWorker(final BufferedImage image, final OMRImageInfo info, final CategorizerConfiguration cfg)
-            throws OMRCategorizerException {
+    protected CategorizerWorker getCategorizerWorker(final BufferedImage image, final ImageInfo info, final CategorizerConfiguration cfg)
+            throws HTException {
         return new CategorizerWorker(image, cfg);
     }
 

@@ -2,11 +2,11 @@ package de.dbo.samples.image.houghtransform.core.hough;
 
 import java.awt.image.BufferedImage;
 
-import de.dbo.samples.image.houghtransform.api.OMRCategorizerWorker;
-import de.dbo.samples.image.houghtransform.api.OMRImageQuality;
+import de.dbo.samples.image.houghtransform.api.HTCategorizerWorker;
+import de.dbo.samples.image.houghtransform.api.ImageQuality;
 import de.dbo.samples.image.houghtransform.core.CategorizerConfiguration;
 
-public interface HoughTransform extends OMRCategorizerWorker {
+public interface HoughTransform extends HTCategorizerWorker {
 
     public abstract int imageWidth();
 
@@ -14,7 +14,7 @@ public interface HoughTransform extends OMRCategorizerWorker {
 
     public abstract CategorizerConfiguration configuration();
 
-    public abstract OMRImageQuality imageQuality();
+    public abstract ImageQuality imageQuality();
 
     public abstract String imageName();
 

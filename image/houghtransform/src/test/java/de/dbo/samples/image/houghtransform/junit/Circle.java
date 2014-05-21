@@ -4,9 +4,9 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.dbo.samples.image.houghtransform.ImageCollections;
-import de.dbo.samples.image.houghtransform.ImageProvider;
-import de.dbo.samples.image.houghtransform.api.OMRMarker;
+import de.dbo.samples.image.houghtransform.api.Marker;
+import de.dbo.samples.image.houghtransform.data.ImageCollections;
+import de.dbo.samples.image.houghtransform.data.ImageProvider;
 import de.dbo.samples.image.houghtransform.testimpl.JUnit;
 
 /**
@@ -23,7 +23,7 @@ public class Circle extends JUnit {
         log.debug(title + " ...");
         try {
             processAndAssertImages(new ImageProvider(ImageCollections.CIRCLE_TEST0)
-                    , title, OMRMarker.CIRCLE);
+                    , title, Marker.CIRCLE);
         }
         catch(Exception e) {
             handleException(title, e);
@@ -36,7 +36,7 @@ public class Circle extends JUnit {
         log.debug(title + " ...");
         try {
             processAndAssertImages(new ImageProvider(ImageCollections.CIRCLE_FEATURES)
-                    , title, OMRMarker.CIRCLE);
+                    , title, Marker.CIRCLE);
         }
         catch(Exception e) {
             handleException(title, e);
@@ -49,7 +49,7 @@ public class Circle extends JUnit {
         log.debug(title + " ...");
         try {
             final ImageProvider imageProvider = new ImageProvider(ImageCollections.CIRCLE_SAMPLES_NORMAL0);
-            processAndAssertImages(imageProvider, title, OMRMarker.CIRCLE);
+            processAndAssertImages(imageProvider, title, Marker.CIRCLE);
         }
         catch(Exception e) {
             handleException(title, e);

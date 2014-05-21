@@ -5,7 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import de.dbo.samples.image.houghtransform.ImageCollections;
+import de.dbo.samples.image.houghtransform.data.ImageCollections;
 import de.dbo.samples.image.houghtransform.testimpl.GuiShowUp;
 
 public final class BracketsTest extends GuiShowUp {

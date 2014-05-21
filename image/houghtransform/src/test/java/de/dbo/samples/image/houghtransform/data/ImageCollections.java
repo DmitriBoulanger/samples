@@ -1,4 +1,4 @@
-package de.dbo.samples.image.houghtransform;
+package de.dbo.samples.image.houghtransform.data;
 
 /**
  * Available image collections for development and JUnit-tests.

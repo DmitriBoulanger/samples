@@ -1,6 +1,6 @@
 package de.dbo.samples.image.houghtransform.core.circle;
 
-import de.dbo.samples.image.houghtransform.api.OMRCategorizerException;
+import de.dbo.samples.image.houghtransform.api.HTException;
 import de.dbo.samples.image.houghtransform.core.CategorizerConfiguration;
 import de.dbo.samples.image.houghtransform.core.hough.HoughLine;
 import de.dbo.samples.image.houghtransform.core.hough.HoughLines;
@@ -19,7 +19,7 @@ public final class CircleHoughLines extends HoughLinesAbstraction implements
     private int circlesCnt = 0;
 
     public CircleHoughLines(final CategorizerConfiguration cfg)
-            throws OMRCategorizerException {
+            throws HTException {
         super(cfg);
     }
 

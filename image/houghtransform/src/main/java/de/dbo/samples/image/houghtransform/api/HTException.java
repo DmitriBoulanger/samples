@@ -8,7 +8,7 @@ import org.springframework.beans.BeansException;
  * @author D.Boulanger ITyX GmbH
  * 
  */
-public final class OMRCategorizerException extends Exception {
+public final class HTException extends Exception {
     private static final long serialVersionUID            = -6050886052379079011L;
 
     public static final int   BEANS_CTX_INITILIZATION     = 10;
@@ -21,13 +21,13 @@ public final class OMRCategorizerException extends Exception {
 
     private final int         type;
 
-    public OMRCategorizerException(final int type, final String message,
+    public HTException(final int type, final String message,
             final Throwable e) {
         super(message(type, message, e), exception(type, e));
         this.type = type;
     }
 
-    public OMRCategorizerException(final int type, final String message) {
+    public HTException(final int type, final String message) {
         super(message);
         this.type = type;
     }

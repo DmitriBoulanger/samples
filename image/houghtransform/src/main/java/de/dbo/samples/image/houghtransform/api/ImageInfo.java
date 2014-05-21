@@ -8,21 +8,21 @@ package de.dbo.samples.image.houghtransform.api;
  * @author D. Boulanger ITyX GmbH
  *
  */
-public final class OMRImageInfo {
+public final class ImageInfo {
 
     public final String          name;
-    public final OMRCategory     category;
+    public final HTCategory   category;
     public final String          description;
     public final boolean         biNeeded;
-    public final OMRImageQuality quality;
+    public final ImageQuality quality;
     public final boolean         junit;
 
-    public OMRImageInfo() {
-        this(null, null, null, false, OMRImageQuality.NORMAL);
+    public ImageInfo() {
+        this(null, null, null, false, ImageQuality.NORMAL);
     }
 
-    public OMRImageInfo(final String name) {
-        this(name, null, null, false, OMRImageQuality.NORMAL);
+    public ImageInfo(final String name) {
+        this(name, null, null, false, ImageQuality.NORMAL);
     }
 
     /**
@@ -32,26 +32,26 @@ public final class OMRImageInfo {
      * @param expected
      *            category of the image
      *
-     * @see OMRCategory
+     * @see HTCategory
      */
-    public OMRImageInfo(final String name, final OMRCategory category) {
-        this(name, category, null, false, OMRImageQuality.NORMAL);
+    public ImageInfo(final String name, final HTCategory category) {
+        this(name, category, null, false, ImageQuality.NORMAL);
     }
 
-    public OMRImageInfo(final String name, final OMRCategory category, boolean biNeeded) {
-        this(name, category, null, biNeeded, OMRImageQuality.NORMAL);
+    public ImageInfo(final String name, final HTCategory category, boolean biNeeded) {
+        this(name, category, null, biNeeded, ImageQuality.NORMAL);
     }
 
-    public OMRImageInfo(final String name, final OMRCategory category, boolean biNeeded, OMRImageQuality quality) {
+    public ImageInfo(final String name, final HTCategory category, boolean biNeeded, ImageQuality quality) {
         this(name, category, null, biNeeded, quality);
     }
 
-    public OMRImageInfo(final String name, final OMRCategory category, boolean biNeeded, OMRImageQuality quality, boolean junit) {
+    public ImageInfo(final String name, final HTCategory category, boolean biNeeded, ImageQuality quality, boolean junit) {
         this(name, category, null, biNeeded, quality, junit);
     }
 
-    public OMRImageInfo(final String name, final OMRCategory category, final String description) {
-        this(name, category, description, false, OMRImageQuality.NORMAL);
+    public ImageInfo(final String name, final HTCategory category, final String description) {
+        this(name, category, description, false, ImageQuality.NORMAL);
     }
 
     /**
@@ -65,9 +65,9 @@ public final class OMRImageInfo {
      * @param biNeeded
      *            is the black-white transformation needed
      *
-     * @see OMRCategory
+     * @see HTCategory
      */
-    public OMRImageInfo(final String name, final OMRCategory category, final String description, boolean biNeeded, OMRImageQuality quality) {
+    public ImageInfo(final String name, final HTCategory category, final String description, boolean biNeeded, ImageQuality quality) {
         this.name = name;
         this.category = category;
         this.description = description;
@@ -76,7 +76,7 @@ public final class OMRImageInfo {
         this.junit = true;
     }
 
-    public OMRImageInfo(final String name, final OMRCategory category, final String description, boolean biNeeded, OMRImageQuality quality, boolean junit) {
+    public ImageInfo(final String name, final HTCategory category, final String description, boolean biNeeded, ImageQuality quality, boolean junit) {
         this.name = name;
         this.category = category;
         this.description = description;

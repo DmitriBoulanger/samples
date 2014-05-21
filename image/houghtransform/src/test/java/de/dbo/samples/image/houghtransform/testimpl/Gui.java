@@ -20,8 +20,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 
-import de.dbo.samples.image.houghtransform.ImageProvider;
 import de.dbo.samples.image.houghtransform.core.CategorizerConfiguration;
+import de.dbo.samples.image.houghtransform.data.ImageProvider;
 
 /**
  * GUI to visualize HT-transformations and categorization of check-boxes. This

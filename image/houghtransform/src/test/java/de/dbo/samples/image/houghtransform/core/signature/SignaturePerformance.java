@@ -7,9 +7,9 @@ import java.util.Properties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.dbo.samples.image.houghtransform.ImageCollections;
-import de.dbo.samples.image.houghtransform.ImageProvider;
-import de.dbo.samples.image.houghtransform.api.OMRMarker;
+import de.dbo.samples.image.houghtransform.api.Marker;
+import de.dbo.samples.image.houghtransform.data.ImageCollections;
+import de.dbo.samples.image.houghtransform.data.ImageProvider;
 import de.dbo.samples.image.houghtransform.testimpl.JUnit;
 
 
@@ -74,7 +74,7 @@ public final class SignaturePerformance extends JUnit {
 
     private final void doIt(final String title, final ImageProvider imageProvider) throws Exception {
         try {
-            final double result = processAndCheckImages(imageProvider, title, OMRMarker.SIGNATURE);
+            final double result = processAndCheckImages(imageProvider, title, Marker.SIGNATURE);
             if (result < 0.01) {
                 System.out.println("No errors in " + title + ": " + result);
             }

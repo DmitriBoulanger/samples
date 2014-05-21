@@ -1,9 +1,9 @@
 package de.dbo.samples.image.houghtransform;
 
-import de.dbo.samples.image.houghtransform.api.OMRCategorizer;
-import de.dbo.samples.image.houghtransform.api.OMRCategorizerException;
-import de.dbo.samples.image.houghtransform.api.OMRCategory;
-import de.dbo.samples.image.houghtransform.api.OMRMarker;
+import de.dbo.samples.image.houghtransform.api.HTCategorizer;
+import de.dbo.samples.image.houghtransform.api.HTException;
+import de.dbo.samples.image.houghtransform.api.HTCategory;
+import de.dbo.samples.image.houghtransform.api.Marker;
 import de.dbo.samples.image.houghtransform.core.Categorizer;
 import de.dbo.samples.image.houghtransform.core.CategorizerConfiguration;
 import de.dbo.samples.image.houghtransform.core.hough.HoughAlgorithmCircle;
@@ -40,8 +40,8 @@ import de.dbo.samples.image.houghtransform.core.hough.HoughAlgorithmLinear;
  * The categorizer uses the circle Hough-algorithm in the first phases and the
  * linear Hough-algorithm in the second phase
  *
- * @see OMRMarker
- * @see OMRCategory
+ * @see Marker
+ * @see HTCategory
  * @see CategorizerConfiguration
  * @see HoughAlgorithmLinear
  * @see HoughAlgorithmCircle
@@ -51,11 +51,11 @@ import de.dbo.samples.image.houghtransform.core.hough.HoughAlgorithmLinear;
 
 public final class HoughCategorizerFactory {
 
-    public static final OMRCategorizer newInstance(final OMRMarker marker)
-            throws OMRCategorizerException {
+    public static final HTCategorizer newInstance(final Marker marker)
+            throws HTException {
         if (null == marker) {
-            throw new OMRCategorizerException(OMRCategorizerException.CONFIG_INITILIZATION
-                    , "OMR-Marker is NULL! Cannot create instance of the OMRCategorizer");
+            throw new HTException(HTException.CONFIG_INITILIZATION
+                    , "OMR-Marker is NULL! Cannot create instance of the HTCategorizer");
         }
         switch (marker) {
 
@@ -72,8 +72,8 @@ public final class HoughCategorizerFactory {
                 return new Categorizer("omr-brackets-cfg.xml");
 
             default:
-                throw new OMRCategorizerException(
-                        OMRCategorizerException.CONFIG_INITILIZATION,
+                throw new HTException(
+                        HTException.CONFIG_INITILIZATION,
                         "Can't create categorizer instance for the marker-type "
                                 + marker.name());
         }

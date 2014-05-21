@@ -4,9 +4,9 @@ import java.awt.Rectangle;
 import java.lang.reflect.Constructor;
 import java.util.Vector;
 
-import de.dbo.samples.image.houghtransform.api.OMRCategorizerException;
-import de.dbo.samples.image.houghtransform.api.OMRShape;
-import de.dbo.samples.image.houghtransform.api.OMRShapeFilter;
+import de.dbo.samples.image.houghtransform.api.HTException;
+import de.dbo.samples.image.houghtransform.api.Shape;
+import de.dbo.samples.image.houghtransform.api.ShapeFilter;
 import de.dbo.samples.image.houghtransform.core.CategorizerConfiguration;
 
 /**
@@ -18,7 +18,7 @@ import de.dbo.samples.image.houghtransform.core.CategorizerConfiguration;
 public abstract class HoughLinesAbstraction implements HoughLines {
 
     protected final CategorizerConfiguration cfg;
-    protected final OMRShape                 shape;
+    protected final Shape                 shape;
 
     protected final Vector<HoughLine>        lines        = new Vector<HoughLine>();
     protected final Vector<HoughLine>        shapeLines   = new Vector<HoughLine>();
@@ -27,7 +27,7 @@ public abstract class HoughLinesAbstraction implements HoughLines {
 
     private Hough                            hough        = null;
 
-    protected HoughLinesAbstraction(final CategorizerConfiguration cfg) throws OMRCategorizerException {
+    protected HoughLinesAbstraction(final CategorizerConfiguration cfg) throws HTException {
         this.shape = cfg.shape();
         this.cfg = cfg;
     }
@@ -48,34 +48,34 @@ public abstract class HoughLinesAbstraction implements HoughLines {
     }
 
     @Override
-    public final OMRShapeFilter getShapeFilter() throws OMRCategorizerException {
+    public final ShapeFilter getShapeFilter() throws HTException {
         if (!isShapeFilter()) {
             return null;
         }
         final String classname = cfg.getShapeFilterClassname();
         if (null == classname || 0 == classname.trim().length()) {
-            throw new OMRCategorizerException(
-                    OMRCategorizerException.CONFIG_CORRECTNESS,
+            throw new HTException(
+                    HTException.CONFIG_CORRECTNESS,
                     "No class-name for shape-filter found in the transform configuration");
         }
         try {
             final Class<?> filterClass = Class.forName(classname);
-            final Class<?>[] filterParameterTypes = {OMRShape.class,
+            final Class<?>[] filterParameterTypes = {Shape.class,
                     Integer.class};
             final Constructor<?> constructor = filterClass
                     .getConstructor(filterParameterTypes);
             final Object[] fileterParameters = {shape,
                     new Integer(cfg.getShapeFilterMargin())};
-            return (OMRShapeFilter) constructor.newInstance(fileterParameters);
+            return (ShapeFilter) constructor.newInstance(fileterParameters);
         }
         catch(Exception e) {
-            throw new OMRCategorizerException(OMRCategorizerException.SYSTEM,
+            throw new HTException(HTException.SYSTEM,
                     "Cannot create instance for " + classname, e);
         }
     }
 
     @Override
-    public final OMRShape getShape() {
+    public final Shape getShape() {
         if (!shape.isBorderComplete()) {
             return null;
         }

@@ -1,6 +1,6 @@
 package de.dbo.samples.image.houghtransform.core.box;
 
-import de.dbo.samples.image.houghtransform.api.OMRShape;
+import de.dbo.samples.image.houghtransform.api.Shape;
 import de.dbo.samples.image.houghtransform.core.hough.HoughFilter;
 
 import java.awt.Rectangle;
@@ -11,7 +11,7 @@ import java.awt.Rectangle;
 
 public final class BoxFilter extends HoughFilter {
 
-    public BoxFilter(final OMRShape shape, Integer marginprocent) {
+    public BoxFilter(final Shape shape, Integer marginprocent) {
         super(shape, marginprocent);
     }
 

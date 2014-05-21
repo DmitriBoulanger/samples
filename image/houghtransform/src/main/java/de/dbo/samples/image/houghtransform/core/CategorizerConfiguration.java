@@ -2,10 +2,10 @@ package de.dbo.samples.image.houghtransform.core;
 
 import java.util.List;
 
-import de.dbo.samples.image.houghtransform.api.OMRCategorizerException;
-import de.dbo.samples.image.houghtransform.api.OMRCategorizerMode;
-import de.dbo.samples.image.houghtransform.api.OMRImageQuality;
-import de.dbo.samples.image.houghtransform.api.OMRShape;
+import de.dbo.samples.image.houghtransform.api.HTException;
+import de.dbo.samples.image.houghtransform.api.HTCategorizerMode;
+import de.dbo.samples.image.houghtransform.api.ImageQuality;
+import de.dbo.samples.image.houghtransform.api.Shape;
 import de.dbo.samples.image.houghtransform.core.hough.HoughLines;
 
 public interface CategorizerConfiguration {
@@ -14,7 +14,7 @@ public interface CategorizerConfiguration {
     // Transform type
     //
 
-    public abstract OMRCategorizerMode type();
+    public abstract HTCategorizerMode type();
 
     //
     // Hough Configuration
@@ -32,9 +32,9 @@ public interface CategorizerConfiguration {
 
     public abstract void setHoughClassname(String classname);
 
-    public abstract int neighbourhoodSize(OMRImageQuality quality) throws OMRCategorizerException;
+    public abstract int neighbourhoodSize(ImageQuality quality) throws HTException;
 
-    public abstract int neighbourhoodSize(int width, int height) throws OMRCategorizerException;
+    public abstract int neighbourhoodSize(int width, int height) throws HTException;
 
     /*
      * threshold (percentage) determines lines that are extracted from the hough
@@ -143,9 +143,9 @@ public interface CategorizerConfiguration {
     // shape and its constraints
     //
 
-    public abstract OMRShape shape() throws OMRCategorizerException;
+    public abstract Shape shape() throws HTException;
 
-    public abstract HoughLines shapeLines() throws OMRCategorizerException;
+    public abstract HoughLines shapeLines() throws HTException;
 
     public abstract String getShapeClassname();
 
@@ -188,7 +188,7 @@ public interface CategorizerConfiguration {
     // Image quality classification
     //
 
-    public abstract OMRImageQuality imageQuality(int width, int height);
+    public abstract ImageQuality imageQuality(int width, int height);
 
     public abstract double getImageErrorMax();
 

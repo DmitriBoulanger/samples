@@ -7,24 +7,24 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Required;
 
-import de.dbo.samples.image.houghtransform.api.OMRCategorizerException;
-import de.dbo.samples.image.houghtransform.api.OMRCategorizerMode;
-import de.dbo.samples.image.houghtransform.api.OMRImageQuality;
-import de.dbo.samples.image.houghtransform.api.OMRShape;
+import de.dbo.samples.image.houghtransform.api.HTException;
+import de.dbo.samples.image.houghtransform.api.HTCategorizerMode;
+import de.dbo.samples.image.houghtransform.api.ImageQuality;
+import de.dbo.samples.image.houghtransform.api.Shape;
 import de.dbo.samples.image.houghtransform.core.hough.HoughLines;
 import de.dbo.samples.image.houghtransform.core.hough.Util;
 
 public final class CategorizerConfigurationImpl implements CategorizerConfiguration {
     private static final Logger      log = LoggerFactory.getLogger(CategorizerConfiguration.class);
 
-    private final OMRCategorizerMode type;
+    private final HTCategorizerMode type;
 
-    protected CategorizerConfigurationImpl(final OMRCategorizerMode type) {
+    protected CategorizerConfigurationImpl(final HTCategorizerMode type) {
         this.type = type;
     }
 
     @Override
-    public OMRCategorizerMode type() {
+    public HTCategorizerMode type() {
         return type;
     }
 
@@ -73,8 +73,8 @@ public final class CategorizerConfigurationImpl implements CategorizerConfigurat
     }
 
     @Override
-    public final int neighbourhoodSize(OMRImageQuality quality)
-            throws OMRCategorizerException {
+    public final int neighbourhoodSize(ImageQuality quality)
+            throws HTException {
         switch (quality) {
             case HIGH:
                 return getNeighbourhoodSizeHigh();
@@ -84,7 +84,7 @@ public final class CategorizerConfigurationImpl implements CategorizerConfigurat
                 return getNeighbourhoodSizeLow();
             default:
                 if (0 == whiteBorder) {
-                    throw new OMRCategorizerException(OMRCategorizerException.SYSTEM,
+                    throw new HTException(HTException.SYSTEM,
                             "Cannot determine neighbourhood size for image quality " + quality.name());
                 }
                 else {
@@ -95,7 +95,7 @@ public final class CategorizerConfigurationImpl implements CategorizerConfigurat
     }
 
     @Override
-    public final int neighbourhoodSize(int width, int height) throws OMRCategorizerException {
+    public final int neighbourhoodSize(int width, int height) throws HTException {
         return neighbourhoodSize(imageQuality(width, height));
     }
 
@@ -324,12 +324,12 @@ public final class CategorizerConfigurationImpl implements CategorizerConfigurat
     // SHAPE AND ITS CONSTRAINTS
 
     @Override
-    public OMRShape shape() throws OMRCategorizerException {
+    public Shape shape() throws HTException {
         final String classname = getShapeClassname();
         if (!nn(classname)) {
-            throw new OMRCategorizerException(
-                    OMRCategorizerException.CONFIG_CORRECTNESS,
-                    "No classname for shape (OMRShape) found in the transform configuration."
+            throw new HTException(
+                    HTException.CONFIG_CORRECTNESS,
+                    "No classname for shape (Shape) found in the transform configuration."
                             + " Mode=" + type().name());
         }
         try {
@@ -338,22 +338,22 @@ public final class CategorizerConfigurationImpl implements CategorizerConfigurat
             final Constructor<?> constructor = shapeClass
                     .getConstructor(parameterTypes);
             final Object[] parameters = {getShapeRectangularRatioMax()};
-            return (OMRShape) constructor.newInstance(parameters);
+            return (Shape) constructor.newInstance(parameters);
         }
         catch(Exception e) {
-            throw new OMRCategorizerException(
-                    OMRCategorizerException.CONFIG_CORRECTNESS,
+            throw new HTException(
+                    HTException.CONFIG_CORRECTNESS,
                     "Cannot create instance for " + classname + "." + " Mode="
                             + type().name(), e);
         }
     }
 
     @Override
-    public HoughLines shapeLines() throws OMRCategorizerException {
+    public HoughLines shapeLines() throws HTException {
         final String classname = getShapeLinesClassname();
         if (!nn(classname)) {
-            throw new OMRCategorizerException(
-                    OMRCategorizerException.CONFIG_CORRECTNESS,
+            throw new HTException(
+                    HTException.CONFIG_CORRECTNESS,
                     "No classname for shape-lines (HoughLines) found in the transform configuration."
                             + " Mode=" + type().name());
         }
@@ -366,7 +366,7 @@ public final class CategorizerConfigurationImpl implements CategorizerConfigurat
             return (HoughLines) constructor.newInstance(parameters);
         }
         catch(Exception e) {
-            throw new OMRCategorizerException(OMRCategorizerException.SYSTEM,
+            throw new HTException(HTException.SYSTEM,
                     "Cannot create instance for " + classname + "." + " Mode="
                             + type().name(), e);
         }
@@ -504,7 +504,7 @@ public final class CategorizerConfigurationImpl implements CategorizerConfigurat
     //
 
     @Override
-    public final OMRImageQuality imageQuality(int width, int height) {
+    public final ImageQuality imageQuality(int width, int height) {
         final int diagonal = (int) Util.diagonal(width, height);
         final int highMax = getImageHighMax();
         final int normalMax = getImageNormalMax();
@@ -512,19 +512,19 @@ public final class CategorizerConfigurationImpl implements CategorizerConfigurat
         final int lowMin = getImageLowMin();
 
         if (highMax < diagonal) {
-            return OMRImageQuality.TOO_LARGE;
+            return ImageQuality.TOO_LARGE;
         }
         else if (diagonal < lowMin) {
-            return OMRImageQuality.TOO_SMALL;
+            return ImageQuality.TOO_SMALL;
         }
         else if (normalMax < diagonal && diagonal <= highMax) {
-            return OMRImageQuality.HIGH;
+            return ImageQuality.HIGH;
         }
         else if (lowMax < diagonal && diagonal <= normalMax) {
-            return OMRImageQuality.NORMAL;
+            return ImageQuality.NORMAL;
         }
         else if (lowMin < diagonal && diagonal <= lowMax) {
-            return OMRImageQuality.LOW;
+            return ImageQuality.LOW;
         }
         else {
             throw new IllegalStateException(

@@ -6,7 +6,7 @@ package de.dbo.samples.image.houghtransform.api;
  *
  * @author D.Boulanger ITyX GmbH
  */
-public enum OMRImageQuality {
+public enum ImageQuality {
     TOO_LARGE
     , HIGH // 100x100
     , NORMAL // 70x70

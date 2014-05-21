@@ -11,13 +11,13 @@ import java.util.Vector;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.dbo.samples.image.houghtransform.api.OMRCategorizerException;
-import de.dbo.samples.image.houghtransform.api.OMRCategorizerMode;
-import de.dbo.samples.image.houghtransform.api.OMRCategory;
-import de.dbo.samples.image.houghtransform.api.OMRImageInfo;
-import de.dbo.samples.image.houghtransform.api.OMRImageQuality;
-import de.dbo.samples.image.houghtransform.api.OMRShape;
-import de.dbo.samples.image.houghtransform.api.OMRShapeFilter;
+import de.dbo.samples.image.houghtransform.api.HTException;
+import de.dbo.samples.image.houghtransform.api.HTCategorizerMode;
+import de.dbo.samples.image.houghtransform.api.HTCategory;
+import de.dbo.samples.image.houghtransform.api.ImageInfo;
+import de.dbo.samples.image.houghtransform.api.ImageQuality;
+import de.dbo.samples.image.houghtransform.api.Shape;
+import de.dbo.samples.image.houghtransform.api.ShapeFilter;
 import de.dbo.samples.image.houghtransform.core.hough.Hough;
 import de.dbo.samples.image.houghtransform.core.hough.HoughLines;
 import de.dbo.samples.image.houghtransform.core.hough.HoughTransform;
@@ -37,13 +37,13 @@ public class CategorizerWorker implements HoughTransform {
     protected final int                      imageHeight;
 
     protected final CategorizerConfiguration cfg;
-    protected final OMRImageQuality          imageQuality;
+    protected final ImageQuality          imageQuality;
     protected final String                   imageName;
     protected final BufferedImage            image;
     protected final BufferedImage            imageFiltered;
     protected final Hough                    hough;
 
-    private OMRCategory                      imageCategory = null;
+    private HTCategory                      imageCategory = null;
 
     /**
      * production constructor for marker-image categorization
@@ -53,17 +53,17 @@ public class CategorizerWorker implements HoughTransform {
      *
      * @throws Exception
      */
-    public CategorizerWorker(final BufferedImage imageOrigin, final CategorizerConfiguration cfg) throws OMRCategorizerException {
-        this(imageOrigin, (OMRImageInfo) null, cfg);
+    public CategorizerWorker(final BufferedImage imageOrigin, final CategorizerConfiguration cfg) throws HTException {
+        this(imageOrigin, (ImageInfo) null, cfg);
     }
 
-    protected CategorizerWorker(final BufferedImage image, final OMRImageInfo info, final CategorizerConfiguration cfg) throws OMRCategorizerException {
+    protected CategorizerWorker(final BufferedImage image, final ImageInfo info, final CategorizerConfiguration cfg) throws HTException {
         this.imageWidth = image.getWidth();
         this.imageHeight = image.getHeight();
 
         if (cfg.getImageErrorMax() < Util.error(this.imageWidth, this.imageHeight)) {
             if (0 == cfg.getWhiteBorder()) {
-                throw new OMRCategorizerException(OMRCategorizerException.IMANGE_ERROR, "Ratio "
+                throw new HTException(HTException.IMANGE_ERROR, "Ratio "
                         + this.imageWidth
                         + "x"
                         + this.imageHeight + " of the Marker-image "
@@ -111,7 +111,7 @@ public class CategorizerWorker implements HoughTransform {
         return this.hough.getHoughLines().isShapeWelldefined();
     }
 
-    protected final BufferedImage applyFilters(BufferedImage image, CategorizerConfiguration cfg) throws OMRCategorizerException {
+    protected final BufferedImage applyFilters(BufferedImage image, CategorizerConfiguration cfg) throws HTException {
         BufferedImageOp[] imageFilters;
         try {
             final List<String> filterClassnames = cfg.getImageFilters();
@@ -125,7 +125,7 @@ public class CategorizerWorker implements HoughTransform {
             }
         }
         catch(Exception e) {
-            throw new OMRCategorizerException(OMRCategorizerException.SYSTEM, "Cannot initilize image filters", e);
+            throw new HTException(HTException.SYSTEM, "Cannot initilize image filters", e);
         }
         BufferedImage ret = image;
         for (final BufferedImageOp op : imageFilters) {
@@ -135,33 +135,33 @@ public class CategorizerWorker implements HoughTransform {
     }
 
     @Override
-    public final OMRCategory category() {
+    public final HTCategory category() {
         if (null != this.imageCategory) {
             return this.imageCategory;
         }
-        final OMRCategory ret;
+        final HTCategory ret;
         final HoughLines lines = this.hough.getHoughLines();
         switch (this.cfg.type()) {
             case SHAPE:
                 if (lines.isShapeFound() && !lines.isContentFound()) {
-                    ret = OMRCategory.UNCHECKED;
+                    ret = HTCategory.UNCHECKED;
                 }
                 else if (lines.isContentFound() && lines.isContentFound()) {
-                    ret = OMRCategory.CHECKED;
+                    ret = HTCategory.CHECKED;
                 }
                 else {
-                    ret = OMRCategory.UNKNOWN;
+                    ret = HTCategory.UNKNOWN;
                 }
                 break;
             case CONTENT:
                 if (!lines.isContentFound()) {
-                    ret = OMRCategory.UNCHECKED;
+                    ret = HTCategory.UNCHECKED;
                 }
                 else if (lines.isContentFound()) {
-                    ret = OMRCategory.CHECKED;
+                    ret = HTCategory.CHECKED;
                 }
                 else {
-                    ret = OMRCategory.UNKNOWN;
+                    ret = HTCategory.UNKNOWN;
                 }
                 break;
             default:
@@ -192,7 +192,7 @@ public class CategorizerWorker implements HoughTransform {
         return ret;
     }
 
-    private final Hough getHoughTransformation() throws OMRCategorizerException {
+    private final Hough getHoughTransformation() throws HTException {
         final HoughLines houghLines = cfg.shapeLines();
         // create a hough transform object with the right dimensions
         final Hough hough = houghInstance(houghLines);
@@ -203,11 +203,11 @@ public class CategorizerWorker implements HoughTransform {
         return hough;
     }
 
-    private Hough houghInstance(HoughLines lines) throws OMRCategorizerException {
+    private Hough houghInstance(HoughLines lines) throws HTException {
         final Hough ret;
         final String classname = cfg.getHoughClassname();
         if (null == classname || 0 == classname.trim().length()) {
-            throw new OMRCategorizerException(OMRCategorizerException.CONFIG_CORRECTNESS,
+            throw new HTException(HTException.CONFIG_CORRECTNESS,
                     "No class-name for hough found in the transform configuration");
         }
         try {
@@ -218,7 +218,7 @@ public class CategorizerWorker implements HoughTransform {
             ret = (Hough) constructor.newInstance(lineParameters);
         }
         catch(Exception e) {
-            throw new OMRCategorizerException(OMRCategorizerException.SYSTEM,
+            throw new HTException(HTException.SYSTEM,
                     "Cannot create instance for " + classname, e);
         }
         lines.setHough(ret);
@@ -235,7 +235,7 @@ public class CategorizerWorker implements HoughTransform {
     }
 
     @Override
-    public BufferedImage getShapeFilteredImage() throws OMRCategorizerException {
+    public BufferedImage getShapeFilteredImage() throws HTException {
         if (!this.cfg.shapeFilterUsage()) {
             return this.imageFiltered;
         }
@@ -247,16 +247,16 @@ public class CategorizerWorker implements HoughTransform {
     }
 
     @Override
-    public BufferedImage getShapeCroppedImage() throws OMRCategorizerException {
+    public BufferedImage getShapeCroppedImage() throws HTException {
         if (!this.cfg.shapeFilterUsage()) {
             return this.imageFiltered;
         }
-        OMRShapeFilter filter = getShapeFilter();
+        ShapeFilter filter = getShapeFilter();
         log.debug("returning shape-filtered image. Filter= " + filter.getClass().getSimpleName());
         return cropImage(getShapeFilteredImage(), filter, cfg);
     }
 
-    protected static final BufferedImage cropImage(BufferedImage image, OMRShapeFilter filter, final CategorizerConfiguration cfg) {
+    protected static final BufferedImage cropImage(BufferedImage image, ShapeFilter filter, final CategorizerConfiguration cfg) {
         final Rectangle filterRectangle = filter.getRectangle();
         return cropImage(image, filterRectangle, cfg);
     }
@@ -284,11 +284,11 @@ public class CategorizerWorker implements HoughTransform {
     }
 
     @Override
-    public OMRShapeFilter getShapeFilter() throws OMRCategorizerException {
+    public ShapeFilter getShapeFilter() throws HTException {
         if (!this.cfg.shapeFilterUsage()) {
             return null;
         }
-        final OMRShapeFilter op = this.hough.getHoughLines().getShapeFilter();
+        final ShapeFilter op = this.hough.getHoughLines().getShapeFilter();
         if (null == op) {
             return null;
         }
@@ -298,12 +298,12 @@ public class CategorizerWorker implements HoughTransform {
     }
 
     @Override
-    public OMRShape getShape() {
+    public Shape getShape() {
         return this.hough.getHoughLines().getShape();
     }
 
     @Override
-    public OMRCategorizerMode getMode() {
+    public HTCategorizerMode getMode() {
         return this.cfg.type();
     }
 
@@ -323,7 +323,7 @@ public class CategorizerWorker implements HoughTransform {
     }
 
     @Override
-    public OMRImageQuality imageQuality() {
+    public ImageQuality imageQuality() {
         return imageQuality;
     }
 

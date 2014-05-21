@@ -2,7 +2,7 @@ package de.dbo.samples.image.houghtransform.core.hough;
 
 import java.awt.image.BufferedImage;
 
-import de.dbo.samples.image.houghtransform.api.OMRCategorizerException;
+import de.dbo.samples.image.houghtransform.api.HTException;
 import de.dbo.samples.image.houghtransform.core.CategorizerConfiguration;
 
 public interface Hough {
@@ -22,9 +22,9 @@ public interface Hough {
      * method extracts lines from the hough-array
      * @see Hough#addPoints(BufferedImage)
      *
-     * @throws OMRCategorizerException
+     * @throws HTException
      */
-    public abstract void generateLines() throws OMRCategorizerException;
+    public abstract void generateLines() throws HTException;
 
     /**
      * Once lines have been already generated this method returns
