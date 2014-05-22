@@ -141,11 +141,11 @@ final class GuiSignature extends JFrame {
     private static final void drawImageRow(final CategorizerGui transformer, final GuiRow row) throws Exception {
         row.category.mydraw(transformer.category(), transformer.info());
 
-        // shape phase
-        row.sourceImage.mydraw(transformer.image());
-        row.sourceImageFilteredWithShape.mydraw(transformer.imageFiltered(), transformer.getShape());
-        row.paneHoughArray.mydraw(transformer.getHoughArrayImage());
-        row.shapeDescription.mydraw(transformer.shapeDescription());
+        //        // shape phase
+        //        row.sourceImage.mydraw(transformer.image());
+        //        row.sourceImageFilteredWithShape.mydraw(transformer.imageFiltered(), transformer.getShape());
+        //        row.paneHoughArray.mydraw(transformer.getHoughArrayImage());
+        //        row.shapeDescription.mydraw(transformer.shapeDescription());
 
         // content phase
         row.shapeFilteredImage.mydraw(transformer.getBoxFilterdImage());

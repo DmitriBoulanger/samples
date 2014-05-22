@@ -81,8 +81,7 @@ public class CategorizerImpl implements Categorizer {
         if (0 == delta) {
             return image;
         }
-        final Rectangle border = new Rectangle(delta, delta
-                , image.getWidth() - 2 * delta, image.getHeight() - 2 * delta);
+        final Rectangle border = new Rectangle(delta, delta, image.getWidth() - 2 * delta, image.getHeight() - 2 * delta);
         try {
             final int x = border.x;
             final int y = border.y;
@@ -109,8 +108,9 @@ public class CategorizerImpl implements Categorizer {
             throw new HoughTransformException(HoughTransformException.BEANS_CONTENT_INITILIZATION,
                     "Failure while creating " + bean + " config-bean from the Spring-CTX " + this.ctxname, e);
         }
-        shapeCategorizer = getCategorizerWorker(cropImage(image, cfg.getWhiteBorder()), null, cfg);
+
         if (0 == cfg.getWhiteBorder()) {
+            shapeCategorizer = getCategorizerWorker(cropImage(image, cfg.getWhiteBorder()), null, cfg);
             if (!shapeCategorizer.isShapeFound()) {
                 return Category.UNKNOWN;
             }
@@ -121,6 +121,7 @@ public class CategorizerImpl implements Categorizer {
                 return shapeCategorizer.category();
             }
         }
+
         // run the second phase using the shape-filtered image
         // and use its results for the final categorization
         try {
