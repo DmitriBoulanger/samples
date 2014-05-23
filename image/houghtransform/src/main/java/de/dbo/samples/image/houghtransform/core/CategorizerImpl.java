@@ -1,5 +1,15 @@
 package de.dbo.samples.image.houghtransform.core;
 
+import static de.dbo.samples.image.houghtransform.core.Imagetrace.save;
+
+import de.dbo.samples.image.houghtransform.api.Categorizer;
+import de.dbo.samples.image.houghtransform.api.CategorizerConfiguration;
+import de.dbo.samples.image.houghtransform.api.CategorizerWorker;
+import de.dbo.samples.image.houghtransform.api.Category;
+import de.dbo.samples.image.houghtransform.api.HoughTransformException;
+import de.dbo.samples.image.houghtransform.api.ImageInfo;
+import de.dbo.samples.image.houghtransform.api.ShapeFilter;
+
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
@@ -9,14 +19,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-
-import de.dbo.samples.image.houghtransform.api.Categorizer;
-import de.dbo.samples.image.houghtransform.api.CategorizerConfiguration;
-import de.dbo.samples.image.houghtransform.api.CategorizerWorker;
-import de.dbo.samples.image.houghtransform.api.Category;
-import de.dbo.samples.image.houghtransform.api.HoughTransformException;
-import de.dbo.samples.image.houghtransform.api.ImageInfo;
-import de.dbo.samples.image.houghtransform.api.ShapeFilter;
 
 /**
  * Marker categorization. The module performs classification of the marker
@@ -43,7 +45,7 @@ public class CategorizerImpl implements Categorizer {
 
     private CategorizerConfiguration cfg                = null;
     private CategorizerConfiguration cfg2               = null;
-
+    
     /**
      * @param ctxname
      *            name of the XML-file (Spring resource)
@@ -99,6 +101,7 @@ public class CategorizerImpl implements Categorizer {
         }
     }
 
+
     @Override
     public final Category getCategory(final BufferedImage image) throws HoughTransformException {
         try {
@@ -112,13 +115,13 @@ public class CategorizerImpl implements Categorizer {
         if (0 == cfg.getWhiteBorder()) {
             shapeCategorizer = getCategorizerWorker(cropImage(image, cfg.getWhiteBorder()), null, cfg);
             if (!shapeCategorizer.isShapeFound()) {
-                return Category.UNKNOWN;
+                return save(image,Category.UNKNOWN);
             }
             if (!cfg.shapeFilterUsage()) {
-                return shapeCategorizer.category();
+                return save(image,shapeCategorizer.category());
             }
             if (!shapeCategorizer.isShapeFilterWelldefined()) {
-                return shapeCategorizer.category();
+                return save(image,shapeCategorizer.category());
             }
         }
 
@@ -135,14 +138,14 @@ public class CategorizerImpl implements Categorizer {
             shapeFilter = shapeCategorizer.getShapeFilter();
             shapeFilteredImage = shapeCategorizer.getShapeCroppedImage();
             contentCategorizer = getCategorizerWorker(shapeFilteredImage, null, cfg2);
-            return contentCategorizer.category();
+            return save(image,contentCategorizer.category());
         }
         else {
             contentCategorizer = getCategorizerWorker(cropImage(image, cfg.getWhiteBorder()), null, cfg2);
-            return contentCategorizer.category();
+            return save(image,contentCategorizer.category());
         }
     }
-
+    
     protected CategorizerWorker getCategorizerWorker(final BufferedImage image, final ImageInfo info, final CategorizerConfiguration cfg)
             throws HoughTransformException {
         return new CategorizerWorkerImpl(image, cfg);
