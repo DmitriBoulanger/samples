@@ -37,7 +37,7 @@ public final class Imagetrace {
 			}
 
 			if (imagetrace.isEmpty()) {
-				log.info(resource + " has no properties");
+				log.warn(resource + " has no properties");
 				return null;
 			}
 			final SimpleDateFormat sdf = 

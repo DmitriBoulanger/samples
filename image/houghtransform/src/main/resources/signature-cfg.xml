@@ -82,6 +82,8 @@
 				Image filter are only from the com.jhlabs.image-package
 			</description>
 			<list>
+			<value>de.dbo.samples.image.houghtransform.filter.PointBasedThresholdFilter</value>
+			
 			</list>
 		</property>
 		
@@ -161,6 +163,8 @@
 				before any other operation
 			</description>
 			<list>
+			<value>de.dbo.samples.image.houghtransform.filter.PointBasedThresholdFilter</value>
+			
 			</list>
 		</property>
 	</bean>
