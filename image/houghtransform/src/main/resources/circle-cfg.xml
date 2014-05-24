@@ -15,8 +15,9 @@
 		scope="singleton">
 
 		<constructor-arg value="SHAPE"/>
+		<property name="enabled" value="true" />
+		
 		<property name="whiteBorder" value="0" />
-		<property name="split" value="false" />
 
 	<!-- HOUGH PARAMETRS -->
 	<property name="houghClassname" 
@@ -112,8 +113,9 @@
 		scope="singleton">
 
 		<constructor-arg value="CONTENT" />
+		<property name="enabled" value="true" />
+		
 		<property name="whiteBorder" value="0" />
-		<property name="split" value="false" />
 
 		<!-- HOUGH PARAMETRS -->
 		<property name="houghClassname" 

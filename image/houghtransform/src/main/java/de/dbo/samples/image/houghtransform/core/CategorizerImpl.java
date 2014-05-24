@@ -112,8 +112,8 @@ public class CategorizerImpl implements Categorizer {
                     "Failure while creating " + bean + " config-bean from the Spring-CTX " + this.ctxname, e);
         }
 
-        if (0 == cfg.getWhiteBorder()) {
-            shapeCategorizer = getCategorizerWorker(cropImage(image, cfg.getWhiteBorder()), null, cfg);
+        if (cfg.isEnabled()) {
+            shapeCategorizer = getCategorizerWorker(image, null, cfg);
             if (!shapeCategorizer.isShapeFound()) {
                 return save(image,Category.UNKNOWN);
             }
@@ -134,7 +134,7 @@ public class CategorizerImpl implements Categorizer {
             throw new HoughTransformException(HoughTransformException.BEANS_CONTENT_INITILIZATION,
                     "Failure while creating " + bean2 + " config-bean from the Spring-CTX " + this.ctxname, e);
         }
-        if (0 == cfg.getWhiteBorder()) {
+        if (cfg.isEnabled()) {
             shapeFilter = shapeCategorizer.getShapeFilter();
             shapeFilteredImage = shapeCategorizer.getShapeCroppedImage();
             contentCategorizer = getCategorizerWorker(shapeFilteredImage, null, cfg2);

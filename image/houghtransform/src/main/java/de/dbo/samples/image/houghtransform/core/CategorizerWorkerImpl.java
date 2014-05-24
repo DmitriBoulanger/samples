@@ -63,7 +63,7 @@ public class CategorizerWorkerImpl implements HoughTransform {
         this.imageHeight = image.getHeight();
 
         if (cfg.getImageErrorMax() < Util.error(this.imageWidth, this.imageHeight)) {
-            if (0 == cfg.getWhiteBorder()) {
+            if (cfg.isEnabled()) {
                 throw new HoughTransformException(HoughTransformException.IMANGE_ERROR, "Ratio "
                         + this.imageWidth
                         + "x"

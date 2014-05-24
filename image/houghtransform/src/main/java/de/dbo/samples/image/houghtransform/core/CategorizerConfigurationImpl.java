@@ -23,6 +23,20 @@ public final class CategorizerConfigurationImpl implements CategorizerConfigurat
     protected CategorizerConfigurationImpl(final CategorizerMode type) {
         this.type = type;
     }
+    
+    // ###
+    private boolean enabled;
+
+    @Override
+    public final boolean isEnabled() {
+        return this.enabled;
+    }
+
+    @Override
+    @Required
+    public final void setEnabled(boolean split) {
+        this.enabled = split;
+    }
 
     @Override
     public CategorizerMode type() {
@@ -41,20 +55,6 @@ public final class CategorizerConfigurationImpl implements CategorizerConfigurat
     @Required
     public final void setWhiteBorder(int whiteBorder) {
         this.whiteBorder = whiteBorder;
-    }
-
-    // ###
-    private boolean split;
-
-    @Override
-    public final boolean isSplit() {
-        return this.split;
-    }
-
-    @Override
-    @Required
-    public final void setSplit(boolean split) {
-        this.split = split;
     }
 
     // HOUGH PARAMETRS

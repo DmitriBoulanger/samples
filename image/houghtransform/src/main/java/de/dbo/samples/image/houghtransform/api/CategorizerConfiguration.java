@@ -11,6 +11,11 @@ public interface CategorizerConfiguration {
     //
 
     public abstract CategorizerMode type();
+    
+    public abstract boolean isEnabled();
+
+    public abstract void setEnabled(boolean split);
+
 
     //
     // Hough Configuration
@@ -19,10 +24,6 @@ public interface CategorizerConfiguration {
     public abstract int getWhiteBorder();
 
     public abstract void setWhiteBorder(int whiteBorder);
-
-    public abstract boolean isSplit();
-
-    public abstract void setSplit(boolean split);
 
     public abstract String getHoughClassname();
 

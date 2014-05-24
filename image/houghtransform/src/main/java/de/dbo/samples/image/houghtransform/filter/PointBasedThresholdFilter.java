@@ -34,7 +34,7 @@ public final class PointBasedThresholdFilter extends PointFilter {
      * Construct a ThresholdFilter.
      */
     public PointBasedThresholdFilter() {
-        this(160);
+        this(220);
     }
 
     /**
@@ -42,8 +42,8 @@ public final class PointBasedThresholdFilter extends PointFilter {
      * @param t the threshold value
      */
     public PointBasedThresholdFilter(int t) {
-        setLowerThreshold(150);
-        setUpperThreshold(210);
+        setLowerThreshold(t);
+        setUpperThreshold(t);
     }
 
     /**
