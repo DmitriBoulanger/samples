@@ -24,10 +24,13 @@ import de.dbo.samples.image.houghtransform.api.CategorizerConfiguration;
 import de.dbo.samples.image.houghtransform.data.ImageProvider;
 
 /**
- * GUI to visualize HT-transformations and categorization of check-boxes. This
- * GUI is only used for tests and development
+ * GUI to visualize HT-transformations and categorization of check-boxes. 
+ * It is only used for tests and development
  *
- * @author boulanger
+ * @author Dmitri Boulanger, Hombach
+ *
+ * D. Knuth: Programs are meant to be read by humans and 
+ *           only incidentally for computers to execute 
  *
  */
 final class GuiSignature extends JFrame {
