@@ -1,6 +1,6 @@
 package de.dbo.samples.image.houghtransform.core;
 
-import static de.dbo.samples.image.houghtransform.core.Imagetrace.save;
+import static de.dbo.samples.image.houghtransform.CaregorizerImageTracer.save;
 
 import de.dbo.samples.image.houghtransform.api.Categorizer;
 import de.dbo.samples.image.houghtransform.api.CategorizerConfiguration;
