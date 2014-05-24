@@ -35,6 +35,7 @@ public final class CaregorizerImageTracer {
 	private static final String IMAGETRACE_PROPERTIES = "imagetrace.properties";
 	private static final String IMAGETRACE_DIR_EXTENSION = "yyyy-MM-dd-HH-mm-ss-SSS";
 	private static final String IMAGETRACE_DIR_PROPERTY = "dir";
+	private static final String IMAGETRACE_TIMESTAMP_PROPERTY = "timestamp";
 	private static final String IMAGETRACE_OUTPUT_FORMAT = "png";
 	private static final File IMAGETRACE_DIR = imagetraceDir();
 	private static Object IMAGETRACE_LOCK = new Object();
@@ -73,12 +74,20 @@ public final class CaregorizerImageTracer {
 				log.debug(IMAGETRACE_PROPERTIES + " has no value for property " + IMAGETRACE_DIR_PROPERTY);
 				return null;
 			}
+			final String timestampValue = imagetrace.getProperty(IMAGETRACE_TIMESTAMP_PROPERTY);
+			final String timestampValueTrimmed;
+			if (null==timestampValue || 0==timestampValue.trim().length()) {
+				log.debug(IMAGETRACE_PROPERTIES + " has no value for property " + IMAGETRACE_TIMESTAMP_PROPERTY);
+				timestampValueTrimmed = IMAGETRACE_DIR_EXTENSION;
+			} else {
+				timestampValueTrimmed = timestampValue.trim();
+			}
 			final String dirValueTrimmed = dirValue.trim();
-			final SimpleDateFormat sdf = new SimpleDateFormat(IMAGETRACE_DIR_EXTENSION);
+			final SimpleDateFormat sdf = new SimpleDateFormat(timestampValueTrimmed);
 			final String timestamp = "-" + sdf.format(new Date());
+			
 			final String dirPath = new File(dirValueTrimmed + timestamp).getAbsolutePath();
 			final File dir = new File(dirPath);
-
 			final boolean created = dir.mkdirs();
 			if (created) {
 				for (final Category category : Category.values()) {
