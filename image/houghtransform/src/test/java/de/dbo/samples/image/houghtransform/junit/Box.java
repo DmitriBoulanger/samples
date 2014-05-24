@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
 import de.dbo.samples.image.houghtransform.api.Marker;
 import de.dbo.samples.image.houghtransform.data.ImageCollections;
 import de.dbo.samples.image.houghtransform.data.ImageProvider;
-import de.dbo.samples.image.houghtransform.testimpl.JUnit;
+import de.dbo.samples.image.houghtransform.gui.impl.JUnit;
 
 /**
  *
