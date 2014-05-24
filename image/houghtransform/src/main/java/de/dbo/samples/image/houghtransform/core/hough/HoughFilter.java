@@ -1,5 +1,7 @@
 package de.dbo.samples.image.houghtransform.core.hough;
 
+import static de.dbo.samples.image.houghtransform.core.Constants.HUNDRED;
+
 import java.awt.Rectangle;
 
 import com.jhlabs.image.WholeImageFilter;
@@ -11,7 +13,7 @@ import de.dbo.samples.image.houghtransform.api.ShapeFilter;
  * Abstract filter which drops all pixels outside the shape.
  */
 
-public abstract class HoughFilter extends WholeImageFilter implements ShapeFilter, Constants {
+public abstract class HoughFilter extends WholeImageFilter implements ShapeFilter {
 
     protected final Rectangle rectangle;
 

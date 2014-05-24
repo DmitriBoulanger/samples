@@ -6,7 +6,7 @@ import java.util.Vector;
 import org.springframework.context.ApplicationContext;
 
 import de.dbo.samples.image.houghtransform.api.CategorizerConfiguration;
-import de.dbo.samples.image.houghtransform.api.HoughTransformException;
+import de.dbo.samples.image.houghtransform.api.CategorizerException;
 import de.dbo.samples.image.houghtransform.api.Category;
 import de.dbo.samples.image.houghtransform.api.ImageInfo;
 import de.dbo.samples.image.houghtransform.api.Shape;
@@ -22,7 +22,7 @@ final class CategorizerGui extends CategorizerImpl {
     private final ImageInfo  info;
 
     CategorizerGui(final ImageProvider imageProvider, final ImageInfo info,
-            final String ctxname, final ApplicationContext ctx) throws HoughTransformException {
+            final String ctxname, final ApplicationContext ctx) throws CategorizerException {
         super(ctxname, ctx);
         this.imageProvider = imageProvider;
         this.info = info;
@@ -31,7 +31,7 @@ final class CategorizerGui extends CategorizerImpl {
 
     @Override
     protected CategorizerWorkerImpl getCategorizerWorker(final BufferedImage _0, final ImageInfo _1
-            , final CategorizerConfiguration cfg) throws HoughTransformException {
+            , final CategorizerConfiguration cfg) throws CategorizerException {
         if (null == shapeFilteredImage) {
             return new CategorizerGuiWorker(this.imageProvider, this.info, cfg);
         }
@@ -41,7 +41,7 @@ final class CategorizerGui extends CategorizerImpl {
         }
     }
 
-    final Category category() throws HoughTransformException {
+    final Category category() throws CategorizerException {
         return getCategory(imageProvider.getImageFromResource(info));
     }
 

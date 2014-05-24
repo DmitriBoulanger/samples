@@ -61,11 +61,11 @@
 
 		<!-- SHAPE AND ITS CONSRAINTS -->
 		<property name="shapeClassname"
-			value="de.dbo.samples.image.houghtransform.core.brackets.Brackets" />
+			value="de.dbo.samples.image.houghtransform.core.shapes.brackets.Brackets" />
 		<property name="shapeLineClassname"
-			value="de.dbo.samples.image.houghtransform.core.brackets.BracketsHoughLine" />
+			value="de.dbo.samples.image.houghtransform.core.shapes.brackets.BracketsHoughLine" />
 		<property name="shapeLinesClassname"
-			value="de.dbo.samples.image.houghtransform.core.brackets.BracketsHoughLines" />
+			value="de.dbo.samples.image.houghtransform.core.shapes.brackets.BracketsHoughLines" />
 		<property name="shapeRectangularRatioMax" value="0.50" >
 			<description> 
 			        Constraint for a shape to be well-defined:
@@ -75,11 +75,11 @@
 		<property name="shapeRadius" value="0.30" />
 
 		<!-- SHAPE FILTER -->
-		<property name="shapeFilterClassname" value="de.dbo.samples.image.houghtransform.core.box.BoxFilter" />
+		<property name="shapeFilterClassname" value="de.dbo.samples.image.houghtransform.core.shapes.box.BoxFilter" />
 		<property name="shapeFilterMargin" value="15" />
 
 		<!-- IMAGE ERROR, ITS CLASSIFICATION AND FILTERS -->
-		<property name="imageErrorMax" value="0.30" />
+		<property name="imageRatioMax" value="0.30" />
 		<property name="imageHighMax" value="180" />
 		<property name="imageNormalMax" value="140" />
 		<property name="imageLowMax" value="50" />
@@ -144,9 +144,9 @@
 
 	
 		<!-- SHAPE AND ITS CONSTRAINTS -->
-		<property name="shapeClassname" value="de.dbo.samples.image.houghtransform.core.box.Box" />
-		<property name="shapeLineClassname" value="de.dbo.samples.image.houghtransform.core.box.BoxHoughLine" />
-		<property name="shapeLinesClassname" value="de.dbo.samples.image.houghtransform.core.box.BoxHoughLines" />
+		<property name="shapeClassname" value="de.dbo.samples.image.houghtransform.core.shapes.box.Box" />
+		<property name="shapeLineClassname" value="de.dbo.samples.image.houghtransform.core.shapes.box.BoxHoughLine" />
+		<property name="shapeLinesClassname" value="de.dbo.samples.image.houghtransform.core.shapes.box.BoxHoughLines" />
 		<property name="shapeRectangularRatioMax" value="0.50" />
 		<property name="shapeRadius" value="0.30" />
 
@@ -155,7 +155,7 @@
 		<property name="shapeFilterMargin" value="0" />
 
 		<!-- IMAGE ERROR, ITS CLASSIFICATION AND FILTERS -->
-		<property name="imageErrorMax" value="0.50" />
+		<property name="imageRatioMax" value="0.50" />
 		<property name="imageHighMax" value="180" />
 		<property name="imageNormalMax" value="140" />
 		<property name="imageLowMax" value="50" />

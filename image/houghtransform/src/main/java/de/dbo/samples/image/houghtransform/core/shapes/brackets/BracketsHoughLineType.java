@@ -1,4 +1,4 @@
-package de.dbo.samples.image.houghtransform.core.brackets;
+package de.dbo.samples.image.houghtransform.core.shapes.brackets;
 
 enum BracketsHoughLineType {
     UNKNOWN

@@ -2,7 +2,7 @@ package de.dbo.samples.image.houghtransform.core.hough;
 
 import java.awt.image.BufferedImage;
 
-import de.dbo.samples.image.houghtransform.api.HoughTransformException;
+import de.dbo.samples.image.houghtransform.api.CategorizerException;
 
 /**
  * 
@@ -31,9 +31,9 @@ public interface Hough {
      * method extracts lines from the hough-array
      * @see Hough#addPoints(BufferedImage)
      *
-     * @throws HoughTransformException
+     * @throws CategorizerException
      */
-    public abstract void generateLines() throws HoughTransformException;
+    public abstract void generateLines() throws CategorizerException;
 
     /**
      * Once lines have been already generated this method returns

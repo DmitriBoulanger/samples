@@ -1,7 +1,7 @@
-package de.dbo.samples.image.houghtransform.core.signature;
+package de.dbo.samples.image.houghtransform.core.shapes.signature;
 
 import de.dbo.samples.image.houghtransform.api.CategorizerConfiguration;
-import de.dbo.samples.image.houghtransform.api.HoughTransformException;
+import de.dbo.samples.image.houghtransform.api.CategorizerException;
 import de.dbo.samples.image.houghtransform.core.hough.HoughLine;
 import de.dbo.samples.image.houghtransform.core.hough.HoughLines;
 import de.dbo.samples.image.houghtransform.core.hough.HoughLinesAbstraction;
@@ -16,7 +16,7 @@ public final class SignatureHoughLines extends HoughLinesAbstraction implements 
 
     private int checkLinesCnt   = 0;
 
-    public SignatureHoughLines(final CategorizerConfiguration cfg) throws HoughTransformException {
+    public SignatureHoughLines(final CategorizerConfiguration cfg) throws CategorizerException {
         super(cfg);
     }
 

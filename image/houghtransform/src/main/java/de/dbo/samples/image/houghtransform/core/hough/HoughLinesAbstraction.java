@@ -5,7 +5,7 @@ import java.lang.reflect.Constructor;
 import java.util.Vector;
 
 import de.dbo.samples.image.houghtransform.api.CategorizerConfiguration;
-import de.dbo.samples.image.houghtransform.api.HoughTransformException;
+import de.dbo.samples.image.houghtransform.api.CategorizerException;
 import de.dbo.samples.image.houghtransform.api.Shape;
 import de.dbo.samples.image.houghtransform.api.ShapeFilter;
 
@@ -27,7 +27,7 @@ public abstract class HoughLinesAbstraction implements HoughLines {
 
     private Hough                            hough        = null;
 
-    protected HoughLinesAbstraction(final CategorizerConfiguration cfg) throws HoughTransformException {
+    protected HoughLinesAbstraction(final CategorizerConfiguration cfg) throws CategorizerException {
         this.shape = cfg.shape();
         this.cfg = cfg;
     }
@@ -48,14 +48,14 @@ public abstract class HoughLinesAbstraction implements HoughLines {
     }
 
     @Override
-    public final ShapeFilter getShapeFilter() throws HoughTransformException {
+    public final ShapeFilter getShapeFilter() throws CategorizerException {
         if (!isShapeFilter()) {
             return null;
         }
         final String classname = cfg.getShapeFilterClassname();
         if (null == classname || 0 == classname.trim().length()) {
-            throw new HoughTransformException(
-                    HoughTransformException.CONFIG_CORRECTNESS,
+            throw new CategorizerException(
+                    CategorizerException.CONFIG_CORRECTNESS,
                     "No class-name for shape-filter found in the transform configuration");
         }
         try {
@@ -69,7 +69,7 @@ public abstract class HoughLinesAbstraction implements HoughLines {
             return (ShapeFilter) constructor.newInstance(fileterParameters);
         }
         catch(Exception e) {
-            throw new HoughTransformException(HoughTransformException.SYSTEM,
+            throw new CategorizerException(CategorizerException.SYSTEM,
                     "Cannot create instance for " + classname, e);
         }
     }

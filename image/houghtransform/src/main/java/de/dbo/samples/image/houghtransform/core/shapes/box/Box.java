@@ -1,15 +1,15 @@
-package de.dbo.samples.image.houghtransform.core.brackets;
+package de.dbo.samples.image.houghtransform.core.shapes.box;
 
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 
-import de.dbo.samples.image.houghtransform.core.hough.Constants;
+import de.dbo.samples.image.houghtransform.core.Constants;
 import de.dbo.samples.image.houghtransform.core.hough.HoughShape;
 
-public final class Brackets extends HoughShape implements Constants {
+public final class Box extends HoughShape implements Constants {
 
-    public Brackets(Double rectangularRatio) {
+    public Box(Double rectangularRatio) {
         super(rectangularRatio);
     }
 
@@ -27,14 +27,9 @@ public final class Brackets extends HoughShape implements Constants {
         g.setColor(isWelldefined() ? ok : bad);
         final int x = postion.x + this.left;
         final int y = postion.y + this.top;
-        g.drawLine(x, y, x, y + height());
-        g.drawLine(x + width(), y, x + width(), y + height());
-
-        g.drawLine(x - 1, y, x - 1, y + height());
-        g.drawLine(x + width() - 1, y, x + width() - 1, y + height());
-
-        g.drawLine(x + 1, y, x + 1, y + height());
-        g.drawLine(x + width() + 1, y, x + width() + 1, y + height());
+        g.drawRect(x + 1, y + 1, width() - 2, height() - 2);
+        g.drawRect(x, y, width(), height());
+        g.drawRect(x - 1, y - 1, width() + 2, height() + 2);
     }
 
 }

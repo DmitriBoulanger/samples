@@ -7,7 +7,8 @@ import java.awt.image.BufferedImage;
 import java.lang.reflect.Constructor;
 
 import de.dbo.samples.image.houghtransform.api.CategorizerConfiguration;
-import de.dbo.samples.image.houghtransform.api.HoughTransformException;
+import de.dbo.samples.image.houghtransform.api.CategorizerException;
+import de.dbo.samples.image.houghtransform.core.Util;
 
 /**
  * Hough transform for searching circles
@@ -26,6 +27,7 @@ public class HoughAlgorithmCircle extends HoughAbstraction {
     public HoughAlgorithmCircle(final Integer width, final Integer height,
             final CategorizerConfiguration cfg, HoughLines houghLines) {
         super(width, height, cfg, houghLines);
+        
         this.r = (int) super.getRadius();
         this.r2 = this.r * this.r;
         this.r2Min = (int) (((this.r) * cfg.getContentLineCenterTolerance())
@@ -77,7 +79,7 @@ public class HoughAlgorithmCircle extends HoughAbstraction {
     }
 
     @Override
-    public final void generateLines() throws HoughTransformException {
+    public final void generateLines() throws CategorizerException {
         // Only proceed if the hough array is not empty
         if (this.numPoints == 0) {
             return;
@@ -130,11 +132,11 @@ public class HoughAlgorithmCircle extends HoughAbstraction {
     }
 
     private HoughLine houghLineInstance(Rectangle rectangle, int peak)
-            throws HoughTransformException {
+            throws CategorizerException {
         final String classname = cfg.getShapeLineClassname();
         if (null == classname || 0 == classname.trim().length()) {
-            throw new HoughTransformException(
-                    HoughTransformException.CONFIG_CORRECTNESS,
+            throw new CategorizerException(
+                    CategorizerException.CONFIG_CORRECTNESS,
                     "No class-name for shape-line found in the transform configuration");
         }
         try {
@@ -146,7 +148,7 @@ public class HoughAlgorithmCircle extends HoughAbstraction {
             return (HoughLine) constructor.newInstance(params);
         }
         catch(Exception e) {
-            throw new HoughTransformException(HoughTransformException.SYSTEM,
+            throw new CategorizerException(CategorizerException.SYSTEM,
                     "Cannot create instance for " + classname, e);
         }
     }

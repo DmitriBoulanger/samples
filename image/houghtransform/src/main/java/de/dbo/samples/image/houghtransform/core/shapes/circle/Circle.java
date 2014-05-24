@@ -1,24 +1,23 @@
-package de.dbo.samples.image.houghtransform.core.box;
+package de.dbo.samples.image.houghtransform.core.shapes.circle;
 
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 
-import de.dbo.samples.image.houghtransform.core.hough.Constants;
 import de.dbo.samples.image.houghtransform.core.hough.HoughShape;
 
-public final class Box extends HoughShape implements Constants {
+public final class Circle extends HoughShape {
 
-    public Box(Double rectangularRatio) {
+    public Circle(Double rectangularRatio) {
         super(rectangularRatio);
     }
 
     @Override
     public boolean isWelldefined() {
-        return isBorderComplete() && isRectangularWellDefined();
+        return isBorderComplete() && isRectangularWelldefined();
     }
 
-    private boolean isRectangularWellDefined() {
+    private boolean isRectangularWelldefined() {
         return error() <= rectangularRatio;
     }
 
@@ -27,9 +26,8 @@ public final class Box extends HoughShape implements Constants {
         g.setColor(isWelldefined() ? ok : bad);
         final int x = postion.x + this.left;
         final int y = postion.y + this.top;
-        g.drawRect(x + 1, y + 1, width() - 2, height() - 2);
-        g.drawRect(x, y, width(), height());
-        g.drawRect(x - 1, y - 1, width() + 2, height() + 2);
+        g.drawOval(x + 1, y + 1, width() + 2, height() + 2);
+        g.drawOval(x, y, width(), height());
+        g.drawOval(x - 1, y - 1, width() + 2, height() + 2);
     }
-
 }

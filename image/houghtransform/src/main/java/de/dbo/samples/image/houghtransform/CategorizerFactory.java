@@ -3,7 +3,7 @@ package de.dbo.samples.image.houghtransform;
 import de.dbo.samples.image.houghtransform.api.Categorizer;
 import de.dbo.samples.image.houghtransform.api.CategorizerConfiguration;
 import de.dbo.samples.image.houghtransform.api.Category;
-import de.dbo.samples.image.houghtransform.api.HoughTransformException;
+import de.dbo.samples.image.houghtransform.api.CategorizerException;
 import de.dbo.samples.image.houghtransform.api.Marker;
 import de.dbo.samples.image.houghtransform.core.CategorizerImpl;
 import de.dbo.samples.image.houghtransform.core.hough.HoughAlgorithmCircle;
@@ -52,9 +52,9 @@ import de.dbo.samples.image.houghtransform.core.hough.HoughAlgorithmLinear;
 public final class CategorizerFactory {
 	
     public static final Categorizer newInstance(final Marker marker)
-            throws HoughTransformException {
+            throws CategorizerException {
         if (null == marker) {
-            throw new HoughTransformException(HoughTransformException.CONFIG_INITILIZATION
+            throw new CategorizerException(CategorizerException.CONFIG_INITILIZATION
                     , "Marker is NULL! Cannot create instance of the CategorizerImpl");
         }
         switch (marker) {
@@ -72,8 +72,8 @@ public final class CategorizerFactory {
                 return new CategorizerImpl("brackets-cfg.xml");
 
             default:
-                throw new HoughTransformException(
-                        HoughTransformException.CONFIG_INITILIZATION,
+                throw new CategorizerException(
+                        CategorizerException.CONFIG_INITILIZATION,
                         "Can't create categorizer instance for the marker-type "
                                 + marker.name());
         }

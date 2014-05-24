@@ -11,7 +11,7 @@ import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.dbo.samples.image.houghtransform.api.HoughTransformException;
+import de.dbo.samples.image.houghtransform.api.CategorizerException;
 import de.dbo.samples.image.houghtransform.api.Category;
 import de.dbo.samples.image.houghtransform.api.ImageInfo;
 import de.dbo.samples.image.houghtransform.api.ImageQuality;
@@ -573,7 +573,7 @@ public final class ImageProvider {
         return this.imageInfos;
     }
 
-    public final BufferedImage getImageFromResource(final ImageInfo info) throws HoughTransformException {
+    public final BufferedImage getImageFromResource(final ImageInfo info) throws CategorizerException {
         final String imageName = info.name;
         final String filename = imageName + PNG;
         final String resource = RESOURCE_DIR + this.data + filename;
@@ -583,12 +583,12 @@ public final class ImageProvider {
         try {
             is = ClassLoader.getSystemClassLoader().getResourceAsStream(resource);
             if (null == is) {
-                throw new HoughTransformException(HoughTransformException.SYSTEM, "stream for  resource " + resource + " is null");
+                throw new CategorizerException(CategorizerException.SYSTEM, "stream for  resource " + resource + " is null");
             }
             image = javax.imageio.ImageIO.read(is);
         }
         catch(Exception e) {
-            throw new HoughTransformException(HoughTransformException.SYSTEM, "while reading " + resource, e);
+            throw new CategorizerException(CategorizerException.SYSTEM, "while reading " + resource, e);
         }
         finally {
             if (null != is) {
@@ -596,7 +596,7 @@ public final class ImageProvider {
                     is.close();
                 }
                 catch(IOException e) {
-                    throw new HoughTransformException(HoughTransformException.SYSTEM
+                    throw new CategorizerException(CategorizerException.SYSTEM
                             , "while closing " + resource, e);
                 }
             }

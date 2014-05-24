@@ -4,7 +4,7 @@ import java.awt.image.BufferedImage;
 import java.util.Vector;
 
 import de.dbo.samples.image.houghtransform.api.CategorizerConfiguration;
-import de.dbo.samples.image.houghtransform.api.HoughTransformException;
+import de.dbo.samples.image.houghtransform.api.CategorizerException;
 import de.dbo.samples.image.houghtransform.api.Category;
 import de.dbo.samples.image.houghtransform.api.ImageInfo;
 import de.dbo.samples.image.houghtransform.api.ShapeFilter;
@@ -23,11 +23,11 @@ final class CategorizerGuiWorker extends CategorizerWorkerImpl {
      * developer constructor. It is only used in the GUI-mode
      * @param info
      * @param imageProvider
-     * @throws HoughTransformException
+     * @throws CategorizerException
      * @throws Exception
      */
     CategorizerGuiWorker(final ImageProvider imageProvider, final ImageInfo info
-            , CategorizerConfiguration cfg) throws HoughTransformException {
+            , CategorizerConfiguration cfg) throws CategorizerException {
         super(CategorizerImpl.preprocess(imageProvider.getImageFromResource(info), cfg), info, cfg);
         this.imageFilteredWithLines = applyFilters(CategorizerImpl.preprocess(imageProvider.getImageFromResource(info), cfg), this.cfg);
         this.imageCategoryExpected = info.category;
@@ -36,7 +36,7 @@ final class CategorizerGuiWorker extends CategorizerWorkerImpl {
 
 
     CategorizerGuiWorker(final BufferedImage image, final ShapeFilter shape, final ImageInfo info, final CategorizerConfiguration cfg)
-            throws HoughTransformException {
+            throws CategorizerException {
         super(CategorizerImpl.preprocess(cropImage(image, shape, cfg), cfg), info, cfg);
         this.imageFilteredWithLines = applyFilters(CategorizerImpl.preprocess(cropImage(image, shape, cfg), cfg), this.cfg);
         this.imageCategoryExpected = info.category;

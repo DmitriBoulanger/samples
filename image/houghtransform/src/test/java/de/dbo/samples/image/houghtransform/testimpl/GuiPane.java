@@ -3,7 +3,7 @@ package de.dbo.samples.image.houghtransform.testimpl;
 import de.dbo.samples.image.houghtransform.api.Category;
 import de.dbo.samples.image.houghtransform.api.ImageInfo;
 import de.dbo.samples.image.houghtransform.api.Shape;
-import de.dbo.samples.image.houghtransform.core.hough.Constants;
+import de.dbo.samples.image.houghtransform.core.Constants;
 
 import javax.swing.JPanel;
 

@@ -1,4 +1,4 @@
-package de.dbo.samples.image.houghtransform.core.signature;
+package de.dbo.samples.image.houghtransform.core.shapes.signature;
 
 import java.text.DecimalFormat;
 

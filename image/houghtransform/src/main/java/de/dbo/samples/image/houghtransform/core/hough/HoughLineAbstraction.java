@@ -1,5 +1,18 @@
 package de.dbo.samples.image.houghtransform.core.hough;
 
+import static de.dbo.samples.image.houghtransform.core.Constants.CONTENT_COLOR_RGB;
+import static de.dbo.samples.image.houghtransform.core.Constants.PI;
+import static de.dbo.samples.image.houghtransform.core.Constants.PI2;
+import static de.dbo.samples.image.houghtransform.core.Constants.PI4;
+import static de.dbo.samples.image.houghtransform.core.Constants.PI4x3;
+import static de.dbo.samples.image.houghtransform.core.Constants.R_FORMAT;
+import static de.dbo.samples.image.houghtransform.core.Constants.SHAPE_COLOR_RGB;
+import static de.dbo.samples.image.houghtransform.core.Constants.THETA_FORMAT;
+import static de.dbo.samples.image.houghtransform.core.Constants.UNKNOWN_COLOR_RGB;
+import static de.dbo.samples.image.houghtransform.core.Constants.ZERO;
+
+import de.dbo.samples.image.houghtransform.core.Util;
+
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
@@ -10,7 +23,7 @@ import java.awt.image.BufferedImage;
  * @author D.Boulanger ITyX GmbH
  *
  */
-public abstract class HoughLineAbstraction implements Constants, HoughLine {
+public abstract class HoughLineAbstraction implements HoughLine {
 
     protected final Rectangle        rectangle;
     protected final double           theta;

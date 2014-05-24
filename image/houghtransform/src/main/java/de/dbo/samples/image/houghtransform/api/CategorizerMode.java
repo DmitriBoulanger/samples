@@ -14,5 +14,6 @@ package de.dbo.samples.image.houghtransform.api;
  *
  */
 public enum CategorizerMode {
-    SHAPE, CONTENT
+    SHAPE, 
+    CONTENT
 }

@@ -51,9 +51,9 @@
 		<property name="shapeLineCntTotal" value="1" />
 		
 		<!-- SHAPE AND ITS CONSRAINTS -->
-		<property name="shapeClassname" value="de.dbo.samples.image.houghtransform.core.circle.Circle" />
-		<property name="shapeLineClassname" value="de.dbo.samples.image.houghtransform.core.circle.CircleHoughLine" />
-		<property name="shapeLinesClassname" value="de.dbo.samples.image.houghtransform.core.circle.CircleHoughLines" />
+		<property name="shapeClassname" value="de.dbo.samples.image.houghtransform.core.shapes.circle.Circle" />
+		<property name="shapeLineClassname" value="de.dbo.samples.image.houghtransform.core.shapes.circle.CircleHoughLine" />
+		<property name="shapeLinesClassname" value="de.dbo.samples.image.houghtransform.core.shapes.circle.CircleHoughLines" />
 		<property name="shapeRadius" value="0.26" >
 			<description>
 				Expected radius as ratio of the length of the image-diagonal
@@ -84,7 +84,7 @@
 
 		<!-- SHAPE FILTER -->
 		<property name="shapeFilterClassname" 
-			value="de.dbo.samples.image.houghtransform.core.circle.CircleFilter" >
+			value="de.dbo.samples.image.houghtransform.core.shapes.circle.CircleFilter" >
 			<description>
 			Usage of the Shape-filer.
 			If it is true, the second phase runs using 
@@ -98,7 +98,7 @@
 		</property>
 
 		<!-- IMAGE CLASSIFICATION AND FILTERS -->
-		<property name="imageErrorMax" value="0.30" />
+		<property name="imageRatioMax" value="0.30" />
 		<property name="imageHighMax" value="180" />
 		<property name="imageNormalMax" value="140" />
 		<property name="imageLowMax" value="50" />
@@ -150,9 +150,9 @@
 		<property name="shapeLineCntTotal" value="2" />
 
 		<!-- SHAPE AND ITS CONSTRAINTS -->
-		<property name="shapeClassname" value="de.dbo.samples.image.houghtransform.core.box.Box" />
-		<property name="shapeLineClassname" value="de.dbo.samples.image.houghtransform.core.box.BoxHoughLine" />
-		<property name="shapeLinesClassname" value="de.dbo.samples.image.houghtransform.core.box.BoxHoughLines" />
+		<property name="shapeClassname" value="de.dbo.samples.image.houghtransform.core.shapes.box.Box" />
+		<property name="shapeLineClassname" value="de.dbo.samples.image.houghtransform.core.shapes.box.BoxHoughLine" />
+		<property name="shapeLinesClassname" value="de.dbo.samples.image.houghtransform.core.shapes.box.BoxHoughLines" />
 		<property name="shapeRectangularRatioMax" value="0.50" />
 		<property name="shapeRadius" value="0.30" />
 
@@ -161,7 +161,7 @@
 		<property name="shapeFilterMargin" value="0" />
 
 		<!-- IMAGE CLASSIFICATION AND FILTERS -->
-		<property name="imageErrorMax" value="0.30" />
+		<property name="imageRatioMax" value="0.30" />
 		<property name="imageHighMax" value="180" />
 		<property name="imageNormalMax" value="140" />
 		<property name="imageLowMax" value="50" />

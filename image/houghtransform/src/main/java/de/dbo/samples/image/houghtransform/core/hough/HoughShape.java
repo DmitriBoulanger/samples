@@ -1,6 +1,8 @@
 package de.dbo.samples.image.houghtransform.core.hough;
 
 import de.dbo.samples.image.houghtransform.api.Shape;
+import de.dbo.samples.image.houghtransform.core.Constants;
+import de.dbo.samples.image.houghtransform.core.Util;
 
 import java.awt.Rectangle;
 

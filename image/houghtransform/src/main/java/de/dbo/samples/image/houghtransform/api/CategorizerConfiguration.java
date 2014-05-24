@@ -29,9 +29,9 @@ public interface CategorizerConfiguration {
 
     public abstract void setHoughClassname(String classname);
 
-    public abstract int neighbourhoodSize(ImageQuality quality) throws HoughTransformException;
+    public abstract int neighbourhoodSize(ImageQuality quality) throws CategorizerException;
 
-    public abstract int neighbourhoodSize(int width, int height) throws HoughTransformException;
+    public abstract int neighbourhoodSize(int width, int height) throws CategorizerException;
 
     /*
      * threshold (percentage) determines lines that are extracted from the hough
@@ -140,9 +140,9 @@ public interface CategorizerConfiguration {
     // shape and its constraints
     //
 
-    public abstract Shape shape() throws HoughTransformException;
+    public abstract Shape shape() throws CategorizerException;
 
-    public abstract HoughLines shapeLines() throws HoughTransformException;
+    public abstract HoughLines shapeLines() throws CategorizerException;
 
     public abstract String getShapeClassname();
 
@@ -187,9 +187,9 @@ public interface CategorizerConfiguration {
 
     public abstract ImageQuality imageQuality(int width, int height);
 
-    public abstract double getImageErrorMax();
+    public abstract double getImageRatioMax();
 
-    public abstract void setImageErrorMax(double widthHeightRatio);
+    public abstract void setImageRatioMax(double widthHeightRatio);
 
     public abstract int getImageHighMax();
 

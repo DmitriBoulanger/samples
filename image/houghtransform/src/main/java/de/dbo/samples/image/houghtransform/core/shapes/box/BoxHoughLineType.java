@@ -1,4 +1,4 @@
-package de.dbo.samples.image.houghtransform.core.box;
+package de.dbo.samples.image.houghtransform.core.shapes.box;
 
 enum BoxHoughLineType {
     UNKNOWN

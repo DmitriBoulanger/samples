@@ -5,7 +5,7 @@ import java.awt.image.BufferedImage;
 import java.lang.reflect.Constructor;
 
 import de.dbo.samples.image.houghtransform.api.CategorizerConfiguration;
-import de.dbo.samples.image.houghtransform.api.HoughTransformException;
+import de.dbo.samples.image.houghtransform.api.CategorizerException;
 
 /*
 
@@ -104,7 +104,7 @@ public final class HoughAlgorithmLinear extends HoughAbstraction {
      * generates lines saving them in the corresponding HoughLines-instance
      */
     @Override
-    public final void generateLines() throws HoughTransformException {
+    public final void generateLines() throws CategorizerException {
 
         // Only proceed if the hough array is not empty
         if (this.numPoints == 0) {
@@ -152,10 +152,10 @@ public final class HoughAlgorithmLinear extends HoughAbstraction {
     }
 
     // this linear hough-algorithms needs the corresponding linear HoughLines instance
-    private HoughLine houghLineInstance(double theta, double r, int peak) throws HoughTransformException {
+    private HoughLine houghLineInstance(double theta, double r, int peak) throws CategorizerException {
         final String classname = cfg.getShapeLineClassname();
         if (null == classname || 0 == classname.trim().length()) {
-            throw new HoughTransformException(HoughTransformException.CONFIG_CORRECTNESS,
+            throw new CategorizerException(CategorizerException.CONFIG_CORRECTNESS,
                     "No class-name for shape-line found in the transform configuration");
         }
         try {
@@ -167,7 +167,7 @@ public final class HoughAlgorithmLinear extends HoughAbstraction {
             return (HoughLine) constructor.newInstance(lineParameters);
         }
         catch(Exception e) {
-            throw new HoughTransformException(HoughTransformException.SYSTEM,
+            throw new CategorizerException(CategorizerException.SYSTEM,
                     "Cannot create linear HoughLine-instance for " + classname, e);
         }
     }

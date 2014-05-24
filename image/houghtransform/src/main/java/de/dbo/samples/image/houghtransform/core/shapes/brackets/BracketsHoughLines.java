@@ -1,11 +1,11 @@
-package de.dbo.samples.image.houghtransform.core.brackets;
+package de.dbo.samples.image.houghtransform.core.shapes.brackets;
 
 import de.dbo.samples.image.houghtransform.api.CategorizerConfiguration;
-import de.dbo.samples.image.houghtransform.api.HoughTransformException;
+import de.dbo.samples.image.houghtransform.api.CategorizerException;
+import de.dbo.samples.image.houghtransform.core.Util;
 import de.dbo.samples.image.houghtransform.core.hough.HoughLine;
 import de.dbo.samples.image.houghtransform.core.hough.HoughLines;
 import de.dbo.samples.image.houghtransform.core.hough.HoughLinesAbstraction;
-import de.dbo.samples.image.houghtransform.core.hough.Util;
 
 import java.awt.Rectangle;
 import java.util.Vector;
@@ -26,7 +26,7 @@ public final class BracketsHoughLines extends HoughLinesAbstraction implements
     private int check10LinesCnt  = 0;
 
     public BracketsHoughLines(final CategorizerConfiguration cfg)
-            throws HoughTransformException {
+            throws CategorizerException {
         super(cfg);
     }
 

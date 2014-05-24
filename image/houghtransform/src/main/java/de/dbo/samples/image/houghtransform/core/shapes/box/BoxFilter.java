@@ -1,4 +1,6 @@
-package de.dbo.samples.image.houghtransform.core.box;
+package de.dbo.samples.image.houghtransform.core.shapes.box;
+
+import static de.dbo.samples.image.houghtransform.core.Constants.WHITE_COLOR_RGB;
 
 import de.dbo.samples.image.houghtransform.api.Shape;
 import de.dbo.samples.image.houghtransform.core.hough.HoughFilter;

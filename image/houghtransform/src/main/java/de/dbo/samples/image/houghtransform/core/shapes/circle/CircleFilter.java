@@ -1,10 +1,12 @@
-package de.dbo.samples.image.houghtransform.core.circle;
+package de.dbo.samples.image.houghtransform.core.shapes.circle;
 
-import java.awt.Rectangle;
+import static de.dbo.samples.image.houghtransform.core.Constants.WHITE_COLOR_RGB;
 
 import de.dbo.samples.image.houghtransform.api.Shape;
+import de.dbo.samples.image.houghtransform.core.Util;
 import de.dbo.samples.image.houghtransform.core.hough.HoughFilter;
-import de.dbo.samples.image.houghtransform.core.hough.Util;
+
+import java.awt.Rectangle;
 
 /**
  * A filter which drops all pixels outside the shape.

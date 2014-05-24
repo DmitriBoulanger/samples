@@ -6,7 +6,7 @@ import de.dbo.samples.image.houghtransform.api.Categorizer;
 import de.dbo.samples.image.houghtransform.api.CategorizerConfiguration;
 import de.dbo.samples.image.houghtransform.api.CategorizerWorker;
 import de.dbo.samples.image.houghtransform.api.Category;
-import de.dbo.samples.image.houghtransform.api.HoughTransformException;
+import de.dbo.samples.image.houghtransform.api.CategorizerException;
 import de.dbo.samples.image.houghtransform.api.ImageInfo;
 import de.dbo.samples.image.houghtransform.api.ShapeFilter;
 
@@ -49,15 +49,15 @@ public class CategorizerImpl implements Categorizer {
     /**
      * @param ctxname
      *            name of the XML-file (Spring resource)
-     * @throws HoughTransformException
+     * @throws CategorizerException
      */
-    public CategorizerImpl(final String ctxname) throws HoughTransformException {
+    public CategorizerImpl(final String ctxname) throws CategorizerException {
         try {
             this.ctxname = ctxname;
             this.ctx = new ClassPathXmlApplicationContext(ctxname);
         }
         catch(Exception exception) {
-            throw new HoughTransformException(HoughTransformException.BEANS_CTX_INITILIZATION,
+            throw new CategorizerException(CategorizerException.BEANS_CTX_INITILIZATION,
                     "Initialization of Spring-CTX " + ctxname + " failed", exception);
         }
     }
@@ -103,12 +103,12 @@ public class CategorizerImpl implements Categorizer {
 
 
     @Override
-    public final Category getCategory(final BufferedImage image) throws HoughTransformException {
+    public final Category getCategory(final BufferedImage image) throws CategorizerException {
         try {
             cfg = (CategorizerConfiguration) this.ctx.getBean(bean);
         }
         catch(BeansException e) {
-            throw new HoughTransformException(HoughTransformException.BEANS_CONTENT_INITILIZATION,
+            throw new CategorizerException(CategorizerException.BEANS_CONTENT_INITILIZATION,
                     "Failure while creating " + bean + " config-bean from the Spring-CTX " + this.ctxname, e);
         }
 
@@ -131,7 +131,7 @@ public class CategorizerImpl implements Categorizer {
             cfg2 = (CategorizerConfiguration) this.ctx.getBean(bean2);
         }
         catch(BeansException e) {
-            throw new HoughTransformException(HoughTransformException.BEANS_CONTENT_INITILIZATION,
+            throw new CategorizerException(CategorizerException.BEANS_CONTENT_INITILIZATION,
                     "Failure while creating " + bean2 + " config-bean from the Spring-CTX " + this.ctxname, e);
         }
         if (cfg.isEnabled()) {
@@ -147,7 +147,7 @@ public class CategorizerImpl implements Categorizer {
     }
     
     protected CategorizerWorker getCategorizerWorker(final BufferedImage image, final ImageInfo info, final CategorizerConfiguration cfg)
-            throws HoughTransformException {
+            throws CategorizerException {
         return new CategorizerWorkerImpl(image, cfg);
     }
 

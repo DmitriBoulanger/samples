@@ -1,4 +1,4 @@
-package de.dbo.samples.image.houghtransform.core.circle;
+package de.dbo.samples.image.houghtransform.core.shapes.circle;
 
 import java.awt.Rectangle;
 

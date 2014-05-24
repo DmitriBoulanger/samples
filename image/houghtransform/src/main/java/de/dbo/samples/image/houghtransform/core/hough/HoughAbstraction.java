@@ -1,9 +1,14 @@
 package de.dbo.samples.image.houghtransform.core.hough;
 
-import java.awt.image.BufferedImage;
+import static de.dbo.samples.image.houghtransform.core.Constants.BLACK_COLOR_RGB;
+import static de.dbo.samples.image.houghtransform.core.Constants.PI;
+import static de.dbo.samples.image.houghtransform.core.Constants.SQRT22;
 
 import de.dbo.samples.image.houghtransform.api.CategorizerConfiguration;
-import de.dbo.samples.image.houghtransform.api.HoughTransformException;
+import de.dbo.samples.image.houghtransform.api.CategorizerException;
+import de.dbo.samples.image.houghtransform.core.Util;
+
+import java.awt.image.BufferedImage;
 
 /**
  *
@@ -12,7 +17,7 @@ import de.dbo.samples.image.houghtransform.api.HoughTransformException;
  * @author D. Boulanger ITyX GmbH
  *
  */
-public abstract class HoughAbstraction implements Constants, Hough {
+public abstract class HoughAbstraction implements Hough {
 
     /**
      * reference of the configuration bean
@@ -171,7 +176,7 @@ public abstract class HoughAbstraction implements Constants, Hough {
     }
 
     @Override
-    public abstract void generateLines() throws HoughTransformException;
+    public abstract void generateLines() throws CategorizerException;
 
     @Override
     public abstract BufferedImage getHoughArrayImage();

@@ -12,7 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import de.dbo.samples.image.houghtransform.api.CategorizerConfiguration;
-import de.dbo.samples.image.houghtransform.api.HoughTransformException;
+import de.dbo.samples.image.houghtransform.api.CategorizerException;
 import de.dbo.samples.image.houghtransform.api.CategorizerMode;
 import de.dbo.samples.image.houghtransform.api.Category;
 import de.dbo.samples.image.houghtransform.api.ImageInfo;
@@ -22,7 +22,6 @@ import de.dbo.samples.image.houghtransform.api.ShapeFilter;
 import de.dbo.samples.image.houghtransform.core.hough.Hough;
 import de.dbo.samples.image.houghtransform.core.hough.HoughLines;
 import de.dbo.samples.image.houghtransform.core.hough.HoughTransform;
-import de.dbo.samples.image.houghtransform.core.hough.Util;
 
 /**
  * Transformation manager. It performs image filtering, Hough Transformations
@@ -54,22 +53,31 @@ public class CategorizerWorkerImpl implements HoughTransform {
      *
      * @throws Exception
      */
-    public CategorizerWorkerImpl(final BufferedImage imageOrigin, final CategorizerConfiguration cfg) throws HoughTransformException {
+    public CategorizerWorkerImpl(final BufferedImage imageOrigin, final CategorizerConfiguration cfg) throws CategorizerException {
         this(imageOrigin, (ImageInfo) null, cfg);
     }
 
-    protected CategorizerWorkerImpl(final BufferedImage image, final ImageInfo info, final CategorizerConfiguration cfg) throws HoughTransformException {
+    /**
+     * debugging/developing constructor
+     * 
+     * @param image
+     * @param info
+     * @param cfg
+     * @throws CategorizerException
+     */
+    protected CategorizerWorkerImpl(final BufferedImage image, final ImageInfo info, final CategorizerConfiguration cfg) throws CategorizerException {
         this.imageWidth = image.getWidth();
         this.imageHeight = image.getHeight();
 
-        if (cfg.getImageErrorMax() < Util.error(this.imageWidth, this.imageHeight)) {
+        // check image ration
+        if (cfg.getImageRatioMax() < Util.error(this.imageWidth, this.imageHeight)) {
             if (cfg.isEnabled()) {
-                throw new HoughTransformException(HoughTransformException.IMANGE_ERROR, "Ratio "
+                throw new CategorizerException(CategorizerException.IMANGE_ERROR, "Ratio "
                         + this.imageWidth
                         + "x"
                         + this.imageHeight + " of the Marker-image "
                         + (null == info ? "" : info.name + " ") + "is too large: "
-                        + Util.round100(Util.error(this.imageWidth, this.imageHeight)) + "(max=" + cfg.getImageErrorMax() + ")");
+                        + Util.round100(Util.ratio(this.imageWidth, this.imageHeight)) + "(max=" + cfg.getImageRatioMax() + ")");
             }
             else {
                 log.warn("Ratio "
@@ -77,7 +85,7 @@ public class CategorizerWorkerImpl implements HoughTransform {
                         + "x"
                         + this.imageHeight + " of the Marker-image "
                         + (null == info ? "" : info.name + " ") + "is too large: "
-                        + Util.round100(Util.error(this.imageWidth, this.imageHeight)) + "(max=" + cfg.getImageErrorMax() + ")");
+                        + Util.round100(Util.error(this.imageWidth, this.imageHeight)) + "(max=" + cfg.getImageRatioMax() + ")");
             }
         }
 
@@ -112,7 +120,7 @@ public class CategorizerWorkerImpl implements HoughTransform {
         return this.hough.getHoughLines().isShapeWelldefined();
     }
 
-    protected final BufferedImage applyFilters(BufferedImage image, CategorizerConfiguration cfg) throws HoughTransformException {
+    protected final BufferedImage applyFilters(BufferedImage image, CategorizerConfiguration cfg) throws CategorizerException {
         BufferedImageOp[] imageFilters;
         try {
             final List<String> filterClassnames = cfg.getImageFilters();
@@ -126,7 +134,7 @@ public class CategorizerWorkerImpl implements HoughTransform {
             }
         }
         catch(Exception e) {
-            throw new HoughTransformException(HoughTransformException.SYSTEM, "Cannot initilize image filters", e);
+            throw new CategorizerException(CategorizerException.SYSTEM, "Cannot initilize image filters", e);
         }
         BufferedImage ret = image;
         for (final BufferedImageOp op : imageFilters) {
@@ -181,8 +189,8 @@ public class CategorizerWorkerImpl implements HoughTransform {
         final HoughLines houghLines = this.hough.getHoughLines();
         ret.add("Image: " + imageName().toUpperCase() + "(" + this.imageWidth
                 + "x" + this.imageHeight + ")" + " "
-                + this.imageQuality.name() + " ERR="
-                + Util.round100(Util.error(this.imageWidth, this.imageHeight)));
+                + this.imageQuality.name() 
+                + " ERR="+ Util.round100(Util.error(this.imageWidth, this.imageHeight)));
         ret.add("\nHough Points = " + this.hough.getNumPoints()
                 + "  Lines = " + houghLines.getSize() + "  HH = "
                 + this.hough.getMaxHoughValue().print());
@@ -193,7 +201,7 @@ public class CategorizerWorkerImpl implements HoughTransform {
         return ret;
     }
 
-    private final Hough getHoughTransformation() throws HoughTransformException {
+    private final Hough getHoughTransformation() throws CategorizerException {
         final HoughLines houghLines = cfg.shapeLines();
         // create a hough transform object with the right dimensions
         final Hough hough = houghInstance(houghLines);
@@ -204,11 +212,11 @@ public class CategorizerWorkerImpl implements HoughTransform {
         return hough;
     }
 
-    private Hough houghInstance(HoughLines lines) throws HoughTransformException {
+    private Hough houghInstance(HoughLines lines) throws CategorizerException {
         final Hough ret;
         final String classname = cfg.getHoughClassname();
         if (null == classname || 0 == classname.trim().length()) {
-            throw new HoughTransformException(HoughTransformException.CONFIG_CORRECTNESS,
+            throw new CategorizerException(CategorizerException.CONFIG_CORRECTNESS,
                     "No class-name for hough found in the transform configuration");
         }
         try {
@@ -219,7 +227,7 @@ public class CategorizerWorkerImpl implements HoughTransform {
             ret = (Hough) constructor.newInstance(lineParameters);
         }
         catch(Exception e) {
-            throw new HoughTransformException(HoughTransformException.SYSTEM,
+            throw new CategorizerException(CategorizerException.SYSTEM,
                     "Cannot create instance for " + classname, e);
         }
         lines.setHough(ret);
@@ -236,7 +244,7 @@ public class CategorizerWorkerImpl implements HoughTransform {
     }
 
     @Override
-    public BufferedImage getShapeFilteredImage() throws HoughTransformException {
+    public BufferedImage getShapeFilteredImage() throws CategorizerException {
         if (!this.cfg.shapeFilterUsage()) {
             return this.imageFiltered;
         }
@@ -248,7 +256,7 @@ public class CategorizerWorkerImpl implements HoughTransform {
     }
 
     @Override
-    public BufferedImage getShapeCroppedImage() throws HoughTransformException {
+    public BufferedImage getShapeCroppedImage() throws CategorizerException {
         if (!this.cfg.shapeFilterUsage()) {
             return this.imageFiltered;
         }
@@ -285,7 +293,7 @@ public class CategorizerWorkerImpl implements HoughTransform {
     }
 
     @Override
-    public ShapeFilter getShapeFilter() throws HoughTransformException {
+    public ShapeFilter getShapeFilter() throws CategorizerException {
         if (!this.cfg.shapeFilterUsage()) {
             return null;
         }

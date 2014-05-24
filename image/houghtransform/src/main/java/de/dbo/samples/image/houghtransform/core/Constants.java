@@ -1,4 +1,4 @@
-package de.dbo.samples.image.houghtransform.core.hough;
+package de.dbo.samples.image.houghtransform.core;
 
 import java.awt.Color;
 import java.text.DecimalFormat;
@@ -9,13 +9,14 @@ public interface Constants {
     static final Color         SHAPE_COLOR       = new Color(255, 191, 0);
     static final Color         UNKNOWN_COLOR     = new Color(17, 242, 223);
     static final Color         CONTENT_COLOR     = new Color(234, 10, 55);
-
-    static final int           WHITE_COLOR_RGB   = Color.WHITE.getRGB();
-    static final int           BLACK_COLOR_RGB   = Color.BLACK.getRGB();
+    
     static final int           SHAPE_COLOR_RGB   = SHAPE_COLOR.getRGB();
     static final int           CONTENT_COLOR_RGB = CONTENT_COLOR.getRGB();
     static final int           UNKNOWN_COLOR_RGB = UNKNOWN_COLOR.getRGB();
 
+    static final int           WHITE_COLOR_RGB   = Color.WHITE.getRGB();
+    static final int           BLACK_COLOR_RGB   = Color.BLACK.getRGB();
+   
     static final double        SQRT2             = Math.sqrt(2);
     static final double        SQRT22            = SQRT2 / 2.0D;
     static final double        PI                = Math.PI;
