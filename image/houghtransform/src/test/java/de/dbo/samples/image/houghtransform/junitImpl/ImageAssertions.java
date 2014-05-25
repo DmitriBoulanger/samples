@@ -1,4 +1,4 @@
-package de.dbo.samples.image.houghtransform.impl;
+package de.dbo.samples.image.houghtransform.junitImpl;
 
 import static junit.framework.Assert.assertTrue;
 

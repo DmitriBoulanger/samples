@@ -1,4 +1,4 @@
-package de.dbo.samples.image.houghtransform.gui.impl;
+package de.dbo.samples.image.houghtransform.guiImpl;
 
 import java.awt.image.BufferedImage;
 import java.util.Vector;

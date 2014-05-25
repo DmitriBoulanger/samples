@@ -1,4 +1,4 @@
-package de.dbo.samples.image.houghtransform.gui.impl;
+package de.dbo.samples.image.houghtransform.guiImpl;
 
 final class GuiRow {
     final GuiPane dummy                        = new GuiPane();

@@ -5,7 +5,7 @@ import org.junit.Test;
 import de.dbo.samples.image.houghtransform.CategorizerFactory;
 import de.dbo.samples.image.houghtransform.api.CategorizerException;
 import de.dbo.samples.image.houghtransform.core.CategorizerImpl;
-import de.dbo.samples.image.houghtransform.impl.ImageAssertions;
+import de.dbo.samples.image.houghtransform.junitImpl.ImageAssertions;
 
 public class System extends ImageAssertions {
 

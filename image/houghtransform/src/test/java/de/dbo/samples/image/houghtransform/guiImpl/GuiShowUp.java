@@ -1,4 +1,4 @@
-package de.dbo.samples.image.houghtransform.gui.impl;
+package de.dbo.samples.image.houghtransform.guiImpl;
 
 import java.util.ArrayList;
 import java.util.List;

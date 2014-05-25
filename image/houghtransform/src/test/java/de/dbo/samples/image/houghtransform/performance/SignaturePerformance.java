@@ -4,34 +4,38 @@ package de.dbo.samples.image.houghtransform.performance;
 import de.dbo.samples.image.houghtransform.api.Marker;
 import de.dbo.samples.image.houghtransform.data.ImageCollectionCatalog;
 import de.dbo.samples.image.houghtransform.data.ImageProvider;
-import de.dbo.samples.image.houghtransform.impl.ImageAssertions;
+import de.dbo.samples.image.houghtransform.junitImpl.ImageAssertions;
 
 import java.text.DecimalFormat;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * Signature performance.
+ * Data-location is specified in performance.properties
+ * 
+ * @author Dmitri Boulanger, Hombach
+ *
+ * D. Knuth: Programs are meant to be read by humans and 
+ *           only incidentally for computers to execute 
+ *
+ */
 public final class SignaturePerformance extends ImageAssertions {
     private static final Logger log = LoggerFactory.getLogger(SignaturePerformance.class);
 
     public static final void main(final String[] args) throws Exception{
-    	log.info("Checked performance ...");
     	new  SignaturePerformance().checked();
-    	log.info("Unchecked performance ...");
     	new  SignaturePerformance().unchecked();
     }
-   
-    /**
-     * Default data-set located in the default directory with performance-data (PNG-images)
-     */
-
-    public SignaturePerformance() throws Exception {
+  
+    public SignaturePerformance() {
  
     }
 
     public void checked() throws Exception {
-        final String title = "Signature Performance (CHECKED)";
-        log.debug(title + " ...");
+        final String title = "Signature-CHECKED Performance";
+        log.info(title + " ...");
         try {
             doIt(title, new ImageProvider(ImageCollectionCatalog.SIGNATURE_PERFORMANCE_CHECKED));
         }
@@ -41,8 +45,8 @@ public final class SignaturePerformance extends ImageAssertions {
     }
 
     public void unchecked() throws Exception {
-        final String title = "Signature Performance (UNCHECKED)";
-        log.debug(title + " ...");
+        final String title = "Signature-UNCHECKED Performance";
+        log.info(title + " ...");
         try {
             doIt(title, new ImageProvider(ImageCollectionCatalog.SIGNATURE_PERFORMANCE_UNCHECKED));
         }

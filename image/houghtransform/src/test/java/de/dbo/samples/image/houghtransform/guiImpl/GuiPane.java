@@ -1,4 +1,4 @@
-package de.dbo.samples.image.houghtransform.gui.impl;
+package de.dbo.samples.image.houghtransform.guiImpl;
 
 import de.dbo.samples.image.houghtransform.api.Category;
 import de.dbo.samples.image.houghtransform.api.ImageInfo;

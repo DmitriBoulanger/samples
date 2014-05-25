@@ -6,7 +6,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import de.dbo.samples.image.houghtransform.data.ImageCollectionCatalog;
-import de.dbo.samples.image.houghtransform.gui.impl.GuiShowUp;
+import de.dbo.samples.image.houghtransform.guiImpl.GuiShowUp;
 
 public final class Signature0 extends GuiShowUp {
     private static final Logger log = LoggerFactory.getLogger(Signature0.class);
