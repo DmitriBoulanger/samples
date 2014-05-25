@@ -101,9 +101,9 @@ final class GuiSignature extends JFrame {
         mainPane.setLayout(new GridBagLayout());
         mainPane.setMinimumSize(factor(MAX_RECTANGLE));
         for (final CategorizerGui transformer : this.cats) {
-            final GuiRow row2 = new GuiRow();
-            addImageRow2(row2);
-            drawImageRow(transformer, row2);
+            final GuiRowSignature row = new GuiRowSignature();
+            addImageRow(row);
+            drawImageRow(transformer, row);
         }
         final JScrollPane jScrollPane = new JScrollPane();
         jScrollPane.setViewportView(mainPane);
@@ -112,10 +112,10 @@ final class GuiSignature extends JFrame {
         this.getContentPane().add(jScrollPane);
     }
 
-    private final void addImageRow2(GuiRow row) {
+    private final void addImageRow(GuiRowSignature row) {
         final GridBagConstraints gbc = gbConstraints();
         addtoParent(row.category, gbc, 0.25, " Discovered and expected categories of the marker ");
-        addtoParent(row.shapeFilteredImage, gbc, 4, " Image after shape-filter ");
+        addtoParent(row.sourceImage, gbc, 4, " Original image ");
         addtoParent(row.contentImageLines, gbc, 4, " Final image with hough-lines ");
         gbc.gridwidth = GridBagConstraints.REMAINDER;
         addtoParent(row.contentDescription, gbc, 1.5, " Description of the hough-parameters ");
@@ -139,20 +139,12 @@ final class GuiSignature extends JFrame {
         return gbConstraints;
     }
 
-    private static final void drawImageRow(final CategorizerGui transformer, final GuiRow row) throws Exception {
+    private static final void drawImageRow(final CategorizerGui transformer
+    		, final GuiRowSignature row) throws Exception {
         row.category.mydraw(transformer.category(), transformer.info());
-
-        //        // shape phase
-        //        row.sourceImage.mydraw(transformer.image());
-        //        row.sourceImageFilteredWithShape.mydraw(transformer.imageFiltered(), transformer.getShape());
-        //        row.paneHoughArray.mydraw(transformer.getHoughArrayImage());
-        //        row.shapeDescription.mydraw(transformer.shapeDescription());
-
-        // content phase
-        row.shapeFilteredImage.mydraw(transformer.getBoxFilterdImage());
+        row.sourceImage.mydraw(transformer.origin());
         row.contentImageLines.mydraw(transformer.imageFilteredWithLines());
         row.contentDescription.mydraw(transformer.contentDescription());
-        row.paneHoughArray2.mydraw(transformer.getHoughArrayImage2());
     }
 
     private static final BufferedImage getIcon() {

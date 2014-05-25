@@ -28,8 +28,8 @@ final class CategorizerGuiWorker extends CategorizerWorkerImpl {
      */
     CategorizerGuiWorker(final ImageProvider imageProvider, final ImageInfo info
             , CategorizerConfiguration cfg) throws CategorizerException {
-        super(CategorizerImpl.preprocess(imageProvider.getImageFromResource(info), cfg), info, cfg);
-        this.imageFilteredWithLines = applyFilters(CategorizerImpl.preprocess(imageProvider.getImageFromResource(info), cfg), this.cfg);
+        super(CategorizerImpl.applyWhiteBorder(imageProvider.getImageFromResource(info), cfg), info, cfg);
+        this.imageFilteredWithLines = applyFilters(CategorizerImpl.applyWhiteBorder(imageProvider.getImageFromResource(info), cfg), this.cfg);
         this.imageCategoryExpected = info.category;
         drawHoughTransformLines();
     }
@@ -37,8 +37,8 @@ final class CategorizerGuiWorker extends CategorizerWorkerImpl {
 
     CategorizerGuiWorker(final BufferedImage image, final ShapeFilter shape, final ImageInfo info, final CategorizerConfiguration cfg)
             throws CategorizerException {
-        super(CategorizerImpl.preprocess(cropImage(image, shape, cfg), cfg), info, cfg);
-        this.imageFilteredWithLines = applyFilters(CategorizerImpl.preprocess(cropImage(image, shape, cfg), cfg), this.cfg);
+        super(CategorizerImpl.applyWhiteBorder(cropImage(image, shape, cfg), cfg), info, cfg);
+        this.imageFilteredWithLines = applyFilters(CategorizerImpl.applyWhiteBorder(cropImage(image, shape, cfg), cfg), this.cfg);
         this.imageCategoryExpected = info.category;
         drawHoughTransformLines();
     }

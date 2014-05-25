@@ -33,8 +33,8 @@ public final class CategorizerConfigurationImpl implements CategorizerConfigurat
 
     @Override
     @Required
-    public final void setEnabled(boolean split) {
-        this.enabled = split;
+    public final void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 
     @Override
@@ -43,16 +43,16 @@ public final class CategorizerConfigurationImpl implements CategorizerConfigurat
     }
 
     // ###
-    private int whiteBorder;
+    private double whiteBorder;
 
     @Override
-    public final int getWhiteBorder() {
+    public final double getWhiteBorder() {
         return this.whiteBorder;
     }
 
     @Override
     @Required
-    public final void setWhiteBorder(int whiteBorder) {
+    public final void setWhiteBorder(double whiteBorder) {
         this.whiteBorder = whiteBorder;
     }
 

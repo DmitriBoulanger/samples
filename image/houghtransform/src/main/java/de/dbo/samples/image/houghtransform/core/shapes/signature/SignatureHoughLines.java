@@ -52,8 +52,11 @@ public final class SignatureHoughLines extends HoughLinesAbstraction implements 
 
     @Override
     public boolean isContentFound() {
-        return this.contentLines.size() >= this.cfg.getContentLineCntTotal()
-                && super.getHough().getNumPoints() > 2000;
+        return this.contentLines.size() >= 100
+        		|| (
+        		this.contentLines.size() >= this.cfg.getContentLineCntTotal()
+                && super.getHough().getNumPoints() > 1500)
+                ;
     }
 
     @Override

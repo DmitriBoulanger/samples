@@ -1,5 +1,6 @@
 package de.dbo.samples.image.houghtransform.data;
 
+import static de.dbo.samples.image.houghtransform.Util.applyMandatoryFilter;
 import static de.dbo.samples.image.houghtransform.data.Util.PNG;
 import static de.dbo.samples.image.houghtransform.data.Util.performanceSubdir;
 
@@ -179,6 +180,6 @@ public final class ImageProvider {
                 }
             }
         }
-        return image;
+        return applyMandatoryFilter(image);
     }
 }

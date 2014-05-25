@@ -16,14 +16,14 @@ public interface CategorizerConfiguration {
 
     public abstract void setEnabled(boolean split);
 
+   
+    public abstract double getWhiteBorder();
 
+    public abstract void setWhiteBorder(double whiteBorder);
+    
     //
     // Hough Configuration
     //
-
-    public abstract int getWhiteBorder();
-
-    public abstract void setWhiteBorder(int whiteBorder);
 
     public abstract String getHoughClassname();
 

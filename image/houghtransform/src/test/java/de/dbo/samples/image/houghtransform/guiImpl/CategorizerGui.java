@@ -30,13 +30,13 @@ final class CategorizerGui extends CategorizerImpl {
     }
 
     @Override
-    protected CategorizerWorkerImpl getCategorizerWorker(final BufferedImage _0, final ImageInfo _1
+    protected CategorizerWorkerImpl getCategorizerWorker(final BufferedImage _, final ImageInfo _1
             , final CategorizerConfiguration cfg) throws CategorizerException {
         if (null == shapeFilteredImage) {
             return new CategorizerGuiWorker(this.imageProvider, this.info, cfg);
         }
         else {
-            return new CategorizerGuiWorker(imageProvider.getImageFromResource(this.info)
+            return new CategorizerGuiWorker(this.imageProvider.getImageFromResource(this.info)
                     , shapeFilter, this.info, cfg);
         }
     }
@@ -51,6 +51,10 @@ final class CategorizerGui extends CategorizerImpl {
 
     final BufferedImage image() {
         return ((HoughTransform) this.shapeCategorizer).image();
+    }
+    
+    final BufferedImage origin() throws CategorizerException {
+        return imageProvider.getImageFromResource(info);
     }
 
     final BufferedImage imageFiltered() {

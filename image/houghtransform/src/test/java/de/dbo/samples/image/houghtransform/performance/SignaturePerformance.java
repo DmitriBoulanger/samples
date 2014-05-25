@@ -59,11 +59,13 @@ public final class SignaturePerformance extends ImageAssertions {
         final DecimalFormat df = new DecimalFormat("0.00");
     	try {
             final double result = processAndCheckImages(imageProvider, title, Marker.SIGNATURE);
-            if (result < 0.01) {
+            if (result < 0.001) {
                 log.debug("No errors in " + title + ": " + df.format(result));
             }
             else {
-                log.error("Errors in " + title + ": " + df.format(result));
+            	final DecimalFormat df2 = new DecimalFormat("0.00");
+            	final double procent = result * 100.0D;
+                log.error("Errors in " + title + ": " + df2.format(procent) + " %");
             }
         }
         catch(Exception e) {

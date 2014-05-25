@@ -3,7 +3,7 @@ package de.dbo.samples.image.houghtransform.core;
 import java.awt.Rectangle;
 
 public final class Util implements Constants {
-
+	
     public static double round1(double value) {
         return round(value, ONE);
     }

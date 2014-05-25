@@ -67,22 +67,21 @@ final class ImageCollectionCategorization {
         switch (collection) {
 
             case SIGNATURE_TEST0:
-                this.imageInfos.add(new ImageInfo("4", Category.CHECKED));
-                this.imageInfos.add(new ImageInfo("46", Category.CHECKED));
+                this.imageInfos.add(new ImageInfo("004", Category.CHECKED));
+                this.imageInfos.add(new ImageInfo("046", Category.CHECKED));
                 this.imageInfos.add(new ImageInfo("303", Category.UNCHECKED));
                 this.imageInfos.add(new ImageInfo("307", Category.UNCHECKED));
-                this.imageInfos.add(new ImageInfo("314", Category.UNCHECKED));
-                this.imageInfos.add(new ImageInfo("317", Category.UNCHECKED));
-                this.imageInfos.add(new ImageInfo("319", Category.UNCHECKED));
-                this.imageInfos.add(new ImageInfo("68", Category.CHECKED));
-                this.imageInfos.add(new ImageInfo("69", Category.CHECKED));
+                this.imageInfos.add(new ImageInfo("068", Category.CHECKED));
+                this.imageInfos.add(new ImageInfo("069", Category.CHECKED));
                 break;
 
             case SIGNATURE_TEST1:
+            	this.imageInfos.add(new ImageInfo("314", Category.UNCHECKED));
+                this.imageInfos.add(new ImageInfo("317", Category.UNCHECKED));
                 this.imageInfos.add(new ImageInfo("319", Category.UNCHECKED));
                 this.imageInfos.add(new ImageInfo("331", Category.UNCHECKED));
-                this.imageInfos.add(new ImageInfo("8", Category.CHECKED));
-                this.imageInfos.add(new ImageInfo("91", Category.CHECKED));
+                this.imageInfos.add(new ImageInfo("008", Category.CHECKED));
+                this.imageInfos.add(new ImageInfo("091", Category.CHECKED));
                 break;
 
             case SIGNATURE_TEST2:
@@ -91,8 +90,6 @@ final class ImageCollectionCategorization {
                 this.imageInfos.add(new ImageInfo("empty", Category.UNCHECKED));
                 this.imageInfos.add(new ImageInfo("left", Category.CHECKED));
                 this.imageInfos.add(new ImageInfo("weak", Category.CHECKED));
-                this.imageInfos.add(new ImageInfo("bad", Category.UNCHECKED));
-                this.imageInfos.add(new ImageInfo("bad2", Category.UNCHECKED));
                 break;
 
             case SIGNATURE_PROBLEM:
@@ -100,7 +97,6 @@ final class ImageCollectionCategorization {
                 this.imageInfos.add(new ImageInfo("303", Category.UNCHECKED));
                 this.imageInfos.add(new ImageInfo("317", Category.UNCHECKED));
                 this.imageInfos.add(new ImageInfo("319", Category.UNCHECKED));
-                this.imageInfos.add(new ImageInfo("8", Category.CHECKED));
                 this.imageInfos.add(new ImageInfo("009", Category.CHECKED));
                 this.imageInfos.add(new ImageInfo("029", Category.CHECKED));
                 this.imageInfos.add(new ImageInfo("035", Category.CHECKED));

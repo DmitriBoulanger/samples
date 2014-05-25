@@ -4,7 +4,7 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
 	<description>
-		Signature-Marker Categorizer with Hough-Linear algorithm
+		Signature Categorizer with Hough-Linear algorithm
 	</description>
 	
 	<context:annotation-config />
@@ -14,7 +14,7 @@
 		<constructor-arg value="SHAPE" />
 		<property name="enabled" value="false" />
 				
-		<property name="whiteBorder" value="20" />
+		<property name="whiteBorder" value="0.00" />
 
 		<!-- HOUGH PARAMETRS -->
 		<property name="houghClassname" value="de.dbo.samples.image.houghtransform.core.hough.HoughAlgorithmLinear"/>
@@ -83,8 +83,6 @@
 				Image filter are only from the com.jhlabs.image-package
 			</description>
 			<list>
-			<value>de.dbo.samples.image.houghtransform.filter.PointBasedThresholdFilter</value>
-			
 			</list>
 		</property>
 		
@@ -95,12 +93,12 @@
 		<constructor-arg value="CONTENT" />
 		<property name="enabled" value="true" />
 				
-		<property name="whiteBorder" value="20" />
+		<property name="whiteBorder" value="0.10" />
 
 		<!-- HOUGH PARAMETRS -->
 		<property name="houghClassname" value="de.dbo.samples.image.houghtransform.core.hough.HoughAlgorithmLinear"/>
 		<property name="maxTheta" value="180" />
-		<property name="threshold" value="3" >
+		<property name="threshold" value="1" >
 	   		<description>
 			 	Threshold determines lines to be extracted from hough-array.
 			 	Its value is % of the image diagonal. 
@@ -109,12 +107,14 @@
 			</description>
 		</property>
 		
-		<property name="neighbourhoodSizeHigh" value="5" />
-		<property name="neighbourhoodSizeNormal" value="5" />
-		<property name="neighbourhoodSizeLow" value="5" />
+		<property name="neighbourhoodSizeHigh" value="3" />
+		<property name="neighbourhoodSizeNormal" value="3" />
+		<property name="neighbourhoodSizeLow" value="3" />
 
 		<!-- CONTENT-LINE RECOGNITION -->
+		
 		<property name="contentLinePeakTolerance" value="0.10" />
+		
 		<property name="contentLineCenterTolerance" value="0.10" >
 		<description> 
 				value=1.00: line is at the image-border

@@ -1,6 +1,7 @@
 package de.dbo.samples.image.houghtransform.core;
 
 import static de.dbo.samples.image.houghtransform.CaregorizerImageTracer.save;
+import static de.dbo.samples.image.houghtransform.Util.applyMandatoryFilter;
 
 import de.dbo.samples.image.houghtransform.api.Categorizer;
 import de.dbo.samples.image.houghtransform.api.CategorizerConfiguration;
@@ -9,8 +10,6 @@ import de.dbo.samples.image.houghtransform.api.Category;
 import de.dbo.samples.image.houghtransform.api.CategorizerException;
 import de.dbo.samples.image.houghtransform.api.ImageInfo;
 import de.dbo.samples.image.houghtransform.api.ShapeFilter;
-import de.dbo.samples.image.houghtransform.filter.MandatoryPointBasedThresholdFilter;
-
 
 import java.awt.Graphics;
 import java.awt.Rectangle;
@@ -21,6 +20,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 
 /**
  * Marker categorization. The module performs classification of the marker
@@ -77,15 +77,22 @@ public class CategorizerImpl implements Categorizer {
         this.ctx = ctx;
     }
 
-    public static final BufferedImage preprocess(final BufferedImage image, final CategorizerConfiguration cfg) {
-        return cropImage(image, cfg.getWhiteBorder());
+    private static final Rectangle whiteBorder(final BufferedImage image, double delta) {
+    	 if (0.01 > delta) {
+             return null;
+         }
+         final int deltaX =  (int) ( ((double) image.getWidth() )  * delta );
+         final int deltaY =  (int) ( ((double) image.getHeight() ) * delta );
+         return new Rectangle(deltaX, deltaY, image.getWidth() - 2 * deltaX, image.getHeight() - 2 * deltaY);
     }
 
-    private static final BufferedImage cropImage(final BufferedImage image, int delta) {
-        if (0 == delta) {
-            return image;
+    public static final BufferedImage applyWhiteBorder(final BufferedImage image
+    		, CategorizerConfiguration cfg) {
+        final Rectangle border = whiteBorder(image,cfg.getWhiteBorder());
+        if (null==border) {
+        	return image;
         }
-        final Rectangle border = new Rectangle(delta, delta, image.getWidth() - 2 * delta, image.getHeight() - 2 * delta);
+        
         try {
             final int x = border.x;
             final int y = border.y;
@@ -102,12 +109,10 @@ public class CategorizerImpl implements Categorizer {
             return image;
         }
     }
-
-
+    
     @Override
     public final Category getCategory(final BufferedImage imageOrigin) throws CategorizerException {
-    	final BufferedImage image =  new MandatoryPointBasedThresholdFilter().filter(imageOrigin, null);
-
+    	final BufferedImage image =  applyMandatoryFilter(imageOrigin);
         try {
             cfg = (CategorizerConfiguration) this.ctx.getBean(bean);
         }
@@ -145,7 +150,7 @@ public class CategorizerImpl implements Categorizer {
             return save(image,contentCategorizer.category());
         }
         else {
-            contentCategorizer = getCategorizerWorker(cropImage(image, cfg.getWhiteBorder()), null, cfg2);
+            contentCategorizer = getCategorizerWorker(applyWhiteBorder(image, cfg2), null, cfg2);
             return save(image,contentCategorizer.category());
         }
     }
