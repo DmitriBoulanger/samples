@@ -27,7 +27,7 @@ import de.dbo.samples.image.houghtransform.core.hough.HoughTransform;
  * Transformation manager. It performs image filtering, Hough Transformations
  * and image classification
  *
- * @author D. Boulanger ITyX GmbH
+ * @author Dmitri Boulanger, Hombach
  *
  */
 public class CategorizerWorkerImpl implements HoughTransform {

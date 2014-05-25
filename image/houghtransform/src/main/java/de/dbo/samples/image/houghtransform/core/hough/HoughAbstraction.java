@@ -14,7 +14,7 @@ import java.awt.image.BufferedImage;
  *
  * Abstraction for an implementation of the Hough-Transforms
  *
- * @author D. Boulanger ITyX GmbH
+ * @author Dmitri Boulanger, Hombach
  *
  */
 public abstract class HoughAbstraction implements Hough {

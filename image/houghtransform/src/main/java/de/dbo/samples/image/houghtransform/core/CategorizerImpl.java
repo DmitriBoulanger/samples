@@ -9,6 +9,8 @@ import de.dbo.samples.image.houghtransform.api.Category;
 import de.dbo.samples.image.houghtransform.api.CategorizerException;
 import de.dbo.samples.image.houghtransform.api.ImageInfo;
 import de.dbo.samples.image.houghtransform.api.ShapeFilter;
+import de.dbo.samples.image.houghtransform.filter.MandatoryPointBasedThresholdFilter;
+
 
 import java.awt.Graphics;
 import java.awt.Rectangle;
@@ -27,7 +29,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  *
  * @see Category
  *
- * @author D.Boulanger ITyX GmbH
+ * @author D.Boulanger Hombach
  */
 public class CategorizerImpl implements Categorizer {
     private static final Logger      log                = LoggerFactory.getLogger(CategorizerImpl.class);
@@ -103,7 +105,9 @@ public class CategorizerImpl implements Categorizer {
 
 
     @Override
-    public final Category getCategory(final BufferedImage image) throws CategorizerException {
+    public final Category getCategory(final BufferedImage imageOrigin) throws CategorizerException {
+    	final BufferedImage image =  new MandatoryPointBasedThresholdFilter().filter(imageOrigin, null);
+
         try {
             cfg = (CategorizerConfiguration) this.ctx.getBean(bean);
         }

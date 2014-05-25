@@ -8,9 +8,10 @@ package de.dbo.samples.image.houghtransform.api;
  * at objects inside the shape that has been discovered during the first step.
  * Any categorizer worker has the mode indicating what it is doing
  *
- * @see CategorizerWorkerImpl
+ * @author Dmitri Boulanger, Hombach
  *
- * @author D.Boulanger ITyX GmbH
+ * D. Knuth: Programs are meant to be read by humans and 
+ *           only incidentally for computers to execute 
  *
  */
 public enum CategorizerMode {

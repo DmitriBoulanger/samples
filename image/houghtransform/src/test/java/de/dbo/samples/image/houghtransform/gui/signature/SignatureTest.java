@@ -5,7 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import de.dbo.samples.image.houghtransform.data.ImageCollections;
+import de.dbo.samples.image.houghtransform.data.ImageCollectionCatalog;
 import de.dbo.samples.image.houghtransform.gui.impl.GuiShowUp;
 
 public final class SignatureTest extends GuiShowUp {
@@ -16,7 +16,7 @@ public final class SignatureTest extends GuiShowUp {
 
         final String CTX = "signature-cfg.xml";
         final ApplicationContext ctx = new ClassPathXmlApplicationContext(CTX);
-        showUpSignature(ImageCollections.SIGNATURE_PROBLEM, CTX, ctx);
+        showUpSignature(ImageCollectionCatalog.SIGNATURE_PROBLEM, CTX, ctx);
 
         //        showUp2(ImageCollections.SIGNATURE_TEST0, CTX, ctx);
         //        showUp2(ImageCollections.SIGNATURE_TEST1, CTX, ctx);

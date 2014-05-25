@@ -13,7 +13,7 @@ import de.dbo.samples.image.houghtransform.core.Util;
 /**
  * Hough transform for searching circles
  *
- * @author D. Boulanger ITyX GmbH
+ * @author Dmitri Boulanger, Hombach
  *
  */
 public class HoughAlgorithmCircle extends HoughAbstraction {

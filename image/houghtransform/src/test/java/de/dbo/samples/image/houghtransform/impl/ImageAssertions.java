@@ -1,4 +1,4 @@
-package de.dbo.samples.image.houghtransform.gui.impl;
+package de.dbo.samples.image.houghtransform.impl;
 
 import static junit.framework.Assert.assertTrue;
 
@@ -20,8 +20,8 @@ import de.dbo.samples.image.houghtransform.data.ImageProvider;
  *
  * @author boulanger
  */
-public abstract class JUnit {
-    protected static final Logger log = LoggerFactory.getLogger(JUnit.class);
+public abstract class ImageAssertions {
+    protected static final Logger log = LoggerFactory.getLogger(ImageAssertions.class);
 
     protected final void processAndAssertImages(final ImageProvider imageProvider, final String title
             , final Marker marker) throws Exception {
@@ -55,7 +55,11 @@ public abstract class JUnit {
                     , ok);
         }
         final long elapsedTotal = System.currentTimeMillis() - start0;
-        log.info(title + " done. Elapsed total: " + elapsedTotal + " ms." + " Average: " + elapsedAccumulazed / cnt + " ms.");
+        if (0==cnt) {
+        	log.warn(title + " finished. Elapsed total: " + elapsedTotal + " ms. NOTHING DONE");
+        } else {
+        	log.info(title + " finished. Elapsed total: " + elapsedTotal + " ms." + " Average: " + elapsedAccumulazed / cnt + " ms.");
+        }
     }
 
     protected final double processAndCheckImages(final ImageProvider imageProvider, final String title
@@ -67,9 +71,6 @@ public abstract class JUnit {
         long elapsedAccumulazed = 0;
         int cnt = 0;
         for (final ImageInfo info : imagesInfos) {
-            if (!info.junit) {
-                continue;
-            }
             cnt++;
             final String name = info.name;
             final String messageHead = "Image=" + name.toUpperCase();
@@ -96,7 +97,11 @@ public abstract class JUnit {
 
         }
         final long elapsedTotal = System.currentTimeMillis() - start0;
-        log.info(title + " done. Elapsed total: " + elapsedTotal + " ms." + " Average: " + elapsedAccumulazed / cnt + " ms. Images: " + cnt);
+        if (0==cnt) {
+        	log.warn(title + " finished. Elapsed total: " + elapsedTotal + " ms. NOTHING DONE!");
+        } else {
+        	log.info(title + " finished. Elapsed total: " + elapsedTotal + " ms." + " Average: " + elapsedAccumulazed / cnt + " ms.");
+        }
         return 0 != total ? ((double) bad) / ((double) total) : Double.MAX_VALUE;
     }
 

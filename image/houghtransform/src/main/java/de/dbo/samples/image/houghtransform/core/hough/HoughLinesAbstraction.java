@@ -12,7 +12,7 @@ import de.dbo.samples.image.houghtransform.api.ShapeFilter;
 /**
  * JUnit of hough-Lines extracted form an image
  *
- * @author D. Boulanger ITyX GmbH
+ * @author Dmitri Boulanger, Hombach
  *
  */
 public abstract class HoughLinesAbstraction implements HoughLines {

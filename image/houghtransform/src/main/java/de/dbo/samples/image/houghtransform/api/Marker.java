@@ -4,7 +4,7 @@ package de.dbo.samples.image.houghtransform.api;
  * Marker-mode.
  *
  *
- * @author D. Boulanger ITyX GmbH
+ * @author Dmitri Boulanger, Hombach
  *
  */
 public enum Marker {

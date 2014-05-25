@@ -5,7 +5,7 @@ package de.dbo.samples.image.houghtransform.api;
  * Provider and are used in the developing/tests In production mode instances of
  * this class are not used
  *
- * @author D. Boulanger ITyX GmbH
+ * @author Dmitri Boulanger, Hombach
  *
  */
 public final class ImageInfo {
@@ -13,16 +13,19 @@ public final class ImageInfo {
     public final String       name;
     public final Category     category;
     public final String       description;
-    public final boolean      biNeeded;
     public final ImageQuality quality;
     public final boolean      junit;
 
     public ImageInfo() {
-        this(null, null, null, false, ImageQuality.NORMAL);
+        this(null, null, null, ImageQuality.NORMAL, true);
     }
 
     public ImageInfo(final String name) {
-        this(name, null, null, false, ImageQuality.NORMAL);
+        this(name, null, null, ImageQuality.NORMAL, true);
+    }
+    
+    public ImageInfo(final String name, boolean junit) {
+        this(name, null, null, ImageQuality.NORMAL, junit);
     }
 
     /**
@@ -34,24 +37,22 @@ public final class ImageInfo {
      *
      * @see Category
      */
+   
+    
     public ImageInfo(final String name, final Category category) {
-        this(name, category, null, false, ImageQuality.NORMAL);
+        this(name, category, null, ImageQuality.NORMAL, true);
     }
 
-    public ImageInfo(final String name, final Category category, boolean biNeeded) {
-        this(name, category, null, biNeeded, ImageQuality.NORMAL);
+    public ImageInfo(final String name, final Category category, final ImageQuality quality) {
+        this(name, category, null, quality, true);
     }
 
-    public ImageInfo(final String name, final Category category, boolean biNeeded, ImageQuality quality) {
-        this(name, category, null, biNeeded, quality);
-    }
-
-    public ImageInfo(final String name, final Category category, boolean biNeeded, ImageQuality quality, boolean junit) {
-        this(name, category, null, biNeeded, quality, junit);
+    public ImageInfo(final String name, final Category category, ImageQuality quality, boolean junit) {
+        this(name, category, null, quality, junit);
     }
 
     public ImageInfo(final String name, final Category category, final String description) {
-        this(name, category, description, false, ImageQuality.NORMAL);
+        this(name, category, description, ImageQuality.NORMAL, true);
     }
 
     /**
@@ -67,20 +68,12 @@ public final class ImageInfo {
      *
      * @see Category
      */
-    public ImageInfo(final String name, final Category category, final String description, boolean biNeeded, ImageQuality quality) {
+   
+    public ImageInfo(final String name, final Category category, final String description, 
+    		final ImageQuality quality, boolean junit) {
         this.name = name;
         this.category = category;
         this.description = description;
-        this.biNeeded = biNeeded;
-        this.quality = quality;
-        this.junit = true;
-    }
-
-    public ImageInfo(final String name, final Category category, final String description, boolean biNeeded, ImageQuality quality, boolean junit) {
-        this.name = name;
-        this.category = category;
-        this.description = description;
-        this.biNeeded = biNeeded;
         this.quality = quality;
         this.junit = junit;
     }

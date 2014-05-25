@@ -5,7 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import de.dbo.samples.image.houghtransform.data.ImageCollections;
+import de.dbo.samples.image.houghtransform.data.ImageCollectionCatalog;
 import de.dbo.samples.image.houghtransform.gui.impl.GuiShowUp;
 
 public class CircleFeatures extends GuiShowUp {
@@ -16,7 +16,7 @@ public class CircleFeatures extends GuiShowUp {
 
         final String CTX = "circle-cfg.xml";
         final ApplicationContext ctx = new ClassPathXmlApplicationContext(CTX);
-        showUp(ImageCollections.CIRCLE_FEATURES, CTX, ctx);
+        showUp(ImageCollectionCatalog.CIRCLE_FEATURES, CTX, ctx);
 
         log.info("finished. Elapsed: " + (System.currentTimeMillis() - start0)
                 + " ms.");

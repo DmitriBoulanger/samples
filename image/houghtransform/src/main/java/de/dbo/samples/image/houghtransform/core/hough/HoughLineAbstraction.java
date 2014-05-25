@@ -20,7 +20,7 @@ import java.awt.image.BufferedImage;
  * Represents a line as detected by the hough transform. This line is
  * represented by an angle theta and a radius from the center
  *
- * @author D.Boulanger ITyX GmbH
+ * @author D.Boulanger Hombach
  *
  */
 public abstract class HoughLineAbstraction implements HoughLine {

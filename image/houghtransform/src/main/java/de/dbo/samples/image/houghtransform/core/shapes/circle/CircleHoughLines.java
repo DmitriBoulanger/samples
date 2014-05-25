@@ -10,7 +10,7 @@ import de.dbo.samples.image.houghtransform.core.hough.HoughLinesAbstraction;
  * Lines from HoughAlgorithmLinear.
  * Lines are  extracted form the hough array
  * 
- * @author D. Boulanger ITyX GmbH
+ * @author Dmitri Boulanger, Hombach
  * 
  */
 public final class CircleHoughLines extends HoughLinesAbstraction implements

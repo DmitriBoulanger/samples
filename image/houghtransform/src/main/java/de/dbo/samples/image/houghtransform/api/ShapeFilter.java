@@ -10,7 +10,7 @@ import java.awt.image.BufferedImageOp;
  * filters (the other elements in the filter-vector are noise-reduction, sharp,
  * etc.)
  *
- * @author D.Boulanger ITyX GmbH
+ * @author D.Boulanger Hombach
  *
  */
 public interface ShapeFilter extends BufferedImageOp {

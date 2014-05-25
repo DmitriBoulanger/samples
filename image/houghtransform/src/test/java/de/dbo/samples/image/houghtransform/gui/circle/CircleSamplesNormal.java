@@ -5,7 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import de.dbo.samples.image.houghtransform.data.ImageCollections;
+import de.dbo.samples.image.houghtransform.data.ImageCollectionCatalog;
 import de.dbo.samples.image.houghtransform.gui.impl.GuiShowUp;
 
 public class CircleSamplesNormal extends GuiShowUp {
@@ -15,14 +15,14 @@ public class CircleSamplesNormal extends GuiShowUp {
      * starts GUI to show sample-collections of the marker-images
      *
      * @throws Exception
-     * @see ImageCollections
+     * @see ImageCollectionCatalog
      */
     public static void main(String[] args) throws Exception {
         final long start0 = System.currentTimeMillis();
 
         final String CTX = "circle-cfg.xml";
         final ApplicationContext ctx = new ClassPathXmlApplicationContext(CTX);
-        showUp(ImageCollections.CIRCLE_SAMPLES_NORMAL0, CTX, ctx);
+        showUp(ImageCollectionCatalog.CIRCLE_SAMPLES_NORMAL0, CTX, ctx);
 
         log.info("finished. Elapsed: " + (System.currentTimeMillis() - start0)
                 + " ms.");

@@ -9,7 +9,7 @@ import de.dbo.samples.image.houghtransform.core.hough.HoughLinesAbstraction;
 /**
  * HoughAlgorithmLinear-Lines extracted form an image
  *
- * @author D. Boulanger ITyX GmbH
+ * @author Dmitri Boulanger, Hombach
  *
  */
 public final class SignatureHoughLines extends HoughLinesAbstraction implements HoughLines {

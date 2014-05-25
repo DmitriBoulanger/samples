@@ -11,7 +11,7 @@ import de.dbo.samples.image.houghtransform.core.hough.HoughLineAbstraction;
  * Represents a line as detected by the hough transform. This line is
  * represented by an angle theta and a radius
  * 
- * @author D.Boulanger ITyX GmbH
+ * @author D.Boulanger Hombach
  * 
  */
 public final class BracketsHoughLine extends HoughLineAbstraction {

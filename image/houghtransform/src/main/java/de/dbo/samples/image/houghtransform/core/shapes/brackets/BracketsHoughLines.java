@@ -13,7 +13,7 @@ import java.util.Vector;
 /**
  * HoughAlgorithmLinear-Lines extracted form an image
  * 
- * @author D. Boulanger ITyX GmbH
+ * @author Dmitri Boulanger, Hombach
  * 
  */
 public final class BracketsHoughLines extends HoughLinesAbstraction implements

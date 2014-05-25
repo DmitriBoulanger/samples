@@ -5,16 +5,16 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import de.dbo.samples.image.houghtransform.api.Marker;
-import de.dbo.samples.image.houghtransform.data.ImageCollections;
+import de.dbo.samples.image.houghtransform.data.ImageCollectionCatalog;
 import de.dbo.samples.image.houghtransform.data.ImageProvider;
-import de.dbo.samples.image.houghtransform.gui.impl.JUnit;
+import de.dbo.samples.image.houghtransform.impl.ImageAssertions;
 
 /**
  *
- * @author D.Boulanger ITyX GmbH
+ * @author D.Boulanger Hombach
  *
  */
-public class Box extends JUnit {
+public class Box extends ImageAssertions {
     private static final Logger log = LoggerFactory.getLogger(Box.class);
 
     @Test
@@ -22,7 +22,7 @@ public class Box extends JUnit {
         final String title = "Box Test 0";
         log.debug(title + " ...");
         try {
-            processAndAssertImages(new ImageProvider(ImageCollections.BOX_TEST0)
+            processAndAssertImages(new ImageProvider(ImageCollectionCatalog.BOX_TEST0)
                     , title, Marker.BOX);
         }
         catch(Exception e) {
@@ -35,7 +35,7 @@ public class Box extends JUnit {
         final String title = "Box Test 1";
         log.debug(title + " ...");
         try {
-            processAndAssertImages(new ImageProvider(ImageCollections.BOX_TEST1)
+            processAndAssertImages(new ImageProvider(ImageCollectionCatalog.BOX_TEST1)
                     , title, Marker.BOX);
         }
         catch(Exception e) {
@@ -48,7 +48,7 @@ public class Box extends JUnit {
         final String title = "Box Features";
         log.debug(title + " ...");
         try {
-            processAndAssertImages(new ImageProvider(ImageCollections.BOX_FEATURES)
+            processAndAssertImages(new ImageProvider(ImageCollectionCatalog.BOX_FEATURES)
                     , title, Marker.BOX);
         }
         catch(Exception e) {
@@ -61,7 +61,7 @@ public class Box extends JUnit {
         final String title = "Box Samples normal 0";
         log.debug(title + " ...");
         try {
-            processAndAssertImages(new ImageProvider(ImageCollections.BOX_SAMPLES_NORMAL0)
+            processAndAssertImages(new ImageProvider(ImageCollectionCatalog.BOX_SAMPLES_NORMAL0)
                     , title, Marker.BOX);
         }
         catch(Exception e) {
@@ -74,7 +74,7 @@ public class Box extends JUnit {
         final String title = "Box Samples normal 1";
         log.debug(title + " ...");
         try {
-            processAndAssertImages(new ImageProvider(ImageCollections.BOX_SAMPLES_NORMAL1)
+            processAndAssertImages(new ImageProvider(ImageCollectionCatalog.BOX_SAMPLES_NORMAL1)
                     , title, Marker.BOX);
         }
         catch(Exception e) {
@@ -87,7 +87,7 @@ public class Box extends JUnit {
         final String title = "Box Samples normal 2";
         log.debug(title + " ...");
         try {
-            processAndAssertImages(new ImageProvider(ImageCollections.BOX_SAMPLES_NORMAL2)
+            processAndAssertImages(new ImageProvider(ImageCollectionCatalog.BOX_SAMPLES_NORMAL2)
                     , title, Marker.BOX);
         }
         catch(Exception e) {
@@ -100,7 +100,7 @@ public class Box extends JUnit {
         final String title = "Box Samples normal 3";
         log.debug(title + " ...");
         try {
-            processAndAssertImages(new ImageProvider(ImageCollections.BOX_SAMPLES_NORMAL3)
+            processAndAssertImages(new ImageProvider(ImageCollectionCatalog.BOX_SAMPLES_NORMAL3)
                     , title, Marker.BOX);
         }
         catch(Exception e) {
@@ -112,7 +112,7 @@ public class Box extends JUnit {
     public void box_samples_low_0() throws Exception {
         final String title = "Box Samples low 0";
         try {
-            processAndAssertImages(new ImageProvider(ImageCollections.BOX_SAMPLES_LOW0)
+            processAndAssertImages(new ImageProvider(ImageCollectionCatalog.BOX_SAMPLES_LOW0)
                     , title, Marker.BOX);
         }
         catch(Exception e) {

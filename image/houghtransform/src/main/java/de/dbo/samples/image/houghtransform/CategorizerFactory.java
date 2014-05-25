@@ -46,7 +46,7 @@ import de.dbo.samples.image.houghtransform.core.hough.HoughAlgorithmLinear;
  * @see HoughAlgorithmLinear
  * @see HoughAlgorithmCircle
  *
- * @author D.Boulanger ITyX GmbH
+ * @author D.Boulanger Hombach
  */
 
 public final class CategorizerFactory {

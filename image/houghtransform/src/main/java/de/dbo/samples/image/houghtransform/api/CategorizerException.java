@@ -5,8 +5,11 @@ import org.springframework.beans.BeansException;
 /**
  * Exception from ORM-CategorizerImpl.
  * 
- * @author D.Boulanger ITyX GmbH
- * 
+ * @author Dmitri Boulanger, Hombach
+ *
+ * D. Knuth: Programs are meant to be read by humans and 
+ *           only incidentally for computers to execute 
+ *
  */
 public final class CategorizerException extends Exception {
     private static final long serialVersionUID            = -6050886052379079011L;

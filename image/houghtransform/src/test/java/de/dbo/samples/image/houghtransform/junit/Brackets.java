@@ -5,16 +5,16 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import de.dbo.samples.image.houghtransform.api.Marker;
-import de.dbo.samples.image.houghtransform.data.ImageCollections;
+import de.dbo.samples.image.houghtransform.data.ImageCollectionCatalog;
 import de.dbo.samples.image.houghtransform.data.ImageProvider;
-import de.dbo.samples.image.houghtransform.gui.impl.JUnit;
+import de.dbo.samples.image.houghtransform.impl.ImageAssertions;
 
 /**
  *
- * @author D.Boulanger ITyX GmbH
+ * @author D.Boulanger Hombach
  *
  */
-public class Brackets extends JUnit {
+public class Brackets extends ImageAssertions {
     private static final Logger log = LoggerFactory.getLogger(Brackets.class);
 
     @Test
@@ -22,7 +22,7 @@ public class Brackets extends JUnit {
         final String title = "Brackets Test";
         log.debug(title + " ...");
         try {
-            processAndAssertImages(new ImageProvider(ImageCollections.BRACKETS_TEST)
+            processAndAssertImages(new ImageProvider(ImageCollectionCatalog.BRACKETS_TEST)
                     , title, Marker.BRACKETS);
         }
         catch(Exception e) {
@@ -35,7 +35,7 @@ public class Brackets extends JUnit {
         final String title = "Brackets Samples normal 0";
         log.debug(title + " ...");
         try {
-            processAndAssertImages(new ImageProvider(ImageCollections.BRACKETS_SAMPLES_NORMAL0)
+            processAndAssertImages(new ImageProvider(ImageCollectionCatalog.BRACKETS_SAMPLES_NORMAL0)
                     , title, Marker.BRACKETS);
         }
         catch(Exception e) {

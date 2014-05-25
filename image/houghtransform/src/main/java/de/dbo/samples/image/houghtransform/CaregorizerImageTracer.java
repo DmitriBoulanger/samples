@@ -48,6 +48,8 @@ public final class CaregorizerImageTracer {
 
 	/**
 	 * Root-directory to accumulate categorized images.
+	 * This method performs initialization of the tracer.
+	 * Non-null directory enables the tracer
 	 * 
 	 * @return root directory to save categorized images only if it is 
 	 *  enabled in the file imagetrace.properties; otherwise null.
@@ -55,57 +57,62 @@ public final class CaregorizerImageTracer {
 	 */
 	private static final File imagetraceDir() {
 		final InputStream inputStream = ClassLoader.getSystemClassLoader().getResourceAsStream(IMAGETRACE_PROPERTIES);
-		if (null != inputStream) {
-			final Properties imagetrace = new Properties();
-			try {
-				imagetrace.load(inputStream);
-				inputStream.close();
-			} catch (IOException e) {
-				log.error("Can't read " + IMAGETRACE_PROPERTIES + ": ", e);
-				return null;
-			}
-
-			if (imagetrace.isEmpty()) {
-				log.debug(IMAGETRACE_PROPERTIES + " has no properties");
-				return null;
-			}
-			final String dirValue = imagetrace.getProperty(IMAGETRACE_DIR_PROPERTY);
-			if (null==dirValue || 0==dirValue.trim().length()) {
-				log.debug(IMAGETRACE_PROPERTIES + " has no value for property " + IMAGETRACE_DIR_PROPERTY);
-				return null;
-			}
-			final String timestampValue = imagetrace.getProperty(IMAGETRACE_TIMESTAMP_PROPERTY);
-			final String timestampValueTrimmed;
-			if (null==timestampValue || 0==timestampValue.trim().length()) {
-				log.debug(IMAGETRACE_PROPERTIES + " has no value for property " + IMAGETRACE_TIMESTAMP_PROPERTY);
-				timestampValueTrimmed = IMAGETRACE_DIR_EXTENSION;
-			} else {
-				timestampValueTrimmed = timestampValue.trim();
-			}
-			final String dirValueTrimmed = dirValue.trim();
-			final SimpleDateFormat sdf = new SimpleDateFormat(timestampValueTrimmed);
-			final String timestamp = "-" + sdf.format(new Date());
-			
-			final String dirPath = new File(dirValueTrimmed + timestamp).getAbsolutePath();
-			final File dir = new File(dirPath);
-			final boolean created = dir.mkdirs();
-			if (created) {
-				for (final Category category : Category.values()) {
-					if ( !categorySubdir(dir, category).mkdirs() ) {
-						log.error(" Can't create sub-directory for category " + category.name());
-						return null;
-					}
-				}
-				log.info("Image-tracing enabled. Directory " + dirPath);
-				return dir;
-			} else {
-				log.error(" Can't create directory " + dirPath);
-				return null;
-			}
-		} else {
+		if (null == inputStream) {
 			log.debug("Resource " + IMAGETRACE_PROPERTIES + " not found");
 			return null;
 		}
+
+		final Properties imagetrace = new Properties();
+		try {
+			imagetrace.load(inputStream);
+			inputStream.close();
+		} catch (IOException e) {
+			log.error("Can't read/load data in " + IMAGETRACE_PROPERTIES + ": ", e);
+			return null;
+		}
+
+		if (imagetrace.isEmpty()) {
+			log.debug(IMAGETRACE_PROPERTIES + " has no properties");
+			return null;
+		}
+		final String dirValue = imagetrace.getProperty(IMAGETRACE_DIR_PROPERTY);
+		if (null == dirValue || 0 == dirValue.trim().length()) {
+			log.debug(IMAGETRACE_PROPERTIES + " has no value for property " + IMAGETRACE_DIR_PROPERTY);
+			return null;
+		}
+		final String timestampValue = imagetrace.getProperty(IMAGETRACE_TIMESTAMP_PROPERTY);
+		final String timestampValueTrimmed;
+		if (null == timestampValue || 0 == timestampValue.trim().length()) {
+			log.debug(IMAGETRACE_PROPERTIES + " has no value for property "+ IMAGETRACE_TIMESTAMP_PROPERTY);
+			timestampValueTrimmed = IMAGETRACE_DIR_EXTENSION;
+		} else {
+			timestampValueTrimmed = timestampValue.trim();
+		}
+		final String dirValueTrimmed = dirValue.trim();
+		final SimpleDateFormat sdf = new SimpleDateFormat(timestampValueTrimmed);
+		final String timestamp = "-" + sdf.format(new Date());
+
+		final String dirPath = new File(dirValueTrimmed + timestamp).getAbsolutePath();
+		final File dir = new File(dirPath);
+		if (dir.exists()) {
+			log.error("Directory " + dirPath + " exits. Image-tracing disabled");
+			return null;
+		}
+		final boolean created = dir.mkdirs();
+		if (created) {
+			for (final Category category : Category.values()) {
+				if (!categorySubdir(dir, category).mkdirs()) {
+					log.error(" Can't create sub-directory for category " + category.name());
+					return null;
+				}
+			}
+			log.info("Image-tracing enabled. Directory " + dirPath);
+			return dir;
+		} else {
+			log.error(" Can't create directory " + dirPath);
+			return null;
+		}
+
 	}
 
 	/**

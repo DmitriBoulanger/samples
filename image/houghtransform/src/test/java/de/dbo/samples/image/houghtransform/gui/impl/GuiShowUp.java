@@ -6,12 +6,12 @@ import java.util.List;
 import org.springframework.context.ApplicationContext;
 
 import de.dbo.samples.image.houghtransform.api.ImageInfo;
-import de.dbo.samples.image.houghtransform.data.ImageCollections;
+import de.dbo.samples.image.houghtransform.data.ImageCollectionCatalog;
 import de.dbo.samples.image.houghtransform.data.ImageProvider;
 
 public abstract class GuiShowUp {
 
-    protected static final void showUp(final ImageCollections collection, final String ctxname, final ApplicationContext ctx)
+    protected static final void showUp(final ImageCollectionCatalog collection, final String ctxname, final ApplicationContext ctx)
             throws Exception {
 
         final ImageProvider imageProvider = new ImageProvider(collection);
@@ -23,7 +23,7 @@ public abstract class GuiShowUp {
         new Gui(imageProvider, ctxname, ctx, categorizers).showUp();
     }
 
-    protected static final void showUpSignature(final ImageCollections collection, final String ctxname, final ApplicationContext ctx)
+    protected static final void showUpSignature(final ImageCollectionCatalog collection, final String ctxname, final ApplicationContext ctx)
             throws Exception {
 
         final ImageProvider imageProvider = new ImageProvider(collection);

@@ -12,7 +12,7 @@ import java.awt.Rectangle;
  * 
  * @see ShapeFilter
  * 
- * @author D.Boulanger ITyX GmbH
+ * @author D.Boulanger Hombach
  * 
  */
 public interface Shape {

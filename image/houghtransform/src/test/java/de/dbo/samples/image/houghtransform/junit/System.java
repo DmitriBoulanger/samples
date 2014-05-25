@@ -5,9 +5,9 @@ import org.junit.Test;
 import de.dbo.samples.image.houghtransform.CategorizerFactory;
 import de.dbo.samples.image.houghtransform.api.CategorizerException;
 import de.dbo.samples.image.houghtransform.core.CategorizerImpl;
-import de.dbo.samples.image.houghtransform.gui.impl.JUnit;
+import de.dbo.samples.image.houghtransform.impl.ImageAssertions;
 
-public class System extends JUnit {
+public class System extends ImageAssertions {
 
     @Test(expected = CategorizerException.class)
     public void incorrectCtxName() throws Exception {
