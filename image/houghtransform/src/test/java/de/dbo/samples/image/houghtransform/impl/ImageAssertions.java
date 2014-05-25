@@ -54,11 +54,11 @@ public abstract class ImageAssertions {
                     + "  but expected " + categoryExpected + ")"
                     , ok);
         }
-        final long elapsedTotal = System.currentTimeMillis() - start0;
         if (0==cnt) {
-        	log.warn(title + " finished. Elapsed total: " + elapsedTotal + " ms. NOTHING DONE");
+        	log.warn(title + " finished. NOTHING DONE!");
         } else {
-        	log.info(title + " finished. Elapsed total: " + elapsedTotal + " ms." + " Average: " + elapsedAccumulazed / cnt + " ms.");
+        	final long elapsedTotal = System.currentTimeMillis() - start0;
+        	log.info(title + " finished " + cnt + " images. Elapsed total: " + elapsedTotal + " ms." + " Average: " + elapsedAccumulazed / cnt + " ms.");
         }
     }
 
@@ -96,11 +96,12 @@ public abstract class ImageAssertions {
             }
 
         }
-        final long elapsedTotal = System.currentTimeMillis() - start0;
+        
         if (0==cnt) {
-        	log.warn(title + " finished. Elapsed total: " + elapsedTotal + " ms. NOTHING DONE!");
+        	log.warn(title + " finished. NOTHING DONE!");
         } else {
-        	log.info(title + " finished. Elapsed total: " + elapsedTotal + " ms." + " Average: " + elapsedAccumulazed / cnt + " ms.");
+        	final long elapsedTotal = System.currentTimeMillis() - start0;
+        	log.info(title + " finished " + cnt + " images. Elapsed total: " + elapsedTotal + " ms." + " Average: " + elapsedAccumulazed / cnt + " ms.");
         }
         return 0 != total ? ((double) bad) / ((double) total) : Double.MAX_VALUE;
     }

@@ -25,7 +25,7 @@
 		</layout>
 	</appender>
 	
-	<logger name="de.dbo">
+	<logger name="de.dbo.samples.image.houghtransform">
 		<level value="info" />
 		<appender-ref ref="CONSOLE" />
 	</logger>

@@ -2,8 +2,10 @@ package de.dbo.samples.image.houghtransform.data;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Properties;
+import java.util.Set;
 
 import org.apache.commons.io.Charsets;
 import org.apache.commons.io.IOUtils;
@@ -14,13 +16,7 @@ final class Util {
 	private static final Logger log = LoggerFactory.getLogger(Util.class);
 
 	static final String PNG = ".png";
-    
-    static final void png(final String image) throws Exception {
-        if (!image.endsWith(PNG)) {
-            throw new Exception("Illegal image name: " + image);
-        }
-    }
-    
+
     static final List<String> filenames(final String resource) throws Exception {
         log.trace("reading file-names from " + resource + " ...");
         try {
@@ -28,11 +24,18 @@ final class Util {
         	final InputStream inputStream = classLoader.getResourceAsStream(resource);
             final List<String> ret = IOUtils.readLines(inputStream, Charsets.UTF_8);
             inputStream.close();
+            final Set<Object> nonImages = new HashSet<Object>();
+            for (final String name:ret) {
+            	if (!name.endsWith(PNG)) {
+            		nonImages.add(name);
+            	}
+            }
+            ret.removeAll(nonImages);
             log.debug("reading file-names from " + resource + ": " + ret.size() + " names found");
             return ret;
         }
         catch(Exception e) {
-            throw new Exception("Can't read file-names from " + resource);
+            throw new Exception("Can't read file-names from " + resource,e);
         }
     }
     

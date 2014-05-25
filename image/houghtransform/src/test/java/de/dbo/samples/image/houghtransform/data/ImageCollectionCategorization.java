@@ -2,7 +2,6 @@ package de.dbo.samples.image.houghtransform.data;
 
 import static de.dbo.samples.image.houghtransform.data.Util.PNG;
 import static de.dbo.samples.image.houghtransform.data.Util.filenames;
-import static de.dbo.samples.image.houghtransform.data.Util.png;
 
 import de.dbo.samples.image.houghtransform.api.Category;
 import de.dbo.samples.image.houghtransform.api.ImageInfo;
@@ -40,7 +39,6 @@ final class ImageCollectionCategorization {
             case SIGNATURE_PERFORMANCE_UNCHECKED:
                 final List<String> uncheckedImages = filenames(data);
                 for (final String name : uncheckedImages) {
-                    png(name);
                     this.imageInfos.add(new ImageInfo(name.replaceAll(PNG, ""), Category.UNCHECKED));
                 }
                 break;
@@ -48,7 +46,6 @@ final class ImageCollectionCategorization {
             case SIGNATURE_PERFORMANCE_CHECKED:
                 final List<String> checkedImages = filenames(data);
                 for (final String name : checkedImages) {
-                    png(name);
                     this.imageInfos.add(new ImageInfo(name.replaceAll(PNG, ""), Category.CHECKED));
                 }
                 break;
@@ -56,7 +53,6 @@ final class ImageCollectionCategorization {
             case SIGNATURE_PERFORMANCE_ERROR:
                 final List<String> errorImages = filenames(data);
                 for (final String name : errorImages) {
-                    png(name);
                     this.imageInfos.add(new ImageInfo(name.replaceAll(PNG, ""), Category.UNCHECKED));
                 }
                 break;

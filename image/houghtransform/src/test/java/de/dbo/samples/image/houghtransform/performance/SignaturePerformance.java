@@ -6,6 +6,8 @@ import de.dbo.samples.image.houghtransform.data.ImageCollectionCatalog;
 import de.dbo.samples.image.houghtransform.data.ImageProvider;
 import de.dbo.samples.image.houghtransform.impl.ImageAssertions;
 
+import java.text.DecimalFormat;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -50,20 +52,18 @@ public final class SignaturePerformance extends ImageAssertions {
     }
 
     private final void doIt(final String title, final ImageProvider imageProvider) throws Exception {
-        try {
+        final DecimalFormat df = new DecimalFormat("0.00");
+    	try {
             final double result = processAndCheckImages(imageProvider, title, Marker.SIGNATURE);
             if (result < 0.01) {
-                log.info("No errors in " + title + ": " + result);
+                log.debug("No errors in " + title + ": " + df.format(result));
             }
             else {
-                log.error("Errors in " + title + ": " + result);
+                log.error("Errors in " + title + ": " + df.format(result));
             }
         }
         catch(Exception e) {
             handleException(title, e);
         }
     }
-
-
-
 }
