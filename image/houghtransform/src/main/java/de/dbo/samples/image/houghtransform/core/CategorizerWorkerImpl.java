@@ -192,12 +192,12 @@ public class CategorizerWorkerImpl implements HoughTransform {
                 + this.imageQuality.name() 
                 + " ERR="+ Util.round100(Util.error(this.imageWidth, this.imageHeight)));
         ret.add("\nHough Points = " + this.hough.getNumPoints()
-                + "  Lines = " + houghLines.getSize() + "  HH = "
-                + this.hough.getMaxHoughValue().print());
+                + "  Lines = " + houghLines.getSize() 
+                + "  HH = " + this.hough.getMaxHoughValue().print());
         ret.add("\nShape: " + houghLines.printShape());
         ret.add("\nShape lines: " + houghLines.printShapeLineCounters());
         ret.add("\nContent lines: " + houghLines.printContentLineCounters());
-        ret.add("\nUnkhown lines TOTAL: " + houghLines.getUnknownLines().size());
+        ret.add("\nUnkhown lines: " + houghLines.getUnknownLines().size());
         return ret;
     }
 

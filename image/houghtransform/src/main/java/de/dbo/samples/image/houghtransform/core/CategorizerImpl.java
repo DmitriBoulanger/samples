@@ -83,7 +83,8 @@ public class CategorizerImpl implements Categorizer {
          }
          final int deltaX =  (int) ( ((double) image.getWidth() )  * delta );
          final int deltaY =  (int) ( ((double) image.getHeight() ) * delta );
-         return new Rectangle(deltaX, deltaY, image.getWidth() - 2 * deltaX, image.getHeight() - 2 * deltaY);
+         return new Rectangle(deltaX, deltaY, 
+        		 image.getWidth() - 4 * deltaX, image.getHeight() - 2 * deltaY);
     }
 
     public static final BufferedImage applyWhiteBorder(final BufferedImage image

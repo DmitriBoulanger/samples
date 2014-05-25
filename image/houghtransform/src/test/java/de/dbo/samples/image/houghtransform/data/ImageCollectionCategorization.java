@@ -78,7 +78,6 @@ final class ImageCollectionCategorization {
             case SIGNATURE_TEST1:
             	this.imageInfos.add(new ImageInfo("314", Category.UNCHECKED));
                 this.imageInfos.add(new ImageInfo("317", Category.UNCHECKED));
-                this.imageInfos.add(new ImageInfo("319", Category.UNCHECKED));
                 this.imageInfos.add(new ImageInfo("331", Category.UNCHECKED));
                 this.imageInfos.add(new ImageInfo("008", Category.CHECKED));
                 this.imageInfos.add(new ImageInfo("091", Category.CHECKED));
