@@ -3,35 +3,34 @@ package de.dbo.samples.image.houghtransform.data;
 import static de.dbo.samples.image.houghtransform.data.Util.PNG;
 import static de.dbo.samples.image.houghtransform.data.Util.filenames;
 
+import java.util.List;
+import java.util.Vector;
+
 import de.dbo.samples.image.houghtransform.api.Category;
 import de.dbo.samples.image.houghtransform.api.ImageInfo;
 import de.dbo.samples.image.houghtransform.api.ImageQuality;
 
-import java.util.List;
-import java.util.Vector;
-
 /**
  * Manual categorization of the images
- * 
+ *
  * @author Dmitri Boulanger, Hombach
  *
- * D. Knuth: Programs are meant to be read by humans and 
- *           only incidentally for computers to execute 
+ * D. Knuth: Programs are meant to be read by humans and
+ *           only incidentally for computers to execute
  *
  */
 final class ImageCollectionCategorization {
-	
+
     final Vector<ImageInfo> imageInfos;
     final String            data;
-    
-    ImageCollectionCategorization(final String data, final Vector<ImageInfo> imageInfos) { 
+
+    ImageCollectionCategorization(final String data, final Vector<ImageInfo> imageInfos) {
         this.data = data;
     	this.imageInfos = imageInfos;
-       
     }
 
     // SINATURE ---------------------------------------------------------------
-    
+
     final void signature_performance_test(final ImageCollectionCatalog collection) throws Exception {
         switch (collection) {
 
@@ -50,13 +49,20 @@ final class ImageCollectionCategorization {
                 }
                 break;
 
-            case SIGNATURE_PERFORMANCE_ERROR:
-                final List<String> errorImages = filenames(data);
-                for (final String name : errorImages) {
+            case SIGNATURE_PERFORMANCE_ERROR_UNCHECKED:
+                final List<String> errorUnchekedImages = filenames(data);
+                for (final String name : errorUnchekedImages) {
                     this.imageInfos.add(new ImageInfo(name.replaceAll(PNG, ""), Category.UNCHECKED));
                 }
                 break;
-                
+
+            case SIGNATURE_PERFORMANCE_ERROR_CHECKED:
+                final List<String> errorChekedImages = filenames(data);
+                for (final String name : errorChekedImages) {
+                    this.imageInfos.add(new ImageInfo(name.replaceAll(PNG, ""), Category.CHECKED));
+                }
+                break;
+
             default:
             	throw new RuntimeException(collection.path()+" is incorrect for signature_performance_test");
         }
@@ -101,7 +107,7 @@ final class ImageCollectionCategorization {
                 this.imageInfos.add(new ImageInfo("035", Category.CHECKED));
                 this.imageInfos.add(new ImageInfo("095", Category.CHECKED));
                 break;
-                
+
             default:
             	throw new RuntimeException(collection.path()+" is incorrect for signature_test");
         }
@@ -135,7 +141,7 @@ final class ImageCollectionCategorization {
                 this.imageInfos.add(new ImageInfo("empty_black", Category.UNKNOWN, null, null, false/* no JUnit-test */));
 
                 break;
-                
+
             default:
             	throw new RuntimeException(collection.path()+" is incorrect for box_test");
 
@@ -201,7 +207,7 @@ final class ImageCollectionCategorization {
                 this.imageInfos.add(new ImageInfo("s03", Category.CHECKED));
                 this.imageInfos.add(new ImageInfo("s04", Category.UNCHECKED));
                 break;
-                
+
                 default:
                 	throw new RuntimeException(collection.path()+" is incorrect for box_samplesnormal");
         }
@@ -232,7 +238,7 @@ final class ImageCollectionCategorization {
                 this.imageInfos.add(new ImageInfo("s09", Category.CHECKED,
                         ImageQuality.LOW));
                 break;
-                
+
             default:
             	throw new RuntimeException(collection.path()+" is incorrect for box_sampleslow");
         }
@@ -254,12 +260,12 @@ final class ImageCollectionCategorization {
 
     // BRACKETS --------------------------------------------------------
 
-     
+
     final void brackets_test(final ImageCollectionCatalog collection) {
         switch (collection) {
-        
+
         case BRACKETS_TEST:
-        	
+
         	this.imageInfos.add(new ImageInfo("kross", Category.UNKNOWN));
             this.imageInfos.add(new ImageInfo("kross_01", Category.UNKNOWN));
             this.imageInfos.add(new ImageInfo("kross_10", Category.UNKNOWN));
@@ -275,8 +281,8 @@ final class ImageCollectionCategorization {
             this.imageInfos.add(new ImageInfo("brackets_kross",
                     Category.CHECKED));
             break;
-        
-        
+
+
             case BRACKETS_SAMPLES_NORMAL0:
                 this.imageInfos.add(new ImageInfo("s00", Category.UNCHECKED,
                         ImageQuality.LOW));
@@ -300,7 +306,7 @@ final class ImageCollectionCategorization {
                 this.imageInfos.add(new ImageInfo("s09", Category.UNKNOWN,
                         ImageQuality.LOW, false/* no JUnit-test */));
                 break;
-                	
+
                 default:
                 	throw new RuntimeException(collection.path()+" is incorrect for brackets_test");
         }
@@ -349,7 +355,7 @@ final class ImageCollectionCategorization {
                                 , false/* no JUnit-test ! */));
 
                 break;
-                
+
             default:
             	throw new RuntimeException(collection.path()+" is incorrect for circle_test");
         }
@@ -378,7 +384,7 @@ final class ImageCollectionCategorization {
                 this.imageInfos.add(new ImageInfo("s04", Category.CHECKED));
                 this.imageInfos.add(new ImageInfo("s05", Category.CHECKED));
                 this.imageInfos.add(new ImageInfo("s06", Category.CHECKED));
-          
+
                 this.imageInfos.add(new ImageInfo("s07", Category.UNCHECKED
                 		, null, ImageQuality.NORMAL, false /* no JUnit-test!*/));
 
@@ -386,7 +392,7 @@ final class ImageCollectionCategorization {
                 this.imageInfos.add(new ImageInfo("s00", Category.UNCHECKED));
                 this.imageInfos.add(new ImageInfo("s01", Category.CHECKED));
                 break;
-                
+
             default:
             	throw new RuntimeException(collection.path()+" is incorrect for circle_samplesnormal");
         }
@@ -417,8 +423,8 @@ final class ImageCollectionCategorization {
                 this.imageInfos.add(new ImageInfo("s01", Category.CHECKED,
                         ImageQuality.LOW));
                 break;
-                
-                
+
+
                 default:
                 	throw new RuntimeException(collection.path()+ " is incorrect for circle_sampleslow");
         }

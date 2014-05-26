@@ -16,7 +16,8 @@ public final class SignaturePerformanceError extends GuiShowUp {
 
         final String CTX = "signature-cfg.xml";
         final ApplicationContext ctx = new ClassPathXmlApplicationContext(CTX);
-        showUpSignature(ImageCollectionCatalog.SIGNATURE_PERFORMANCE_ERROR, CTX, ctx);
+        showUpSignature(ImageCollectionCatalog.SIGNATURE_PERFORMANCE_ERROR_UNCHECKED, CTX, ctx);
+        showUpSignature(ImageCollectionCatalog.SIGNATURE_PERFORMANCE_ERROR_CHECKED, CTX, ctx);
 
         log.info("finished. Elapsed: " + (System.currentTimeMillis() - start0) + " ms.");
     }

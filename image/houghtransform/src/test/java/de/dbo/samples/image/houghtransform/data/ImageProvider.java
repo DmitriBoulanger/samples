@@ -4,30 +4,30 @@ import static de.dbo.samples.image.houghtransform.Util.applyMandatoryFilter;
 import static de.dbo.samples.image.houghtransform.data.Util.PNG;
 import static de.dbo.samples.image.houghtransform.data.Util.performanceSubdir;
 
-import de.dbo.samples.image.houghtransform.api.CategorizerException;
-import de.dbo.samples.image.houghtransform.api.Category;
-import de.dbo.samples.image.houghtransform.api.ImageInfo;
-
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Vector;
 
+import de.dbo.samples.image.houghtransform.api.CategorizerException;
+import de.dbo.samples.image.houghtransform.api.Category;
+import de.dbo.samples.image.houghtransform.api.ImageInfo;
+
 /**
  * Image collections for tests and development.
- * 
+ *
  * @author Dmitri Boulanger, Hombach
  *
- * D. Knuth: Programs are meant to be read by humans and 
- *           only incidentally for computers to execute 
+ * D. Knuth: Programs are meant to be read by humans and
+ *           only incidentally for computers to execute
  *
  */
 public final class ImageProvider {
-	
+
     private final Vector<ImageInfo> imageInfos   = new Vector<ImageInfo>();
     private final String            resourceDir;
     private final String            signaturePerformanceSubdir;
-    
+
 	private static final String resourceDir(final ImageCollectionCatalog collection,
 			final String performanceSubdir) {
 		final String root = collection.path();
@@ -36,21 +36,23 @@ public final class ImageProvider {
 				return root + performanceSubdir + "checked/";
 			case SIGNATURE_PERFORMANCE_UNCHECKED:
 				return root + performanceSubdir + "unchecked/";
-			case SIGNATURE_PERFORMANCE_ERROR:
-				return root + performanceSubdir + "error/";
+            case SIGNATURE_PERFORMANCE_ERROR_CHECKED:
+                return root + performanceSubdir + "error/checked/";
+            case SIGNATURE_PERFORMANCE_ERROR_UNCHECKED:
+                return root + performanceSubdir + "error/unchecked/";
 
 		default:
 			return root;
 		}
 	}
 
-    public ImageProvider(final ImageCollectionCatalog collection) 
+    public ImageProvider(final ImageCollectionCatalog collection)
     		throws Exception {
     	signaturePerformanceSubdir = performanceSubdir(collection);
-    	
+
     	resourceDir = resourceDir(collection,signaturePerformanceSubdir);
     	final ImageCollectionCategorization categorization = new ImageCollectionCategorization(resourceDir, imageInfos);
-    	
+
         switch (collection) {
 
             // SIGNATURE ------------------------------------------------------------
@@ -63,7 +65,8 @@ public final class ImageProvider {
 
             case SIGNATURE_PERFORMANCE_UNCHECKED:
             case SIGNATURE_PERFORMANCE_CHECKED:
-            case SIGNATURE_PERFORMANCE_ERROR:
+            case SIGNATURE_PERFORMANCE_ERROR_UNCHECKED:
+            case SIGNATURE_PERFORMANCE_ERROR_CHECKED:
             	if (null==signaturePerformanceSubdir) {
             		return;
             	}
@@ -75,22 +78,22 @@ public final class ImageProvider {
             case BOX_TEST1:
             	categorization.box_test(collection);
                 break;
-                
+
             case BOX_FEATURES:
             	categorization.box_features();
                 break;
-                
+
             case BOX_SAMPLES_NORMAL0:
             case BOX_SAMPLES_NORMAL1:
             case BOX_SAMPLES_NORMAL2:
             case BOX_SAMPLES_NORMAL3:
             	categorization.box_samplesnormal(collection);
                 break;
-                
+
             case BOX_SAMPLES_LOW0:
             	categorization.box_sampleslow(collection);
                 break;
-                
+
             case BOX_SAMPLES_NORMAL_NEGATIVE:
             	categorization.box_samplesnormalnegative();
                 break;
@@ -111,19 +114,19 @@ public final class ImageProvider {
             case CIRCLE_TEST1:
             	categorization.circle_test(collection);
                 break;
-                
+
             case CIRCLE_FEATURES:
             	categorization.circle_features();
                 break;
-                
+
             case CIRCLE_SAMPLES_NORMAL0:
             	categorization.circle_samplesnormal(collection);
                 break;
-                
+
             case CIRCLE_SAMPLES_LOW0:
             	categorization.circle_sampleslow(collection);
                 break;
-                
+
             default:
                 throw new RuntimeException("Cannot recognize image-collection: " + collection.name());
 
@@ -152,7 +155,7 @@ public final class ImageProvider {
     public Vector<ImageInfo> getImageInfos() {
         return this.imageInfos;
     }
-    
+
     public final BufferedImage getImageFromResource(final ImageInfo info) throws CategorizerException {
         final String imageName = info.name;
         final String filename = imageName + PNG;

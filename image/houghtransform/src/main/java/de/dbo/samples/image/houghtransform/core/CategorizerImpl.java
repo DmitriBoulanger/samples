@@ -3,14 +3,6 @@ package de.dbo.samples.image.houghtransform.core;
 import static de.dbo.samples.image.houghtransform.CaregorizerImageTracer.save;
 import static de.dbo.samples.image.houghtransform.Util.applyMandatoryFilter;
 
-import de.dbo.samples.image.houghtransform.api.Categorizer;
-import de.dbo.samples.image.houghtransform.api.CategorizerConfiguration;
-import de.dbo.samples.image.houghtransform.api.CategorizerWorker;
-import de.dbo.samples.image.houghtransform.api.Category;
-import de.dbo.samples.image.houghtransform.api.CategorizerException;
-import de.dbo.samples.image.houghtransform.api.ImageInfo;
-import de.dbo.samples.image.houghtransform.api.ShapeFilter;
-
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
@@ -20,6 +12,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import de.dbo.samples.image.houghtransform.api.Categorizer;
+import de.dbo.samples.image.houghtransform.api.CategorizerConfiguration;
+import de.dbo.samples.image.houghtransform.api.CategorizerException;
+import de.dbo.samples.image.houghtransform.api.CategorizerWorker;
+import de.dbo.samples.image.houghtransform.api.Category;
+import de.dbo.samples.image.houghtransform.api.ImageInfo;
+import de.dbo.samples.image.houghtransform.api.ShapeFilter;
 
 
 /**
@@ -47,7 +47,7 @@ public class CategorizerImpl implements Categorizer {
 
     private CategorizerConfiguration cfg                = null;
     private CategorizerConfiguration cfg2               = null;
-    
+
     /**
      * @param ctxname
      *            name of the XML-file (Spring resource)
@@ -81,19 +81,18 @@ public class CategorizerImpl implements Categorizer {
     	 if (0.01 > delta) {
              return null;
          }
-         final int deltaX =  (int) ( ((double) image.getWidth() )  * delta );
-         final int deltaY =  (int) ( ((double) image.getHeight() ) * delta );
-         return new Rectangle(deltaX, deltaY, 
+         final int deltaX =  (int) ( (image.getWidth() )  * delta );
+         final int deltaY =  (int) ( (image.getHeight() ) * delta );
+         return new Rectangle(deltaX, deltaY,
         		 image.getWidth() - 4 * deltaX, image.getHeight() - 2 * deltaY);
     }
 
-    public static final BufferedImage applyWhiteBorder(final BufferedImage image
-    		, CategorizerConfiguration cfg) {
+    public static final BufferedImage applyWhiteBorder(final BufferedImage image, final CategorizerConfiguration cfg) {
         final Rectangle border = whiteBorder(image,cfg.getWhiteBorder());
         if (null==border) {
         	return image;
         }
-        
+
         try {
             final int x = border.x;
             final int y = border.y;
@@ -110,7 +109,7 @@ public class CategorizerImpl implements Categorizer {
             return image;
         }
     }
-    
+
     @Override
     public final Category getCategory(final BufferedImage imageOrigin) throws CategorizerException {
     	final BufferedImage image =  applyMandatoryFilter(imageOrigin);
@@ -155,7 +154,7 @@ public class CategorizerImpl implements Categorizer {
             return save(image,contentCategorizer.category());
         }
     }
-    
+
     protected CategorizerWorker getCategorizerWorker(final BufferedImage image, final ImageInfo info, final CategorizerConfiguration cfg)
             throws CategorizerException {
         return new CategorizerWorkerImpl(image, cfg);

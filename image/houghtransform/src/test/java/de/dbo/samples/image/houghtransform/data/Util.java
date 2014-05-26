@@ -38,24 +38,26 @@ final class Util {
             throw new Exception("Can't read file-names from " + resource,e);
         }
     }
-    
+
     private static final String PERFORMANCE_PROPERTIES_RESOURCE = "performance.properties";
     private static final String PERFORMANCE_SUBDIR_PROPERTY_SUFFIX = ".performanceSubdir";
     private static Properties PERFORMANCE_PROPERTIES = new Properties();
-   
+
     static final String performanceSubdir(final ImageCollectionCatalog collection)  {
     	final String key;
     	switch (collection) {
+
     	  case SIGNATURE_PERFORMANCE_UNCHECKED:
           case SIGNATURE_PERFORMANCE_CHECKED:
-          case SIGNATURE_PERFORMANCE_ERROR:
+            case SIGNATURE_PERFORMANCE_ERROR_UNCHECKED:
+            case SIGNATURE_PERFORMANCE_ERROR_CHECKED:
         	  key = "signature" + PERFORMANCE_SUBDIR_PROPERTY_SUFFIX;
         	  break;
-        	  
+
         	  default:
         		  return null;
     	}
-    	
+
     	loadPerformanceProperties();
     	if (PERFORMANCE_PROPERTIES.isEmpty()) {
     		log.warn(PERFORMANCE_PROPERTIES_RESOURCE + " is empty");
@@ -68,7 +70,7 @@ final class Util {
         }
         return ret;
     }
-    
+
     private static final void loadPerformanceProperties()  {
     	if (!PERFORMANCE_PROPERTIES.isEmpty()) {
     		return;
