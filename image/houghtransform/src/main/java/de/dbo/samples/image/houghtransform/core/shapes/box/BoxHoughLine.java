@@ -73,9 +73,9 @@ public final class BoxHoughLine extends HoughLineAbstraction {
     }
 
     private boolean isBoxTop() {
-        return -1 != this.y && this.peak > this.hough.getShapePeakMin()
-                && this.y < (ONE - this.hough.cfg.getShapeLineCenterTolerance())
-                        * this.hough.getCenterY();
+        return -1 != this.y 
+        		&& this.peak > this.hough.getShapePeakMin()
+                && this.y < (ONE - this.hough.cfg.getShapeLineCenterTolerance()) * this.hough.getCenterY();
     }
 
     @Override
@@ -124,10 +124,8 @@ public final class BoxHoughLine extends HoughLineAbstraction {
     private boolean isCheck01() {
         return equalThetaContent(this.theta, PI4)
                 && this.peak > this.hough.getContentPeakMin()
-                && (ONE - this.hough.cfg.getContentLineCenterTolerance())
-                        * hough.h < this.r
-                && this.r < (ONE + this.hough.cfg
-                        .getContentLineCenterTolerance()) * hough.h;
+                && (ONE - this.hough.cfg.getContentLineCenterTolerance()) * hough.h < this.r
+                && this.r < (ONE + this.hough.cfg.getContentLineCenterTolerance()) * hough.h;
     }
 
     private boolean isCheck10() {
