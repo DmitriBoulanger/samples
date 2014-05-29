@@ -231,4 +231,6 @@ public final class BoxHoughLines extends HoughLinesAbstraction implements
                 + getCheck10LinesCnt() + " TOTAL=" + getContentLines().size());
         return ret.toString();
     }
+    
+   
 }

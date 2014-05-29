@@ -5,6 +5,7 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.awt.image.BufferedImageOp;
 import java.lang.reflect.Constructor;
+import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Vector;
 
@@ -184,20 +185,26 @@ public class CategorizerWorkerImpl implements HoughTransform {
     }
 
     @Override
-    public Vector<String> description() {
+    public final Vector<String> description() {
+    	
         final Vector<String> ret = new Vector<String>();
         final HoughLines houghLines = this.hough.getHoughLines();
-        ret.add("Image: " + imageName().toUpperCase() + "(" + this.imageWidth
+        final double px = ( ((double) houghLines.getContentPixelCnt())
+          	  / ((double) (this.imageWidth*this.imageHeight)) ) * 100.0D;
+        
+        ret.add(imageName().toUpperCase() + "(" + this.imageWidth
                 + "x" + this.imageHeight + ")" + " "
                 + this.imageQuality.name() 
                 + " ERR="+ Util.round100(Util.error(this.imageWidth, this.imageHeight)));
-        ret.add("\nHough Points = " + this.hough.getNumPoints()
-                + "  Lines = " + houghLines.getSize() 
-                + "  HH = " + this.hough.getMaxHoughValue().print());
+        ret.add("\nHH: " + this.hough.getNumPoints()
+                + "  MAX = " + this.hough.getMaxHoughValue().print());
         ret.add("\nShape: " + houghLines.printShape());
         ret.add("\nShape lines: " + houghLines.printShapeLineCounters());
         ret.add("\nContent lines: " + houghLines.printContentLineCounters());
-        ret.add("\nUnkhown lines: " + houghLines.getUnknownLines().size());
+        ret.add("\nUnkhown lines: " + houghLines.printUnknownLineCounters());
+        ret.add("\nLines = " + houghLines.printLineCounters());
+        ret.add("\nContent/Image PX " +
+         new DecimalFormat("0.00").format(px));
         return ret;
     }
 
@@ -208,7 +215,7 @@ public class CategorizerWorkerImpl implements HoughTransform {
 
         // add the points from the image (addPoint method can be called separately if points are not in an image)
         hough.addPoints(this.image);
-        hough.generateLines();
+        hough.generateLines(image);
         return hough;
     }
 

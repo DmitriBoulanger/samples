@@ -67,7 +67,11 @@ public interface HoughLines {
      * @return counter
      */
     public abstract int getUnknownLinesCnt();
-
+    
+    public abstract int getShapePixelCnt();
+    public abstract int getContentPixelCnt();
+    public abstract int getUnknownPixelCnt();
+    
     /**
      * @return true only if the shape has been recognized
      */
@@ -123,29 +127,33 @@ public interface HoughLines {
     /**
      * pretty-print to show accumulated hough-lines.
      * 
-     * @return staring suitable to print by a logger/debugger
+     * @return string suitable to print by a logger/debugger
      */
     public abstract String printHoughLines();
 
     /**
      * pretty-print to show parameters of the shape.
      * 
-     * @return staring suitable to print by a logger/debugger
+     * @return string suitable to print by a logger/debugger
      */
     public abstract String printShape();
 
     /**
      * pretty-print to show counters of the shape.
      * 
-     * @return staring suitable to print by a logger/debugger
+     * @return string suitable to print by a logger/debugger
      */
     public abstract String printShapeLineCounters();
 
     /**
      * pretty-print to show counters of the content.
      * 
-     * @return staring suitable to print by a logger/debugger
+     * @return string suitable to print by a logger/debugger
      */
     public abstract String printContentLineCounters();
+    
+    public abstract String printUnknownLineCounters();
+    
+    public abstract String printLineCounters();
 
 }

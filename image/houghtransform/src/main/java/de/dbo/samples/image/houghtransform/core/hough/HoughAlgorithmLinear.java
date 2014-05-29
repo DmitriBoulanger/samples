@@ -104,7 +104,7 @@ public final class HoughAlgorithmLinear extends HoughAbstraction {
      * generates lines saving them in the corresponding HoughLines-instance
      */
     @Override
-    public final void generateLines() throws CategorizerException {
+    public final void generateLines(final BufferedImage image) throws CategorizerException {
 
         // Only proceed if the hough array is not empty
         if (this.numPoints == 0) {
@@ -142,6 +142,7 @@ public final class HoughAlgorithmLinear extends HoughAbstraction {
                     // hough-line
                     final double theta = t * this.thetaStep;
                     final HoughLine houghLine = houghLineInstance(theta, r, peak);
+                    ((HoughLineAbstraction)houghLine).collectPixels(image);
 
                     // add the line to the vector
                     this.houghLines.add(houghLine);

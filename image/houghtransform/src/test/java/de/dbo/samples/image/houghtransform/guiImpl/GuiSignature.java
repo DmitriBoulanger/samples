@@ -77,15 +77,17 @@ final class GuiSignature extends JFrame {
     private final String title() {
         final CategorizerConfiguration cfg2 = (CategorizerConfiguration) this.ctx.getBean("contentProcessorConfig");
         final StringBuilder ret = new StringBuilder();
-        ret.append(" Collection=" + this.imageProvider.printDataCollectionName() + "   " + "  Cfg=" + ctxname.replaceAll(".xml", ""));
-
-        ret.append("   MaxTheta: " + cfg2.getMaxTheta() + " values ");
-        ret.append("   Threshold: " + cfg2.getThreshold() + "%");
         ret.append("   WhiteBorder: " + cfg2.getWhiteBorder());
+//        ret.append(" Collection=" + this.imageProvider.printDataCollectionName() + "   " + "  Cfg=" + ctxname.replaceAll(".xml", ""));
+
+//        ret.append("   MaxTheta: " + cfg2.getMaxTheta() + " values ");
+        ret.append("   Threshold: " + cfg2.getThreshold() + "%");
+     
+        ret.append("   Peak: " + cfg2.getContentLineCntTotal());
         //ret.append("   Radius: " + cfg.getShapeRadius() + "/" + cfg2.getShapeRadius());
-        // ret.append( "   Neighbourhood: " + cfg.printNeighbourhoodSizes() +  "/" + cfg2.printNeighbourhoodSizes() +" px");
-        ret.append("   Image Filters: " + cfg2.printImageFilters());
-        ret.append("   Shape Filter: "  + cfg2.printShapeFilter());
+         ret.append( "   Neighbourhood: " + cfg2.printNeighbourhoodSizes() +" px");
+//        ret.append("   Image Filters: " + cfg2.printImageFilters());
+//        ret.append("   Shape Filter: "  + cfg2.printShapeFilter());
         ret.append("   Image quality: " + cfg2.printImageQualityClassification());
 
         ret.append("   Contents: min=" + cfg2.getContentLineCntMin() + " total=" + cfg2.getContentLineCntTotal());

@@ -1,8 +1,5 @@
 package de.dbo.samples.image.houghtransform.guiImpl;
 
-import java.awt.image.BufferedImage;
-import java.util.Vector;
-
 import de.dbo.samples.image.houghtransform.api.CategorizerConfiguration;
 import de.dbo.samples.image.houghtransform.api.CategorizerException;
 import de.dbo.samples.image.houghtransform.api.Category;
@@ -13,6 +10,9 @@ import de.dbo.samples.image.houghtransform.core.CategorizerWorkerImpl;
 import de.dbo.samples.image.houghtransform.core.hough.HoughLine;
 import de.dbo.samples.image.houghtransform.core.hough.HoughLines;
 import de.dbo.samples.image.houghtransform.data.ImageProvider;
+
+import java.awt.image.BufferedImage;
+import java.util.Vector;
 
 final class CategorizerGuiWorker extends CategorizerWorkerImpl {
 
@@ -63,7 +63,7 @@ final class CategorizerGuiWorker extends CategorizerWorkerImpl {
     }
 
     private final void drawHoughTransformLines() {
-        // get the lines out and draw them
+//         get the lines out and draw them
         draw(this.hough.getHoughLines().getUnknownLines(),
                 this.imageFilteredWithLines);
         draw(this.hough.getHoughLines().getShapeLines(),

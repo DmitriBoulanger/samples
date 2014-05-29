@@ -18,9 +18,9 @@ public final class SignatureTest extends GuiShowUp {
         final ApplicationContext ctx = new ClassPathXmlApplicationContext(CTX);
         showUpSignature(ImageCollectionCatalog.SIGNATURE_PROBLEM, CTX, ctx);
 
-        //        showUp2(ImageCollections.SIGNATURE_TEST0, CTX, ctx);
-        //        showUp2(ImageCollections.SIGNATURE_TEST1, CTX, ctx);
-        //        showUp2(ImageCollections.SIGNATURE_TEST2, CTX, ctx);
+        showUpSignature(ImageCollectionCatalog.SIGNATURE_TEST0, CTX, ctx);
+        showUpSignature(ImageCollectionCatalog.SIGNATURE_TEST1, CTX, ctx);
+        showUpSignature(ImageCollectionCatalog.SIGNATURE_TEST2, CTX, ctx);
 
         log.info("finished. Elapsed: " + (System.currentTimeMillis() - start0) + " ms.");
     }

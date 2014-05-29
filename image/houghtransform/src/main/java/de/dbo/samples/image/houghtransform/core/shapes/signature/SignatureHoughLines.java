@@ -52,11 +52,9 @@ public final class SignatureHoughLines extends HoughLinesAbstraction implements 
 
     @Override
     public boolean isContentFound() {
-        return this.contentLines.size() >= 100
-        		|| (
-        		this.contentLines.size() >= this.cfg.getContentLineCntTotal()
-                && super.getHough().getNumPoints() > 1500)
-                ;
+    	final double pixelRatio = 
+    	( (double) this.getContentPixelCnt()  ) / ( (double) this.getHough().imagePixel() );
+    	return 100.0D * pixelRatio > (double) this.cfg.getContentLineCntMin();		
     }
 
     @Override
@@ -82,14 +80,14 @@ public final class SignatureHoughLines extends HoughLinesAbstraction implements 
     @Override
     public final String printShapeLineCounters() {
         final StringBuilder ret = new StringBuilder();
-        ret.append("NULL");
+        ret.append("NULL" + " PX="+ getShapePixelCnt());
         return ret.toString();
     }
 
     @Override
     public final String printContentLineCounters() {
         final StringBuilder ret = new StringBuilder();
-        ret.append(" " + getContentLines().size());
+        ret.append(" " + getContentLines().size() + " PX="+ getContentPixelCnt());
         return ret.toString();
     }
 }

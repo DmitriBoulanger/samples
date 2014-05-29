@@ -1,20 +1,25 @@
 package de.dbo.samples.image.houghtransform.core.hough;
 
 import static de.dbo.samples.image.houghtransform.core.Constants.CONTENT_COLOR_RGB;
+import static de.dbo.samples.image.houghtransform.core.Constants.WHITE_COLOR_RGB;
 import static de.dbo.samples.image.houghtransform.core.Constants.PI;
 import static de.dbo.samples.image.houghtransform.core.Constants.PI2;
 import static de.dbo.samples.image.houghtransform.core.Constants.PI4;
 import static de.dbo.samples.image.houghtransform.core.Constants.PI4x3;
-import static de.dbo.samples.image.houghtransform.core.Constants.R_FORMAT;
+import static de.dbo.samples.image.houghtransform.core.Constants.RADIUS_FORMAT;
 import static de.dbo.samples.image.houghtransform.core.Constants.SHAPE_COLOR_RGB;
 import static de.dbo.samples.image.houghtransform.core.Constants.THETA_FORMAT;
+import static de.dbo.samples.image.houghtransform.core.Constants.PIXEL_FORMAT;
 import static de.dbo.samples.image.houghtransform.core.Constants.UNKNOWN_COLOR_RGB;
 import static de.dbo.samples.image.houghtransform.core.Constants.ZERO;
 
 import de.dbo.samples.image.houghtransform.core.Util;
 
 import java.awt.Rectangle;
+import java.awt.Point;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Represents a line as detected by the hough transform. This line is
@@ -97,30 +102,63 @@ public abstract class HoughLineAbstraction implements HoughLine {
     @Override
     public final void draw(final BufferedImage image) {
         final int color = this.color();
+        for (final Point pixel:pixels()) {
+        	image.setRGB(pixel.x, pixel.y, color);
+        }
+       
+    }
+    
+    @Override
+    public final void draw(final BufferedImage image, final List<Point> pixels) {
+    	if (null==pixels) {
+    		return;
+    	}
+        
+        final int color = this.color();
+        for (final Point pixel:pixels) {
+        	image.setRGB(pixel.x, pixel.y, color);
+        }
+    }
+    
+    protected List<Point> pixels = null;
+    @Override
+    public final List<Point> pixels() {
+    	return pixels;
+    }
+    
+    protected void collectPixels(final BufferedImage image) {
+    	if (null!=pixels) {
+    		return;
+    	}
         final int height = image.getHeight();
         final int width = image.getWidth();
-
-        // Find edge points and vote in array
         final float centerX = width / 2;
         final float centerY = height / 2;
 
-        // Draw edges in output array
+        // Collect pixels in the output array
+        pixels = new ArrayList<Point>();
         final double tsin = Math.sin(this.theta);
         final double tcos = Math.cos(this.theta);
 
-        if (this.theta < PI4 || this.theta > PI4x3) {  // Draw vertical lines
+        if (this.theta < PI4 || this.theta > PI4x3) { // Vertical lines 
             for (int y = 0; y < height; y++) {
                 int x = (int) ((((this.r - this.hough.houghHeight) - ((y - centerY) * tsin)) / tcos) + centerX);
                 if (x < width && x >= 0) {
-                    image.setRGB(x, y, color);
+                	if (image.getRGB(x, y)==WHITE_COLOR_RGB) {
+                		continue;
+                	}
+                	pixels.add(new Point(x,y));
                 }
             }
         }
-        else { // Draw horizontal lines
+        else { // Horizontal lines
             for (int x = 0; x < width; x++) {
                 int y = (int) ((((this.r - this.hough.houghHeight) - ((x - centerX) * tcos)) / tsin) + centerY);
                 if (y < height && y >= 0) {
-                    image.setRGB(x, y, color);
+                	if (image.getRGB(x, y)==WHITE_COLOR_RGB) {
+                		continue;
+                	}
+                	pixels.add(new Point(x,y));
                 }
             }
         }
@@ -142,8 +180,9 @@ public abstract class HoughLineAbstraction implements HoughLine {
     @Override
     public String print() {
         final StringBuilder sb = new StringBuilder();
-        sb.append("theta=" + THETA_FORMAT.format(Util.round1000(this.theta)));
-        sb.append(" r=" + R_FORMAT.format(Util.round1(this.r)));
+        sb.append(" pixel=" + PIXEL_FORMAT.format(pixels().size()));
+        sb.append(" theta=" + THETA_FORMAT.format(Util.round1000(this.theta)));
+        sb.append(" r=" + RADIUS_FORMAT.format(Util.round1(this.r)));
         sb.append(" peak=" + this.peak);
         return sb.toString();
     }

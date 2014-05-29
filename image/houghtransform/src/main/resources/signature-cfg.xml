@@ -98,7 +98,7 @@
 		<!-- HOUGH PARAMETRS -->
 		<property name="houghClassname" value="de.dbo.samples.image.houghtransform.core.hough.HoughAlgorithmLinear"/>
 		<property name="maxTheta" value="180" />
-		<property name="threshold" value="2" >
+		<property name="threshold" value="1" >
 	   		<description>
 			 	Threshold determines lines to be extracted from hough-array.
 			 	Its value is % of the image diagonal. 
@@ -107,9 +107,9 @@
 			</description>
 		</property>
 		
-		<property name="neighbourhoodSizeHigh" value="7" />
-		<property name="neighbourhoodSizeNormal" value="7" />
-		<property name="neighbourhoodSizeLow" value="7" />
+		<property name="neighbourhoodSizeHigh" value="3" />
+		<property name="neighbourhoodSizeNormal" value="3" />
+		<property name="neighbourhoodSizeLow" value="3" />
 
 		<!-- CONTENT-LINE RECOGNITION -->
 		
@@ -124,8 +124,8 @@
 		<property name="contentLineThetaEps" value="0.60" />
 		
 		<!-- CONTENT RECOGNITION -->
-		<property name="contentLineCntMin" value="2" />
-		<property name="contentLineCntTotal" value="10" />
+		<property name="contentLineCntMin" value="1" />
+		<property name="contentLineCntTotal" value="5" />
 		
 		<!-- SHAPE-LINE RECOGNITION - ## NOT USED ## -->
 		<property name="shapeLinePeakTolerance" value="0.00" />

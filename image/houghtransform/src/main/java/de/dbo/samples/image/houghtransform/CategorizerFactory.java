@@ -10,7 +10,7 @@ import de.dbo.samples.image.houghtransform.core.hough.HoughAlgorithmCircle;
 import de.dbo.samples.image.houghtransform.core.hough.HoughAlgorithmLinear;
 
 /**
- * Marker-image categorization. There are sever types of markers that can be
+ * Marker-image categorization. There are several types of markers that can be
  * categorized.
  *
  * BOX-Marker Categorization
@@ -26,7 +26,7 @@ import de.dbo.samples.image.houghtransform.core.hough.HoughAlgorithmLinear;
  * runs. Firstly the shape (box) from the first phase is used as a image-filter,
  * i.e. all black pixel outside the shape are replaced with white ones. Next,
  * the shape is used to crop the corresponding rectangle from the marker image.
- * This cropped image is used as input image in second-phase categorizer.
+ * This cropped image is used as an input image in the second-phase of the categorizer.
  *
  * The second-phase categorizer uses the same algorithms as the first phase
  * above. However, it looks for content-lines. If there are enough content-lines
@@ -34,11 +34,16 @@ import de.dbo.samples.image.houghtransform.core.hough.HoughAlgorithmLinear;
  * Otherwise, the UNCHECKED-category is returned
  *
  * BRACKETS-Marker Categorization
+ * 
+ * This categorizer is very similar to the BOX-Categorizer
  *
  * CIRCLE-Marker Categorization.
- *
- * The categorizer uses the circle Hough-algorithm in the first phases and the
+ * 
+ * This categorizer is also similar to the BOX-Categorizer but it uses 
+ * the circle Hough-algorithm in the first phases and the
  * linear Hough-algorithm in the second phase
+ * 
+ * SIGNATURE-Marker Categorization
  *
  * @see Marker
  * @see Category
@@ -51,8 +56,7 @@ import de.dbo.samples.image.houghtransform.core.hough.HoughAlgorithmLinear;
 
 public final class CategorizerFactory {
 	
-    public static final Categorizer newInstance(final Marker marker)
-            throws CategorizerException {
+    public static final Categorizer newInstance(final Marker marker) throws CategorizerException {
         if (null == marker) {
             throw new CategorizerException(CategorizerException.CONFIG_INITILIZATION
                     , "Marker is NULL! Cannot create instance of the CategorizerImpl");
@@ -72,10 +76,8 @@ public final class CategorizerFactory {
                 return new CategorizerImpl("brackets-cfg.xml");
 
             default:
-                throw new CategorizerException(
-                        CategorizerException.CONFIG_INITILIZATION,
-                        "Can't create categorizer instance for the marker-type "
-                                + marker.name());
+                throw new CategorizerException(CategorizerException.CONFIG_INITILIZATION,
+                		"Can't create categorizer instance for the marker-type " + marker.name());
         }
     }
 }

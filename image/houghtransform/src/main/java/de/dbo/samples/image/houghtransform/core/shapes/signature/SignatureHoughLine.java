@@ -79,7 +79,7 @@ public final class SignatureHoughLine extends HoughLineAbstraction {
     }
 
     private final boolean isPeakRationHigh() {
-        return peakRatio() > 9.0D;
+    	 return peakRatio() > hough.cfg.getContentLineCntTotal();
     }
 
     private final double peakRatio() {
@@ -94,7 +94,6 @@ public final class SignatureHoughLine extends HoughLineAbstraction {
      * classification of this line
      *
      * @return type of this line
-     * @see BracketsHoughLineType
      */
     public SignatureHoughLineType type() {
         return this.type;
@@ -104,11 +103,10 @@ public final class SignatureHoughLine extends HoughLineAbstraction {
     public String print() {
         final StringBuilder sb = new StringBuilder();
         sb.append(super.print());
-        sb.append("\tmaxPeak=" + hough.peakMax());
-        sb.append("\tratioPeak=" + new DecimalFormat("00.00").format(peakRatio()));
-        sb.append("\tposition=" + position());
-        sb.append("\ttheta=" + new DecimalFormat("00.00").format(theta));
-        sb.append("\ttype=" + type().name().toUpperCase());
+        sb.append("/" + hough.peakMax());
+        sb.append("=" + new DecimalFormat("00.00").format(peakRatio()));
+        sb.append(" position=" + position());
+        sb.append(" type=" + type().name().toUpperCase());
         return sb.toString();
     }
 

@@ -1,6 +1,8 @@
 package de.dbo.samples.image.houghtransform.core.hough;
 
+import java.awt.Point;
 import java.awt.image.BufferedImage;
+import java.util.List;
 
 public interface HoughLine {
 
@@ -34,6 +36,10 @@ public interface HoughLine {
      * draws this line on the image using automatically selected RGB color
      */
     public abstract void draw(final BufferedImage image);
+    
+    public abstract void draw(final BufferedImage image, List<Point> pixels);
+    
+    public abstract List<Point> pixels();
 
     /**
      * pretty-print for this line

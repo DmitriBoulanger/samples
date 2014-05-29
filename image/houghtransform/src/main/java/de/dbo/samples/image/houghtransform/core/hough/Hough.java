@@ -17,6 +17,8 @@ import de.dbo.samples.image.houghtransform.api.CategorizerException;
 public interface Hough {
 
     public abstract int[][] getHoughArray();
+    
+    public abstract int imagePixel();
 
     /**
      * Adds points from an image. The image is assumed to be grey-scale black
@@ -33,7 +35,7 @@ public interface Hough {
      *
      * @throws CategorizerException
      */
-    public abstract void generateLines() throws CategorizerException;
+    public abstract void generateLines(BufferedImage image) throws CategorizerException;
 
     /**
      * Once lines have been already generated this method returns

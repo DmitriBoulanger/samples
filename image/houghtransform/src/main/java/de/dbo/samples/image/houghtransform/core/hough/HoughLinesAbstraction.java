@@ -121,6 +121,41 @@ public abstract class HoughLinesAbstraction implements HoughLines {
     public final int getUnknownLinesCnt() {
         return this.unknownLines.size();
     }
+    
+    private int shapePixelCnt = -1;
+    @Override
+    public int getShapePixelCnt() {
+    	if (-1==shapePixelCnt) {
+    		shapePixelCnt = pixelCnt(shapeLines);
+    	}
+    	return shapePixelCnt;
+    }
+    
+    private int contentPixelCnt = -1;
+    @Override
+    public int getContentPixelCnt() {
+    	if (-1==contentPixelCnt) {
+    		contentPixelCnt = pixelCnt(contentLines);
+    	}
+    	return contentPixelCnt;
+    }
+    
+    private int unknownPixelCnt = -1;
+    @Override
+    public int getUnknownPixelCnt(){
+    	if (-1==unknownPixelCnt) {
+    		unknownPixelCnt = pixelCnt(unknownLines);
+    	}
+    	return unknownPixelCnt;
+    }
+    
+    private final int pixelCnt(Vector<HoughLine> houghLines) {
+    	int cnt = 0;
+    	for (final HoughLine houghLine:houghLines) {
+			cnt += houghLine.pixels().size();
+		}
+    	return cnt;
+    }
 
     @Override
     public abstract boolean isShapeFound();
@@ -132,12 +167,12 @@ public abstract class HoughLinesAbstraction implements HoughLines {
     public abstract void add(final HoughLine line);
 
     @Override
-    public Vector<String> description() {
+    public final Vector<String> description() {
         final Vector<String> ret = new Vector<String>();
         ret.add("\nSHAPE = " + isShapeFound() + " CONTENT = " + isContentFound());
-        ret.add("\nShape lines: " + getShapeLinesCnt());
-        ret.add("\nContent-lines:  " + getContentLinesCnt());
-        ret.add("\nUnknown lines  = " + getUnknownLinesCnt());
+        ret.add("\nShape-lines: " + getShapeLinesCnt());
+        ret.add("\nContent-lines: " + getContentLinesCnt());
+        ret.add("\nUnknown-lines: " + getUnknownLinesCnt());
         return ret;
     }
 
@@ -145,10 +180,7 @@ public abstract class HoughLinesAbstraction implements HoughLines {
     public final String printHoughLines() {
         final StringBuilder ret = new StringBuilder();
         for (final HoughLine houghLine : this.lines) {
-                        if (houghLine.isContent()) {
                 ret.append("\n\t - " + houghLine.print());
-                        }
-
         }
         return ret.toString();
     }
@@ -193,6 +225,19 @@ public abstract class HoughLinesAbstraction implements HoughLines {
             }
         }
         return max;
+    }
+    
+    public final String printUnknownLineCounters() {
+    	final StringBuilder ret = new StringBuilder();
+        ret.append(" " + getUnknownLinesCnt() + " PX=" + getUnknownPixelCnt());
+        return ret.toString();
+    }
+    
+    public final String printLineCounters() {
+    	final StringBuilder ret = new StringBuilder();
+        ret.append(" " + getSize() + " PX=" + 
+        		(getShapePixelCnt() + getContentPixelCnt() +	getUnknownPixelCnt()));
+        return ret.toString();
     }
 
 }

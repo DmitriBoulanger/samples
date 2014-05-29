@@ -79,7 +79,7 @@ public class HoughAlgorithmCircle extends HoughAbstraction {
     }
 
     @Override
-    public final void generateLines() throws CategorizerException {
+    public final void generateLines(BufferedImage image) throws CategorizerException {
         // Only proceed if the hough array is not empty
         if (this.numPoints == 0) {
             return;
@@ -125,6 +125,7 @@ public class HoughAlgorithmCircle extends HoughAbstraction {
             Rectangle rectangle = circle(this.r, centerX, centerY);
 
             final HoughLine houghLine = houghLineInstance(rectangle, value);
+            ((HoughLineAbstraction)houghLine).collectPixels(image);
             houghLines.add(houghLine);
 
         }

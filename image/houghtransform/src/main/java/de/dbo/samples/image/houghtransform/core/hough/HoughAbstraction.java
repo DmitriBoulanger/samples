@@ -33,7 +33,7 @@ public abstract class HoughAbstraction implements Hough {
     protected final HoughLines            houghLines;
 
     // the width and height of the image
-    private final int                     width, height;
+    protected final int                   width, height;
 
     // the coordinates of the center of the image
     private final double                  centerX, centerY;
@@ -115,6 +115,11 @@ public abstract class HoughAbstraction implements Hough {
      * Initializes the hough array. Called in the constructor
      */
     protected abstract void initialise();
+    
+    @Override
+    public final int imagePixel() {
+    	return width*height;
+    }
 
     @Override
     public final int[][] getHoughArray() {
@@ -176,7 +181,7 @@ public abstract class HoughAbstraction implements Hough {
     }
 
     @Override
-    public abstract void generateLines() throws CategorizerException;
+    public abstract void generateLines(BufferedImage image) throws CategorizerException;
 
     @Override
     public abstract BufferedImage getHoughArrayImage();
