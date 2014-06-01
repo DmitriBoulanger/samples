@@ -138,8 +138,7 @@ public final class HoughAlgorithmLinear extends HoughAbstraction {
                         }
                     }
 
-                    // calculate the true value of theta and create the
-                    // hough-line
+                    // calculate the true value of theta and create the hough-line
                     final double theta = t * this.thetaStep;
                     final HoughLine houghLine = houghLineInstance(theta, r, peak);
                     ((HoughLineAbstraction)houghLine).collectPixels(image);

@@ -120,6 +120,47 @@ public abstract class HoughLineAbstraction implements HoughLine {
         }
     }
     
+    private static final boolean isCoordinate(final int x, final int y
+    		, final int width , final int height, final BufferedImage image) {
+    	return x < width && x >= 0 
+    			&& y < height && y >= 0
+    			&& image.getRGB(x, y)!=WHITE_COLOR_RGB;
+    }
+    
+    private static final void add(final boolean[][] points, final Point point 
+    	, final int width , final int height,final BufferedImage image) {
+    	if ( isCoordinate(point.x,point.y, width, height,image)) {
+    		points[point.x][point.y] = true;
+    	}
+    }
+    
+	private static final void addNeighbourhood( final boolean[][] points
+			,final int x, final int y, final int width, final int height
+			,final BufferedImage image) {
+
+		add(points, new Point(x + 1, y + 1), width, height,image);
+		add(points, new Point(x    , y + 1), width, height,image);
+		add(points, new Point(x + 1, y    ), width, height,image);
+		add(points, new Point(x - 1, y - 1), width, height,image);
+		add(points, new Point(x    , y - 1), width, height,image);
+		add(points, new Point(x - 1, y    ), width, height,image);
+
+	}
+	
+	private static final void addNeighbourhoodHorizontal(final boolean[][] points,
+			final int x, final int y, final int width, final int height
+			,final BufferedImage image) {
+		add(points, new Point(x + 1, y), width, height,image);
+		add(points, new Point(x - 1, y), width, height,image);
+	}
+	
+	private static final void addNeighbourhoodVertical(final boolean[][] points,
+			final int x, final int y, final int width, final int height
+			,final BufferedImage image) {
+		add(points, new Point(x, y + 1), width, height,image);
+		add(points, new Point(x, y - 1), width, height,image);
+	}
+    
     protected List<Point> pixels = null;
     @Override
     public final List<Point> pixels() {
@@ -136,7 +177,8 @@ public abstract class HoughLineAbstraction implements HoughLine {
         final float centerY = height / 2;
 
         // Collect pixels in the output array
-        pixels = new ArrayList<Point>();
+        final boolean[][] points = new boolean[width][height];
+       
         final double tsin = Math.sin(this.theta);
         final double tcos = Math.cos(this.theta);
 
@@ -147,7 +189,8 @@ public abstract class HoughLineAbstraction implements HoughLine {
                 	if (image.getRGB(x, y)==WHITE_COLOR_RGB) {
                 		continue;
                 	}
-                	pixels.add(new Point(x,y));
+                	points[x][y] = true;
+                	addNeighbourhood(points,x,y,width,height,image);
                 }
             }
         }
@@ -158,9 +201,19 @@ public abstract class HoughLineAbstraction implements HoughLine {
                 	if (image.getRGB(x, y)==WHITE_COLOR_RGB) {
                 		continue;
                 	}
-                	pixels.add(new Point(x,y));
+                	points[x][y] = true;
+                	addNeighbourhood(points,x,y,width,height,image);
                 }
             }
+        }
+        
+        pixels = new ArrayList<Point>();
+        for (int x = 0; x < width; x++) { 
+        	 for (int y = 0; y < height; y++) { 
+        		 if (points[x][y]) {
+        			 pixels.add(new Point(x,y));
+        		 }
+        }
         }
     }
 

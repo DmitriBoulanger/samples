@@ -21,7 +21,9 @@ public final class SignatureTest extends GuiShowUp {
         showUpSignature(ImageCollectionCatalog.SIGNATURE_TEST0, CTX, ctx);
         showUpSignature(ImageCollectionCatalog.SIGNATURE_TEST1, CTX, ctx);
         showUpSignature(ImageCollectionCatalog.SIGNATURE_TEST2, CTX, ctx);
-
+        showUpSignature(ImageCollectionCatalog.SIGNATURE_PERFORMANCE_ERROR_CHECKED, CTX, ctx);
+        showUpSignature(ImageCollectionCatalog.SIGNATURE_PERFORMANCE_ERROR_CHECKED, CTX, ctx);
+        
         log.info("finished. Elapsed: " + (System.currentTimeMillis() - start0) + " ms.");
     }
 }
