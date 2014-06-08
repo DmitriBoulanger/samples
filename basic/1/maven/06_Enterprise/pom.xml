@@ -13,8 +13,12 @@
 	<artifactId>06_Enterprise</artifactId>
 	<packaging>pom</packaging>
 	<name>Samples Basic 1 Maven Enterprise</name>
-	<description>Sample Enterprise Project with Model, Persist and WEB componenten</description>
+	
+	<description>
+Sample Enterprise Project with Model, Persist and WEB componenten
+	</description>
 	<url>http://books.sonatype.com/mvnex-book/reference/multimodule-web-spring.html</url>
+	
 	
 	<modules>
 		<module>06_Enterprise-Reactor</module>

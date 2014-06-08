@@ -195,7 +195,6 @@ The projects generates test-jars for all its modules
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-surefire-plugin</artifactId>
-					<version>2.16</version>
 					<configuration>
 						<systemProperties />
 					</configuration>

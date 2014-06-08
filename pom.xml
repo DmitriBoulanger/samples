@@ -27,21 +27,43 @@ Reactor for all sample titles
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 	</properties>
 	
-	<!-- 
-	  <module>util</module>
-	  <module>gui</module>
-		<module>image</module>
-	 -->
 	<modules>
-	  
-	    <module>basic</module>
-		
+		<module>util</module>
+		<module>basic</module>
+		<module>gui</module>
+		<module>image</module>
 	</modules>
 
 	<build>
 	    <finalName>${project.groupId}-${project.artifactId}</finalName>
+		<pluginManagement>
+			<plugins>
+				
+				<!-- MAVEN Plugins -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-jar-plugin</artifactId>
+					<version>2.4</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-war-plugin</artifactId>
+					<version>2.4</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-assembly-plugin</artifactId>
+					<version>2.4</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>2.4</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
 		<plugins>
-		    <!-- JAVA Compiler -->
+		    	<!-- JAVA -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -69,6 +91,11 @@ Reactor for all sample titles
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-core</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+ 			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-orm</artifactId>
 				<version>${spring.version}</version>
 			</dependency>
 			<dependency>
@@ -103,6 +130,14 @@ Reactor for all sample titles
 				<artifactId>hibernate</artifactId>
 				<version>3.2.5.ga</version>
 			</dependency>
+			
+			<!-- DATABASES -->
+
+			<dependency>
+				<groupId>hsqldb</groupId>
+				<artifactId>hsqldb</artifactId>
+				<version>${hsqldb.version}</version>
+			</dependency>
 
 			<!-- LOGGING -->
 
@@ -113,8 +148,8 @@ Reactor for all sample titles
 			</dependency>
 
 			<!-- 
-		    	Logger-itself should not be used in any way in the main code. However, it has to appear in the tests
-	    	-->
+		    		Logger-itself should not be used in any way in the main code. However, it has to appear in the tests
+	    		-->
 			<dependency>
 				<groupId>org.slf4j</groupId>
 				<artifactId>slf4j-log4j12</artifactId>

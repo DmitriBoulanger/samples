@@ -12,6 +12,7 @@
 	<groupId>de.dbo.samples.basic.1.maven</groupId>
 	<packaging>pom</packaging>
 	<name>Samples Basic 1 Maven basic use cases</name>
+
 	<url>http://books.sonatype.com/mvnex-book/reference/index.html</url>
 
 	<modules>
@@ -29,28 +30,7 @@
 	   <pluginManagement>
 			<plugins>
 				
-
 				<!-- MAVEN Plugins -->
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-jar-plugin</artifactId>
-					<version>2.4</version>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-war-plugin</artifactId>
-					<version>2.4</version>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-assembly-plugin</artifactId>
-					<version>2.4</version>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-surefire-plugin</artifactId>
-					<version>2.16</version>
-				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-enforcer-plugin</artifactId>
@@ -71,35 +51,9 @@
 			</plugins>
 		</pluginManagement>
 
-		<!-- Plug-ins for all -->
-		<plugins>
-			<plugin>
-				<artifactId>maven-compiler-plugin</artifactId>
-			</plugin>
-		</plugins>
-
 	</build>
 
-	<dependencyManagement>
-		<dependencies>
-		
-
-			<!-- SPECIAL -->
-
-			<dependency>
-				<groupId>org.springframework</groupId>
-				<artifactId>spring</artifactId>
-				<version>2.0.7</version>
-			</dependency>
-
-			<dependency>
-				<groupId>hsqldb</groupId>
-				<artifactId>hsqldb</artifactId>
-				<version>1.8.0.7</version>
-			</dependency>
-
-		</dependencies>
-	</dependencyManagement>
+	
 
 	<!-- Dependencies for all -->
 	<dependencies>
