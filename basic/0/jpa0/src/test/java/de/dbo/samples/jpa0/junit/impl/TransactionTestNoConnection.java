@@ -10,6 +10,7 @@ import java.util.Map;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
+import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -32,6 +33,11 @@ public class TransactionTestNoConnection {
 		final Map<String, String> config = persistence( PRODUCTION);
 		TRANSACTION_RUNNER = new TransactionRunner(config, "JEE6-Persistence");
 		log.debug("Configuration properties:" + lines(config));
+	}
+	
+	@Test
+	public void dummy() {
+		
 	}
 	
 	/**

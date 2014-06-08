@@ -81,7 +81,12 @@ All messages can be found in the target/logs directory
 			<scope>test</scope>
 		</dependency>
 		
-
+		<dependency>
+			<groupId>org.eclipse.persistence</groupId>
+			<artifactId>eclipselink</artifactId>
+			<scope>test</scope>
+		</dependency>
+		
 		<dependency>
 				<groupId>org.apache.derby</groupId>
 				<artifactId>derby</artifactId>

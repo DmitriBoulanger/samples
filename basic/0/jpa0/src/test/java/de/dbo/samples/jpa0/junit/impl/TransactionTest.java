@@ -10,6 +10,8 @@ import java.util.Map;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
+import org.junit.Test;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -33,6 +35,12 @@ public class TransactionTest {
 		TRANSACTION_RUNNER = new TransactionRunner(config, "JEE6-Persistence");
 		log.debug("Configuration properties:" + lines(config));
 	}
+	
+	@Test
+	public void dummy() {
+		
+	}
+
 	
 	/**
 	 * cleans up the test-session

@@ -24,7 +24,7 @@ The projects generates test-jars for all its modules
 	      ======================== -->
 	<modules>
 		<module>jpa0</module>
-        <module>logger0</module>
+        		<module>logger0</module>
 		<module>tuProlog0</module>
 		<module>xml0</module>
 		<module>html0</module>
@@ -38,18 +38,6 @@ The projects generates test-jars for all its modules
 
 	<dependencyManagement>
 		<dependencies>
-			 
-			<dependency>
-				<groupId>org.eclipse.persistence</groupId>
-				<artifactId>eclipselink</artifactId>
-				<version>2.5.1</version>
-				<scope>runtime</scope>
-			</dependency>
-			<dependency>
-				<groupId>javax.persistence</groupId>
-				<artifactId>persistence-api</artifactId>
-				<version>1.0.2</version>
-			</dependency>
 
 			<dependency>
 				<groupId>com.thoughtworks.xstream</groupId>
@@ -79,18 +67,7 @@ The projects generates test-jars for all its modules
 				<artifactId>jtidy</artifactId>
 				<version>r938</version>
 			</dependency>
-			<dependency>
-				<groupId>org.apache.derby</groupId>
-				<artifactId>derby</artifactId>
-				<version>10.8.2.2</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.apache.derby</groupId>
-				<artifactId>derbyclient</artifactId>
-				<version>10.8.2.2</version>
-				<scope>test</scope>
-			</dependency>
+			
 
 			<!-- PROJECTS -->
 

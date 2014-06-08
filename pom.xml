@@ -7,9 +7,11 @@
 	<version>0.0.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>Samples</name>
+
 	<description>
-Basic settings and dependency-management for all samples
-Reactor for all sample titles
+Top project for all sumples. It contains
+all basic settings and dependency-management for all sample-projects.
+This project is a reactor for all sample categories
 	</description>
 
 	<properties>
@@ -114,8 +116,23 @@ Reactor for all sample titles
 				<version>${spring.version}</version>
 			</dependency>
 
-        	<!-- Hibernate -->
-        	<dependency>
+			<!-- PERSISTENCY -->
+
+			<dependency>
+				<groupId>javax.persistence</groupId>
+				<artifactId>persistence-api</artifactId>
+				<version>1.0.2</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.eclipse.persistence</groupId>
+				<artifactId>eclipselink</artifactId>
+				<version>2.5.1</version>
+				<scope>runtime</scope>
+			</dependency>
+
+        			<!-- Hibernate -->
+        			<dependency>
 				<groupId>org.hibernate</groupId>
 				<artifactId>hibernate-annotations</artifactId>
 				<version>${hibernate.version}</version>
@@ -134,9 +151,30 @@ Reactor for all sample titles
 			<!-- DATABASES -->
 
 			<dependency>
+				<groupId>mysql</groupId>
+				<artifactId>mysql-connector-java</artifactId>
+				<version>5.1.6</version>
+				<scope>runtime</scope>
+			</dependency>
+
+			<dependency>
 				<groupId>hsqldb</groupId>
 				<artifactId>hsqldb</artifactId>
 				<version>${hsqldb.version}</version>
+				<scope>runtime</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.derby</groupId>
+				<artifactId>derby</artifactId>
+				<version>10.8.2.2</version>
+				<scope>runtime</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.derby</groupId>
+				<artifactId>derbyclient</artifactId>
+				<version>10.8.2.2</version>
+				<scope>runtime</scope>
 			</dependency>
 
 			<!-- LOGGING -->
@@ -149,7 +187,7 @@ Reactor for all sample titles
 
 			<!-- 
 		    		Logger-itself should not be used in any way in the main code. However, it has to appear in the tests
-	    		-->
+	    	-->
 			<dependency>
 				<groupId>org.slf4j</groupId>
 				<artifactId>slf4j-log4j12</artifactId>
