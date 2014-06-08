@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	
@@ -18,10 +19,6 @@ Reactor for all basic-0 samples.
 The projects generates test-jars for all its modules
 	</description>
 	
-	
-	<!--  ========================
-	      MODULES WITH JUnit-TESTS
-	      ======================== -->
 	<modules>
 		<module>jpa0</module>
         		<module>logger0</module>

@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	
@@ -10,9 +11,11 @@
 	
 	<artifactId>API</artifactId>
 	<packaging>jar</packaging>
-	
-    <name>Samples Basic 1 Spring API</name>
-    <description>Sample API to be used in other projects</description>
+    	<name>Samples Basic 1 Spring API</name>
+
+    	<description>
+Sample API to be used with other projects
+	</description>
     
   	<dependencies>
 		

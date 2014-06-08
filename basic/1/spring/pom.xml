@@ -12,7 +12,10 @@
 	<groupId>de.dbo.samples.basic.1.spring</groupId>
 	<packaging>pom</packaging>
 	<name>Samples Basic 1 Spring</name>
-	<description>Top for all Spring-samples</description>
+
+	<description>
+Top for all Spring-samples
+	</description>
 	
 	 <properties>
 		
@@ -39,19 +42,6 @@
 				<artifactId>ojdbc14</artifactId>
 				<version>10.2.0.3.0</version>
 			</dependency>
-
-			<!-- SPRING REFS -->
-			<dependency>
-				<groupId>cglib</groupId>
-				<artifactId>cglib</artifactId>
-				<version>2.2.2</version>
-			</dependency>
-			<dependency>
-				<groupId>org.aspectj</groupId>
-				<artifactId>aspectjweaver</artifactId>
-				<version>1.6.8</version>
-			</dependency>
-
 		</dependencies>
 	</dependencyManagement>
 
