@@ -21,8 +21,8 @@
       <groupId>${project.groupId}</groupId>
       <artifactId>06_Enterprise-Model</artifactId>
       <version>${project.version}</version>
+
     </dependency>
-    
     
     <!-- Third parties -->
     <dependency>
