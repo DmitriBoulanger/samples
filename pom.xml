@@ -14,30 +14,32 @@ Reactor for all sample titles
 
 	<properties>
 		<java.version>1.7</java.version>
-               	<slf4j.version>1.7.6</slf4j.version>
-                	<junit.version>4.8.2</junit.version>
-		
+		<slf4j.version>1.7.6</slf4j.version>
+		<junit.version>4.8.2</junit.version>
+
 		<spring.version>3.1.2.RELEASE</spring.version>
 
-		<hibernate.version>3.2.5.ga</hibernate.version>
+		<hibernate.version>3.3.0.ga</hibernate.version>
+		
 		<hsqldb.version>1.8.0.7</hsqldb.version>
-		
- 
-		
+
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 	</properties>
 	
-	<modules>
-	    <module>util</module>
-	    <module>basic</module>
-		<module>gui</module>
+	<!-- 
+	  <module>util</module>
+	  <module>gui</module>
 		<module>image</module>
+	 -->
+	<modules>
+	  
+	    <module>basic</module>
 		
 	</modules>
 
 	<build>
-	    <finalName>${project.groupId}-${project.artifactId}-${project.version}</finalName>
+	    <finalName>${project.groupId}-${project.artifactId}</finalName>
 		<plugins>
 		    <!-- JAVA Compiler -->
 			<plugin>
@@ -54,9 +56,9 @@ Reactor for all sample titles
 			</plugin>
 		</plugins>
 	</build>
-	
+
 	<dependencyManagement>
-	<dependencies>
+		<dependencies>
 	
 			<!-- SPRING -->
 			<dependency>
@@ -84,30 +86,50 @@ Reactor for all sample titles
 				<artifactId>spring-webmvc</artifactId>
 				<version>${spring.version}</version>
 			</dependency>
-		
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>${slf4j.version}</version>
-		</dependency>
-		<!-- 
-		    Logger-itself should not be used in any way in the main code.
-		    However, it has to appear in the tests
-	    -->
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
-			<version>${slf4j.version}</version>
-			<scope>test</scope>
-		</dependency>
-		
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>${junit.version}</version>
-			<scope>test</scope>
-		</dependency>
-	</dependencies>
+
+        	<!-- Hibernate -->
+        	<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-annotations</artifactId>
+				<version>${hibernate.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-commons-annotations</artifactId>
+				<version>${hibernate.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate</artifactId>
+				<version>3.2.5.ga</version>
+			</dependency>
+
+			<!-- LOGGING -->
+
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+				<version>${slf4j.version}</version>
+			</dependency>
+
+			<!-- 
+		    	Logger-itself should not be used in any way in the main code. However, it has to appear in the tests
+	    	-->
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-log4j12</artifactId>
+				<version>${slf4j.version}</version>
+				<scope>test</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>${junit.version}</version>
+				<scope>test</scope>
+			</dependency>
+		</dependencies>
+
 	</dependencyManagement>
 
 	<dependencies>
