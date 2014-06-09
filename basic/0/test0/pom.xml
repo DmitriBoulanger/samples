@@ -10,94 +10,102 @@
 	</parent>
 
 	<artifactId>test0</artifactId>
-	<name>Samples Basic 0 tests for Eclipse</name>
+	<name>Samples Basic 0 JUnit-start for Eclipse</name>
 	
 	<description>
+	
 A special project to run all workspace JUnit-tests. 
 If a test starts from this project, only error messages are send to the console. 
 All messages can be found in the target/logs directory
+
     </description>
    
-	<!-- ======================================================
-	     All projects below should be in the eclipse class-path 
-	     ====================================================== -->
-
 	<dependencies>
-	
-		<dependency>
-			<groupId>${project.groupId}</groupId>
-			<artifactId>jpa0</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>${project.groupId}</groupId>
-			<artifactId>jpa0</artifactId>
-			<type>test-jar</type>
-			<scope>test</scope>
-		</dependency>
-		
-		<dependency>
-			<groupId>${project.groupId}</groupId>
-			<artifactId>logger0</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>${project.groupId}</groupId>
-			<artifactId>logger0</artifactId>
-			<type>test-jar</type>
-			<scope>test</scope>
-		</dependency>
-		
-		<dependency>
-			<groupId>${project.groupId}</groupId>
-			<artifactId>tuProlog0</artifactId>
-		</dependency>
-		
-		<dependency>
-			<groupId>${project.groupId}</groupId>
-			<artifactId>tuProlog0</artifactId>
-			<type>test-jar</type>
-			<scope>test</scope>
-		</dependency>
-		
 
-		
-		<dependency>
-			<groupId>${project.groupId}</groupId>
-			<artifactId>xml0</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>${project.groupId}</groupId>
-			<artifactId>html0</artifactId>
-			<type>test-jar</type>
-			<scope>test</scope>
-		</dependency>
-		
-		<dependency>
-			<groupId>${project.groupId}</groupId>
-			<artifactId>html0</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>${project.groupId}</groupId>
-			<artifactId>xml0</artifactId>
-			<type>test-jar</type>
-			<scope>test</scope>
-		</dependency>
-		
 		<dependency>
 			<groupId>org.eclipse.persistence</groupId>
 			<artifactId>eclipselink</artifactId>
 			<scope>test</scope>
 		</dependency>
-		
 		<dependency>
-				<groupId>org.apache.derby</groupId>
-				<artifactId>derby</artifactId>
-				<scope>test</scope>
+			<groupId>org.apache.derby</groupId>
+			<artifactId>derby</artifactId>
+			<scope>test</scope>
 		</dependency>
 		<dependency>
-				<groupId>org.apache.derby</groupId>
-				<artifactId>derbyclient</artifactId>
-				<scope>test</scope>
+			<groupId>org.apache.derby</groupId>
+			<artifactId>derbyclient</artifactId>
+			<scope>test</scope>
 		</dependency>
+	
+		<!-- PROJECTS TO BE TESTED -->
+
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>jpa0</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>logger0</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>tuProlog0</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>xml0</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>html0</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+			
+			
+		<!-- PROJECT TEST-JARST-->
+
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>jpa0</artifactId>
+			<version>${project.version}</version>
+			<type>test-jar</type>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>logger0</artifactId>
+			<version>${project.version}</version>
+			<type>test-jar</type>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>tuProlog0</artifactId>
+			<version>${project.version}</version>
+			<type>test-jar</type>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>xml0</artifactId>
+			<version>${project.version}</version>
+			<type>test-jar</type>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>html0</artifactId>
+			<version>${project.version}</version>
+			<type>test-jar</type>
+			<scope>test</scope>
+		</dependency>
+
 	</dependencies>
 
 </project>

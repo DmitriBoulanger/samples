@@ -25,13 +25,8 @@ The projects generates test-jars for all its modules
 		<module>tuProlog0</module>
 		<module>xml0</module>
 		<module>html0</module>
-        
 		<module>test0</module>
 	</modules>
-
-	<!-- =======================
-	         RESORCE MANAGMENT 
-	     ======================= -->
 
 	<dependencyManagement>
 		<dependencies>
@@ -57,93 +52,10 @@ The projects generates test-jars for all its modules
 				<version>1.4.2</version>
 			</dependency>
 
-			<!-- Test resources -->
-			
 			<dependency>
 				<groupId>net.sf.jtidy</groupId>
 				<artifactId>jtidy</artifactId>
 				<version>r938</version>
-			</dependency>
-			
-
-			<!-- PROJECTS -->
-
-			<dependency>
-				<groupId>${project.groupId}</groupId>
-				<artifactId>jpa0</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>${project.groupId}</groupId>
-				<artifactId>logger0</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>${project.groupId}</groupId>
-				<artifactId>tuProlog0</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			
-			<dependency>
-				<groupId>${project.groupId}</groupId>
-				<artifactId>xml0</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>${project.groupId}</groupId>
-				<artifactId>html0</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>${project.groupId}</groupId>
-				<artifactId>resource0</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			
-			
-			<!-- PROJECTS TESTS -->
-
-			<dependency>
-				<groupId>${project.groupId}</groupId>
-				<artifactId>jpa0</artifactId>
-				<version>${project.version}</version>
-				<type>test-jar</type>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>${project.groupId}</groupId>
-				<artifactId>logger0</artifactId>
-				<version>${project.version}</version>
-				<type>test-jar</type>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>${project.groupId}</groupId>
-				<artifactId>tuProlog0</artifactId>
-				<version>${project.version}</version>
-				<type>test-jar</type>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>${project.groupId}</groupId>
-				<artifactId>xml0</artifactId>
-				<version>${project.version}</version>
-				<type>test-jar</type>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>${project.groupId}</groupId>
-				<artifactId>html0</artifactId>
-				<version>${project.version}</version>
-				<type>test-jar</type>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>${project.groupId}</groupId>
-				<artifactId>resource0</artifactId>
-				<version>${project.version}</version>
-				<type>test-jar</type>
-				<scope>test</scope>
 			</dependency>
 
 		</dependencies>
@@ -152,7 +64,6 @@ The projects generates test-jars for all its modules
 	<build>
 		<pluginManagement>
 			<plugins>
-
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-jar-plugin</artifactId>
@@ -175,15 +86,6 @@ The projects generates test-jars for all its modules
 				</plugin>
 			</plugins>
 		</pluginManagement>
-
 	</build>
-	
-	<!-- ====================================
-	     COMMON RESORCES USED IN ALL PROJECTS
-	     ==================================== -->
-	     
-	<dependencies>
-
-	</dependencies>
 
 </project>

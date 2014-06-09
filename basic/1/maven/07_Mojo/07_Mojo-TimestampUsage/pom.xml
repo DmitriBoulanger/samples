@@ -30,6 +30,8 @@
 					<datetimePattern>HH:mm:ss:SSS</datetimePattern>
 				</configuration>
 				<executions>
+<!--
+The goal creates error if maven-clean is called
 					<execution>
 						<id>after clean</id>
 						<phase>clean</phase>
@@ -37,6 +39,7 @@
 							<goal>timestamp</goal>
 						</goals>
 					</execution>
+-->
 <!-- 	
 These goals have eclipse-error!				
 					<execution>
@@ -74,17 +77,17 @@ These goals have eclipse-error!
 		<pluginManagement>
 			<plugins>
 			    <!-- 
-			         We need the magic below because of some the phases in the plug-in above.  
-           			 It has been generated using the eclipse quick-fix associated with "plugin execution not covered". 
-			         Without we have the following error:
-                     Plugin execution not covered by lifecycle configuration: 
-                     	de.dbo.samples.maven.basic:07_Mojo-Timestamp:0.0.0-SNAPSHOT:timestamp (execution: after compile, phase: compile)	pom.xml	/07_Mojo-TimestampUsage	line 47	Maven Project Build Lifecycle Mapping Problem
-			         	de.dbo.samples.maven.basic:07_Mojo-Timestamp:0.0.0-SNAPSHOT:timestamp (execution: after process-sources, phase: process-sources)	pom.xml	/07_Mojo-TimestampUsage	line 40	Maven Project Build Lifecycle Mapping Problem
-				     To see these errors, comment out the below plug-in.
-                     See: http://wiki.eclipse.org/M2E_plugin_execution_not_covered
+We need the magic below because of some the phases in the plug-in above.  
+ It has been generated using the eclipse quick-fix associated with "plugin execution not covered". 
+Without we have the following error:
+ Plugin execution not covered by lifecycle configuration: 
+ de.dbo.samples.maven.basic:07_Mojo-Timestamp:0.0.0-SNAPSHOT:timestamp (execution: after compile, phase: compile)	pom.xml	/07_Mojo-TimestampUsage	line 47	Maven Project Build Lifecycle Mapping Problem
+de.dbo.samples.maven.basic:07_Mojo-Timestamp:0.0.0-SNAPSHOT:timestamp (execution: after process-sources, phase: process-sources)	pom.xml	/07_Mojo-TimestampUsage	line 40	Maven Project Build Lifecycle Mapping Problem
+To see these errors, comment out the below plug-in.
+ See: http://wiki.eclipse.org/M2E_plugin_execution_not_covered
 
-					 This plugin's configuration is used to store Eclipse m2e settings only. 
-				     It has no influence on the Maven build itself.
+This plugin's configuration is used to store Eclipse m2e settings only. 
+It has no influence on the Maven build itself.
 				     -->
 				<plugin>
 					<groupId>org.eclipse.m2e</groupId>
@@ -121,11 +124,11 @@ These goals have eclipse-error!
   	</build>
   	
   	<dependencies>
-  	<dependency>
-  		<groupId>de.dbo.samples.basic.1.maven</groupId>
-  		<artifactId>07_Mojo-Timestamp</artifactId>
-  		<version>${project.version}</version>
-  	</dependency>
+  		<dependency>
+  			<groupId>de.dbo.samples.basic.1.maven</groupId>
+  			<artifactId>07_Mojo-Timestamp</artifactId>
+  			<version>${project.version}</version>
+  		</dependency>
   	</dependencies>
   
 </project>
