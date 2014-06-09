@@ -16,7 +16,7 @@
 		<plugins>
 		  <!-- 
 		  		Profiling using the Mojo-Timestamp Plug-in.
-		  		The below is the profiling of the Maven clean and default life-cycles.
+		  		The below is the profiling of the Maven life-cycle.
 		  		The profiler logs the time-stamp after end of phase and
 		  		elapsed time since the previous time-stamp.
 		  		We use only a few phases of the default life-cycle.
