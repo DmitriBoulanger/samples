@@ -1,5 +1,6 @@
 package de.dbo.samples.image.houghtransform.junit;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,6 +18,7 @@ import de.dbo.samples.image.houghtransform.junitImpl.ImageAssertions;
 public class Signature extends ImageAssertions {
     private static final Logger log = LoggerFactory.getLogger(Signature.class);
 
+    @Ignore
     @Test
     public void signature_test_0() throws Exception {
         final String title = "Signature Test 0";
@@ -53,6 +55,7 @@ public class Signature extends ImageAssertions {
         }
     }
 
+    @Ignore
     @Test
     public void signature_test_Problems() throws Exception {
         final String title = "Signature Test Problems";
@@ -65,6 +68,7 @@ public class Signature extends ImageAssertions {
         }
     }
 
+    @Ignore
     @Test
     public void signature_test_CHECKED() throws Exception {
         final String title = "Signature Performance - CHECKED";
@@ -77,6 +81,7 @@ public class Signature extends ImageAssertions {
         }
     }
 
+    @Ignore
     @Test
     public void signature_test_UNCHECKED() throws Exception {
         final String title = "Signature Performance - UNCHECKED";
