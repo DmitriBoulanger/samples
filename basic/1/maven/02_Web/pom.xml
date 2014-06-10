@@ -13,7 +13,10 @@
 	<artifactId>02_Web</artifactId>
 	<packaging>pom</packaging>
 	<name>Samples Basic 1 Maven Web</name>
-	<description>HelloWorld WEB-Application</description>
+
+	<description>
+Parent/reactor of the HelloWorld WEB-Application
+	</description>
 
 	<modules>
 		<module>02_Web-HelloWorld</module>

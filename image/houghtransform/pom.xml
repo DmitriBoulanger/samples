@@ -9,7 +9,7 @@
 	</parent>
 
 	<artifactId>houghtransform</artifactId>
-	<name>houghtransform</name>
+	<name>Samples Image Houghtransform</name>
 
 	<description>
 Hough transformation and Categorization of Black/White Images

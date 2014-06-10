@@ -13,6 +13,10 @@
 	<artifactId>01_Custom</artifactId>
 	<packaging>pom</packaging>
 	<name>Samples Basic 1 Maven Custom</name>
+
+	<description>
+Parent/reactor of the Custom-Weather project
+	</description>
 	<url>http://books.sonatype.com/mvnex-book/reference/customizing.html</url>
 
 	<modules>
