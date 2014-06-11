@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	
@@ -13,7 +14,11 @@
 	<artifactId>basic</artifactId>
 	<packaging>pom</packaging>
 	<name>Samples Basic</name>
-	<description>Basic Samples Reactor</description>
+
+	<description>
+Raactor of the Basic Samples.
+These samples are separted in several levels (modules) 0, 1, ...
+	</description>
 
 	<modules>
 		<module>0</module>

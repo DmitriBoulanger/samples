@@ -12,7 +12,9 @@
 	<name>Samples Basic 0 JPA</name>
 
 	<description>
-JPA and using serialized data-objects in JUnits
+JPA is used to build a simple database schema. 
+JUnits are using serialized database objects to test the JPA functionality.
+Eclipse-link is used  to test the JPA-implementation
 	</description>
 
 	<dependencies>
@@ -43,7 +45,7 @@ JPA and using serialized data-objects in JUnits
 				<artifactId>derby</artifactId>
 				<scope>test</scope>
 		</dependency>
-				<dependency>
+		<dependency>
 				<groupId>org.apache.derby</groupId>
 				<artifactId>derbyclient</artifactId>
 				<scope>test</scope>
