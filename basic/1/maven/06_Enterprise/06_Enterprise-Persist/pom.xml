@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0  
+	http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+  
+  <parent>
+  	<groupId>de.dbo.samples.basic.1.maven</groupId>
+  	<artifactId>06_Enterprise</artifactId>
+  	<version>0.0.0-SNAPSHOT</version>
+  </parent>
+  
+  <artifactId>06_Enterprise-Persist</artifactId>
+  <packaging>jar</packaging>
+  <name>Samples Basic 1 Maven Enterprise Persistence API</name>
+
+  <url>http://books.sonatype.com/mvnex-book/reference/multimodule-web-spring-sect-simple-persist.html</url>
+
+  <dependencies>
+  
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>06_Enterprise-Model</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    
+     <!-- Third parties -->
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate</artifactId>
+      <exclusions>
+        <exclusion>
+          <groupId>javax.transaction</groupId>
+          <artifactId>jta</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-annotations</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-commons-annotations</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.geronimo.specs</groupId>
+      <artifactId>geronimo-jta_1.1_spec</artifactId>
+      <version>1.1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-orm</artifactId>
+    </dependency>
+    
+  </dependencies>
+  
+</project>
