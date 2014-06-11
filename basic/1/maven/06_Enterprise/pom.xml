@@ -15,12 +15,15 @@
 	<name>Samples Basic 1 Maven Enterprise</name>
 	
 	<description>
-Enterprise Project with Model, Persist and WEB componenten
+Enterprise Project with Model, Persist and WEB components
 	</description>
 	<url>http://books.sonatype.com/mvnex-book/reference/multimodule-web-spring.html</url>
 	
-	
 	<modules>
-		<module>06_Enterprise-Reactor</module>
+		<module>06_Enterprise-Command</module>
+		<module>06_Enterprise-Model</module>
+		<module>06_Enterprise-Weather</module>
+		<module>06_Enterprise-Persist</module>
+		<module>06_Enterprise-Web</module>
 	</modules>
 </project>
