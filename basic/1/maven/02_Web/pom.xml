@@ -4,22 +4,37 @@
                              http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<parent>
-		<groupId>de.dbo.samples.basic.1.maven</groupId>
-		<artifactId>maven</artifactId>
-		<version>0.0.0-SNAPSHOT</version>
-	</parent>
+  <parent>
+    <groupId>de.dbo.samples.basic.1.maven</groupId>
+    <artifactId>maven</artifactId>
+    <version>0.0.0-SNAPSHOT</version>
+  </parent>
 
 	<artifactId>02_Web</artifactId>
-	<packaging>pom</packaging>
-	<name>Samples Basic 1 Maven Web</name>
+	<packaging>war</packaging>
+	<name>Samples Basic 1 Maven Web Hello World</name>
 
-	<description>
-Parent/reactor of the HelloWorld WEB-Application
-	</description>
+	<dependencies>
+		<dependency>
+			<groupId>org.apache.geronimo.specs</groupId>
+			<artifactId>geronimo-servlet_2.4_spec</artifactId>
+			<version>1.1.1</version>
+		</dependency>
+	</dependencies>
 
-	<modules>
-		<module>02_Web-HelloWorld</module>
-	</modules>
-
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<configuration>
+					<warName>${project.artifactId}</warName>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.mortbay.jetty</groupId>
+				<artifactId>maven-jetty-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
 </project>
