@@ -13,6 +13,8 @@
 	<artifactId>00_HelloWorld</artifactId>
 	<packaging>jar</packaging>
 	<name>Samples Basic 1 Maven Hello World</name>
+	
+	<url>http://books.sonatype.com/mvnex-book/reference/simple-project.html</url>
 
 	<build>
 		<plugins>
@@ -31,4 +33,5 @@
 		</plugins>
 	</build>
   
+	
 </project>
