@@ -22,7 +22,7 @@
 				<configuration>
 					<archive>
 						<manifest>
-							<mainClass>de.dbo.samples.maven.basic.simple.HelloWorld</mainClass>
+							<mainClass>de.dbo.samples.basic1.maven.HelloWorld</mainClass>
 							<addClasspath>true</addClasspath>
 						</manifest>
 					</archive>

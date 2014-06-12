@@ -1,4 +1,7 @@
-package de.dbo.samples.maven.basic.custom.weather;
+package de.dbo.samples.basic1.maven;
+
+import de.dbo.samples.basic1.maven.Weather;
+import de.dbo.samples.basic1.maven.YahooParser;
 
 import static org.junit.Assert.assertEquals;
 

@@ -1,4 +1,4 @@
-package de.dbo.samples.maven.basic.simple;
+package de.dbo.samples.basic1.maven;
 
 /**
  * Hello world!

@@ -1,4 +1,4 @@
-package de.dbo.samples.maven.basic.custom.weather;
+package de.dbo.samples.basic1.maven;
 
 
 public class Weather {

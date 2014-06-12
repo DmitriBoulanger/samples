@@ -25,7 +25,7 @@
 				<configuration>
 					<archive>
 						<manifest>
-							<mainClass>de.dbo.samples.maven.webproject.weather.Main</mainClass>
+							<mainClass>de.dbo.samples.basic1.maven.Main</mainClass>
 							<addClasspath>true</addClasspath>
 						</manifest>
 					</archive>
@@ -85,7 +85,7 @@
 
 	<organization>
 		<name>Hombach</name>
-		<url>http://www.dbo.de</url>
+		<url>http://hombach.dbo.de</url>
 	</organization>
 
 	<developers>
@@ -93,9 +93,9 @@
 			<id>de.dbo</id>
 			<name>Dmitri Boulanger</name>
 			<email>dmitri.boulanger@t-online.de</email>
-			<url>http://www.dbo.de</url>
+			<url>http://hombach.dbo.de</url>
 			<organization>Hombach</organization>
-			<organizationUrl>http://www.dbo.de</organizationUrl>
+			<organizationUrl>http://hombach.dbo.de</organizationUrl>
 			<roles>
 				<role>developer</role>
 			</roles>
