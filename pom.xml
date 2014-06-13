@@ -200,7 +200,6 @@ This project is a reactor for all sample-categories</description>
 				<scope>provided</scope>
 			</dependency>
         
- 
 
 			<!-- PERSISTENCY -->
 
@@ -233,6 +232,7 @@ This project is a reactor for all sample-categories</description>
 				<version>3.2.5.ga</version>
 			</dependency>
 			
+			
 			<!-- DATABASES -->
 
 			<dependency>
@@ -257,6 +257,7 @@ This project is a reactor for all sample-categories</description>
 				<artifactId>derbyclient</artifactId>
 				<version>${derby.version}</version>
 			</dependency>
+			
 
 			<!-- LOGGING -->
 
@@ -273,7 +274,6 @@ This project is a reactor for all sample-categories</description>
 				<groupId>org.slf4j</groupId>
 				<artifactId>slf4j-log4j12</artifactId>
 				<version>${slf4j.version}</version>
-				<scope>test</scope>
 			</dependency>
 
 			<dependency>

@@ -57,9 +57,18 @@ The projects generates test-jars for all its modules
 				<artifactId>jtidy</artifactId>
 				<version>r938</version>
 			</dependency>
+			
 
 		</dependencies>
 	</dependencyManagement>
+	
+	<dependencies>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
 
 	<build>
 		<pluginManagement>

@@ -18,9 +18,18 @@ Reactor for all basic-1 samples.
 	</description>
 	
 	<modules>
+		<module>_logger</module>
 		<module>maven</module>
 		<module>spring</module>
 	</modules>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
 
 
 </project>
