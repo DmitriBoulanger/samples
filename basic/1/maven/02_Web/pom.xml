@@ -13,13 +13,22 @@
 	<artifactId>02_Web</artifactId>
 	<packaging>war</packaging>
 	<name>Samples Basic 1 Maven Web Hello World</name>
+	
+	<description>
+A standard (simple) servlet is started using embedded Jetty-server
+	</description>
+	<url>http://books.sonatype.com/mvnex-book/reference/web.html</url>
 
+	<!-- provided from the J2EE-Container -->
 	<dependencies>
 		<dependency>
-			<groupId>org.apache.geronimo.specs</groupId>
-			<artifactId>geronimo-servlet_2.4_spec</artifactId>
-			<version>1.1.1</version>
-		</dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet.jsp</groupId>
+            <artifactId>jsp-api</artifactId>
+        </dependency>
 	</dependencies>
 
 	<build>

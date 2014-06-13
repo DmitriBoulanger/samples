@@ -26,6 +26,11 @@ This project is a reactor for all sample-categories</description>
 		<hsqldb.version>1.8.0.7</hsqldb.version>
 		<derby.version>10.8.2.2</derby.version>
 		<mysql.version>5.1.6</mysql.version>
+		
+		<servlet-api.version>2.4</servlet-api.version>
+		<jsp-api.version>2.0</jsp-api.version>
+		
+		
 
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -127,7 +132,7 @@ This project is a reactor for all sample-categories</description>
 		<dependencies>
 			
 			<!-- RESOURCES FOR MAVEN PLUG-INS -->
-			
+
 			<dependency>
 				<groupId>org.apache.maven</groupId>
 				<artifactId>maven-plugin-api</artifactId>
@@ -135,7 +140,7 @@ This project is a reactor for all sample-categories</description>
 			</dependency>
 	
 			<!-- SPRING -->
-			
+
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-context</artifactId>
@@ -178,6 +183,24 @@ This project is a reactor for all sample-categories</description>
 				<artifactId>aspectjweaver</artifactId>
 				<version>1.6.8</version>
 			</dependency>
+			
+			<!-- J2EE -->
+
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>servlet-api</artifactId>
+				<version>${servlet-api.version}</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>javax.servlet.jsp</groupId>
+				<artifactId>jsp-api</artifactId>
+				<version>${jsp-api.version}</version>
+				<scope>provided</scope>
+			</dependency>
+        
+ 
 
 			<!-- PERSISTENCY -->
 
