@@ -14,7 +14,7 @@
 	
 	<description>
 	
-A special project to run all workspace JUnit-tests. 
+A special project to run all repository JUnit-tests. 
 If a test starts from this project, only error messages are send to the console. 
 All messages can be found in the target/logs directory
 
