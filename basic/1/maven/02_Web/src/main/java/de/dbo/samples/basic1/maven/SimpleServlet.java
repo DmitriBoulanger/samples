@@ -1,4 +1,4 @@
-package de.dbo.samples.maven.webproject.web;
+package de.dbo.samples.basic1.maven;
 
 import java.io.IOException;
 import java.io.PrintWriter;
