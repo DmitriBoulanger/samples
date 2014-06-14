@@ -22,13 +22,15 @@
 			<version>${project.version}</version>
 		</dependency>
 
-		<!-- Third parties -->
-
+		<!-- Provided from the J2EE-Container -->
 		<dependency>
-			<groupId>org.apache.geronimo.specs</groupId>
-			<artifactId>geronimo-servlet_2.4_spec</artifactId>
-			<version>1.1.1</version>
-		</dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet.jsp</groupId>
+            <artifactId>jsp-api</artifactId>
+         </dependency>
 
 	</dependencies>
 

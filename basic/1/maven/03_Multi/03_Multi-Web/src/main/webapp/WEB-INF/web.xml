@@ -6,11 +6,11 @@
   <display-name>Archetype Created Web Application</display-name>
   <servlet>
     <servlet-name>simple</servlet-name>
-    <servlet-class>de.dbo.samples.maven.multiproject.SimpleServlet</servlet-class>
+    <servlet-class>de.dbo.samples.basic1.maven.multiproject.web.SimpleServlet</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>weather</servlet-name>
-    <servlet-class>de.dbo.samples.maven.multiproject.WeatherServlet</servlet-class>
+    <servlet-class>de.dbo.samples.basic1.maven.multiproject.web.WeatherServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>simple</servlet-name>
@@ -20,4 +20,8 @@
     <servlet-name>weather</servlet-name>
     <url-pattern>/weather</url-pattern>
   </servlet-mapping>
+  
+  <welcome-file-list>
+  	<welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
 </web-app>

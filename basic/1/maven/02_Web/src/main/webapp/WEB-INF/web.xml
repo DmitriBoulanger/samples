@@ -9,7 +9,7 @@
   <!-- Simple Servlet -->
   <servlet>
     <servlet-name>simple</servlet-name>
-    <servlet-class>de.dbo.samples.basic1.maven.SimpleServlet</servlet-class>
+    <servlet-class>de.dbo.samples.basic1.maven.simple.SimpleServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>simple</servlet-name>
