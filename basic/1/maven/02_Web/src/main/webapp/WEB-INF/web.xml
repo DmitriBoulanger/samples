@@ -4,8 +4,9 @@
 
 <web-app>
 
-  <display-name>SimpleServlet Web Application</display-name>
+  <display-name>Simple Servlet Web Application</display-name>
   
+  <!-- Simple Servlet -->
   <servlet>
     <servlet-name>simple</servlet-name>
     <servlet-class>de.dbo.samples.basic1.maven.SimpleServlet</servlet-class>
@@ -14,5 +15,9 @@
     <servlet-name>simple</servlet-name>
     <url-pattern>/simple</url-pattern>
   </servlet-mapping>
+  
+  <welcome-file-list>
+  	<welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
 
 </web-app>
