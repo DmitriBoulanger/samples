@@ -16,7 +16,6 @@
 Log4j-resources for Samples Basic 1 projects
 	</description>
 
-	
 	<dependencies>
 		<dependency>
 			<groupId>org.slf4j</groupId>

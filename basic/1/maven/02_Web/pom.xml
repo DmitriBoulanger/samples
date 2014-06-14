@@ -19,8 +19,10 @@ A standard (simple) servlet is started using embedded Jetty-server
 	</description>
 	<url>http://books.sonatype.com/mvnex-book/reference/web.html</url>
 
-	<!-- provided from the J2EE-Container -->
+	
 	<dependencies>
+	
+		<!-- Provided from the J2EE-Container -->
 		<dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>servlet-api</artifactId>
@@ -29,11 +31,20 @@ A standard (simple) servlet is started using embedded Jetty-server
             <groupId>javax.servlet.jsp</groupId>
             <artifactId>jsp-api</artifactId>
          </dependency>
+         
+        <!-- Logging -->
+		<dependency>
+			<groupId>de.dbo.samples.basic.1</groupId>
+			<artifactId>_logger</artifactId>
+			<version>${project.version}</version>
+			<scope>runtime</scope>
+		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+		
 	</dependencies>
 
 	<build>
