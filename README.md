@@ -1,6 +1,6 @@
 Samples Repository
 ==================
- 
-See **pom.xmind**
+  
+See pom.xmind for details
  
 

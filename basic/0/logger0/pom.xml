@@ -1,39 +1,38 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	
+
 	<parent>
 		<groupId>de.dbo.samples.basic.0</groupId>
 		<artifactId>0</artifactId>
 		<version>0.0.0-SNAPSHOT</version>
 	</parent>
-	
+
 	<artifactId>logger0</artifactId>
 	<name>Samples Basic 0 SLF4J API Logging</name>
+	
 	<description>
 SLF4J API is used in the main program.
 It has no actual logger binding, i.e. there is no logger in the class-path). 
 However, the JUnit-test uses the log4j-logger
     </description>
 
-	<!-- =====================
-	     ONLY COMMON RESOURCES 
-	     ===================== -->
-	     
-<dependencies>
-    <dependency>
-       	<groupId>de.dbo.samples</groupId>
-		<artifactId>samples</artifactId>
-		<version>0.0.0-SNAPSHOT</version>
-	    <type>pom</type>
-        <exclusions>
-            <exclusion>
-               <groupId>org.slf4j</groupId>
-				<artifactId>slf4j-log4j12</artifactId>                    
-            </exclusion>
-        </exclusions>
-    </dependency>
-</dependencies>
+
+	<dependencies>
+		<dependency>
+			<groupId>de.dbo.samples</groupId>
+			<artifactId>samples</artifactId>
+			<version>0.0.0-SNAPSHOT</version>
+			<type>pom</type>
+			<exclusions>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-log4j12</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+	</dependencies>
 	
 
 </project>
