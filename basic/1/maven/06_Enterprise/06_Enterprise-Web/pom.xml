@@ -12,7 +12,7 @@
 
 	<artifactId>06_Enterprise-Web</artifactId>
 	<packaging>war</packaging>
-	<name>Samples Basic 1 Maven Enterprise WEB Application</name>
+	<name>Samples Basic-1 Maven Enterprise WEB Application</name>
 	
 	<url>http://books.sonatype.com/mvnex-book/reference/multimodule-web-spring-sect-spring-running-web.html</url>
 

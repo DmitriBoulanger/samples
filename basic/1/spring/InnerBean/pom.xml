@@ -9,7 +9,7 @@
 	</parent>
 
 	<artifactId>InnerBean</artifactId>
-	<name>Samples Basic 1 Spring Inner Bean</name>
+	<name>Samples Basic-1 Spring Inner Bean</name>
 
 	<dependencies>
 

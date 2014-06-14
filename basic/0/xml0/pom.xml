@@ -10,7 +10,7 @@
 	</parent>
 	
   <artifactId>xml0</artifactId>
-  <name>Samples Basic 0 XML-Unit test/examples</name>
+  <name>Samples Basic-0 XML-Unit test/examples</name>
 
 	<dependencies>
 		

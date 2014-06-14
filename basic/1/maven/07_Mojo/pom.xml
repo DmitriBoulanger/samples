@@ -11,7 +11,7 @@
 
 	<artifactId>07_Mojo</artifactId>
 	<packaging>pom</packaging>
-	<name>Samples Basic 1 Maven Mojo</name>
+	<name>Samples Basic-1 Maven Mojo</name>
 
 	<description>
 Project with Timestamp Mojo to show time-stamps and elapsed ms. of different phases.

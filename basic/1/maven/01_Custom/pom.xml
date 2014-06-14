@@ -11,7 +11,7 @@
 
 	<artifactId>01_Custom</artifactId>
 	<packaging>jar</packaging>
-	<name>Samples Basic 1 Maven Custom Weather</name>
+	<name>Samples Basic-1 Maven Custom Weather</name>
 
 	<description>
 Creates a complete java-runnable application

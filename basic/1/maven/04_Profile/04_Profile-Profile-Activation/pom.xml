@@ -13,7 +13,7 @@
   
   <artifactId>04_Profile-Profile-Activation</artifactId>
   <packaging>pom</packaging>
-  <name>Samples Basic 1 Maven Profile Activation</name>
+  <name>Samples Basic-1 Maven Profile Activation</name>
   
   <profiles>
     <profile>

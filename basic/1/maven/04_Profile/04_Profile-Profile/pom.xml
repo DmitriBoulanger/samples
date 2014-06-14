@@ -12,7 +12,7 @@
   
   <artifactId>04_Profile-Profile</artifactId>
   <packaging>jar</packaging>
-  <name>Samples Basic 1 Maven Profile Profile</name>
+  <name>Samples Basic-1 Maven Profile Profile</name>
   <url>http://maven.apache.org</url>
   
   <profiles>

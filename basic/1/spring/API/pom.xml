@@ -11,7 +11,7 @@
 	
 	<artifactId>API</artifactId>
 	<packaging>jar</packaging>
-    	<name>Samples Basic 1 Spring API</name>
+    	<name>Samples Basic-1 Spring API</name>
 
     	<description>
 Sample API to be used with other projects

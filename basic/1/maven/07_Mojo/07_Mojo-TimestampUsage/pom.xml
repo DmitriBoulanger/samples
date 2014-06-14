@@ -9,7 +9,7 @@
   </parent>
   
   <artifactId>07_Mojo-TimestampUsage</artifactId>
-  <name>Samples Basic 1 Maven Mojo Timestamp Usage</name>
+  <name>Samples Basic-1 Maven Mojo Timestamp Usage</name>
   <url>http://www.torsten-horn.de/techdocs/maven.htm#Mojo</url>
   
   	<build>

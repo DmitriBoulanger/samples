@@ -10,7 +10,7 @@
 	</parent>
 
   	<artifactId>IoC</artifactId>
-  	<name>Samples Basic 1 Spring IoC</name>
+  	<name>Samples Basic-1 Spring IoC</name>
   
 	<dependencies>
 	

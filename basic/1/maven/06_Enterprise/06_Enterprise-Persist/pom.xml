@@ -14,7 +14,7 @@
   
   <artifactId>06_Enterprise-Persist</artifactId>
   <packaging>jar</packaging>
-  <name>Samples Basic 1 Maven Enterprise Persistence API</name>
+  <name>Samples Basic-1 Maven Enterprise Persistence API</name>
 
   <url>http://books.sonatype.com/mvnex-book/reference/multimodule-web-spring-sect-simple-persist.html</url>
 

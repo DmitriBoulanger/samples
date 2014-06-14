@@ -10,7 +10,7 @@
   </parent>
   
   <artifactId>DependencyInjection</artifactId>
-  <name>Samples Basic 1 Spring Dependency Injection</name>
+  <name>Samples Basic-1 Spring Dependency Injection</name>
   <description>Constructor and Setter Dependency Injection</description>
   
   	<dependencies>

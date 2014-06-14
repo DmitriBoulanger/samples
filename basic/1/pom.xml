@@ -11,7 +11,7 @@
 	<groupId>de.dbo.samples.basic.1</groupId>
 	<artifactId>1</artifactId>
 	<packaging>pom</packaging>
-	<name>Samples Basic 1</name>
+	<name>Samples Basic-1</name>
 	
 	<description>
 Reactor for all basic-1 samples.

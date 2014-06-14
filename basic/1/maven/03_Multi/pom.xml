@@ -12,7 +12,7 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 
 	<artifactId>03_Multi</artifactId>
 	<packaging>pom</packaging>
-	<name>Samples Basic 1 Maven Multi reactor</name>
+	<name>Samples Basic-1 Maven Multi reactor</name>
 
 	<description>
 Multi-module project consisting of the WEB-component and of the application itself

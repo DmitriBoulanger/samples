@@ -10,10 +10,10 @@
 	</parent>
 
 	<artifactId>_logger</artifactId>
-	<name>Samples Basic 1 Logger</name>
+	<name>Samples Basic-1 Logger</name>
 
 	<description>
-Log4j-resources for Samples Basic 1 projects
+Log4j-resources for Samples Basic-1 projects
 	</description>
 
 	<dependencies>

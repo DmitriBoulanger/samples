@@ -26,7 +26,9 @@ import org.slf4j.LoggerFactory;
 public class TransactionTest {
 	protected static final Logger log = LoggerFactory.getLogger(TransactionTest.class);
 
-	/** Wrapper of the entity manager that persists and queries the database */
+	/** 
+	 * Wrapper of the entity manager that persists and queries the database 
+	 */
 	protected static TransactionRunner TRANSACTION_RUNNER;
 
 	@BeforeClass

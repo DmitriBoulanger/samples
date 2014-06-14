@@ -12,7 +12,7 @@
 	<artifactId>maven</artifactId>
 	<groupId>de.dbo.samples.basic.1.maven</groupId>
 	<packaging>pom</packaging>
-	<name>Samples Basic 1 Maven</name>
+	<name>Samples Basic-1 Maven</name>
 
 	<url>http://books.sonatype.com/mvnex-book/reference/index.html</url>
 

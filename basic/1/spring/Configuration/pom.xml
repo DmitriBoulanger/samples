@@ -11,7 +11,7 @@
 
 	<artifactId>Configuration</artifactId>
 	<packaging>jar</packaging>
-	<name>Samples Basic 1 Spring Configuration</name>
+	<name>Samples Basic-1 Spring Configuration</name>
 
 	<description>
 Annoatated and Java-based Spring Configurations

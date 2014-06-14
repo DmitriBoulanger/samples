@@ -12,7 +12,7 @@
 
 	<artifactId>06_Enterprise</artifactId>
 	<packaging>pom</packaging>
-	<name>Samples Basic 1 Maven Enterprise</name>
+	<name>Samples Basic-1 Maven Enterprise</name>
 	
 	<description>
 Enterprise Project with Model, Persist and WEB components

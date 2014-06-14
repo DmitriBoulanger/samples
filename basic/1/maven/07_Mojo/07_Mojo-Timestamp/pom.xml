@@ -11,7 +11,7 @@
   
   	<artifactId>07_Mojo-Timestamp</artifactId>
   	<packaging>maven-plugin</packaging>
-  	<name>Samples Basic 1 Maven Mojo Timestamp Plugin</name>
+  	<name>Samples Basic-1 Maven Mojo Timestamp Plugin</name>
 
 
   	<url>http://www.torsten-horn.de/techdocs/maven.htm#Mojo</url>
