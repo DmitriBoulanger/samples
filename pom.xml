@@ -9,7 +9,8 @@
 	<packaging>pom</packaging>
 	<name>Samples</name>
 
-	<description>Top project for all samples. It contains
+	<description>
+Top project for all samples. It contains
 all basic settings and dependency-management for all sample-projects.
 This project is a reactor for all sample-categories</description>
 
