@@ -38,20 +38,6 @@ A standard (simple) servlet is started using embedded Jetty-server
 			<artifactId>util</artifactId>
 			<version>${project.version}</version>
 		</dependency>
-         
-        <!-- Logging -->
-		<dependency>
-			<groupId>de.dbo.samples.basic.1</groupId>
-			<artifactId>_logger</artifactId>
-			<version>${project.version}</version>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
-			<scope>runtime</scope>
-		</dependency>
-		
 	</dependencies>
 
 	<build>
@@ -66,6 +52,14 @@ A standard (simple) servlet is started using embedded Jetty-server
 			<plugin>
 				<groupId>org.mortbay.jetty</groupId>
 				<artifactId>maven-jetty-plugin</artifactId>
+				<dependencies>
+					<dependency>
+						<groupId>de.dbo.samples.basic.1</groupId>
+						<artifactId>_logger</artifactId>
+						<version>${project.version}</version>
+						<scope>runtime</scope>
+					</dependency>
+				</dependencies>
 			</plugin>
 		</plugins>
 	</build>

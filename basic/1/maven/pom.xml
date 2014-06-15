@@ -26,15 +26,37 @@
 	</modules>
 
 	<build>
-	   <pluginManagement>
+		<pluginManagement>
 			<plugins>
 
-				<!-- SPECIAL Plugins -->
+				<!-- 
+					Jetty Server with Log4j. 
+					Instances of this plug-in have to provide log4j.properties
+				-->
 				<plugin>
 					<groupId>org.mortbay.jetty</groupId>
 					<artifactId>maven-jetty-plugin</artifactId>
 					<version>6.1.25</version>
+					<dependencies>
+						<dependency>
+							<groupId>org.slf4j</groupId>
+							<artifactId>slf4j-api</artifactId>
+							<version>${slf4j.version}</version>
+						</dependency>
+						<dependency>
+							<groupId>org.slf4j</groupId>
+							<artifactId>slf4j-log4j12</artifactId>
+							<version>${slf4j.version}</version>
+						</dependency>
+								<dependency>
+			<groupId>de.dbo.samples.basic.1</groupId>
+			<artifactId>_logger</artifactId>
+			<version>${project.version}</version>
+			<scope>runtime</scope>
+		</dependency>
+					</dependencies>
 				</plugin>
+
 				<plugin>
 					<groupId>org.codehaus.mojo</groupId>
 					<artifactId>hibernate3-maven-plugin</artifactId>
