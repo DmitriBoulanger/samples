@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <launchConfiguration type="org.eclipse.ui.externaltools.ProgramLaunchConfigurationType">
-	<stringAttribute key="org.eclipse.ui.externaltools.ATTR_LOCATION" value="${workspace_loc:/00_HelloWorld/script/00_HelloWorld.bat}" />
-	<stringAttribute key="org.eclipse.ui.externaltools.ATTR_WORKING_DIRECTORY" value="${workspace_loc:/_samples repoitory/basic/1/maven/00_Simple/00_HelloWorld/target}" />
+	<stringAttribute key="org.eclipse.ui.externaltools.ATTR_LOCATION"
+		value="${workspace_loc:/_samples repoitory/basic/1/maven/00_Simple/00_HelloWorld/script/00_HelloWorld.bat}" />
+	<stringAttribute key="org.eclipse.ui.externaltools.ATTR_WORKING_DIRECTORY"
+		value="${workspace_loc:/_samples repoitory/basic/1/maven/00_Simple/00_HelloWorld/target}" />
 </launchConfiguration>

@@ -103,33 +103,6 @@ This project is a reactor for all sample-categories</description>
 				<maxmem>512m</maxmem>
 			</configuration>
 		</plugin>
-		
-		<!-- CLEAN-UP OF THE LOCAL REPOSITORY
-		<plugin>
-			<groupId>org.apache.maven.plugins</groupId>
-			<artifactId>maven-dependency-plugin</artifactId>
-			<executions>
-				<execution>
-					<id>purge-local-dependencies</id>
-					<phase>clean</phase>
-					<goals>
-						<goal>purge-local-repository</goal>
-					</goals>
-					<configuration>
-						<verbose>true</verbose>
-						<reResolve>false</reResolve>
-						<includes>
-							<include>de.dbo.samples:samples</include>
-							<include>de.dbo.samples.basic.0:</include>
-							<include>de.dbo.samples.basic.1.maven:</include>
-							<include>de.dbo.samples.basic.1.spring:</include>
-							
-						</includes>
-					</configuration>
-				</execution>
-			</executions>
-		</plugin>
-		 -->
 	</plugins>
 	</build>
 
