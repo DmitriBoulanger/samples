@@ -16,23 +16,27 @@ This project is a reactor for all sample-categories</description>
 
 	<properties>
 		<java.version>1.7</java.version>
+		
 		<slf4j.version>1.7.6</slf4j.version>
 		<junit.version>4.8.2</junit.version>
 
 		<spring.version>3.1.2.RELEASE</spring.version>
 
+		<!-- Persistency -->
 		<jpa.version>1.0.2</jpa.version>
 		<eclipselink.version>2.5.1</eclipselink.version>
 		<hibernate.version>3.3.0.ga</hibernate.version>
+		
+		<!-- Database -->
 		<hsqldb.version>1.8.0.7</hsqldb.version>
 		<derby.version>10.8.2.2</derby.version>
 		<mysql.version>5.1.6</mysql.version>
 		
+		<!-- J2EE -->
 		<servlet-api.version>2.4</servlet-api.version>
 		<jsp-api.version>2.0</jsp-api.version>
 		
-		
-
+		<!-- UTF-8 -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 	</properties>

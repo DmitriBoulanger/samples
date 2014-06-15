@@ -30,7 +30,7 @@ The projects generates test-jars for all its modules
 
 	<dependencyManagement>
 		<dependencies>
-
+		
 			<dependency>
 				<groupId>com.thoughtworks.xstream</groupId>
 				<artifactId>xstream</artifactId>
@@ -68,6 +68,11 @@ The projects generates test-jars for all its modules
 			<artifactId>slf4j-log4j12</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>de.dbo.samples</groupId>
+			<artifactId>util</artifactId>
+			<version>${project.version}</version>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -76,7 +81,6 @@ The projects generates test-jars for all its modules
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-jar-plugin</artifactId>
-					<version>2.2</version>
 					<executions>
 						<execution>
 							<goals>

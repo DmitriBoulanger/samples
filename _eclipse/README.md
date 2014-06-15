@@ -1,2 +1,0 @@
-Eclipse settings, Configurations, etc.
-======================================
