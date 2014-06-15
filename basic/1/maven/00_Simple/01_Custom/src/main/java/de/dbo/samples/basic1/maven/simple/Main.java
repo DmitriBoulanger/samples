@@ -2,14 +2,16 @@ package de.dbo.samples.basic1.maven.simple;
 
 import java.io.InputStream;
 
-//import org.apache.log4j.PropertyConfigurator;
-
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+ 
 public class Main {
+	private static final Logger log = LoggerFactory.getLogger(Main.class);
 
 	public static void main(String[] args) throws Exception {
-		// Configure Log4J
-		// PropertyConfigurator.configure(Main.class.getClassLoader().getResource("log4j.properties"));
+		
+		final long start = System.currentTimeMillis();
+		
 
 		// Read the Zip Code from the Command-line (if none supplied, use 60202)
 		String zipcode = "02101";
@@ -18,7 +20,7 @@ public class Main {
         } catch( Exception e ) {}
 
 		// Start the program
-		new Main(zipcode).start();
+		new Main(zipcode).start(start);
 	}
 
 	private String zip;
@@ -27,7 +29,7 @@ public class Main {
 		this.zip = zip;
 	}
 	
-	public void start() throws Exception {
+	public void start(final long start) throws Exception {
 		// Retrieve Data
 		InputStream dataIn = new YahooRetriever().retrieve( zip );
 
@@ -35,7 +37,9 @@ public class Main {
 		Weather weather = new YahooParser().parse( dataIn );
 
 		// Format (Print) Data
-		System.out.print( new WeatherFormatter().format( weather ) );
+		final String data = new WeatherFormatter().format( weather );
+		log.info("Elaspsed " + (System.currentTimeMillis()-start) + " ms."
+				+":\n" + data );
 	}
 
 }
