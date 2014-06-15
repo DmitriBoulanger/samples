@@ -1,5 +1,6 @@
 package de.dbo.samples.spring.configuration.annotated;
 
+import de.dbo.samples.spring.api.SpellChecker;
 import de.dbo.samples.spring.api.TextEditor;
 import de.dbo.samples.spring.configuration.java.impl.SpellCheckerImpl;
 
@@ -24,7 +25,7 @@ public class Main {
 	
 	@Test
 	public final void test(){
-		log.info( "running ... " );
+		log.info( "running Spring Anntotated-Configuration assertions ... " );
 			
 		final ApplicationContext ctx = new ClassPathXmlApplicationContext("Configuration.xml"); 
 		assertNotNull(ctx);
@@ -32,8 +33,14 @@ public class Main {
 		final TextEditor textEditor = (TextEditor) ctx.getBean("textEditor"); 
 		assertNotNull(textEditor);
 		
+		final SpellChecker spellChecker = (SpellChecker) ctx.getBean( "spellChecker" );
+		assertNotNull(spellChecker);
+		
+		final SpellChecker spellChecker2 = textEditor.getSpellChecker();
+		assertNotNull(spellChecker2);
+		
 		textEditor.spellCheck(); 
 		assertTrue("Spellcheker is not a singelton" 
-			,ctx.getBean( SpellCheckerImpl.class ) == textEditor.getSpellChecker() );
+			, spellChecker == spellChecker2 );
 	}
 }
