@@ -5,7 +5,7 @@
 
 	<parent>
 		<groupId>de.dbo.samples.basic.1.maven</groupId>
-		<artifactId>maven</artifactId>
+		<artifactId>00_Simple</artifactId>
 		<version>0.0.0-SNAPSHOT</version>
 	</parent>
 
@@ -32,7 +32,7 @@ Creates a complete java-runnable application
 				<configuration>
 					<archive>
 						<manifest>
-							<mainClass>de.dbo.samples.basic1.maven.simple.simple.Main</mainClass>
+							<mainClass>de.dbo.samples.basic1.maven.simple.Main</mainClass>
 							<addClasspath>true</addClasspath>
 						</manifest>
 					</archive>

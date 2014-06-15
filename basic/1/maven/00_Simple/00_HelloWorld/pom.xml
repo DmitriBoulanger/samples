@@ -17,7 +17,7 @@
 	<url>http://books.sonatype.com/mvnex-book/reference/simple-project.html</url>
 
 	<build>
-		<finalName>${project.groupId}-${project.artifactId}-EXE</finalName>
+		<finalName>${project.groupId}-${project.artifactId}-exe</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
