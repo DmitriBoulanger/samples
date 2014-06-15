@@ -19,7 +19,6 @@ public class Main {
 	 * @param args not used
 	 */
 	public static final void main(final String[] args) {
-//		org.apache.log4j.BasicConfigurator.configure();
 		new Main().test();
 	}
 	
