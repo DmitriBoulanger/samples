@@ -15,6 +15,7 @@
 
 	<description>
 Creates a complete java-runnable application
+This application delivers on-line weather data from Yahoo-server
 	</description>
 	<url>http://books.sonatype.com/mvnex-book/reference/customizing.html</url>
 
