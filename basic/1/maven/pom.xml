@@ -17,9 +17,7 @@
 	<url>http://books.sonatype.com/mvnex-book/reference/index.html</url>
 
 	<modules>
-		<module>00_HelloWorld</module>
-		<module>01_Custom</module>
-		<module>02_Web</module>
+		<module>00_Simple</module>
 		<module>03_Multi</module>
 		<module>04_Profile</module>
 		<module>05_Properties</module>

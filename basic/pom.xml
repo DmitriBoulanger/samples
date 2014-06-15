@@ -16,8 +16,7 @@
 	<name>Samples Basic</name>
 
 	<description>
-Raactor of the Basic Samples.
-These samples are separted in several levels (modules) 0, 1, ...
+Raactor of the Basic Samples
 	</description>
 
 	<modules>
@@ -25,28 +24,18 @@ These samples are separted in several levels (modules) 0, 1, ...
 		<module>1</module>
 	</modules>
 
-	<dependencies>
-		<dependency>
-			<groupId>de.dbo.samples</groupId>
-			<artifactId>util</artifactId>
-			<version>${project.version}</version>
-		</dependency>
-	</dependencies>
+	<dependencies></dependencies>
 
 	<build>
 		<pluginManagement>
-			<plugins>
-			</plugins>
+			<plugins></plugins>
 		</pluginManagement>
 
-		<plugins>
-		</plugins>
+		<plugins></plugins>
 	</build>
 
-	<profiles>
-	</profiles>
+	<profiles></profiles>
 
-	<reporting>
-	</reporting>
+	<reporting></reporting>
 
 </project>

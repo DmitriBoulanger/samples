@@ -12,11 +12,12 @@
 
 	<artifactId>00_HelloWorld</artifactId>
 	<packaging>jar</packaging>
-	<name>Samples Basic-1 Maven Hello World</name>
+	<name>Samples Basic-1 Maven Simple Hello World</name>
 	
 	<url>http://books.sonatype.com/mvnex-book/reference/simple-project.html</url>
 
 	<build>
+		<finalName>${project.groupId}-${project.artifactId}-EXE</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

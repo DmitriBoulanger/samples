@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0  http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>de.dbo.samples.basic.1.maven</groupId>
+		<artifactId>maven</artifactId>
+		<version>0.0.0-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>00_Simple</artifactId>
+	<packaging>pom</packaging>
+	<name>Samples Basic-1 Maven Simple</name>
+
+	<description>
+Project-collection with simple stand-alone examples
+All examples shows straightforward maven use-cases
+	</description>
+
+	<modules>
+		<module>00_HelloWorld</module>
+		<module>01_Custom</module>
+		<module>02_Web</module>
+	</modules>
+
+	<dependencies>
+	
+		<!-- Logging -->
+		<dependency>
+			<groupId>de.dbo.samples.basic.1</groupId>
+			<artifactId>_logger</artifactId>
+			<version>${project.version}</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
+	</dependencies>
+
+
+</project>

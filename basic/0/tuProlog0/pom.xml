@@ -17,6 +17,11 @@
 			<groupId>it.unibo.alice.tuprolog</groupId>
 			<artifactId>tuprolog</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>de.dbo.samples</groupId>
+			<artifactId>util</artifactId>
+			<version>${project.version}</version>
+		</dependency>
 	</dependencies>
 
 </project>
