@@ -48,10 +48,7 @@
 				<artifactId>maven-jetty-plugin</artifactId>
 				<configuration>
 					<systemProperties>
-						<systemProperty>
-							<name>log4j.configuration</name>
-							<value>file:./src/test/resources/log4j.properties</value>
-						</systemProperty>
+					 
 					</systemProperties>
 				</configuration>
 			</plugin>
