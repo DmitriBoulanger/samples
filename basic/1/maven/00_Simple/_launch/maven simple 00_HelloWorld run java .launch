@@ -3,5 +3,5 @@
 	<stringAttribute key="org.eclipse.ui.externaltools.ATTR_LOCATION"
 		value="${workspace_loc:/_samples repoitory/basic/1/maven/00_Simple/00_HelloWorld/script/00_HelloWorld.bat}" />
 	<stringAttribute key="org.eclipse.ui.externaltools.ATTR_WORKING_DIRECTORY"
-		value="${workspace_loc:/_samples repoitory/basic/1/maven/00_Simple/00_HelloWorld/target}" />
+		value="${workspace_loc:/_samples repository/basic/1/maven/00_Simple/00_HelloWorld/target}" />
 </launchConfiguration>
