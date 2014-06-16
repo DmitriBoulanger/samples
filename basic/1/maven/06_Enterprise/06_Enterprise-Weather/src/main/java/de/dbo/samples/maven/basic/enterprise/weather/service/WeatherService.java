@@ -1,8 +1,8 @@
-package de.dbo.samples.maven.basics.enterprise.weather.service;
+package de.dbo.samples.maven.basic.enterprise.weather.service;
 
 import java.io.InputStream;
 
-import de.dbo.samples.maven.basics.enterprise.weather.model.Weather;
+import de.dbo.samples.maven.basic.enterprise.weather.model.Weather;
 
 public class WeatherService {
 

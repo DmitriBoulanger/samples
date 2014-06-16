@@ -18,6 +18,12 @@
     	<dependency>
       		<groupId>org.hibernate</groupId>
       		<artifactId>hibernate-annotations</artifactId>
+      		<exclusions>
+        <exclusion>
+          <groupId>asm</groupId>
+          <artifactId>asm</artifactId>
+        </exclusion>
+      </exclusions>
     	</dependency>
     <dependency>
       <groupId>org.hibernate</groupId>
@@ -28,6 +34,12 @@
           <artifactId>jta</artifactId>
         </exclusion>
       </exclusions>
+    </dependency>
+    
+    <dependency>
+    <groupId>asm</groupId>
+      <artifactId>asm</artifactId>
+      <version>3.3.1</version>
     </dependency>
   </dependencies>
 </project>

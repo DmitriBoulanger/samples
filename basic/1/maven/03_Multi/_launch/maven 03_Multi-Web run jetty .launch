@@ -12,5 +12,5 @@
 	<booleanAttribute key="M2_UPDATE_SNAPSHOTS" value="false" />
 	<booleanAttribute key="M2_WORKSPACE_RESOLUTION" value="false" />
 	<stringAttribute key="org.eclipse.jdt.launching.WORKING_DIRECTORY"
-		value="${workspace_loc:/_samples repoitory/basic/1/maven/03_Multi/03_Multi-Web}" />
+		value="${workspace_loc:/_samples repository/basic/1/maven/03_Multi/03_Multi-Web}" />
 </launchConfiguration>

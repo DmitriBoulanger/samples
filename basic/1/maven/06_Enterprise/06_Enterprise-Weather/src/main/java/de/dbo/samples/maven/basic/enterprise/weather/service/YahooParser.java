@@ -1,20 +1,21 @@
-package de.dbo.samples.maven.basics.enterprise.weather.service;
+package de.dbo.samples.maven.basic.enterprise.weather.service;
+
+import de.dbo.samples.maven.basic.enterprise.weather.model.Atmosphere;
+import de.dbo.samples.maven.basic.enterprise.weather.model.Condition;
+import de.dbo.samples.maven.basic.enterprise.weather.model.Location;
+import de.dbo.samples.maven.basic.enterprise.weather.model.Weather;
+import de.dbo.samples.maven.basic.enterprise.weather.model.Wind;
 
 import java.io.InputStream;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.slf4j.*;
 import org.dom4j.Document;
 import org.dom4j.DocumentFactory;
 import org.dom4j.io.SAXReader;
-
-import de.dbo.samples.maven.basics.enterprise.weather.model.Atmosphere;
-import de.dbo.samples.maven.basics.enterprise.weather.model.Condition;
-import de.dbo.samples.maven.basics.enterprise.weather.model.Location;
-import de.dbo.samples.maven.basics.enterprise.weather.model.Weather;
-import de.dbo.samples.maven.basics.enterprise.weather.model.Wind;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class YahooParser {
 
