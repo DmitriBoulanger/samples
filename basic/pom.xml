@@ -16,26 +16,12 @@
 	<name>Samples Basic</name>
 
 	<description>
-Raactor of the Basic Samples
+Reactor only of the Basic Samples
 	</description>
 
 	<modules>
 		<module>0</module>
 		<module>1</module>
 	</modules>
-
-	<dependencies></dependencies>
-
-	<build>
-		<pluginManagement>
-			<plugins></plugins>
-		</pluginManagement>
-
-		<plugins></plugins>
-	</build>
-
-	<profiles></profiles>
-
-	<reporting></reporting>
 
 </project>
