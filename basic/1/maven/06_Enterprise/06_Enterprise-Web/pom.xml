@@ -86,16 +86,18 @@
 				</dependencies>
 			</plugin>
 			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>hibernate3-maven-plugin</artifactId>
-				<configuration>
-					<components>
-						<component>
-							<name>hbm2ddl</name>
-							<implementation>annotationconfiguration</implementation>
-						</component>
-					</components>
-				</configuration>
+				 
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>hibernate3-maven-plugin</artifactId>
+					<version>3.0</version>
+					
+					<configuration>
+        <hibernatetool>
+            <annotationconfiguration/>
+        </hibernatetool>
+    </configuration>
+				 
+				
 				<dependencies>
 					<dependency>
 						<groupId>hsqldb</groupId>

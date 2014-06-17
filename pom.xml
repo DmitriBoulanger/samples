@@ -1,5 +1,4 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" 
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
@@ -16,7 +15,7 @@ This project is a reactor for all sample-categories</description>
 
 	<properties>
 		<java.version>1.7</java.version>
-		
+
 		<slf4j.version>1.7.6</slf4j.version>
 		<junit.version>4.8.2</junit.version>
 
@@ -40,7 +39,7 @@ This project is a reactor for all sample-categories</description>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 	</properties>
-	
+
 	<modules>
 		<module>util</module>
 		<module>basic</module>
@@ -49,7 +48,7 @@ This project is a reactor for all sample-categories</description>
 	</modules>
 
 	<build>
-	    <finalName>${project.groupId}-${project.artifactId}</finalName>
+		<finalName>${project.groupId}-${project.artifactId}</finalName>
 		<pluginManagement>
 			<plugins>
 				
@@ -85,25 +84,25 @@ This project is a reactor for all sample-categories</description>
 					<version>2.8</version>
 				</plugin>
 
-				
+
 			</plugins>
 		</pluginManagement>
 
-	<plugins>
+		<plugins>
 		 <!-- JAVA -->
-		<plugin>
-			<groupId>org.apache.maven.plugins</groupId>
-			<artifactId>maven-compiler-plugin</artifactId>
-			<version>3.1</version>
-			<configuration>
-				<source>${java.version}</source>
-				<target>${java.version}</target>
-				<fork>true</fork>
-				<meminitial>128m</meminitial>
-				<maxmem>512m</maxmem>
-			</configuration>
-		</plugin>
-	</plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+					<fork>true</fork>
+					<meminitial>128m</meminitial>
+					<maxmem>512m</maxmem>
+				</configuration>
+			</plugin>
+		</plugins>
 	</build>
 
 	<dependencyManagement>
@@ -198,16 +197,17 @@ This project is a reactor for all sample-categories</description>
 				<groupId>org.hibernate</groupId>
 				<artifactId>hibernate-annotations</artifactId>
 				<version>${hibernate.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>javax.transaction</groupId>
+						<artifactId>jta</artifactId>
+					</exclusion>
+				</exclusions>
 			</dependency>
 			<dependency>
 				<groupId>org.hibernate</groupId>
 				<artifactId>hibernate-commons-annotations</artifactId>
 				<version>${hibernate.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.hibernate</groupId>
-				<artifactId>hibernate</artifactId>
-				<version>3.2.5.ga</version>
 			</dependency>
 			
 			
@@ -276,13 +276,13 @@ However, it has to appear in the tests
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<scope>test</scope>
 		</dependency>
-		
+
 	</dependencies>
-	
+
 </project>

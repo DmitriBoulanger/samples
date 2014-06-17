@@ -50,5 +50,11 @@ Enterprise Project with Model, Persist and WEB components
 			<artifactId>slf4j-log4j12</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+		
+			    <dependency>
+    <groupId>asm</groupId>
+      <artifactId>asm</artifactId>
+      <version>3.3.1</version>
+    </dependency>
 	</dependencies>
 </project>
