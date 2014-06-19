@@ -10,20 +10,29 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * Deployment as servlet of the Weather-service.
+ * 
+ * @author Dmitri Boulanger, Hombach
+ *
+ * D. Knuth: Programs are meant to be read by humans and 
+ *           only incidentally for computers to execute 
+ *
+ */
 public class WeatherServlet extends HttpServlet {
 	private static final long serialVersionUID = 5835859063740243337L;
 
-	public void doGet(HttpServletRequest request, HttpServletResponse response)
-        throws ServletException, IOException {
-	String zip = request.getParameter("zip" );
-	WeatherService weatherService = new WeatherService();
-	PrintWriter out = response.getWriter();
-        try {
-	    out.println( weatherService.retrieveForecast( zip ) );
-	} catch( Exception e ) {
-	    out.println( "Error Retrieving Forecast: " + e.getMessage() );
+	public void doGet(final HttpServletRequest request, final HttpServletResponse response)
+			throws ServletException, IOException {
+		final String zip = request.getParameter("zip");
+		final WeatherService weatherService = new WeatherService();
+		final PrintWriter out = response.getWriter();
+		try {
+			out.println(weatherService.retrieveForecast(zip));
+		} catch (final Exception e) {
+			out.println("Error Retrieving Forecast: " + e.getMessage());
+		}
+		out.flush();
+		out.close();
 	}
-        out.flush();
-        out.close();
-    }
 }

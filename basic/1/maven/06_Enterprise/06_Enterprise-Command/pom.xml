@@ -29,25 +29,25 @@ Command-line Weather Application
 					</descriptorRefs>
 				</configuration>
 			</plugin>
-       <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>hibernate3-maven-plugin</artifactId>
-        <configuration>
-          <components>
-            <component>
-              <name>hbm2ddl</name>
-              <implementation>annotationconfiguration</implementation>
-            </component>
-          </components>
-        </configuration>
-        <dependencies>
-          <dependency>
-            <groupId>hsqldb</groupId>
-            <artifactId>hsqldb</artifactId>
-	  <version>${hsqldb.version}</version>
-          </dependency>
-        </dependencies>
-      </plugin>
+       			<plugin>
+        				<groupId>org.codehaus.mojo</groupId>
+        					<artifactId>hibernate3-maven-plugin</artifactId>
+        					<configuration>
+          					<components>
+            						<component>
+              							<name>hbm2ddl</name>
+              							<implementation>annotationconfiguration</implementation>
+            						</component>
+          					</components>
+        					</configuration>
+        					<dependencies>
+          					<dependency>
+            						<groupId>hsqldb</groupId>
+            						<artifactId>hsqldb</artifactId>
+	  						<version>${hsqldb.version}</version>
+          					</dependency>
+        					</dependencies>
+      			</plugin>
 		</plugins>
 	</build>
 
@@ -56,13 +56,10 @@ Command-line Weather Application
 		<dependency>
 			<groupId>${project.groupId}</groupId>
 			<artifactId>06_Enterprise-Weather</artifactId>
-			<version>${project.version}</version>
 		</dependency>
-
 		<dependency>
 			<groupId>${project.groupId}</groupId>
 			<artifactId>06_Enterprise-Persist</artifactId>
-			<version>${project.version}</version>
 		</dependency>
 
 		<!-- Third parties -->

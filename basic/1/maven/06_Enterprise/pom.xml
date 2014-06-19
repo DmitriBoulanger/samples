@@ -20,15 +20,25 @@ Enterprise Project with Model, Persist and WEB components
 	<url>http://books.sonatype.com/mvnex-book/reference/multimodule-web-spring.html</url>
 	
 	<modules>
-		<module>06_Enterprise-Command</module>
 		<module>06_Enterprise-Model</module>
 		<module>06_Enterprise-Weather</module>
 		<module>06_Enterprise-Persist</module>
 		<module>06_Enterprise-Web</module>
+		<module>06_Enterprise-Command</module>
 	</modules>
 
 	<dependencyManagement>
 		<dependencies>
+			<dependency>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>06_Enterprise-Weather</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>06_Enterprise-Persist</artifactId>
+				<version>${project.version}</version>
+			</dependency>
 			<dependency>
 				<groupId>org.apache.velocity</groupId>
 				<artifactId>velocity</artifactId>
@@ -51,10 +61,12 @@ Enterprise Project with Model, Persist and WEB components
 			<scope>runtime</scope>
 		</dependency>
 		
-			    <dependency>
-    <groupId>asm</groupId>
-      <artifactId>asm</artifactId>
-      <version>3.3.1</version>
-    </dependency>
+		<dependency>
+    			<groupId>asm</groupId>
+      			<artifactId>asm</artifactId>
+      			<version>3.3.1</version>
+    		</dependency>
 	</dependencies>
+
+
 </project>
