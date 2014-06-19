@@ -1,1 +1,3 @@
-dir
+@echo off
+echo Eclispe launch-files ...
+dir /B *.launch
