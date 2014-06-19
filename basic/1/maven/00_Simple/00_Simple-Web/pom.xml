@@ -10,7 +10,7 @@
     <version>0.0.0-SNAPSHOT</version>
   </parent>
 
-	<artifactId>02_Web</artifactId>
+	<artifactId>00_Simple-Web</artifactId>
 	<packaging>war</packaging>
 	<name>Samples Basic-1 Maven Simple Web</name>
 	
@@ -36,7 +36,6 @@ A standard (simple) servlet is started using embedded Jetty-server
          <dependency>
 			<groupId>de.dbo.samples</groupId>
 			<artifactId>util</artifactId>
-			<version>${project.version}</version>
 		</dependency>
 	</dependencies>
 

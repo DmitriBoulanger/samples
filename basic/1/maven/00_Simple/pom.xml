@@ -15,14 +15,14 @@
 	<name>Samples Basic-1 Maven Simple</name>
 
 	<description>
-Project-collection with simple stand-alone examples
+Project-collection with simple stand-alone (independent) examples
 All examples shows straightforward maven use-cases
 	</description>
 
 	<modules>
-		<module>00_HelloWorld</module>
-		<module>01_Custom</module>
-		<module>02_Web</module>
+		<module>00_Simple-HelloWorld</module>
+		<module>00_Simple-Custom</module>
+		<module>00_Simple-Web</module>
 	</modules>
 
 	<dependencies>

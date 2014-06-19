@@ -9,7 +9,7 @@
 		<version>0.0.0-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>01_Custom</artifactId>
+	<artifactId>00_Simple-Custom</artifactId>
 	<packaging>jar</packaging>
 	<name>Samples Basic-1 Maven Simple Custom</name>
 
@@ -77,12 +77,14 @@ This application delivers on-line weather data from Yahoo-server
 			<scope>test</scope>
 		</dependency>
 
+		<!-- Logger configuration as resource -->
 		<dependency>
 			<groupId>de.dbo.samples.basic.1</groupId>
 			<artifactId>_logger</artifactId>
 			<version>${project.version}</version>
 			<scope>runtime</scope>
 		</dependency>
+		<!-- Logger implementation -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>

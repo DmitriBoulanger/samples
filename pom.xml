@@ -192,7 +192,7 @@ This project is a reactor for all sample-categories</description>
 				<version>${eclipselink.version}</version>
 			</dependency>
 
-        	<!-- Hibernate -->
+        			<!-- Hibernate -->
 			<dependency>
 				<groupId>org.hibernate</groupId>
 				<artifactId>hibernate-annotations</artifactId>
@@ -262,6 +262,14 @@ However, it has to appear in the tests
 				<version>${junit.version}</version>
 				<scope>test</scope>
 			</dependency>
+
+         		<!-- Resources, Pretty-Print -->
+         		<dependency>
+				<groupId>de.dbo.samples</groupId>
+				<artifactId>util</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+	 
 		</dependencies>
 
 	</dependencyManagement>

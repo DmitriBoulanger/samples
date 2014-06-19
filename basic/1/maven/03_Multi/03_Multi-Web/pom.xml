@@ -14,8 +14,8 @@
 	<packaging>war</packaging>
 	<name>Samples Basic-1 Maven Multi Web Application</name>
 
-	<dependencies>
 
+	<dependencies>
 		<dependency>
 			<groupId>${project.groupId}</groupId>
 			<artifactId>03_Multi-Weather</artifactId>
@@ -24,14 +24,13 @@
 
 		<!-- Provided from the J2EE-Container -->
 		<dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>servlet-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>javax.servlet.jsp</groupId>
-            <artifactId>jsp-api</artifactId>
-         </dependency>
-
+            		<groupId>javax.servlet</groupId>
+            		<artifactId>servlet-api</artifactId>
+        		</dependency>
+        		<dependency>
+            		<groupId>javax.servlet.jsp</groupId>
+            		<artifactId>jsp-api</artifactId>
+         	</dependency>
 	</dependencies>
 
 	<build>
