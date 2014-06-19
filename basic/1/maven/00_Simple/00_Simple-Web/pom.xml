@@ -44,21 +44,10 @@ A standard (simple) servlet is started using embedded Jetty-server
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
-				<configuration>
-					<warName>${project.artifactId}</warName>
-				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.mortbay.jetty</groupId>
 				<artifactId>maven-jetty-plugin</artifactId>
-				<dependencies>
-					<dependency>
-						<groupId>de.dbo.samples.basic.1</groupId>
-						<artifactId>_logger</artifactId>
-						<version>${project.version}</version>
-						<scope>runtime</scope>
-					</dependency>
-				</dependencies>
 			</plugin>
 		</plugins>
 	</build>

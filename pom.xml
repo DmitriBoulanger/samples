@@ -6,12 +6,15 @@
 	<artifactId>samples</artifactId>
 	<version>0.0.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
-	<name>Samples</name>
 
+	<name>Samples</name>
 	<description>
+	
 Top project for all samples. It contains
 all basic settings and dependency-management for all sample-projects.
-This project is a reactor for all sample-categories</description>
+This project is a reactor for all sample-categories
+
+	</description>
 
 	<properties>
 		<java.version>1.7</java.version>
@@ -21,12 +24,12 @@ This project is a reactor for all sample-categories</description>
 
 		<spring.version>3.1.2.RELEASE</spring.version>
 
-		<!-- Persistency -->
+		<!-- Persistence -->
 		<jpa.version>1.0.2</jpa.version>
 		<eclipselink.version>2.5.1</eclipselink.version>
 		<hibernate.version>3.3.0.ga</hibernate.version>
 		
-		<!-- Database -->
+		<!-- Databases -->
 		<hsqldb.version>1.8.0.7</hsqldb.version>
 		<derby.version>10.8.2.2</derby.version>
 		<mysql.version>5.1.6</mysql.version>
@@ -62,6 +65,9 @@ This project is a reactor for all sample-categories</description>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-war-plugin</artifactId>
 					<version>2.4</version>
+					<configuration>
+						<warName>${project.artifactId}</warName>
+					</configuration>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
@@ -84,12 +90,11 @@ This project is a reactor for all sample-categories</description>
 					<version>2.8</version>
 				</plugin>
 
-
 			</plugins>
 		</pluginManagement>
 
 		<plugins>
-		 <!-- JAVA -->
+		 	<!-- JAVA -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -192,7 +197,7 @@ This project is a reactor for all sample-categories</description>
 				<version>${eclipselink.version}</version>
 			</dependency>
 
-        			<!-- Hibernate -->
+        	<!-- Hibernate -->
 			<dependency>
 				<groupId>org.hibernate</groupId>
 				<artifactId>hibernate-annotations</artifactId>
@@ -223,6 +228,12 @@ This project is a reactor for all sample-categories</description>
 				<groupId>hsqldb</groupId>
 				<artifactId>hsqldb</artifactId>
 				<version>${hsqldb.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>org.slf4j</groupId>
+						<artifactId>slf4j-log4j12</artifactId>
+					</exclusion>
+				</exclusions>
 			</dependency>
 
 			<dependency>
@@ -245,15 +256,13 @@ This project is a reactor for all sample-categories</description>
 				<scope>compile</scope>
 			</dependency>
 
-			<!-- 
-By default, a logger-implementation should NOT occur in the deployment of the main code. 
-However, it has to appear in the tests
-	    		-->
+			<!-- A logger-implementation should NOT occur in deployment -->
+			<!-- the main code but it appears in the tests -->
 			<dependency>
 				<groupId>org.slf4j</groupId>
 				<artifactId>slf4j-log4j12</artifactId>
 				<version>${slf4j.version}</version>
-				<scope>runtime</scope>
+				<scope>compile</scope>
 			</dependency>
 
 			<dependency>
@@ -263,15 +272,14 @@ However, it has to appear in the tests
 				<scope>test</scope>
 			</dependency>
 
-         		<!-- Resources, Pretty-Print -->
-         		<dependency>
+         	<!-- Resources, Pretty-Print -->
+			<dependency>
 				<groupId>de.dbo.samples</groupId>
 				<artifactId>util</artifactId>
 				<version>${project.version}</version>
 			</dependency>
-	 
-		</dependencies>
 
+		</dependencies>
 	</dependencyManagement>
 
 	<dependencies>
@@ -283,8 +291,8 @@ However, it has to appear in the tests
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
+			<scope>test</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>

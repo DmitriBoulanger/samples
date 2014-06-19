@@ -11,7 +11,7 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import de.dbo.samples.maven.basic.enterprise.weather.model.Location;
 import de.dbo.samples.maven.basic.enterprise.weather.model.Weather;
 
-public class WeatherDAO extends HibernateDaoSupport {
+public final class WeatherDAO extends HibernateDaoSupport {
 
     public WeatherDAO() {}
 
@@ -23,7 +23,7 @@ public class WeatherDAO extends HibernateDaoSupport {
     	return (Weather) getHibernateTemplate().load( Weather.class, id);
     }
 
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({ "unchecked", "rawtypes" })
 	public List<Weather> recentForLocation( final Location location ) {
     	return (List<Weather>) getHibernateTemplate().execute(new HibernateCallback() {
 			public Object doInHibernate(Session session) {

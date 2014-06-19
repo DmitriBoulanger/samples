@@ -14,7 +14,8 @@ public class LocationDAO extends HibernateDaoSupport {
 
     public LocationDAO() {}
 
-    public Location findByZip(final String zip) {
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+	public Location findByZip(final String zip) {
     	return (Location) getHibernateTemplate().execute(new HibernateCallback() {
 			public Object doInHibernate(Session session) {
 				Query query = getSession().getNamedQuery("Location.uniqueByZip");
@@ -24,7 +25,6 @@ public class LocationDAO extends HibernateDaoSupport {
 		});
     }
     
-    @SuppressWarnings("unchecked")
 	public List<Location> all() {
     	return new ArrayList<Location>( getHibernateTemplate().loadAll(Location.class) );
     }

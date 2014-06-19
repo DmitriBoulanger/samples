@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" 
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0  http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
@@ -13,7 +12,7 @@
 	<artifactId>06_Enterprise-Web</artifactId>
 	<packaging>war</packaging>
 	<name>Samples Basic-1 Maven Enterprise WEB Application</name>
-	
+
 	<url>http://books.sonatype.com/mvnex-book/reference/multimodule-web-spring-sect-spring-running-web.html</url>
 
 	<dependencies>
@@ -31,23 +30,23 @@
 
 		<!-- Provided from the J2EE-Container -->
 		<dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>servlet-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>javax.servlet.jsp</groupId>
-            <artifactId>jsp-api</artifactId>
-         </dependency>
-         
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>jsp-api</artifactId>
+		</dependency>
+
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-web</artifactId>
 		</dependency>
 		<dependency>
-				<groupId>org.springframework</groupId>
-				<artifactId>spring-webmvc</artifactId>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
@@ -58,7 +57,7 @@
 			<artifactId>standard</artifactId>
 			<version>1.1.2</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.apache.velocity</groupId>
 			<artifactId>velocity</artifactId>
@@ -70,45 +69,35 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
-				<configuration>
-					<warName>${project.artifactId}</warName>
-				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.mortbay.jetty</groupId>
 				<artifactId>maven-jetty-plugin</artifactId>
 				<dependencies>
+					<!-- Logger implementation and its configuration -->
 					<dependency>
-						<groupId>hsqldb</groupId>
-						<artifactId>hsqldb</artifactId>
-						<version>${hsqldb.version}</version>
+						<groupId>org.slf4j</groupId>
+						<artifactId>slf4j-log4j12</artifactId>
+						<version>${slf4j.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>de.dbo.samples.basic.1</groupId>
+						<artifactId>_logger</artifactId>
+						<version>${project.version}</version>
 					</dependency>
 				</dependencies>
 			</plugin>
+
 			<plugin>
-				 
-					<groupId>org.codehaus.mojo</groupId>
-					<artifactId>hibernate3-maven-plugin</artifactId>
-					<version>3.0</version>
-					
-					<configuration>
-        <hibernatetool>
-            <annotationconfiguration/>
-        </hibernatetool>
-    </configuration>
-				 
-				
-				<dependencies>
-					<dependency>
-						<groupId>hsqldb</groupId>
-						<artifactId>hsqldb</artifactId>
-						<version>${hsqldb.version}</version>
-					</dependency>
-					
-					
-				</dependencies>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>hibernate3-maven-plugin</artifactId>
+				<configuration>
+					<hibernatetool>
+						<annotationconfiguration />
+					</hibernatetool>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
-	
+
 </project>

@@ -42,9 +42,6 @@ Deployment of the Weather-module as a servlet
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
-				<configuration>
-					<warName>${project.artifactId}</warName>
-				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.mortbay.jetty</groupId>

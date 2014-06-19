@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" 
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0    http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
@@ -13,12 +12,12 @@
 	<artifactId>06_Enterprise</artifactId>
 	<packaging>pom</packaging>
 	<name>Samples Basic-1 Maven Enterprise</name>
-	
+
 	<description>
 Enterprise Project with Model, Persist and WEB components
 	</description>
 	<url>http://books.sonatype.com/mvnex-book/reference/multimodule-web-spring.html</url>
-	
+
 	<modules>
 		<module>06_Enterprise-Model</module>
 		<module>06_Enterprise-Weather</module>
@@ -26,6 +25,62 @@ Enterprise Project with Model, Persist and WEB components
 		<module>06_Enterprise-Web</module>
 		<module>06_Enterprise-Command</module>
 	</modules>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+
+				<plugin>
+					<groupId>org.mortbay.jetty</groupId>
+					<artifactId>maven-jetty-plugin</artifactId>
+					<dependencies>
+						<dependency>
+							<groupId>hsqldb</groupId>
+							<artifactId>hsqldb</artifactId>
+							<version>${hsqldb.version}</version>
+							<exclusions>
+								<exclusion>
+									<groupId>org.slf4j</groupId>
+									<artifactId>slf4j-log4j12</artifactId>
+								</exclusion>
+							</exclusions>
+						</dependency>
+						<!-- Logger implementation and its configuration -->
+						<dependency>
+							<groupId>org.slf4j</groupId>
+							<artifactId>slf4j-log4j12</artifactId>
+							<version>${slf4j.version}</version>
+						</dependency>
+						<dependency>
+							<groupId>de.dbo.samples.basic.1</groupId>
+							<artifactId>_logger</artifactId>
+							<version>${project.version}</version>
+						</dependency>
+					</dependencies>
+				</plugin>
+
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>hibernate3-maven-plugin</artifactId>
+					<version>3.0</version>
+					<dependencies>
+						<dependency>
+							<groupId>hsqldb</groupId>
+							<artifactId>hsqldb</artifactId>
+							<version>${hsqldb.version}</version>
+							<exclusions>
+								<exclusion>
+									<groupId>org.slf4j</groupId>
+									<artifactId>slf4j-log4j12</artifactId>
+								</exclusion>
+							</exclusions>
+						</dependency>
+					</dependencies>
+				</plugin>
+
+			</plugins>
+		</pluginManagement>
+	</build>
 
 	<dependencyManagement>
 		<dependencies>
@@ -44,29 +99,29 @@ Enterprise Project with Model, Persist and WEB components
 				<artifactId>velocity</artifactId>
 				<version>1.5</version>
 			</dependency>
+			<dependency>
+				<groupId>asm</groupId>
+				<artifactId>asm</artifactId>
+				<version>3.3.1</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 
 	<dependencies>
-		<!-- Logging -->
+		
+		<!-- Logger implementation and its configuration -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<scope>runtime</scope>
+		</dependency>
 		<dependency>
 			<groupId>de.dbo.samples.basic.1</groupId>
 			<artifactId>_logger</artifactId>
 			<version>${project.version}</version>
 			<scope>runtime</scope>
 		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
-			<scope>runtime</scope>
-		</dependency>
-		
-		<dependency>
-    			<groupId>asm</groupId>
-      			<artifactId>asm</artifactId>
-      			<version>3.3.1</version>
-    		</dependency>
-	</dependencies>
 
+	</dependencies>
 
 </project>
