@@ -32,6 +32,10 @@ Hough transformation and Categorization of Black/White Images
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
+		</dependency>
 
 		<dependency>
 			<groupId>com.jhlabs</groupId>

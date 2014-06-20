@@ -32,13 +32,10 @@ Command-line Weather Application
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>hibernate3-maven-plugin</artifactId>
 				<configuration>
-					<components>
-						<component>
-							<name>hbm2ddl</name>
-							<implementation>annotationconfiguration</implementation>
-						</component>
-					</components>
-				</configuration>
+					<hibernatetool>
+						<annotationconfiguration />
+					</hibernatetool>
+				</configuration>		
 			</plugin>
 		</plugins>
 	</build>
@@ -53,12 +50,20 @@ Command-line Weather Application
 			<groupId>${project.groupId}</groupId>
 			<artifactId>06_Enterprise-Persist</artifactId>
 		</dependency>
-
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>06_Enterprise-Model</artifactId>
+		</dependency>
+		
 		<!-- Third parties -->
 
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>hsqldb</groupId>

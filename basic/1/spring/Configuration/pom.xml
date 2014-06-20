@@ -24,7 +24,17 @@ Annoatated and Java-based Spring Configurations
 			<artifactId>API</artifactId>
 			<version>${project.version}</version>
 		</dependency>
-		
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+	
 		<!-- JavaConfiguration uses cglib -->
 		<dependency>
 			<groupId>cglib</groupId>
