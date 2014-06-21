@@ -9,15 +9,18 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+
+import static javax.persistence.TemporalType.DATE;
 
 import java.util.Date;
 
-@Entity
+@Entity(name="Weather")
 @NamedQueries({ @NamedQuery(name = "Weather.byLocation", query = "from Weather w where w.location = :location") })
 public class Weather {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 
 	@ManyToOne(cascade = CascadeType.ALL)
@@ -32,6 +35,7 @@ public class Weather {
 	@OneToOne(mappedBy = "weather", cascade = CascadeType.ALL)
 	private Atmosphere atmosphere;
 
+	@Temporal(DATE)
 	private Date date;
 
 	public Weather() {
@@ -83,5 +87,12 @@ public class Weather {
 
 	public void setDate(Date date) {
 		this.date = date;
+	}
+	
+	public final String toString() {
+		final StringBuilder sb = new StringBuilder("Weather:");
+		sb.append(" id=" + id);
+		sb.append(" date=" + date);
+		return sb.toString();
 	}
 }

@@ -2,6 +2,8 @@ package org.sonatype.mavenbook.weather.yahoo;
 
 import java.io.InputStream;
 
+import org.junit.Test;
+
 import junit.framework.TestCase;
 
 import de.dbo.samples.maven.basic.enterprise.weather.model.Weather;
@@ -13,6 +15,7 @@ public class YahooParserTest extends TestCase {
 		super(name);
 	}
 	
+	@Test
 	public void testParser() throws Exception {
 		InputStream nyData = 
 			getClass().getClassLoader().getResourceAsStream("ny-weather.xml");

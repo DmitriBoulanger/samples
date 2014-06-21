@@ -8,11 +8,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
-@Entity
+@Entity(name="Wind")
 public class Wind {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 
 	private String chill;
@@ -65,5 +65,14 @@ public class Wind {
 	public void setWeather(Weather weather) {
 		this.weather = weather;
 	}
-
+	
+	public final String toString() {
+		final StringBuilder sb = new StringBuilder("Wind:");
+		sb.append(" id=" + id);
+		sb.append(" chill=" + chill);
+		sb.append(" direction=" + direction);
+		sb.append(" speed=" + speed);
+		return sb.toString();
+	}
+	
 }
