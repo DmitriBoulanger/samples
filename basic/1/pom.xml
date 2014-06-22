@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	
+
 	<parent>
 		<groupId>de.dbo.samples.basic</groupId>
 		<artifactId>basic</artifactId>
@@ -12,17 +12,30 @@
 	<artifactId>1</artifactId>
 	<packaging>pom</packaging>
 	<name>Samples Basic-1</name>
-	
+
 	<description>
 Reactor for all basic-1 samples.
 	</description>
-	
+
 	<modules>
 		<module>_logger</module>
 		<module>maven</module>
 		<module>spring</module>
 	</modules>
 
+	<!-- Logger configuration for tests in basic.1 samples -->
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>de.dbo.samples.basic.1</groupId>
+				<artifactId>_logger</artifactId>
+				<version>${project.version}</version>
+				<scope>test</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<!-- Logger for tests in basic.1 samples -->
 	<dependencies>
 		<dependency>
 			<groupId>org.slf4j</groupId>
@@ -30,6 +43,5 @@ Reactor for all basic-1 samples.
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-
 
 </project>

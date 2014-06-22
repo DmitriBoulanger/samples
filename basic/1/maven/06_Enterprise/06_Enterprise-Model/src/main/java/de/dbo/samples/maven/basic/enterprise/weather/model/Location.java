@@ -56,6 +56,7 @@ public class Location extends AbstractBaseEntity {
 		sb.append(" city=" + city);
 		sb.append(" region=" + region);
 		sb.append(" country=" + country);
+		sb.append(super.toString());
 		return sb.toString();
 	}
 

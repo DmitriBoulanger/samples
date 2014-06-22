@@ -27,13 +27,14 @@ This project is a reactor for all sample-categories
 		<!-- Persistence -->
 		<jpa.version>1.0.2</jpa.version>
 		<eclipselink.version>2.5.1</eclipselink.version>
+		<eclipselink.javax.persistence.version>2.1.0</eclipselink.javax.persistence.version>
 		
 		<!-- Hibernate -->
 		<hibernate.version>3.3.0.ga</hibernate.version>
-		<hibernate-core.version>3.6.4.Final</hibernate-core.version>
-		<hibernate-entitymanager.version>3.3.2.GA</hibernate-entitymanager.version>
-		<hibernate-commons-annotations.version>4.0.2.Final</hibernate-commons-annotations.version>
-		<hibernate-jpa-2.0-api.version>1.0.1.Finail</hibernate-jpa-2.0-api.version>
+		<hibernate-core.version>3.6.9.Final</hibernate-core.version>
+		<hibernate-entitymanager.version>3.6.9.Final</hibernate-entitymanager.version>
+		<hibernate-commons-annotations.version>4.0.1.Final</hibernate-commons-annotations.version>
+		<hibernate-jpa-2.0-api.version>1.0.1.Final</hibernate-jpa-2.0-api.version>
 		
 		<!-- Databases -->
 		<hsqldb.version>1.8.0.7</hsqldb.version>
@@ -211,6 +212,11 @@ This project is a reactor for all sample-categories
 				<artifactId>eclipselink</artifactId>
 				<version>${eclipselink.version}</version>
 			</dependency>
+			<dependency>
+				<groupId>org.eclipse.persistence</groupId>
+				<artifactId>javax.persistence</artifactId>
+				<version>${eclipselink.javax.persistence.version}</version>
+			</dependency>
 
         	<!-- Hibernate -->
 			<dependency>
@@ -233,11 +239,6 @@ This project is a reactor for all sample-categories
 				<groupId>org.hibernate</groupId>
 				<artifactId>hibernate-core</artifactId>
 				<version>${hibernate-core.version}</version>
-			</dependency>
-			<dependency>
-    			<groupId>org.hibernate.javax.persistence</groupId>
-    			<artifactId>hibernate-jpa-2.0-api</artifactId>
-    			<version>1.0.1.Final</version>
 			</dependency>
 			<dependency>
 				<groupId>org.hibernate</groupId>
@@ -292,12 +293,7 @@ This project is a reactor for all sample-categories
 
 			<!-- A logger-implementation should NOT occur in deployment -->
 			<!-- the main code but it appears in the tests -->
-			<dependency>
-				<groupId>org.slf4j</groupId>
-				<artifactId>slf4j-log4j12</artifactId>
-				<version>${slf4j.version}</version>
-				<scope>runtime</scope>
-			</dependency>
+			
 
 			<dependency>
 				<groupId>junit</groupId>
@@ -308,6 +304,11 @@ This project is a reactor for all sample-categories
 
          	<!-- Resources, Pretty-Print -->
 			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-log4j12</artifactId>
+				<version>${slf4j.version}</version>
+				<scope>runtime</scope>
+			</dependency><dependency>
 				<groupId>de.dbo.samples</groupId>
 				<artifactId>util</artifactId>
 				<version>${project.version}</version>

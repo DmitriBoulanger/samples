@@ -15,16 +15,40 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>javax.persistence</groupId>
-			<artifactId>persistence-api</artifactId>
+			<groupId>org.eclipse.persistence</groupId>
+			<artifactId>javax.persistence</artifactId>
 		</dependency>
+       <!-- 
+       		Don't use the below. It is not consistent with hibernate,
+			<dependency>
+				<groupId>javax.persistence</groupId>
+				<artifactId>persistence-api</artifactId>
+			</dependency> 
+			see: https://forum.hibernate.org/viewtopic.php?f=1&t=1012759
+		-->
 		
-		<!-- TESTS with MySQL, Derby and HSQL-->
+		<!-- TESTS -->
+		
+		<!-- eclipse-link -->
 		<dependency>
 			<groupId>org.eclipse.persistence</groupId>
 			<artifactId>eclipselink</artifactId>
 			<scope>test</scope>
 		</dependency>
+ 		
+		<!-- hibernate-persistency -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate.javax.persistence</groupId>
+			<artifactId>hibernate-jpa-2.0-api</artifactId>
+			<scope>test</scope>
+		</dependency>
+		
+		<!-- MySQL, Derby and HSQL-->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
@@ -46,22 +70,10 @@
 			<scope>test</scope>
 		</dependency>
 
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-core</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-entitymanager</artifactId>
-			<scope>test</scope>
-		</dependency>
-		
-		<!-- Logger configuration as resource -->
+		<!-- Logger configuration -->
 		<dependency>
 			<groupId>de.dbo.samples.basic.1</groupId>
 			<artifactId>_logger</artifactId>
-			<version>${project.version}</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>

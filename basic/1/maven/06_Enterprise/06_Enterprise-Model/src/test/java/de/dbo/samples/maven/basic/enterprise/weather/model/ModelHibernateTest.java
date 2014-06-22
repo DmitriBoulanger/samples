@@ -25,7 +25,7 @@ import static org.junit.Assert.fail;
 public class ModelHibernateTest {
 	private static final Logger log = LoggerFactory.getLogger(ModelHibernateTest.class);
 	 
-	private static String PERSISTENCE_UNIT = "Enterprise-Model";
+	private static String PERSISTENCE_UNIT = "Enterprise-Model-hibernate";
 	private final ModelAssertions modelAssertions = new ModelAssertions();
 	
 	/**
@@ -35,7 +35,7 @@ public class ModelHibernateTest {
 	public void inMemory_DERBY() {
 		final EntityManagerFactory entityManagerFactory = entityManagerFactoryImMemoryDerby();
 		if (null!=entityManagerFactory && entityManagerFactory.isOpen()) {
-		log.info("EntityManage factory for InMemory Derby created and it is ready");
+		log.info("EntityManager factory for InMemory Derby created");
 		} else {
 			fail("Failure creating EntityManage factory for InMemory Derby");
 		}
@@ -49,7 +49,7 @@ public class ModelHibernateTest {
 	public void inMemory_HSQL() {
 		final EntityManagerFactory entityManagerFactory = entityManagerFactoryImMemoryHsql();
 		if (null!=entityManagerFactory && entityManagerFactory.isOpen()) {
-		log.info("EntityManage factory for InMemory HSQL created and it is ready");
+		log.info("EntityManager factory for InMemory HSQL created");
 		} else {
 			fail("Failure creating EntityManage factory for InMemory HSQL");
 		}
@@ -57,17 +57,14 @@ public class ModelHibernateTest {
 	}
 	
 	/**
-	 * test with a MySql server.
-	 * The test runs only once since because the locations use zip-attribute as PK
-	 * but the test-data are always the same. To re-run test, drop all tables from the test-schema.
-	 * The schema name is enterprise
+	 * test runs with a MySQL server. The schema name is enterprise
 	 */
-//	@org.junit.Ignore
+	@org.junit.Ignore
 	@Test
 	public void server_MySQL() {
 		final EntityManagerFactory entityManagerFactory = entityManagerFactoryServerMySql();
 		if (null!=entityManagerFactory && entityManagerFactory.isOpen()) {
-		log.info("Entity-Manager factory for InMemory MySql created and it is ready");
+		log.info("Entity-Manager factory for InMemory MySql created");
 		} else {
 			fail("Failure creating Entity-Manager factory for InMemory MySql");
 		}
@@ -86,35 +83,40 @@ public class ModelHibernateTest {
 		config.put("javax.persistence.jdbc.password", "");
 
 		targetDatabase("org.hibernate.dialect.DerbyDialect",config);
+		
 		return Persistence.createEntityManagerFactory(PERSISTENCE_UNIT, config);
 	}
 	
 	private static final EntityManagerFactory entityManagerFactoryImMemoryHsql() {
 		final Map<String, String> config = new HashMap<String, String>();
+		
 		config.put("javax.persistence.jdbc.driver","org.hsqldb.jdbcDriver");
 		config.put("javax.persistence.jdbc.url","jdbc:hsqldb:mem:enterpise;create=true");
 		config.put("javax.persistence.jdbc.user", "sa");
 		config.put("javax.persistence.jdbc.password", "");
 		
 		targetDatabase("org.hibernate.dialect.HSQLDialect",config);
+		
 		return Persistence.createEntityManagerFactory(PERSISTENCE_UNIT, config);
 	}
 	
 	private static final EntityManagerFactory entityManagerFactoryServerMySql() {
 		final Map<String, String> config = new HashMap<String, String>();
+		
 		config.put("javax.persistence.jdbc.driver","com.mysql.jdbc.Driver");
 		config.put("javax.persistence.jdbc.url","jdbc:mysql://localhost:3306/enterprise");
 		config.put("javax.persistence.jdbc.user", "root");
 		config.put("javax.persistence.jdbc.password", "root");
 
 		targetDatabase("org.hibernate.dialect.MySQLDialect",config);
+		
 		return Persistence.createEntityManagerFactory(PERSISTENCE_UNIT, config);
 	}
 	
 	private static final void targetDatabase(final String key, final Map<String, String> config) {
-//		config.put("provider", "org.hibernate.ejb.HibernatePersistence");
+		log.info("Target database " + key + " with Hibernate provider ...");
 		config.put("hibernate.dialect",key);
-		config.put("hbm2ddl.auto","create");
+		config.put("hbm2ddl.auto","create-drop");
 		config.put("hibernate.connection.pool_size","1");
 		config.put("show_sql","true");
 		config.put("hibernate.temp.use_jdbc_metadata_defaults","false");

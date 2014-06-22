@@ -25,7 +25,7 @@ import static org.junit.Assert.fail;
 public class ModelEclipselinkTest {
 	private static final Logger log = LoggerFactory.getLogger(ModelEclipselinkTest.class);
 	 
-	private static String PERSISTENCE_UNIT = "Enterprise-Model";
+	private static String PERSISTENCE_UNIT = "Enterprise-Model-eclipselink";
 	private final ModelAssertions modelAssertions = new ModelAssertions();
 	
 	/**
@@ -35,7 +35,7 @@ public class ModelEclipselinkTest {
 	public void inMemory_DERBY() {
 		final EntityManagerFactory entityManagerFactory = entityManagerFactoryImMemoryDerby();
 		if (null!=entityManagerFactory && entityManagerFactory.isOpen()) {
-		log.info("EntityManage factory for InMemory Derby created and it is ready");
+		log.info("EntityManager factory for InMemory Derby created");
 		} else {
 			fail("Failure creating EntityManage factory for InMemory Derby");
 		}
@@ -49,7 +49,7 @@ public class ModelEclipselinkTest {
 	public void inMemory_HSQL() {
 		final EntityManagerFactory entityManagerFactory = entityManagerFactoryImMemoryHsql();
 		if (null!=entityManagerFactory && entityManagerFactory.isOpen()) {
-		log.info("EntityManage factory for InMemory HSQL created and it is ready");
+		log.info("EntityManager factory for InMemory HSQL created");
 		} else {
 			fail("Failure creating EntityManage factory for InMemory HSQL");
 		}
@@ -64,7 +64,7 @@ public class ModelEclipselinkTest {
 	public void server_MySQL() {
 		final EntityManagerFactory entityManagerFactory = entityManagerFactoryServerMySql();
 		if (null!=entityManagerFactory && entityManagerFactory.isOpen()) {
-		log.info("EntityManage factory for InMemory MySql created and it is ready");
+		log.info("EntityManager factory for InMemory MySql created");
 		} else {
 			fail("Failure creating EntityManage factory for InMemory MySql");
 		}
@@ -77,35 +77,45 @@ public class ModelEclipselinkTest {
 	
 	private static final EntityManagerFactory entityManagerFactoryImMemoryDerby() {
 		final Map<String, String> config = new HashMap<String, String>();
+		
 		config.put("javax.persistence.jdbc.driver","org.apache.derby.jdbc.EmbeddedDriver");
 		config.put("javax.persistence.jdbc.url","jdbc:derby:memory:enterpise;create=true");
 		config.put("javax.persistence.jdbc.user", "");
 		config.put("javax.persistence.jdbc.password", "");
+		
 		targetDatabaseWithEclipselink("DERBY",config);
+		
 		return Persistence.createEntityManagerFactory(PERSISTENCE_UNIT, config);
 	}
 	
 	private static final EntityManagerFactory entityManagerFactoryImMemoryHsql() {
 		final Map<String, String> config = new HashMap<String, String>();
+		
 		config.put("javax.persistence.jdbc.driver","org.hsqldb.jdbcDriver");
 		config.put("javax.persistence.jdbc.url","jdbc:hsqldb:mem:enterpise;create=true");
 		config.put("javax.persistence.jdbc.user", "sa");
 		config.put("javax.persistence.jdbc.password", "");
+		
 		targetDatabaseWithEclipselink("HSQL",config);
+		
 		return Persistence.createEntityManagerFactory(PERSISTENCE_UNIT, config);
 	}
 	
 	private static final EntityManagerFactory entityManagerFactoryServerMySql() {
 		final Map<String, String> config = new HashMap<String, String>();
+		
 		config.put("javax.persistence.jdbc.driver","com.mysql.jdbc.Driver");
 		config.put("javax.persistence.jdbc.url","jdbc:mysql://localhost:3306/enterprise");
 		config.put("javax.persistence.jdbc.user", "root");
 		config.put("javax.persistence.jdbc.password", "root");
+		
 		targetDatabaseWithEclipselink("MYSQL",config);
+		
 		return Persistence.createEntityManagerFactory(PERSISTENCE_UNIT, config);
 	}
 	
 	private static final void targetDatabaseWithEclipselink(final String key, final Map<String, String> config) {
+		log.info("Target database " + key + " with Eclipse-Link provider ...");
 		config.put("provider", "org.eclipse.persistence.jpa.PersistenceProvider");
 		config.put("eclipselink.target-database", key);
 		config.put("eclipselink.ddl-generation", "create-or-extend-tables");

@@ -99,6 +99,7 @@ Enterprise Project with Model, Persist and WEB components
 				<artifactId>06_Enterprise-Model</artifactId>
 				<version>${project.version}</version>
 			</dependency>
+			
 			<dependency>
 				<groupId>org.apache.velocity</groupId>
 				<artifactId>velocity</artifactId>
