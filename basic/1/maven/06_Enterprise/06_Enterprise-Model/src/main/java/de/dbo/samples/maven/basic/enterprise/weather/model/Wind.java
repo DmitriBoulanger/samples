@@ -2,19 +2,13 @@ package de.dbo.samples.maven.basic.enterprise.weather.model;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 @Entity(name="Wind")
-public class Wind {
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer id;
-
+public class Wind extends AbstractBaseEntity {
+	private static final long serialVersionUID = -6590430126609581934L;
+	
 	private String chill;
 	private String direction;
 	private String speed;
@@ -24,14 +18,6 @@ public class Wind {
 	private Weather weather;
 
 	public Wind() {
-	}
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
 	}
 
 	public String getChill() {
@@ -68,10 +54,10 @@ public class Wind {
 	
 	public final String toString() {
 		final StringBuilder sb = new StringBuilder("Wind:");
-		sb.append(" id=" + id);
 		sb.append(" chill=" + chill);
 		sb.append(" direction=" + direction);
 		sb.append(" speed=" + speed);
+		sb.append(super.toString());
 		return sb.toString();
 	}
 	

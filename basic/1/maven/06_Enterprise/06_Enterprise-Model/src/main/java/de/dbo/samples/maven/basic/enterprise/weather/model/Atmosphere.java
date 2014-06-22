@@ -2,38 +2,25 @@ package de.dbo.samples.maven.basic.enterprise.weather.model;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 @Entity(name="Atmosphere")
-public class Atmosphere {
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer id;
+public class Atmosphere extends AbstractBaseEntity {
+	private static final long serialVersionUID = 1L;
 
 	private String humidity;
 	private String visibility;
 	private String pressure;
 	private String rising;
+	
+	public Atmosphere()  {
+		
+	}
 
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "weather_id", nullable = false)
 	private Weather weather;
-
-	public Atmosphere() {
-	}
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
 
 	public final String getHumidity() {
 		return humidity;
@@ -77,11 +64,11 @@ public class Atmosphere {
 	
 	public final String toString() {
 		final StringBuilder sb = new StringBuilder("Atmosphere:");
-		sb.append(" id=" + id);
 		sb.append(" humidity=" + humidity);
 		sb.append(" visibility=" + visibility);
 		sb.append(" pressure=" + pressure);
 		sb.append(" rising=" + rising);
+		sb.append(super.toString());
 		return sb.toString();
 	}
 

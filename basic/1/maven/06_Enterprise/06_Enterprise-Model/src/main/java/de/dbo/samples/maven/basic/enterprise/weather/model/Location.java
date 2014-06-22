@@ -1,22 +1,21 @@
 package de.dbo.samples.maven.basic.enterprise.weather.model;
 
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
 @Entity(name="Location")
 @NamedQueries({ @NamedQuery(name = "Location.uniqueByZip", query = "from Location l where l.zip = :zip") })
-public class Location {
-
-	@Id
+public class Location extends AbstractBaseEntity {
+	private static final long serialVersionUID = -4171882636642905034L;
+	
 	private String zip;
-
 	private String city;
 	private String region;
 	private String country;
 
 	public Location() {
+		
 	}
 
 	public String getZip() {

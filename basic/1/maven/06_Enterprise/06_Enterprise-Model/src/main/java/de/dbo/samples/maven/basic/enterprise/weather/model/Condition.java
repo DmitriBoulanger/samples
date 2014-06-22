@@ -2,19 +2,13 @@ package de.dbo.samples.maven.basic.enterprise.weather.model;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 @Entity(name="WeatherCondition")
-public class Condition {
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer id;
-
+public class Condition extends AbstractBaseEntity {
+	private static final long serialVersionUID = 1919947344174594297L;
+	
 	private String text;
 	private String code;
 	private String temp;
@@ -25,14 +19,7 @@ public class Condition {
 	private Weather weather;
 
 	public Condition() {
-	}
 
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
 	}
 
 	public String getText() {
@@ -77,11 +64,11 @@ public class Condition {
 	
 	public final String toString() {
 		final StringBuilder sb = new StringBuilder("Condition:");
-		sb.append(" id=" + id);
 		sb.append(" text=" + text);
 		sb.append(" code=" + code);
 		sb.append(" temp=" + temp);
 		sb.append(" date=" + date);
+		sb.append(super.toString());
 		return sb.toString();
 	}
 

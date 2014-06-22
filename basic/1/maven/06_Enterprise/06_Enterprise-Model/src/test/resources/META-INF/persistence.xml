@@ -11,7 +11,8 @@
 	-->
 
 	<persistence-unit name="Enterprise-Model" transaction-type="RESOURCE_LOCAL">
-		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider> 
+		<!-- <provider>org.hibernate.ejb.HibernatePersistence</provider> -->
 		<class>de.dbo.samples.maven.basic.enterprise.weather.model.Atmosphere</class>
 		<class>de.dbo.samples.maven.basic.enterprise.weather.model.Condition</class>
 		<class>de.dbo.samples.maven.basic.enterprise.weather.model.Location</class>

@@ -1,10 +1,9 @@
 package de.dbo.samples.maven.basic.enterprise.weather.model;
 
+import java.util.Date;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -13,15 +12,10 @@ import javax.persistence.Temporal;
 
 import static javax.persistence.TemporalType.DATE;
 
-import java.util.Date;
-
 @Entity(name="Weather")
 @NamedQueries({ @NamedQuery(name = "Weather.byLocation", query = "from Weather w where w.location = :location") })
-public class Weather {
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer id;
+public class Weather extends AbstractBaseEntity {
+	private static final long serialVersionUID = -6132310396078371731L;
 
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Location location;
@@ -39,14 +33,7 @@ public class Weather {
 	private Date date;
 
 	public Weather() {
-	}
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
+		
 	}
 
 	public Location getLocation() {
@@ -91,8 +78,8 @@ public class Weather {
 	
 	public final String toString() {
 		final StringBuilder sb = new StringBuilder("Weather:");
-		sb.append(" id=" + id);
 		sb.append(" date=" + date);
+		sb.append(super.toString());
 		return sb.toString();
 	}
 }
