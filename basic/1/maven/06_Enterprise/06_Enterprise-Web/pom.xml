@@ -20,17 +20,14 @@
 		<dependency>
 			<groupId>${project.groupId}</groupId>
 			<artifactId>06_Enterprise-Weather</artifactId>
-			<version>${project.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>${project.groupId}</groupId>
 			<artifactId>06_Enterprise-Model</artifactId>
-			<version>${project.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>${project.groupId}</groupId>
 			<artifactId>06_Enterprise-Persist</artifactId>
-			<version>${project.version}</version>
 		</dependency>
 
 		<!-- Provided from the J2EE-Container -->

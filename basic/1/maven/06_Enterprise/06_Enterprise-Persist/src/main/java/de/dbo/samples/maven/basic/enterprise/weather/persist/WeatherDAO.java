@@ -19,7 +19,7 @@ public final class WeatherDAO extends HibernateDaoSupport {
     	getHibernateTemplate().save( weather );
     }
 
-    public Weather load(Integer id) {
+    public Weather load(String id) {
     	return (Weather) getHibernateTemplate().load( Weather.class, id);
     }
 
