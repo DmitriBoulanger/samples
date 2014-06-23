@@ -12,7 +12,7 @@ public abstract class AbstractBaseEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
  
 	@Id
-	private final String id;
+	protected final String id;
  
 	public AbstractBaseEntity() {
 		this.id = UUID.randomUUID().toString().replace("-", "");

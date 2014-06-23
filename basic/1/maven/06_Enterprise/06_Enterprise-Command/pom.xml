@@ -50,10 +50,6 @@ Command-line Weather Application
 			<groupId>${project.groupId}</groupId>
 			<artifactId>06_Enterprise-Persist</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>${project.groupId}</groupId>
-			<artifactId>06_Enterprise-Model</artifactId>
-		</dependency>
 		
 		<!-- Third parties -->
 
@@ -69,7 +65,19 @@ Command-line Weather Application
 			<groupId>hsqldb</groupId>
 			<artifactId>hsqldb</artifactId>
 		</dependency>
-
+		
+		<!-- Logger and its configuration -->
+		<dependency>
+			<groupId>de.dbo.samples.basic.1</groupId>
+			<artifactId>_logger</artifactId>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<scope>compile</scope>
+		</dependency>
+		
 	</dependencies>
 
 </project>

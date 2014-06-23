@@ -17,23 +17,25 @@ public class WeatherFormatter {
 	private static Logger log = LoggerFactory.getLogger(WeatherFormatter.class);
 
 	public String formatWeather( Weather weather ) throws Exception {
-		log.info( "Formatting Weather Data" );
-		Reader reader = new InputStreamReader( getClass().getClassLoader().getResourceAsStream("weather.vm"));
-		VelocityContext context = new VelocityContext();
+		log.info( "Formatting Weather Data ..." );
+		final Reader reader = new InputStreamReader( getClass().getClassLoader().getResourceAsStream("weather.vm"));
+		final VelocityContext context = new VelocityContext();
 		context.put("weather", weather );
-		StringWriter writer = new StringWriter();
+		final StringWriter writer = new StringWriter();
 		Velocity.evaluate(context, writer, "", reader);
+		log.info( "Formatting Weather Data done" );
 		return writer.toString();		
 	}
 
 	public String formatHistory( Location location, List<Weather> weathers ) throws Exception {
-		log.info( "Formatting History Data" );
-		Reader reader = new InputStreamReader( getClass().getClassLoader().getResourceAsStream("history.vm"));
+		log.info( "Formatting History Data ..." );
+		final Reader reader = new InputStreamReader( getClass().getClassLoader().getResourceAsStream("history.vm"));
 		VelocityContext context = new VelocityContext();
 		context.put("location", location );
 		context.put("weathers", weathers );
-		StringWriter writer = new StringWriter();
+		final StringWriter writer = new StringWriter();
 		Velocity.evaluate(context, writer, "", reader);
+		log.info( "Formatting History Data done" );
 		return writer.toString();		
 	}
 }

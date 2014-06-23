@@ -12,7 +12,7 @@ public class YahooRetriever {
 	private static Logger log = LoggerFactory.getLogger(WeatherFormatter.class);
 
 	public InputStream retrieve(String zipcode) throws Exception {
-		log.info( "Retrieving Weather Data" );
+		log.info( "Retrieving Weather Data (zipcode="+zipcode+")...." );
 		String url = "http://weather.yahooapis.com/forecastrss?p=" + zipcode;
         // Add this if you need to connect via a corporate proxy
 //      String proxyHost = "[proxy server]";
@@ -20,7 +20,10 @@ public class YahooRetriever {
 //      SocketAddress addr = new InetSocketAddress(proxyHost, proxyPort);
 //      Proxy httpProxy = new Proxy(Proxy.Type.HTTP, addr);
 //      URLConnection conn = new URL(url).openConnection(httpProxy);
-		URLConnection conn = new URL(url).openConnection();
+		final URLConnection conn = new URL(url).openConnection();
+		if (null!=conn) {
+			log.info( "Retrieving Weather Data (zipcode="+zipcode+") connection opened" );
+		}
 		return conn.getInputStream();
 	}
 

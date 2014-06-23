@@ -20,6 +20,7 @@ Log4j-resources (configuration) for all Samples Basic-1 projects
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
+			<scope>compile</scope>
 		</dependency>
 	</dependencies>
 </project>

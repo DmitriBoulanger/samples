@@ -38,12 +38,12 @@
                 <prop key="hibernate.dialect">org.hibernate.dialect.HSQLDialect</prop>
                 <prop key="hibernate.connection.pool_size">0</prop>
         		<prop key="hibernate.connection.driver_class">org.hsqldb.jdbcDriver</prop>
-        		<prop key="hibernate.connection.url">jdbc:hsqldb:mem:weather;create=true</prop>
+        		<prop key="hibernate.connection.url">jdbc:hsqldb:data/weather;shutdown=true</prop>
         		<prop key="hibernate.connection.username">sa</prop>
         	    <prop key="hibernate.connection.password"></prop>
         	    <prop key="hibernate.connection.autocommit">true</prop>
-        	    <prop key="hibernate.jdbc.batch_size"></prop>
-        	    <prop key="hbm2ddl.auto">create-drop</prop>
+        	    <prop key="hibernate.jdbc.batch_size">0</prop>
+        	    <prop key="hibernate.hbm2ddl.auto">create-drop</prop>
             </props>
         </property>
     </bean>
