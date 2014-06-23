@@ -30,12 +30,7 @@ Command-line Weather Application
 			</plugin>
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>hibernate3-maven-plugin</artifactId>
-				<configuration>
-					<hibernatetool>
-						<annotationconfiguration />
-					</hibernatetool>
-				</configuration>		
+				<artifactId>hibernate3-maven-plugin</artifactId>		
 			</plugin>
 		</plugins>
 	</build>

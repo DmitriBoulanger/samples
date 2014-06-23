@@ -63,6 +63,11 @@ Enterprise Project with Model, Persist and WEB components
 					<groupId>org.codehaus.mojo</groupId>
 					<artifactId>hibernate3-maven-plugin</artifactId>
 					<version>3.0</version>
+					<configuration>
+						<hibernatetool>
+							<annotationconfiguration />
+						</hibernatetool>
+					</configuration>
 					<dependencies>
 						<dependency>
 							<groupId>hsqldb</groupId>
