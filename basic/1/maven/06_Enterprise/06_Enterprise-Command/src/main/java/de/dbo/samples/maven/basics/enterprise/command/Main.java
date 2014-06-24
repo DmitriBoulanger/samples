@@ -30,7 +30,7 @@ public class Main {
 	public static void main(String[] args) throws Exception {
 		
 		// Read the Zip Code from the Command-line (if none supplied, use 60202)
-		String zipcode = "60202";
+		String zipcode = "60101";
 		try {
 			zipcode = args[0];
 		} catch (Exception e) {
@@ -57,7 +57,7 @@ public class Main {
 		main.weatherService = (WeatherService) context.getBean("weatherService");
 		main.locationDAO = (LocationDAO) context.getBean("locationDAO");
 		main.weatherDAO = (WeatherDAO) context.getBean("weatherDAO");
-		log.info("Main beans created");
+		log.info("Service beans created");
 		
 		if( operation.equals("weather")) {
 			main.getWeather();
@@ -73,14 +73,14 @@ public class Main {
 	}
 
 	public void getWeather() throws Exception {
-		Weather weather = weatherService.retrieveForecast(zip);
+		final Weather weather = weatherService.retrieveForecast(zip);
 		weatherDAO.save( weather );
-		System.out.print(new WeatherFormatter().formatWeather(weather));
+		log.info("\n" + new WeatherFormatter().formatWeather(weather));
 	}
 
 	public void getHistory() throws Exception {
-		Location location = locationDAO.findByZip(zip);
+		final Location location = locationDAO.findByZip(zip);
 		List<Weather> weathers = weatherDAO.recentForLocation(location);
-		System.out.print(new WeatherFormatter().formatHistory(location, weathers));
+		log.info("\n" + new WeatherFormatter().formatHistory(location, weathers));
 	}
 }

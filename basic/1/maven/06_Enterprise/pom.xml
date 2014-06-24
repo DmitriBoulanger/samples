@@ -65,7 +65,7 @@ Enterprise Project with Model, Persist and WEB components
 					<version>3.0</version>
 					<configuration>
 						<hibernatetool>
-							<annotationconfiguration />
+							<annotationconfiguration/>
 						</hibernatetool>
 					</configuration>
 					<dependencies>
@@ -76,7 +76,7 @@ Enterprise Project with Model, Persist and WEB components
 							<exclusions>
 								<exclusion>
 									<groupId>org.slf4j</groupId>
-									<artifactId>slf4j-log4j12</artifactId>
+									<artifactId>slf4j-nop</artifactId>
 								</exclusion>
 							</exclusions>
 						</dependency>
