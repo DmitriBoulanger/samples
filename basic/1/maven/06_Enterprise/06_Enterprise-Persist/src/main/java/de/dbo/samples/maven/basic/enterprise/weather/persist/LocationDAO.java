@@ -24,7 +24,18 @@ public class LocationDAO extends HibernateDaoSupport {
     			public Object doInHibernate(Session session) {
     				Query query = getSession().getNamedQuery("Location.uniqueByZip");
     				query.setString("zip", zip);
-				return (Location) query.uniqueResult();
+				final List<Location> locations = (List<Location>)  query.list();
+				if (null==locations) {
+					throw new RuntimeException("Locations is null!");
+				} 
+				if (locations.isEmpty()) {
+					log.warn("No locations found");
+					return null;
+				} 
+				if (1!=locations.size()) {
+					log.warn("Locationquery did not return a unique result ("+locations.size()+"). Using the first one ...");
+				}
+				return locations.get(0);
 			}
 		});
     	log.info("retrieved zip="+zip + " ==> " + ret);
