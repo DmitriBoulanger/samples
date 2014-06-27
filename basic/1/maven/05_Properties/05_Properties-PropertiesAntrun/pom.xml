@@ -13,22 +13,20 @@
 	<artifactId>05_Properties-PropertiesAntrun</artifactId>
 	<packaging>jar</packaging>
 	<name>Samples Basic-1 Maven Properties Properties Antrun</name>
+	
+	<description>
+	
+Displaying values of system and user-defined properties
+	
+	</description>
 
 	<properties>
 		<database.driver>com.mysql.jdbc.Driver</database.driver>
 		<database.url>jdbc:mysql://localhost:3306/database?autoReconnect=true</database.url>
-		<database.username>myusername</database.username>
-		<database.password>mypassword</database.password>
 	</properties>
 
 	<build>
-		<resources>
-			<resource>
-				<directory>src/main/resources</directory>
-				<filtering>true</filtering>
-			</resource>
-		</resources>
-
+		
 		<plugins>
 			<plugin>
 				<artifactId>maven-antrun-plugin</artifactId>
@@ -44,8 +42,8 @@
 								<echo>The same things below:</echo>
 								<echo>____PATH=${PATH}</echo>
 								<echo>env.PATH=${env.PATH}</echo>
-								<echo>User's Home Directory: ${user.home}</echo>
-								<echo>Project's Base Director: ${basedir}</echo>
+								<echo>database.driver=${database.driver}</echo>
+								<echo>database.url=${database.url}</echo>
 							</tasks>
 						</configuration>
 					</execution>

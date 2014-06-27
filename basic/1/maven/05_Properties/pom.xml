@@ -15,11 +15,11 @@
 	<name>Samples Basic-1 Maven Properties</name>
 	
 	<description>
+	
 Using properties
+
 	</description>
-	<url>
-	http://books.sonatype.com/mvnref-book/reference/resource-filtering.html
-	</url>
+	<url>http://books.sonatype.com/mvnref-book/reference/resource-filtering.html</url>
 
 	<modules>
 		<module>05_Properties-Filtering</module>
