@@ -14,8 +14,10 @@
 	<name>Samples Basic-1 Maven Mojo</name>
 
 	<description>
+	
 Project with Timestamp Mojo to show time-stamps and elapsed ms. of different phases.
 It consists of the plug-in definition Timestamp and its test TimestampUsage
+
 	</description>
 	<url>http://www.torsten-horn.de/techdocs/maven.htm#Mojo</url>
 
