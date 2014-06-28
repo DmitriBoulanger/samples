@@ -26,31 +26,11 @@ http://maven.apache.org/plugins/maven-resources-plugin/examples/filter.html
         <filtering>true</filtering>
       </resource>
     </resources>
-    
-    <plugins>
-			<plugin>
-				<artifactId>maven-antrun-plugin</artifactId>
-				<executions>
-					<execution>
-						<phase>validate</phase>
-						<goals>
-							<goal>run</goal>
-						</goals>
-						<configuration>
-							<tasks>
-								<echo>profile=${project.profiles[0].id}</echo>
-							</tasks>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-		</plugins>
-    
   </build>
   
   <!-- 
   	Default properties are defined in the super-POM 
-  	These values are active if no profile is set
+  	They are only active if no profile is set
   -->
 
   <profiles>
