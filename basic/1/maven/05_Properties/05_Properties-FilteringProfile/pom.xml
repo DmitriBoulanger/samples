@@ -15,6 +15,10 @@
   <packaging>jar</packaging>
   <name>Samples Basic-1 Maven Properties Filtering Profile</name>
   
+  <url>
+http://maven.apache.org/plugins/maven-resources-plugin/examples/filter.html
+  </url>
+  
   <build>
     <resources>
       <resource>
@@ -22,20 +26,39 @@
         <filtering>true</filtering>
       </resource>
     </resources>
+    
+    <plugins>
+			<plugin>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<executions>
+					<execution>
+						<phase>validate</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+							<tasks>
+								<echo>profile=${project.profiles[0].id}</echo>
+							</tasks>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+    
   </build>
   
-  <properties>
-    <database.driver>com.mysql.jdbc.Driver</database.driver>
-    <database.url>jdbc:mysql://localhost:3306/database?autoReconnect=true</database.url>
-    <database.username>myusername</database.username>
-    <database.password>mypassword</database.password>
-  </properties>
-  
+  <!-- 
+  	Default properties are defined in the super-POM 
+  	These values are active if no profile is set
+  -->
+
   <profiles>
   
     <profile>
       <id>qa</id>
       <properties>
+        <database.profile>qa</database.profile>
         <database.driver>com.mysql.jdbc.Driver</database.driver>
         <database.url>jdbc:mysql://qadb01:3306/database?autoReconnect=true</database.url>
         <database.username>qauser</database.username>
@@ -46,12 +69,21 @@
     <profile>
       <id>production</id>
       <properties>
+        <database.profile>production</database.profile>
         <database.driver>com.mysql.jdbc.Driver</database.driver>
         <database.url>jdbc:mysql://pdb01:3306/database?autoReconnect=true</database.url>
         <database.username>produser</database.username>
         <database.password>prodpassword</database.password>
       </properties>
     </profile>
-    
+  
   </profiles>
+  
+  <dependencies>
+  	<dependency>
+  		<artifactId>05_Properties-Filtering</artifactId>
+ 		<groupId>${project.groupId}</groupId>
+  	</dependency>
+  </dependencies>
+  
 </project>

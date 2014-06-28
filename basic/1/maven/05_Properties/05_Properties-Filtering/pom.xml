@@ -16,24 +16,15 @@
 	<description>
 	
 User-defined properties
-Variables defined in resource-files 
-can be replaced by the values that are specified in the POM
+Variables in the resource-files are replaced by the values that are specified in the POM
 
 	</description>
 	<url>
 http://maven.apache.org/plugins/maven-resources-plugin/examples/filter.html
 	</url>
 
-	<properties>
-		<database.driver>com.mysql.jdbc.Driver</database.driver>
-		<database.url>jdbc:mysql://localhost:3306/database?autoReconnect=true</database.url>
-		<database.username>myusername</database.username>
-		<database.password>mypassword</database.password>
-	</properties>
-
 	<build>
 		<resources>
-
 			<resource>
 				<directory>src/main/resources</directory>
 				<filtering>true</filtering>
@@ -45,10 +36,7 @@ http://maven.apache.org/plugins/maven-resources-plugin/examples/filter.html
 	</build>
 
 	<dependencies>
-		<dependency>
-			<groupId>de.dbo.samples</groupId>
-			<artifactId>util</artifactId>
-		</dependency>
+		
 	</dependencies>
 
 

@@ -13,7 +13,7 @@
 	<artifactId>05_Properties-PropertiesAntrun</artifactId>
 	<packaging>jar</packaging>
 	<name>Samples Basic-1 Maven Properties Properties Antrun</name>
-	
+
 	<description>
 	
 Displaying values of system and user-defined properties
@@ -26,7 +26,6 @@ Displaying values of system and user-defined properties
 	</properties>
 
 	<build>
-		
 		<plugins>
 			<plugin>
 				<artifactId>maven-antrun-plugin</artifactId>

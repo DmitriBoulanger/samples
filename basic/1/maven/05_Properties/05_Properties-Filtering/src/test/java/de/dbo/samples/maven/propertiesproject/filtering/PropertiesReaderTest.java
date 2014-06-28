@@ -17,7 +17,8 @@ public class PropertiesReaderTest  {
 		final PropertiesReader propertiesReader = new PropertiesReader(resource);
 		final Properties properties = propertiesReader.read();
 		
-		assertTrue(!properties.isEmpty());
+		assertNotNull("Properties is NULL", properties);
+		assertTrue("Properties are empty", !properties.isEmpty());
 		
 		// check values defined in the POM
 		assertTrue(properties.get("driverClassName").equals("com.mysql.jdbc.Driver"));
