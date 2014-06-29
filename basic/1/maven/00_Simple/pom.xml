@@ -20,9 +20,9 @@ All examples shows straightforward maven use-cases
 	</description>
 
 	<modules>
-		<module>0_HelloWorld</module>
-		<module>1_Custom</module>
-		<module>2_Web</module>
+		<module>00_Simple-HelloWorld</module>
+		<module>00_Simple-Custom</module>
+		<module>00_Simple-Web</module>
 	</modules>
 
 	<dependencies>
@@ -31,6 +31,7 @@ All examples shows straightforward maven use-cases
 		<dependency>
 			<groupId>de.dbo.samples.basic.1</groupId>
 			<artifactId>_logger</artifactId>
+			<version>${project.version}</version>
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
