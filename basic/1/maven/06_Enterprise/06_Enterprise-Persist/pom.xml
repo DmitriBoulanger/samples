@@ -26,7 +26,6 @@
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate</artifactId>
-			<version>3.2.5.ga</version>
 			<exclusions>
 				<exclusion>
 					<groupId>javax.transaction</groupId>
@@ -45,7 +44,6 @@
 		<dependency>
 			<groupId>org.apache.geronimo.specs</groupId>
 			<artifactId>geronimo-jta_1.1_spec</artifactId>
-			<version>1.1</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
