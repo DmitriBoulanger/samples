@@ -69,6 +69,10 @@ This application delivers on-line weather data from Yahoo-server
 			<artifactId>jaxen</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>xml-apis</groupId>
+      		<artifactId>xml-apis</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>org.apache.velocity</groupId>
 			<artifactId>velocity</artifactId>
 		</dependency>
@@ -82,7 +86,6 @@ This application delivers on-line weather data from Yahoo-server
 		<dependency>
 			<groupId>de.dbo.samples.basic.1</groupId>
 			<artifactId>_logger</artifactId>
-			<version>${project.version}</version>
 			<scope>runtime</scope>
 		</dependency>
 		<!-- Logger implementation -->

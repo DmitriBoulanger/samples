@@ -4,9 +4,9 @@
 	
  	<parent>
 		<groupId>de.dbo.samples</groupId>
-		<artifactId>_dependency-management</artifactId>
+		<artifactId>_samples-dependency-management</artifactId>
 		<version>0.0.0-SNAPSHOT</version>
-		<relativePath>_dependency-management/pom.xml</relativePath>
+		<relativePath>_samles-dependency-management/pom.xml</relativePath>
 	</parent>  
 
 	<artifactId>samples</artifactId>
@@ -28,6 +28,18 @@ and defines plug-in management.
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 	</properties>
+	
+	<dependencyManagement>
+	<dependencies>
+	<dependency>
+		<groupId>de.dbo.samples</groupId>
+		<artifactId>_samples-dependency-management</artifactId>
+		<version>0.0.0-SNAPSHOT</version>
+		<type>pom</type>
+		<scope>import</scope>
+	</dependency>
+	</dependencies>
+	</dependencyManagement>
 
 	<modules>
 		<module>util</module>
