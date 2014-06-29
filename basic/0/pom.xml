@@ -25,7 +25,6 @@ The projects generates test-jars for all its modules
 		<module>tuProlog0</module>
 		<module>xml0</module>
 		<module>html0</module>
-<!-- 		<module>test0</module> -->
 	</modules>
 	
 	<dependencies>
@@ -65,5 +64,19 @@ The projects generates test-jars for all its modules
 			</plugins>
 		</pluginManagement>
 	</build>
+	
+	<profiles>
+		<profile>
+		<id>all_modules</id>
+			<modules>
+				<module>jpa0</module>
+       	 		<module>logger0</module>
+				<module>tuProlog0</module>
+				<module>xml0</module>
+				<module>html0</module>
+ 				<module>test0</module>  
+			</modules>
+		</profile>
+	</profiles>
 
 </project>

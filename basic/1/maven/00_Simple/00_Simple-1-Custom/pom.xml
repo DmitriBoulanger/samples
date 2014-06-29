@@ -81,7 +81,7 @@ This application delivers on-line weather data from Yahoo-server
 			<scope>test</scope>
 		</dependency>
 
-		<!-- management of the transitive dependencies from the avove dependencies -->
+		<!-- management of the transitive dependencies from the above -->
 		<dependency>
 			<groupId>xml-apis</groupId>
       		<artifactId>xml-apis</artifactId>
