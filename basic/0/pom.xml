@@ -21,46 +21,12 @@ The projects generates test-jars for all its modules
 	
 	<modules>
 		<module>jpa0</module>
-        		<module>logger0</module>
+        <module>logger0</module>
 		<module>tuProlog0</module>
 		<module>xml0</module>
 		<module>html0</module>
 		<module>test0</module>
 	</modules>
-
-	<dependencyManagement>
-		<dependencies>
-		
-			<dependency>
-				<groupId>com.thoughtworks.xstream</groupId>
-				<artifactId>xstream</artifactId>
-				<version>1.4.4</version>
-			</dependency>
-			<dependency>
-				<groupId>it.unibo.alice.tuprolog</groupId>
-				<artifactId>tuprolog</artifactId>
-				<version>2.1.1</version>
-			</dependency>
-			<dependency>
-				<groupId>xmlunit</groupId>
-				<artifactId>xmlunit</artifactId>
-				<version>1.4</version>
-			</dependency>
-			<dependency>
-				<groupId>ecs</groupId>
-				<artifactId>ecs</artifactId>
-				<version>1.4.2</version>
-			</dependency>
-
-			<dependency>
-				<groupId>net.sf.jtidy</groupId>
-				<artifactId>jtidy</artifactId>
-				<version>r938</version>
-			</dependency>
-			
-
-		</dependencies>
-	</dependencyManagement>
 	
 	<dependencies>
 		<dependency>

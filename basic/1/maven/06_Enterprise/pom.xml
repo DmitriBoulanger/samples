@@ -104,17 +104,7 @@ Enterprise Project with Model, Persist and WEB components
 				<artifactId>06_Enterprise-Model</artifactId>
 				<version>${project.version}</version>
 			</dependency>
-			
-			<dependency>
-				<groupId>org.apache.velocity</groupId>
-				<artifactId>velocity</artifactId>
-				<version>1.5</version>
-			</dependency>
-			<dependency>
-				<groupId>asm</groupId>
-				<artifactId>asm</artifactId>
-				<version>3.3.1</version>
-			</dependency>
+
 		</dependencies>
 	</dependencyManagement>
 

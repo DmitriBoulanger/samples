@@ -34,15 +34,4 @@ Top for all Spring-samples
 		
 	</build>
 
-	<dependencyManagement>
-		<dependencies>
-			<!-- LOCAL non open-source -->
-			<dependency>
-				<groupId>com.oracle</groupId>
-				<artifactId>ojdbc14</artifactId>
-				<version>10.2.0.3.0</version>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
-
 </project>
