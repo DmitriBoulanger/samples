@@ -9,7 +9,7 @@
 		<version>0.0.0-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>00_Simple-Custom</artifactId>
+	<artifactId>00_Simple-1-Custom</artifactId>
 	<packaging>jar</packaging>
 	<name>Samples Basic-1 Maven Simple Custom</name>
 
@@ -64,23 +64,48 @@ This application delivers on-line weather data from Yahoo-server
 			<groupId>dom4j</groupId>
 			<artifactId>dom4j</artifactId>
 		</dependency>
+		
 		<dependency>
 			<groupId>jaxen</groupId>
 			<artifactId>jaxen</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>xml-apis</groupId>
-      		<artifactId>xml-apis</artifactId>
-		</dependency>
+  		
 		<dependency>
 			<groupId>org.apache.velocity</groupId>
 			<artifactId>velocity</artifactId>
 		</dependency>
+		
 		<dependency>
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<!-- management of the transitive dependencies from the avove dependencies -->
+		<dependency>
+			<groupId>xml-apis</groupId>
+      		<artifactId>xml-apis</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>xerces</groupId>
+			<artifactId>xercesImpl</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>xalan</groupId>
+  			<artifactId>xalan</artifactId>
+  		</dependency>
+  		<dependency>
+			<groupId>oro</groupId>
+  			<artifactId>oro</artifactId>
+  		</dependency>
+  		<dependency>
+			<groupId>xom</groupId>
+			<artifactId>xom</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>xerces</groupId>
+  			<artifactId>xmlParserAPIs</artifactId>
+  		</dependency>
 
 		<!-- Logger configuration as resource -->
 		<dependency>

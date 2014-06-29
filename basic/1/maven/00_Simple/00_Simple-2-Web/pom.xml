@@ -1,39 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" 
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-  <parent>
-    <groupId>de.dbo.samples.basic.1.maven</groupId>
-    <artifactId>00_Simple</artifactId>
-    <version>0.0.0-SNAPSHOT</version>
-  </parent>
+	<parent>
+		<groupId>de.dbo.samples.basic.1.maven</groupId>
+		<artifactId>00_Simple</artifactId>
+		<version>0.0.0-SNAPSHOT</version>
+	</parent>
 
-	<artifactId>00_Simple-Web</artifactId>
+	<artifactId>00_Simple-2-Web</artifactId>
 	<packaging>war</packaging>
 	<name>Samples Basic-1 Maven Simple Web</name>
-	
+
 	<description>
 A standard (simple) servlet is started using embedded Jetty-server
 	</description>
 	<url>http://books.sonatype.com/mvnex-book/reference/web.html</url>
 
-	
+
 	<dependencies>
 	
 		<!-- Provided from the J2EE-Container -->
 		<dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>servlet-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>javax.servlet.jsp</groupId>
-            <artifactId>jsp-api</artifactId>
-         </dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>jsp-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
          
          <!-- Pretty-Print -->
-         <dependency>
+		<dependency>
 			<groupId>de.dbo.samples</groupId>
 			<artifactId>util</artifactId>
 		</dependency>

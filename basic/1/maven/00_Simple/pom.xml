@@ -20,9 +20,9 @@ All examples shows straightforward maven use-cases
 	</description>
 
 	<modules>
-		<module>00_Simple-HelloWorld</module>
-		<module>00_Simple-Custom</module>
-		<module>00_Simple-Web</module>
+		<module>00_Simple-0-HelloWorld</module>
+		<module>00_Simple-1-Custom</module>
+		<module>00_Simple-2-Web</module>
 	</modules>
 
 	<dependencies>

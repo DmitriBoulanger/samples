@@ -10,7 +10,7 @@
 		<version>0.0.0-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>00_Simple-HelloWorld</artifactId>
+	<artifactId>00_Simple-0-HelloWorld</artifactId>
 	<packaging>jar</packaging>
 	<name>Samples Basic-1 Maven Simple Hello World</name>
 	
