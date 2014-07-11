@@ -1,14 +1,20 @@
 package cukes;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
+
 import java.util.ArrayList;
 import java.util.List;
-import cuke4duke.Table;
-import cuke4duke.annotation.I18n.EN.Given;
-import cuke4duke.annotation.I18n.EN.Then;
-import cuke4duke.annotation.I18n.EN.When;
+//import cuke4duke.Table;
+//import cuke4duke.annotation.I18n.EN.Given;
+//import cuke4duke.annotation.I18n.EN.Then;
+//import cuke4duke.annotation.I18n.EN.When;
 
-import static org.junit.Assert.assertThat;
-import static org.hamcrest.CoreMatchers.is;
+import com.google.common.collect.Table;
+
+import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
 
 public class CukeSteps {
 
@@ -24,7 +30,7 @@ public class CukeSteps {
     @Given("^the following letters:$")
     public void gimmeThemLetters(final Table letterTable) {
 
-        final List<String> letters = letterTable.raw().get(0);
+        final List<String> letters = letterTable.
         theLetters = new ArrayList<Character>(letters.size());
         for (String letter : letters) {
             theLetters.add(letter.charAt(0));
