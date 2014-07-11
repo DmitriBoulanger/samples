@@ -3,7 +3,6 @@ package cukes;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
-import java.util.ArrayList;
 import java.util.List;
 //import cuke4duke.Table;
 //import cuke4duke.annotation.I18n.EN.Given;
@@ -30,11 +29,11 @@ public class CukeSteps {
     @Given("^the following letters:$")
     public void gimmeThemLetters(final Table letterTable) {
 
-        final List<String> letters = letterTable.
-        theLetters = new ArrayList<Character>(letters.size());
-        for (String letter : letters) {
-            theLetters.add(letter.charAt(0));
-        }
+        //        final List<String> letters = ((Object) letterTable).raw().get(0);
+        //        theLetters = new ArrayList<Character>(letters.size());
+        //        for (String letter : letters) {
+        //            theLetters.add(letter.charAt(0));
+        //        }
 
     }
 
