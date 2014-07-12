@@ -6,9 +6,8 @@
 		<groupId>be.gallifreyan.cucumber.example</groupId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<groupId>be.gallifreyan.cucumber.example</groupId>
+	
 	<artifactId>cucumber-example-ui-web</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 
 	<properties>
@@ -58,6 +57,19 @@
 			<artifactId>hsqldb</artifactId>
 			<version>${hsqldb.version}</version>
 		</dependency>
+		<!-- Provided from the J2EE-Container -->
+		<dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>${servlet-api.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet.jsp</groupId>
+            <artifactId>jsp-api</artifactId>
+            <version>${jsp-api.version}</version>
+            <scope>provided</scope>
+        </dependency>
 	</dependencies>
 
 	<build>

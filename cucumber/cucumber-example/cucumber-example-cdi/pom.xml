@@ -6,10 +6,9 @@
 		<groupId>be.gallifreyan.cucumber.example</groupId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<groupId>be.gallifreyan.cucumber.example</groupId>
+
 	<artifactId>cucumber-example-cdi</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	
+
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>

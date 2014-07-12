@@ -1,12 +1,11 @@
 package be.gallifreyan.cucumber.example.project;
 
-import static org.junit.Assert.*;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import be.gallifreyan.cucumber.example.project.Account;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 public class AccountTest {
 	private static final int BALANCE = 100;

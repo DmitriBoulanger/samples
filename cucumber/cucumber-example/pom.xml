@@ -7,7 +7,7 @@
 	<packaging>pom</packaging>
 
 	<properties>
-		<java.version>1.6</java.version>
+		<java.version>1.7</java.version>
 		<cucumber.version>1.0.0.RC20</cucumber.version>
 		<junit.version>4.10</junit.version>
 		<spring.version>3.1.1.RELEASE</spring.version>
@@ -21,6 +21,10 @@
 		<jetty.plugin.version>8.1.1.v20120215</jetty.plugin.version>
 		<liquibase.plugin.version>1.9.5.0</liquibase.plugin.version>
 		<surefire.plugin.version>2.12</surefire.plugin.version>
+		
+		<!-- J2EE -->
+		<servlet-api.version>2.4</servlet-api.version>
+		<jsp-api.version>2.0</jsp-api.version>
 	</properties>
 
 	<modules>
