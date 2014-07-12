@@ -108,22 +108,7 @@ and defines plug-in management.
 			</plugins>
 		</pluginManagement>
 
-		<plugins>
-		 	<!-- JAVA -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.1</version>
-				<configuration>
-					<source>${java.version}</source>
-					<target>${java.version}</target>
-					<fork>true</fork>
-					<meminitial>128m</meminitial>
-					<maxmem>512m</maxmem>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
+		
 
 	<!-- DEFAULT DEPENDENCIES FOR ALL -->
 	<dependencies>
