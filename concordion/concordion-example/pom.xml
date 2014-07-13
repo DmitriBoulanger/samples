@@ -2,12 +2,16 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>cordcordion</groupId>
-	<artifactId>example</artifactId>
-	<version>1.0-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<parent>
+		<groupId>de.dbo.samples.concordion</groupId>
+		<artifactId>concordion</artifactId>
+		<version>0.0.0-SNAPSHOT</version>
+	</parent>
 
-	<name>example</name>
+	<groupId>cordcordion</groupId>
+	<artifactId>concordion-example</artifactId>
+
+	<name>Cordcordion Official example</name>
 
 	<properties>
 		<java.version>1.7</java.version>
@@ -19,25 +23,11 @@
 		<dependency>
 			<groupId>org.concordion</groupId>
 			<artifactId>concordion</artifactId>
-			<version>1.4.4</version>
 		</dependency>
 	</dependencies>
 
 	<build>
 		<plugins>
-			<!-- JAVA -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.1</version>
-				<configuration>
-					<source>${java.version}</source>
-					<target>${java.version}</target>
-					<fork>true</fork>
-					<meminitial>128m</meminitial>
-					<maxmem>512m</maxmem>
-				</configuration>
-			</plugin>
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>build-helper-maven-plugin</artifactId>

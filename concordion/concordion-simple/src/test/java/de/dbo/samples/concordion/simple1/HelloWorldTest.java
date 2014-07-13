@@ -4,8 +4,16 @@ import org.concordion.integration.junit4.ConcordionRunner;
 import org.junit.Before;
 import org.junit.runner.RunWith;
 
+/**
+ * 
+ * @author Dmitri Boulanger, Hombach
+ *
+ * D. Knuth: Programs are meant to be read by humans and 
+ *           only incidentally for computers to execute 
+ *
+ */
 
-/* Run this class as a JUnit test. */
+/* Run it as a JUnit test. */
 
 @RunWith(ConcordionRunner.class)
 public class HelloWorldTest {

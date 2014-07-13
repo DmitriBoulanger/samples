@@ -12,6 +12,8 @@ import org.junit.runner.RunWith;
  *
  */
 
+/* Run it as a JUnit test. */
+
 @RunWith(ConcordionRunner.class)
 public class HelloWorldFixture {
 
