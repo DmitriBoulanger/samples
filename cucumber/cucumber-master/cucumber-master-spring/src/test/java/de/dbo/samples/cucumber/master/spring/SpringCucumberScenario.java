@@ -1,4 +1,4 @@
-package be.gallifreyan.cucumber.example.spring.scenario;
+package de.dbo.samples.cucumber.master.spring;
 
 import de.dbo.samples.cucumber.master.model.ATM;
 import de.dbo.samples.cucumber.master.model.Account;
@@ -9,10 +9,10 @@ import static org.junit.Assert.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import cucumber.annotation.en.And;
-import cucumber.annotation.en.Given;
-import cucumber.annotation.en.Then;
-import cucumber.annotation.en.When;
+import cucumber.api.java.en.And;
+import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
 
 public class SpringCucumberScenario {
 	@Autowired private ATM atm;

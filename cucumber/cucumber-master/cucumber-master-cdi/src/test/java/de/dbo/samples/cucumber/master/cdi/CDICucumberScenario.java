@@ -4,16 +4,19 @@ import de.dbo.samples.cucumber.master.project.ATM;
 import de.dbo.samples.cucumber.master.project.Account;
 import de.dbo.samples.cucumber.master.project.CreditCard;
 
-import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.*;
-
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
-import cucumber.annotation.en.And;
-import cucumber.annotation.en.Given;
-import cucumber.annotation.en.Then;
-import cucumber.annotation.en.When;
+import cucumber.api.java.en.And;
+import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
+
+import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertThat;
+
 
 @Singleton
 public class CDICucumberScenario {

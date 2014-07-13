@@ -9,10 +9,10 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
-
 
 public class PicoCucumberScenario {
 	private ATM atm;
@@ -20,12 +20,6 @@ public class PicoCucumberScenario {
 	private CreditCard creditCard;
 	
 	private int money;
-	
-	
-	 @cucumber.api.java.Before(value="@UserAccount")
-	 public void initialize() {
-	        
-	    }
 	
 	@Given("^the account balance is (\\d*)$")
     public void createAccount(int balance) {

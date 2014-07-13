@@ -2,9 +2,11 @@ package de.dbo.samples.cucumber.master.cdi;
 
 import org.junit.runner.RunWith;
 
-import cucumber.junit.Cucumber;
-import cucumber.junit.Feature;
+import cucumber.api.CucumberOptions;
+import cucumber.api.junit.Cucumber;
 
 @RunWith(Cucumber.class)
-@Feature(value = "ATM.feature")
-public class CDICucumberTest {}
+@CucumberOptions(format={"pretty", "html:target/cucumber"})
+public class CDICucumberTest {
+	
+}

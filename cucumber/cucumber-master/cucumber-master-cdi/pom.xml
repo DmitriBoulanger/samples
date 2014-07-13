@@ -22,8 +22,6 @@
 		<dependency>
 			<groupId>info.cukes</groupId>
 			<artifactId>cucumber-weld</artifactId>
-			<version>${cucumber.version}</version>
-			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.jboss.weld.se</groupId>

@@ -6,8 +6,6 @@ import java.lang.reflect.InvocationTargetException;
 import org.openqa.selenium.WebDriver;
 import org.springframework.stereotype.Component;
 
-import cucumber.annotation.After;
-
 @Component
 public class WebDriverFacade {
 
@@ -35,7 +33,7 @@ public class WebDriverFacade {
 		return browser;
 	}
 
-	@After
+	@cucumber.api.java.After
 	public void closeBrowser() throws IllegalAccessException, InvocationTargetException, InstantiationException {
 		if (browser != null) {
 			browser.close();

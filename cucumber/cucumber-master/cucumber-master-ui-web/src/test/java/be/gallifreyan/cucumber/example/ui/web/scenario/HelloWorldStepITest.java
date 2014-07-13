@@ -2,11 +2,11 @@ package be.gallifreyan.cucumber.example.ui.web.scenario;
 
 import org.junit.runner.RunWith;
 
-import cucumber.junit.Cucumber;
-import cucumber.junit.Feature;
+import cucumber.api.CucumberOptions;
+import cucumber.api.junit.Cucumber;
 
 @RunWith(Cucumber.class)
-@Feature("helloWorld.feature")
+@CucumberOptions(monochrome = true, format = {"pretty", "html:target/cucumber", "rerun:target/rerun.txt"})
 public class HelloWorldStepITest {
 	
 }
