@@ -55,6 +55,7 @@ Cucumber version management
 	</build>
 
 	<modules>
+		<module>cucumber-skeleton</module>
 		<module>cucumber-simple</module>
 		<module>cucumber-master</module>
 	</modules>

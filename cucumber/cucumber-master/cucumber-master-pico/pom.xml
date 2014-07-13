@@ -23,18 +23,16 @@
 		<dependency>
 			<groupId>info.cukes</groupId>
 			<artifactId>cucumber-java</artifactId>
-			<scope>test</scope>
 		</dependency>
+		
+		<!-- Pico-Container -->
 		<dependency>
 			<groupId>info.cukes</groupId>
 			<artifactId>cucumber-picocontainer</artifactId>
-			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>picocontainer</groupId>
+			<groupId>org.picocontainer</groupId>
 			<artifactId>picocontainer</artifactId>
-			<version>${picocontainer.version}</version>
-			<scope>test</scope>
 		</dependency>
 		
 	</dependencies>
