@@ -26,7 +26,11 @@
 		<surefire.plugin.version>2.12</surefire.plugin.version>
 		<build-helper-maven-plugin.version>1.9</build-helper-maven-plugin.version>
 	</properties>
-
+	
+	<modules>
+		<module>concordion-simple</module>
+		<module>concordion-example</module>
+	</modules>
 
 	<build>
 		<plugins>
@@ -132,11 +136,6 @@
 			</plugins>
 		</pluginManagement>
 	</build>
-
-	<modules>
-		<module>concordion-simple</module>
-		<module>concordion-example</module>
-	</modules>
 
 	<dependencyManagement>
 		<dependencies>
