@@ -1,15 +1,22 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+	
 	<groupId>de.dbo.samples.cucumber.master</groupId>
-	<artifactId>cucumber-example</artifactId>
+	<artifactId>cucumber-master</artifactId>
 	<version>0.0.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
+	
+	<description>
+Origin: https://github.com/GallifreyanCode/cucumber-jvm-examples
+	</description>
 
 	<properties>
 		<java.version>1.7</java.version>
-		<cucumber.version>1.0.0.RC20</cucumber.version>
 		<junit.version>4.10</junit.version>
+		
+		<cucumber.version>1.0.0.RC20</cucumber.version>
+		
 		<spring.version>3.1.1.RELEASE</spring.version>
 		<selenium.java.version>2.19.0</selenium.java.version>
 		<picocontainer.version>3</picocontainer.version>
@@ -28,19 +35,19 @@
 	</properties>
 
 	<modules>
-		<module>cucumber-example-project</module>
-		<module>cucumber-example-pico</module>
-		<module>cucumber-example-spring</module>
-		<module>cucumber-example-cdi</module>
-		<module>cucumber-example-ui-web</module>
-		<module>cucumber-example-ui-swing</module>
+		<module>cucumber-master-model</module>
+		<module>cucumber-master-pico</module>
+		<module>cucumber-master-spring</module>
+		<module>cucumber-master-cdi</module>
+		<module>cucumber-master-ui-web</module>
+		<module>cucumber-master-ui-swing</module>
 	</modules>
 
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
 				<groupId>de.dbo.samples.cucumber.master</groupId>
-				<artifactId>cucumber-example-project</artifactId>
+				<artifactId>cucumber-master-model</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 		</dependencies>
@@ -59,4 +66,14 @@
 			</plugin>
 		</plugins>
 	</build>
+	
+	<dependencies>
+		<!-- JUnit -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
 </project>
