@@ -1,12 +1,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	
+
 	<groupId>de.dbo.samples.cucumber</groupId>
 	<artifactId>cucumber-root</artifactId>
 	<version>0.0.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
-	
+
 	<description>
 Cucumber version management
 	</description>
@@ -26,12 +26,14 @@ Cucumber version management
 		
 		<!-- Cucumber -->
 		<cucumber.version>1.0.0.RC20</cucumber.version>
+		<cucumber-java.version>1.0.0</cucumber-java.version>
+		<cucumber-junit.version>1.0.0</cucumber-junit.version>
 		
 		<!-- J2EE -->
 		<servlet-api.version>2.4</servlet-api.version>
 		<jsp-api.version>2.0</jsp-api.version>
 	</properties>
-	
+
 	<build>
 		<plugins>
 			<plugin>
@@ -48,12 +50,26 @@ Cucumber version management
 
 	<dependencyManagement>
 		<dependencies>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>${junit.version}</version>
-			<scope>test</scope>
-		</dependency>
+			<!-- JUnit -->
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>${junit.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<!-- Cucumber -->
+			<dependency>
+				<groupId>info.cukes</groupId>
+				<artifactId>cucumber-java</artifactId>
+				<version>${cucumber-java.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>info.cukes</groupId>
+				<artifactId>cucumber-junit</artifactId>
+				<version>${cucumber-junit.version}</version>
+				<scope>test</scope>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 
