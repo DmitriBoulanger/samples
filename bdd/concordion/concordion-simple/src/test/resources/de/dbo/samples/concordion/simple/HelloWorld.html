@@ -1,0 +1,36 @@
+<!-- 
+
+ Concordion specification.
+ It is processed by the "HelloWorldFixture.java" test. 
+ The name of the test fixture and the HTML share the same base name. 
+ The test fixture has an optional suffix of "Fixture" or "Test".
+ For example, it may be named "HelloWorld.java", "HelloWorldFixture.java" or "HelloWorldTest.java". 
+ 
+ -->
+
+<html xmlns:concordion="http://www.concordion.org/2007/concordion">
+<link href="HelloWorld.css" rel="stylesheet" type="text/css" />
+
+    <body>
+    <h1>de/dbo/samples/concordion/simple: Hello World!</h1>
+
+    <p>
+    	After a user logs into the system, a greeting is
+    	displayed saying "Hello [user's first name]!"
+    </p>
+
+    <div class="example">
+
+		<h3>Example</h3>
+		
+        <p>
+          The greeting for user <span concordion:set="#firstName">Bob</span> will be:
+            <span concordion:assertEquals="greetingFor(#firstName)">Hello Bob!</span>
+        </p>
+        
+    </div>
+
+</body>
+    
+    
+</html>
