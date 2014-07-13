@@ -10,6 +10,8 @@
 
 	<artifactId>cucumber-master-ui-web</artifactId>
 	<packaging>war</packaging>
+	
+	<name>Cucumber Master UI WEB</name>
 
 	<properties>
 		<chromedriver.url>src/test/resources/chromedriver/chromedriver.exe</chromedriver.url>
@@ -41,7 +43,7 @@
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-java</artifactId>
-			<version>${selenium.java.version}</version>
+			<version>${selenium-java.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>hsqldb</groupId>

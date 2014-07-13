@@ -11,6 +11,8 @@
 	<artifactId>cucumber-master-model</artifactId>
 	<packaging>bundle</packaging>
 	
+	<name>Cucumber Master Model for tests</name>
+	
 	<description>
 Model to be tested. It is used in all JUnits and Acceptance-tests
 	</description>

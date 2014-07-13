@@ -9,6 +9,8 @@
 	</parent>
 
 	<artifactId>cucumber-master-cdi</artifactId>
+	
+	<name>Cucumber Master CDI</name>
 
 	<dependencies>
 		<dependency>

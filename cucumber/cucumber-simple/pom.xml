@@ -9,11 +9,11 @@
 	</parent>
 
 	<artifactId>cucumber-simple</artifactId>
-	<name>Cucumber-Java Simple with Cucumber-Java + Cucumber-JUnit</name>
+	<name>Cucumber Simple with Cucumber-JUnit</name>
 
 	<description>
 	
-Cucumber-JVM with Cucumber-Java + Cucumber-JUnit (adapted from 2012-03-28)	
+Cucumber-Java + Cucumber-JUnit (adapted from 2012-03-28)	
 	
 	</description>
 	<url>
