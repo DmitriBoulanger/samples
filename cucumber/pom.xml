@@ -7,6 +7,7 @@
 	<version>0.0.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
+	<name>Cucumber-Java</name>
 	<description>
 Cucumber version management
 	</description>
@@ -18,18 +19,23 @@ Cucumber version management
 		
 		<!-- Java and JUnit -->
 		<java.version>1.7</java.version>
-		<junit.version>4.10</junit.version>
+		<junit.version>4.11</junit.version>
 		
 		<!-- Maven -->
 		<compiler.plugin.version>2.3.2</compiler.plugin.version>
 		<surefire.plugin.version>2.12</surefire.plugin.version>
+		<bundle.plugin.version>2.3.6</bundle.plugin.version>
 		
 		<!-- Cucumber -->
-		<cucumber.version>1.0.0.RC20</cucumber.version>
-		<cucumber-java.version>1.0.0</cucumber-java.version>
-		<cucumber-junit.version>1.0.0</cucumber-junit.version>
+		<cucumber.version>1.1.8</cucumber.version>
+		<cucumber-java.version>1.1.8</cucumber-java.version>
+		<cucumber-junit.version>1.1.8</cucumber-junit.version>
+		<cucumber-pro.version>1.0.10</cucumber-pro.version>
+
+		<cucumber-picocontainer.version>1.1.8</cucumber-picocontainer.version>
 		
 		<!-- J2EE -->
+		<cdi.api.version>1.1.EDR1.2</cdi.api.version>
 		<servlet-api.version>2.4</servlet-api.version>
 		<jsp-api.version>2.0</jsp-api.version>
 	</properties>
@@ -48,8 +54,14 @@ Cucumber version management
 		</plugins>
 	</build>
 
+	<modules>
+		<module>cucumber-simple</module>
+		<module>cucumber-master</module>
+	</modules>
+
 	<dependencyManagement>
 		<dependencies>
+		
 			<!-- JUnit -->
 			<dependency>
 				<groupId>junit</groupId>
@@ -57,6 +69,7 @@ Cucumber version management
 				<version>${junit.version}</version>
 				<scope>test</scope>
 			</dependency>
+			
 			<!-- Cucumber -->
 			<dependency>
 				<groupId>info.cukes</groupId>
@@ -69,6 +82,25 @@ Cucumber version management
 				<artifactId>cucumber-junit</artifactId>
 				<version>${cucumber-junit.version}</version>
 				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>info.cukes</groupId>
+				<artifactId>cucumber-pro</artifactId>
+				<version>${cucumber-pro.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>info.cukes</groupId>
+				<artifactId>cucumber-picocontainer</artifactId>
+				<version>${cucumber-picocontainer.version}</version>
+				<scope>test</scope>
+			</dependency>
+			
+			<!-- J2EE -->
+			<dependency>
+				<groupId>javax.enterprise</groupId>
+				<artifactId>cdi-api</artifactId>
+				<version>${cdi.api.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>

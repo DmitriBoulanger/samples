@@ -4,14 +4,15 @@ import de.dbo.samples.cucumber.master.model.ATM;
 import de.dbo.samples.cucumber.master.model.Account;
 import de.dbo.samples.cucumber.master.model.CreditCard;
 
+
+import cucumber.api.java.en.And;
+import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 
-import cucumber.annotation.en.And;
-import cucumber.annotation.en.Given;
-import cucumber.annotation.en.Then;
-import cucumber.annotation.en.When;
 
 public class PicoCucumberScenario {
 	private ATM atm;
@@ -19,6 +20,12 @@ public class PicoCucumberScenario {
 	private CreditCard creditCard;
 	
 	private int money;
+	
+	
+	 @cucumber.api.java.Before(value="@UserAccount")
+	 public void initialize() {
+	        
+	    }
 	
 	@Given("^the account balance is (\\d*)$")
     public void createAccount(int balance) {

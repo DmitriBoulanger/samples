@@ -1,17 +1,17 @@
 package de.dbo.samples.cucumber.simple;
 
+import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
+
 import static org.junit.Assert.assertTrue;
-import cucumber.annotation.Before;
-import cucumber.annotation.en.Given;
-import cucumber.annotation.en.Then;
-import cucumber.annotation.en.When;
 
 public class DepositStepDefinitions {
  
 	private User user;
     private Account account;
  
-    @Before(value="@UserAccount")
+    @cucumber.api.java.Before(value="@UserAccount")
     public void initialize() {
         if (user == null) {
             user = new User();
