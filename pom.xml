@@ -107,6 +107,7 @@ and defines plug-in management.
 
 			</plugins>
 		</pluginManagement>
+		</build>
 
 		
 

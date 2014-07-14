@@ -36,10 +36,10 @@
             <artifactId>junit</artifactId>
         </dependency>
 
-        <dependency>
+<!--         <dependency>
             <groupId>info.cukes</groupId>
             <artifactId>cucumber-pro</artifactId>
-        </dependency>
+        </dependency> -->
     </dependencies>
 
 </project>
