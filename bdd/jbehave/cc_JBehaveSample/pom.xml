@@ -3,13 +3,15 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
-	<url>http://maven.apache.org</url>
+
 	<modelVersion>4.0.0</modelVersion>
 	<name>JBehaveDemo</name>
 	<groupId>de.codecentric</groupId>
 	<artifactId>jbehave-demo</artifactId>
 	<packaging>jar</packaging>
 	<version>1.0-SNAPSHOT</version>
+
+	<url>https://blog.codecentric.de/2011/03/automatisierte-akzeptanz-tests-mit-jbehave</url>
 
 	<dependencies>
 		<dependency>
@@ -80,7 +82,7 @@
 									<type>zip</type>
 									<outputDirectory>
 										${project.build.directory}/jbehave/view
-                                </outputDirectory>
+									</outputDirectory>
 								</artifactItem>
 							</artifactItems>
 						</configuration>
@@ -100,11 +102,11 @@
 									<artifactId>jbehave-core</artifactId>
 									<version>3.1.2</version>
 									<outputDirectory>
-										${project.build.directory}/jbehave/view 
-                                </outputDirectory>
+										${project.build.directory}/jbehave/view
+									</outputDirectory>
 									<includes>
 										**\/*.css,**\/*.ftl,**\/*.js
-                                </includes>
+									</includes>
 								</artifactItem>
 							</artifactItems>
 						</configuration>
