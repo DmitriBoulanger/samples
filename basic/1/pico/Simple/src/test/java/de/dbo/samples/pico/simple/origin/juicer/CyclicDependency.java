@@ -11,7 +11,7 @@ import org.picocontainer.PicoBuilder;
 import org.picocontainer.injectors.AbstractInjector.CyclicDependencyException;
 
 
-public class Exceptions {
+public class CyclicDependency {
 	
 	@Test(expected=CyclicDependencyException.class)
 	public void testCircular() {  
