@@ -1,4 +1,4 @@
-package de.dbo.samples.pico.simple;
+package de.dbo.samples.pico.simple.origin.juicer;
 
 public class Juicer {
 	private final Peelable peelable;

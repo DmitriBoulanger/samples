@@ -1,4 +1,4 @@
-package de.dbo.samples.pico.simple;
+package de.dbo.samples.pico.simple.origin.juicer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.List;
 import org.picocontainer.DefaultPicoContainer;
 import org.picocontainer.MutablePicoContainer;
 
-public class JuicerExample {
+public class Main {
 
 	public Juicer juicerUsingPico() {
 		
