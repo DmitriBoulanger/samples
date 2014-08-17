@@ -6,7 +6,7 @@ import org.picocontainer.DefaultPicoContainer;
 import org.picocontainer.MutablePicoContainer;
 import org.picocontainer.PicoContainer;
 
-public class MainModule {
+public class MainWindowPicoContainer {
     public static PicoContainer newContainer() {
         final MutablePicoContainer pico = new DefaultPicoContainer();
         pico.addComponent(PicoContainer.class, pico);

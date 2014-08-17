@@ -15,7 +15,7 @@ import org.picocontainer.PicoContainer;
  */
 public class Main {
     public static void main(String[] args) {
-        final PicoContainer pico = MainModule.newContainer();
+        final PicoContainer pico = MainWindowPicoContainer.newContainer();
 
         SwingUtilities.invokeLater(new Runnable() {
             @Override public void run() {
