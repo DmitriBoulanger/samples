@@ -23,31 +23,39 @@
   
   <build>
     <plugins>
-      <plugin>
+     <plugin>
         <groupId>org.jbehave</groupId>
         <artifactId>jbehave-maven-plugin</artifactId>
+        <!-- <version>3.3.x-SNAPSHOT</version> -->
         <executions>
+          <execution>
+            <id>unpack-view-resources</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>unpack-view-resources</goal>
+            </goals>
+          </execution>
           <execution>
             <id>embeddable-stories</id>
             <phase>integration-test</phase>
+            <goals>
+              <goal>run-stories-as-embeddables</goal>
+            </goals>
             <configuration>
               <includes>
-                <include>${embeddables}</include>
+                <include>**/*TraderStories.java</include>
               </includes>
               <excludes />
-              <skip>${skip}</skip>
+              <skip>false</skip>
               <batch>false</batch>
               <generateViewAfterStories>true</generateViewAfterStories>
               <ignoreFailureInStories>true</ignoreFailureInStories>
               <ignoreFailureInView>true</ignoreFailureInView>
               <threads>2</threads>
               <metaFilters>
-                <metaFilter>${meta.filter}</metaFilter>
+                <metaFilter></metaFilter>
               </metaFilters>
             </configuration>
-            <goals>
-              <goal>run-stories-as-embeddables</goal>
-            </goals>
           </execution>
         </executions>
       </plugin>
