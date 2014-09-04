@@ -11,12 +11,12 @@
 	
 	<artifactId>Simple</artifactId>
 	<packaging>jar</packaging>
-    <name>Samples Basic-1 Pico Simple</name>
-    <url>http://picocontainer.codehaus.org/introduction.html</url>
+    	<name>Samples Basic-1 Pico Simple</name>
     
-    <description>
-Juicer Example
+    	<description>
+Original Juicer and Window Examples
 	</description>
+	<url>http://picocontainer.codehaus.org/introduction.html</url>
 	
   	<dependencies>
 		
