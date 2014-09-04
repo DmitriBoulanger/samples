@@ -10,18 +10,17 @@
 	</parent>
 	
 	<artifactId>threadlocal0</artifactId>
-    <name>Samples Basic-0 Thread Local Examples (DateFormat and Context)</name>
-
+    	<name>Samples Basic-0 Thread Examples</name>
 	<packaging>jar</packaging>
-    <url>http://www.drdobbs.com/jvm/using-thread-local-variables-in-java/jvm/using-thread-local-variables-in-java/184405382#rl2</url>
     
-    <description>
-Thread-safe DateFormat Example
-	</description>
-	
+    	<description>
+Using thread-local for Contex-implementation and Thread-safe DateFormat
+   	</description>
+	<url>
+http://www.drdobbs.com/jvm/using-thread-local-variables-in-java/jvm/using-thread-local-variables-in-java/184405382#rl2
+	</url>
+   
   	<dependencies>
-		
-		
 		
 	</dependencies>
 	
