@@ -10,7 +10,7 @@
 
 	<artifactId>cucumber-master-cdi</artifactId>
 	
-	<name>Cucumber Master CDI</name>
+	<name>Samples BDD Cucumber Master CDI</name>
 
 	<dependencies>
 		<dependency>

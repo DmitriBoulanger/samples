@@ -11,7 +11,7 @@
     <artifactId>cucumber-skeleton</artifactId>
     <version>0.0.1</version>
     <packaging>jar</packaging>
-    <name>Cucumber Skeleton</name>
+    <name>Samples BDD Cucumber Skeleton</name>
 
 	<description>
  Official hello world example

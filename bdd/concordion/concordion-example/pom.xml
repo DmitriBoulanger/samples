@@ -9,7 +9,7 @@
 	</parent>
 
 	<artifactId>concordion-example</artifactId>
-	<name>Cordcordion Official example</name>
+	<name>Samples BDD Cordcordion Official example</name>
 	
 	<build>
 		<plugins>

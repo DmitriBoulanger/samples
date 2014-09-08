@@ -9,7 +9,7 @@
 	</parent>
 
 	<artifactId>cucumber-simple</artifactId>
-	<name>Cucumber Simple with Cucumber-JUnit</name>
+	<name>Samples BDD Cucumber Simple with Cucumber-JUnit</name>
 
 	<description>
 	

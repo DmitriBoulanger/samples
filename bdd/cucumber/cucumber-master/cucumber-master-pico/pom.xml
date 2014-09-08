@@ -10,7 +10,7 @@
 	
 	<artifactId>cucumber-master-pico</artifactId>
 	
-	<name>Cucumber Master Pico Container</name>
+	<name>Samples BDD Cucumber Master Pico Container</name>
 
 	<dependencies>
 		<dependency>

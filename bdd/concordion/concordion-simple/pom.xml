@@ -9,7 +9,7 @@
 	</parent>
 
 	<artifactId>concordion-simple</artifactId>
-	<name>Concordion Simple</name>
+	<name>Samples BDD Concordion Simple</name>
 
 	<build>
 		<plugins>

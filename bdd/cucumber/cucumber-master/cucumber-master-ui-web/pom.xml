@@ -11,7 +11,7 @@
 	<artifactId>cucumber-master-ui-web</artifactId>
 	<packaging>war</packaging>
 	
-	<name>Cucumber Master UI WEB</name>
+	<name>Samples BDD Cucumber Master UI WEB</name>
 
 	<properties>
 		<chromedriver.url>src/test/resources/chromedriver/chromedriver.exe</chromedriver.url>

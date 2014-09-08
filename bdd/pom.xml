@@ -21,8 +21,8 @@ Samples BDD
 
 	<modules>
 		<module>concordion</module>
-		<!-- <module>cucumber</module> -->
-		<!-- <module>spoke</module> -->
+		<module>cucumber</module>
+		<!-- NOT READY as a module <module>spoke</module> -->
 		<module>jbehave</module>
 	</modules>
 

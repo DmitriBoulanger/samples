@@ -10,7 +10,7 @@
 
 	<artifactId>cucumber-master-spring</artifactId>
 	
-	<name>Cucumber Master Spring</name>
+	<name>Samples BDD Cucumber Master Spring</name>
 
 	<dependencies>
 		<dependency>

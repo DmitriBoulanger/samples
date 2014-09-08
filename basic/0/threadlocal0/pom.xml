@@ -10,7 +10,7 @@
 	</parent>
 	
 	<artifactId>threadlocal0</artifactId>
-    	<name>Samples Basic-0 Thread Examples</name>
+    	<name>Samples Basic-0 Thread-Loxal Examples</name>
 	<packaging>jar</packaging>
     
     	<description>

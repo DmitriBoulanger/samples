@@ -32,6 +32,7 @@ and defines plug-in management.
 	<modules>
 		<module>util</module>
 		<module>basic</module>
+		<module>bdd</module>
 	</modules>
 
 	<build>

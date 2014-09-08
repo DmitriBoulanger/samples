@@ -12,7 +12,7 @@
 	<artifactId>cucumber-master</artifactId>
 	<packaging>pom</packaging>
 	
-	<name>Cucumber Master</name>
+	<name>Samples BDD Cucumber Master</name>
 	<description>
 Origin: https://github.com/GallifreyanCode/cucumber-jvm-examples
 	</description>
