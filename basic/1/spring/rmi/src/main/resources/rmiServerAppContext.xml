@@ -1,0 +1,34 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<!-- Beans Declaration -->	
+	<bean id="UserMap" class="java.util.concurrent.ConcurrentHashMap" />
+	
+	<bean id="CacheService" class="com.otv.cache.service.CacheService">
+		<property name="userMap" ref="UserMap"/>
+	</bean>	
+	
+	<bean id="RMIUserService" class="com.otv.rmi.server.RMIUserService" >
+ 		<property name="cacheService" ref="CacheService"/>
+	</bean>
+	
+	<!-- RMI Server Declaration -->
+    <bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+    	
+    	<!-- serviceName represents RMI Service Name -->
+        <property name="serviceName" value="RMIUserService"/>
+        
+        <!-- service represents RMI Object(RMI Service Impl) -->
+        <property name="service" ref="RMIUserService"/>
+        
+        <!-- serviceInterface represents RMI Service Interface exposed -->
+        <property name="serviceInterface" value="com.otv.rmi.server.IRMIUserService"/>
+        
+        <!-- defaults to 1099 -->
+    	<property name="registryPort" value="1099"/>
+    
+    </bean>
+	
+</beans>

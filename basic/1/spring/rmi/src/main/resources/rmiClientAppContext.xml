@@ -1,0 +1,21 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<!-- RMI Client Declaration -->
+    <bean id="RMIUserService" class="org.springframework.remoting.rmi.RmiProxyFactoryBean">
+        
+        <!-- serviceUrl represents RMI Service Url called-->
+	    <property name="serviceUrl" value="rmi://localhost:1099/RMIUserService"/>
+	    
+	    <!-- serviceInterface represents RMI Service Interface called -->
+	    <property name="serviceInterface" value="com.otv.rmi.server.IRMIUserService"/>
+		
+		<!-- refreshStubOnConnectFailure enforces automatic re-lookup of the stub if a 
+							call fails with a connect exception -->
+	    <property name="refreshStubOnConnectFailure" value="true"/>
+	    
+	</bean>
+	 
+</beans>
