@@ -6,29 +6,56 @@
 	<!-- Beans Declaration -->	
 	<bean id="UserMap" class="java.util.concurrent.ConcurrentHashMap" />
 	
-	<bean id="CacheService" class="com.otv.cache.service.CacheService">
+	<bean id="CacheService" class="de.dbo.samples.spring.rmi.services.cache.CacheServiceImpl">
 		<property name="userMap" ref="UserMap"/>
 	</bean>	
 	
-	<bean id="RMIUserService" class="com.otv.rmi.server.RMIUserService" >
+	<bean id="ManagerService" class="de.dbo.samples.spring.rmi.services.manager.ManagerServiceImpl">
+	
+	</bean>	
+	
+	<!-- RMI Service Declarations -->	
+	
+	<bean id="RMIManagerService" class="de.dbo.samples.spring.rmi.server.RMIManagerServiceImpl">
+		<property name="managerService" ref="ManagerService"/>	 
+	</bean>	
+	
+	<bean id="RMIUserService" class="de.dbo.samples.spring.rmi.server.RMIUserServiceImpl" >
  		<property name="cacheService" ref="CacheService"/>
 	</bean>
 	
-	<!-- RMI Server Declaration -->
-    <bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+	<!-- RMI Server Declarations -->
+	
+   <bean id="RMIUserServiceExporter" class="org.springframework.remoting.rmi.RmiServiceExporter">
     	
     	<!-- serviceName represents RMI Service Name -->
         <property name="serviceName" value="RMIUserService"/>
         
-        <!-- service represents RMI Object(RMI Service Impl) -->
+        <!-- service represents RMI Object(RMI Service Implementation) -->
         <property name="service" ref="RMIUserService"/>
         
         <!-- serviceInterface represents RMI Service Interface exposed -->
-        <property name="serviceInterface" value="com.otv.rmi.server.IRMIUserService"/>
+        <property name="serviceInterface" value="de.dbo.samples.spring.rmi.server.RMIUserService"/>
+        
+        <!-- defaults to 1099 -->
+    	<property name="registryPort" value="1099"/>
+    
+    </bean>  
+    
+     <bean id="RMIManagerServiceExporter" class="org.springframework.remoting.rmi.RmiServiceExporter">
+    	
+    	<!-- serviceName represents RMI Service Name -->
+        <property name="serviceName" value="RMIManagerService"/>
+        
+        <!-- service represents RMI Object(RMI Service Implementation) -->
+        <property name="service" ref="RMIManagerService"/>
+        
+        <!-- serviceInterface represents RMI Service Interface exposed -->
+        <property name="serviceInterface" value="de.dbo.samples.spring.rmi.server.RMIManagerService"/>
         
         <!-- defaults to 1099 -->
     	<property name="registryPort" value="1099"/>
     
     </bean>
-	
+    
 </beans>

@@ -28,6 +28,7 @@ Top for all Spring-samples
 		<module>IoC</module>
 		<module>LifeCycle</module>
 		<module>DependencyInjection</module>
+		<module>rmi</module>
 	</modules> 
 	
 	<build>

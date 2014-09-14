@@ -1,18 +1,14 @@
-package com.otv.cache.service;
+package de.dbo.samples.spring.rmi.services.cache;
+
+import de.dbo.samples.spring.rmi.user.User;
 
 import java.util.concurrent.ConcurrentHashMap;
 
-import com.otv.user.User;
-
 /**
  * Cache Service Implementation
- * 
- * @author  onlinetechvision.com
- * @since   6:04:49 PM
- * @version 1.0.0
  *
  */
-public class CacheService implements ICacheService {
+public class CacheServiceImpl implements CacheService {
 
 	//User Map is injected...
 	ConcurrentHashMap<Long, User> userMap;

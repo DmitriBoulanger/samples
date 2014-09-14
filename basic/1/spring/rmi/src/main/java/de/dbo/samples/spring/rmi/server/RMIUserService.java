@@ -1,18 +1,14 @@
-package com.otv.rmi.server;
+package de.dbo.samples.spring.rmi.server;
+
+import de.dbo.samples.spring.rmi.user.User;
 
 import java.util.List;
 
-import com.otv.user.User;
-
 /**
  * RMI User Service Interface
- * 
- * @author  onlinetechvision.com
- * @since   24 Feb 2012
- * @version 1.0.0
  *
  */
-public interface IRMIUserService{
+public interface RMIUserService{
 
 	/**
 	 * Add User
@@ -37,5 +33,6 @@ public interface IRMIUserService{
 	 * @return List user list
 	 */
 	public List<User> getUserList();
+
 	
 }

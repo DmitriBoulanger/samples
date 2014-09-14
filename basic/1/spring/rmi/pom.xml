@@ -2,31 +2,30 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	
-	<groupId>de.dbo.samples.basic.1.spring</groupId>
+	<parent>
+		<groupId>de.dbo.samples.basic.1.spring</groupId>
+		<artifactId>spring</artifactId>
+		<version>0.0.0-SNAPSHOT</version>
+	</parent>
+	
 	<artifactId>rmi</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-
-	<properties>
-		<spring.version>3.1.1.RELEASE</spring.version> 
-	</properties>
+	<name>Samples Basic-1 Spring RMI Services Example</name>
+	<url>http://www.javacodegeeks.com/2012/04/spring-remoting-support-and-developing.html</url>
 
 	<dependencies>
         <dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
-			<version>${spring.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
-			<version>${spring.version}</version>
 		</dependency>
-		
-		 <!-- Log4j library -->
 		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-			<version>1.2.16</version>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<scope>compile</scope>
 		</dependency>
      
 	</dependencies>
@@ -47,7 +46,7 @@
 							<transformers>
 								<transformer
 									implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-									<mainClass>com.otv.rmi.server.starter.RMIServerStarter</mainClass>
+									<mainClass>de.dbo.samples.spring.rmi.server.starter.RMIServerStarter</mainClass>
 								</transformer>
 								<transformer
 									implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">

@@ -1,17 +1,14 @@
-package com.otv.user;
+package de.dbo.samples.spring.rmi.user;
 
 import java.io.Serializable;
 
 /**
  * User Bean
  * 
- * @author  onlinetechvision.com
- * @since   24 Feb 2012
- * @version 1.0.0
- *
  */
 public class User implements Serializable {
-
+	private static final long serialVersionUID = -5653695678607999093L;
+	
 	private long id;
 	private String name;
 	private String surname;
