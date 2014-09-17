@@ -22,6 +22,7 @@ Reactor for all basic-1 samples.
 		<module>maven</module>
 		<module>spring</module>
 		<module>pico</module>
+		<module>concurrent</module>
 	</modules>
 
 	<!-- Logger configuration for tests in basic.1 samples -->
