@@ -10,13 +10,18 @@ import org.slf4j.*;
 public class JobRunner {
 	private static final Logger log = LoggerFactory.getLogger(JobRunner.class);
 	
-	private static final int threadCnt = 100;
-	private static final CountDownLatch countDownLatch = new CountDownLatch(threadCnt);
-	private static final ResourceWithSemaphore resourceWithSemaphore = new ResourceWithSemaphore();
-	private static final Job[] jobs = new Job[threadCnt];
-	private static final Thread[] threads = new Thread[threadCnt];
+	public static void main(String[] args) {
+//		new JobRunner().runThreads();
+		new JobRunner().runJobs();
+	}
 	
-	static {
+	private  final int threadCnt = 100;
+	private  final CountDownLatch countDownLatch = new CountDownLatch(threadCnt);
+	private  final ResourceWithSemaphore resourceWithSemaphore = new ResourceWithSemaphore();
+	private  final Job[] jobs = new Job[threadCnt];
+	private  final Thread[] threads = new Thread[threadCnt];
+	
+	public JobRunner() {
 		/*
 		 * Create jobs and threads
 		 */
@@ -29,12 +34,7 @@ public class JobRunner {
 		
 	}
 
-	public static void main(String[] args) {
-		runThreads();
-//		runJobs();
-	}
-	
-	public static void runThreads() {
+	public  void runThreads() {
 		final long start = System.currentTimeMillis();
 		for (final Thread thread:threads) {
 			thread.start();		
@@ -52,7 +52,7 @@ public class JobRunner {
 		}
 	}
 	
-	public static void runJobs() {
+	public  void runJobs() {
 		final long start = System.currentTimeMillis();
 		for (final Job job:jobs) {
 			job.run();		
@@ -60,7 +60,7 @@ public class JobRunner {
 		logElapsed(start,threadCnt);
 	}
 	
-	private static final void logElapsed(final long start, int threadCnt) {
+	private  final void logElapsed(final long start, int threadCnt) {
 		final long end = System.currentTimeMillis();
 		final double duration = (double) end-start;
 		final long average = (long) ( duration / (double) threadCnt );
