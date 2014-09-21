@@ -11,8 +11,8 @@ public class JobRunner {
 	private static final Logger log = LoggerFactory.getLogger(JobRunner.class);
 	
 	public static void main(String[] args) {
-//		new JobRunner().runThreads();
-		new JobRunner().runJobs();
+		new JobRunner().runThreads();
+//		new JobRunner().runJobs();
 	}
 	
 	private  final int threadCnt = 100;
@@ -60,7 +60,9 @@ public class JobRunner {
 		logElapsed(start,threadCnt);
 	}
 	
-	private  final void logElapsed(final long start, int threadCnt) {
+	// HELPERS
+	
+	private  final void logElapsed(final long start, final int threadCnt) {
 		final long end = System.currentTimeMillis();
 		final double duration = (double) end-start;
 		final long average = (long) ( duration / (double) threadCnt );

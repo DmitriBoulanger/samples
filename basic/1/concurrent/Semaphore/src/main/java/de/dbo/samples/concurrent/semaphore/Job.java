@@ -35,11 +35,7 @@ public final class Job implements Runnable{
 			} catch (Throwable e) {
 				log.error(jobname + " failure: ",e);
 			} finally {
-				try {
-					resourceWithSemaphore.exit();
-				} catch (Throwable e) {
-					log.error(jobname + "  exit failure: ",e);
-				}
+				resourceWithSemaphore.exit();
 			}
 			doIt(ms(name),"2");
 		} finally {
@@ -55,6 +51,10 @@ public final class Job implements Runnable{
 		} catch (InterruptedException e) {
 			log.error(jobname + " running # with resource failure: ",e);
 		}
+		
+		/*
+		 * Test-error
+		 */
 		if (8==name || 0==name%11 || 0==name%19) {
 			throw new RuntimeException(jobname + " running # with resource test-failure");
 		}
@@ -70,6 +70,11 @@ public final class Job implements Runnable{
 		}
 	}
 	
+	// HELPERS
+	
+	/**
+	 * covert name into milliseconds pause
+	 */
 	private final long ms(final int i) {
 		if (0==i%2) {
 			return 50;

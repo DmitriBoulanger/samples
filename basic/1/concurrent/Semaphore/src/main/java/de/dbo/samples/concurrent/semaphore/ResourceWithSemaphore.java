@@ -10,7 +10,7 @@ public final class ResourceWithSemaphore {
 		semaphore.acquire();
 	}
 	
-	public final void exit() throws InterruptedException {
+	public final void exit()  {
 		semaphore.release();
 	}
 
