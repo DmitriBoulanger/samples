@@ -93,17 +93,4 @@
         </plugins>
     </build>
 
-
-    <developers>
-        <developer>
-            <id>gordon.dickens</id>
-            <name>Gordon Dickens</name>
-            <email>gordondickens@gmail.com</email>
-            <roles>
-                <role>Author</role>
-            </roles>
-            <organization>http://www.gordondickens.com</organization>
-        </developer>
-    </developers>
-
 </project>
