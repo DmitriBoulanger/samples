@@ -13,7 +13,9 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "ITEM")
 public class ItemEntity extends BaseEntity {
-    @Id
+	private static final long serialVersionUID = 575089531592914459L;
+
+	@Id
     Integer id;
 
     String name;
