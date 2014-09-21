@@ -15,18 +15,6 @@
     </prerequisites> -->
     <description>Spring Project Best Practices</description>
 
-    <developers>
-        <developer>
-            <id>gordon.dickens</id>
-            <name>Gordon Dickens</name>
-            <email>gordondickens@gmail.com</email>
-            <roles>
-                <role>Author</role>
-            </roles>
-            <organization>http://www.gordondickens.com</organization>
-        </developer>
-    </developers>
-
     <properties>
         <activation.version>1.1.1</activation.version>
         <activemq.version>5.7.0</activemq.version>

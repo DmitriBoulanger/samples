@@ -6,7 +6,7 @@
     
     <groupId>com.gordondickens.sample</groupId>
     <artifactId>sample-parent</artifactId>
-    <version>1.0.0</version>
+    <version>0.0.0-SNAPSHOT</version>
 
     <packaging>pom</packaging>
     <name>*** EE Super Pom ***</name>
