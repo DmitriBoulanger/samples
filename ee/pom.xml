@@ -16,11 +16,11 @@
 	<name>Samples EE</name>
 
 	<description>
-Reactor only of the EE Samples
+Reactor of the EE Samples
 	</description>
 
 	<modules>
-		<module>enterprise-spring-parent</module>
+		<module>enterprise-spring</module>
 	</modules>
 
 </project>

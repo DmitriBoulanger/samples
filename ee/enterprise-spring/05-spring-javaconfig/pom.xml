@@ -3,18 +3,19 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
            http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    
     <parent>
         <groupId>de.dbo.samples.ee.spring</groupId>
-        <artifactId>enterprise-spring-parent</artifactId>
+        <artifactId>enterprise-spring</artifactId>
         <version>1.1.0</version>
     </parent>
 
     <artifactId>enterprise-spring-javaconfig</artifactId>
 
     <packaging>war</packaging>
-    <name>Enterprise Spring | 05 Spring JavaConfig</name>
+    <name>Samples EE Spring 05 Spring JavaConfig</name>
 
-    <description>05 Spring JavaConfig</description>
+    <description>Samples EE Spring 05 Spring JavaConfig</description>
 
     <dependencies>
         <dependency>

@@ -3,18 +3,19 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
            http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    
     <parent>
         <groupId>de.dbo.samples.ee.spring</groupId>
-        <artifactId>enterprise-spring-parent</artifactId>
+        <artifactId>enterprise-spring</artifactId>
         <version>1.1.0</version>
     </parent>
 
-    <artifactId>enterprise-spring-xml</artifactId>
+    <artifactId>enterprise-spring-application-architecture</artifactId>
 
     <packaging>jar</packaging>
-    <name>Enterprise Spring | 03 Spring XML</name>
+    <name>Samples EE Spring 02 Application Architecture</name>
 
-    <description>03 Spring XML</description>
+    <description>02 Application Architecture</description>
 
     <dependencies>
         <dependency>
@@ -24,10 +25,6 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-jdbc</artifactId>
         </dependency>
     </dependencies>
 

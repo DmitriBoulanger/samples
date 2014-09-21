@@ -5,15 +5,15 @@
     <modelVersion>4.0.0</modelVersion>
     
     <groupId>de.dbo.samples.ee.spring</groupId>
-    <artifactId>enterprise-spring-parent</artifactId>
+    <artifactId>enterprise-spring</artifactId>
     <version>1.1.0</version>
 
     <packaging>pom</packaging>
-    <name>*** EE Spring Super Pom ***</name>
+    <name>Samples EE Spring</name>
 <!--     <prerequisites>
         <maven>3.0.4</maven>
     </prerequisites> -->
-    <description>Spring Project Best Practices Pom</description>
+    <description>Spring Project Best Practices</description>
 
     <developers>
         <developer>
@@ -145,7 +145,7 @@
     </properties>
 
     <modules>
-        <module>02-application-architecture</module>
+        <module>02-spring-application-architecture</module>
         <module>03-spring-xml</module>
         <module>04-spring-annotations</module>
         <module>05-spring-javaconfig</module>
