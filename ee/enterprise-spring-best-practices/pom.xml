@@ -9,7 +9,7 @@
     <version>1.1.0</version>
 
     <packaging>pom</packaging>
-    <name>*** EE Super Pom ***</name>
+    <name>*** EE Spring Super Pom ***</name>
 <!--     <prerequisites>
         <maven>3.0.4</maven>
     </prerequisites> -->
