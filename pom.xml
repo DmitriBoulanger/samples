@@ -33,6 +33,7 @@ and defines plug-in management.
 		<module>util</module>
 		<module>basic</module>
 		<module>bdd</module>
+		<module>ee</module>
 	</modules>
 
 	<build>
