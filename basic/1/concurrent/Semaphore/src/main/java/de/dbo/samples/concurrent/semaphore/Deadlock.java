@@ -11,7 +11,7 @@ public class Deadlock {
 	private static final Logger log = LoggerFactory.getLogger(Deadlock.class);
 	
 	public static void main(String[] args) throws Exception {
-		   final long duration = 0;
+		   final long duration = 100;
 		   log.info("Job duration is about " + duration + " milliseconds");
 		   final Semaphore s1 = new Semaphore(1);
 		   final Semaphore s2 = new Semaphore(1);
