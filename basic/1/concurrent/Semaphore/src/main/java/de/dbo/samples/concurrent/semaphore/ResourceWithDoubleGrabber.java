@@ -12,11 +12,13 @@ public class ResourceWithDoubleGrabber implements Runnable {
 	   private Semaphore first;
 	   private Semaphore second;
 	   private final CountDownLatch countDownLatch;
+	   private final long duration;
 
-	   public ResourceWithDoubleGrabber(final Semaphore s1, final Semaphore s2, final CountDownLatch countDownLatch) {
+	   public ResourceWithDoubleGrabber(final long duration, final Semaphore s1, final Semaphore s2, final CountDownLatch countDownLatch) {
 	       first = s1;
 	       second = s2;
 	       this.countDownLatch = countDownLatch;
+	       this.duration = duration;
 	   }
 
 	   public void run() {
@@ -26,7 +28,7 @@ public class ResourceWithDoubleGrabber implements Runnable {
 	           first.acquire();
 	           log.info("acquired " + first);
 
-	           Thread.sleep(29); // to demonstrate deadlock
+	           Thread.sleep(duration); // to demonstrate deadlock
 
 	           second.acquire();
 	           log.info("acquired " + second);
