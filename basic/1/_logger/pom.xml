@@ -11,7 +11,6 @@
 
 	<artifactId>_logger</artifactId>
 	<name>Samples Basic-1 Logger</name>
-
 	<description>
 Log4j-resources (configuration) for all Samples Basic-1 projects
 	</description>

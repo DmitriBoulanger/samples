@@ -12,7 +12,6 @@
 	<artifactId>06_Enterprise</artifactId>
 	<packaging>pom</packaging>
 	<name>Samples Basic-1 Maven Enterprise</name>
-
 	<description>
 Enterprise Project with Model, Persist and WEB components
 	</description>
@@ -47,11 +46,6 @@ Enterprise Project with Model, Persist and WEB components
 						</dependency>
 						<!-- Logger implementation and its configuration -->
 						<dependency>
-							<groupId>org.slf4j</groupId>
-							<artifactId>slf4j-log4j12</artifactId>
-							<version>${slf4j.version}</version>
-						</dependency>
-						<dependency>
 							<groupId>de.dbo.samples.basic.1</groupId>
 							<artifactId>_logger</artifactId>
 							<version>${project.version}</version>
@@ -62,7 +56,6 @@ Enterprise Project with Model, Persist and WEB components
 				<plugin>
 					<groupId>org.codehaus.mojo</groupId>
 					<artifactId>hibernate3-maven-plugin</artifactId>
-					<version>3.0</version>
 					<configuration>
 						<hibernatetool>
 							<annotationconfiguration/>
@@ -82,7 +75,6 @@ Enterprise Project with Model, Persist and WEB components
 						</dependency>
 					</dependencies>
 				</plugin>
-
 			</plugins>
 		</pluginManagement>
 	</build>
@@ -104,7 +96,6 @@ Enterprise Project with Model, Persist and WEB components
 				<artifactId>06_Enterprise-Model</artifactId>
 				<version>${project.version}</version>
 			</dependency>
-
 		</dependencies>
 	</dependencyManagement>
 

@@ -3,8 +3,8 @@
 	<modelVersion>4.0.0</modelVersion>
 	
 	<parent>
-		<groupId>de.dbo.samples.cucumber</groupId>
-		<artifactId>cucumber-root</artifactId>
+		<groupId>de.dbo.samples.bdd.cucumber</groupId>
+		<artifactId>cucumber</artifactId>
 		<version>0.0.0-SNAPSHOT</version>
 	</parent>
 	
