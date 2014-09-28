@@ -1,7 +1,7 @@
 package de.dbo.samples.concordion.simple;
 
-import org.concordion.integration.junit4.ConcordionRunner;
-import org.junit.runner.RunWith;
+//import org.concordion.integration.junit4.ConcordionRunner;
+//import org.junit.runner.RunWith;
 
 /**
  * 
@@ -14,7 +14,7 @@ import org.junit.runner.RunWith;
 
 /* Run it as a JUnit test. */
 
-@RunWith(ConcordionRunner.class)
+//@RunWith(ConcordionRunner.class)
 public class HelloWorldFixture {
 
     public String greetingFor(String firstName) {

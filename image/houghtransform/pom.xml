@@ -10,7 +10,6 @@
 
 	<artifactId>houghtransform</artifactId>
 	<name>Samples Image Houghtransform</name>
-
 	<description>
 Hough transformation and Categorization of Black/White Images
 	</description>
@@ -40,7 +39,6 @@ Hough transformation and Categorization of Black/White Images
 		<dependency>
 			<groupId>com.jhlabs</groupId>
 			<artifactId>filters</artifactId>
-			<version>2.0.235-1</version>
 		</dependency>
 
 		<dependency>
@@ -51,7 +49,6 @@ Hough transformation and Categorization of Black/White Images
 		<dependency>
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
-			<version>2.4</version>
 			<scope>test</scope>
 		</dependency>
 		

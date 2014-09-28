@@ -1,8 +1,8 @@
 package de.dbo.samples.concordion.simple1;
 
-import org.concordion.integration.junit4.ConcordionRunner;
+//import org.concordion.integration.junit4.ConcordionRunner;
 import org.junit.Before;
-import org.junit.runner.RunWith;
+//import org.junit.runner.RunWith;
 
 /**
  * 
@@ -15,7 +15,7 @@ import org.junit.runner.RunWith;
 
 /* Run it as a JUnit test. */
 
-@RunWith(ConcordionRunner.class)
+//@RunWith(ConcordionRunner.class)
 public class HelloWorldTest {
     
     private HelloWorld helloWorld;
