@@ -1,14 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-
-<!-- 	<parent>
-		<groupId>de.dbo.samples</groupId>
-		<artifactId>_samples-dependency-management</artifactId>
-		<version>0.0.0-SNAPSHOT</version>
-		<relativePath>_samles-dependency-management/pom.xml</relativePath>
-	</parent> -->
-
+	
 	<groupId>de.dbo.samples</groupId>
 	<artifactId>samples</artifactId>
 	<version>0.0.0-SNAPSHOT</version>
@@ -44,20 +37,7 @@ and defines plug-in management.
 		<finalName>${project.groupId}-${project.artifactId}</finalName>
 		<pluginManagement>
 			<plugins>
-				<plugin>
-					<groupId>org.codehaus.mojo</groupId>
-					<artifactId>properties-maven-plugin</artifactId>
-					<version>1.0-alpha-1</version>
-					<executions>
-						<execution>
-							<phase>initialize</phase>
-							<goals>
-								<goal>read-project-properties</goal>
-							</goals>
-						</execution>
-					</executions>
-				</plugin>
-			<!-- JAVA -->
+				<!-- JAVA -->
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-compiler-plugin</artifactId>
@@ -141,10 +121,9 @@ and defines plug-in management.
 						</lifecycleMappingMetadata>
 					</configuration>
 				</plugin>
-
-
 			</plugins>
 		</pluginManagement>
+		
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
