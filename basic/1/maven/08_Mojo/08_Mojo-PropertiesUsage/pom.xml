@@ -38,18 +38,40 @@
 				<dependencies>
 
 <!-- Any jars that host the required properties -->
-    
+
 					<dependency>
 						<groupId>de.dbo.samples.basic.1.maven</groupId>
 						<artifactId>08_Mojo-PropertiesContainer</artifactId>
 						<version>${project.version}</version>
 					</dependency>
-					
-					
+
+
 				</dependencies>
 			</plugin>
-			
-			
+
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>properties-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<goal>set-system-properties</goal>
+						</goals>
+						<configuration>
+							<properties>
+								<property>
+									<name>spring-version</name>
+									<value>${spring-version}</value>
+								</property>
+								<property>
+									<name>mysql-version</name>
+									<value>${mysql-version}</value>
+								</property>
+							</properties>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 			<plugin>
 				<artifactId>maven-antrun-plugin</artifactId>
 				<executions>
@@ -70,7 +92,12 @@
 		</plugins>
 	</build>
 
- 	<dependencies>
+	<dependencies>
+		<dependency>
+			<groupId>de.dbo.samples</groupId>
+			<artifactId>util</artifactId>
+			<scope>test</scope>
+		</dependency>
  	<!--
 		<dependency>
 			<groupId>de.dbo.samples.basic.1.maven</groupId>
