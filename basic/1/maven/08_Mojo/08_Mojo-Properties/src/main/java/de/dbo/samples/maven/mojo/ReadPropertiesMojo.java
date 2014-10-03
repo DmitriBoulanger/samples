@@ -23,6 +23,8 @@ import org.codehaus.plexus.util.cli.CommandLineUtils;
  * The read-project-properties goal reads property files and stores the
  * properties as project properties. It serves as an alternate to specifying
  * properties in pom.xml.
+ * 
+ * @goal read-project-properties
  */
 public class ReadPropertiesMojo extends AbstractMojo {
 
@@ -59,8 +61,7 @@ public class ReadPropertiesMojo extends AbstractMojo {
 
 	public void execute() throws MojoExecutionException {
 		if (getPluginContext().containsKey("test_maven_project")) {
-			project = (MavenProject) getPluginContext().get(
-					"test_maven_project");
+			project = (MavenProject) getPluginContext().get("test_maven_project");
 			logProject();
 		}
 
@@ -70,34 +71,33 @@ public class ReadPropertiesMojo extends AbstractMojo {
 
 		Properties projectProperties = new Properties();
 		for (int i = 0; i < files.length; i++) {
-			File file = files[i];
+			final File file = files[i];
+			if (null==file) {
+				throw new MojoExecutionException("File is NULL!");
+			}
+			if (!file.exists()) {
+				getLog().warn("Ignoring missing properties file: "+ file.getAbsolutePath());
+				continue;
+			}
 
-			if (file.exists()) {
+			try {
+				getLog().info("Loading property file: " + file);
+				FileInputStream stream = new FileInputStream(file);
+				projectProperties = project.getProperties();
 				try {
-					getLog().info("Loading property file: " + file);
-					FileInputStream stream = new FileInputStream(file);
-					projectProperties = project.getProperties();
-
-					try {
-						projectProperties.load(stream);
-					} finally {
-						if (stream != null) {
-							stream.close();
-						}
+					projectProperties.load(stream);
+				} finally {
+					if (stream != null) {
+						stream.close();
 					}
-				} catch (IOException e) {
-					throw new MojoExecutionException(
-							"Error reading properties file " + file.getAbsolutePath(), e);
 				}
-			} else {
-				getLog().warn(
-						"Ignoring missing properties file: "+ file.getAbsolutePath());
+			} catch (IOException e) {
+				throw new MojoExecutionException("Error reading properties file " + file.getAbsolutePath(), e);
 			}
 		}
 
 		boolean useEnvVariables = false;
-		for (Enumeration n = projectProperties.propertyNames(); n
-				.hasMoreElements();) {
+		for (Enumeration n = projectProperties.propertyNames(); n.hasMoreElements();) {
 			String k = (String) n.nextElement();
 			String p = (String) projectProperties.get(k);
 			if (p.indexOf("${env.") != -1) {
