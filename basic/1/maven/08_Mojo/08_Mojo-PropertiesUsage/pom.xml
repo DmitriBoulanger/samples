@@ -1,0 +1,61 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>de.dbo.samples.basic.1.maven</groupId>
+		<artifactId>08_Mojo</artifactId>
+		<version>0.0.0-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>08_Mojo-PropertiesUsage</artifactId>
+	<name>Samples Basic-1 Maven Mojo Properties Usage</name>
+	<url>http://www.torsten-horn.de/techdocs/maven.htm#Mojo</url>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>de.dbo.samples.basic.1.maven</groupId>
+				<artifactId>08_Mojo-Properties</artifactId>
+				<version>${project.version}</version>
+				<executions>
+					<execution>
+						<id>read-properties</id>
+						<phase>initialize</phase>
+						<goals>
+							<goal>read-project-properties</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<filePaths>
+						<filePath>versions.properties</filePath>
+					</filePaths>
+				</configuration>
+				<dependencies>
+
+<!-- Any jars that host the required properties files here -->
+    
+					<dependency>
+						<groupId>de.dbo.samples.basic.1.maven</groupId>
+						<artifactId>08_Mojo-PropertiesContainer</artifactId>
+						<version>${project.version}</version>
+					</dependency>
+					
+					
+				</dependencies>
+			</plugin>
+		</plugins>
+	</build>
+
+
+
+	<dependencies>
+		<dependency>
+			<groupId>de.dbo.samples.basic.1.maven</groupId>
+			<artifactId>07_Mojo-Timestamp</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+	</dependencies>
+
+</project>

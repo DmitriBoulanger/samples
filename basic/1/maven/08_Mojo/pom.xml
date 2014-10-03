@@ -9,21 +9,18 @@
 		<version>0.0.0-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>07_Mojo</artifactId>
+	<artifactId>08_Mojo</artifactId>
 	<packaging>pom</packaging>
-	<name>Samples Basic-1 Maven Mojo Timestamp</name>
-
+	<name>Samples Basic-1 Maven Mojo Properties</name>
+	<url>http://stackoverflow.com/questions/1231561/how-to-share-common-properties-among-several-maven-projects</url>
 	<description>
-	
-Project with Timestamp Mojo to show time-stamps and elapsed ms. of different phases.
-It consists of the plug-in definition Timestamp and its test TimestampUsage
-
+How to share common properties among several maven projects?
 	</description>
-	<url>http://www.torsten-horn.de/techdocs/maven.htm#Mojo</url>
 
 	<modules>
-		<module>07_Mojo-Timestamp</module>
-		<module>07_Mojo-TimestampUsage</module>
+		<module>08_Mojo-Properties</module>
+		<module>08_Mojo-PropertiesUsage</module>
+		<module>08_Mojo-PropertiesContainer</module>
 	</modules>
 
 	<build>
@@ -35,13 +32,11 @@ It consists of the plug-in definition Timestamp and its test TimestampUsage
 			<groupId>org.apache.maven</groupId>
 			<artifactId>maven-plugin-api</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>org.apache.maven.shared</groupId>
 			<artifactId>maven-plugin-testing-harness</artifactId>
 			<scope>test</scope>
 		</dependency>
-
 	</dependencies>
 
 
