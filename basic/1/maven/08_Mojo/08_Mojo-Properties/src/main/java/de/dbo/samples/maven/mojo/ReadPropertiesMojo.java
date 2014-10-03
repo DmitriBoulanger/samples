@@ -5,8 +5,8 @@ package de.dbo.samples.maven.mojo;
  * or more contributor license agreements.  See the NOTICE file 
  * distributed with this work for additional information
  * regarding copyright ownership.  The ASF licenses this file
- * to you under the Apache License, Version 2.0 (the
- * "License"); you may not use this file except in compliance
+ * to you under the Apache License, Version 2.0 (the"License"); 
+ * you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
  * 
  *   http://www.apache.org/licenses/LICENSE-2.0
@@ -15,8 +15,7 @@ package de.dbo.samples.maven.mojo;
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY 
  * KIND, either express or implied.  See the License for the 
- * specific language governing permissions and limitations 
- * under the License.
+ * specific language governing permissions and limitations under the License.
  */
 
 import java.io.File;
@@ -40,7 +39,8 @@ import org.codehaus.plexus.util.cli.CommandLineUtils;
 
 /**
  * The read-project-properties goal reads property files and stores the
- * properties as project properties. It serves as an alternate to specifying properties in pom.xml.
+ * properties as project properties. 
+ * It serves as an alternate to specifying properties in pom.xml.
  * 
  * @author <a href="mailto:zarars@gmail.com">Zarar Siddiqi</a>
  * @author <a href="mailto:Krystian.Nowak@gmail.com">Krystian Nowak</a>
@@ -48,6 +48,10 @@ import org.codehaus.plexus.util.cli.CommandLineUtils;
  * @goal read-project-properties
  */
 public class ReadPropertiesMojo extends AbstractMojo {
+	
+	 /** @parameter */ String prefix = "Properties:";
+	 /** @parameter */ String datetimePattern = "yyyy-MM-dd HH:mm:ss.S";
+	 
     /**
      * @parameter default-value="${project}"
      * @required
@@ -57,7 +61,7 @@ public class ReadPropertiesMojo extends AbstractMojo {
 
     /**
      * The properties files that will be used when reading properties.
-     * RS: made optional to avoid issue for inherited plugins
+     * RS: made optional to avoid issue for inherited plug-ins
      * @parameter
      */
     private File[] files;
@@ -74,11 +78,15 @@ public class ReadPropertiesMojo extends AbstractMojo {
     /**
      * If the plugin should be quiet if any of the files was not found
      * 
-     * @parameter default-value="false"
+     * @parameter default-value="true"
      */
     private boolean quiet;
 
     public void execute() throws MojoExecutionException {
+    	if (getPluginContext().containsKey("test_maven_project")) {
+			project = (MavenProject) getPluginContext().get("test_maven_project");
+		}
+		logProject();
         //Begin: RS addition
         readPropertyFiles();
         //End: RS addition
@@ -89,8 +97,7 @@ public class ReadPropertiesMojo extends AbstractMojo {
 
             if (file.exists()) {
                 try {
-                    getLog().debug("Loading property file: " + file);
-
+                    getLog().info("Loading property file: " + file);
                     FileInputStream stream = new FileInputStream(file);
                     projectProperties = project.getProperties();
 
@@ -109,8 +116,7 @@ public class ReadPropertiesMojo extends AbstractMojo {
             } else {
                 if (quiet) {
                     getLog().warn(
-                            "Ignoring missing properties file: "
-                                    + file.getAbsolutePath());
+                            "Ignoring missing properties file: "+ file.getAbsolutePath());
                 } else {
                     throw new MojoExecutionException(
                             "Properties file not found: "
@@ -151,7 +157,12 @@ public class ReadPropertiesMojo extends AbstractMojo {
      * @throws MojoExecutionException
      */
     private void readPropertyFiles() throws MojoExecutionException {
-        if (filePaths != null && filePaths.length > 0) {
+    	if (files == null || files.length == 0) {
+            throw new MojoExecutionException(
+                    "no files or filePaths defined, one or both must be specified");
+        }
+    	
+       
             File[] allFiles;
 
             int offset = 0;
@@ -165,6 +176,13 @@ public class ReadPropertiesMojo extends AbstractMojo {
 
             for (int i = 0; i < filePaths.length; i++) {
                 Location location = getLocation(filePaths[i], project);
+                if (null==location) {
+                	 throw new MojoExecutionException(
+                             "Location is null: filePaths=[" + filePaths[i] + "]"
+                            		 + "project=[" 
+                            		 + (null!=project? project.getArtifactId() : "NULL")
+                            		 + "]");
+                }
 
                 try {
                     allFiles[offset + i] = location.getFile();
@@ -176,11 +194,9 @@ public class ReadPropertiesMojo extends AbstractMojo {
 
             // replace the original array with the merged results
             files = allFiles;
-        } else if (files == null || files.length == 0) {
-            throw new MojoExecutionException(
-                    "no files or filePaths defined, one or both must be specified");
-        }
-    }
+            logPropertyFiles();
+        }  
+    
     //End: RS addition
 
     /**
@@ -276,4 +292,22 @@ public class ReadPropertiesMojo extends AbstractMojo {
         return location;
     }
     //End: RS addition
+    
+    // Debugging
+    
+    private void logProject() {
+    	 getLog().info("Project: [" + (null!=project? project.getArtifactId() : "NULL") +"]");
+    }
+    
+    private final void logPropertyFiles() {
+    	 final StringBuilder sb = new StringBuilder();
+    	 if (null!=files) {
+    		 	for (int k=0; k<files.length; k++) {
+    			 sb.append("\n\t - " + files[k].toString());
+    		 }
+    	 } else {
+    		 sb.append("NULL");
+    	 }
+    	 getLog().info(files.length +  " properety-files done:" + sb.toString());
+    }
 }

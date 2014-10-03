@@ -10,8 +10,7 @@ import org.apache.maven.plugin.AbstractMojo;
  * @goal timestamp
  */
 //see: http://books.sonatype.com/mvnref-book/reference/writing-plugins-sect-custom-plugin.html#writing-plugins-sect-class-annotations
-public final class TimestampMojo extends AbstractMojo
-{
+public final class TimestampMojo extends AbstractMojo {
 	
    /** @parameter */ String prefix = "Timestamp:";
    /** @parameter */ String datetimePattern = "yyyy-MM-dd HH:mm:ss,S";

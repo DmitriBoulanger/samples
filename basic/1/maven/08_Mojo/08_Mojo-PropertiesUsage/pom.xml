@@ -10,7 +10,7 @@
 
 	<artifactId>08_Mojo-PropertiesUsage</artifactId>
 	<name>Samples Basic-1 Maven Mojo Properties Usage</name>
-	<url>http://www.torsten-horn.de/techdocs/maven.htm#Mojo</url>
+	<url></url>
 
 	<build>
 		<plugins>
@@ -31,10 +31,13 @@
 					<filePaths>
 						<filePath>versions.properties</filePath>
 					</filePaths>
+					<files>
+						<file>versions.properties</file>
+					</files>
 				</configuration>
 				<dependencies>
 
-<!-- Any jars that host the required properties files here -->
+<!-- Any jars that host the required properties -->
     
 					<dependency>
 						<groupId>de.dbo.samples.basic.1.maven</groupId>
@@ -45,15 +48,39 @@
 					
 				</dependencies>
 			</plugin>
+			
+			
+			<plugin>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+							<tasks>
+								<echo>spring-version=${spring-version}</echo>
+								<echo>mysql-version=${mysql-version}</echo>
+							</tasks>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
 
-
-
-	<dependencies>
+ 	<dependencies>
+ 	<!--
 		<dependency>
 			<groupId>de.dbo.samples.basic.1.maven</groupId>
-			<artifactId>07_Mojo-Timestamp</artifactId>
+			<artifactId>08_Mojo-Properties</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		 -->
+		<dependency>
+			<groupId>de.dbo.samples.basic.1.maven</groupId>
+			<artifactId>08_Mojo-PropertiesContainer</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 	</dependencies>

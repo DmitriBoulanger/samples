@@ -11,7 +11,19 @@
 	<artifactId>08_Mojo-Properties</artifactId>
 	<packaging>maven-plugin</packaging>
 	<name>Samples Basic-1 Maven Mojo Properties Plugin</name>
-	<url>http://www.torsten-horn.de/techdocs/maven.htm#Mojo</url>
+	<url></url>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<skipTests>false</skipTests>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 
 	<dependencies>
 		<dependency>
@@ -23,6 +35,12 @@
 			<groupId>org.apache.maven.shared</groupId>
 			<artifactId>maven-shared-io</artifactId>
 			<version>1.1</version>
+		</dependency>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>08_Mojo-PropertiesContainer</artifactId>
+			<version>${project.version}</version>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 
