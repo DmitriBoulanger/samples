@@ -12,6 +12,7 @@
   <name>Samples Basic-1 Maven Mojo Properties Container</name>
   <description>
 Properties container (JAR with properties-file as a resource)
-  </description>
+This artifcat is only used as a parameter in 08_Mojo-PropertiesUsage
+	</description>
   
 </project>
