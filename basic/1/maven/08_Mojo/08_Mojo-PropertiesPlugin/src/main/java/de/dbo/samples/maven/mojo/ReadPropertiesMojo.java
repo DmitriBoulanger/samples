@@ -52,13 +52,6 @@ public class ReadPropertiesMojo extends AbstractMojo {
 	private String[] filePaths;
 	// End: RS addition
 
-	/**
-	 * If the plugin should be quiet if any of the files was not found
-	 * 
-	 * @parameter default-value="true"
-	 */
-	private boolean quiet;
-
 	public void execute() throws MojoExecutionException {
 		if (getPluginContext().containsKey("test_maven_project")) {
 			project = (MavenProject) getPluginContext().get("test_maven_project");
@@ -97,7 +90,8 @@ public class ReadPropertiesMojo extends AbstractMojo {
 		}
 
 		boolean useEnvVariables = false;
-		for (Enumeration n = projectProperties.propertyNames(); n.hasMoreElements();) {
+		for (@SuppressWarnings("rawtypes")
+		Enumeration n = projectProperties.propertyNames(); n.hasMoreElements();) {
 			String k = (String) n.nextElement();
 			String p = (String) projectProperties.get(k);
 			if (p.indexOf("${env.") != -1) {
@@ -110,11 +104,11 @@ public class ReadPropertiesMojo extends AbstractMojo {
 			try {
 				environment = CommandLineUtils.getSystemEnvVars();
 			} catch (IOException e) {
-				throw new MojoExecutionException(
-						"Error getting system envorinment variables: ", e);
+				throw new MojoExecutionException("Error getting system envorinment variables: ", e);
 			}
 		}
-		for (Enumeration n = projectProperties.propertyNames(); n
+		for (@SuppressWarnings("rawtypes")
+		Enumeration n = projectProperties.propertyNames(); n
 				.hasMoreElements();) {
 			String k = (String) n.nextElement();
 			projectProperties.setProperty(k,

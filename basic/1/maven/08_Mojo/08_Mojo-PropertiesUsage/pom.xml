@@ -22,7 +22,7 @@ If Maven-test is used, the values of the system properties are verified
 		<plugins>
 			<plugin>
 				<groupId>de.dbo.samples.basic.1.maven</groupId>
-				<artifactId>08_Mojo-Properties</artifactId>
+				<artifactId>08_Mojo-PropertiesPlugin</artifactId>
 				<version>${project.version}</version>
 				<executions>
 					<execution>
@@ -64,6 +64,7 @@ If Maven-test is used, the values of the system properties are verified
 							<goal>set-system-properties</goal>
 						</goals>
 						<configuration>
+							<!-- Required project properties -->
 							<properties>
 								<property>
 									<name>spring-version</name>
@@ -72,10 +73,6 @@ If Maven-test is used, the values of the system properties are verified
 								<property>
 									<name>mysql-version</name>
 									<value>${mysql-version}</value>
-								</property>
-								<property>
-									<name>de.dbo.samples.maven</name>
-									<value>YES</value>
 								</property>
 							</properties>
 						</configuration>
@@ -93,6 +90,7 @@ If Maven-test is used, the values of the system properties are verified
 							<goal>run</goal>
 						</goals>
 						<configuration>
+							<!-- Display required project properties -->
 							<tasks>
 								<echo>spring-version=${spring-version}</echo>
 								<echo>mysql-version=${mysql-version}</echo>
@@ -108,7 +106,6 @@ If Maven-test is used, the values of the system properties are verified
 		<dependency>
 			<groupId>de.dbo.samples</groupId>
 			<artifactId>util</artifactId>
-			<scope>test</scope>
 		</dependency>
 	</dependencies>
 

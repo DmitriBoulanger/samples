@@ -1,7 +1,5 @@
 package de.dbo.samples.maven.mojo;
 
-import static de.dbo.samples.util.print.Print.lines;
-
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,11 +21,13 @@ public class PropertiesMojoUsageTest {
 	
 	@Test
 	public void properties() {
-		log.info("Project-properties: " + lines(System.getProperties(),"-version"));
-		if ( null == System.getProperties().getProperty("de.dbo.samples.maven", null)) {
-			log.warn("No assertions (no test). Running without Maven?");
+		final PropertiesMojoUsage propertiesMojoUsage = new  PropertiesMojoUsage();
+		propertiesMojoUsage.logMavenProperties();
+		if ( null == System.getProperties().getProperty("maven.home", null)) {
+			log.warn("No assertions (no actual test possible). Running without Maven?");
 			return;
 		}
+		propertiesMojoUsage.logVersionProperties();
 		assertEquals("1.0-resource",System.getProperties().getProperty("spring-version", null));
 		assertEquals("4.0.0-resource",System.getProperties().getProperty("mysql-version", null));
 	}

@@ -8,7 +8,7 @@
 		<version>0.0.0-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>08_Mojo-Properties</artifactId>
+	<artifactId>08_Mojo-PropertiesPlugin</artifactId>
 	<packaging>maven-plugin</packaging>
 	<name>Samples Basic-1 Maven Mojo Properties Plugin</name>
 	<url></url>
@@ -27,11 +27,6 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>de.dbo.samples</groupId>
-			<artifactId>util</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
 			<groupId>org.codehaus.mojo</groupId>
 			<artifactId>properties-maven-plugin</artifactId>
 			<version>1.0-alpha-1</version>
@@ -41,6 +36,12 @@
 			<artifactId>maven-shared-io</artifactId>
 			<version>1.1</version>
 		</dependency>
+		<dependency>
+			<groupId>de.dbo.samples</groupId>
+			<artifactId>util</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<!-- required properties packed as an artifact -->
 		<dependency>
 			<groupId>${project.groupId}</groupId>
 			<artifactId>08_Mojo-PropertiesContainer</artifactId>

@@ -15,12 +15,15 @@
 	<url>http://stackoverflow.com/questions/1231561/how-to-share-common-properties-among-several-maven-projects</url>
 	<description>
 How to share common properties among several maven projects?
+The common properties-files are packed in one or more artifacts as resources.
+The plug-in reads the corresponding JAR-files, finds properties-resources and installs
+the corresponding maven-variables
 	</description>
 
 	<modules>
-		<module>08_Mojo-Properties</module>
 		<module>08_Mojo-PropertiesUsage</module>
 		<module>08_Mojo-PropertiesContainer</module>
+		<module>08_Mojo-PropertiesPlugin</module>
 	</modules>
 
 	<build>
@@ -38,6 +41,5 @@ How to share common properties among several maven projects?
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-
 
 </project>

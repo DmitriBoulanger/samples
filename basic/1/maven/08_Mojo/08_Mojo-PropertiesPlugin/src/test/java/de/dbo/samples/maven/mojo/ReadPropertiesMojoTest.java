@@ -13,7 +13,7 @@ import org.apache.maven.model.io.xpp3.MavenXpp3Reader;
 import org.apache.maven.plugin.logging.SystemStreamLog;
 import org.apache.maven.plugin.testing.AbstractMojoTestCase;
 import org.apache.maven.project.MavenProject;
-import org.codehaus.plexus.configuration.PlexusConfiguration;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -31,6 +31,7 @@ public class ReadPropertiesMojoTest extends AbstractMojoTestCase {
 		assertTrue("Pom-file  doesn't exist" + pom, pomFile.exists());
 		assertTrue("Pom-file is not readable" + pom, pomFile.canRead());
 		final MavenProject mavenProject = newMavenProject(pomFile);
+		log(mavenProject);
 		assertEquals(TEST_ARTIFACT_ID, mavenProject.getId());
 		
 		final Map<String, Object> pluginContext = new HashMap<>();
@@ -81,5 +82,14 @@ public class ReadPropertiesMojoTest extends AbstractMojoTestCase {
 			}
 		}
 		return new MavenProject(model);
+	}
+	
+	private static void log(final MavenProject mavenProject) {
+		final StringBuilder sb = new StringBuilder("Maven-project:");
+		sb.append("\n\t - Id       : " + mavenProject.getId());
+		sb.append("\n\t - Version  : " + mavenProject.getVersion());
+		sb.append("\n\t - Parent   : " + mavenProject.getParent());
+		sb.append("\n\t - Artifact : " + mavenProject.getArtifact());
+		log.info(sb.toString());
 	}
 }
