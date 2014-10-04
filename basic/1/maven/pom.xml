@@ -21,8 +21,6 @@
 		<module>04_Profile</module>
 		<module>05_Properties</module>
 		<module>06_Enterprise</module>
-		<module>07_Mojo</module>
-		<module>08_Mojo</module>
 	</modules>
 
 	<build>

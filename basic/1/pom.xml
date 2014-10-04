@@ -20,6 +20,7 @@ Reactor for all basic-1 samples.
 	<modules>
 		<module>_logger</module>
 		<module>maven</module>
+		<module>mojo</module>
 		<module>spring</module>
 		<module>pico</module>
 		<module>concurrent</module>
