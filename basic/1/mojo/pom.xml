@@ -22,8 +22,6 @@ Simple samples showing maven plug-in development
 		<module>01_Mojo</module>
 	</modules>
 
-	<build>
-	
-	</build>
+	<build></build>
 
 </project>
