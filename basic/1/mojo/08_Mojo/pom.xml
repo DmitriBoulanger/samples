@@ -1,0 +1,45 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>de.dbo.samples.basic.1.maven</groupId>
+		<artifactId>maven</artifactId>
+		<version>0.0.0-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>08_Mojo</artifactId>
+	<packaging>pom</packaging>
+	<name>Samples Basic-1 Maven Mojo Properties</name>
+	<url>http://stackoverflow.com/questions/1231561/how-to-share-common-properties-among-several-maven-projects</url>
+	<description>
+How to share common properties among several maven projects?
+The common properties-files are packed in one or more artifacts as resources.
+The plug-in reads the corresponding JAR-files, finds properties-resources and installs
+the corresponding maven-variables
+	</description>
+
+	<modules>
+		<module>08_Mojo-PropertiesUsage</module>
+		<module>08_Mojo-PropertiesContainer</module>
+		<module>08_Mojo-PropertiesPlugin</module>
+	</modules>
+
+	<build>
+
+	</build>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.apache.maven</groupId>
+			<artifactId>maven-plugin-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.maven.shared</groupId>
+			<artifactId>maven-plugin-testing-harness</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+</project>

@@ -48,26 +48,49 @@ The POM ONLY contains dependency management
 		<derby.version>10.8.2.2</derby.version>
 		<mysql.version>5.1.6</mysql.version>
 
-		<!-- RESOURCES FOR MAVEN PLUG-INS -->
+		<!-- MOJO MAVEN PLUG-INS -->
+		<maven-project.version>2.2.1</maven-project.version>
 		<maven-plugin-api.version>2.0</maven-plugin-api.version>
+		<maven-shared-io.version>1.1</maven-shared-io.version>
+      	<maven-plugin-annotations.version>3.3</maven-plugin-annotations.version>
+      	<maven-plugin-testing-harness.version>1.1</maven-plugin-testing-harness.version>
+		<plexus-utils.version>1.5.7</plexus-utils.version>
 
 	</properties>
 
 	<dependencyManagement>
 		<dependencies>
 			
-			<!-- RESOURCES FOR MAVEN PLUG-INS -->
-
+			<!-- MOJO MAVEN PLUG-INS -->
 			<dependency>
 				<groupId>org.apache.maven</groupId>
 				<artifactId>maven-plugin-api</artifactId>
 				<version>${maven-plugin-api.version}</version>
 			</dependency>
-
+			<dependency>
+				<groupId>org.apache.maven</groupId>
+				<artifactId>maven-project</artifactId>
+				<version>${maven-project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.maven.shared</groupId>
+				<artifactId>maven-shared-io</artifactId>
+				<version>${maven-shared-io.version}</version>
+			</dependency>
+			<dependency>
+      			<groupId>org.apache.maven.plugin-tools</groupId>
+     		 	<artifactId>maven-plugin-annotations</artifactId>
+     		 	<version>${maven-plugin-annotations.version}</version>
+      		</dependency>
 			<dependency>
 				<groupId>org.apache.maven.shared</groupId>
 				<artifactId>maven-plugin-testing-harness</artifactId>
-				<version>1.1</version>
+				<version>${maven-plugin-testing-harness.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.codehaus.plexus</groupId>
+				<artifactId>plexus-utils</artifactId>
+				<version>${plexus-utils.version}</version>
 			</dependency>
 	
 			<!-- SPRING -->
