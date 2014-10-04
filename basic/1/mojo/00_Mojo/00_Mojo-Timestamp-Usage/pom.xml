@@ -1,0 +1,87 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>de.dbo.samples.basic.1.mojo</groupId>
+		<artifactId>00_Mojo</artifactId>
+		<version>0.0.0-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>00_Mojo-Timestamp-Usage</artifactId>
+	<name>Samples Basic-1 Mojo Timestamp Usage</name>
+	<description>
+Profiling using the Mojo-Timestamp Plug-in. The below is the profiling of the Maven life-cycle.
+The profiler logs the time-stamp after end of phase and elapsed time since the previous time-stamp.
+We use only a few phases of the default life-cycle.
+  </description>
+	<url>http://www.torsten-horn.de/techdocs/maven.htm#Mojo</url>
+
+	<build>
+		<plugins>
+
+			<plugin>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>00_Mojo-Timestamp-Plugin</artifactId>
+				<version>${project.version}</version>
+				<configuration>
+					<prefix>---</prefix>
+					<datetimePattern>HH:mm:ss:SSS</datetimePattern>
+				</configuration>
+				<executions>
+					<execution>
+						<id>after clean</id>
+						<phase>clean</phase>
+						<goals>
+							<goal>timestamp</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>after process-sources</id>
+						<phase>process-sources</phase>
+						<goals>
+							<goal>timestamp</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>after compile</id>
+						<phase>compile</phase>
+						<goals>
+							<goal>timestamp</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>after verify</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>timestamp</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>after install</id>
+						<phase>install</phase>
+						<goals>
+							<goal>timestamp</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<skipTests>true</skipTests>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<dependencies>
+		<dependency>
+			<groupId>de.dbo.samples.basic.1.mojo</groupId>
+			<artifactId>00_Mojo-Timestamp-Plugin</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+	</dependencies>
+
+</project>

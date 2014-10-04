@@ -1,0 +1,20 @@
+<project>
+  <modelVersion>4.0.0</modelVersion>
+  
+  <groupId>de.dbo.samples.basic.1.mojo</groupId>
+  <artifactId>0_Mojo-Timestamp-Plugin-Test</artifactId>
+  
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>de.dbo.samples.basic.1.mojo</groupId>
+        <artifactId>00_Mojo-Timestamp-Plugin</artifactId>
+        <configuration>
+          <prefix>+++</prefix>
+          <datetimePattern>HH:mm:ss.SSS</datetimePattern>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+  
+</project>

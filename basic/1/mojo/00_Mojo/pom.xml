@@ -12,37 +12,15 @@
 	<artifactId>00_Mojo</artifactId>
 	<packaging>pom</packaging>
 	<name>Samples Basic-1 Mojo Timestamp</name>
-
 	<description>
-	
-Project with Timestamp Mojo to show time-stamps and elapsed ms. of different phases.
-It consists of the plug-in definition Timestamp and its test TimestampUsage
-
+Trivial reactor with Plug-in and its usage artifacts.	
+Timestamp Mojo Plug-in shows time-stamps and elapsed ms. in different phases.
+Reactor creates the plug-in definition and its test Usage
 	</description>
 	<url>http://www.torsten-horn.de/techdocs/maven.htm#Mojo</url>
 
 	<modules>
-		<module>00_Mojo-Timestamp</module>
-		<module>00_Mojo-TimestampUsage</module>
+		<module>00_Mojo-Timestamp-Plugin</module>
+		<module>00_Mojo-Timestamp-Usage</module>
 	</modules>
-
-	<build>
-
-	</build>
-
-	<dependencies>
-		<dependency>
-			<groupId>org.apache.maven</groupId>
-			<artifactId>maven-plugin-api</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.apache.maven.shared</groupId>
-			<artifactId>maven-plugin-testing-harness</artifactId>
-			<scope>test</scope>
-		</dependency>
-
-	</dependencies>
-
-
 </project>
