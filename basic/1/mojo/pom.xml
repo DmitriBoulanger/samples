@@ -12,11 +12,14 @@
 	<groupId>de.dbo.samples.basic.1.mojo</groupId>
 	<packaging>pom</packaging>
 	<name>Samples Basic-1 Mojo</name>
+	<description>
+Simple samples showing maven plug-in development
+	</description>
 	<url>http://maven.apache.org/guides/plugin/guide-java-plugin-development.html</url>
 
 	<modules>
-		<module>07_Mojo</module>
-		<module>08_Mojo</module>
+		<module>00_Mojo</module>
+		<module>01_Mojo</module>
 	</modules>
 
 	<build>

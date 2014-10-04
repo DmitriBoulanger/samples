@@ -1,0 +1,112 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>de.dbo.samples.basic.1.mojo</groupId>
+		<artifactId>01_Mojo</artifactId>
+		<version>0.0.0-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>01_Mojo-PropertiesUsage</artifactId>
+	<name>Samples Basic-1 Mojo Properties Usage</name>
+	<description>
+Usage of the Properties Plug-in: it reads artifact-jars containing
+properties as resource-files and sets the corresponding maven variables.
+For test purposes, the variables are displayed with the properties-maven-plugin
+and the values are set as system-properties in JVM using properties-maven-plugin.
+If Maven-test is used, the values of the system properties are verified
+	</description>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>de.dbo.samples.basic.1.mojo</groupId>
+				<artifactId>01_Mojo-PropertiesPlugin</artifactId>
+				<version>${project.version}</version>
+				<executions>
+					<execution>
+						<id>read-properties</id>
+						<phase>initialize</phase>
+						<goals>
+							<goal>read-project-properties</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<filePaths>
+						<filePath>versions.properties</filePath>
+					</filePaths>
+					<files>
+						<file>versions.properties</file>
+					</files>
+				</configuration>
+				<dependencies>
+
+<!-- Any jars that host the required properties -->
+
+					<dependency>
+						<groupId>de.dbo.samples.basic.1.mojo</groupId>
+						<artifactId>01_Mojo-PropertiesContainer</artifactId>
+						<version>${project.version}</version>
+					</dependency>
+
+				</dependencies>
+			</plugin>
+
+			<!-- For test-purposes: values of maven-variables as system properties -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>properties-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<goal>set-system-properties</goal>
+						</goals>
+						<configuration>
+							<!-- Required project properties -->
+							<properties>
+								<property>
+									<name>spring-version</name>
+									<value>${spring-version}</value>
+								</property>
+								<property>
+									<name>mysql-version</name>
+									<value>${mysql-version}</value>
+								</property>
+							</properties>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			
+			<!-- For test-purposes: to display maven-variables directly -->
+			<plugin>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+							<!-- Display required project properties -->
+							<tasks>
+								<echo>spring-version=${spring-version}</echo>
+								<echo>mysql-version=${mysql-version}</echo>
+							</tasks>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+	<dependencies>
+		<dependency>
+			<groupId>de.dbo.samples</groupId>
+			<artifactId>util</artifactId>
+		</dependency>
+	</dependencies>
+
+</project>

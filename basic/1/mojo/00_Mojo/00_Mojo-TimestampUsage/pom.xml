@@ -1,0 +1,135 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  
+  <parent>
+  	<groupId>de.dbo.samples.basic.1.mojo</groupId>
+  	<artifactId>00_Mojo</artifactId>
+  	<version>0.0.0-SNAPSHOT</version>
+  </parent>
+  
+  <artifactId>00_Mojo-TimestampUsage</artifactId>
+  <name>Samples Basic-1 Mojo Timestamp Usage</name>
+  <url>http://www.torsten-horn.de/techdocs/maven.htm#Mojo</url>
+  
+  	<build>
+		<plugins>
+		  <!-- 
+		  		Profiling using the Mojo-Timestamp Plug-in.
+		  		The below is the profiling of the Maven life-cycle.
+		  		The profiler logs the time-stamp after end of phase and
+		  		elapsed time since the previous time-stamp.
+		  		We use only a few phases of the default life-cycle.
+		  -->
+			<plugin>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>00_Mojo-Timestamp</artifactId>
+				<version>${project.version}</version>
+				<configuration>
+					<prefix>---</prefix>
+					<datetimePattern>HH:mm:ss:SSS</datetimePattern>
+				</configuration>
+				<executions>
+<!--
+The goal creates error if maven-clean is called
+					<execution>
+						<id>after clean</id>
+						<phase>clean</phase>
+						<goals>
+							<goal>timestamp</goal>
+						</goals>
+					</execution>
+-->
+<!-- 	
+These two goals have eclipse-error!				
+					<execution>
+						<id>after process-sources</id>
+						<phase>process-sources</phase>
+						<goals>
+							<goal>timestamp</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>after compile</id>
+						<phase>compile</phase>
+						<goals>
+							<goal>timestamp</goal>
+						</goals>
+					</execution> 
+-->
+					<execution>
+						<id>after verify</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>timestamp</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>after install</id>
+						<phase>install</phase>
+						<goals>
+							<goal>timestamp</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+		<pluginManagement>
+			<plugins>
+<!--
+ 
+We need the magic below because of some the phases in the plug-in above.  
+It has been generated using the eclipse quick-fix associated with "plugin execution not covered". 
+Without we have the following error:
+Plugin execution not covered by life-cycle configuration: 
+ de.dbo.samples.maven.basic:00_Mojo-Timestamp:0.0.0-SNAPSHOT:timestamp (execution: after compile, phase: compile)	pom.xml	/00_Mojo-TimestampUsage	line 47	Maven Project Build Lifecycle Mapping Problem
+de.dbo.samples.maven.basic:00_Mojo-Timestamp:0.0.0-SNAPSHOT:timestamp (execution: after process-sources, phase: process-sources)	pom.xml	/00_Mojo-TimestampUsage	line 40	Maven Project Build Lifecycle Mapping Problem
+To see these errors, comment out the below plug-in.
+ See: http://wiki.eclipse.org/M2E_plugin_execution_not_covered
+
+This plugin's configuration is used to store Eclipse m2e settings only. 
+It has no influence on the Maven build itself.
+
+-->
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>
+											${project.groupId}
+										</groupId>
+										<artifactId>
+											00_Mojo-Timestamp
+										</artifactId>
+										<versionRange>
+											[0.0.0-SNAPSHOT,)
+										</versionRange>
+										<goals>
+											<goal>timestamp</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+  	</build>
+  	
+  	<dependencies>
+  		<dependency>
+  			<groupId>de.dbo.samples.basic.1.mojo</groupId>
+  			<artifactId>00_Mojo-Timestamp</artifactId>
+  			<version>${project.version}</version>
+  		</dependency>
+  	</dependencies>
+  
+</project>

@@ -1,0 +1,45 @@
+<project>
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>de.dbo.samples.basic.1.mojo.test</groupId>
+	<artifactId>01_Mojo-Properties-Test</artifactId>
+	<version>0.0.0-SNAPSHOT</version>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>de.dbo.samples.basic.1.mojo</groupId>
+				<artifactId>01_Mojo-Properties</artifactId>
+				<version>0.0.0-SNAPSHOT</version>
+				<executions>
+					<execution>
+						<id>read-properties</id>
+						<phase>initialize</phase>
+						<goals>
+							<goal>read-project-properties</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<filePaths>
+						<filePath>versions.properties</filePath>
+					</filePaths>
+					<files>
+						<file>versions.properties</file>
+					</files>
+				</configuration>
+				<dependencies>
+
+<!-- Any jars that host the required properties files here -->
+
+					<dependency>
+						<groupId>de.dbo.samples.basic.1.mojo</groupId>
+						<artifactId>01_Mojo-PropertiesContainer</artifactId>
+						<version>0.0.0-SNAPSHOT</version>
+					</dependency>
+
+				</dependencies>
+			</plugin>
+		</plugins>
+	</build>
+</project>
