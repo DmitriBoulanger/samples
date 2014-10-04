@@ -13,7 +13,7 @@
 	<packaging>pom</packaging>
 	<name>Samples Basic-1 Mojo</name>
 	<description>
-Simple samples showing maven plug-in development
+Trivial reactor with simple samples showing maven plug-in development
 	</description>
 	<url>http://maven.apache.org/guides/plugin/guide-java-plugin-development.html</url>
 
