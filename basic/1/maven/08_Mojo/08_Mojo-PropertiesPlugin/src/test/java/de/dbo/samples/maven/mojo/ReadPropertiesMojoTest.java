@@ -5,6 +5,7 @@ import static de.dbo.samples.util.print.Print.lines;
 import java.io.File;
 import java.io.FileReader;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
@@ -13,7 +14,6 @@ import org.apache.maven.model.io.xpp3.MavenXpp3Reader;
 import org.apache.maven.plugin.logging.SystemStreamLog;
 import org.apache.maven.plugin.testing.AbstractMojoTestCase;
 import org.apache.maven.project.MavenProject;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -31,7 +31,7 @@ public class ReadPropertiesMojoTest extends AbstractMojoTestCase {
 		assertTrue("Pom-file  doesn't exist" + pom, pomFile.exists());
 		assertTrue("Pom-file is not readable" + pom, pomFile.canRead());
 		final MavenProject mavenProject = newMavenProject(pomFile);
-		log(mavenProject);
+		log.info(print(mavenProject).toString());
 		assertEquals(TEST_ARTIFACT_ID, mavenProject.getId());
 		
 		final Map<String, Object> pluginContext = new HashMap<>();
@@ -84,12 +84,31 @@ public class ReadPropertiesMojoTest extends AbstractMojoTestCase {
 		return new MavenProject(model);
 	}
 	
-	private static void log(final MavenProject mavenProject) {
+
+	private static StringBuilder print(final MavenProject mavenProject) {
 		final StringBuilder sb = new StringBuilder("Maven-project:");
-		sb.append("\n\t - Id       : " + mavenProject.getId());
-		sb.append("\n\t - Version  : " + mavenProject.getVersion());
-		sb.append("\n\t - Parent   : " + mavenProject.getParent());
-		sb.append("\n\t - Artifact : " + mavenProject.getArtifact());
-		log.info(sb.toString());
+		sb.append("\n\t - Id           : " + mavenProject.getId());
+		sb.append("\n\t - Version      : " + mavenProject.getVersion());
+		sb.append("\n\t - Parent       : " + mavenProject.getParent());
+		sb.append("\n\t - Artifact     : " + mavenProject.getArtifact());
+		sb.append("\n\t - Dependencies : " + print(mavenProject.getDependencies()));
+        return sb;
+	}
+	
+	private static final StringBuilder print(final List<MavenProject> dependencies) {
+		final StringBuilder sb = new StringBuilder();
+		if (null==dependencies) {
+			sb.append("NULL");
+		}
+		else if (dependencies.isEmpty()) {
+			sb.append("[]");
+		} else {
+			for (final MavenProject mavenProject:dependencies) {
+				sb.append("\n\t\t -- " + mavenProject.getArtifact());
+			}
+		}
+		
+		
+		return sb;
 	}
 }

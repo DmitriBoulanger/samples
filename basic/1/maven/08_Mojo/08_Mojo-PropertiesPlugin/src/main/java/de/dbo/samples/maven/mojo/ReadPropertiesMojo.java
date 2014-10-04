@@ -10,6 +10,7 @@ import java.util.Properties;
 
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
+import org.apache.maven.plugins.annotations.Parameter;
 import org.apache.maven.project.MavenProject;
 import org.apache.maven.shared.io.location.ClasspathResourceLocatorStrategy;
 import org.apache.maven.shared.io.location.FileLocatorStrategy;
@@ -19,26 +20,37 @@ import org.apache.maven.shared.io.location.LocatorStrategy;
 import org.apache.maven.shared.io.location.URLLocatorStrategy;
 import org.codehaus.plexus.util.cli.CommandLineUtils;
 
-/**
+/*
  * The read-project-properties goal reads property files and stores the
- * properties as project properties. It serves as an alternate to specifying
- * properties in pom.xml.
- * 
+ * properties as project properties. It serves as an alternate to specifying properties in pom.xml. 
+ * @author Dmitri Boulanger, Hombach
+ *
+ * D. Knuth: Programs are meant to be read by humans and 
+ *           only incidentally for computers to execute 
+ *
+ */
+
+
+//@Mojo( name = "Maven Properties Plug-in" )
+/**
  * @goal read-project-properties
  */
-public class ReadPropertiesMojo extends AbstractMojo {
+public final class ReadPropertiesMojo extends AbstractMojo {
 
+//	@Parameter(required=true,readonly=true)
+//	private MavenProject project;
+	
 	/**
 	 * @parameter default-value="${project}"
 	 * @required
 	 * @readonly
 	 */
 	private MavenProject project;
+	
 
 	/**
 	 * The properties files that will be used when reading properties. RS: made
 	 * optional to avoid issue for inherited plug-ins
-	 * 
 	 * @parameter
 	 */
 	private File[] files;
@@ -46,13 +58,14 @@ public class ReadPropertiesMojo extends AbstractMojo {
 	// Begin: RS addition
 	/**
 	 * Optional paths to properties files to be used.
-	 * 
 	 * @parameter
 	 */
 	private String[] filePaths;
 	// End: RS addition
 
 	public void execute() throws MojoExecutionException {
+		
+		//TODO the test-hook. Should be removed. How?
 		if (getPluginContext().containsKey("test_maven_project")) {
 			project = (MavenProject) getPluginContext().get("test_maven_project");
 			logProject();
