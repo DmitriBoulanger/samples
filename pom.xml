@@ -20,7 +20,7 @@ and defines plug-in management.
 		<java.version>1.7</java.version>
 		<slf4j.version>1.7.6</slf4j.version>
 		<hsqldb.version>1.8.0.7</hsqldb.version>
-		
+
 		<!-- UTF-8 -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -50,7 +50,7 @@ and defines plug-in management.
 						<maxmem>512m</maxmem>
 					</configuration>
 				</plugin>
-				
+
 				<!-- MAVEN Plugins -->
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
@@ -101,9 +101,10 @@ and defines plug-in management.
 					<version>1.0-alpha-2</version>
 				</plugin>
 
-				
-				
-				<!--This plugin's configuration is used to store Eclipse m2e settings only.  . -->
+
+
+				<!--This plugin's configuration is used to store Eclipse m2e settings 
+					only. . -->
 				<!-- See: http://wiki.eclipse.org/M2E_plugin_execution_not_covered -->
 				<plugin>
 					<groupId>org.eclipse.m2e</groupId>
@@ -133,7 +134,7 @@ and defines plug-in management.
 						</lifecycleMappingMetadata>
 					</configuration>
 				</plugin>
-				
+
 				<!--Jetty Server with Log4j and its configuration -->
 				<plugin>
 					<groupId>org.mortbay.jetty</groupId>
@@ -148,7 +149,7 @@ and defines plug-in management.
 					</dependencies>
 				</plugin>
 				<plugin>
-				<groupId>org.codehaus.mojo</groupId>
+					<groupId>org.codehaus.mojo</groupId>
 					<artifactId>hibernate3-maven-plugin</artifactId>
 					<version>3.0</version>
 				</plugin>
@@ -173,11 +174,16 @@ and defines plug-in management.
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
-				<groupId>de.dbo.samples</groupId>
-				<artifactId>_dependency-management</artifactId>
+				<groupId>de.dbo</groupId>
+				<artifactId>dependency-management</artifactId>
 				<version>0.0.0-SNAPSHOT</version>
 				<scope>import</scope>
 				<type>pom</type>
+			</dependency>
+			<dependency>
+				<groupId>de.dbo.samples</groupId>
+				<artifactId>util</artifactId>
+				<version>${project.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>

@@ -37,6 +37,7 @@ The projects generates test-jars for all its modules
 		<dependency>
 			<groupId>de.dbo.samples</groupId>
 			<artifactId>util</artifactId>
+			<version>${project.version}</version>
 		</dependency>
 	</dependencies>
 
