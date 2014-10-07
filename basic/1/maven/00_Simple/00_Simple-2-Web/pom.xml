@@ -18,9 +18,7 @@ A standard (simple) servlet is started using embedded Jetty-server
 	</description>
 	<url>http://books.sonatype.com/mvnex-book/reference/web.html</url>
 
-
 	<dependencies>
-	
 		<!-- Provided from the J2EE-Container -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -31,12 +29,6 @@ A standard (simple) servlet is started using embedded Jetty-server
 			<groupId>javax.servlet.jsp</groupId>
 			<artifactId>jsp-api</artifactId>
 			<scope>provided</scope>
-		</dependency>
-         
-         <!-- Pretty-Print -->
-		<dependency>
-			<groupId>de.dbo.samples</groupId>
-			<artifactId>util</artifactId>
 		</dependency>
 	</dependencies>
 

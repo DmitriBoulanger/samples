@@ -21,7 +21,7 @@ import java.util.zip.ZipFile;
  * list resources available from the classpath @ *
  */
 public class ResourceList{
-	
+
     /**
      * for all elements of java.class.path get a Collection of resources Pattern
      * pattern = Pattern.compile(".*"); gets all resources
@@ -41,9 +41,7 @@ public class ResourceList{
         return retval;
     }
 
-    private static Collection<String> getResources(
-        final String element,
-        final Pattern pattern){
+    private static Collection<String> getResources(final String element, final Pattern pattern) {
         final ArrayList<String> retval = new ArrayList<String>();
         final File file = new File(element);
         if(file.isDirectory()){

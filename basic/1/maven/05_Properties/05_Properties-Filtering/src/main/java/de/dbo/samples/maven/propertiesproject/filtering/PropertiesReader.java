@@ -1,6 +1,6 @@
 package de.dbo.samples.maven.propertiesproject.filtering;
 
-import static de.dbo.samples.util.print.Print.lines;
+import static de.dbo.tools.utils.print.Print.lines;
 
 import java.util.Properties;
 

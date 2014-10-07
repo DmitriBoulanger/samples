@@ -102,11 +102,4 @@ If Maven-test is used, the values of the system properties are verified
 		</plugins>
 	</build>
 
-	<dependencies>
-		<dependency>
-			<groupId>de.dbo.samples</groupId>
-			<artifactId>util</artifactId>
-		</dependency>
-	</dependencies>
-
 </project>

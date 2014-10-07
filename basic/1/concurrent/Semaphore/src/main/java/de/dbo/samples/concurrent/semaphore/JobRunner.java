@@ -1,7 +1,7 @@
 package de.dbo.samples.concurrent.semaphore;
 
-import static de.dbo.samples.util.print.Profiler.elapsed;
-import static de.dbo.samples.util.print.Profiler.formatMs;
+import static de.dbo.tools.utils.print.Profiler.elapsed;
+import static de.dbo.tools.utils.print.Profiler.formatMs;
 import java.util.concurrent.CountDownLatch;
 
 

@@ -47,10 +47,6 @@ Using properties
 			<artifactId>_logger</artifactId>
 			<scope>compile</scope>
 		</dependency>
-		<dependency>
-			<groupId>de.dbo.samples</groupId>
-			<artifactId>util</artifactId>
-		</dependency>
 	</dependencies>
 	
 	  

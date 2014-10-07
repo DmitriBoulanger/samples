@@ -36,13 +36,7 @@
 			<artifactId>plexus-utils</artifactId>
 		</dependency>
 
-
 		<!-- TEST  -->
-		<dependency>
-			<groupId>de.dbo.samples</groupId>
-			<artifactId>util</artifactId>
-			<scope>test</scope>
-		</dependency>
 		<!-- required properties packed as an artifact -->
 		<dependency>
 			<groupId>${project.groupId}</groupId>

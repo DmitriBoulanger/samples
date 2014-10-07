@@ -1,6 +1,6 @@
 package de.dbo.samples.basic1.maven.simple;
 
-import static de.dbo.samples.util.print.Profiler.elapsed;
+import static de.dbo.tools.utils.print.Profiler.elapsed;
 
 import java.io.IOException;
 import java.io.PrintWriter;
