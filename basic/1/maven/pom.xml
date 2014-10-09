@@ -39,9 +39,39 @@
 						</dependency>
 					</dependencies>
 				</plugin>
-
 			</plugins>
 		</pluginManagement>
+
+		<plugins>
+			<plugin>
+				<groupId>de.dbo.mvn</groupId>
+				<artifactId>mvn-properties-maven-plugin</artifactId>
+				<version>${project.version}</version>
+				<executions>
+					<execution>
+						<id>read-resource-properties</id>
+						<phase>initialize</phase>
+						<goals>
+							<goal>read-resource-properties</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<resourceNames>
+						<resourceName>versions.properties</resourceName>
+					</resourceNames>
+				</configuration>
+				<!-- JAR hosting versions-properties -->
+				<dependencies>
+					<dependency>
+						<groupId>de.dbo</groupId>
+						<artifactId>versions</artifactId>
+						<type>jar</type>
+						<version>0.0.0-SNAPSHOT</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+		</plugins>
 
 	</build>
 
