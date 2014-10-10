@@ -36,7 +36,7 @@ Enterprise Project with Model, Persist and WEB components
 						<dependency>
 							<groupId>hsqldb</groupId>
 							<artifactId>hsqldb</artifactId>
-							<version>${hsqldb.version}</version>
+							<version>${maven-jetty-plugin-hsqldb.version}</version>
 							<exclusions>
 								<exclusion>
 									<groupId>org.slf4j</groupId>
@@ -52,29 +52,7 @@ Enterprise Project with Model, Persist and WEB components
 						</dependency>
 					</dependencies>
 				</plugin>
-
-				<plugin>
-					<groupId>org.codehaus.mojo</groupId>
-					<artifactId>hibernate3-maven-plugin</artifactId>
-					<configuration>
-						<hibernatetool>
-							<annotationconfiguration/>
-						</hibernatetool>
-					</configuration>
-					<dependencies>
-						<dependency>
-							<groupId>hsqldb</groupId>
-							<artifactId>hsqldb</artifactId>
-							<version>${hsqldb.version}</version>
-							<exclusions>
-								<exclusion>
-									<groupId>org.slf4j</groupId>
-									<artifactId>slf4j-nop</artifactId>
-								</exclusion>
-							</exclusions>
-						</dependency>
-					</dependencies>
-				</plugin>
+				
 			</plugins>
 		</pluginManagement>
 	</build>
