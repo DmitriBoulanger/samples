@@ -18,27 +18,19 @@
 		<module>treetable-impl</module>
 	</modules>
 	
-	<build>
-		
-	</build>
-
 	<dependencies>
-		 
 		<dependency>
 			<groupId>org.swinglabs.swingx</groupId>
 			<artifactId>swingx-all</artifactId>
-			<version>1.6.4</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
-			<version>${spring.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-beans</artifactId>
 		</dependency>
-
 	</dependencies>
 </project>
