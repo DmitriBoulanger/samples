@@ -40,6 +40,7 @@ public class KeyStoreManager {
 	private static final Logger log = LoggerFactory.getLogger(KeyStoreManager.class);
 	
 	public static KeyStore defaultSingleKeystore(final String keyAlias
+			, final String certificateAlias
 			, final char[] keystorePassword, final char[] keyPassword) throws Exception{
 		final KeyStore keystore = KeyStore.getInstance(KeyStore.getDefaultType());
 		keystore.load(null, keystorePassword);
@@ -49,7 +50,7 @@ public class KeyStoreManager {
 		final Certificate[] certificateChain = new Certificate[1];  
 		certificateChain[0] = certificate;  
 		keystore.setKeyEntry(keyAlias, keyPair.getPrivate(), keyPassword, certificateChain);
-		keystore.setCertificateEntry(CERTIFICATE_NAME, certificate);
+		keystore.setCertificateEntry(certificateAlias, certificate);
 		return keystore;
 	}
 
@@ -88,8 +89,9 @@ public class KeyStoreManager {
 			throw new IOException("Can't create new key-store file " + keystoreFilepath);
 		}
 
-		final KeyStore defaultKeystore = defaultSingleKeystore(KEY_NAME,keystorePassword, keyPassword);
-		save(defaultKeystore); // done. Store away the key-store
+		final KeyStore defaultKeystore = 
+				defaultSingleKeystore(KEY_NAME,CERTIFICATE_NAME,keystorePassword, keyPassword);
+		save(defaultKeystore); // done. Store away this key-store
 	}
 
 	/** 
