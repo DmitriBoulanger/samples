@@ -7,8 +7,8 @@ import java.util.Enumeration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class ExamineSecurity {
-	private static final Logger log = LoggerFactory.getLogger(ExamineSecurity.class);
+public class ExamineSecuritymain {
+	private static final Logger log = LoggerFactory.getLogger(ExamineSecuritymain.class);
 	
 	public static void main(String args[]) {
 			final Provider p[] = Security.getProviders();
