@@ -28,7 +28,7 @@ final class X509CertificateGenerator {
 	private static final long DAY = HOUR * 24;
 	
 	private static final String PRINCIPAL_LOCALHOST = "CN=localhost";
-	private static final BigInteger SERIAL_NUMBER_FORMAT = new BigInteger("100000000000000000");
+	private static final BigInteger SERIAL_NUMBER_LIMIT = new BigInteger("100000000000000000");
 	
 	/**
 	 * Self-signed certificate for localhost
@@ -60,11 +60,13 @@ final class X509CertificateGenerator {
 	
 	private static BigInteger getRandomBigInteger() {
 		 	final Random rand = new Random();
-	        final BigInteger upperLimit = SERIAL_NUMBER_FORMAT;
+	        final BigInteger upperLimit = SERIAL_NUMBER_LIMIT;
 	        BigInteger result;
 	        do {
 	            result = new BigInteger(upperLimit.bitLength(), rand); 
-	        } while(result.compareTo(upperLimit) >= 0);   
+	        } 
+	        while(result.compareTo(upperLimit) >= 0);   
+	        
 	        return result;
 	 }
 }
