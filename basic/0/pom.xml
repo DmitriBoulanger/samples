@@ -26,6 +26,7 @@ The projects generates test-jars for all its modules
 		<module>xml0</module>
 		<module>html0</module>
 		<module>threadlocal0</module>
+		<module>crypto0</module>
 	</modules>
 	
 	<dependencies>

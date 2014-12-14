@@ -9,19 +9,22 @@
 		<version>0.0.0-SNAPSHOT</version>
 	</parent>
 	
-	<artifactId>threadlocal0</artifactId>
-    	<name>Samples Basic-0 Thread-Local Examples</name>
+	<artifactId>crypto0</artifactId>
+    	<name>Samples Basic-0 Crypto Examples</name>
 	<packaging>jar</packaging>
     
     	<description>
-Using thread-local for Contex-implementation and Thread-safe DateFormat
+KeyStore 
    	</description>
 	<url>
-http://www.drdobbs.com/jvm/using-thread-local-variables-in-java/jvm/using-thread-local-variables-in-java/184405382#rl2
+
 	</url>
    
   	<dependencies>
-		
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+		</dependency>
 	</dependencies>
 	
 </project>
