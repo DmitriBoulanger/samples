@@ -43,24 +43,19 @@ public class KeyStoreManager {
 	public static final String KEYSTORE_FILEPATH = 
 			System.getProperty("user.dir") + File.separator + ".keystore";
 
-	private final String keystoreFilename;
 	private final char[] keystorePassword;
-	private final char[] keyPassword;
 	private final String keystoreFilePath;
+	private final char[] keyPassword;
 
 	private KeyStore keystore = null;
 	
 	public KeyStoreManager(final String keystoreFilepath
-			, final String  keystorePassword
-			, final String  keyPassword) throws IOException, KeyStoreException
-	, NoSuchAlgorithmException, CertificateException
-	, InstantiationException, IllegalAccessException, ClassNotFoundException
-	, InvalidKeyException, IllegalStateException, NoSuchProviderException, SignatureException {
-		this.keystoreFilename = keystoreFilepath;
+			, final String  keystorePassword, final String  keyPassword) throws Exception {
+		
 		this.keystorePassword = keystorePassword.toCharArray();
 		this.keyPassword = keyPassword.toCharArray();
 		
-		final File file = new File(keystoreFilename);
+		final File file = new File(keystoreFilepath);
 		if (file.exists()) {
 			keystoreFilePath = file.getCanonicalPath();
 			log.info("Key-store exists. File=[" + keystoreFilePath+"]");
@@ -102,15 +97,13 @@ public class KeyStoreManager {
 	 * @see KeyStoreManager#KEYSTORE_PASSWORD
 	 * @see KeyStoreManager#KEYSTORE_FILEPATH
 	 */
-	public KeyStoreManager() throws IOException, KeyStoreException,
-			NoSuchAlgorithmException, CertificateException, InstantiationException, IllegalAccessException, ClassNotFoundException, InvalidKeyException, IllegalStateException, NoSuchProviderException, SignatureException {
+	public KeyStoreManager() throws Exception {
 		this(KEYSTORE_FILEPATH, KEYSTORE_PASSWORD, KEY_PASSWORD);
 	}
 
 	public void save() throws KeyStoreException, NoSuchAlgorithmException,
 			CertificateException, IOException {
-		// store away the keystore
-		final FileOutputStream fos = new FileOutputStream(keystoreFilename);
+		final FileOutputStream fos = new FileOutputStream(keystoreFilePath);
 		keystore.store(fos, keystorePassword);
 		fos.close();
 	}
@@ -125,7 +118,7 @@ public class KeyStoreManager {
 	 */
 	private void save(final KeyStore keystore) throws KeyStoreException,
 			NoSuchAlgorithmException, CertificateException, IOException {
-		final FileOutputStream fos = new FileOutputStream(keystoreFilename);
+		final FileOutputStream fos = new FileOutputStream(keystoreFilePath);
 		keystore.store(fos, keystorePassword);
 		fos.close();
 	}
@@ -148,7 +141,7 @@ public class KeyStoreManager {
 
 		final FileInputStream fis;
 		try {
-			fis = new FileInputStream(keystoreFilename);
+			fis = new FileInputStream(keystoreFilePath);
 		} catch (Exception e) {
 			throw new Exception("Cannnot get input stream from file "
 					+ keystoreFilePath, e);
@@ -174,7 +167,7 @@ public class KeyStoreManager {
 	 */
 	public void lookup(final String keyName, final String keyPassword)
 			throws Exception {
-
+		log.info("Key=[" + keyName + "] ...");
 		if (keystore.isKeyEntry(keyName)) {
 			log.info("Key=[" + keyName + "] is a key-entry in the keystore");
 			final char c[] = new char[keyPassword.length()];
@@ -186,9 +179,9 @@ public class KeyStoreManager {
 				log.error("Bad key-password? ", e);
 				return;
 			}
-			log.info("Key=[" + keyName + "] has private key "+ key);
+			log.info("Key=[" + keyName + "] has private key ["+ key+"] Algorithm: " + key.getAlgorithm());
 			final Certificate certs[] = keystore.getCertificateChain(keyName);
-			log.info("Key=[" + keyName + "] has certificate-chain private with size "+ certs.length);
+			log.info("Key=[" + keyName + "] has certificate-chain with size "+ certs.length);
 			if (certs[0] instanceof X509Certificate) {
 				X509Certificate x509 = (X509Certificate) certs[0];
 				log.info("Key=[" + keyName + "] is really "+ x509.getSubjectDN());
@@ -210,7 +203,6 @@ public class KeyStoreManager {
 		else {
 			log.warn("Key=[" + keyName + "] is unknown to this keystore");
 		}
-
 	}
 
 	public static final void main(final String[] args) throws Exception {

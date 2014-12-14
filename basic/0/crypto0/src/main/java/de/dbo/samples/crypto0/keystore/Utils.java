@@ -8,7 +8,7 @@ import java.security.KeyStoreException;
 import java.security.Provider;
 import java.util.Set;
 
-class Utils
+final class Utils
 {
     private static String digits = "0123456789abcdef";
     
@@ -19,7 +19,7 @@ class Utils
      * @param length the number of bytes in the data block to be converted.
      * @return a hex representation of length bytes of data.
      */
-    public static String toHex(byte[] data, int length)
+    static String toHex(byte[] data, int length)
     {
         StringBuffer  buf = new StringBuffer();
         
@@ -40,7 +40,7 @@ class Utils
      * @param data the bytes to be converted.
      * @return a hex representation of data.
      */
-    public static String toHex(byte[] data)
+    static String toHex(byte[] data)
     {
         return toHex(data, data.length);
     }
