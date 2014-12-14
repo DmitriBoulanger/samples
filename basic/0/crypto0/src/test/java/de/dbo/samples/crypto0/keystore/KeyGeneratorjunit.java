@@ -111,16 +111,16 @@ public class KeyGeneratorjunit {
 		try {
 			assertTrue("Key-store has no expected key-entry", keystore.isKeyEntry(keyName));
 		} catch (KeyStoreException e) {
-			log.error("Failure checking entry in key-store", e);
-			fail("Cannot check entry in key-store: " + e.toString());
+			log.error("Failure checking key-entry in key-store", e);
+			fail("Cannot check key-entry in key-store: " + e.toString());
 			return;
 		}
 		
 		try {
 			assertTrue("Key-store has no expected certificate-entry", keystore.isCertificateEntry(CERTIFICATE_NAME));
 		} catch (KeyStoreException e) {
-			log.error("Failure checking entry in key-store", e);
-			fail("Cannot check entry in key-store: " + e.toString());
+			log.error("Failure checking certificate-entry in key-store", e);
+			fail("Cannot check certificate-entry in key-store: " + e.toString());
 			return;
 		}
 		
