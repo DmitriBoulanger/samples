@@ -1,0 +1,92 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.patrikdufresne.license</groupId>
+	<artifactId>com.patrikdufresne.license</artifactId>
+	<version>0.5-SNAPSHOT</version>
+	<!-- Define the SCM used for developpement. This information is used by 
+		release:prepare -->
+	<scm>
+		<developerConnection>scm:git:ssh://gitosis@tintaglia.patrikdufresne.com/license.git</developerConnection>
+	</scm>
+	<!-- Define the repository. Used by deploy:deploy -->
+	<distributionManagement>
+		<repository>
+			<id>patrikdufresne</id>
+			<name>Internal Releases</name>
+			<url>http://nexus.patrikdufresne.com/content/repositories/releases/</url>
+		</repository>
+		<snapshotRepository>
+			<id>patrikdufresne</id>
+			<name>Internal Releases</name>
+			<url>http://nexus.patrikdufresne.com/content/repositories/snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
+	<build>
+		<plugins>
+			<!-- javac version to 1.6 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.0</version>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+				</configuration>
+			</plugin>
+			<!-- generate source package -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<!-- Formatting -->
+			<plugin>
+				<groupId>com.googlecode.maven-java-formatter-plugin</groupId>
+				<artifactId>maven-java-formatter-plugin</artifactId>
+				<version>0.3.1</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>format</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<configFile>src/main/build-tools/formatter.xml</configFile>
+				</configuration>
+			</plugin>
+			<!-- Add license header -->
+			<plugin>
+				<groupId>com.mycila.maven-license-plugin</groupId>
+				<artifactId>maven-license-plugin</artifactId>
+				<version>1.9.0</version>
+				<executions>
+					<execution>
+						<phase>process-sources</phase>
+						<goals>
+							<goal>format</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<header>src/main/build-tools/license-header.txt</header>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.11</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+</project>
