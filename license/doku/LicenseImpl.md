@@ -26,18 +26,18 @@ The cryptographic algorithm, also called **cipher**, is a mathematical function 
 
 **Algorithms with the public key** (*asymmetric-key algorithms*), are developed in a way that the key used for the encryption differs from that for decryption. Moreover, the decryption key can't be calculated by the encryption key (at least, during the reasonable period of time). These algorithms are called “algorithms with the public key” because the encryption key can be open: anyone can use the encryption key for the encryption of the message but only one concrete person can decrypt the message with the corresponding decryption key. The encryption key is called the public key and the decryption key is called the private key (secret key).
 
-A licensing system should use an algorithm with a public key because:
+A licensing system should use a cryptographic algorithm with a public key because:
 
- - the key has to be stored in the program for the authentication of the entered serial key
--  an intruder with public key and the source code of the algorithm, won't be able to make the key generator and create serial keys for another program copies.
+ - the key has to be stored in the program for the authentication of the entered **serial key**
+-  an intruder having the public key and the source code of the algorithm, won't be able to make the key generator and create other serial keys for another program copies
 
-The following three algorithms are most frequently used:
+The below cryptographic algorithms are avialble and most frequently used:
 
--     **DES**  (*Data Encryption Standard*) is the most popular computer encryption algorithm. It is the American and international standard. It is the symmetric-key algorithm where one and the same key is used for encryption and decryption.
+    **DES**  (*Data Encryption Standard*) is the most popular computer encryption algorithm. It is the American and international standard. It is the symmetric-key algorithm where one and the same key is used for encryption and decryption.
 
--     **RSA** (*Rivest, Shamir and Adleman*) is the most popular algorithm with the public key. It is used both for the encryption and for digital signature.
+    **RSA** (*Rivest, Shamir and Adleman*) is the most popular algorithm with the public key. It is used both for the encryption and for digital signature.
 
--     **DSA*** (*Digital Signature Algorithm*, is used as the part of the Digital Signature Standard) is another algorithm with the public key. It is used only for the digital signature and can’t be used for the encryption.
+    **DSA*** (*Digital Signature Algorithm*, part of the Digital Signature Standard) is another algorithm with the public key. It is used only for the digital signature and can’t be used for the encryption.
 
 *DES does not suit because it is the symmetric-key algorithm*.
 
@@ -59,7 +59,9 @@ The *unique identifier of the computer* is required. It is used to ensure that o
 
 ## Used references ##
 
-    [http://www.codeproject.com/Articles/99499/Implementation-of-the-Licensing-System-for-a-Softw](http://http://www.codeproject.com/Articles/99499/Implementation-of-the-Licensing-System-for-a-Softw).
+[http://www.codeproject.com/Articles/99499/Implementation-of-the-Licensing-System-for-a-Softw]](http://www.codeproject.com/Articles/99499/Implementation-of-the-Licensing-System-for-a-Softw] "Implementation of the Licensing System for a Software Product")
+
+ 
  
 
 
