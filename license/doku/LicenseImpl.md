@@ -47,7 +47,7 @@ Two algorithms are left: RSA and DSA. It is easy to choose between them if we lo
 
 ***DSA*** calculates the hash code of the source text, and then “decrypts” it using the private key and receives the required *serial key*. It “encrypts” the received value on the client side and receives the hash code. Then it calculates the hash code from the source text in the usual way and compares two values. If these values coincide, then the serial key is valid.
 
-![Alt text](svg2raster.png?raw=true "Using serial key")
+![Alt text](sing_verify.png?raw=true "Sign and verify")
 
 ## Hardware Serial Key ##
 
@@ -55,12 +55,12 @@ The *unique identifier of the computer* is required. It is used to ensure that o
  
 ## Architecture of a Licensing System ##
 
-![Alt text](schema.png?raw=true "Basic licensing system")
+![Alt text](basic_licensing.png?raw=true "Basic licensing system")
 
 ## Used references ##
 
-[http://www.codeproject.com/Articles/99499/Implementation-of-the-Licensing-System-for-a-Softw]]( "Implementation of the Licensing System for a Software Product")
-
+[Implementation of the Licensing System for a Software Product](http://www.codeproject.com/Articles/99499/Implementation-of-the-Licensing-System-for-a-Softw)
+ 
  
  
 
