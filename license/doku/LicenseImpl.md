@@ -51,15 +51,15 @@ Two algorithms are left: RSA and DSA. It is easy to choose between them if we lo
 
 ## Hardware Serial Key ##
 
-The *unique identifier of the computer* is required. It is used to ensure that our *serial key* is used on the computer where a license have been granted. There are many methods of its obtaining.
+The *unique identifier of the computer* is required. It is used to ensure that our *serial key* is used on the computer where a license have been granted. There are many methods to get it.
  
 ## Architecture of a Licensing System ##
 
-![Alt text](schema.png?raw=true "Basic scheme of a licensing system")
+![Alt text](schema.png?raw=true "Basic licensing system")
 
 ## Used references ##
 
-[http://www.codeproject.com/Articles/99499/Implementation-of-the-Licensing-System-for-a-Softw]](http://www.codeproject.com/Articles/99499/Implementation-of-the-Licensing-System-for-a-Softw] "Implementation of the Licensing System for a Software Product")
+[http://www.codeproject.com/Articles/99499/Implementation-of-the-Licensing-System-for-a-Softw]]( "Implementation of the Licensing System for a Software Product")
 
  
  
