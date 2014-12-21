@@ -55,7 +55,7 @@ The *unique identifier of the computer* is required. It is used to ensure that o
  
 ## Architecture of a Licensing System ##
 
-![Basic licensing system](basic_licensing.png?raw=true "Basic licensing system")
+![Basic licensing system](basic_licensing.jpeg?raw=true "Basic licensing system")
 
 ## Used references ##
 
