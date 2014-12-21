@@ -47,19 +47,47 @@ Two algorithms are left: RSA and DSA. It is easy to choose between them if we lo
 
 ***DSA*** calculates the hash code of the source text, and then “decrypts” it using the private key and receives the required *serial key*. It “encrypts” the received value on the client side and receives the hash code. Then it calculates the hash code from the source text in the usual way and compares two values. If these values coincide, then the serial key is valid.
 
+## Authenticating the License File ##
+
+A digital signature is produced from the data being verified by generating a hash-code from the source data, and encrypting this hash with a private key.
+The hash code will be unique to the source data ... if even one bit in the source data changes, the resulting hashcode will be quite different. (The "strength" of any hashing algorithm is indicated by how much the hash-code changes with the smallest possible edit of the source data).
+
+Verification of the data is achieved by using the public key to check if the digital signature (the encrypted hash) still matches the data that is being verified. If any part of the data is changed, then the digital signature will not match.
+
+This means that you can verify that the license file the system is using definitely came from you, (the sellers of the software) without having to give the application access to the private key. If you were to use symmetrical encryption to encrypt the license-terms (so they could not be seen or changed), then the application itself would need access to the encryption key, in order to decrypt the file. The key could be found within the application EXE and extracted, allowing pirates to generate their own license files.
+
+Using asymmetrical encryption still requires that the application have access to the public part of the key, but knowing the public part of the key will not help anyone trying to hack the system.
+
+The danger lies in pirates being able to replace the public key with one of their own making. This would require them to get into the .exe and alter the sequence of bytes that defines the public-key (whether it is a string-literal or a resource within the EXE).
+
+This is beyond the scope I have given myself for this article, but just a quick mention:
+signing the executable itself is one potential way of trying to stop this: modification of the executable will generate a different signature, and the application can be instructed not to open. (This is how the click-once manifests work, in fact, using click-once to deploy your application makes it (almost) impossible to modify that application without regenerating the click-once manifest file.) 
+
 ![Sign and verify](sign_verify.png?raw=true "Sign and verify")
 
 ## Hardware Serial Key ##
 
 The *unique identifier of the computer* is required. It is used to ensure that our *serial key* is used on the computer where a license have been granted. There are many methods to get it.
+
+## Message Authentication Code (MAC) ##
+ 
+## License Terms File ##
+
+A license file specifies the licensee (the user's name, address, contact details, etc.), the product being licensed, and the start and end dates of that license. The software asks for the license file on first use, copies it into a known location, then validates that the terms of the license are valid (correct software version, within the applicable date-range, etc.).
+
+The trick here is to ensure that the license file that is supplied is authentic, if that part is covered, this is an excellent system for licensing: the license terms can be as simple or complex as you like (i.e. blanket authorization, or partial (certain features enabled)), they can have start and end dates, be restricted to particular applications or even restricted to particular users. The user isn't forced to type in a long and complex serial-number, and having the users name and contact details embedded within the terms makes it less likely that users will voluntarily share the license file. 
  
 ## Architecture of a Licensing System ##
 
 ![Basic licensing system](basic_licensing.jpeg?raw=true "Basic licensing system")
 
-## Used references ##
+## Used articals ##
 
 [Implementation of the Licensing System for a Software Product](http://www.codeproject.com/Articles/99499/Implementation-of-the-Licensing-System-for-a-Softw)
+
+[RSA License Protection](http://www.codeproject.com/Articles/203840/RSA-License-Protection)
+
+[Licensing Using Symmetric and Asymmetric Cryptography](http://www.drdobbs.com/licensing-using-symmetric-and-asymmetric/184401687)
  
  
  
