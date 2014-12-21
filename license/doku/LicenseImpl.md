@@ -1,37 +1,38 @@
 
-# Licensing System for a Software Product #
-
+# Absract Licensing Architecture #
 
 Table of Contents
 
-    Introduction
-    Types of Algorithms
+    Basic Issues
+    Cryptography Algorithms
     Hardware Serial Key
     The Scheme of the Licensing System
-    The Folders Structure
-    Bibliography List
-    History 
 
-## Introduction ##
+## Basic Issues ##
 
-cryptography methods, which can be used while implementing the licensing system pros and cons of these methods and select the possible ones for using in the application
-implementation of the simplest licensing system, which guaranties the protection from cracking even if a hacker knows the source code of an algorithm.
+    Cryptography methods to be used in implementation of a licensing system
+    Pros and cons of these methods
+    Choice of a cryptography
+    Architecture of a licensing system to ensure protection even if a hacker knows the source code
 
-## Types of Algorithms ##
+## Cryptography Algorithms ##
 
-The cryptographic algorithm, also called **cipher**, is a mathematical function used for encryption and decryption. Usually, these are two interconnected functions: one is used for encryption, another is for decryption.
+The cryptographic algorithm, also called **cipher**, is a mathematical function used for encryption and decryption. There are two interconnected functions: one is used for encryption, another is for decryption.
 
-If the reliability of the algorithm is based on keeping the algorithm itself in secret, then this algorithm is limited. Limited algorithms do not correspond to the nowadays standards and represent only the *historical* value.
+If an algorithm is based on keeping the algorithm itself in secret, then this algorithm is limited. Such algorithms have only a *historical* value. Instead, the actual approach uses **key**. It  can be selected from a wide range of values. The set of possible keys is called the **key space**.
 
-The modern cryptography solves these problems with the help of the **key**. The key can be of any value selected from a wide range of values. The set of possible keys is called the **key space**.
+There are two main types of algorithms based on the key usage: 
+- **symmetric-key algorithm** 
+- **algorithm with the public key**
 
-There are two main types of algorithms based on the key usage: **symmetric-key algorithm** and **algorithm with the public key**.
+**Symmetric-key algorithms** (*conditional algorithms*), are the algorithms where the encryption key can be calculated by the decryption key and vice versa. The encryption and decryption keys are the same in most symmetric-key algorithms. These algorithms, also called *one-key* or *secret-key* algorithms, require that the sender and the recipient reconcile the used key before the beginning of the secure message exchange. The safety of the symmetric-key algorithms is defined by the key. The key disclosure means that anyone can encrypt and decrypt messages. The key must be kept in secret as long as the transmitted messages should be secret.
 
-**Symmetric-key algorithms**, sometimes called the conditional algorithms, are the algorithms where the encryption key can be calculated by the decryption key and vice versa. The encryption and decryption keys are the same in most symmetric-key algorithms. These algorithms, also called one-key or secret-key algorithms, require that the sender and the recipient reconcile the used key before the beginning of the secure message exchange. The safety of the symmetric-key algorithms is defined by the key. The key disclosure means that anyone can encrypt and decrypt messages. The key must be kept in secret as long as the transmitted messages should be secret.
+**Algorithms with the public key** (*asymmetric-key algorithms*), are developed in a way that the key used for the encryption differs from that for decryption. Moreover, the decryption key can't be calculated by the encryption key (at least, during the reasonable period of time). These algorithms are called “algorithms with the public key” because the encryption key can be open: anyone can use the encryption key for the encryption of the message but only one concrete person can decrypt the message with the corresponding decryption key. The encryption key is called the public key and the decryption key is called the private key (secret key).
 
-**Algorithms with the public key**, also called asymmetric-key algorithms, are developed in a way that the key used for the encryption differs from that for decryption. Moreover, the decryption key can't be calculated by the encryption key (at least, during the reasonable period of time). These algorithms are called “algorithms with the public key” because the encryption key can be open: anyone can use the encryption key for the encryption of the message but only one concrete person can decrypt the message with the corresponding decryption key. In these systems, the encryption key is often called the public key and the decryption key is called the private key. The private key is sometimes called the secret key.
+A licensing system should use an algorithm with a public key because:
 
-It is obvious that the only type of the algorithm which suits us is the algorithm with the public key because we have to store the key in the program for the authentication of the entered serial key. When choosing these algorithms, we have the guarantee that the intruder, having the public key and the source code of the algorithm, won't be able to make the key generator and create serial keys for another program copies.
+ - the key has to be stored in the program for the authentication of the entered serial key
+-  an intruder with public key and the source code of the algorithm, won't be able to make the key generator and create serial keys for another program copies.
 
 There are many computer algorithms. The following three algorithms are most frequently used:
 
