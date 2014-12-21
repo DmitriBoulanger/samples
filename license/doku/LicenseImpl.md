@@ -28,20 +28,19 @@ The cryptographic algorithm, also called **cipher**, performs encryption and dec
 
 A licensing system typically use a cryptographic algorithm with a public key. There are the following important reasons:
 
- - the key has to be stored in the program for the authentication of the entered **serial key**
+- the key has to be stored in the program for the authentication of the entered **serial key**
+
 -  an intruder having the public key and the source code of the algorithm, won't be able to make the key generator and create other serial keys for another program copies
 
 The below cryptographic algorithms are available and most frequently used:
  
--      **DES**  (*Data Encryption Standard*) is the most popular computer encryption algorithm. It is the American and international standard. It is the symmetric-key algorithm where one and the same key is used for encryption and decryption
+- **DES**  (*Data Encryption Standard*) is the most popular computer encryption algorithm. It is the American and international standard. It is the symmetric-key algorithm where one and the same key is used for encryption and decryption
        
--      **RSA** (*Rivest, Shamir and Adleman*) is the most popular algorithm with the public key. It is used both for the encryption and for digital signature.
+- **RSA** (*Rivest, Shamir and Adleman*) is the most popular algorithm with the public key. It is used both for the encryption and for digital signature.
 
--      **DSA** (*Digital Signature Algorithm*, part of the Digital Signature Standard) is another algorithm with the public key. It is used only for the digital signature and can’t be used for the encryption.
+- **DSA** (*Digital Signature Algorithm*, part of the Digital Signature Standard) is another algorithm with the public key. It is used only for the digital signature and can’t be used for the encryption.
 
-*DES does not suit because it is the symmetric-key algorithm*.
-
-Two algorithms are left: RSA and DSA. It is easy to choose between them if we look at the structure of the work of these algorithms.
+Sine DES is *the symmetric-key algorithm*. it cannot be used in licensing systems. So only the two algorithms are acceptable for licensing: RSA and DSA.
 
 **RSA** uses the public key for the creation of the *cipher* text from the source text. We don't need it as it is supposed that we create and send keys and they will be decrypted and compared with the source value on the client side. As it was mentioned above, we can use only the public key on the client side in order not to compromise the licensing system.
 
