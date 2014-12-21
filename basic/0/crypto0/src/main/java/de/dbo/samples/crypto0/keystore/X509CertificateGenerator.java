@@ -65,8 +65,7 @@ final class X509CertificateGenerator {
 	        do {
 	            result = new BigInteger(upperLimit.bitLength(), rand); 
 	        } 
-	        while(result.compareTo(upperLimit) >= 0);   
-	        
+	        while(result.compareTo(upperLimit) >= 0);
 	        return result;
 	 }
 }
