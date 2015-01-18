@@ -6,8 +6,8 @@ public class MyDIApplication implements Consumer{
 
 	private MessageService service;
 	
-	public MyDIApplication(MessageService svc){
-		this.service=svc;
+	public MyDIApplication(MessageService service){
+		this.service=service;
 	}
 	
 	public MyDIApplication(){}

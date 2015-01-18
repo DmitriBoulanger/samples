@@ -10,7 +10,11 @@
 	
 	<artifactId>DependencyInjectionExample</artifactId>
 	<name>Samples Basic-1 Spring2 Dependency Injection</name>
-	<description>Spring Framework Tutorial with Example Projects from JournalDev</description>
+	
+	<description>
+	Spring Framework Tutorial with Example Projects from JournalDev.
+	The project show Dependency Injection Pattern implemented from scratch (no Spring!)
+	</description>
 	<url>
 	http://www.journaldev.com/2394/dependency-injection-design-pattern-in-java-example-tutorial
 	</url>
