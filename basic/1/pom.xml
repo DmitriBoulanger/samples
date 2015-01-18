@@ -22,6 +22,7 @@ Reactor for all basic-1 samples.
 		<module>maven</module>
 		<module>mojo</module>
 		<module>spring</module>
+		<module>spring2</module>
 		<module>pico</module>
 		<module>concurrent</module>
 	</modules>
