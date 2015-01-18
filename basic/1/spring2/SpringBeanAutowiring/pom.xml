@@ -9,6 +9,7 @@
 	</parent>
 	
 	<artifactId>SpringBeanAutowiring</artifactId>
+	<name>Samples Basic-1 Spring2 Bean-Autowiring</name>
 	<url>
 	http://www.journaldev.com/2623/spring-bean-autowire-by-name-type-constructor-autowired-and-qualifier-annotations-example
 	</url>
@@ -17,23 +18,19 @@
 		<!-- Spring and Transactions -->
 		<dependency>
 			<groupId>org.springframework</groupId>
-			<artifactId>spring-context</artifactId>		 
+			<artifactId>spring-context</artifactId>
+			<!-- Don't do that: Spring doesn't work without org.apache.commons.logging.LogFactory!
+			<exclusions>
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</exclusion>
+			</exclusions>
+			-->
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
-			<artifactId>spring-tx</artifactId>	 
-		</dependency>
-		
-		<!-- Logging with SLF4J & LogBack -->
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>ch.qos.logback</groupId>
-			<artifactId>logback-classic</artifactId>
-			<scope>runtime</scope>
+			<artifactId>spring-tx</artifactId>
 		</dependency>
 
 	</dependencies>

@@ -1,11 +1,11 @@
-package com.journaldev.java.dependencyinjection.test;
+package com.journaldev.java.dependencyinjection;
 
 import com.journaldev.java.dependencyinjection.consumer.Consumer;
 import com.journaldev.java.dependencyinjection.injector.EmailServiceInjector;
 import com.journaldev.java.dependencyinjection.injector.MessageServiceInjector;
 import com.journaldev.java.dependencyinjection.injector.SMSServiceInjector;
 
-public class MyMessageDITest {
+public class MyMessageDIMain {
 
 	public static void main(String[] args) {
 		String msg = "Hi Pankaj";

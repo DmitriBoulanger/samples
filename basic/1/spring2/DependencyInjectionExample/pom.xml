@@ -9,37 +9,12 @@
 	</parent>
 	
 	<artifactId>DependencyInjectionExample</artifactId>
+	<name>Samples Basic-1 Spring2 Dependency Injection</name>
 	<url>
 	http://www.journaldev.com/2394/dependency-injection-design-pattern-in-java-example-tutorial
 	</url>
 
 	<dependencies>
-		<!-- Spring and Transactions -->
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-context</artifactId>		 
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-tx</artifactId>	 
-		</dependency>
 		
-		<!-- Logging with SLF4J & LogBack -->
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>ch.qos.logback</groupId>
-			<artifactId>logback-classic</artifactId>
-			<scope>runtime</scope>
-		</dependency>
-		
-		<dependency>
-				<groupId>junit</groupId>
-				<artifactId>junit</artifactId>
-		</dependency>
-
 	</dependencies>
 </project>

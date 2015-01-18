@@ -1,6 +1,8 @@
-package com.journaldev.java.legacy;
+package com.journaldev.java.dependencyinjection.legacy;
 
-public class MyLegacyTest {
+import com.journaldev.java.legacy.MyApplication;
+
+public class MyLegacy {
 
 	public static void main(String[] args) {
 		MyApplication app = new MyApplication();

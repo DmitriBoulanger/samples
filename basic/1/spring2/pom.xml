@@ -6,29 +6,36 @@
 		<groupId>de.dbo.root</groupId>
 		<artifactId>super-root-plugin-java-management</artifactId>
 		<version>0.0.0-SNAPSHOT</version>
+		<relativePath/>
 	</parent>
 
 	<artifactId>spring2</artifactId>
 	<groupId>de.dbo.samples.basic.1.spring2</groupId>
 	<packaging>pom</packaging>
-	<name>Samples Basic-1 Spring2 (Spring4)</name>
+	<name>Samples Basic-1 Spring2</name>
+	<url>
+	http://www.journaldev.com/2888/spring-framework-tutorial-with-example-projects
+	</url>
+	
+	<modules>
+		<module>DependencyInjectionExample</module>
+		<module>SpringBeanAutowiring</module>
+	</modules>
 
 	<properties>
 		<!-- Spring -->
 		<spring-framework.version>4.0.2.RELEASE</spring-framework.version>
 
 		<!-- Logging -->
-		<logback.version>1.0.13</logback.version>
 		<slf4j.version>1.7.5</slf4j.version>
 		
 		<!-- JUnit -->
-		<junit.version>4.4</junit.version>
-
+		<junit.version>4.11</junit.version>
 	</properties>
-
+	
 	<dependencyManagement>
 		<dependencies>
-		<!-- Spring and Transactions -->
+			<!-- Spring and Transactions -->
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-context</artifactId>
@@ -40,7 +47,7 @@
 				<version>${spring-framework.version}</version>
 			</dependency>
 
-		<!-- Logging with SLF4J & LogBack -->
+			<!-- Logging with SLF4J & Log4J-->
 			<dependency>
 				<groupId>org.slf4j</groupId>
 				<artifactId>slf4j-api</artifactId>
@@ -48,13 +55,13 @@
 				<scope>compile</scope>
 			</dependency>
 			<dependency>
-				<groupId>ch.qos.logback</groupId>
-				<artifactId>logback-classic</artifactId>
-				<version>${logback.version}</version>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-log4j12</artifactId>
+				<version>${slf4j.version}</version>
 				<scope>runtime</scope>
 			</dependency>
 
-		<!-- JUnit -->			
+			<!-- JUnit -->
 			<dependency>
 				<groupId>junit</groupId>
 				<artifactId>junit</artifactId>
@@ -62,5 +69,25 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
+
+	<dependencies>
+		<!-- Logging with SLF4J & Log4J-->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
+		<!-- JUnit -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+		</dependency>
+	</dependencies>
 
 </project>
