@@ -10,6 +10,7 @@
 	
 	<artifactId>DependencyInjectionExample</artifactId>
 	<name>Samples Basic-1 Spring2 Dependency Injection</name>
+	<description>Spring Framework Tutorial with Example Projects from JournalDev</description>
 	<url>
 	http://www.journaldev.com/2394/dependency-injection-design-pattern-in-java-example-tutorial
 	</url>
@@ -17,4 +18,5 @@
 	<dependencies>
 		
 	</dependencies>
+	
 </project>
