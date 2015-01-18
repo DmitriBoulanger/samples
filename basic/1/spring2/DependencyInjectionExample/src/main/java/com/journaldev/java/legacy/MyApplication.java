@@ -1,5 +1,9 @@
 package com.journaldev.java.legacy;
 
+/*
+ * Bad solution because uses the the exact instance of the service
+ */
+
 public class MyApplication {
 
 	private EmailService email = new EmailService();
