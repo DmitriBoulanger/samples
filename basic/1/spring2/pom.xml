@@ -18,8 +18,10 @@
 	</url>
 	
 	<modules>
-		<module>DependencyInjectionExample</module>
+		<module>DependencyInjection</module>
+		<module>SpringDependencyInjection</module>
 		<module>SpringBeanAutowiring</module>
+		<module>SpringPropertyPlaceholder</module>
 	</modules>
 
 	<properties>
