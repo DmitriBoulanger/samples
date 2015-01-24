@@ -5,7 +5,7 @@ import java.io.Serializable;
 import org.springframework.beans.factory.annotation.Value;
 
 /**
- * Instances can be given to a client ...
+ * Instances are given to clients ...
  * 
  * @author Dmitri Boulanger, Hombach
  *

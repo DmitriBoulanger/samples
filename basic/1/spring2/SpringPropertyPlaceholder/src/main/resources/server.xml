@@ -26,7 +26,10 @@
 	<!-- Enable annotation processing -->
 	<context:annotation-config /> 
 
-	<!-- Property replacement -->
+	<!-- 
+		Property replacement 
+		System properties, if any, overwrite the values in properties resources
+	-->
 	<context:property-placeholder location="classpath:worker.properties
 	, file:${product.conf}/service.properties"  
 		system-properties-mode="OVERRIDE" />

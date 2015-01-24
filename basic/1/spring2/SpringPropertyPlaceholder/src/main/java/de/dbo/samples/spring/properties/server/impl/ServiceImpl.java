@@ -5,6 +5,15 @@ import de.dbo.samples.spring.properties.server.api.ServiceConfig;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+/**
+ * Sever-side service implementation
+ * 
+ * @author Dmitri Boulanger, Hombach
+ *
+ * D. Knuth: Programs are meant to be read by humans and 
+ *           only incidentally for computers to execute 
+ *
+ */
 public final class ServiceImpl implements Service {
 	
 	@Autowired(required=true)
@@ -22,7 +31,7 @@ public final class ServiceImpl implements Service {
 	}
 	
 	@Override
-	public ServiceConfig config() throws Exception {
+	public ServiceConfig config()  {
 		return getConfig();
 	}
 	
