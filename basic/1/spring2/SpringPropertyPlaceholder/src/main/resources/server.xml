@@ -1,0 +1,58 @@
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:jms="http://www.springframework.org/schema/jms" xmlns:amq="http://activemq.apache.org/schema/core"
+	xmlns:security="http://www.springframework.org/schema/security" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+         http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
+         http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.1.xsd
+         http://www.springframework.org/schema/jms http://www.springframework.org/schema/jms/spring-jms-3.1.xsd
+		 http://www.springframework.org/schema/security
+         http://www.springframework.org/schema/security/spring-security-3.1.xsd
+         http://activemq.apache.org/schema/core http://activemq.apache.org/schema/core/activemq-core.xsd
+         http://www.springframework.org/schema/tx 
+     	 http://www.springframework.org/schema/tx/spring-tx-3.1.xsd
+	">
+
+	<description>
+		RMI-Server configured with service.propertis.
+		The properties are located in the product configuration directory
+		The server exposes to client service named Service
+	</description>
+	
+	<context:component-scan base-package="de.dbo.samples.spring.properties" />
+
+	<!-- Enable annotation processing -->
+	<context:annotation-config /> 
+
+	<!-- Property replacement -->
+	<context:property-placeholder location="classpath:worker.properties
+	, file:${product.conf}/service.properties"  
+		system-properties-mode="OVERRIDE" />
+	
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+	
+		<!-- serviceName represents RMI Service Name -->
+		<property name="serviceName" value="Service" />
+        
+		<!-- reference to object to be exported -->
+		<property name="service" ref="serviceImpl" />
+		
+		 <!-- serviceInterface represents RMI-Service Interface exposed -->
+		<property name="serviceInterface" value="de.dbo.samples.spring.properties.server.api.Service" />
+
+		<!-- the port of the RMI registry (defaults to '1099' if omitted) -->
+		<property name="registryPort" value="1099" />
+
+	</bean>
+	
+	<bean name="serviceImpl" class="de.dbo.samples.spring.properties.server.impl.ServiceImpl">
+		<property name="worker" ref="workerImpl" />
+	</bean>
+	
+	<bean name="workerImpl" class="de.dbo.samples.spring.properties.server.impl.ServiceWorker" />
+	
+	<bean name="serviceConfig" class="de.dbo.samples.spring.properties.server.api.ServiceConfig" />
+
+</beans>
