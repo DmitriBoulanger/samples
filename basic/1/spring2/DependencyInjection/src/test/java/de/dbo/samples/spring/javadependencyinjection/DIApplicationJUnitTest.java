@@ -1,4 +1,9 @@
-package com.journaldev.java.dependencyinjection;
+package de.dbo.samples.spring.javadependencyinjection;
+
+import de.dbo.samples.spring.javadependencyinjection.consumer.Consumer;
+import de.dbo.samples.spring.javadependencyinjection.consumer.ConsumerImpl;
+import de.dbo.samples.spring.javadependencyinjection.injector.ServiceInjector;
+import de.dbo.samples.spring.javadependencyinjection.service.Service;
 
 import org.junit.After;
 import org.junit.Before;
@@ -6,25 +11,20 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.journaldev.java.dependencyinjection.consumer.Consumer;
-import com.journaldev.java.dependencyinjection.consumer.MyDIApplication;
-import com.journaldev.java.dependencyinjection.injector.MessageServiceInjector;
-import com.journaldev.java.dependencyinjection.service.MessageService;
+public class DIApplicationJUnitTest {
+	private static final Logger log = LoggerFactory.getLogger(DIApplicationJUnitTest.class);
 
-public class MyDIApplicationJUnitTest {
-	private static final Logger log = LoggerFactory.getLogger(MyDIApplicationJUnitTest.class);
-
-	private MessageServiceInjector injector;
+	private ServiceInjector injector;
 	
 	@Before
 	public void setUp(){
 		//mock the injector with anonymous class
-		injector = new MessageServiceInjector() {
+		injector = new ServiceInjector() {
 			
 			@Override
 			public Consumer getConsumer() {
 				//mock the message service
-				return new MyDIApplication(new MessageService() {
+				return new ConsumerImpl(new Service() {
 					
 					@Override
 					public void sendMessage(String msg, String rec) {

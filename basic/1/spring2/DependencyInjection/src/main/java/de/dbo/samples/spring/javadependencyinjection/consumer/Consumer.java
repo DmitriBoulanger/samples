@@ -1,4 +1,4 @@
-package com.journaldev.java.dependencyinjection.consumer;
+package de.dbo.samples.spring.javadependencyinjection.consumer;
 
 public interface Consumer {
 

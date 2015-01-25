@@ -7,10 +7,10 @@
 		<groupId>de.dbo.samples.basic.1.spring2</groupId>
 		<version>0.0.0-SNAPSHOT</version>
 	</parent>
-	
+
 	<artifactId>DependencyInjection</artifactId>
-	<name>Samples Basic-1 Spring2 Dependency Injection</name>
-	
+	<name>Samples Basic-1 Spring2 Java DI Pattern</name>
+
 	<description>
 	Spring Framework Tutorial with Example Projects from JournalDev.
 	The project show Dependency Injection Pattern implemented from scratch (no Spring!)
@@ -20,7 +20,7 @@
 	</url>
 
 	<dependencies>
-		
+		<!-- Pure Java! -->
 	</dependencies>
-	
+
 </project>

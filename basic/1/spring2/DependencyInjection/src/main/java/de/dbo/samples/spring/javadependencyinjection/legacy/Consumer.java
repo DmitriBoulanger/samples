@@ -1,12 +1,12 @@
-package com.journaldev.java.legacy;
+package de.dbo.samples.spring.javadependencyinjection.legacy;
 
-/*
+/* 
  * Bad solution because uses the the exact instance of the service
  */
 
-public class MyApplication {
+public class Consumer {
 
-	private EmailService email = new EmailService();
+	private Service email = new Service();
 	
 	public void processMessages(String msg, String rec){
 		//do some msg validation, manipulation logic etc

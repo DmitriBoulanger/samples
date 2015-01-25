@@ -1,9 +1,9 @@
-package com.journaldev.java.dependencyinjection.service;
+package de.dbo.samples.spring.javadependencyinjection.service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class SMSServiceImpl implements MessageService {
+public class SMSServiceImpl implements Service {
 	private static final Logger log = LoggerFactory.getLogger(SMSServiceImpl.class);
 
 	@Override
