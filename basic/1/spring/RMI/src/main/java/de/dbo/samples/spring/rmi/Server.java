@@ -17,7 +17,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class Server {
 	private static final Logger log = LoggerFactory.getLogger(Server.class);
 	
-	public static void main(String[] args){
+	public static void main(String[] args) {
 		new ClassPathXmlApplicationContext("server.xml");
 		log.info("Waiting for requests ...");
 	}
