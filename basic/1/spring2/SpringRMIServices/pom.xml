@@ -28,8 +28,8 @@
 			<artifactId>slf4j-log4j12</artifactId>
 			<scope>compile</scope>
 		</dependency>
-     
 	</dependencies>
+	
 	<build>
 		<plugins>
 			<plugin>
