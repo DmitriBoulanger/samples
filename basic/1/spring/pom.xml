@@ -14,12 +14,8 @@
 	<name>Samples Basic-1 Spring</name>
 
 	<description>
-Top for all Spring-samples
+	Reactor for all Spring1 (simple) samples
 	</description>
-	
-	 <properties>
-		
-	</properties>
 	
 	<modules>
 	    <module>API</module>
@@ -28,7 +24,7 @@ Top for all Spring-samples
 		<module>IoC</module>
 		<module>LifeCycle</module>
 		<module>DependencyInjection</module>
-		<module>rmi</module>
+		<module>RMI</module>
 	</modules> 
 	
 	<build>

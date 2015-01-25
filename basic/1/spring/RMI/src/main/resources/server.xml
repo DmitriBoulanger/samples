@@ -3,8 +3,14 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
+	<description>
+	Declaration (spring-context) of the RMI-server (service).
+	</description>
+	
+	<!-- Implementation of the service -->
 	<bean id="serviceBean" class="de.dbo.samples.spring.rmi.ServiceImpl"></bean>
 	
+	<!-- Publishing the service implementation as a RMI-service -->
 	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
 		<property name="service" ref="serviceBean"></property>
 		<property name="serviceInterface" value="de.dbo.samples.spring.rmi.Service"></property>
