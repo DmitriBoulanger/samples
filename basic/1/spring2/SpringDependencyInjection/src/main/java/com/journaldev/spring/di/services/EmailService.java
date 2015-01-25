@@ -1,9 +1,13 @@
 package com.journaldev.spring.di.services;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class EmailService implements MessageService {
+	private static final Logger log = LoggerFactory.getLogger(EmailService.class);
 
 	public boolean sendMessage(String msg, String rec) {
-		System.out.println("Email Sent to "+rec+ " with Message="+msg);
+		log.info("Email Sent to "+rec+ " with Message="+msg);
 		return true;
 	}
 

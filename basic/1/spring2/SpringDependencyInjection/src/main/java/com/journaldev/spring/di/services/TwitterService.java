@@ -1,9 +1,13 @@
 package com.journaldev.spring.di.services;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class TwitterService implements MessageService {
+	private static final Logger log = LoggerFactory.getLogger(TwitterService.class);
 
 	public boolean sendMessage(String msg, String rec) {
-		System.out.println("Twitter message Sent to "+rec+ " with Message="+msg);
+		log.info("Twitter message Sent to "+rec+ " with Message="+msg);
 		return true;
 	}
 
