@@ -1,10 +1,10 @@
-package com.journaldev.spring.di.consumer;
+package de.dbo.samples.spring.di.consumer;
+
+import de.dbo.samples.spring.di.services.MessageService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Component;
-
-import com.journaldev.spring.di.services.MessageService;
 
 @Component
 public class MyApplication {

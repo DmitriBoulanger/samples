@@ -1,6 +1,6 @@
-package com.journaldev.spring.di.consumer;
+package de.dbo.samples.spring.di.consumer;
 
-import com.journaldev.spring.di.services.MessageService;
+import de.dbo.samples.spring.di.services.MessageService;
 
 public class MyXMLApplication {
 

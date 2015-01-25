@@ -1,9 +1,9 @@
-package com.journaldev.spring.di.test;
+package de.dbo.samples.spring.di.test;
+
+import de.dbo.samples.spring.di.configuration.DIConfiguration;
+import de.dbo.samples.spring.di.consumer.MyApplication;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-
-import com.journaldev.spring.di.configuration.DIConfiguration;
-import com.journaldev.spring.di.consumer.MyApplication;
 
 public class ClientApplication {
 

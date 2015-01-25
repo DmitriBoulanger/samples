@@ -1,5 +1,8 @@
 package com.journaldev.spring.di.test;
 
+import de.dbo.samples.spring.di.consumer.MyApplication;
+import de.dbo.samples.spring.di.services.MessageService;
+
 import org.junit.Assert;
 import org.junit.After;
 import org.junit.Before;
@@ -9,11 +12,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
-import com.journaldev.spring.di.consumer.MyApplication;
-import com.journaldev.spring.di.services.MessageService;
-
 @Configuration
-@ComponentScan(value="com.journaldev.spring.di.consumer")
+@ComponentScan(value="de.dbo.samples.spring.di.consumer")
 public class MyApplicationTest {
 	
 	private AnnotationConfigApplicationContext context = null;

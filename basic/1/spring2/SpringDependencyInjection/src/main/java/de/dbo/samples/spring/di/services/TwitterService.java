@@ -1,4 +1,4 @@
-package com.journaldev.spring.di.services;
+package de.dbo.samples.spring.di.services;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

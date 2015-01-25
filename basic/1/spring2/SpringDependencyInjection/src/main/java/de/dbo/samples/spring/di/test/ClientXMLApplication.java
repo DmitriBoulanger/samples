@@ -1,8 +1,8 @@
-package com.journaldev.spring.di.test;
+package de.dbo.samples.spring.di.test;
+
+import de.dbo.samples.spring.di.consumer.MyXMLApplication;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-
-import com.journaldev.spring.di.consumer.MyXMLApplication;
 
 public class ClientXMLApplication {
 
