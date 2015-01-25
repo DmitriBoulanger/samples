@@ -1,9 +1,9 @@
-package com.journaldev.spring.autowiring.service;
+package de.dbo.samples.spring.autowiring.service;
+
+import de.dbo.samples.spring.autowiring.model.Employee;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.journaldev.spring.autowiring.model.Employee;
 
 public class EmployeeService {
 	private static final Logger log = LoggerFactory.getLogger(EmployeeService.class);

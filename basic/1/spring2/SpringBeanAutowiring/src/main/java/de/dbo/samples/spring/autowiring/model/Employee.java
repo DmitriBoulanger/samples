@@ -1,4 +1,4 @@
-package com.journaldev.spring.autowiring.model;
+package de.dbo.samples.spring.autowiring.model;
 
 public class Employee {
 

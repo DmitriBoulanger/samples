@@ -1,4 +1,8 @@
-package com.journaldev.spring.autowiring;
+package de.dbo.samples.spring.autowiring;
+
+import de.dbo.samples.spring.autowiring.service.EmployeeAutowiredByConstructorService;
+import de.dbo.samples.spring.autowiring.service.EmployeeAutowiredByTypeService;
+import de.dbo.samples.spring.autowiring.service.EmployeeService;
 
 import org.junit.After;
 import org.junit.Before;
@@ -7,15 +11,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.journaldev.spring.autowiring.service.EmployeeAutowiredByConstructorService;
-import com.journaldev.spring.autowiring.service.EmployeeAutowiredByTypeService;
-import com.journaldev.spring.autowiring.service.EmployeeService;
-
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 
-public class SprintAutowireTest {
-	private static final Logger log = LoggerFactory.getLogger(SprintAutowireTest.class);
+public class SprintAutowireJUnitTest {
+	private static final Logger log = LoggerFactory.getLogger(SprintAutowireJUnitTest.class);
 	
 	private ClassPathXmlApplicationContext ctx;
 	

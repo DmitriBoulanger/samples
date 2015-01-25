@@ -1,9 +1,9 @@
-package com.journaldev.spring.autowiring.service;
+package de.dbo.samples.spring.autowiring.service;
+
+import de.dbo.samples.spring.autowiring.model.Employee;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-
-import com.journaldev.spring.autowiring.model.Employee;
 
 public class EmployeeAutowiredByConstructorService {
 
