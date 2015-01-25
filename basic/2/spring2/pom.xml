@@ -3,14 +3,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>de.dbo.root</groupId>
-		<artifactId>super-root-plugin-java-management</artifactId>
+		<groupId>de.dbo.samples.basic.2</groupId>
+		<artifactId>2</artifactId>
 		<version>0.0.0-SNAPSHOT</version>
-		<relativePath/>
 	</parent>
 
 	<artifactId>spring2</artifactId>
-	<groupId>de.dbo.samples.basic.1.spring2</groupId>
 	<packaging>pom</packaging>
 	<name>Samples Basic-2 Spring2</name>
 	<url>
@@ -24,79 +22,16 @@
 		<module>SpringPropertyPlaceholder</module>
 		<module>SpringRMIServices</module>
 	</modules>
-
-	<properties>
-		<!-- Spring -->
-		<spring-framework.version>4.0.2.RELEASE</spring-framework.version>
-
-		<!-- Logging -->
-		<slf4j.version>1.7.5</slf4j.version>
-		
-		<!-- JUnit -->
-		<junit.version>4.11</junit.version>
-	</properties>
 	
-	<dependencyManagement>
-		<dependencies>
-			<!-- Spring and Transactions -->
-			<dependency>
-				<groupId>org.springframework</groupId>
-				<artifactId>spring-context</artifactId>
-				<version>${spring-framework.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.springframework</groupId>
-				<artifactId>spring-tx</artifactId>
-				<version>${spring-framework.version}</version>
-			</dependency>
-			
-			<dependency>
-				<groupId>org.springframework</groupId>
-				<artifactId>spring-core</artifactId>
-				<version>${spring-framework.version}</version>
-			</dependency>
-
-			<!-- Logging with SLF4J & Log4J-->
-			<dependency>
-				<groupId>org.slf4j</groupId>
-				<artifactId>slf4j-api</artifactId>
-				<version>${slf4j.version}</version>
-				<scope>compile</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.slf4j</groupId>
-				<artifactId>slf4j-log4j12</artifactId>
-				<version>${slf4j.version}</version>
-				<scope>runtime</scope>
-			</dependency>
-
-			<!-- JUnit -->
-			<dependency>
-				<groupId>junit</groupId>
-				<artifactId>junit</artifactId>
-				<version>${junit.version}</version>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
-
 	<dependencies>
-		<!-- Logging with SLF4J & Log4J-->
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<scope>compile</scope>
-		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
-			<scope>runtime</scope>
 		</dependency>
-
-		<!-- JUnit -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-		</dependency>
-	</dependencies>
+	</dependency>
+ </dependencies>
 
 </project>
