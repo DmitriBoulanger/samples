@@ -9,7 +9,7 @@
 	</parent>
 	
 	<artifactId>SpringRMIServices</artifactId>
-	<name>Samples Basic-1 Spring2 RMI Services</name>
+	<name>Samples Basic-2 Spring2 RMI Services</name>
 	<url>
 	http://www.javacodegeeks.com/2012/04/spring-remoting-support-and-developing.html
 	</url>

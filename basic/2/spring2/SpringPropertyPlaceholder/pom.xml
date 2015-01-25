@@ -9,7 +9,7 @@
 	</parent>
 	
 	<artifactId>SpringPropertyPlaceholder</artifactId>
-	<name>Samples Basic-1 Spring2 Property Placeholder</name>
+	<name>Samples Basic-2 Spring2 Property Placeholder</name>
 
 	<dependencies>
 		<dependency>

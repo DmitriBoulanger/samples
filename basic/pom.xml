@@ -22,6 +22,7 @@ Reactor only of the Basic Samples
 	<modules>
 		<module>0</module>
 		<module>1</module>
+		<module>2</module>
 	</modules>
 
 </project>

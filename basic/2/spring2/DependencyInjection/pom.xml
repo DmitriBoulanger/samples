@@ -9,7 +9,7 @@
 	</parent>
 
 	<artifactId>DependencyInjection</artifactId>
-	<name>Samples Basic-1 Spring2 Java DI Pattern</name>
+	<name>Samples Basic-2 Spring2 Java DI Pattern</name>
 
 	<description>
 	Spring Framework Tutorial with Example Projects from JournalDev.

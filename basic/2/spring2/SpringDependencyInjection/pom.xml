@@ -10,7 +10,7 @@
 
 	<groupId>com.journaldev.spring</groupId>
 	<artifactId>SpringDependencyInjection</artifactId>
-	<name>Samples Basic-1 Spring2 Dependency Injection</name>
+	<name>Samples Basic-2 Spring2 Dependency Injection</name>
 	<url>
 	http://www.journaldev.com/2410/spring-dependency-injection-example-with-annotations-and-xml-configuration
 	</url>
