@@ -19,7 +19,7 @@ public class RMIServerStarter {
 	public static void main(String[] args) throws RemoteException {
 
 		log.info("RMI Server Application Context is being started ...");
-		new ClassPathXmlApplicationContext("rmiServerAppContext.xml");
+		new ClassPathXmlApplicationContext("rmiServer.xml");
 		log.info("Waiting for requests ...");
 	}
 	

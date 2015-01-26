@@ -21,7 +21,7 @@ public class RMIServerDestroyer {
 	 * @throws RemoteException
 	 */
 	public static void main(String[] args) throws RemoteException {
-		final ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("rmiServerAppContext.xml");
+		final ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("rmiServer.xml");
 		destroy(ctx,"RMIUserServiceExporter");
 		destroy(ctx,"RMIManagerServiceExporter");
 	}

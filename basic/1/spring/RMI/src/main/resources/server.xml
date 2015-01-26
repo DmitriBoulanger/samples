@@ -7,7 +7,7 @@
 	Declaration (spring-context) of the RMI-server (service).
 	</description>
 	
-	<!-- Implementation of the service -->
+	<!-- Explicit definition of the implementation of the service -->
 	<bean id="serviceBean" class="de.dbo.samples.spring.rmi.ServiceImpl"></bean>
 	
 	<!-- Publishing the service implementation as a RMI-service -->

@@ -33,7 +33,7 @@ public class RMIServiceClient {
 		log.info("RMI Service Client is starting...");
 		
 		// RMI Client Application Context is started... 
-		ApplicationContext context = new ClassPathXmlApplicationContext("rmiClientAppContext.xml");
+		ApplicationContext context = new ClassPathXmlApplicationContext("rmiClient.xml");
 		
 		// Remote User Service is called via RMI Client Application Context...
 		RMIUserService rmiClient = (RMIUserService) context.getBean("RMIUserService");
