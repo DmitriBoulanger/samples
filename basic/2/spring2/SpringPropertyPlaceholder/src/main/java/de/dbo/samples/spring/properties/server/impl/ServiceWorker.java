@@ -1,6 +1,7 @@
 package de.dbo.samples.spring.properties.server.impl;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 /**
  * Server-side internal worker used in the service implementation
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Value;
  *           only incidentally for computers to execute 
  *
  */
+//@Component
 public class ServiceWorker {
 	
 	@Value("${service.worker.name}")
@@ -27,20 +29,20 @@ public class ServiceWorker {
 	// Getters and Setters
 	//
 	
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getValue() {
-		return value;
-	}
-
-	public void setValue(String value) {
-		this.value = value;
-	}
-	
+//	public String getName() {
+//		return name;
+//	}
+//
+//	public void setName(String name) {
+//		this.name = name;
+//	}
+//
+//	public String getValue() {
+//		return value;
+//	}
+//
+//	public void setValue(String value) {
+//		this.value = value;
+//	}
+//	
 }

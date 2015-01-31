@@ -12,7 +12,7 @@
 		The server exposes to the client service named Service
 	</description>
 	
-	<context:component-scan base-package="de.dbo.samples.spring.properties.server" />
+	<context:component-scan base-package="de.dbo.samples.spring.properties.server.impl" />
 
 	<!-- Enable annotation processing -->
 	<context:annotation-config /> 
@@ -29,10 +29,10 @@
 	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
 	
 		<!-- serviceName represents RMI Service Name -->
-		<property name="serviceName" value="Service" />
+		<property name="serviceName" value="ServiceTest" />
         
 		<!-- reference to object to be exported -->
-		<property name="service" ref="serviceImpl" />
+		<property name="service" ref="serviceImplTest" />
 		
 		 <!-- serviceInterface represents RMI-Service Interface exposed -->
 		<property name="serviceInterface" value="de.dbo.samples.spring.properties.server.api.Service" />
@@ -42,9 +42,7 @@
 
 	</bean>
 	
-	<bean name="serviceImpl" class="de.dbo.samples.spring.properties.server.impl.ServiceImpl"/>
-		<!-- <property name="worker" ref="workerImpl" /> -->
-	
+	<bean name="serviceImplTest" class="de.dbo.samples.spring.properties.server.impl.ServiceImpl"/>
 	
 	<bean name="workerImpl" class="de.dbo.samples.spring.properties.server.impl.ServiceWorker" />
 	

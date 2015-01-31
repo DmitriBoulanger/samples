@@ -3,6 +3,7 @@ package de.dbo.samples.spring.properties.server.api;
 import java.io.Serializable;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 /**
  * Instances are given to clients ...
@@ -13,6 +14,7 @@ import org.springframework.beans.factory.annotation.Value;
  *           only incidentally for computers to execute 
  *
  */
+//@Component
 public class ServiceConfig implements Serializable  {
 	private static final long serialVersionUID = 4825722878591220118L;
 
@@ -48,6 +50,5 @@ public class ServiceConfig implements Serializable  {
 	public void setName(String name) {
 		this.name = name;
 	}
-
 
 }
