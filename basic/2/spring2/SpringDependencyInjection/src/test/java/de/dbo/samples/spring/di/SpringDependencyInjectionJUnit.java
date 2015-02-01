@@ -1,4 +1,4 @@
-package com.journaldev.spring.di;
+package de.dbo.samples.spring.di;
 
 import de.dbo.samples.spring.di.consumer.MyApplication;
 import de.dbo.samples.spring.di.services.MessageService;
@@ -7,6 +7,8 @@ import org.junit.Assert;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -15,6 +17,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @ComponentScan(value = "de.dbo.samples.spring.di.consumer")
 public class SpringDependencyInjectionJUnit {
+    private static final Logger log = LoggerFactory.getLogger(SpringDependencyInjectionJUnit.class);
 
     private AnnotationConfigApplicationContext context = null;
 
@@ -22,7 +25,7 @@ public class SpringDependencyInjectionJUnit {
     public MessageService getMessageService() {
 	return new MessageService() {
 	    public boolean sendMessage(String msg, String rec) {
-		System.out.println("Mock Service");
+		log.info("Mock Service");
 		return true;
 	    }
 
