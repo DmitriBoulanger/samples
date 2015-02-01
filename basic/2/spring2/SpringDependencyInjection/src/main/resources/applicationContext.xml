@@ -7,5 +7,5 @@
 		<property name="service" ref="twitter"></property>
 	</bean>
 	
-	<bean id="twitter" class="de.dbo.samples.spring.di.services.TwitterService"></bean>
+	<bean id="twitter" class="de.dbo.samples.spring.di.services.TwitterService"/>
 </beans>

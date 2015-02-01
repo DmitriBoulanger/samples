@@ -1,4 +1,4 @@
-package com.journaldev.spring.di.test;
+package com.journaldev.spring.di;
 
 import de.dbo.samples.spring.di.consumer.MyApplication;
 import de.dbo.samples.spring.di.services.MessageService;
@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @ComponentScan(value="de.dbo.samples.spring.di.consumer")
-public class MyApplicationTest {
+public class SpringDependencyInjectionJUnit {
 	
 	private AnnotationConfigApplicationContext context = null;
 
@@ -32,7 +32,7 @@ public class MyApplicationTest {
 
 	@Before
 	public void setUp() throws Exception {
-		context = new AnnotationConfigApplicationContext(MyApplicationTest.class);
+		context = new AnnotationConfigApplicationContext(SpringDependencyInjectionJUnit.class);
 	}
 	
 	@After
