@@ -27,19 +27,14 @@
 		
 	<!-- Declaration of the RMI-server -->
 	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
-	
 		<!-- serviceName represents RMI Service Name -->
-		<property name="serviceName" value="ServiceTest" />
-        
+		<property name="serviceName" value="ServiceTest" />    
 		<!-- reference to object to be exported -->
 		<property name="service" ref="serviceImplTest" />
-		
 		 <!-- serviceInterface represents RMI-Service Interface exposed -->
 		<property name="serviceInterface" value="de.dbo.samples.spring.properties.server.api.Service" />
-
 		<!-- the port of the RMI registry (defaults to '1099' if omitted) -->
 		<property name="registryPort" value="1001" />
-
 	</bean>
 	
 	<bean name="serviceImplTest" class="de.dbo.samples.spring.properties.server.impl.ServiceImpl"/>

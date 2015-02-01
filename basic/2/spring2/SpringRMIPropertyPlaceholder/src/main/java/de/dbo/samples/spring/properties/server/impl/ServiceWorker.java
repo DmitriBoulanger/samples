@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
  *           only incidentally for computers to execute 
  *
  */
-//@Component
+@Component
 public class ServiceWorker {
 	
 	@Value("${service.worker.name}")
@@ -29,20 +29,20 @@ public class ServiceWorker {
 	// Getters and Setters
 	//
 	
-//	public String getName() {
-//		return name;
-//	}
+	public String getName() {
+		return name;
+	}
 
-//	public void setName(String name) {
-//		this.name = name;
-//	}
+	public void setName(String name) {
+		this.name = name;
+	}
 
-//	public String getValue() {
-//		return value;
-//	}
+	public String getValue() {
+		return value;
+	}
 
-//	public void setValue(String value) {
-//		this.value = value;
-//	}
+	public void setValue(String value) {
+		this.value = value;
+	}
 
 }

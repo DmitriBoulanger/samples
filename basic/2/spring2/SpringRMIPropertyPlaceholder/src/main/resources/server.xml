@@ -12,40 +12,30 @@
 		The server exposes to the client service named Service
 	</description>
 	
-	<context:component-scan base-package="de.dbo.samples.spring.properties.server" />
+	<!-- <context:component-scan base-package="de.dbo.samples.spring.properties" /> -->
 
 	<!-- Enable annotation processing -->
 	<context:annotation-config /> 
 
-	<!-- 
-		Property replacement 
-		System properties, if any, overwrite the values in properties-resources
-	-->
+	<!-- Property replacement System properties, if any, overwrite the values in properties-resources -->
 	<context:property-placeholder location="classpath:worker.properties
 	, file:${product.conf}/service.properties"  
 		system-properties-mode="OVERRIDE" />
 		
+	<bean name="serviceImpl" class="de.dbo.samples.spring.properties.server.impl.ServiceImpl"/>
+    <bean name="serviceWorker" class="de.dbo.samples.spring.properties.server.impl.ServiceWorker" />
+	<bean name="serviceConfig" class="de.dbo.samples.spring.properties.server.api.ServiceConfig" />
+		
 	<!-- Declaration of the RMI-server -->
 	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
-	
 		<!-- serviceName represents RMI Service Name -->
 		<property name="serviceName" value="Service" />
-        
 		<!-- reference to object to be exported -->
 		<property name="service" ref="serviceImpl" />
-		
-		 <!-- serviceInterface represents RMI-Service Interface exposed -->
+		<!-- serviceInterface represents RMI-Service Interface exposed -->
 		<property name="serviceInterface" value="de.dbo.samples.spring.properties.server.api.Service" />
-
 		<!-- the port of the RMI registry (defaults to '1099' if omitted) -->
 		<property name="registryPort" value="1099" />
-
 	</bean>
-	
-	<bean name="serviceImpl" class="de.dbo.samples.spring.properties.server.impl.ServiceImpl"/>
-	 
-    <bean name="serviceWorker" class="de.dbo.samples.spring.properties.server.impl.ServiceWorker" />  
-	
-	<bean name="serviceConfig" class="de.dbo.samples.spring.properties.server.api.ServiceConfig" />
 
 </beans>
