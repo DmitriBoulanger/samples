@@ -44,7 +44,7 @@
 	
 	<bean name="serviceImplTest" class="de.dbo.samples.spring.properties.server.impl.ServiceImpl"/>
 	
-	<bean name="workerImpl" class="de.dbo.samples.spring.properties.server.impl.ServiceWorker" />
+	<bean name="serviceWorker" class="de.dbo.samples.spring.properties.server.impl.ServiceWorker" />
 	
 	<bean name="serviceConfig" class="de.dbo.samples.spring.properties.server.api.ServiceConfig" />
 

@@ -4,6 +4,7 @@ import de.dbo.samples.spring.properties.server.api.Service;
 import de.dbo.samples.spring.properties.server.api.ServiceConfig;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 /**
  * Sever-side service implementation
@@ -14,10 +15,11 @@ import org.springframework.beans.factory.annotation.Autowired;
  *           only incidentally for computers to execute 
  *
  */
+@Component
 public final class ServiceImpl implements Service {
 	
 	@Autowired(required=true)
-	private ServiceWorker worker;
+	private ServiceWorker serviceWorker;
 	
 	@Autowired(required=true)
 	private ServiceConfig config;
@@ -31,8 +33,8 @@ public final class ServiceImpl implements Service {
 	public String ping() throws Exception {
 		return "Hi!  "
 		+ "\n\t### Service worker:"
-	    + "\n\t - worker hash-code  " + worker.hashCode()
-	    + "\n\t - worker ping       " + worker.ping()
+	    + "\n\t - worker hash-code  " + serviceWorker.hashCode()
+	    + "\n\t - worker ping       " + serviceWorker.ping()
 	    + "\n\t### " + config.print()
 	    ;
 	}

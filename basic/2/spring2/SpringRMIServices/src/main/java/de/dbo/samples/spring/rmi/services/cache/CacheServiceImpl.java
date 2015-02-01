@@ -14,7 +14,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class CacheServiceImpl implements CacheService {
 
-    // User Map is injected...
+    /*
+     * User Map singleton instance is injected...
+     */
     @Autowired(required=true)
     private ConcurrentHashMap<Long, User> userMap;
     

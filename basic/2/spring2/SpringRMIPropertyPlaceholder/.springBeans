@@ -9,8 +9,6 @@
 	<configs>
 		<config>src/main/resources/client.xml</config>
 		<config>src/main/resources/server.xml</config>
-		<config>src/test/resources/server-test.xml</config>
-		<config>src/test/resources/client-test.xml</config>
 	</configs>
 	<autoconfigs>
 	</autoconfigs>

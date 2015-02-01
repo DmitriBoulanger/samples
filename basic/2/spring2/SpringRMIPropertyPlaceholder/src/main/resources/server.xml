@@ -43,10 +43,8 @@
 	</bean>
 	
 	<bean name="serviceImpl" class="de.dbo.samples.spring.properties.server.impl.ServiceImpl"/>
-		<!-- <property name="worker" ref="workerImpl" /> -->
-	
-	
-	<bean name="workerImpl" class="de.dbo.samples.spring.properties.server.impl.ServiceWorker" />
+	 
+    <bean name="serviceWorker" class="de.dbo.samples.spring.properties.server.impl.ServiceWorker" />  
 	
 	<bean name="serviceConfig" class="de.dbo.samples.spring.properties.server.api.ServiceConfig" />
 
