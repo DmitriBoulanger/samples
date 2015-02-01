@@ -11,7 +11,7 @@
 	<bean id="serviceTest" class="org.springframework.remoting.rmi.RmiProxyFactoryBean">
         
         <!-- serviceUrl represents RMI Service URL called-->
-		<property name="serviceUrl" value="rmi://localhost:1099/ServiceTest" />
+		<property name="serviceUrl" value="rmi://localhost:1001/ServiceTest" />
 	    
 	    <!-- serviceInterface represents RMI Service Interface called -->
 		<property name="serviceInterface" value="de.dbo.samples.spring.properties.server.api.Service" />

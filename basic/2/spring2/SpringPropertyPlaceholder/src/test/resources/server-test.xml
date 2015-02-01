@@ -38,7 +38,7 @@
 		<property name="serviceInterface" value="de.dbo.samples.spring.properties.server.api.Service" />
 
 		<!-- the port of the RMI registry (defaults to '1099' if omitted) -->
-		<property name="registryPort" value="1099" />
+		<property name="registryPort" value="1001" />
 
 	</bean>
 	
