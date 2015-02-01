@@ -4,15 +4,16 @@ import java.rmi.NotBoundException;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.FatalBeanException;
+
 import org.springframework.beans.factory.BeanCreationException;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.remoting.RemoteLookupFailureException;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.fail;
 
 public class ServerStartUpJUnit {
     private static final Logger log = LoggerFactory.getLogger(ServerStartUpJUnit.class);
@@ -68,6 +69,10 @@ public class ServerStartUpJUnit {
 	}
     }
 
+    //
+    // Assertions
+    //
+
     private static final void failure(Exception e) {
 	log.error("Unexpected error:", e);
 	fail("Server is closed but the client run has an unexpected exception");
@@ -76,7 +81,7 @@ public class ServerStartUpJUnit {
     private static final void assertion(BeanCreationException e) {
 	if (null != e.getCause() && e.getCause() instanceof RemoteLookupFailureException
 		&& null != e.getCause().getCause() && e.getCause().getCause() instanceof NotBoundException) {
-	    log.info("Expected error: ", e.getCause().getCause());
+	    log.info("Expected error: " + e.getCause().getCause().toString());
 	} else {
 	    failure(e);
 	}
