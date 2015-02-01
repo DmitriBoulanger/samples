@@ -7,7 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Actual implementation of the server
+ * Actual (trivial) implementation of the server
  * 
  * @author Dmitri Boulanger, Hombach
  *
@@ -25,6 +25,6 @@ public class ServerImpl extends UnicastRemoteObject implements Server {
 
 	public String sayHello() {
 		log.info("processing request ... ");
-		return "Hello World";
+		return "Hello World from " + this.hashCode() + "!";
 	}
 }

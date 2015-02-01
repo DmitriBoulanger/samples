@@ -13,10 +13,12 @@
 	<packaging>jar</packaging>
 
 	<description>
-Implementing RMI Client-Server
+	Implementing RMI Client-Server:
+		Getting Started Using Java™ RMI http://docs.oracle.com/javase/7/docs/technotes/guides/rmi/hello/hello-world.html
+		Two things to remember when using Java RMI http://www.javacodegeeks.com/2013/11/two-things-to-remember-when-using-java-rmi.html
    	</description>
 	<url>
-http://www.drdobbs.com/jvm/using-thread-local-variables-in-java/jvm/using-thread-local-variables-in-java/184405382#rl2
+	http://docs.oracle.com/javase/7/docs/technotes/guides/rmi/hello/hello-world.html
 	</url>
 
 	<dependencies>
