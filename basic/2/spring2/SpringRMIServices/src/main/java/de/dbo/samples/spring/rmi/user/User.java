@@ -4,7 +4,6 @@ import java.io.Serializable;
 
 /**
  * User Bean
- * 
  */
 public class User implements Serializable {
 	private static final long serialVersionUID = -5653695678607999093L;

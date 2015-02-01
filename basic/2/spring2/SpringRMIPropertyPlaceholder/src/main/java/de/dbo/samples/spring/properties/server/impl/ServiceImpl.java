@@ -4,7 +4,6 @@ import de.dbo.samples.spring.properties.server.api.Service;
 import de.dbo.samples.spring.properties.server.api.ServiceConfig;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 /**
  * Sever-side service implementation
@@ -15,7 +14,6 @@ import org.springframework.stereotype.Component;
  *           only incidentally for computers to execute 
  *
  */
-//@Component
 public final class ServiceImpl implements Service {
 	
 	@Autowired(required=true)

@@ -14,8 +14,8 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import static org.junit.Assert.*;
 import static org.junit.Assert.assertNotNull;
 
-public class SprintAutowireJUnitTest {
-	private static final Logger log = LoggerFactory.getLogger(SprintAutowireJUnitTest.class);
+public class SprintAutowireJUnit {
+	private static final Logger log = LoggerFactory.getLogger(SprintAutowireJUnit.class);
 	
 	private ClassPathXmlApplicationContext ctx;
 	

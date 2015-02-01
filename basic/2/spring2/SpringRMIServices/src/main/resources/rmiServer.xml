@@ -1,21 +1,22 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans
-		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
-
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+		
+  	<context:component-scan base-package="de.dbo.samples.spring.rmi" annotation-config="true"/>
+	
+	<!-- Enable annotation processing -->
+	<context:annotation-config /> 
+		
 	<!-- Beans Declaration -->	
 	<bean id="UserMap" class="java.util.concurrent.ConcurrentHashMap" />
 	
-	<bean id="CacheService" class="de.dbo.samples.spring.rmi.services.cache.CacheServiceImpl">
-		<property name="userMap" ref="UserMap"/>
-	</bean>	
+	<bean id="CacheService" class="de.dbo.samples.spring.rmi.services.cache.CacheServiceImpl"/>
 	
-	<bean id="ManagerService" class="de.dbo.samples.spring.rmi.services.manager.ManagerServiceImpl">
-	
-	</bean>	
-	
+	<bean id="ManagerService" class="de.dbo.samples.spring.rmi.services.manager.ManagerServiceImpl"/>
+
 	<!-- RMI Service Declarations -->	
-	
 	<bean id="RMIManagerService" class="de.dbo.samples.spring.rmi.server.RMIManagerServiceImpl">
 		<property name="managerService" ref="ManagerService"/>	 
 	</bean>	
@@ -25,7 +26,6 @@
 	</bean>
 	
 	<!-- RMI Server Declarations -->
-	
    <bean id="RMIUserServiceExporter" class="org.springframework.remoting.rmi.RmiServiceExporter">
     	
     	<!-- serviceName represents RMI Service Name -->
@@ -39,9 +39,9 @@
         
         <!-- defaults to 1099 -->
     	<property name="registryPort" value="1099"/>
-    
     </bean>  
     
+    <!-- RMI Server Declarations -->
      <bean id="RMIManagerServiceExporter" class="org.springframework.remoting.rmi.RmiServiceExporter">
     	
     	<!-- serviceName represents RMI Service Name -->
@@ -55,7 +55,7 @@
         
         <!-- defaults to 1099 -->
     	<property name="registryPort" value="1099"/>
-    
     </bean>
     
+ 
 </beans>

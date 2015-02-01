@@ -15,8 +15,8 @@ import org.springframework.remoting.RemoteLookupFailureException;
 
 import static org.junit.Assert.fail;
 
-public class ServerStartUpJUnit {
-    private static final Logger log = LoggerFactory.getLogger(ServerStartUpJUnit.class);
+public class SpringRMIPropertyPlaceholderJUnit {
+    private static final Logger log = LoggerFactory.getLogger(SpringRMIPropertyPlaceholderJUnit.class);
 
     @BeforeClass
     public static void systemProperties() {

@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:context="http://www.springframework.org/schema/context"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd"
-		
-		default-autowire="byName" default-autowire-candidates="*" >
+	xmlns:context="http://www.springframework.org/schema/context" default-autowire="byName"
+	default-autowire-candidates="*"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+
+<!-- Enable Annotation based configuration -->
+<context:annotation-config />
 
 <bean name="employee" class="de.dbo.samples.spring.autowiring.model.Employee">
 	<property name="name" value="Pankaj"></property>
@@ -23,9 +25,6 @@
 
 <!-- autowiring by constructor -->
 <bean name="employeeServiceConstructor" class="de.dbo.samples.spring.autowiring.service.EmployeeService" autowire="constructor" />
-
-<!-- Enable Annotation based configuration -->
-<context:annotation-config />
 
 <!-- using @Autowiring annotation in below beans, byType and constructor -->
 <bean name="employeeAutowiredByTypeService" class="de.dbo.samples.spring.autowiring.service.EmployeeAutowiredByTypeService" />

@@ -14,33 +14,36 @@ import org.springframework.remoting.rmi.RmiServiceExporter;
  *
  */
 public class RMIServerDestroyer {
-	private static final Logger log = LoggerFactory.getLogger(RMIServerDestroyer.class);
-	
-	/**
-	 * destroys all RMI-services
-	 * @throws RemoteException
-	 */
-	public static void main(String[] args) throws RemoteException {
-		final ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("rmiServer.xml");
-		destroy(ctx,"RMIUserServiceExporter");
-		destroy(ctx,"RMIManagerServiceExporter");
+    private static final Logger log = LoggerFactory.getLogger(RMIServerDestroyer.class);
+
+    /**
+     * destroys all RMI-services
+     * 
+     * @throws RemoteException
+     */
+    public static final void run() throws RemoteException {
+	final ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("rmiServer.xml");
+	destroy(ctx, "RMIUserServiceExporter");
+	destroy(ctx, "RMIManagerServiceExporter");
+    }
+
+    //
+
+    private static final void destroy(final AbstractXmlApplicationContext ctx, final String rmiService) {
+	log.debug(rmiService + " is being destroyed ...");
+	final RmiServiceExporter rmiServiceExporter;
+	try {
+	    rmiServiceExporter = (RmiServiceExporter) ctx.getBean(rmiService);
+	} catch (Exception e) {
+	    log.error("Can't find RMI-Service " + rmiService, e);
+	    return;
 	}
-	
-	private static final void destroy(final AbstractXmlApplicationContext ctx , final String rmiService) {
-		log.debug(rmiService + " is being destroyed ...");
-		final RmiServiceExporter rmiServiceExporter;
-		try {
-			rmiServiceExporter =  (RmiServiceExporter) ctx.getBean(rmiService);
-		} catch (Exception e) {
-			log.error("Can't find RMI-Service " + rmiService,e);
-			return;
-		}
-		
-		try {
-			rmiServiceExporter.destroy();
-			log.info(rmiServiceExporter.getServiceInterface().getSimpleName() + " destroyed");
-		} catch (Exception e) {
-			log.error("Can't destory RMI-Service " + rmiService,e);
-		} 
+
+	try {
+	    rmiServiceExporter.destroy();
+	    log.info(rmiServiceExporter.getServiceInterface().getSimpleName() + " destroyed");
+	} catch (Exception e) {
+	    log.error("Can't destory RMI-Service " + rmiService, e);
 	}
+    }
 }

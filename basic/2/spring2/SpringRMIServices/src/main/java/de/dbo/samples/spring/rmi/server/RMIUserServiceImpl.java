@@ -6,6 +6,7 @@ import de.dbo.samples.spring.rmi.user.User;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +15,7 @@ import java.util.List;
  * RMI User Service Implementation
  *
  */
+@Component
 public class RMIUserServiceImpl implements RMIUserService {
 	private static Logger log = LoggerFactory.getLogger(RMIUserServiceImpl.class);
 	

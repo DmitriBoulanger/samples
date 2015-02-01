@@ -12,7 +12,6 @@ import org.springframework.stereotype.Component;
  *           only incidentally for computers to execute 
  *
  */
-//@Component
 public class ServiceWorker {
 	
 	@Value("${service.worker.name}")

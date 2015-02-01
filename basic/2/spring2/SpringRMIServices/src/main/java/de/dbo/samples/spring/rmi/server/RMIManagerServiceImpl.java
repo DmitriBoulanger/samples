@@ -2,6 +2,9 @@ package de.dbo.samples.spring.rmi.server;
 
 import de.dbo.samples.spring.rmi.services.manager.ManagerService;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class RMIManagerServiceImpl implements RMIManagerService {
 	
 	private ManagerService managerService;
