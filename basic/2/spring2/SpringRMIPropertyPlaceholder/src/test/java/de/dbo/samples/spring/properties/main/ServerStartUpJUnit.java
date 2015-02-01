@@ -31,7 +31,7 @@ public class ServerStartUpJUnit {
 	ctx.close();
 
 	try {
-	    new ClientTest().run();
+	    new Client2().run();
 	    fail("Server is closed but the test-client runs!");
 	} catch (BeanCreationException e) {
 	    assertion(e);
@@ -44,11 +44,11 @@ public class ServerStartUpJUnit {
     public void serverTestStartupClientTest() throws Exception {
 	final ConfigurableApplicationContext ctx = new ClassPathXmlApplicationContext("server-test.xml");
 	ctx.registerShutdownHook();
-	new ClientTest().run();
+	new Client2().run();
 	ctx.close();
 
 	try {
-	    new ClientTest().run();
+	    new Client2().run();
 	    fail("Server is closed but the test-client runs!");
 	} catch (BeanCreationException e) {
 	    assertion(e);
@@ -60,7 +60,7 @@ public class ServerStartUpJUnit {
     @Test
     public void errorClinetTest() {
 	try {
-	    new ClientTest().run();
+	    new Client2().run();
 	    fail("Server is closed but the test-client runs!");
 	} catch (BeanCreationException e) {
 	    assertion(e);

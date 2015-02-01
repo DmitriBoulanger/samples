@@ -19,7 +19,7 @@
 		<module>DependencyInjection</module>
 		<module>SpringDependencyInjection</module>
 		<module>SpringBeanAutowiring</module>
-		<module>SpringPropertyPlaceholder</module>
+		<module>SpringRMIPropertyPlaceholder</module>
 		<module>SpringRMIServices</module>
 	</modules>
 	

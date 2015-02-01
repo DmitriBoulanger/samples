@@ -7,8 +7,17 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.context.ApplicationContext;
 
-public class ClientTest {
-	private static final Logger log = LoggerFactory.getLogger(ClientTest.class);
+/**
+ * Using the test spring-context
+ * 
+ * @author Dmitri Boulanger, Hombach
+ *
+ * D. Knuth: Programs are meant to be read by humans and 
+ *           only incidentally for computers to execute 
+ *
+ */
+public class Client2 {
+	private static final Logger log = LoggerFactory.getLogger(Client2.class);
 	
 	public static void main(String[] args) throws Exception {
 		Thread.currentThread().setName("Client Test");
@@ -17,7 +26,7 @@ public class ClientTest {
 	
 	private final ApplicationContext ctx;
 	
-	public ClientTest() {
+	public Client2() {
 		 ctx = new ClassPathXmlApplicationContext("client-test.xml");
 	}
 	
