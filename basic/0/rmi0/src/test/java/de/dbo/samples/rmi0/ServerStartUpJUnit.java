@@ -106,7 +106,7 @@ public class ServerStartUpJUnit {
     }
 
     /**
-     * Opening two RMI-servers using different ports 
+     * Opening RMI-servers using different ports 
      */
     @Test
     public void serverOpenX1X2DifferentPorts() 
