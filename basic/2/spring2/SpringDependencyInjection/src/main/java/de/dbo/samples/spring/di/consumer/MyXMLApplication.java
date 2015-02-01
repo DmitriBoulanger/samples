@@ -2,8 +2,11 @@ package de.dbo.samples.spring.di.consumer;
 
 import de.dbo.samples.spring.di.services.MessageService;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 public class MyXMLApplication {
 
+    @Autowired
     private MessageService service;
 
     // constructor-based dependency injection
