@@ -6,9 +6,6 @@
 		
   	<context:component-scan base-package="de.dbo.samples.spring.rmi" annotation-config="true"/>
 	
-	<!-- Enable annotation processing -->
-	<context:annotation-config /> 
-		
 	<!-- Beans Declaration -->	
 	<bean id="UserMap" class="java.util.concurrent.ConcurrentHashMap" />
 	

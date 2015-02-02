@@ -10,11 +10,11 @@
 <context:annotation-config />
 
 <bean name="employee" class="de.dbo.samples.spring.autowiring.model.Employee">
-	<property name="name" value="Pankaj"></property>
+	<property name="name" value="Pankaj"/>
 </bean>
 
 <bean name="employee1" class="de.dbo.samples.spring.autowiring.model.Employee" autowire-candidate="false">
-	<property name="name" value="Dummy Name"></property>
+	<property name="name" value="Dummy Name"/>
 </bean>
 
 <!-- autowiring byName, bean name should be same as the property name -->
