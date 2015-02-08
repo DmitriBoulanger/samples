@@ -5,8 +5,8 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
 	
-	<description>Version 3: no Spring-annotations in Java-code</description>
-	
+	<description>Version 3: auto-magic by name without Spring-annotations in Java-code</description>
+
 	<!-- No Spring-annotations needed (they are not used in Java-code!) -->
  	<context:component-scan base-package="de.dbo.samples.spring.autowiring.special.abstraction.v3" 
 			annotation-config="false"/>
@@ -17,4 +17,5 @@
 		
 	<!-- Bean to be inserted into the field with the name "data" (bean-id below is important!)-->
 	<bean id="data" class="de.dbo.samples.spring.autowiring.special.abstraction.v3.Data"/>
+
 </beans>

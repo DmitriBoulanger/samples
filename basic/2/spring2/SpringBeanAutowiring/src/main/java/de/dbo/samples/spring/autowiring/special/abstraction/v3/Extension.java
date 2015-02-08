@@ -17,7 +17,6 @@ package de.dbo.samples.spring.autowiring.special.abstraction.v3;
  * D. Knuth: Programs are meant to be read by humans and 
  *           only incidentally for computers to execute 
  */
-
 public final class Extension extends Abstraction {
 
     public Data getData() {

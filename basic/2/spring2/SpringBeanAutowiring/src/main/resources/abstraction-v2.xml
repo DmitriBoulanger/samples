@@ -5,16 +5,17 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
 
-	<description>Version 2: annotation-driven autowiring</description>
+	<description>Version 2: annotation-driven autowiring in the default mode</description>
 	
 	<!-- Important to enable Spring-annotations: data-field in Abstraction is annotated as autowired -->
 	<context:component-scan base-package="de.dbo.samples.spring.autowiring.special.abstraction.v2" 
 			annotation-config="true"/>
-	
+
 	<!-- Bean (main) with the field annotated as autowired (name is not important) -->				
-	<bean id="extendedAbstraction" class="de.dbo.samples.spring.autowiring.special.abstraction.v2.Extension"/>
-	
+	<bean id="extendedAbstraction" class="de.dbo.samples.spring.autowiring.special.abstraction.v2.Extension"
+		/>
 		
 	<!-- Bean to be inserted into the field annotated as autowired -->
 	<bean class="de.dbo.samples.spring.autowiring.special.abstraction.v2.Data"/>
+
 </beans>
