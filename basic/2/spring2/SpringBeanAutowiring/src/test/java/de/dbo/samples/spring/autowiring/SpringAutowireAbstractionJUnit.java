@@ -1,8 +1,5 @@
 package de.dbo.samples.spring.autowiring;
 
-import de.dbo.samples.spring.autowiring.special.abstraction.v1.ExtensionV1;
-import de.dbo.samples.spring.autowiring.special.abstraction.v2.ExtensionV2;
-
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,10 +15,10 @@ public class SpringAutowireAbstractionJUnit {
     @Test
     public void test1() {
 	final String spring = "abstraction-v1.xml";
-	final ExtensionV1 extension;
+	final de.dbo.samples.spring.autowiring.special.abstraction.v1.Extension extension;
 	try {
 	    final ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext(spring);
-	    	    extension = ctx.getBean(ExtensionV1.class);
+	    	    extension = ctx.getBean(de.dbo.samples.spring.autowiring.special.abstraction.v1.Extension.class);
 	    ctx.close();
 	} catch (BeansException e) {
 	    final String msg = "Failure getting context and/or bean for ctx=" + spring;
@@ -29,17 +26,17 @@ public class SpringAutowireAbstractionJUnit {
 	    fail(msg);
 	    return;
 	}
-	assertNotNull("ExtensionV1 is null", extension);
+	assertNotNull("Extension is null", extension);
 	assertNotNull("Data is null in the extension", extension.getData());
     }
     
     @Test
     public void test2() {
 	final String spring = "abstraction-v2.xml";
-	final ExtensionV2 extension;
+	final de.dbo.samples.spring.autowiring.special.abstraction.v2.Extension extension;
 	try {
 	    final ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext(spring);
-	    	    extension = ctx.getBean(ExtensionV2.class);
+	    	    extension = ctx.getBean(de.dbo.samples.spring.autowiring.special.abstraction.v2.Extension.class);
 	    ctx.close();
 	} catch (BeansException e) {
 	    final String msg = "Failure getting context and/or bean for ctx=" + spring;
@@ -47,7 +44,25 @@ public class SpringAutowireAbstractionJUnit {
 	    fail(msg);
 	    return;
 	}
-	assertNotNull("ExtensionV1 is null", extension);
+	assertNotNull("Extension is null", extension);
+	assertNotNull("Data is null in the extension", extension.getData());
+    }
+    
+    @Test
+    public void test3() {
+	final String spring = "abstraction-v3.xml";
+	final de.dbo.samples.spring.autowiring.special.abstraction.v3.Extension extension;
+	try {
+	    final ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext(spring);
+	    	    extension = ctx.getBean(de.dbo.samples.spring.autowiring.special.abstraction.v3.Extension.class);
+	    ctx.close();
+	} catch (BeansException e) {
+	    final String msg = "Failure getting context and/or bean for ctx=" + spring;
+	    log.error(msg + ": ",e);
+	    fail(msg);
+	    return;
+	}
+	assertNotNull("Extension is null", extension);
 	assertNotNull("Data is null in the extension", extension.getData());
     }
 

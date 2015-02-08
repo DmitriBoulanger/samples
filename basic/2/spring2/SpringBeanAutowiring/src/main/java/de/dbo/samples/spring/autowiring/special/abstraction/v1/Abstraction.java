@@ -1,10 +1,17 @@
 package de.dbo.samples.spring.autowiring.special.abstraction.v1;
 
-import org.springframework.beans.factory.annotation.Autowired;
+/**
+ * Package-private super-class
+ * 
+ * @author Dmitri Boulanger, Hombach
+ *
+ * D. Knuth: Programs are meant to be read by humans and 
+ *           only incidentally for computers to execute 
+ *
+ */
+abstract class Abstraction {
 
-public abstract class Abstraction {
     
-    @Autowired
     protected Data data;
 
 }

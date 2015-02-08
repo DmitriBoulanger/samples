@@ -1,5 +1,16 @@
 package de.dbo.samples.spring.autowiring.special.abstraction.v2;
 
+/**
+ * POJO to be inserted into the field in the Abstraction.
+ * It is Spring-independent (no annotations)
+ * 
+ * @author Dmitri Boulanger, Hombach
+ *
+ * D. Knuth: Programs are meant to be read by humans and 
+ *           only incidentally for computers to execute 
+ *
+ */
+
 
 public class Data {
 

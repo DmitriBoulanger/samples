@@ -10,6 +10,7 @@
 		<config>src/main/resources/spring.xml</config>
 		<config>src/main/resources/abstraction-v1.xml</config>
 		<config>src/main/resources/abstraction-v2.xml</config>
+		<config>src/main/resources/abstraction-v3.xml</config>
 	</configs>
 	<autoconfigs>
 	</autoconfigs>

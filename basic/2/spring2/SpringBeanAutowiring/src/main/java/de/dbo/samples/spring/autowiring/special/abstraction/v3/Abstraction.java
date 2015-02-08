@@ -1,7 +1,8 @@
-package de.dbo.samples.spring.autowiring.special.abstraction.v2;
+package de.dbo.samples.spring.autowiring.special.abstraction.v3;
+
 
 /**
- * Package-private super-class with Spring Autowired-annotation
+ * Package-private super-class
  * 
  * @author Dmitri Boulanger, Hombach
  *
@@ -11,7 +12,7 @@ package de.dbo.samples.spring.autowiring.special.abstraction.v2;
  */
 abstract class Abstraction {
     
-    @org.springframework.beans.factory.annotation.Autowired
+    
     protected Data data;
 
 }

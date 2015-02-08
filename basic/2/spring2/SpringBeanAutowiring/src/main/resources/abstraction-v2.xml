@@ -4,14 +4,17 @@
 	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+
+	<description>Version 2: annotation-driven autowiring</description>
 	
+	<!-- Important to enable Spring-annotations: data-field in Abstraction is annotated as autowired -->
 	<context:component-scan base-package="de.dbo.samples.spring.autowiring.special.abstraction.v2" 
 			annotation-config="true"/>
-			
-	<bean id="extendedAbstraction" class="de.dbo.samples.spring.autowiring.special.abstraction.v2.ExtensionV2" 
-		autowire="default"/>
+	
+	<!-- Bean (main) with the field annotated as autowired (name is not important) -->				
+	<bean id="extendedAbstraction" class="de.dbo.samples.spring.autowiring.special.abstraction.v2.Extension"/>
+	
 		
-		
-		
-	<bean id="data" class="de.dbo.samples.spring.autowiring.special.abstraction.v2.Data"></bean>
+	<!-- Bean to be inserted into the field annotated as autowired -->
+	<bean class="de.dbo.samples.spring.autowiring.special.abstraction.v2.Data"/>
 </beans>

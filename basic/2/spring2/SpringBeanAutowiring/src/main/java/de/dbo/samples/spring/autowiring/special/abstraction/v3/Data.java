@@ -1,8 +1,8 @@
-package de.dbo.samples.spring.autowiring.special.abstraction.v1;
+package de.dbo.samples.spring.autowiring.special.abstraction.v3;
 
 /**
- * POJO to be inserted into the field in the Abstraction.
- * It is a Spring-component
+ * POJO to be inserted into the field in the Abstraction
+ * It is Spring-independent (no annotations)
  * 
  * @author Dmitri Boulanger, Hombach
  *
@@ -11,7 +11,7 @@ package de.dbo.samples.spring.autowiring.special.abstraction.v1;
  *
  */
 
-@org.springframework.stereotype.Component
+
 public class Data {
 
     private String name;
