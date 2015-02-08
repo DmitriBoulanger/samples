@@ -1,8 +1,9 @@
-package de.dbo.samples.spring.autowiring.model;
+package de.dbo.samples.spring.autowiring.special.abstraction.v1;
 
+import org.springframework.stereotype.Component;
 
-
-public class Employee {
+@Component
+public class Data {
 
     private String name;
 
