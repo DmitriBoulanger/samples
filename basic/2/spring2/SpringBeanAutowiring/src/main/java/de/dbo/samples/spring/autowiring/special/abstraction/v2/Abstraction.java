@@ -12,6 +12,6 @@ package de.dbo.samples.spring.autowiring.special.abstraction.v2;
 abstract class Abstraction {
     
     @org.springframework.beans.factory.annotation.Autowired
-    protected Data data;
+    protected Data x; // name of the field is not important
 
 }

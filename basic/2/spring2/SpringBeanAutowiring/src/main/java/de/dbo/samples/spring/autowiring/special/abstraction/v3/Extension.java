@@ -19,12 +19,12 @@ package de.dbo.samples.spring.autowiring.special.abstraction.v3;
  */
 public final class Extension extends Abstraction {
 
-    public Data getData() {
-        return data;
+    public Data dataFromSuperClass() {
+        return x;
     }
 
-    public void setData(final Data data) {
-        this.data = data;
+    public void setData(final Data value) { // method name is important( auto-wire by name)
+        this.x = value;
     }
 
 }

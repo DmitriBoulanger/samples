@@ -1,5 +1,7 @@
 package de.dbo.samples.spring.autowiring;
 
+import static de.dbo.tools.utils.print.Print.*;
+
 import de.dbo.samples.spring.autowiring.model.Employee;
 import de.dbo.samples.spring.autowiring.service.EmployeeAutowiredByConstructorService;
 import de.dbo.samples.spring.autowiring.service.EmployeeAutowiredByTypeService;
@@ -11,6 +13,7 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.core.env.ConfigurableEnvironment;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
@@ -88,6 +91,15 @@ public class SpringAutowireJUnit {
 	assertNotNull(employeeCTX1);
 	assertNotNull(employeeCTX2);
 	assertNotEquals(employeeCTX1,employeeCTX2);
+    }
+    
+    @Test
+    public void environment() {
+	final ConfigurableEnvironment configurableEnvironment = ctx.getEnvironment();
+	log.info ("SystemEnvironment: " +  lines(configurableEnvironment.getSystemEnvironment()) );
+	log.info ("SystemProperties:  " +  lines(configurableEnvironment.getSystemProperties()) );
+	log.info ("DefaultProfiles:   " +  line(configurableEnvironment.getDefaultProfiles()) );
+	log.info ("ActiveProfiles:    " +  line(configurableEnvironment.getActiveProfiles()) );
     }
 
     @After

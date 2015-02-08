@@ -27,7 +27,7 @@ public class SpringAutowireAbstractionJUnit {
 	    return;
 	}
 	assertNotNull("Extension is null", extension);
-	assertNotNull("Data is null in the extension", extension.getData());
+	assertNotNull("Data is null in the extension", extension.dataFromSuperClass());
     }
     
     @Test
@@ -45,7 +45,7 @@ public class SpringAutowireAbstractionJUnit {
 	    return;
 	}
 	assertNotNull("Extension is null", extension);
-	assertNotNull("Data is null in the extension", extension.getData());
+	assertNotNull("Data is null in the extension", extension.dataFromSuperClass());
     }
     
     @Test
@@ -63,7 +63,7 @@ public class SpringAutowireAbstractionJUnit {
 	    return;
 	}
 	assertNotNull("Extension is null", extension);
-	assertNotNull("Data is null in the extension", extension.getData());
+	assertNotNull("Data is null in the extension", extension.dataFromSuperClass());
     }
 
 }
