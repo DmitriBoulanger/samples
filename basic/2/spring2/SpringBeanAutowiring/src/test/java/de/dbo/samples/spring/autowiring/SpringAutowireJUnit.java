@@ -70,24 +70,24 @@ public class SpringAutowireJUnit {
     
     @Test
     public void stange() {
+	
 	final ClassPathXmlApplicationContext ctx1 = new ClassPathXmlApplicationContext("spring.xml");
-	final ClassPathXmlApplicationContext ctx2 = new ClassPathXmlApplicationContext("spring.xml");
-	
-	assertNotEquals(
-		ctx1.getBean("employee", Employee.class),
-		ctx2.getBean("employee", Employee.class));
-	
 	assertEquals(
 		ctx1.getBean("employee", Employee.class),
 		ctx1.getBean("employee", Employee.class));
-	
 	assertNotEquals(
 		ctx1.getBean("employee", Employee.class),
 		ctx1.getBean("employee2", Employee.class));
-	
-	
+	final Employee employeeCTX1 = ctx1.getBean("employee", Employee.class);
 	ctx1.close();
+	
+	final ClassPathXmlApplicationContext ctx2 = new ClassPathXmlApplicationContext("spring.xml");
+	final Employee employeeCTX2 = ctx2.getBean("employee", Employee.class);
 	ctx2.close();
+	
+	assertNotNull(employeeCTX1);
+	assertNotNull(employeeCTX2);
+	assertNotEquals(employeeCTX1,employeeCTX2);
     }
 
     @After
