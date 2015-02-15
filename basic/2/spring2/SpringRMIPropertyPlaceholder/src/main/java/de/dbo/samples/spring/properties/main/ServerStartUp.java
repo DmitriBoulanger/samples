@@ -7,9 +7,13 @@ public class ServerStartUp {
 	public static void main(String[] args) throws Exception { 
 		Thread.currentThread().setName("RMI-Server start-up");
 		System.setProperty("product.conf","conf");
-		System.setProperty("service.conf.name","From system properties");
+		System.setProperty("service.conf.name","From the system properties");
 		
-		new ClassPathXmlApplicationContext("server.xml").registerShutdownHook();;
+		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("server.xml");
+		ctx.registerShutdownHook();
+		/* Don't do that: it unbinds the RMI-server (service)!*/
+		/* ctx.close(); */
+		ctx = null;
 		
 	}
 

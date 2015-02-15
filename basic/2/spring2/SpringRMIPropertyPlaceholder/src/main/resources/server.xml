@@ -9,7 +9,7 @@
 	<description>
 		RMI-Server configured with service-properties.
 		The properties are located in the product configuration directory
-		The server exposes to the client service named Service
+		The server exposes to the clients service named "Service"
 	</description>
 	
 	<!-- <context:component-scan base-package="de.dbo.samples.spring.properties" /> -->
@@ -18,15 +18,14 @@
 	<context:annotation-config /> 
 
 	<!-- Property replacement System properties, if any, overwrite the values in properties-resources -->
-	<context:property-placeholder location="classpath:worker.properties
-	, file:${product.conf}/service.properties"  
+	<context:property-placeholder location="classpath:worker.properties, file:${product.conf}/service.properties"  
 		system-properties-mode="OVERRIDE" />
 		
 	<bean name="serviceImpl" class="de.dbo.samples.spring.properties.server.impl.ServiceImpl"/>
     <bean name="serviceWorker" class="de.dbo.samples.spring.properties.server.impl.ServiceWorker" />
 	<bean name="serviceConfig" class="de.dbo.samples.spring.properties.server.api.ServiceConfig" />
 		
-	<!-- Declaration of the RMI-server -->
+	<!-- Declaration of the RMI-server (service) named "Service" -->
 	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
 		<!-- serviceName represents RMI Service Name -->
 		<property name="serviceName" value="Service" />

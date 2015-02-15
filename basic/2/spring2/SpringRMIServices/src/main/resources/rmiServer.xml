@@ -13,11 +13,12 @@
 	
 	<bean id="ManagerService" class="de.dbo.samples.spring.rmi.services.manager.ManagerServiceImpl"/>
 
-	<!-- RMI Service Declarations -->	
+	<!-- RMI Service Declaration -->	
 	<bean id="RMIManagerService" class="de.dbo.samples.spring.rmi.server.RMIManagerServiceImpl">
 		<property name="managerService" ref="ManagerService"/>	 
 	</bean>	
 	
+	<!-- RMI Service Declaration -->	
 	<bean id="RMIUserService" class="de.dbo.samples.spring.rmi.server.RMIUserServiceImpl" >
  		<property name="cacheService" ref="CacheService"/>
 	</bean>

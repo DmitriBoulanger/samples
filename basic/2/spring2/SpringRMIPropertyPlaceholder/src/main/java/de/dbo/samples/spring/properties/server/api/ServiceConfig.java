@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
  *           only incidentally for computers to execute 
  *
  */
-@Component
+
 public class ServiceConfig implements Serializable  {
 	private static final long serialVersionUID = 4825722878591220118L;
 
