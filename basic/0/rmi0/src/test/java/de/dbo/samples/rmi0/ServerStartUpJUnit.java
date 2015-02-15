@@ -1,7 +1,9 @@
 package de.dbo.samples.rmi0;
 
-import static de.dbo.samples.rmi0.Client.callServer;
-import static de.dbo.samples.rmi0.ServerManager.*;
+import static de.dbo.samples.rmi0.ServerCall.callServer;
+import static de.dbo.samples.rmi0.RegistryManagement.closeServer;
+import static de.dbo.samples.rmi0.RegistryManagement.closeServers;
+import static de.dbo.samples.rmi0.RegistryManagement.openServer;
 
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;

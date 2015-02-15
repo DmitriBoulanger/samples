@@ -1,4 +1,4 @@
-package de.dbo.samples.rmi0;
+package de.dbo.samples.rmi0.server;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;

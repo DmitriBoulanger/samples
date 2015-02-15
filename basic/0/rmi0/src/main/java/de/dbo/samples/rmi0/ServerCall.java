@@ -1,11 +1,13 @@
 package de.dbo.samples.rmi0;
 
+import de.dbo.samples.rmi0.server.Server;
+
 import java.net.InetAddress;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.net.URL;
 import java.net.UnknownHostException;
+import java.rmi.ConnectException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
@@ -22,11 +24,12 @@ import org.slf4j.LoggerFactory;
  *         incidentally for computers to execute
  *
  */
-public class Client {
-    private static final Logger log = LoggerFactory.getLogger(Client.class);
-
+public class ServerCall {
+    private static final Logger log = LoggerFactory.getLogger(ServerCall.class);
+    
     /**
      * call the default RMI-Server
+     * 
      * @throws MalformedURLException
      * @throws RemoteException
      * @throws NotBoundException
@@ -35,7 +38,11 @@ public class Client {
      */
     public static void main(String args[]) 
 	    throws MalformedURLException, RemoteException, NotBoundException, UnknownHostException, URISyntaxException {
-	callServer("server");
+	try {
+	    callServer("server");
+	} catch (ConnectException e) {
+	    log.error("Server is not running? See: ", null!=e.getCause()? e.getCause(): e);
+	}
     }
 
     public static String callServer(final String name) 
@@ -73,6 +80,4 @@ public class Client {
 	return uri;
     }
     
-    
-
 }
