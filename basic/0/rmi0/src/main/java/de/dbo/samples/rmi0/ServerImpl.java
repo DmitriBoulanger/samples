@@ -24,7 +24,7 @@ public class ServerImpl extends UnicastRemoteObject implements Server {
 	}
 
 	public String sayHello() {
-		log.info("processing request ... ");
+		log.info(this.hashCode() + " processing request ... ");
 		return "Hello World from " + this.hashCode() + "!";
 	}
 }
