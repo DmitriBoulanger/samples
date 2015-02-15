@@ -14,11 +14,20 @@ import org.slf4j.LoggerFactory;
  */
 public final class ServiceImpl implements Service{
 	private static final Logger log = LoggerFactory.getLogger(ServiceImpl.class);
+	
+	public ServiceImpl() {
+	    log.info("" + this.hashCode());
+	}
 
 	@Override
 	public int cube(int number) {
 		log.info("cube for " + number + " ...");
 		return number*number*number;
+	}
+	
+	@Override
+	public String ping() {
+	    return "" + this.hashCode();
 	}
 
 }

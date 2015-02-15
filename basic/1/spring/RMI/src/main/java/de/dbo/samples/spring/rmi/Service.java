@@ -10,5 +10,7 @@ package de.dbo.samples.spring.rmi;
  *
  */
 public interface Service {
-	int cube(int number);
+    
+    int cube(int number);
+    String ping();
 }

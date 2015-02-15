@@ -15,10 +15,24 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  *
  */
 public class Server {
-	private static final Logger log = LoggerFactory.getLogger(Server.class);
-	
-	public static void main(String[] args) {
-		new ClassPathXmlApplicationContext("server.xml");
-		log.info("Waiting for requests ...");
-	}
+    private static final Logger log = LoggerFactory.getLogger(Server.class);
+
+    public static void main(String[] args) {
+	new Server();
+	log.info("Waiting for requests ...");
+    }
+    
+    private final ClassPathXmlApplicationContext ctx;
+    
+    public Server() {
+	ctx = new ClassPathXmlApplicationContext("server.xml");
+	ctx.registerShutdownHook();
+    }
+    
+    /* 
+     *  Don't do that: it unbinds (kills!) the RMI-server (service)! 
+     */
+    public void shutDown() {
+	ctx.close();
+    }
 }
