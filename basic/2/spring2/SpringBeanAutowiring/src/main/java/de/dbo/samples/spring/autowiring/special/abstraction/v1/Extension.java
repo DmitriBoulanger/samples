@@ -5,8 +5,8 @@ package de.dbo.samples.spring.autowiring.special.abstraction.v1;
  */
 
 /**
- * Simple POJO extending the Abstraction that has a field to be autowired
- * but the super-class itself has nothing to-do with the Spring (annotations).
+ * Simple POJO extending the Abstraction that has a field to be autowired.
+ * The super-class itself has nothing to-do with the Spring (annotations).
  * In this way the abstraction is not aware of the spring-context that can be used for concrete classes. 
  * The data to be inserted is only declared as Spring-component
  * 

@@ -12,7 +12,7 @@ package de.dbo.samples.spring.autowiring.special.abstraction.v1;
  */
 
 @org.springframework.stereotype.Component
-public class Data {
+public final class Data {
 
     private String name;
 
