@@ -19,7 +19,7 @@ package de.dbo.samples.spring.autowiring.special.abstraction.v1;
  */
 public final class Extension extends Abstraction {
 
-    public Data dataFromSuperClass() {
+    public Data dataFromSuperClassVersion1() {
         return x;
     }
 

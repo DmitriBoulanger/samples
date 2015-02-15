@@ -7,7 +7,7 @@
 	
 	<description>Version 1: auto-magic by type with declared Data-component (minimal XML-configuration)</description>
 	
-	<!-- Important to enable Spring-annotations: Data-class is annotated as a component -->
+	<!-- Important to enable Spring-annotations: Data-class is annotated as a component! -->
 	<context:component-scan base-package="de.dbo.samples.spring.autowiring.special.abstraction.v1" 
 			annotation-config="true"/>
 		

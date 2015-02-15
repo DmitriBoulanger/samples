@@ -5,12 +5,12 @@ package de.dbo.samples.spring.autowiring.special.abstraction.v3;
  */
 
 /**
- * Simple POJO extending the Abstraction that has a field to be autowired
- * but the super-class itself has nothing to-do with the Spring (annotations).
- * In this way the abstraction is not aware of the spring-context that can be used for concrete classes. 
+ * Simple POJO extending the Abstraction that has a field to be autowired.
+ * Its super-class itself has nothing to-do with the Spring-annotations.
+ * Therefore, the abstraction is not aware of the spring-context that can be used for concrete classes. 
  * The data to be inserted is also spring-independent (no annotations)
  * 
- * The magic of the autowiring: the Spring-context uses the name of the protected field in the super-class.
+ * The magic of the autowiring: the Spring-context uses the name of the public setter-method (data).
  * 
  * @author Dmitri Boulanger, Hombach
  *
@@ -19,7 +19,7 @@ package de.dbo.samples.spring.autowiring.special.abstraction.v3;
  */
 public final class Extension extends Abstraction {
 
-    public Data dataFromSuperClass() {
+    public Data dataFromSuperClassVersion3() {
         return x;
     }
 
