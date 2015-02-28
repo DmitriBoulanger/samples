@@ -1,4 +1,4 @@
-package de.dbo.samples.spring.autowiring.abc;
+package de.dbo.samples.spring.autowiring.special.abc;
 
 import org.springframework.stereotype.Component;
 

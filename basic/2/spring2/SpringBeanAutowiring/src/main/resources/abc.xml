@@ -12,6 +12,6 @@
 		See: ABCJUnit
 	</description>
 
-	<context:component-scan base-package="de.dbo.samples.spring.autowiring.abc" />
+	<context:component-scan base-package="de.dbo.samples.spring.autowiring.special.abc" />
 
 </beans>

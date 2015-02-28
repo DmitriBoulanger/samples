@@ -1,7 +1,7 @@
 package de.dbo.samples.spring.autowiring;
 
-import de.dbo.samples.spring.autowiring.abc.A;
-import de.dbo.samples.spring.autowiring.abc.C;
+import de.dbo.samples.spring.autowiring.special.abc.A;
+import de.dbo.samples.spring.autowiring.special.abc.C;
 
 import org.junit.After;
 import org.junit.Before;
