@@ -1,6 +1,7 @@
 package de.dbo.samples.spring.autowiring;
 
-import static de.dbo.tools.utils.print.Print.*;
+import static de.dbo.tools.utils.print.Print.line;
+import static de.dbo.tools.utils.print.Print.lines;
 
 import de.dbo.samples.spring.autowiring.model.Employee;
 import de.dbo.samples.spring.autowiring.service.EmployeeAutowiredByConstructorService;

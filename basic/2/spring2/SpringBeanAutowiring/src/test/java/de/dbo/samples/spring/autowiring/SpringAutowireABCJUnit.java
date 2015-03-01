@@ -10,7 +10,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import static org.junit.Assert.assertTrue;
 
-public class ABCJUnit {
+public class SpringAutowireABCJUnit {
     
     private ClassPathXmlApplicationContext ctx;
 
