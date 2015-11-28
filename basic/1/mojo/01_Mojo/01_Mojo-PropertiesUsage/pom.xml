@@ -8,15 +8,17 @@
 		<version>0.0.0-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>01_Mojo-PropertiesUsage</artifactId>
 	<name>Samples Basic-1 Mojo Properties Usage</name>
 	<description>
-Usage of the Properties Plug-in: it reads artifact-jars containing
-properties as resource-files and sets the corresponding maven variables.
-For test purposes, the variables are displayed with the properties-maven-plugin
+Usage of the Properties Plug-in.
+The Plug-in reads artifact-jars containing properties as resource-files 
+and then sets the corresponding maven variables.
+These variables are displayed with the properties-maven-plugin
 and the values are set as system-properties in JVM using properties-maven-plugin.
 If Maven-test is used, the values of the system properties are verified
 	</description>
+	
+	<artifactId>01_Mojo-PropertiesUsage</artifactId>
 
 	<build>
 		<plugins>
