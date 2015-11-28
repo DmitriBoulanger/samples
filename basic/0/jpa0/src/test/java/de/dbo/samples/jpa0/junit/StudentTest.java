@@ -77,6 +77,10 @@ public class StudentTest extends TransactionTest {
 		} catch (FileNotFoundException e) {
 			throw new RuntimeException(e);
 		}
+		catch (Exception e) {
+			throw new RuntimeException("Failure serializing emtity-instance student=[" + student + "]"
+				, e);
+		}
 
 		em = TRANSACTION_RUNNER.getEntityManager();
 		Student student2 = null;
