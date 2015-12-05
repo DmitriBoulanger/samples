@@ -22,17 +22,17 @@ import org.springframework.remoting.rmi.RmiRegistryFactoryBean;
  * @version 1.0.0
  *
  */
-public class RMIServiceClient {
+public class RMIServiceClient implements Runnable {
     private static Logger log = LoggerFactory.getLogger(RMIUserServiceImpl.class);
 
     /**
      * Main method of the RMI Service Client
      */
     public static void main(String[] args) {
-	run();
+	new Thread(new RMIServiceClient()).run();
     }
 
-    public static final void run() {
+    public final void run() {
 	log.info("RMI Service Client is starting...");
 
 	// RMI Client Application Context is started...
@@ -40,8 +40,7 @@ public class RMIServiceClient {
 
 	// Remote User Service is called via RMI Client Application Context...
 	RMIUserService rmiClient = (RMIUserService) context.getBean("RMIUserService");
-	RMIManagerService rmiManager = (RMIManagerService) context.getBean("RMIManagerService");
-
+	
 	// New User is created...
 	User user = new User();
 	user.setId(1);
@@ -56,6 +55,9 @@ public class RMIServiceClient {
 
 	// The user is deleted from remote cache...
 	rmiClient.deleteUser(user);
+	
+	RMIManagerService rmiManager = (RMIManagerService) context.getBean("RMIManagerService");
+	rmiManager.shutdown();
 
 	log.info("RMI Service Client is stopped...");
     }

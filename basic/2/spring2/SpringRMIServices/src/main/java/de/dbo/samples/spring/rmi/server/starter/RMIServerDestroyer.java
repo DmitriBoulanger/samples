@@ -13,18 +13,36 @@ import org.springframework.remoting.rmi.RmiServiceExporter;
  * RMI Server Destroyer
  *
  */
-public class RMIServerDestroyer {
+public class RMIServerDestroyer implements Runnable {
     private static final Logger log = LoggerFactory.getLogger(RMIServerDestroyer.class);
 
+    
+    public static final void main(final String args[]) throws RemoteException {
+	new Thread(new RMIServerDestroyer()).start();
+    }
+    
+    private ClassPathXmlApplicationContext ctx;
+    
+    public final void closeCtx() {
+	if (null!=ctx) {
+	    ctx.close();
+	}
+	ctx = null;
+    }
+    
     /**
      * destroys all RMI-services
      * 
      * @throws RemoteException
      */
-    public static final void run() throws RemoteException {
-	final ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("rmiServer.xml");
-	destroy(ctx, "RMIUserServiceExporter");
-	destroy(ctx, "RMIManagerServiceExporter");
+    public final void run()   {
+	try {
+	    ctx = new ClassPathXmlApplicationContext("rmiServer.xml");
+	    destroy(ctx, "RMIUserServiceExporter");
+	    destroy(ctx, "RMIManagerServiceExporter");
+	} catch (Throwable e) {
+	    log.error("Failure running RMIServerDestroyer:", e);
+	}
     }
 
     //

@@ -15,8 +15,10 @@ public class SpringRMIServicesJUnit {
      */
     @Test
     public void completeStory() throws RemoteException {
-	RMIServerStarter.run();
-	RMIServiceClient.run();
-	RMIServerDestroyer.run();
+	final RMIServerStarter rmiServerStarter =  new RMIServerStarter(); 
+	rmiServerStarter.run();
+	
+	new RMIServiceClient().run();
+	new RMIServerDestroyer().run();
     }
 }
