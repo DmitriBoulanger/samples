@@ -1,0 +1,43 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	
+	<parent>
+		<artifactId>spring2</artifactId>
+		<groupId>de.dbo.samples.basic.2</groupId>
+		<version>0.0.0-SNAPSHOT</version>
+	</parent>
+	
+	<artifactId>SpringPropertiesSourceAnnotation</artifactId>
+	<name>Samples Basic-2 Spring2 Properties Source Annotation</name>
+	<url>
+http://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/context/annotation/PropertySource.html
+	</url>
+	 
+	<properties>
+		<spring-framework.version>4.0.3.RELEASE</spring-framework.version>
+		<junit.version>4.11</junit.version>
+		<cglib.version>3.1</cglib.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>cglib</groupId>
+			<artifactId>cglib</artifactId>
+		</dependency>	
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>		
+	</dependencies>
+</project>
