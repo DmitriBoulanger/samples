@@ -8,11 +8,11 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import com.javapapers.config.RestAPIURLConfig;
+import com.javapapers.config.ApplicationConfig;
 import com.javapapers.model.Resource;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes=RestAPIURLConfig.class)
+@ContextConfiguration(classes=ApplicationConfig.class)
 public class Spring4PropertySourceTest {
 
 	private String DEV_REST_API_URL = "http://devapp.com/restapi/results";

@@ -11,23 +11,23 @@ import com.javapapers.model.Resource;
 @Configuration
 @PropertySources
 ({
-	@PropertySource(value="classpath:default.properties"),
-	@PropertySource(value="classpath:application.properties",ignoreResourceNotFound=true)
+    @PropertySource(value="classpath:default.properties"),
+    @PropertySource(value="classpath:application.properties",ignoreResourceNotFound=true)
 })
-public class RestAPIURLConfig {
-    
-	@Value("${restapi.url}")
+public class ApplicationConfig {
+
+    @Value("${restapi.url}")
     private String restAPIUrl;
-	
-	@Bean
+
+    @Bean
     protected Resource database() {
-		Resource resource = new Resource();
-		resource.setUrl(restAPIUrl);
-        return resource;
+	Resource resource = new Resource();
+	resource.setUrl(restAPIUrl);
+	return resource;
     }
-	
-	@Bean
-	public static PropertySourcesPlaceholderConfigurer propertyConfigInDev() {
-		return new PropertySourcesPlaceholderConfigurer();
-	}
+
+    @Bean
+    public static PropertySourcesPlaceholderConfigurer propertyConfigInDev() {
+	return new PropertySourcesPlaceholderConfigurer();
+    }
 }
