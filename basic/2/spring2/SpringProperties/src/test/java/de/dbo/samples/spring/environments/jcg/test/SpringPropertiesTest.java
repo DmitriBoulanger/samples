@@ -1,48 +1,29 @@
 package de.dbo.samples.spring.environments.jcg.test;
 
-import junit.framework.TestCase;
-
-import de.dbo.samples.spring.environments.env.GenericEnv;
-import de.dbo.samples.spring.environments.jcg.prop.DatabaseProperties;
-import de.dbo.samples.spring.environments.jcg.prop.JmsProperties;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 /**
- * @author ashraf
+ * 
+ * @author Dmitri Boulanger, Hombach
+ *
+ * D. Knuth: Programs are meant to be read by humans and 
+ *           only incidentally for computers to execute 
  *
  */
+
 @RunWith(SpringJUnit4ClassRunner.class)
 //Change it to your desired profile
 @ActiveProfiles(profiles = "test")
 @ContextConfiguration("classpath:spring/xml-config-context.xml")
-public class SpringPropertiesTest extends TestCase {
-	
-	@Autowired
-	private GenericEnv env;
-	
-	@Autowired
-	private DatabaseProperties dbProp;
-	
-	@Autowired
-	private JmsProperties jmsProp;
-	
-	@Test
-	public void testAppProperties() {
-		
-		System.out.println("Running DatabasePropertiesTest ...");
-		
-		System.out.println("Environment        : " + env.toString());
-		
-		System.out.println("Database Properties: " + dbProp.toString());
-		
-		System.out.println("JMS Properties     : " + jmsProp.toString());
-	
-	}
-	
+public class SpringPropertiesTest extends SpringPropertiesTestAbstraction {
+
+    @Test
+    public void testAppProperties() {
+	System.out.println("RunningProperties-Test using complete configuration ...");
+	print();
+    }
 }

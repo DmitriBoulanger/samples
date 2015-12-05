@@ -11,7 +11,7 @@
 	<artifactId>SpringProperties</artifactId>
 	<name>Samples Basic-2 Spring2 Properties</name>
 	<url>
-http://www.javacodegeeks.com/2012/04/spring-remoting-support-and-developing.html
+ http://examples.javacodegeeks.com/enterprise-java/spring/load-environment-configurations-and-properties-with-spring-example/
 	</url>
 	
 	<dependencies>
