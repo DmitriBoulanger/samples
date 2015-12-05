@@ -6,8 +6,8 @@
        http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd 
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-	<!-- scans for annotated classes in the com.company package -->
-	<context:component-scan base-package="com.jcg" />
+	<!-- scans for annotated classes in the de.dbo.samples.spring.environments.company package -->
+	<context:component-scan base-package="de.dbo.samples.spring.environments.jcg" />
 
 	<!-- enables annotation based configuration -->
 	<context:annotation-config />
@@ -19,8 +19,8 @@
 			location="classpath:properties/application-default.properties, classpath:properties/application-dev.properties"
 			ignore-unresolvable="true" />
 
-		<!-- scans for annotated classes in the com.env.dev package -->
-		<context:component-scan base-package="com.env.dev" />
+		<!-- scans for annotated classes in the de.dbo.samples.spring.environments.env.dev package -->
+		<context:component-scan base-package="de.dbo.samples.spring.environments.env.dev" />
 	</beans>
 
 	<beans profile="test">
@@ -30,8 +30,8 @@
 			location="classpath:properties/application-default.properties, classpath:properties/application-test.properties"
 			ignore-unresolvable="true" />
 
-		<!-- scans for annotated classes in the com.env.test package -->
-		<context:component-scan base-package="com.env.test" />
+		<!-- scans for annotated classes in the de.dbo.samples.spring.environments.env.test package -->
+		<context:component-scan base-package="de.dbo.samples.spring.environments.env.test" />
 	</beans>
 
 	<beans profile="prod">
@@ -41,8 +41,8 @@
 			location="classpath:properties/application-default.properties, classpath:properties/application-prod.properties"
 			ignore-unresolvable="true" />
 
-		<!-- scans for annotated classes in the com.env.prod package -->
-		<context:component-scan base-package="com.env.prod" />
+		<!-- scans for annotated classes in the de.dbo.samples.spring.environments.env.prod package -->
+		<context:component-scan base-package="de.dbo.samples.spring.environments.env.prod" />
 	</beans>
 
 </beans>

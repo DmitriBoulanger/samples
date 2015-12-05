@@ -1,18 +1,18 @@
-package com.env.test;
+package de.dbo.samples.spring.environments.env.prod;
+
+import de.dbo.samples.spring.environments.env.GenericEnv;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-
-import com.jcg.prop.GenericEnv;
 
 /**
  * @author ashraf
  *
  */
 @Component
-public class TestEnv implements GenericEnv {
+public class ProdEnv implements GenericEnv {
 
-	private String envName = "test";
+	private String envName = "prod";
 
 	@Value("${profile.name}")
 	private String profileName;
@@ -35,8 +35,8 @@ public class TestEnv implements GenericEnv {
 
 	@Override
 	public String toString() {
-		return "TestEnv [envName=" + envName + ", profileName=" + profileName
+		return "ProdEnv [envName=" + envName + ", profileName=" + profileName
 				+ "]";
 	}
-	
+
 }

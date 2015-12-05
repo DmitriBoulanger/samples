@@ -1,6 +1,10 @@
-package com.jcg.test;
+package de.dbo.samples.spring.environments.jcg.test;
 
 import junit.framework.TestCase;
+
+import de.dbo.samples.spring.environments.env.GenericEnv;
+import de.dbo.samples.spring.environments.jcg.prop.DatabaseProperties;
+import de.dbo.samples.spring.environments.jcg.prop.JmsProperties;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -8,10 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
-import com.jcg.prop.DatabaseProperties;
-import com.jcg.prop.GenericEnv;
-import com.jcg.prop.JmsProperties;
 
 /**
  * @author ashraf

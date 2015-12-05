@@ -1,9 +1,9 @@
-package com.env.dev;
+package de.dbo.samples.spring.environments.env.dev;
+
+import de.dbo.samples.spring.environments.env.GenericEnv;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-
-import com.jcg.prop.GenericEnv;
 
 /**
  * @author ashraf

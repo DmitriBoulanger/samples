@@ -1,4 +1,4 @@
-package com.jcg.prop;
+package de.dbo.samples.spring.environments.jcg.prop;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;

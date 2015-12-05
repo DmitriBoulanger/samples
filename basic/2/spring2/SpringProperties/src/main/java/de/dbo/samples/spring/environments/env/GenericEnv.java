@@ -1,4 +1,4 @@
-package com.jcg.prop;
+package de.dbo.samples.spring.environments.env;
 
 /**
  * @author ashraf
