@@ -19,8 +19,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @RunWith(SpringJUnit4ClassRunner.class)
 //Change it to your desired profile
 //@ActiveProfiles(profiles = "test") do: mvn clean install -Dspring.profiles.active="test"
-@ContextConfiguration("classpath:spring/mini-xml-config-context.xml")
-public class SpringPropertiesMiniTest extends SpringPropertiesTestAbstraction {
+@ContextConfiguration("classpath:spring/xml-config-context-mini.xml")
+public class SpringPropertiesTestMini extends TestAbstraction {
     
 	@BeforeClass 
 	public static final void setProfileNameUsingSystemProperties() {

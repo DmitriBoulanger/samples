@@ -19,7 +19,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 //Change it to your desired profile
 @ActiveProfiles(profiles = "test")
 @ContextConfiguration("classpath:spring/xml-config-context.xml")
-public class SpringPropertiesTest extends SpringPropertiesTestAbstraction {
+public class SpringPropertiesTest extends TestAbstraction {
 
     @Test
     public void testAppProperties() {

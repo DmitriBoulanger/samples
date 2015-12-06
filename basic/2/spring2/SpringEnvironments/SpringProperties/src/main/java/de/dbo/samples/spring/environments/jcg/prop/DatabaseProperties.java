@@ -8,41 +8,43 @@ import org.springframework.stereotype.Component;
  *
  */
 @Component
-public class DatabaseProperties {
+public final class DatabaseProperties {
 
-	@Value("${db.driverClass}")
-	private String driverClass;
+    @Value("${db.driverClass}")
+    private String driverClass;
 
-	@Value("${db.connectionURL}")
-	private String connectionURL;
+    @Value("${db.connectionURL}")
+    private String connectionURL;
 
-	@Value("${db.username}")
-	private String username;
+    @Value("${db.username}")
+    private String username;
 
-	@Value("${db.password}")
-	private String password;
+    @Value("${db.password}")
+    private String password;
 
-	public String getDriverClass() {
-		return driverClass;
-	}
+    public String getDriverClass() {
+	return driverClass;
+    }
 
-	public String getConnectionURL() {
-		return connectionURL;
-	}
+    public String getConnectionURL() {
+	return connectionURL;
+    }
 
-	public String getUsername() {
-		return username;
-	}
+    public String getUsername() {
+	return username;
+    }
 
-	public String getPassword() {
-		return password;
-	}
+    public String getPassword() {
+	return password;
+    }
 
-	@Override
-	public String toString() {
-		return "DatabaseProperties [driverClass=" + driverClass
-				+ ", connectionURL=" + connectionURL + ", username=" + username
-				+ ", password=" + password + "]";
-	}
+    public StringBuilder print() {
+	final StringBuilder  sb = new StringBuilder("Databas eProperties:");
+	sb.append("\n\t - driverClass           = " + driverClass);
+	sb.append("\n\t - passwordconnectionURL = " + connectionURL);
+	sb.append("\n\t - username              = " + username);
+	sb.append("\n\t - password              = " + password);
+	return sb;
+    }
 
 }

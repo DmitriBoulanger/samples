@@ -10,31 +10,32 @@ import org.springframework.stereotype.Component;
 @Component
 public class JmsProperties {
 
-	@Value("${jms.factory.initial}")
-	private String factoryInitial;
+    @Value("${jms.factory.initial}")
+    private String factoryInitial;
 
-	@Value("${jms.provider.url}")
-	private String providerUrl;
+    @Value("${jms.provider.url}")
+    private String providerUrl;
 
-	@Value("${jms.queue}")
-	private String queue;
+    @Value("${jms.queue}")
+    private String queue;
 
-	public String getFactoryInitial() {
-		return factoryInitial;
-	}
+    public String getFactoryInitial() {
+	return factoryInitial;
+    }
 
-	public String getProviderUrl() {
-		return providerUrl;
-	}
+    public String getProviderUrl() {
+	return providerUrl;
+    }
 
-	public String getQueue() {
-		return queue;
-	}
+    public String getQueue() {
+	return queue;
+    }
 
-	@Override
-	public String toString() {
-		return "JmsProperties [factoryInitial=" + factoryInitial
-				+ ", providerUrl=" + providerUrl + ", queue=" + queue + "]";
-	}
-	
+    public StringBuilder print() {
+	final StringBuilder  sb = new StringBuilder("JmsProperties:");
+	sb.append("\n\t - factoryInitial     = " + factoryInitial);
+	sb.append("\n\t - providerUrl        = " + providerUrl);
+	sb.append("\n\t - queue              = " + queue);
+	return sb;
+    }
 }

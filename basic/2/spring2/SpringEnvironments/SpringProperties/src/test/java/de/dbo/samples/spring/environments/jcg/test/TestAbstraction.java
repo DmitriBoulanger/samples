@@ -16,7 +16,7 @@ import junit.framework.TestCase;
  *           only incidentally for computers to execute 
  *
  */
-abstract class SpringPropertiesTestAbstraction extends TestCase {
+abstract class TestAbstraction extends TestCase {
 	
     @Autowired
     private GenericEnv env;
@@ -28,9 +28,10 @@ abstract class SpringPropertiesTestAbstraction extends TestCase {
     private JmsProperties jmsProp;
 
     protected final void print() {
+	
 	System.out.println("Environment        : " + env.toString());
-	System.out.println("Database Properties: " + dbProp.toString());
-	System.out.println("JMS Properties     : " + jmsProp.toString());
+	System.out.println(dbProp.print());
+	System.out.println(jmsProp.print());
     }
 
     public abstract void testAppProperties();

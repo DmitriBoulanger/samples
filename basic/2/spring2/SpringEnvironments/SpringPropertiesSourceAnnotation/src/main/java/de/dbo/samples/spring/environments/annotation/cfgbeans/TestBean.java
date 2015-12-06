@@ -4,9 +4,7 @@ import de.dbo.samples.spring.environments.annotation.Tool;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
-import org.springframework.stereotype.Component;
 
-@Component
 public final class TestBean  {
     
     @Value("${testbean.value:NULL}")
