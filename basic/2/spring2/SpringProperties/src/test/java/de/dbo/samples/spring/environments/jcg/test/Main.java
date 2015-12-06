@@ -7,14 +7,20 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 public class Main {
 
+    /*
+     * Doesn't work!
+     */
     public static void main(String[] args) {
-	AnnotationConfigApplicationContext ctx =
-		     new AnnotationConfigApplicationContext();
-		 ctx.register(AppConfig.class);
-		 ctx.refresh();
-		 ctx.getEnvironment().setActiveProfiles("test");
-		 
-		System.out.println(ctx.getBean(DatabaseProperties.class).getDriverClass());  
-    }
+	final AnnotationConfigApplicationContext ctx = 
+			new AnnotationConfigApplicationContext();
+	ctx.getEnvironment().setActiveProfiles("test");
+	ctx.register(AppConfig.class);
+	ctx.refresh();
+	
+	
 
+	System.out.println(ctx.getBean(DatabaseProperties.class).getDriverClass());  
+	
+	ctx.close(); // destroys the above Spring-context!
+    }
 }

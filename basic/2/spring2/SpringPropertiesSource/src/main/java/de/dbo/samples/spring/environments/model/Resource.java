@@ -1,4 +1,4 @@
-package com.javapapers.model;
+package de.dbo.samples.spring.environments.model;
 
 public class Resource {
 

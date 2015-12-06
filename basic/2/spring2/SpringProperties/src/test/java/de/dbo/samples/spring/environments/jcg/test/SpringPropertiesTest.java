@@ -23,7 +23,7 @@ public class SpringPropertiesTest extends SpringPropertiesTestAbstraction {
 
     @Test
     public void testAppProperties() {
-	System.out.println("RunningProperties-Test using complete configuration ...");
+	System.out.println("RunningProperties-Test with complete configuration ...");
 	print();
     }
 }

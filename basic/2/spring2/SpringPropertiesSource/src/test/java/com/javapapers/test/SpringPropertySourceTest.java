@@ -2,18 +2,20 @@ package com.javapapers.test;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
+
+import de.dbo.samples.spring.environments.config.ApplicationConfig;
+import de.dbo.samples.spring.environments.model.Resource;
+
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import com.javapapers.config.ApplicationConfig;
-import com.javapapers.model.Resource;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes=ApplicationConfig.class)
-public class Spring4PropertySourceTest {
+public class SpringPropertySourceTest {
 
 	private String DEV_REST_API_URL = "http://devapp.com/restapi/results";
 	private String QA_REST_API_URL = "http://qaapp.com/restapi/results";
