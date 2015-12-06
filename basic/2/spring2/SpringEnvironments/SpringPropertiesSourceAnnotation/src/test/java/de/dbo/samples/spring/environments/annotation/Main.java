@@ -11,8 +11,7 @@ public class Main {
 
     public static void main(String[] args) {
 	
-	final AnnotationConfigApplicationContext ctx = 
-		new AnnotationConfigApplicationContext(AppConfig.class);
+	final AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
 	assertNotNull("AnnotationConfigApplicationContext is null!",ctx);
 	ctx.registerShutdownHook();
 	System.out.print(Tool.print(ctx).toString());
@@ -25,8 +24,7 @@ public class Main {
     @Test
     public void test() {
 	
-	final AnnotationConfigApplicationContext ctx = 
-		new AnnotationConfigApplicationContext(AppConfig.class);
+	final AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
 	assertNotNull("AnnotationConfigApplicationContext is null!",ctx);
 	ctx.registerShutdownHook();
 	System.out.print(Tool.print(ctx).toString());
