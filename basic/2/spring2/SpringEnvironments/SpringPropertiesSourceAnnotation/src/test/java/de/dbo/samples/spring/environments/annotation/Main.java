@@ -1,9 +1,8 @@
 package de.dbo.samples.spring.environments.annotation;
 
-import de.dbo.samples.spring.environments.annotation.cfgbeans.TestBean;
+import static org.junit.Assert.*;
 
-import  static org.junit.Assert.assertEquals;
-import  static org.junit.Assert.assertTrue;
+import de.dbo.samples.spring.environments.annotation.cfgbeans.TestBean;
 
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -11,21 +10,15 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 public class Main {
 
     public static void main(String[] args) {
+	
 	final AnnotationConfigApplicationContext ctx = 
 		new AnnotationConfigApplicationContext(AppConfig.class);
-
+	assertNotNull("AnnotationConfigApplicationContext is null!",ctx);
 	ctx.registerShutdownHook();
-
-	System.out.println("application name:           " + ctx.getApplicationName());
-	System.out.println("application display name:   " + ctx.getDisplayName());
-	System.out.println("application startup-date:   " + ctx.getStartupDate());
-
-	final TestBean testBean =  ctx.getBean(TestBean.class);
-	System.out.println("test-bean env:    " + testBean.getEnv());
-	System.out.println("test-bean name:   " + testBean.getName());
-	System.out.println("test-bean value:  " + testBean.getValue());
-	System.out.println("test-bean value2: " + testBean.getValue2());
-
+	System.out.print(Tool.print(ctx).toString());
+	
+	assertTestBean(ctx.getBean(TestBean.class));
+	
 	ctx.close(); // destroys the above Spring-context!
     }
     
@@ -34,30 +27,28 @@ public class Main {
 	
 	final AnnotationConfigApplicationContext ctx = 
 		new AnnotationConfigApplicationContext(AppConfig.class);
-
+	assertNotNull("AnnotationConfigApplicationContext is null!",ctx);
 	ctx.registerShutdownHook();
+	System.out.print(Tool.print(ctx).toString());
 
-	System.out.println("application name:           " + ctx.getApplicationName());
-	System.out.println("application display name:   " + ctx.getDisplayName());
-	System.out.println("application startup-date:   " + ctx.getStartupDate());
-
-	final TestBean testBean =  ctx.getBean(TestBean.class);
+	assertTestBean(ctx.getBean(TestBean.class));
+	
+	ctx.close(); // destroys the above Spring-context!
+    }
+    
+    private static final void assertTestBean(final TestBean testBean) {
+	assertNotNull("Test-Bean is null!",testBean);
+	System.out.println(testBean.getEnv());
+	System.out.print(testBean.print().toString());
+	
 	final String env = testBean.getEnv();
 	final String name = testBean.getName();
 	final String value = testBean.getValue();
 	final String value2 = testBean.getValue2();
-	 
-	System.out.println("test-bean env:    " + env);
-	System.out.println("test-bean name:   " + name);
-	System.out.println("test-bean value:  " + value);
-	System.out.println("test-bean value2: " + value2);
 	
 	assertTrue("", null!=env && -1!=env.indexOf("StandardEnvironment"));
-	assertEquals("Application value is incorrect", "XXXXX", name); // from application properties
+	assertEquals("Bean name is incorrect", "XXXXX from app", name); // from application properties
 	assertEquals("Default value is incorrect", "Xa-Xa-Xa from defaults", value); // from default properties
-	assertEquals("Default annotation value is incorrect", "NULL", value2); // default in @Value-annotation
-
-	ctx.close(); // destroys the above Spring-context!
-	
+	assertEquals("Default annotation value2 is incorrect", "NULL from @Value", value2); // default in @Value-annotation
     }
 }

@@ -22,20 +22,27 @@ import org.springframework.core.env.Environment;
 @Configuration()
 @PropertySources
 ({
-    /* Order in important: the later overwrites previous values */
-    @PropertySource(value="classpath:properties/non-existing.properties", ignoreResourceNotFound=true)
+    // Order below in very important: the later overwrites previous values 
+    
+    /* define directory with properties */
+    @PropertySource(value="classpath:location.properties", ignoreResourceNotFound=false)
     
     /* use default values only if actual not found */
-    , @PropertySource(value="classpath:properties/default.properties")
-    , @PropertySource(value="classpath:properties/app.properties", ignoreResourceNotFound=true)
+    , @PropertySource(value="classpath:${properties.location}/default.properties")
+    , @PropertySource(value="classpath:${properties.location}/app.properties", ignoreResourceNotFound=true)
     
-    , @PropertySource(value="classpath:properties/non-existing2.properties", ignoreResourceNotFound=true)
+    , @PropertySource(value="classpath:${properties.location}/non-existing2.properties", ignoreResourceNotFound=true)
 })
 public class AppConfig {
 
     @Autowired
     Environment env;
 
+    /*
+     The Environment object is @Autowired into this configuration 
+     and only then it can be used to populate the TestBean object below
+     */
+    
     @Bean
     public TestBean testBean() {
 	return new TestBean(env);
