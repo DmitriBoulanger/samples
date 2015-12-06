@@ -22,12 +22,14 @@ import org.springframework.core.env.Environment;
 @Configuration()
 @PropertySources
 ({
-    /* Order in important: the last overwrites previous values */
-    @PropertySource(value="classpath:properties/nonexisting.properties", ignoreResourceNotFound=true)
+    /* Order in important: the later overwrites previous values */
+    @PropertySource(value="classpath:properties/non-existing.properties", ignoreResourceNotFound=true)
+    
+    /* use default values only if actual not found */
     , @PropertySource(value="classpath:properties/default.properties")
     , @PropertySource(value="classpath:properties/app.properties", ignoreResourceNotFound=true)
-    , @PropertySource(value="classpath:properties/nonexisting2.properties", ignoreResourceNotFound=true)
-
+    
+    , @PropertySource(value="classpath:properties/non-existing2.properties", ignoreResourceNotFound=true)
 })
 public class AppConfig {
 
