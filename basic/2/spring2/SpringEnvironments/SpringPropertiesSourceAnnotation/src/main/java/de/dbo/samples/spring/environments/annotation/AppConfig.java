@@ -47,6 +47,7 @@ public class AppConfig {
        one must register a PropertySourcesPlaceholderConfigurer. 
        This happens automatically in XML with <context:property-placeholder>  
        but must be explicitly registered using a static @Bean method
+       
      */
     @Bean
     public static PropertySourcesPlaceholderConfigurer propertyConfigInDev() {
