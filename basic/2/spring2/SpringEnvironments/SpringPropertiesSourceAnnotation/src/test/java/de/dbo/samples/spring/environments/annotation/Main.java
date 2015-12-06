@@ -11,7 +11,7 @@ public class Main {
 
 	final AnnotationConfigApplicationContext ctx = 
 		new AnnotationConfigApplicationContext();
-	ctx.register(AppConfigEnv.class);
+	ctx.register(AppConfig.class);
 	ctx.refresh();
 	ctx.registerShutdownHook();
 

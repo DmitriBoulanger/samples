@@ -19,23 +19,33 @@ import org.springframework.core.env.Environment;
  *
  */
 
-@Configuration
+@Configuration()
 @PropertySources
 ({
-    @PropertySource(value="classpath:properties/default.properties",ignoreResourceNotFound=true),
-    @PropertySource(value="classpath:properties/app.properties")
-   
+    /* Order in important: the last overwrites previous values */
+    @PropertySource(value="classpath:properties/nonexisting.properties", ignoreResourceNotFound=true)
+    , @PropertySource(value="classpath:properties/default.properties")
+    , @PropertySource(value="classpath:properties/app.properties", ignoreResourceNotFound=true)
+    , @PropertySource(value="classpath:properties/nonexisting2.properties", ignoreResourceNotFound=true)
+
 })
-public class AppConfigEnv {
-    
+public class AppConfig {
+
     @Autowired
     Environment env;
 
     @Bean
     public TestBean testBean() {
-        return new TestBean(env);
+	return new TestBean(env);
     }
     
+    /*
+       In order to resolve ${...} placeholders in <bean> definitions 
+       or @Value annotations using properties from a PropertySource, 
+       one must register a PropertySourcesPlaceholderConfigurer. 
+       This happens automatically in XML with <context:property-placeholder>  
+       but must be explicitly registered using a static @Bean method
+     */
     @Bean
     public static PropertySourcesPlaceholderConfigurer propertyConfigInDev() {
 	return new PropertySourcesPlaceholderConfigurer();
