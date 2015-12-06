@@ -8,11 +8,9 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 public class Main {
 
     public static void main(String[] args) {
-
 	final AnnotationConfigApplicationContext ctx = 
-		new AnnotationConfigApplicationContext();
-	ctx.register(AppConfig.class);
-	ctx.refresh();
+		new AnnotationConfigApplicationContext(AppConfig.class);
+
 	ctx.registerShutdownHook();
 
 	System.out.println("application name:           " + ctx.getApplicationName());
@@ -23,8 +21,8 @@ public class Main {
 	System.out.println("test-bean env:    " + testBean.getEnv());
 	System.out.println("test-bean name:   " + testBean.getName());
 	System.out.println("test-bean value:  " + testBean.getValue());
+	System.out.println("test-bean value2: " + testBean.getValue2());
 
 	ctx.close(); // destroys the above Spring-context!
     }
-
 }

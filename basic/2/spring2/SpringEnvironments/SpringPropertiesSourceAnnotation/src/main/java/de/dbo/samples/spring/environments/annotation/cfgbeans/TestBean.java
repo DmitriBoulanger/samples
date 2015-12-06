@@ -10,6 +10,9 @@ public final class TestBean  {
     @Value("${testbean.value:NULL}")
     private String value;
     
+    @Value("${testbean.value2:NULL}")
+    private String value2;
+    
     private final String name;
     
     private final String env;
@@ -29,6 +32,10 @@ public final class TestBean  {
 
     public String getValue() {
         return value;
+    }
+    
+    public String getValue2() {
+        return value2;
     }
    
 }
