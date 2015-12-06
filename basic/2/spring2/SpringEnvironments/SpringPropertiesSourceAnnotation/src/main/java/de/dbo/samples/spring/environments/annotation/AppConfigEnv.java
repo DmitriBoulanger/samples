@@ -22,8 +22,9 @@ import org.springframework.core.env.Environment;
 @Configuration
 @PropertySources
 ({
-    @PropertySource(value="classpath:properties/app.properties"),
-    @PropertySource(value="classpath:properties/default.properties",ignoreResourceNotFound=true)
+    @PropertySource(value="classpath:properties/default.properties",ignoreResourceNotFound=true),
+    @PropertySource(value="classpath:properties/app.properties")
+   
 })
 public class AppConfigEnv {
     
