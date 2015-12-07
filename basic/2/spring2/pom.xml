@@ -21,9 +21,7 @@
 		<module>SpringBeanAutowiring</module>
 		<module>SpringRMIPropertyPlaceholder</module>
 		<module>SpringRMIServices</module>
-		<module>SpringProperties</module>
-		<module>SpringPropertiesSource</module>
-		<module>SpringPropertiesSourceAnnotation</module>
+		<module>SpringEnvironments</module>
 	</modules>
 	
 	<dependencies>
