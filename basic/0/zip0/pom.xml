@@ -1,0 +1,33 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>de.dbo.samples.basic.0</groupId>
+		<artifactId>0</artifactId>
+		<version>0.0.0-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>zip0</artifactId>
+	<name>Samples Basic-0 ZIP Examples</name>
+	<packaging>jar</packaging>
+
+	<description>
+	Reading Zip archive in Java
+   	</description>
+	<url>
+	http://javarevisited.blogspot.de/2014/06/2-examples-to-read-zip-files-in-java-zipFile-vs-zipInputStream.html
+	</url>
+
+	<dependencies>
+		<dependency>
+			<groupId>de.dbo.tools</groupId>
+			<artifactId>print</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+		</dependency>
+	</dependencies>
+
+</project>
