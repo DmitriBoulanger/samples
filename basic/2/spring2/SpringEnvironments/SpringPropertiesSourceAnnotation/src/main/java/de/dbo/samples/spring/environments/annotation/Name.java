@@ -1,6 +1,6 @@
 package de.dbo.samples.spring.environments.annotation;
 
-public class TestBeanName {
+public class Name {
     
     private  String name;
 

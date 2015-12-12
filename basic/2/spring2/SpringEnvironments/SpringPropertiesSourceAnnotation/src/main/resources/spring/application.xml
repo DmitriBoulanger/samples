@@ -8,12 +8,13 @@
 	<!-- scans for annotated classes in the de.dbo.samples.spring.environments.annotation package -->
 	<context:component-scan base-package="de.dbo.samples.spring.environments.annotation" />
 
-	<bean id="application" class="de.dbo.samples.spring.environments.annotation.Application"
-		autowire="byType" />
+  	<!-- Complete ready-to-run CONFIGURED application (its configuration is injected) -->
+	<bean id="application" class="de.dbo.samples.spring.environments.annotation.Application" autowire="byType"/>
 
-	<bean id="name" class="de.dbo.samples.spring.environments.annotation.TestBeanName">
+	<!-- Using the configuration beans directly -->
+	<bean id="name" class="de.dbo.samples.spring.environments.annotation.Name">
 		<property name="name">
-			<value>#{appConfig.testBean().getName()}</value>
+			<value>#{applicationConfiguration.testBean().getName()}</value>
 		</property>
 	</bean>
 

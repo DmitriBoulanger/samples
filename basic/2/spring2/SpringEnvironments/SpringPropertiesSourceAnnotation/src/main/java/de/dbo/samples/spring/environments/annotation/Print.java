@@ -6,14 +6,13 @@ import java.util.Date;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.core.env.Environment;
 
-public final class Tool {
+public final class Print {
     
     public static StringBuilder print(final AnnotationConfigApplicationContext ctx) {
   	if (null==ctx) {
-  	    System.err.println("AnnotationConfigApplicationContext is null!");
-  	    return new StringBuilder();
+  	    return new StringBuilder("AnnotationConfigApplicationContext is null!");
   	}
-  	final StringBuilder sb = new StringBuilder("\nAnnotationConfigApplicationContext:");
+  	final StringBuilder sb = new StringBuilder("AnnotationConfigApplicationContext:");
   	sb.append("\n\t - object:                     " + ctx.toString());
   	sb.append("\n\t - class:                      " + ctx.getClass().getName());
   	sb.append("\n\t - application name:           " + ctx.getApplicationName());
@@ -26,7 +25,7 @@ public final class Tool {
   	if (null==env) {
   	    return new StringBuilder("Environment is null!");
   	}
-  	final StringBuilder sb = new StringBuilder("\nEnvironment:");
+  	final StringBuilder sb = new StringBuilder("Environment:");
   	sb.append("\n\t - object:            " + env.toString());
   	sb.append("\n\t - class:             " + env.getClass().getName());
   	sb.append("\n\t - profiles default:  " + line(env.getDefaultProfiles()));

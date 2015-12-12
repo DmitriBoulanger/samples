@@ -35,7 +35,7 @@ import de.dbo.samples.spring.environments.annotation.cfgbeans.TestBean;
 
     , @PropertySource(value="classpath:${properties.location}/non-existing2.properties", ignoreResourceNotFound=true)
 })
-public class AppConfig {
+public class ApplicationConfiguration {
 
     /*
      * The Environment object is @Autowired into this configuration
@@ -46,7 +46,8 @@ public class AppConfig {
     Environment env;
 
     /*
-     * Configuration beans initialized from the environment
+     * Configuration beans initialized from the environment.
+     * Each call of the methods below returns the same bean-instance
      */
 
     @Bean

@@ -1,6 +1,6 @@
 package de.dbo.samples.spring.environments.annotation.cfgbeans;
 
-import de.dbo.samples.spring.environments.annotation.Tool;
+import de.dbo.samples.spring.environments.annotation.Print;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
@@ -18,7 +18,7 @@ public final class TestBean  {
     private final String env;
     
     public TestBean(final Environment env) {
-	this.env = Tool.print(env).toString();
+	this.env = Print.print(env).toString();
 	this.name = env.getProperty("testbean.name");
     }
    
@@ -39,7 +39,7 @@ public final class TestBean  {
     }
     
     public final StringBuilder print() {
-  	final StringBuilder sb = new StringBuilder("\nTest bean:");
+  	final StringBuilder sb = new StringBuilder("Test bean:");
      	sb.append("\n\t - test-bean name:   " + getName());
      	sb.append("\n\t - test-bean value:  " + getValue());
      	sb.append("\n\t - test-bean value2: " + getValue2());
