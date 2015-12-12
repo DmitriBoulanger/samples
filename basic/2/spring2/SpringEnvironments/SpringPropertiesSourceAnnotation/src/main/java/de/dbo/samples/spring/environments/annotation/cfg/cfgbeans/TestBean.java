@@ -1,4 +1,4 @@
-package de.dbo.samples.spring.environments.annotation.cfgbeans;
+package de.dbo.samples.spring.environments.annotation.cfg.cfgbeans;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;

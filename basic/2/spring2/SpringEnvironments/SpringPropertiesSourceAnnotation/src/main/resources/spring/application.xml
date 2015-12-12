@@ -4,12 +4,11 @@
        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
        http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd 
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
-
-	<!-- scans for annotated classes in the de.dbo.samples.spring.environments.annotation package -->
-	<context:component-scan base-package="de.dbo.samples.spring.environments.annotation" />
+	
+	<import resource="classpath:spring/configuration.xml"/>
 
   	<!-- Complete ready-to-run CONFIGURED application (its configuration is injected) -->
-	<bean id="application" class="de.dbo.samples.spring.environments.annotation.Application"
+	<bean id="application" class="de.dbo.samples.spring.environments.annotation.cfg.Application"
 		autowire="byType"  init-method="init"/>
 
 	<!-- Using the configuration beans directly to create some configured instances -->

@@ -1,4 +1,4 @@
-package de.dbo.samples.spring.environments.annotation;
+package de.dbo.samples.spring.environments.annotation.cfg;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -10,7 +10,7 @@ import org.springframework.core.env.Environment;
 
 import static de.dbo.tools.utils.print.Print.line;
 
-import de.dbo.samples.spring.environments.annotation.cfgbeans.TestBean;
+import de.dbo.samples.spring.environments.annotation.cfg.cfgbeans.TestBean;
 
 /**
  *

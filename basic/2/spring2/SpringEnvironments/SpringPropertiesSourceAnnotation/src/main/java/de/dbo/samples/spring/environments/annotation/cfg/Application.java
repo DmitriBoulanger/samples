@@ -1,4 +1,4 @@
-package de.dbo.samples.spring.environments.annotation;
+package de.dbo.samples.spring.environments.annotation.cfg;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

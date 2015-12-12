@@ -2,7 +2,8 @@ package de.dbo.samples.spring.environments.annotation;
 
 import static org.junit.Assert.*;
 
-import de.dbo.samples.spring.environments.annotation.cfgbeans.TestBean;
+import de.dbo.samples.spring.environments.annotation.cfg.ApplicationConfiguration;
+import de.dbo.samples.spring.environments.annotation.cfg.cfgbeans.TestBean;
 
 import org.junit.Test;
 import org.slf4j.Logger;
