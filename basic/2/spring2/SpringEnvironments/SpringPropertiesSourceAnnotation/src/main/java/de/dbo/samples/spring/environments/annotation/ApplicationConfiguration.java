@@ -22,11 +22,9 @@ import de.dbo.samples.spring.environments.annotation.cfgbeans.TestBean;
  */
 
 @Configuration()
-@PropertySources
-({
-    // Order below in very important: the later overwrites previous values
+@PropertySources({ // Order below in very important: the later overwrites previous values
 
-    /* define directory with properties, e.g. configuration profile */
+    /* Define name of a directory with properties (configuration profile) */
     @PropertySource(value="classpath:location.properties", ignoreResourceNotFound=false)
 
     // Using properties from the defined above profile ....
