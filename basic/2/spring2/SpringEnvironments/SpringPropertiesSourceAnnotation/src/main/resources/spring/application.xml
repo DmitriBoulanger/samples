@@ -11,7 +11,7 @@
   	<!-- Complete ready-to-run CONFIGURED application (its configuration is injected) -->
 	<bean id="application" class="de.dbo.samples.spring.environments.annotation.Application" autowire="byType"/>
 
-	<!-- Using the configuration beans directly -->
+	<!-- Using the configuration beans directly to create some instances -->
 	<bean id="name" class="de.dbo.samples.spring.environments.annotation.Name">
 		<property name="name">
 			<value>#{applicationConfiguration.testBean().getName()}</value>
