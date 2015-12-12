@@ -29,13 +29,18 @@ import de.dbo.samples.spring.environments.annotation.cfgbeans.TestBean;
     /* define directory with properties, e.g. configuration profile */
     @PropertySource(value="classpath:location.properties", ignoreResourceNotFound=false)
 
-    /* use properties from the defined above profile
-     * default values are applied only if actual not found 
+    // Using properties from the defined above profile ....
+    
+    /*
+     * Default values just below are overwritten if actual found 
      */
     , @PropertySource(value="classpath:${properties.location}/default.properties", ignoreResourceNotFound=false)
+    
+    /*
+     * Possible (not obligatory) properties
+     */
     , @PropertySource(value="classpath:${properties.location}/app.properties", ignoreResourceNotFound=true)
-
-    , @PropertySource(value="classpath:${properties.location}/non-existing2.properties", ignoreResourceNotFound=true)
+    , @PropertySource(value="classpath:${properties.location}/non-existing.properties", ignoreResourceNotFound=true)
 })
 public class ApplicationConfiguration {
 
