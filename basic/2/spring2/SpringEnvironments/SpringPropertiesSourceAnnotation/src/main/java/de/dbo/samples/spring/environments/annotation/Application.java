@@ -5,6 +5,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class Application {
     
     @Autowired
-    ApplicationConfiguration configuration;
+    private ApplicationConfiguration configuration;
 
+    public ApplicationConfiguration getConfiguration() {
+        return configuration;
+    }
+    
 }
