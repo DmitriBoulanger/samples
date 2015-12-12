@@ -1,0 +1,20 @@
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd 
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- scans for annotated classes in the de.dbo.samples.spring.environments.annotation package -->
+	<context:component-scan base-package="de.dbo.samples.spring.environments.annotation" />
+
+	<bean id="application" class="de.dbo.samples.spring.environments.annotation.Application"
+		autowire="byType" />
+
+	<bean id="name" class="de.dbo.samples.spring.environments.annotation.TestBeanName">
+		<property name="name">
+			<value>#{appConfig.testBean().getName()}</value>
+		</property>
+	</bean>
+
+</beans>
