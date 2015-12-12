@@ -7,7 +7,6 @@ import de.dbo.samples.spring.environments.annotation.cfgbeans.TestBean;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.BeansException;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.core.env.Environment;
@@ -30,7 +29,9 @@ public class TestJUnit {
 	ctx.registerShutdownHook();
 	log.info(Print.print(ctx).toString());
 
+	assertEnvironment(ctx.getEnvironment());
 	assertTestBean(ctx.getBean(TestBean.class));
+	
 	
 	ctx.close(); // destroys the above Spring-context!
     }
@@ -50,11 +51,11 @@ public class TestJUnit {
 	assertNotNull("ClassPathXmlApplicationContext is null!",ctx);
 	
 	final ApplicationConfiguration configuration = ctx.getBean(ApplicationConfiguration.class);
-	assertNotNull("ApplicationConfiguration is null!",configuration);
+	assertNotNull("Application Configuration is null!",configuration);
+	assertEnvironment(configuration.getEnvironment());
 	
 	final Environment configurationEnvironment = configuration.getEnvironment();
 	assertNotNull("Configuration environment is null!",configurationEnvironment);
-	log.info(configuration.print().toString());
 	assertTrue("Environment in configuration is not as expected", -1!=configuration.print().indexOf("StandardEnvironment"));
 
 	
@@ -87,11 +88,18 @@ public class TestJUnit {
 	final String name = testBean.getName();
 	final String value = testBean.getValue();
 	final String value2 = testBean.getValue2();
-	
-	
+
 	assertEquals("Bean name is incorrect", "XXXXX from app", name); // from application properties
 	assertEquals("Default value is incorrect", "Xa-Xa-Xa from defaults", value); // from default properties
 	assertEquals("Default annotation value2 is incorrect", "NULL from @Value", value2); // default in @Value-annotation
+    }
+    
+    /* values for all place-holder should be in the environment */
+    private static final void assertEnvironment(final Environment environment) {
+	assertNotNull("Environment is null!",environment);
+	assertNotNull("properties.location is null in the environment!",environment.getProperty("properties.location"));
+	assertNotNull("testbean.name is null in the environment!",environment.getProperty("testbean.name"));
+	assertNotNull("testbean.value is null in the environment!",environment.getProperty("testbean.value"));
     }
     
     // Helpers

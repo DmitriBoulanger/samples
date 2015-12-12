@@ -9,13 +9,21 @@
 	<context:component-scan base-package="de.dbo.samples.spring.environments.annotation" />
 
   	<!-- Complete ready-to-run CONFIGURED application (its configuration is injected) -->
-	<bean id="application" class="de.dbo.samples.spring.environments.annotation.Application" autowire="byType"/>
+	<bean id="application" class="de.dbo.samples.spring.environments.annotation.Application"
+		autowire="byType"  init-method="init"/>
 
-	<!-- Using the configuration beans directly to create some instances -->
+	<!-- Using the configuration beans directly to create some configured instances -->
 	<bean id="name" class="de.dbo.samples.spring.environments.annotation.Name">
 		<property name="name">
 			<value>#{applicationConfiguration.testBean().getName()}</value>
 		</property>
+	</bean>
+
+	<bean id="placeHolderShow" class="de.dbo.samples.spring.environments.annotation.PlaceHolderShow"
+		init-method="init">
+		<property name="placeHolder" value="${properties.location}" />
+		<property name="placeHolder2" value="${testbean.name}" />
+		<property name="placeHolder3" value="${testbean.value}" />
 	</bean>
 
 </beans>
