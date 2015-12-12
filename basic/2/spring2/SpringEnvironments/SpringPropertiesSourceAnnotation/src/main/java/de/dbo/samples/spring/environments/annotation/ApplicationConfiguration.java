@@ -46,7 +46,8 @@ public class ApplicationConfiguration {
 
     /*
      * The Environment object is @Autowired into this configuration
-     * and only then it can be used to populate the TestBean object below
+     * and only then it can be used to populate the TestBean object below.
+     * This environment contains values for all placeholders that have been found in the properties-files
      */
 
     @Autowired
@@ -91,6 +92,7 @@ public class ApplicationConfiguration {
   	sb.append("\n\t - class:             " + env.getClass().getName());
   	sb.append("\n\t - profiles default:  " + line(env.getDefaultProfiles()));
   	sb.append("\n\t - profiles active:   " + line(env.getActiveProfiles()));
+  	
   	return sb;
     }
     
