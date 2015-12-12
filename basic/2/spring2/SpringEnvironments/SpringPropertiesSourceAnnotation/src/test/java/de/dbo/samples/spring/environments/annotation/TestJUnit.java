@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.core.env.Environment;
 
 public class TestJUnit {
     private static final Logger log = LoggerFactory.getLogger(TestJUnit.class);
@@ -51,6 +52,12 @@ public class TestJUnit {
 	final ApplicationConfiguration configuration = ctx.getBean(ApplicationConfiguration.class);
 	assertNotNull("ApplicationConfiguration is null!",configuration);
 	
+	final Environment configurationEnvironment = configuration.getEnvironment();
+	assertNotNull("Configuration environment is null!",configurationEnvironment);
+	log.info(configuration.print().toString());
+	assertTrue("Environment in configuration is not as expected", -1!=configuration.print().indexOf("StandardEnvironment"));
+
+	
 	final TestBean testBean = configuration.testBean();
 	assertNotNull("Test bean in the first call is null!",testBean);
 	
@@ -75,15 +82,13 @@ public class TestJUnit {
     
     private static final void assertTestBean(final TestBean testBean) {
 	assertNotNull("Test-Bean is null!",testBean);
-	log.info(testBean.getEnv());
 	log.info(testBean.print().toString());
 	
-	final String env = testBean.getEnv();
 	final String name = testBean.getName();
 	final String value = testBean.getValue();
 	final String value2 = testBean.getValue2();
 	
-	assertTrue("", null!=env && -1!=env.indexOf("StandardEnvironment"));
+	
 	assertEquals("Bean name is incorrect", "XXXXX from app", name); // from application properties
 	assertEquals("Default value is incorrect", "Xa-Xa-Xa from defaults", value); // from default properties
 	assertEquals("Default annotation value2 is incorrect", "NULL from @Value", value2); // default in @Value-annotation
@@ -102,5 +107,5 @@ public class TestJUnit {
     }
     
     private static final String LINE = 
-	    "========================================================================================";
+	    "=======================================================================================================";
 }

@@ -20,19 +20,5 @@ public final class Print {
   	sb.append("\n\t - application startup-date:   " + new Date(ctx.getStartupDate()));
   	return sb;
     }
-    
-    public static StringBuilder print(final Environment env) {
-  	if (null==env) {
-  	    return new StringBuilder("Environment is null!");
-  	}
-  	final StringBuilder sb = new StringBuilder("Environment:");
-  	sb.append("\n\t - object:            " + env.toString());
-  	sb.append("\n\t - class:             " + env.getClass().getName());
-  	sb.append("\n\t - profiles default:  " + line(env.getDefaultProfiles()));
-  	sb.append("\n\t - profiles active:   " + line(env.getActiveProfiles()));
-  	return sb;
-    }
-    
-    
-
+ 
 }

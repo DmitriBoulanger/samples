@@ -8,6 +8,8 @@ import org.springframework.context.annotation.PropertySources;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.core.env.Environment;
 
+import static de.dbo.tools.utils.print.Print.line;
+
 import de.dbo.samples.spring.environments.annotation.cfgbeans.TestBean;
 
 /**
@@ -66,4 +68,25 @@ public class ApplicationConfiguration {
     public static PropertySourcesPlaceholderConfigurer propertyConfigInDev() {
 	return new PropertySourcesPlaceholderConfigurer();
     }
+    
+    /*
+     * Special things ...
+     */
+    
+    public final Environment getEnvironment() {
+	return env;
+    }
+    
+    public final StringBuilder print() {
+  	if (null==env) {
+  	    return new StringBuilder("Environment is null!");
+  	}
+  	final StringBuilder sb = new StringBuilder("Environment:");
+  	sb.append("\n\t - object:            " + env.toString());
+  	sb.append("\n\t - class:             " + env.getClass().getName());
+  	sb.append("\n\t - profiles default:  " + line(env.getDefaultProfiles()));
+  	sb.append("\n\t - profiles active:   " + line(env.getActiveProfiles()));
+  	return sb;
+    }
+    
 }
