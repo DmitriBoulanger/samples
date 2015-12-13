@@ -5,19 +5,23 @@
        http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd 
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 	
+	<!-- ==================================================================== -->
+	<!--          Configuration with values for all placeholders              -->
+	<!-- ==================================================================== -->
 	<import resource="classpath:spring/configuration.xml"/>
 
   	<!-- Complete ready-to-run CONFIGURED application (its configuration is injected) -->
 	<bean id="application" class="de.dbo.samples.spring.environments.annotation.cfg.Application"
 		autowire="byType"  init-method="init"/>
 
-	<!-- Using the configuration beans directly to create some configured instances -->
+	<!-- Using the configuration beans directly to create some CONFIGURED instances -->
 	<bean id="name" class="de.dbo.samples.spring.environments.annotation.Name">
 		<property name="name">
 			<value>#{applicationConfiguration.testBean().getName()}</value>
 		</property>
 	</bean>
 
+	<!-- Using values of the placeholders to create a CONFIGURED instance -->
 	<bean id="placeHolderShow" class="de.dbo.samples.spring.environments.annotation.PlaceHolderShow"
 		init-method="init">
 		<property name="placeHolder" value="${properties.location}" />

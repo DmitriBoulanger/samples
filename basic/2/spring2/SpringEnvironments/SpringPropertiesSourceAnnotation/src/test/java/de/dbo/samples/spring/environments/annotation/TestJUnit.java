@@ -2,12 +2,12 @@ package de.dbo.samples.spring.environments.annotation;
 
 import static org.junit.Assert.*;
 
-import static de.dbo.samples.spring.environments.annotation.cfg.cfgutil.SpringPrint.print;
+import static de.dbo.samples.spring.environments.annotation.cfgutil.SpringPrint.print;
 
 import de.dbo.samples.spring.environments.annotation.cfg.ApplicationConfiguration;
 import de.dbo.samples.spring.environments.annotation.cfg.cfgbeans.TestBean;
-import de.dbo.samples.spring.environments.annotation.cfg.cfgutil.SpringExceptionHandler;
-import de.dbo.samples.spring.environments.annotation.cfg.cfgutil.SpringPrint;
+import de.dbo.samples.spring.environments.annotation.cfgutil.SpringExceptionHandler;
+import de.dbo.samples.spring.environments.annotation.cfgutil.SpringPrint;
 
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -110,7 +110,7 @@ public class TestJUnit {
     
     private static final StringBuilder logTest(String name) {
 	final StringBuilder sb = new StringBuilder();
-	sb.append("Starting ");
+	sb.append("\n\nStarting ... ");
 	sb.append("\n" + LINE);
 	sb.append("\n            " + name );
 	sb.append("\n" + LINE);

@@ -10,7 +10,7 @@
 
 	<artifactId>spring2rmi</artifactId>
 	<packaging>pom</packaging>
-	<name>Samples Basic-2 Spring2 Env</name>
+	<name>Samples Basic-2 Spring2 RMI</name>
 	
 	<modules>
 		<module>SpringRMIPropertyPlaceholder</module>

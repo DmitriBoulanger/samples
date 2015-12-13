@@ -10,6 +10,11 @@
 	
 	<artifactId>SpringPropertiesSourceAnnotation</artifactId>
 	<name>Samples Basic-2 Spring2 Env Properties Source Ann</name>
+	<description>
+A template-implementation of a application-configuration.
+An application uses a configuration with environment containing values for all placeholders.
+A particular environment is configured by a special properties file 
+	</description>
 	<url>
 http://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/context/annotation/PropertySource.html
 	</url>

@@ -8,8 +8,6 @@ import org.springframework.context.annotation.PropertySources;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.core.env.Environment;
 
-import static de.dbo.tools.utils.print.Print.line;
-
 import de.dbo.samples.spring.environments.annotation.cfg.cfgbeans.TestBean;
 
 /**
@@ -22,23 +20,30 @@ import de.dbo.samples.spring.environments.annotation.cfg.cfgbeans.TestBean;
  */
 
 @Configuration()
-@PropertySources({ // Order below in very important: the later overwrites previous values
+@PropertySources({ 
+    /* @PropertySource-order below in very important: the later overwrites previous values */
 
     /* Define name of a directory with properties (configuration profile) */
-    @PropertySource(value="classpath:location.properties", ignoreResourceNotFound=false)
+    @PropertySource(value="file:cfg/location.properties"
+	    	, ignoreResourceNotFound=false)
 
-    // Using properties from the defined above profile ....
-    
+    // =====================================================================
+    // Using properties from the defined above location (profile) ....
+    // =====================================================================
+
     /*
      * Default values just below are overwritten if actual found 
      */
-    , @PropertySource(value="classpath:${properties.location}/default.properties", ignoreResourceNotFound=false)
-    
+    , @PropertySource(value="classpath:${properties.location}/default.properties"
+    		, ignoreResourceNotFound=false)
+
     /*
      * Possible (not obligatory) properties
      */
-    , @PropertySource(value="classpath:${properties.location}/app.properties", ignoreResourceNotFound=true)
-    , @PropertySource(value="classpath:${properties.location}/non-existing.properties", ignoreResourceNotFound=true)
+    , @PropertySource(value="classpath:${properties.location}/app.properties"
+    		, ignoreResourceNotFound=true)
+    , @PropertySource(value="classpath:${properties.location}/non-existing.properties"
+    		, ignoreResourceNotFound=true)
 })
 public class ApplicationConfiguration {
 
@@ -72,7 +77,7 @@ public class ApplicationConfiguration {
     public static PropertySourcesPlaceholderConfigurer propertyConfigInDev() {
 	return new PropertySourcesPlaceholderConfigurer();
     }
-    
+
     // ==================================================================================
     // Special things ...
     // ==================================================================================
@@ -80,7 +85,4 @@ public class ApplicationConfiguration {
     public final Environment getEnvironment() {
 	return env;
     }
-    
-   
-    
 }

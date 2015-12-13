@@ -1,4 +1,4 @@
-package de.dbo.samples.spring.environments.annotation.cfg.cfgutil;
+package de.dbo.samples.spring.environments.annotation.cfgutil;
 
 import java.io.FileNotFoundException;
 
