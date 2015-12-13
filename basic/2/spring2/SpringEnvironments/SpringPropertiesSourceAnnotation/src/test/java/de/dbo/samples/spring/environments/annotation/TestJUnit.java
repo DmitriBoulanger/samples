@@ -47,7 +47,7 @@ public class TestJUnit {
 	
 	final ClassPathXmlApplicationContext ctx;
 	try {
-	    ctx = new ClassPathXmlApplicationContext("classpath:spring/application.xml");
+	    ctx = new ClassPathXmlApplicationContext("classpath:spring/application-test.xml");
 	} catch (Throwable e) {
 	    SpringExceptionHandler.process(e);
 	    return;
