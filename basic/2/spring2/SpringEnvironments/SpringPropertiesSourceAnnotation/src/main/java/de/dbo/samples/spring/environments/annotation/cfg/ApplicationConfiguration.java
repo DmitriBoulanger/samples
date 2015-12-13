@@ -49,7 +49,7 @@ public class ApplicationConfiguration {
      */
 
     @Autowired
-    Environment env;
+    private Environment env;
 
     /*
      * Configuration beans initialized from the environment.
@@ -73,25 +73,14 @@ public class ApplicationConfiguration {
 	return new PropertySourcesPlaceholderConfigurer();
     }
     
-    /*
-     * Special things ...
-     */
-    
+    // ==================================================================================
+    // Special things ...
+    // ==================================================================================
+
     public final Environment getEnvironment() {
 	return env;
     }
     
-    public final StringBuilder print() {
-  	if (null==env) {
-  	    return new StringBuilder("Environment is null!");
-  	}
-  	final StringBuilder sb = new StringBuilder("Environment:");
-  	sb.append("\n\t - object:            " + env.toString());
-  	sb.append("\n\t - class:             " + env.getClass().getName());
-  	sb.append("\n\t - profiles default:  " + line(env.getDefaultProfiles()));
-  	sb.append("\n\t - profiles active:   " + line(env.getActiveProfiles()));
-  	
-  	return sb;
-    }
+   
     
 }

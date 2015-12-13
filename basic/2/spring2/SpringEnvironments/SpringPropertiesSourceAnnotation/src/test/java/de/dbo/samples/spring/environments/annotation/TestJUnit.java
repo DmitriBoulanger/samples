@@ -2,8 +2,12 @@ package de.dbo.samples.spring.environments.annotation;
 
 import static org.junit.Assert.*;
 
+import static de.dbo.samples.spring.environments.annotation.cfg.cfgutil.SpringPrint.print;
+
 import de.dbo.samples.spring.environments.annotation.cfg.ApplicationConfiguration;
 import de.dbo.samples.spring.environments.annotation.cfg.cfgbeans.TestBean;
+import de.dbo.samples.spring.environments.annotation.cfg.cfgutil.SpringExceptionHandler;
+import de.dbo.samples.spring.environments.annotation.cfg.cfgutil.SpringPrint;
 
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -28,7 +32,7 @@ public class TestJUnit {
 	}
 	assertNotNull("AnnotationConfigApplicationContext is null!",ctx);
 	ctx.registerShutdownHook();
-	log.info(Print.print(ctx).toString());
+	log.info(SpringPrint.print(ctx).toString());
 
 	assertEnvironment(ctx.getEnvironment());
 	assertTestBean(ctx.getBean(TestBean.class));
@@ -57,9 +61,8 @@ public class TestJUnit {
 	
 	final Environment configurationEnvironment = configuration.getEnvironment();
 	assertNotNull("Configuration environment is null!",configurationEnvironment);
-	assertTrue("Environment in configuration is not as expected", -1!=configuration.print().indexOf("StandardEnvironment"));
+	assertTrue("Environment in configuration is not as expected", -1!=print(configurationEnvironment).indexOf("StandardEnvironment"));
 
-	
 	final TestBean testBean = configuration.testBean();
 	assertNotNull("Test bean in the first call is null!",testBean);
 	
@@ -95,7 +98,7 @@ public class TestJUnit {
 	assertEquals("Default annotation value2 is incorrect", "NULL from @Value", value2); // default in @Value-annotation
     }
     
-    /* values for all place-holder should be in the environment */
+    /* values for all place-holders should be in the environment */
     private static final void assertEnvironment(final Environment environment) {
 	assertNotNull("Environment is null!",environment);
 	assertNotNull("properties.location is null in the environment!",environment.getProperty("properties.location"));
