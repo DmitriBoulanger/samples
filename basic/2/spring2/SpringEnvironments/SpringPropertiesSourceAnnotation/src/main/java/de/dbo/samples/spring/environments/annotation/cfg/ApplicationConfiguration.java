@@ -85,4 +85,5 @@ public class ApplicationConfiguration {
     public final Environment getEnvironment() {
 	return env;
     }
+
 }

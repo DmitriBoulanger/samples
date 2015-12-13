@@ -10,14 +10,18 @@ public final class PlaceHolderShow {
     private String placeHolder2;
     private String placeHolder3;
     
+    public PlaceHolderShow() {
+	
+    }
+    
     public void init() {
-  	final StringBuilder sb = new StringBuilder("Values in the place-holders:");
-  	sb.append("\n\t - placeHolder  = " + placeHolder);
-  	sb.append("\n\t - placeHolder2 = " + placeHolder2);
-  	sb.append("\n\t - placeHolder3 = " + placeHolder3);
-  	  
-  	log.info(sb.toString());
-      }
+	final StringBuilder sb = new StringBuilder("Values in the place-holders after init:");
+	sb.append("\n\t - placeHolder  = " + placeHolder);
+	sb.append("\n\t - placeHolder2 = " + placeHolder2);
+	sb.append("\n\t - placeHolder3 = " + placeHolder3);
+
+	log.info(sb.toString());
+    }
 
     public String getPlaceHolder() {
         return placeHolder;
@@ -27,7 +31,6 @@ public final class PlaceHolderShow {
         this.placeHolder = placeHolder;
     }
     
-  
     public String getPlaceHolder2() {
         return placeHolder2;
     }

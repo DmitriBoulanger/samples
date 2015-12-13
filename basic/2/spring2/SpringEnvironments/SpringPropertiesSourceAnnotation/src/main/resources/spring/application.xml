@@ -4,12 +4,12 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 	
-	<!-- ==================================================================== -->
-	<!--          Configuration with values for all placeholders              -->
-	<!-- ==================================================================== -->
+	<!-- ============================================================================== -->
+	<!--          Configuration with values for all placeholders                        -->
+	<!-- ============================================================================== -->
 	<import resource="classpath:spring/configuration.xml"/>
 
-  	<!-- Complete ready-to-run CONFIGURED application (its configuration is injected) -->
+  	<!-- Complete CONFIGURED application (its configuration is injected from the above) -->
 	<bean id="application" class="de.dbo.samples.spring.environments.annotation.cfg.Application"
 		autowire="byType"  init-method="init"/>
 

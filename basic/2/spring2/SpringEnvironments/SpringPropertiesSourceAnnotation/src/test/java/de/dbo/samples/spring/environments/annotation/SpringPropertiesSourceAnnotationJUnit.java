@@ -1,6 +1,8 @@
 package de.dbo.samples.spring.environments.annotation;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import static de.dbo.samples.spring.environments.annotation.cfgutil.SpringPrint.print;
 
@@ -16,9 +18,22 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.core.env.Environment;
 
-public class TestJUnit {
-    private static final Logger log = LoggerFactory.getLogger(TestJUnit.class);
+/**
+ * Detailed tests for the Spring Property Source annotated classes
+ * 
+ * @author Dmitri Boulanger, Hombach
+ *
+ * D. Knuth: Programs are meant to be read by humans and 
+ *           only incidentally for computers to execute 
+ *
+ */
+public class SpringPropertiesSourceAnnotationJUnit {
+    private static final Logger log = LoggerFactory.getLogger(SpringPropertiesSourceAnnotationJUnit.class);
 
+    /**
+     * Test for the ApplicationConfiguration class
+     * @throws Throwable if something really bad
+     */
     @Test
     public void configuration() throws Throwable {
 	logTest("Test for Configuration (AnnotationConfigApplicationContext)");
@@ -26,21 +41,24 @@ public class TestJUnit {
 	final AnnotationConfigApplicationContext ctx;
 	try {
 	    ctx = new AnnotationConfigApplicationContext(ApplicationConfiguration.class);
+	    ctx.registerShutdownHook();
 	} catch (Throwable e) {
 	    SpringExceptionHandler.process(e);
 	    return;
 	}
 	assertNotNull("AnnotationConfigApplicationContext is null!",ctx);
-	ctx.registerShutdownHook();
 	log.info(SpringPrint.print(ctx).toString());
 
 	assertEnvironment(ctx.getEnvironment());
 	assertTestBean(ctx.getBean(TestBean.class));
 	
-	
 	ctx.close(); // destroys the above Spring-context!
     }
 
+    /**
+     * Test for the Spring-context application-test.xml 
+     * @throws Throwable if something really bad
+     */
     @Test
     public void application() throws Throwable {
 	logTest("Test for complete Application from the application.xml (ClassPathXmlApplicationContext)");
@@ -48,12 +66,14 @@ public class TestJUnit {
 	final ClassPathXmlApplicationContext ctx;
 	try {
 	    ctx = new ClassPathXmlApplicationContext("classpath:spring/application-test.xml");
+	    ctx.registerShutdownHook();
 	} catch (Throwable e) {
 	    SpringExceptionHandler.process(e);
 	    return;
 	}
 	
 	assertNotNull("ClassPathXmlApplicationContext is null!",ctx);
+	log.debug("ClassPathXmlApplicationContext environments: " + print(ctx.getEnvironment()));
 	
 	final ApplicationConfiguration configuration = ctx.getBean(ApplicationConfiguration.class);
 	assertNotNull("Application Configuration is null!",configuration);
@@ -73,18 +93,19 @@ public class TestJUnit {
 	
 	assertTestBean(ctx.getBean(TestBean.class));
 	
-	final Name name =  ctx.getBean(Name.class);
-	assertNotNull("Name-wrapper is null!",name);
+	final NameWrapper name =  ctx.getBean(NameWrapper.class);
+	assertNotNull("NameWrapper-wrapper is null!",name);
 	
 	final String nameValue = name.getName();
-	log.info("Name from Name (wrapper): "  + nameValue);
-	assertEquals("Name in wrapper ["+nameValue+"] is not as expected", testBean.getName(), nameValue);
+	assertEquals("NameWrapper in wrapper ["+nameValue+"] is not as expected  ["+testBean.getName()+"]"
+		, testBean.getName(), nameValue);
 	
 	ctx.close();
     }
     
-    // Special asserts
+    // Special assertions
     
+    /* values in the tets-bean instance variables should be as expected */
     private static final void assertTestBean(final TestBean testBean) {
 	assertNotNull("Test-Bean is null!",testBean);
 	log.info(testBean.print().toString());

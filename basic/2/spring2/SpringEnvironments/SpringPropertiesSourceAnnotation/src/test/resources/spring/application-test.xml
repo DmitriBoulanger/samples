@@ -1,5 +1,4 @@
-<beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
@@ -7,10 +6,11 @@
 	<!-- ==================================================================== -->
 	<!--          Application with values for all placeholders                -->
 	<!-- ==================================================================== -->
-	<import resource="classpath:spring/application.xml"/>
+	<import resource="classpath:spring/application.xml" />
 	
 	<!-- Using the configuration beans directly to create some CONFIGURED instances -->
-	<bean id="name" class="de.dbo.samples.spring.environments.annotation.Name">
+	<bean id="name" class="de.dbo.samples.spring.environments.annotation.NameWrapper" 
+		init-method="init">
 		<property name="name">
 			<value>#{applicationConfiguration.testBean().getName()}</value>
 		</property>
