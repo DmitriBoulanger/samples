@@ -45,7 +45,7 @@ import de.dbo.samples.spring.environments.annotation.cfg.cfgbeans.TestBean;
     , @PropertySource(value="classpath:${properties.location}/non-existing.properties"
     		, ignoreResourceNotFound=true)
 })
-public class ApplicationConfiguration {
+public class Config {
 
     /*
      * The Environment object is @Autowired into this configuration

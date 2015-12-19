@@ -6,7 +6,7 @@ import static org.junit.Assert.assertTrue;
 
 import static de.dbo.samples.spring.environments.annotation.cfgutil.SpringPrint.print;
 
-import de.dbo.samples.spring.environments.annotation.cfg.ApplicationConfiguration;
+import de.dbo.samples.spring.environments.annotation.cfg.Config;
 import de.dbo.samples.spring.environments.annotation.cfg.cfgbeans.TestBean;
 import de.dbo.samples.spring.environments.annotation.cfgutil.SpringExceptionHandler;
 import de.dbo.samples.spring.environments.annotation.cfgutil.SpringPrint;
@@ -31,7 +31,7 @@ public class SpringPropertiesSourceAnnotationJUnit {
     private static final Logger log = LoggerFactory.getLogger(SpringPropertiesSourceAnnotationJUnit.class);
 
     /**
-     * Test for the ApplicationConfiguration class
+     * Test for the Config class
      * @throws Throwable if something really bad
      */
     @Test
@@ -40,7 +40,7 @@ public class SpringPropertiesSourceAnnotationJUnit {
 	
 	final AnnotationConfigApplicationContext ctx;
 	try {
-	    ctx = new AnnotationConfigApplicationContext(ApplicationConfiguration.class);
+	    ctx = new AnnotationConfigApplicationContext(Config.class);
 	    ctx.registerShutdownHook();
 	} catch (Throwable e) {
 	    SpringExceptionHandler.process(e);
@@ -75,7 +75,7 @@ public class SpringPropertiesSourceAnnotationJUnit {
 	assertNotNull("ClassPathXmlApplicationContext is null!",ctx);
 	log.debug("ClassPathXmlApplicationContext environments: " + print(ctx.getEnvironment()));
 	
-	final ApplicationConfiguration configuration = ctx.getBean(ApplicationConfiguration.class);
+	final Config configuration = ctx.getBean(Config.class);
 	assertNotNull("Application Configuration is null!",configuration);
 	assertEnvironment(configuration.getEnvironment());
 	

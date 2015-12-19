@@ -6,13 +6,13 @@
 	<!-- ==================================================================== -->
 	<!--          Application with values for all placeholders                -->
 	<!-- ==================================================================== -->
-	<import resource="classpath:spring/application.xml" />
+	<context:component-scan base-package="de.dbo.samples.spring.environments.annotation.cfg" />
 	
 	<!-- Using the configuration beans directly to create some CONFIGURED instances -->
 	<bean id="name" class="de.dbo.samples.spring.environments.annotation.NameWrapper" 
 		init-method="init">
 		<property name="name">
-			<value>#{applicationConfiguration.testBean().getName()}</value>
+			<value>#{testBean.name}</value>
 		</property>
 	</bean>
 
