@@ -4,7 +4,7 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 	
 	<!-- ==================================================================== -->
-	<!--          Application with values for all placeholders                -->
+	<!--          Configuration with values for all placeholders              -->
 	<!-- ==================================================================== -->
 	<context:component-scan base-package="de.dbo.samples.spring.environments.annotation.cfg" />
 	
