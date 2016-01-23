@@ -18,7 +18,7 @@ public class Group implements Serializable {
     private static final long serialVersionUID = 6682592613968564789L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "GROUP_ID")
     private Long              groupId;
 
@@ -36,7 +36,7 @@ public class Group implements Serializable {
         this.students = students;
     }
 
-    public Long getmId() {
+    public Long getGroupId() {
         return groupId;
     }
 

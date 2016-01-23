@@ -24,19 +24,16 @@ public final class PersistenceConfigurationFactory {
     public static Map<String, String> persistence(PersistenceConfigurations config) {
         final Map<String, String> ret = new HashMap<String, String>();
         
-        ret.put("eclipselink.ddl-generation", "create-or-extend-tables");
-        ret.put("eclipselink.logging.level", "WARNING");
+        ret.put("eclipselink.ddl-generation", "drop-and-create-tables");
         
         switch (config) {
 
-            case PRODUCTION:
+            case PERSISTENT:
             	ret.putAll(connection(MY_SQL));
-                ret.put("eclipselink.target-database", "MYSQL");
                 return ret;
 
-            case TEST:
+            case IN_MEMORY:
             	ret.putAll(connection(DERBY_IN_MEMORY));
-                ret.put("eclipselink.target-database", "DERBY");
 //                ret.put("eclipselink.ddl-generation.output-mode", "both");
 //                ret.put("eclipselink.logging.file", "target/logs/eclipselink.log");
 //                ret.put("eclipselink.create-ddl-jdbc-file-name", "target/logs/createDDL.sql"); 

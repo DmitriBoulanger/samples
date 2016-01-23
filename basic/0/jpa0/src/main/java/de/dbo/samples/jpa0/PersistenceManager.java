@@ -18,16 +18,14 @@ import org.slf4j.LoggerFactory;
  * Programs are meant to be read by humans and only incidentally for computers to execute (D. Knuth)
  *
  */
-public class TransactionRunner {
-	private static final Logger log = LoggerFactory.getLogger(TransactionRunner.class);
+public class PersistenceManager {
+	private static final Logger log = LoggerFactory.getLogger(PersistenceManager.class);
 
 	/** Factory to generate instances of the entity manager */
 	private  EntityManagerFactory entityManagerFactory;
 	
 	/** Entity manager that persists and queries the database */
 	private  EntityManager entityManager = null;
-	
-	private  EntityTransaction entityTransaction = null;
 	
 	private final Map<String, String> config;
 	private final String persistenceUnit;
@@ -37,15 +35,17 @@ public class TransactionRunner {
 	 * @param config properties to extent the given persistence unit
 	 * @param persistenceUnit name of the persistence unit
 	 */
-	public TransactionRunner(final Map<String, String> config, final String persistenceUnit) {
+	public PersistenceManager(final Map<String, String> config, final String persistenceUnit) {
 		this.config = config;
 		this.persistenceUnit = persistenceUnit;
 		newEntityManagerFactory();
+		log.info("created");
 	}
 	
 	private final void newEntityManagerFactory() {
 		this.entityManagerFactory = 
 				Persistence.createEntityManagerFactory(persistenceUnit, config);
+		log.info("EntityManager Factory creted");
 	}
 	
 	/**
@@ -56,7 +56,7 @@ public class TransactionRunner {
 			entityManager.close();
 		}
 		entityManager = null;
-		entityTransaction = null;
+		log.info("EntityManager closed");
 	}
 	
 	/**
@@ -73,6 +73,7 @@ public class TransactionRunner {
 		} catch (Throwable e) {
 			log.error("Cannot finalize transaction runner: " + e.toString());
 		}
+		log.info("shutdown");
 	}
 	
 	public final EntityManager getEntityManager() {
@@ -90,25 +91,15 @@ public class TransactionRunner {
 		return entityManager;
 	}
 	
-	public final EntityTransaction getTransaction() {
-		if (null == entityManager) {
-			entityManager = entityManagerFactory.createEntityManager();
-		}
-		if (null == entityTransaction) {
-			entityTransaction =  entityManager.getTransaction();
-		}
-		return entityTransaction;
-	}
-	
 	public final void rollbackTransaction(final Throwable e) {
-		 if (entityTransaction != null && entityTransaction.isActive()) {
-			 entityTransaction.rollback();
+		 if (entityManager != null && entityManager.isOpen()) {
+			 entityManager.getTransaction().rollback();
 			 final String msg = "Transaction rolled back";
 			 if (null==e) {
 				 log.info(msg);
 			 } else {
 				 log.warn(msg + ": \n"+ e.toString());
-//					e.printStackTrace();
+				 e.printStackTrace();
 			 }
 		 } else {
 			 final String msg = "Transaction was not rolled back (NULL or not active)";

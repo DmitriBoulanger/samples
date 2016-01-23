@@ -30,13 +30,13 @@ public final class ConnectionPropertiesFactory {
             case DERBY_IN_MEMORY:
                 ret.put("javax.persistence.jdbc.driver", "org.apache.derby.jdbc.EmbeddedDriver");
                 ret.put("javax.persistence.jdbc.url", "jdbc:derby:memory:Students;create=true");
-                ret.put("javax.persistence.jdbc.user", "");
-                ret.put("javax.persistence.jdbc.password", "");
+                ret.put("javax.persistence.jdbc.user", "sa");
+                ret.put("javax.persistence.jdbc.password", "sa");
 
                 return ret;
 
             default:
-                throw new RuntimeException("SYSTEM ERROR: Unknown connection");
+                throw new RuntimeException("SYSTEM ERROR: Unknown connection [" + connection + "]");
         }
     }
 

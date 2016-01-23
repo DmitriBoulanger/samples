@@ -16,6 +16,11 @@
 		
 		<class>de.dbo.samples.jpa0.entities.Student</class>
 		<class>de.dbo.samples.jpa0.entities.Group</class>
+		
+		<properties>
+			<property name="eclipselink.logging.level" value="INFO"/>
+		</properties>
+
 	
 	</persistence-unit>
 </persistence>

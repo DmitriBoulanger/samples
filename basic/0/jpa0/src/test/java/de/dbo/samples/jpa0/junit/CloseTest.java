@@ -11,18 +11,18 @@ public class CloseTest extends TransactionTest {
 
 	@Test
 	public void test_010() {
-		TRANSACTION_RUNNER.close();
-		TRANSACTION_RUNNER.getEntityManager();
-		TRANSACTION_RUNNER.close();
+		PERSISTENCE_MANAGER.close();
+		PERSISTENCE_MANAGER.getEntityManager();
+		PERSISTENCE_MANAGER.close();
 	}
 	
 	@Test
 	public void test_011() {
 		try {
-			TRANSACTION_RUNNER.close();
-			TRANSACTION_RUNNER.getEntityManager();
-			TRANSACTION_RUNNER.shutdown();
-			TRANSACTION_RUNNER.getEntityManager();
+			PERSISTENCE_MANAGER.close();
+			PERSISTENCE_MANAGER.getEntityManager();
+			PERSISTENCE_MANAGER.shutdown();
+			PERSISTENCE_MANAGER.getEntityManager();
 		} catch (RuntimeException e) {
 			log.info(e.toString());
 			throw e;

@@ -20,7 +20,7 @@ public class Student implements Serializable {
     private static final long serialVersionUID = -6146935825517747043L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "STUDENT_ID")
     private Long              studentId;
 
