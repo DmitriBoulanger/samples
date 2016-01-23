@@ -1,17 +1,15 @@
 package de.dbo.samples.jpa0.junit.impl;
 
 import static de.dbo.samples.jpa0.config.PersistenceConfigurationFactory.persistence;
-import de.dbo.samples.jpa0.config.PersistenceConfigurations;
 import static de.dbo.tools.utils.print.Print.lines;
 
 import de.dbo.samples.jpa0.PersistenceManager;
+import de.dbo.samples.jpa0.config.PersistenceConfigurations;
 
 import java.util.Map;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
-import org.junit.Test;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

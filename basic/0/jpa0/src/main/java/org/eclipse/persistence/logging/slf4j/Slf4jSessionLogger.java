@@ -118,19 +118,14 @@ public final class Slf4jSessionLogger extends AbstractSessionLog {
 
       final Logger logger = getLogger(entry.getNameSpace());
       final LogLevel logLevel = getLogLevel(entry.getLevel());
-      
-      
-
-      StringBuilder message = new StringBuilder();
-
-      message.append(getSupplementDetailString(entry));
+    
+      final StringBuilder message = new StringBuilder();
+//      message.append(getSupplementDetailString(entry));
       message.append(formatMessage(entry));
 
       switch (logLevel) {
       case OFF:
 	  return;
-	  
-	  
       case TRACE:
          logger.trace(message.toString());
          break;
@@ -146,15 +141,13 @@ public final class Slf4jSessionLogger extends AbstractSessionLog {
       case ERROR:
          logger.error(message.toString());
          break;
-         
-
       }
    }
 
    @Override
    public boolean shouldLog(int level, String category) {
-      Logger logger = getLogger(category);
-      LogLevel logLevel = getLogLevel(level);
+      final Logger logger = getLogger(category);
+      final LogLevel logLevel = getLogLevel(level);
       
       switch (logLevel) {
       case TRACE:
@@ -168,7 +161,7 @@ public final class Slf4jSessionLogger extends AbstractSessionLog {
       case ERROR:
          return logger.isErrorEnabled();
       default:
-         return true;
+         return false;
       }
    }
 
