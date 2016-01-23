@@ -101,7 +101,7 @@ public class StudentTest extends TransactionTest {
 	    em.getTransaction().begin();
 	    // Persist the object in the DB
 	    em.persist(student2);
-	    
+
 	    // Commit and end the transaction
 	    em.getTransaction().commit();
 
@@ -114,7 +114,6 @@ public class StudentTest extends TransactionTest {
 		assertSame("Unexpected entiy class: " + studentFromList.getClass() + " Expected: " + Student.class,
 			studentFromList.getClass(), Student.class);
 	    }
-
 	} catch (Exception e) {
 	    if (em.getTransaction() != null && em.getTransaction().isActive()) {
 		em.getTransaction().rollback();
@@ -147,7 +146,7 @@ public class StudentTest extends TransactionTest {
 	final Student student2 = new Student();
 	student2.setGroup(group);
 	student2.setFirstname("James");
-//	student2.setLastname("Sky Fall");
+	//	student2.setLastname("Sky Fall");
 	student2.setBirthdate(new Date());
 	log.info("Bad Student: " + student2);
 
@@ -161,7 +160,7 @@ public class StudentTest extends TransactionTest {
 	    em.persist(student2);
 	    em.getTransaction().commit();
 	} catch (Exception e) {
-	     PERSISTENCE_MANAGER.rollbackTransaction(e);
+	    PERSISTENCE_MANAGER.rollbackTransaction(e);
 	} finally {
 	    PERSISTENCE_MANAGER.close();
 	}
@@ -173,7 +172,7 @@ public class StudentTest extends TransactionTest {
 	    List<String> results = (List<String>) query.getResultList();
 	    log.info("cnt=" + results.size());
 	} catch (Exception e) {
-	     PERSISTENCE_MANAGER.rollbackTransaction(e);
+	    PERSISTENCE_MANAGER.rollbackTransaction(e);
 	} finally {
 	    PERSISTENCE_MANAGER.close();
 	}

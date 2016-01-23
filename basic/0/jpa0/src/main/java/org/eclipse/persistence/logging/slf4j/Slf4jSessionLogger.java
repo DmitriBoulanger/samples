@@ -105,27 +105,26 @@ public final class Slf4jSessionLogger extends AbstractSessionLog {
 
    @Override
    public void log(SessionLogEntry entry) {
-       switch (entry.getLevel()) {
-    	case OFF:
-	  return;
-	  
-	  default:
-       }
-       
-      if (!shouldLog(entry.getLevel(), entry.getNameSpace())) {
+       final int entryLevel  = entry.getLevel();
+       final LogLevel logLevel = getLogLevel(entryLevel);
+       if (logLevel==LogLevel.OFF) {
+	   return;
+        }
+      
+      final String namespace = entry.getNameSpace();
+      final Logger logger = getLogger(namespace);
+      if (!shouldLog(entryLevel, namespace)) {
          return;
       }
-
-      final Logger logger = getLogger(entry.getNameSpace());
-      final LogLevel logLevel = getLogLevel(entry.getLevel());
-    
+      
       final StringBuilder message = new StringBuilder();
-//      message.append(getSupplementDetailString(entry));
+      final boolean details = logLevel==LogLevel.TRACE || logLevel==LogLevel.DEBUG;
+      if (details) {
+	  message.append(getSupplementDetailString(entry));
+      }
       message.append(formatMessage(entry));
 
       switch (logLevel) {
-      case OFF:
-	  return;
       case TRACE:
          logger.trace(message.toString());
          break;
@@ -141,6 +140,8 @@ public final class Slf4jSessionLogger extends AbstractSessionLog {
       case ERROR:
          logger.error(message.toString());
          break;
+         
+      default:
       }
    }
 
@@ -160,6 +161,7 @@ public final class Slf4jSessionLogger extends AbstractSessionLog {
          return logger.isWarnEnabled();
       case ERROR:
          return logger.isErrorEnabled();
+         
       default:
          return false;
       }
