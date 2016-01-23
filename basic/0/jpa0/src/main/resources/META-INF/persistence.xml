@@ -18,7 +18,15 @@
 		<class>de.dbo.samples.jpa0.entities.Group</class>
 		
 		<properties>
-			<property name="eclipselink.logging.level" value="INFO"/>
+		
+			<property name="eclipselink.logging.logger" value="org.eclipse.persistence.logging.slf4j.Slf4jSessionLogger" />
+            <property name="eclipselink.logging.level" value="FINEST" />
+            <property name="eclipselink.logging.sql" value="FINEST"/>
+            <property name="eclipselink.logging.level.sql" value="FINEST"/>
+            <property name="eclipselink.logging.parameters" value="true"/>
+		
+		
+
 		</properties>
 
 	

@@ -35,7 +35,7 @@ public abstract class TransactionTest {
 	public static final void initPersistenceConfiguration() throws Exception {
 		final Map<String, String> config = persistence(PersistenceConfigurations.PERSISTENT);
 		PERSISTENCE_MANAGER = new PersistenceManager(config, "JEE6-Persistence");
-		log.info("Configuration properties:" + lines(config));
+		log.debug("Configuration properties:" + lines(config));
 	}
 	
 	/**
