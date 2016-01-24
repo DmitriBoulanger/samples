@@ -10,7 +10,7 @@ abstract class TransactionTestAbstraction {
     protected static final void logTestTitle(final String name, final Logger log) {
 	final StringBuilder sb = new StringBuilder();
 	sb.append(LINE);
-	sb.append("\n\t\t" + name);
+	sb.append("\n\t\t" + name + " ...");
 	sb.append(LINE);
 	log.info(sb.toString());
     }

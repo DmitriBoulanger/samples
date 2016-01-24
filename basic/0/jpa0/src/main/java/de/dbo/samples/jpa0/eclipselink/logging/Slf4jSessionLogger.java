@@ -83,7 +83,7 @@ import org.eclipse.persistence.logging.SessionLogEntry;
 public final class Slf4jSessionLogger extends AbstractSessionLog {
     private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(Slf4jSessionLogger.class);
 
-    public static final String DEFAULT_CATEGORY  = "eclipseLink";
+    public static final String DEFAULT_CATEGORY  = "default";
     public static final String ECLIPSELINK_NAMESPACE  = "org.eclipse.persistence.logging";
     public static final String DEFAULT_ECLIPSELINK_NAMESPACE  = ECLIPSELINK_NAMESPACE + "."  + DEFAULT_CATEGORY;
 

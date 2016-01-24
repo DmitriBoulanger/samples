@@ -9,6 +9,7 @@ import de.dbo.samples.jpa0.config.PersistenceConfigurations;
 import java.util.Map;
 
 import org.junit.AfterClass;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -45,5 +46,11 @@ public abstract class TransactionTest extends TransactionTestAbstraction {
 	    PERSISTENCE_MANAGER.shutdown();
 	}
 	logTestEnd(log);
+    }
+    
+    @Before
+    public void shutdownPersistence() {
+	 logTestTitle("Test Clean-up (before test)", log);
+	 PERSISTENCE_MANAGER.shutdown();
     }
 }

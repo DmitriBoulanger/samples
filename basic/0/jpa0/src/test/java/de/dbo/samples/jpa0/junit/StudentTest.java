@@ -1,7 +1,6 @@
 package de.dbo.samples.jpa0.junit;
 
-import static org.junit.Assert.assertSame;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 import de.dbo.samples.jpa0.entities.Group;
 import de.dbo.samples.jpa0.entities.Student;
@@ -39,6 +38,9 @@ public class StudentTest extends TransactionTest {
 
     private static XStream xstream = new XStream();
 
+    /**
+     * Serialization and deserialization tests
+     */
     @Test
     public void test_010() {
 	logTestTitle("Student Test 010",log);
@@ -107,34 +109,32 @@ public class StudentTest extends TransactionTest {
 	    em.getTransaction().commit();
 
 	    final Query q = em.createQuery("select t from Student t");
-	    final List<?> studentList = q.getResultList();
+	    @SuppressWarnings("unchecked")
+	    final List<Student> studentList = (List<Student>) q.getResultList();
 	    assertTrue("Student-list is null",  null!=studentList);
 	    assertTrue("Student-list is empty", !studentList.isEmpty());
-	    for (final Object studentFromList : studentList) {
+	    assertTrue("Student-list should contain 2 students butt found " + studentList.size(), 2==studentList.size());
+	    for (final Student studentFromList : studentList) {
 		log.info("LIST   -- " + studentFromList);
 		assertSame("Unexpected entiy class: " + studentFromList.getClass() + " Expected: " + Student.class,
 			studentFromList.getClass(), Student.class);
 	    }
-	} catch (Exception e) {
-	    if (em.getTransaction() != null && em.getTransaction().isActive()) {
-		em.getTransaction().rollback();
-	    }
-	    throw new RuntimeException(e);
+	    assertTrue("ID of the student in the database is not as expected"
+		    ,studentList.get(0).getSudentId().longValue()==student.getSudentId().longValue());
+	    assertTrue("ID of the student 2 in the database is not as expected",
+		    studentList.get(1).getSudentId().longValue()==student2.getSudentId().longValue());
 	} finally {
 	    // Close the manager
 	    PERSISTENCE_MANAGER.close();
-
 	}
     }
 
     /**
-     * Bad entities: student without last-name Data: group and two students
-     * 
-     * @throws Exception
+     * Bad entities: a student without last-name
      */
     @Test
-    public void test_020() throws Exception {
-	logTestTitle("Student Test 020", log);
+    public void test_020() {
+	logTestTitle("Student Test 020 (bad transaction)", log);
 	final Group group = new Group();
 	group.setGroupName("Bad Guys " + UUID.randomUUID().toString());
 
@@ -152,58 +152,117 @@ public class StudentTest extends TransactionTest {
 	student2.setBirthdate(new Date());
 	log.info("Bad Student: " + student2);
 
-	// Start bad-transaction (student2 is bad-defined)
 	try {
-	    final EntityManager em = PERSISTENCE_MANAGER.getEntityManager();
-	    em.getTransaction().begin();
-	    log.info("Transaction is active: " + em.getTransaction().isActive());
-	    em.persist(group);
-	    em.persist(student);
-	    em.persist(student2);
-	    em.getTransaction().commit();
-	} catch (Exception e) {
-	    PERSISTENCE_MANAGER.rollbackTransaction(e);
-	} finally {
-	    PERSISTENCE_MANAGER.close();
+	    // Start bad-transaction (student2 is bad-defined)
+	    try {
+	        final EntityManager em = PERSISTENCE_MANAGER.getEntityManager();
+	        em.getTransaction().begin();
+	        log.info("Transaction is active: " + em.getTransaction().isActive());
+	        em.persist(group);
+	        em.persist(student);
+	        em.persist(student2);
+	        em.getTransaction().commit();
+	    } finally {
+	        PERSISTENCE_MANAGER.shutdown();
+	    }
+	    fail("No exception in bad transaction!");
+	} catch (javax.persistence.RollbackException e) {
+	    log.warn("Bad transaction: " + cause(e).getMessage());
 	}
 
 	try {
 	    final EntityManager em = PERSISTENCE_MANAGER.getEntityManager();
-	    Query query = em.createQuery("SELECT c.firstname FROM Student AS c");
-	    @SuppressWarnings("unchecked")
-	    List<String> results = (List<String>) query.getResultList();
-	    log.info("cnt=" + results.size());
-	} catch (Exception e) {
-	    PERSISTENCE_MANAGER.rollbackTransaction(e);
+	    final int resultCnt = findSudents(em);
+	    assertTrue("Should be no students in the database but found " + resultCnt, resultCnt==0);
 	} finally {
 	    PERSISTENCE_MANAGER.close();
 	}
-
+    }
+    
+    private static final Throwable cause(final Throwable e) {
+	if (null==e.getCause()) {
+	    return e;
+	} else {
+	    return cause(e.getCause());
+	}
+	
     }
 
     /**
-     * Bad entities: student without group
-     * 
-     * @throws Exception
+     * Bad entities: a student without group
      */
     @Test
-    public void test_021() throws Exception {
-	logTestTitle("Student Test 021",log);
+    public void test_021()  {
+	logTestTitle("Student Test 021 (bad transaction 2)",log);
 	Student student = null;
 	EntityManager em = PERSISTENCE_MANAGER.getEntityManager();
 	try {
-	    student = new Student();
-	    student.setFirstname("James");
-	    student.setLastname("Bond");
-	    student.setBirthdate(new Date());
-	    log.info("Bad Student 2: " + student);
-	    em.getTransaction().begin();
-	    em.persist(student);
-	    em.getTransaction().commit();
-	} catch (Exception e) {
-	    PERSISTENCE_MANAGER.rollbackTransaction(e);
+	    try {
+		student = new Student();
+		student.setFirstname("James");
+		student.setLastname("Bond");
+		student.setBirthdate(new Date());
+		log.info("Bad Student 2: " + student);
+		em.getTransaction().begin();
+		em.persist(student);
+		em.getTransaction().commit();
+	    } finally {
+		PERSISTENCE_MANAGER.close();
+	    }
+	    fail("No exception in bad transaction!");
+	} catch (javax.persistence.RollbackException e) {
+	    log.warn("Bad transaction: " + cause(e).getMessage());
+	}
+
+	try {
+	    final int resultCnt = findSudents(em);
+	    assertTrue("Should be no students in the database but found " + resultCnt, resultCnt==0);
 	} finally {
 	    PERSISTENCE_MANAGER.close();
 	}
+    }
+    
+    @Test
+    public void test_022()  {
+	logTestTitle("Student Test 022 (bad transaction 3)",log);
+	Student student = null;
+	Group group = new Group();
+	group.setGroupId(new Long(222222222));
+	group.setGroupName("Non existing group");
+	EntityManager em = PERSISTENCE_MANAGER.getEntityManager();
+	try {
+	    try {
+		student = new Student();
+		student.setFirstname("James");
+		student.setLastname("Bond");
+		student.setBirthdate(new Date());
+		student.setGroup(group);
+		log.info("Bad Student 2: " + student);
+		em.getTransaction().begin();
+		em.persist(student);
+		em.getTransaction().commit();
+	    } finally {
+		PERSISTENCE_MANAGER.close();
+	    }
+	    fail("No exception in bad transaction!");
+	} catch (javax.persistence.RollbackException e) {
+	    log.warn("Bad transaction: " + cause(e).getMessage());
+	}
+
+	try {
+	    final int resultCnt = findSudents(em);
+	    assertTrue("Should be no students in the database but found " + resultCnt, resultCnt==0);
+	} finally {
+	    PERSISTENCE_MANAGER.close();
+	}
+    }
+    
+    private static final int findSudents(final EntityManager em) {
+	    final Query query = em.createQuery("SELECT c.firstname FROM Student AS c");
+	    @SuppressWarnings("unchecked")
+	    final List<String> results = (List<String>) query.getResultList();
+	    final int resultCnt = results.size();
+	    log.info("Student-names in the database: cnt = " + resultCnt);
+	    return resultCnt;
     }
 }

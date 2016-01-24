@@ -18,9 +18,12 @@ enum Slf4jLoggingLevel {
 	MAP_LEVELS.put(SessionLog.ALL, TRACE);
 	MAP_LEVELS.put(SessionLog.FINEST, TRACE);
 	MAP_LEVELS.put(SessionLog.FINER, TRACE);
+	
 	MAP_LEVELS.put(SessionLog.FINE, DEBUG);
+	
 	MAP_LEVELS.put(SessionLog.CONFIG, INFO);
 	MAP_LEVELS.put(SessionLog.INFO, INFO);
+	
 	MAP_LEVELS.put(SessionLog.WARNING, WARN);
 	MAP_LEVELS.put(SessionLog.SEVERE, ERROR);
     }
