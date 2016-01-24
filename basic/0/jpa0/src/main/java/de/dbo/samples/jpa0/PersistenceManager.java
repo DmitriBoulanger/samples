@@ -92,20 +92,16 @@ public class PersistenceManager {
 	return entityManager;
     }
 
-    public final void rollbackTransaction(final Throwable e) {
-	log.warn(" rolling back transaction", e);
-//	if (entityManager != null && entityManager.isOpen()) {
+    public final void rollbackTransaction() {
+	log.warn("roll back transaction ...");
+	if (entityManager != null && entityManager.isOpen()) {
 	    entityManager.getTransaction().rollback();
-//	    final String msg = "Transaction rolled back";
-//	    if (null==e) {
-//		log.warn(msg);
-//	    } else {
-//		log.warn(msg + ":", e);
-//	    }
-//	} else {
-//	    final String msg = "Transaction was not rolled back (NULL or not active)";
-//	    log.error(msg+ ":",e);
-//	}
-	    shutdown();
+	    final String msg = "Transaction rolled back";
+		log.warn(msg);
+	} else {
+	    final String msg = "Transaction was not rolled back (NULL or not active)";
+	    log.error(msg);
+	}
+
     }
 }

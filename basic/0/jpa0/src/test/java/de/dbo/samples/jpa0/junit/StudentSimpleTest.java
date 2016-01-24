@@ -78,7 +78,8 @@ public class StudentSimpleTest extends TransactionTest {
 
 	} catch (Exception e) {
 	    log.error("Transcation failure: ",e);
-	    PERSISTENCE_MANAGER.rollbackTransaction(e);
-	} 
+	}  finally {
+	    PERSISTENCE_MANAGER.shutdown();
+	}
     }  
 }

@@ -63,9 +63,6 @@ public class StudentTest extends TransactionTest {
 	    em.persist(student);
 	    // Commit and end the transaction
 	    em.getTransaction().commit();
-	} catch (Exception e) {
-	    e.printStackTrace();
-	    PERSISTENCE_MANAGER.rollbackTransaction(e);
 	} finally {
 	    // Close the manager
 	    PERSISTENCE_MANAGER.close();
@@ -178,15 +175,6 @@ public class StudentTest extends TransactionTest {
 	    PERSISTENCE_MANAGER.close();
 	}
     }
-    
-    private static final Throwable cause(final Throwable e) {
-	if (null==e.getCause()) {
-	    return e;
-	} else {
-	    return cause(e.getCause());
-	}
-	
-    }
 
     /**
      * Bad entities: a student without group
@@ -257,10 +245,21 @@ public class StudentTest extends TransactionTest {
 	}
     }
     
+    // HELPERS
+    
+    private static final Throwable cause(final Throwable e) {
+	if (null==e.getCause()) {
+	    return e;
+	} else {
+	    return cause(e.getCause());
+	}
+	
+    }
+    
     private static final int findSudents(final EntityManager em) {
-	    final Query query = em.createQuery("SELECT c.firstname FROM Student AS c");
+	    final Query query = em.createQuery("select t from Student t");
 	    @SuppressWarnings("unchecked")
-	    final List<String> results = (List<String>) query.getResultList();
+	    final List<Student> results = (List<Student>) query.getResultList();
 	    final int resultCnt = results.size();
 	    log.info("Student-names in the database: cnt = " + resultCnt);
 	    return resultCnt;
