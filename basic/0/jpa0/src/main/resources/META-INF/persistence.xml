@@ -6,8 +6,7 @@
 	<!--
 		This persistence unit is only used to declare persistence provider
 		and to indicate available class-names of the database entities
-		At the run-time it is extended using application-specific properties,
-		e.g. PRODUCTION or TEST properties can be used
+		At the run-time it is extended using application-specific properties
 	-->
 	
 	<persistence-unit name="JEE6-Persistence"
@@ -18,14 +17,20 @@
 		<class>de.dbo.samples.jpa0.entities.Group</class>
 		
 		<properties>
-		
-			<!-- <property name="eclipselink.logging.logger" value="org.eclipse.persistence.logging.slf4j.Slf4jSessionLogger" /> -->
-            <property name="eclipselink.logging.level" value="OFF" />
-            <property name="eclipselink.logging.sql" value="OFF"/>
-            <property name="eclipselink.logging.level.sql" value="OFF"/>
-            <property name="eclipselink.logging.parameters" value="OFF"/>
-		
-		
+
+ 			<!-- Logging configuration -->		
+			<property name="eclipselink.logging.logger" value="de.dbo.samples.jpa0.eclipselink.logging.Slf4jSessionLogger" />  
+	     		     	
+			<property name="eclipselink.logging.level" value="FINEST" />
+            <property name="eclipselink.logging.sql" value="FINEST"/>
+            <property name="eclipselink.logging.level.sql" value="FINEST"/>
+            <property name="eclipselink.logging.parameters" value="true"/>
+            
+            <property name="eclipselink.logging.timestamp" value="true"/>
+			<property name="eclipselink.logging.session" value="true"/>
+			<property name="eclipselink.logging.thread" value="false"/>
+			<property name="eclipselink.logging.exceptions" value="false"/> 
+ 
 		</properties>
 
 	

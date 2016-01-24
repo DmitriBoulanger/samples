@@ -31,15 +31,17 @@ public class StudentSimpleTest extends TransactionTest {
 
     @Test
     public void test() {
+	logTestTitle("StudentSimpleTest", log);
 	Group group = null;
 	Student student = null;
 	EntityManager em = PERSISTENCE_MANAGER.getEntityManager();
 	assertTrue("EntityManager is not open", em.isOpen());
+	log.info("EntityManager opened");
 	try {
 	    // Start the transaction
 	    em.getTransaction().begin();
 	    assertTrue("Transaction is not active", em.getTransaction().isActive());
-	    log.info("Transaction is active. Running ...");
+	    log.info("Transaction is active");
 
 	    group = new Group();
 	    group.setGroupName("Clever Guys 2");

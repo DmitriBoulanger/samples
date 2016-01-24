@@ -21,28 +21,29 @@ import org.slf4j.LoggerFactory;
  *           only incidentally for computers to execute 
  *
  */
-public abstract class TransactionTest {
-	protected static final Logger log = LoggerFactory.getLogger(TransactionTest.class);
+public abstract class TransactionTest extends TransactionTestAbstraction {
+    protected static final Logger log = LoggerFactory.getLogger(TransactionTest.class);
 
-	/** 
-	 * Wrapper of the entity manager that persists and queries the database 
-	 */
-	protected static PersistenceManager PERSISTENCE_MANAGER;
+    /* Wrapper of the entity manager that persists and queries the database */
+    protected static PersistenceManager PERSISTENCE_MANAGER;
 
-	@BeforeClass
-	public static final void initPersistenceConfiguration() throws Exception {
-		final Map<String, String> config = persistence(PersistenceConfigurations.PERSISTENT);
-		PERSISTENCE_MANAGER = new PersistenceManager(config, "JEE6-Persistence");
-		log.debug("Configuration properties:" + lines(config));
+    @BeforeClass
+    public static final void initPersistenceConfiguration() throws Exception {
+	logTestTitle("Test Initialization (before class)", log);
+	final Map<String, String> config = persistence(PersistenceConfigurations.PERSISTENT);
+	PERSISTENCE_MANAGER = new PersistenceManager(config, "JEE6-Persistence");
+	log.debug("Configuration properties:" + lines(config));
+    }
+
+    /**
+     * cleans up the test-session
+     */
+    @AfterClass
+    public static final void closePersistence() {
+	logTestTitle("Test Clean-up (after class)", log);
+	if (null != PERSISTENCE_MANAGER) {
+	    PERSISTENCE_MANAGER.shutdown();
 	}
-	
-	/**
-	 * cleans up the test-session
-	 */
-	@AfterClass
-	public static final void closePersistence() {
-		if (null != PERSISTENCE_MANAGER) {
-			PERSISTENCE_MANAGER.shutdown();
-		}
-	}
+	logTestEnd(log);
+    }
 }

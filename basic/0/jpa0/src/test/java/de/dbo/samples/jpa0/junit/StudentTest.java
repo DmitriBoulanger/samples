@@ -41,6 +41,7 @@ public class StudentTest extends TransactionTest {
 
     @Test
     public void test_010() {
+	logTestTitle("Student Test 010",log);
 	Group group = null;
 	Student student = null;
 	EntityManager em = PERSISTENCE_MANAGER.getEntityManager();
@@ -133,6 +134,7 @@ public class StudentTest extends TransactionTest {
      */
     @Test
     public void test_020() throws Exception {
+	logTestTitle("Student Test 020", log);
 	final Group group = new Group();
 	group.setGroupName("Bad Guys " + UUID.randomUUID().toString());
 
@@ -186,6 +188,7 @@ public class StudentTest extends TransactionTest {
      */
     @Test
     public void test_021() throws Exception {
+	logTestTitle("Student Test 021",log);
 	Student student = null;
 	EntityManager em = PERSISTENCE_MANAGER.getEntityManager();
 	try {

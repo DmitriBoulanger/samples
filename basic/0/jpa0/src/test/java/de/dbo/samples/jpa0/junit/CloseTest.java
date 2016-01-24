@@ -11,6 +11,7 @@ public class CloseTest extends TransactionTest {
 
     @Test
     public void test_010() {
+	logTestTitle("Close Test 010", log);
 	PERSISTENCE_MANAGER.close();
 	PERSISTENCE_MANAGER.getEntityManager();
 	PERSISTENCE_MANAGER.close();
@@ -18,6 +19,7 @@ public class CloseTest extends TransactionTest {
 
     @Test
     public void test_011() {
+	logTestTitle("Close Test 011", log);
 	try {
 	    PERSISTENCE_MANAGER.close();
 	    PERSISTENCE_MANAGER.getEntityManager();

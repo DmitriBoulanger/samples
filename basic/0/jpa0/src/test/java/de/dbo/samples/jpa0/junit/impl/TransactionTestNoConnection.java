@@ -22,7 +22,7 @@ import org.slf4j.LoggerFactory;
  *           only incidentally for computers to execute 
  *
  */
-public class TransactionTestNoConnection {
+public class TransactionTestNoConnection extends TransactionTestAbstraction {
 	protected static final Logger log = LoggerFactory.getLogger(TransactionTestNoConnection.class);
 
 	/** Wrapper of the entity manager that persists and queries the database */
@@ -48,5 +48,6 @@ public class TransactionTestNoConnection {
 		if (null != PERSISTENCE_MANAGER) {
 			PERSISTENCE_MANAGER.shutdown();
 		}
+		logTestEnd(log);
 	}
 }

@@ -4,7 +4,6 @@ import java.util.Map;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
 import org.slf4j.Logger;
@@ -36,26 +35,27 @@ public class PersistenceManager {
      * @param persistenceUnit name of the persistence unit
      */
     public PersistenceManager(final Map<String, String> config, final String persistenceUnit) {
+	log.info("new instance for persistence [" + persistenceUnit + "] ...");
 	this.config = config;
 	this.persistenceUnit = persistenceUnit;
-	newEntityManagerFactory();
-	log.trace("created");
+	createEntityManagerFactory();
     }
 
-    private final void newEntityManagerFactory() {
+    private final void createEntityManagerFactory() {
+	log.info("create EntityManager Factory ...");
 	this.entityManagerFactory = Persistence.createEntityManagerFactory(persistenceUnit, config);
-	log.info("EntityManager Factory created");
     }
 
     /**
      * Disable all persistence-related objects
      */
     public final void close() {
+	log.info("close ...");
 	if ( null!=entityManager && entityManager.isOpen()) {
+	    log.info("close EntityManager ...");
 	    entityManager.close();
 	}
 	entityManager = null;
-	log.info("EntityManager closed");
     }
 
     /**
@@ -63,28 +63,30 @@ public class PersistenceManager {
      * After this method is called, this instance is not usable anymore
      */
     public final void shutdown() {
+	log.info("shutdown ...");
 	close();
 	if ( null!=entityManagerFactory && entityManagerFactory.isOpen()) {
+	    log.info("close EntityManager Factory ...");
 	    entityManagerFactory.close();
 	}
 	try {
 	    this.finalize();
 	} catch (Throwable e) {
-	    log.error("Cannot finalize transaction runner: " + e.toString());
+	    log.error("Cannot finalize: ", e);
 	}
-	log.info("shutdown");
     }
 
     public final EntityManager getEntityManager() {
+	log.info("get EntityManager ...");
 	if (null == entityManager) {
 	    if (entityManagerFactory.isOpen()) {
 		return entityManagerFactory.createEntityManager();
 	    } else {
-		newEntityManagerFactory();
+		createEntityManagerFactory();
 		if (entityManagerFactory.isOpen()) {
 		    return entityManagerFactory.createEntityManager();
 		}
-		throw new RuntimeException("EntityManager Factory is closed");
+		throw new RuntimeException("Can't get EntityManager: Factory is not opened");
 	    }
 	}
 	return entityManager;
