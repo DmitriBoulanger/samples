@@ -41,7 +41,7 @@ public abstract class TransactionTest extends TransactionTestAbstraction {
      */
     @AfterClass
     public static final void closePersistence() {
-	logTestTitle("Test Clean-up (after class)", log);
+	logTestTitle("Clean-up final (after class)", log);
 	if (null != PERSISTENCE_MANAGER) {
 	    PERSISTENCE_MANAGER.shutdown();
 	}
@@ -50,7 +50,7 @@ public abstract class TransactionTest extends TransactionTestAbstraction {
     
     @Before
     public void shutdownPersistence() {
-	 logTestTitle("Test Clean-up (before test)", log);
+	 logTestTitle("Clean-up before test ...", log);
 	 PERSISTENCE_MANAGER.shutdown();
     }
 }
