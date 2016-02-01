@@ -19,19 +19,19 @@ public class HsqlServerConfiguration {
     /**
      * server inet-address to bind HSQLDB on.
      */
-    @Value("${hsqldb.address:localhost}")
+    @Value("${hsqldb.address}")
     public String address;
 
     /**
      * port to start HSQLDB on.
      */
-    @Value("${hsqldb.port:9001}")
+    @Value("${hsqldb.port}")
     public int port;
 
     /**
      * name of the database to use in the server
      */
-    @Value("${hsqldb.databaseName:xdb}")
+    @Value("${hsqldb.databaseName}")
     public String databaseName;
 
     /**
@@ -43,13 +43,13 @@ public class HsqlServerConfiguration {
     /**
      * username to use when authenticating.
      */
-    @Value("${hsqldb.username:sa}")
+    @Value("${hsqldb.username}")
     public String username;
 
     /**
      * password to use when authenticating.
      */
-    @Value("${hsqldb.password:sa}")
+    @Value("${hsqldb.password}")
     public String password;
 
     /**
@@ -92,7 +92,7 @@ public class HsqlServerConfiguration {
 	properties.setProperty("server.remote_open", true); /* can open databases remotely */
 	
 	
-	properties.setProperty("server.silent", false); /* false => display all queries */
+	properties.setProperty("server.silent", true); /* false => display all queries */
 	properties.setProperty("server.trace", true); /* display JDBC trace messages */
 	
 

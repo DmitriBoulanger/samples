@@ -21,7 +21,8 @@ public class HsqlServerJUnit {
 	final String url = cfg.getConnectionURI();
 	log.info(url);
 	Class.forName(cfg.getDriver());
-	Connection conn = DriverManager.getConnection(url, cfg.getUsername(), cfg.getPassword());
+	Connection conn = DriverManager.getConnection(url, 
+		cfg.getUsername(), cfg.getPassword());
 	conn.prepareStatement(cfg.getValidationQuery()).execute();
 	
 //	ctx.close();
