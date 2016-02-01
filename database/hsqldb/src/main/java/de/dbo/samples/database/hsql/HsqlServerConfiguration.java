@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Value;
  *
  * @see http://dev.cs.uni-magdeburg.de/java/hsqldb-1.7.2/hsqlAdvancedGuide.html
  * @see http://hsqldb.org/doc/src/org/hsqldb/server/Server.html
+ * @see http://www.dis.uniroma1.it/~poggi/didattica/progettoas09/esercitazioni/esercitazione4/hibernate.properties
  */
 
 public class HsqlServerConfiguration {
