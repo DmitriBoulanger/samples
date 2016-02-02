@@ -40,7 +40,7 @@ public final class HsqlServer implements SmartLifecycle {
     @Override
     public void start() {
 	if (server == null) {
-	    log.info("Starting HSQL server ...");
+	    log.info("Starting ...");
 	    server = new Server();
 	    try {
 		server.setProperties(configuration.hsqlProperties());

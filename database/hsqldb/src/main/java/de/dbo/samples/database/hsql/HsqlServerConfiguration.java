@@ -1,5 +1,9 @@
 package de.dbo.samples.database.hsql;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Properties;
+
 import org.hsqldb.persist.HsqlProperties;
 import org.springframework.beans.factory.annotation.Value;
 
@@ -38,13 +42,13 @@ public class HsqlServerConfiguration {
     /**
      * path to use for the database.
      */
-    @Value("${hsqldb.databasePath:mem:test}")
+    @Value("${hsqldb.databasePath}")
     public String databasePath;
 
     /**
      * username to use when authenticating.
      */
-    @Value("${hsqldb.username}")
+    @Value("${hsqldb.username:SA}")
     public String username;
 
     /**
@@ -62,14 +66,12 @@ public class HsqlServerConfiguration {
     /**
      * The HSQLDB validation query.
      */
-    @Value("${hsqldb.validationQuery:SELECT 1 FROM INFORMATION_SCHEMA.SYSTEM_USERS}")
+    @Value("${hsqldb.validationQuery:SELECT * FROM INFORMATION_SCHEMA.SYSTEM_USERS}")
     public String validationQuery;
-
-    /**
-     * Whether to bypass running HSQLDB.
-     */
-    @Value("${hsqldb.skip:false}")
-    public boolean skip;
+    
+    @Value("${hsqldb.options}")
+    public String options;
+    
     
     /**
      * URL to use when connecting.
@@ -78,7 +80,7 @@ public class HsqlServerConfiguration {
     
     
     public void init() {
-	
+	this.options = new String(options.replaceAll("'", ""));
     }
     
     public HsqlProperties hsqlProperties() {
@@ -88,12 +90,12 @@ public class HsqlServerConfiguration {
     public HsqlProperties hsqlProperties(final int databaseIdx) {
 	final HsqlProperties properties = new HsqlProperties();
 	
-	properties.setProperty("server.database."+databaseIdx, databasePath);
+	properties.setProperty("server.database."+databaseIdx, databasePath+";username="+username+"&password="+password);
 	properties.setProperty("server.dbname."+databaseIdx, databaseName);
 	properties.setProperty("server.remote_open", true); /* can open databases remotely */
 	
 	
-	properties.setProperty("server.silent", true); /* false => display all queries */
+	properties.setProperty("server.silent", false); /* false => display all queries */
 	properties.setProperty("server.trace", true); /* display JDBC trace messages */
 	
 
@@ -110,6 +112,33 @@ public class HsqlServerConfiguration {
         }
         sb.append("/").append(databaseName);
         return sb.toString();
+    }
+    
+    public Properties getInfo() {
+	final Properties ret = new Properties();
+	final String[] items = options.split(";");
+	for (final String item:items) {
+	    if (null!=item && 0!=item.trim().length()) {
+		final String[] keyValue = item.split("=");
+		ret.put(keyValue[0], keyValue[1]);
+	    }
+	}
+	if (!nn(username)) {
+	    return ret;
+	}
+	
+	// username and password?
+	ret.put("username", username);
+	if (nn(password)) {
+	    ret.put("password", password.trim());
+	} else {
+	    ret.put("password", "");
+	}
+	return ret;
+    }
+    
+    private static final boolean nn(final String x) {
+	return null!=x && 0!=x.trim().length();
     }
     
     
@@ -156,7 +185,7 @@ public class HsqlServerConfiguration {
     }
 
     public String getPassword() {
-        return "";
+        return password;
     }
 
     public void setPassword(String password) {
@@ -179,15 +208,12 @@ public class HsqlServerConfiguration {
         this.validationQuery = validationQuery;
     }
 
-    public boolean isSkip() {
-        return skip;
+    public String getOptions() {
+        return options;
     }
 
-    public void setSkip(boolean skip) {
-        this.skip = skip;
+    public void setOptions(String options) {
+        this.options = options;
     }
 
-    
-    
-    
 }
