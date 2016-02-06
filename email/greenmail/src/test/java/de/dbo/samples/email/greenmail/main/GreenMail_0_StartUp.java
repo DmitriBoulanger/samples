@@ -21,7 +21,7 @@ public class GreenMail_0_StartUp implements Users {
     
     public static final void main(final String[] args) throws Throwable {
 	final GreenMailSetUp setUp = new GreenMailSetUpBuilder()
-		.withDeaultTestConfiguration()
+//		.withDeaultTestConfiguration()
 		.withUser(USER1)
 		.withUser(USER2)
 		.build();

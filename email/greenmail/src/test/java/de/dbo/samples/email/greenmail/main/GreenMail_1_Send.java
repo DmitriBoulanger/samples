@@ -20,6 +20,12 @@ public class GreenMail_1_Send implements Users {
 		, USER1.email/* from */
 		, "Standalone test"
 		, "It worked"
-		,SERVER_SETUP_TO_SEND);
+		,SERVER_SETUP_TO_SEND_DEFAULT);
+	
+	GreenMailUtil.sendTextEmail(USER1.email/* to */
+		, USER2.email/* from */
+		, "Standalone test fot Thunderbird"
+		, "It worked?"
+		,SERVER_SETUP_TO_SEND_DEFAULT);
     }
 }

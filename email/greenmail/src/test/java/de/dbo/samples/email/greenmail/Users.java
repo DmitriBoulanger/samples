@@ -19,4 +19,7 @@ public interface Users {
     
     public static final ServerSetup SERVER_SETUP_TO_SEND = ServerSetupTest.SMTP;
     public static final ServerSetup SERVER_SETUP_TO_READ = ServerSetupTest.IMAP;
+    
+    public static final ServerSetup SERVER_SETUP_TO_SEND_DEFAULT = ServerSetup.SMTP;
+    public static final ServerSetup SERVER_SETUP_TO_READ_DEFAULT = ServerSetup.IMAP;
 }
