@@ -4,6 +4,7 @@ import com.icegreen.greenmail.util.GreenMail;
 import com.icegreen.greenmail.util.ServerSetup;
 
 /**
+ * Set-up of GreenMail standalone server
  * 
  * @author Dmitri Boulanger, Hombach
  *
@@ -17,6 +18,7 @@ public class GreenMailSetUp  {
     private final Hooks hooks;
     private final Iterable<User> users;
 
+    /* server instance */
     private GreenMail greenMail;
 
     public GreenMailSetUp(final GreenMailSetUpBuilder builder) {
@@ -25,6 +27,16 @@ public class GreenMailSetUp  {
 	this.users = builder.users;
     }
     
+    /**
+     * @return configured server instance
+     */
+    public GreenMail getServer() {
+   	return greenMail;
+    }
+    
+    /**
+     * @return pretty-print of the server configuration
+     */
     public StringBuilder print() {
 	final StringBuilder sb = new StringBuilder();
 	for (final ServerSetup serverSetup : configuration) {
@@ -39,22 +51,24 @@ public class GreenMailSetUp  {
 	return sb;
     }
 
+    /**
+     * start-up of the server with timeout.
+     * The current thread will be sleeping specified number of milliseconds
+     * 
+     * @param initializationTimeout
+     * @throws Throwable
+     */
     public void start(long initializationTimeout) throws Throwable {
 	hooks.beforeStart();
 	greenMail = new GreenMail(configuration);
-	greenMail.start();
 	for (final User user : users) {
 	    greenMail.setUser(user.email, user.login, user.password);
 	}
+	greenMail.start();
 	Thread.sleep(initializationTimeout);
     }
 
     public void stop() {
 	greenMail.stop();
     }
-
-    public GreenMail getServer() {
-	return greenMail;
-    }
-
 }

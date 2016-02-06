@@ -13,6 +13,7 @@ import com.icegreen.greenmail.util.GreenMailUtil;
 import com.icegreen.greenmail.util.ServerSetup;
 
 /**
+ * javax.Mail Message reader for a SMTP/IMAP (GreenMail) server
  * 
  * @author Dmitri Boulanger, Hombach
  *
@@ -28,7 +29,7 @@ public class GreenMailReader {
     private final int readOnly;
     
     /**
-     * javax.Mail reader that reads and then deletes messages
+     * javax.Mail reader that reads and then deletes all messages
      * 
      * @param user
      * @param setUp server configuration to read messages, i.e. IMAP

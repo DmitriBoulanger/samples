@@ -7,6 +7,15 @@ import de.dbo.samples.email.greenmail.Users;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * Start-up of the standalone GreenMail server
+ * 
+ * @author Dmitri Boulanger, Hombach
+ *
+ * D. Knuth: Programs are meant to be read by humans and 
+ *           only incidentally for computers to execute 
+ *
+ */
 public class GreenMail_0_StartUp implements Users {
     private static final Logger log = LoggerFactory.getLogger(GreenMail_0_StartUp.class);
     
@@ -18,7 +27,9 @@ public class GreenMail_0_StartUp implements Users {
 		.build();
 	
 	log.info("GreenMail Server starting ...\n" + setUp.print().toString());
-	setUp.start(1);
+	setUp.start(10);
+	
+	// server will be available for specified number of milliseconds ...
 	Thread.sleep(100000);
     }
 }

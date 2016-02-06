@@ -3,6 +3,15 @@ package de.dbo.samples.email.greenmail;
 import com.icegreen.greenmail.util.ServerSetup;
 import com.icegreen.greenmail.util.ServerSetupTest;
 
+/**
+ * Test users and server configurations 
+ * 
+ * @author Dmitri Boulanger, Hombach
+ *
+ * D. Knuth: Programs are meant to be read by humans and 
+ *           only incidentally for computers to execute 
+ *
+ */
 public interface Users {
     
     public static final User USER1 =  new User("test1@localhost", "test1", "pwd1");
