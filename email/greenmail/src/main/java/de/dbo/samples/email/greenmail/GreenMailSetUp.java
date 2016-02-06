@@ -3,14 +3,15 @@ package de.dbo.samples.email.greenmail;
 import com.icegreen.greenmail.util.GreenMail;
 import com.icegreen.greenmail.util.ServerSetup;
 
-public class GreenMailServerSetUp  {
-
-    static final Hooks NULL_HOOKS = new Hooks() {
-	@Override
-	public void beforeStart() {
-	    // TODO Auto-generated method stub
-	}
-    };
+/**
+ * 
+ * @author Dmitri Boulanger, Hombach
+ *
+ * D. Knuth: Programs are meant to be read by humans and 
+ *           only incidentally for computers to execute 
+ *
+ */
+public class GreenMailSetUp  {
 
     private final ServerSetup[] configuration;
     private final Hooks hooks;
@@ -18,7 +19,7 @@ public class GreenMailServerSetUp  {
 
     private GreenMail greenMail;
 
-    public GreenMailServerSetUp(final GreenMailServerBuilder builder) {
+    public GreenMailSetUp(final GreenMailSetUpBuilder builder) {
 	this.configuration = builder.configuration;
 	this.hooks = builder.hooks;
 	this.users = builder.users;
@@ -27,7 +28,10 @@ public class GreenMailServerSetUp  {
     public StringBuilder print() {
 	final StringBuilder sb = new StringBuilder();
 	for (final ServerSetup serverSetup : configuration) {
-	    sb.append("\n\t - " + serverSetup);
+	    sb.append("\n\t - " 
+		    + serverSetup.getProtocol().toUpperCase()
+		    + " " + serverSetup.getBindAddress() 
+		    + ":" + serverSetup.getPort());
 	}
 	for (User user:users) {
 	    sb.append("\n\t - " + user.print());
@@ -35,7 +39,7 @@ public class GreenMailServerSetUp  {
 	return sb;
     }
 
-    protected void start(long initializationTimeout) throws Throwable {
+    public void start(long initializationTimeout) throws Throwable {
 	hooks.beforeStart();
 	greenMail = new GreenMail(configuration);
 	greenMail.start();
@@ -45,7 +49,7 @@ public class GreenMailServerSetUp  {
 	Thread.sleep(initializationTimeout);
     }
 
-    protected void stop() {
+    public void stop() {
 	greenMail.stop();
     }
 

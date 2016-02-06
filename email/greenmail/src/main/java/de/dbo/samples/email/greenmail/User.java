@@ -17,7 +17,7 @@ public final class User {
     }
     
     public String print() {
-	return "EMail: " + email +  "  LOGIN = (" + login + "/"+ password + ")";
+	return "EMail account: " + email +  " login=(" + login + "/"+ password + ")";
     }
-
+    
 }
