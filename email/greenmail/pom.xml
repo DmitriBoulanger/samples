@@ -19,12 +19,12 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 GreenMail Server
 	</description>
 	
-	
 	<dependencies>
 		<dependency>
 			<groupId>com.icegreen</groupId>
-			<artifactId>greenmail-standalone</artifactId>
-			<version>1.4.2-SNAPSHOT</version>
-		</dependency>
+			<artifactId>greenmail</artifactId>
+			<version>1.4.1</version>
+	</dependency>
+	
 	</dependencies>
 </project>

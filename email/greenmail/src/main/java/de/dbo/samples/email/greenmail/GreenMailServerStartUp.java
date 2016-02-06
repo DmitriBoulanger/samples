@@ -1,8 +1,8 @@
 package de.dbo.samples.email.greenmail;
 
-import com.icegreen.greenmail.configuration.PropertiesBasedGreenMailConfigurationBuilder;
+//import com.icegreen.greenmail.configuration.PropertiesBasedGreenMailConfigurationBuilder;
 //import com.icegreen.greenmail.util.GreenMail;
-import com.icegreen.greenmail.util.PropertiesBasedServerSetupBuilder;
+//import com.icegreen.greenmail.util.PropertiesBasedServerSetupBuilder;
 //import com.icegreen.greenmail.util.ServerSetup;
 //import org.apache.log4j.PropertyConfigurator;
 //import org.apache.log4j.xml.DOMConfigurator;
