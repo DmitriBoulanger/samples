@@ -1,10 +1,11 @@
 package de.dbo.samples.email.greenmail;
 
+import com.icegreen.greenmail.configuration.UserBean;
 import com.icegreen.greenmail.util.GreenMail;
 import com.icegreen.greenmail.util.ServerSetup;
 
 /**
- * Set-up of GreenMail standalone server
+ * Set-up (configuration) of GreenMail standalone server
  * 
  * @author Dmitri Boulanger, Hombach
  *
@@ -14,9 +15,14 @@ import com.icegreen.greenmail.util.ServerSetup;
  */
 public class GreenMailSetUp  {
 
+    /* configuration of the server itself*/
     private final ServerSetup[] configuration;
+    
+    /* something to be done before start-up of the server */
     private final Hooks hooks;
-    private final Iterable<User> users;
+    
+    /* email accounts */
+    private final Iterable<UserBean> users;
 
     /* server instance */
     private GreenMail greenMail;
@@ -35,23 +41,6 @@ public class GreenMailSetUp  {
     }
     
     /**
-     * @return pretty-print of the server configuration
-     */
-    public StringBuilder print() {
-	final StringBuilder sb = new StringBuilder();
-	for (final ServerSetup serverSetup : configuration) {
-	    sb.append("\n\t - " 
-		    + serverSetup.getProtocol().toUpperCase()
-		    + " " + serverSetup.getBindAddress() 
-		    + ":" + serverSetup.getPort());
-	}
-	for (User user:users) {
-	    sb.append("\n\t - " + user.print());
-	}
-	return sb;
-    }
-
-    /**
      * start-up of the server with timeout.
      * The current thread will be sleeping specified number of milliseconds
      * 
@@ -61,8 +50,8 @@ public class GreenMailSetUp  {
     public void start(long initializationTimeout) throws Throwable {
 	hooks.beforeStart();
 	greenMail = new GreenMail(configuration);
-	for (final User user : users) {
-	    greenMail.setUser(user.email, user.login, user.password);
+	for (final UserBean user : users) {
+	    greenMail.setUser(user.getEmail(), user.getLogin(), user.getPassword());
 	}
 	greenMail.start();
 	Thread.sleep(initializationTimeout);
@@ -71,4 +60,13 @@ public class GreenMailSetUp  {
     public void stop() {
 	greenMail.stop();
     }
+    
+    public ServerSetup[] getConfiguration() {
+	return configuration;
+    }
+    
+    public Iterable<UserBean> getUsers() {
+   	return users;
+     }
+
 }

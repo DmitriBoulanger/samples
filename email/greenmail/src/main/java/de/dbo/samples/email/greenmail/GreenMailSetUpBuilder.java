@@ -3,6 +3,7 @@ package de.dbo.samples.email.greenmail;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.icegreen.greenmail.configuration.UserBean;
 import com.icegreen.greenmail.util.ServerSetup;
 import com.icegreen.greenmail.util.ServerSetupTest;
 
@@ -26,7 +27,7 @@ public final class GreenMailSetUpBuilder {
 
     protected ServerSetup[] configuration;
     protected Hooks hooks;
-    protected final Set<User> users;
+    protected final Set<UserBean> users;
 
     /**
      * Builder for the default configuration for a SMTP/IMAP server with imap:143 and smtp:25.
@@ -34,7 +35,7 @@ public final class GreenMailSetUpBuilder {
      */
     public GreenMailSetUpBuilder() {
 	configuration = ServerSetup.SMTP_IMAP;
-	users = new HashSet<User>();
+	users = new HashSet<UserBean>();
 	hooks = NULL_HOOKS;
     }
 
@@ -87,7 +88,7 @@ public final class GreenMailSetUpBuilder {
      * @param user
      * @return set-up builder
      */
-    public GreenMailSetUpBuilder withUser(final User user) {
+    public GreenMailSetUpBuilder withUser(final UserBean user) {
 	this.users.add(user);
 	return this;
     }
@@ -101,7 +102,7 @@ public final class GreenMailSetUpBuilder {
      * @return set-up builder
      */
     public GreenMailSetUpBuilder withUser(final String email, final String password) {
-	this.users.add(new User(email, password));
+	this.users.add(new UserBean(email, email, password));
 	return this;
     }
 
@@ -113,7 +114,7 @@ public final class GreenMailSetUpBuilder {
      * @return set-up builder
      */
     public GreenMailSetUpBuilder withUser(final String email, final String username, final String password) {
-	this.users.add(new User(email, username, password));
+	this.users.add(new UserBean(email, username, password));
 	return this;
     }
 }

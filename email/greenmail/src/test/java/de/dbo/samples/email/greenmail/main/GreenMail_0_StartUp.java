@@ -1,5 +1,7 @@
 package de.dbo.samples.email.greenmail.main;
 
+import static de.dbo.samples.email.greenmail.GreenMailPrint.print;
+
 import de.dbo.samples.email.greenmail.GreenMailSetUp;
 import de.dbo.samples.email.greenmail.GreenMailSetUpBuilder;
 import de.dbo.samples.email.greenmail.Users;
@@ -26,7 +28,7 @@ public class GreenMail_0_StartUp implements Users {
 		.withUser(USER2)
 		.build();
 	
-	log.info("GreenMail Server starting ...\n" + setUp.print().toString());
+	log.info("GreenMail Server starting ...\n" +  print(setUp));
 	setUp.start(10);
 	
 	// server will be available for specified number of milliseconds ...
