@@ -90,6 +90,7 @@ public class ModelAssertions {
 		final String zip = "53577";
 		final Query locationQuery = em.createNamedQuery("Location.uniqueByZip");
 		locationQuery.setParameter("zip", zip);
+		@SuppressWarnings("unchecked")
 		final List<Location> locations = (List<Location>) locationQuery.getResultList();
 		final Location location = locations.get(0);
 		assertNotNull("Location is null",location);

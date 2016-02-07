@@ -5,7 +5,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
 @Entity(name="Location")
-@NamedQueries({ @NamedQuery(name = "Location.uniqueByZip", query = "from Location l where l.zip = :zip") })
+@NamedQueries({ @NamedQuery(name = "Location.uniqueByZip", query = "select l from Location l where l.zip = :zip") })
 public class Location extends AbstractBaseEntity {
 	private static final long serialVersionUID = -4171882636642905034L;
 	

@@ -2,7 +2,6 @@ package org.sonatype.mavenbook.weather.yahoo;
 
 import java.io.InputStream;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.apache.commons.io.IOUtils.toByteArray;

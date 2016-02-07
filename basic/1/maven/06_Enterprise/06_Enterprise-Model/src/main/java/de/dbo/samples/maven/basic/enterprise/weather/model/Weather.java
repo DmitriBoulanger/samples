@@ -13,7 +13,7 @@ import javax.persistence.Temporal;
 import static javax.persistence.TemporalType.DATE;
 
 @Entity(name="Weather")
-@NamedQueries({ @NamedQuery(name = "Weather.byLocation", query = "from Weather w where w.location = :location") })
+@NamedQueries({ @NamedQuery(name = "Weather.byLocation", query = "select w from Weather w where w.location = :location") })
 public class Weather extends AbstractBaseEntity {
 	private static final long serialVersionUID = -6132310396078371731L;
 

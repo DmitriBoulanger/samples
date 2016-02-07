@@ -42,6 +42,7 @@ public class Command {
 	}
 	
 	public void run() throws Exception {
+		@SuppressWarnings("resource")
 		final ApplicationContext context = 
 				new ClassPathXmlApplicationContext(
 						new String[] { "classpath:applicationContext-weather.xml",
