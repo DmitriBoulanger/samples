@@ -26,6 +26,7 @@
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate</artifactId>
+			<type>pom</type>
 			<exclusions>
 				<exclusion>
 					<groupId>javax.transaction</groupId>
