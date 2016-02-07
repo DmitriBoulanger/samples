@@ -14,32 +14,32 @@ import de.dbo.samples.maven.basic.enterprise.weather.model.Location;
 import de.dbo.samples.maven.basic.enterprise.weather.model.Weather;
 
 public final class WeatherDAO extends HibernateDaoSupport {
-	private static final Logger log = LoggerFactory.getLogger(WeatherDAO.class);
+    private static final Logger log = LoggerFactory.getLogger(WeatherDAO.class);
 
     public WeatherDAO() {}
 
     public void save(final Weather weather) {
-    	final Object id = getHibernateTemplate().save( weather );
-    	log.info("weather saved ID=" + id);
+	final Object id = getHibernateTemplate().save( weather );
+	log.info("weather saved ID=" + id);
     }
 
     public Weather load(String id) {
-    	final Weather weather = (Weather) getHibernateTemplate().load( Weather.class, id);
-    	log.info("weather loaded ID=" + id + " ==> " + weather);
-    	return weather;
+	final Weather weather = (Weather) getHibernateTemplate().load( Weather.class, id);
+	log.info("weather loaded ID=" + id + " ==> " + weather);
+	return weather;
     }
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
-	public List<Weather> recentForLocation(final Location location) {
-    	final List<Weather> ret = (List<Weather>) getHibernateTemplate().execute(
-				new HibernateCallback() {
-					public Object doInHibernate(Session session) {
-						final Query query = getSession().getNamedQuery("Weather.byLocation");
-						query.setParameter("location", location);
-						return new ArrayList<Weather>(query.list());
-					}
-				});
-    	log.info("retrieved " +ret.size() + " weather reports for " + location);
-    	return ret;
+    public List<Weather> recentForLocation(final Location location) {
+	final List<Weather> ret = (List<Weather>) getHibernateTemplate().execute(
+		new HibernateCallback() {
+		    public Object doInHibernate(Session session) {
+			final Query query = getSession().getNamedQuery("Weather.byLocation");
+			query.setParameter("location", location);
+			return new ArrayList<Weather>(query.list());
+		    }
+		});
+	log.info("retrieved " +ret.size() + " weather reports for " + location);
+	return ret;
     }
 }
