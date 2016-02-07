@@ -31,7 +31,7 @@ public abstract class TransactionTest extends TransactionTestAbstraction {
     @BeforeClass
     public static final void initPersistenceConfiguration() throws Exception {
 	logTestTitle("Test Initialization (before class)", log);
-	final Map<String, String> config = persistence(PersistenceConfigurations.PERSISTENT);
+	final Map<String, String> config = persistence(PersistenceConfigurations.IN_MEMORY);
 	PERSISTENCE_MANAGER = new PersistenceManager(config, "JEE6-Persistence");
 	log.debug("Configuration properties:" + lines(config));
     }
