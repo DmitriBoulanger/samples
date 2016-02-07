@@ -12,7 +12,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 
 	<artifactId>greenmail</artifactId>
 	<packaging>jar</packaging>
-	<name>Samples EMail GreenMail server</name>
+	<name>Samples EMail GreenMail</name>
 
 	<description>
 GreenMail Server and Test-Environment
