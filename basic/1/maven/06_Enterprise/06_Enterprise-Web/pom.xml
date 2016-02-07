@@ -79,14 +79,22 @@
 			</plugin>
 			
 			<plugin>
-				<groupId>org.mortbay.jetty</groupId>
+				<!-- <groupId>org.mortbay.jetty</groupId>
 				<artifactId>maven-jetty-plugin</artifactId>
+				<groupId>org.eclipse.jetty</groupId> -->
+				<artifactId>jetty-maven-plugin</artifactId>
+				<version>9.3.7.v20160115</version>
 				<dependencies>
 					<!-- Logger implementation and its configuration -->
 					<dependency>
 						<groupId>de.dbo.samples.basic.1</groupId>
 						<artifactId>_logger</artifactId>
 						<version>${project.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.hibernate</groupId>
+						<artifactId>hibernate-core</artifactId>
+						<version>5.0.7.Final</version>
 					</dependency>
 				</dependencies>
 			</plugin>
