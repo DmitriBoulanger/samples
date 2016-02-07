@@ -1,11 +1,7 @@
 package de.dbo.samples.email.greenmail;
 
-import static de.dbo.samples.email.greenmail.GreenMailPrint.print;
-
 import javax.mail.Address;
-import javax.mail.Folder;
 import javax.mail.Message;
-import javax.mail.Flags.Flag;
 
 import com.icegreen.greenmail.configuration.UserBean;
 import com.icegreen.greenmail.util.ServerSetup;

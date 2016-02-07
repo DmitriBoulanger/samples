@@ -12,10 +12,9 @@
 
 	<groupId>de.dbo.samples.email</groupId>
 	<artifactId>email</artifactId>
-	<version>0.0.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
+	
 	<name>Samples EMail</name>
-
 	<description>
 Samples EMail
 	</description>
@@ -23,5 +22,22 @@ Samples EMail
 	<modules>
 		<module>greenmail</module>
 	</modules>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>com.sun.mail</groupId>
+				<artifactId>javax.mail</artifactId>
+				<version>1.5.2</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.sun.mail</groupId>
+			<artifactId>javax.mail</artifactId>
+		</dependency>
+	</dependencies>
 
 </project>
