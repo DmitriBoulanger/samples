@@ -47,8 +47,7 @@ A standard (simple) servlet is started using embedded Jetty-server
 				</executions>
 			</plugin>
 			<plugin>
-				<groupId>org.mortbay.jetty</groupId>
-				<artifactId>maven-jetty-plugin</artifactId>
+				<artifactId>jetty-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
 	</build>

@@ -79,11 +79,7 @@
 			</plugin>
 			
 			<plugin>
-				<!-- <groupId>org.mortbay.jetty</groupId>
-				<artifactId>maven-jetty-plugin</artifactId>
-				<groupId>org.eclipse.jetty</groupId> -->
 				<artifactId>jetty-maven-plugin</artifactId>
-				<version>9.3.7.v20160115</version>
 				<dependencies>
 					<!-- Logger implementation and its configuration -->
 					<dependency>

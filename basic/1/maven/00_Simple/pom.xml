@@ -31,12 +31,10 @@ All examples shows straightforward maven use-cases
 		<dependency>
 			<groupId>de.dbo.samples.basic.1</groupId>
 			<artifactId>_logger</artifactId>
-			<scope>runtime</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
-			<scope>runtime</scope>
 		</dependency>
 
 	</dependencies>

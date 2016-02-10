@@ -1,5 +1,7 @@
+
 package de.dbo.samples.web.jetty;
 
+import static de.dbo.tools.utils.print.Print.padLeft;
 import org.eclipse.jetty.runner.Runner;
 
 /**
@@ -11,7 +13,7 @@ import org.eclipse.jetty.runner.Runner;
  *           only incidentally for computers to execute 
  *
  */
-public final class JettyStartUp { 
+public final class JettyStartUp extends Runner { 
     
     private JettySetUp setUp;
     
@@ -20,10 +22,38 @@ public final class JettyStartUp {
     }
 
     public void doIt() throws Exception {
-	final Runner jetty = new Runner();
-	setUp.configure(jetty);
-	jetty.run();
+
+	setUp.configure(this);
+	final Runner myRunner = this;
+	Runnable runnable = new Runnable() {
+	    
+	    @Override
+	    public void run() {
+		try {
+		    myRunner.run();
+		} catch (Exception e) {
+		    
+		    e.printStackTrace();
+		}
+		
+		
+	    }
+	};
 	
+	final Thread daemon = new Thread(runnable);
+	daemon.start();
+	final long start = System.currentTimeMillis();
+	while (!super._server.isStarted()) {
+	    System.out.println(
+		    padLeft("" + (System.currentTimeMillis()-start), 7) +":" 
+	     + "   started = "   + padLeft( ""+(super._server.isStarted()), 5)
+	     + "   running = "   + padLeft( ""+(super._server.isRunning()), 5));
+	    Thread.sleep(100);
+	}
+	
+	System.out.println( padLeft("" + (System.currentTimeMillis()-start), 7) 
+		+ ":   =========== STARTED =============");
+
     }
 
     public JettySetUp getSetUp() {
