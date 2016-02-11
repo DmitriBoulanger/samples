@@ -42,17 +42,27 @@ public final class JettyStartUp extends Runner {
 	
 	final Thread daemon = new Thread(runnable);
 	daemon.start();
+	
+	
 	final long start = System.currentTimeMillis();
 	while (!super._server.isStarted()) {
+	    Thread.sleep(100);
 	    System.out.println(
 		    padLeft("" + (System.currentTimeMillis()-start), 7) +":" 
 	     + "   started = "   + padLeft( ""+(super._server.isStarted()), 5)
-	     + "   running = "   + padLeft( ""+(super._server.isRunning()), 5));
-	    Thread.sleep(100);
+	     + "   running = "   + padLeft( ""+(super._server.isRunning()), 5)
+	     + "   starting = "   + padLeft( ""+(super._server.isStarting()), 5)
+	     );
 	}
 	
 	System.out.println( padLeft("" + (System.currentTimeMillis()-start), 7) 
 		+ ":   =========== STARTED =============");
+	System.out.println(
+		    padLeft("" + (System.currentTimeMillis()-start), 7) +":" 
+	     + "   started = "   + padLeft( ""+(super._server.isStarted()), 5)
+	     + "   running = "   + padLeft( ""+(super._server.isRunning()), 5)
+	     + "   starting = "   + padLeft( ""+(super._server.isStarting()), 5)
+	     );
 
     }
 
