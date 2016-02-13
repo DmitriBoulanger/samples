@@ -21,7 +21,6 @@ GreenMail Server and Test-Environment
 		<dependency>
 			<groupId>com.icegreen</groupId>
 			<artifactId>greenmail</artifactId>
-			<version>1.4.1</version>
 			<exclusions>
 				<exclusion>
 					<artifactId>slf4j-api</artifactId>
