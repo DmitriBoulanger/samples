@@ -2,15 +2,10 @@ package de.dbo.samples.web.jetty;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.jetty.runner.Runner;
-import org.eclipse.jetty.runner.Runner.Classpath;
-import org.eclipse.jetty.util.resource.PathResource;
 import org.eclipse.jetty.util.resource.Resource;
-import org.eclipse.jetty.util.resource.PathResource;
 
 /**
  * Set-up (configuration) of Jetty  server
@@ -27,9 +22,6 @@ public class JettySetUp  {
     private int stopPort = 8888 /* port to listen for stop command */;
     
     private List<File> wars = new ArrayList<File>();
-    
-    private static final String ARG_PREFIX = "--";
-    private static final String ARG_SUFFIX = " ";
 
     public JettySetUp() {
 	 
@@ -42,15 +34,8 @@ public class JettySetUp  {
 	   args.add(Resource.newResource(war).toString());
 	}
 	
-	
 	runner.configure(args.toArray(args.toArray(new String[args.size()])));
-	
     }
-    
-    private static final String arg(final String name) {
-	return ARG_PREFIX + name + ARG_SUFFIX;
-    }
-
  
     public int getPort() {
         return port;
@@ -75,5 +60,4 @@ public class JettySetUp  {
     public void setWars(List<File> wars) {
         this.wars = wars;
     }
-
 }
