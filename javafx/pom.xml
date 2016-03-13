@@ -21,6 +21,7 @@ Samples Java FX
 
 	<modules>
 		<module>spring0</module>
+		<module>spring1</module>
 	</modules>
 	
 </project>

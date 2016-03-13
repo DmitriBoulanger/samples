@@ -2,7 +2,7 @@ package ro.stancalau.springfx.control;
 
 
 import ro.stancalau.springfx.model.LanguageModel;
-import ro.stancalau.springfx.model.LanguageModel.Language;
+import ro.stancalau.springfx.model.Language;
 
 public class LanguageController {
 

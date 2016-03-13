@@ -84,15 +84,15 @@ public class ScreensConfig implements Observer{
 		root.getChildren().remove(node);
 	}
 
-	void loadFirst() {
+	public void loadFirst() {
 		setNode(getNode(firstPresentation(), getClass().getResource("First.fxml")));
 	}
 	
-	void loadSecond() {
+	public void loadSecond() {
 		setNode(getNode(secondPresentation(), getClass().getResource("Second.fxml")));
 	}
 	
-	void loadPopup() {
+	public void loadPopup() {
 		ModalDialog modal = new ModalDialog(popupPresentation(), getClass().getResource("Popup.fxml"), stage.getOwner(), lang.getBundle());
 		modal.setTitle( lang.getBundle().getString("popup.title") );
 		modal.getStyleSheets().add(STYLE_FILE);
