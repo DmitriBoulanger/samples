@@ -1,4 +1,8 @@
-package ro.stancalau.springfx.gui.components;
+package de.dbo.javafx.spring1.gui.components;
+
+import de.dbo.javafx.spring1.gui.Presentation;
+import de.dbo.javafx.spring1.gui.ScreensConfig;
+import de.dbo.javafx.spring1.model.MessageModel;
 
 import java.util.Observable;
 import java.util.Observer;
@@ -8,10 +12,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
-import ro.stancalau.springfx.gui.Presentation;
-import ro.stancalau.springfx.gui.ScreensConfig;
-import ro.stancalau.springfx.model.MessageModel;
 
 public class SecondPresentation extends Presentation {
 

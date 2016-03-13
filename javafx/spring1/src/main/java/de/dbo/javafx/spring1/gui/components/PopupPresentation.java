@@ -1,14 +1,14 @@
-package ro.stancalau.springfx.gui.components;
+package de.dbo.javafx.spring1.gui.components;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import de.dbo.javafx.spring1.gui.Modal;
+import de.dbo.javafx.spring1.gui.ScreensConfig;
+import de.dbo.javafx.spring1.model.MessageModel;
 
-import ro.stancalau.springfx.gui.Modal;
-import ro.stancalau.springfx.gui.ScreensConfig;
-import ro.stancalau.springfx.model.MessageModel;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class PopupPresentation extends Modal {
 

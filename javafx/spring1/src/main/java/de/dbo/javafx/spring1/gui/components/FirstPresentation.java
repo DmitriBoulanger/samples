@@ -1,11 +1,12 @@
-package ro.stancalau.springfx.gui.components;
+package de.dbo.javafx.spring1.gui.components;
+
+import de.dbo.javafx.spring1.control.LanguageController;
+import de.dbo.javafx.spring1.gui.Presentation;
+import de.dbo.javafx.spring1.gui.ScreensConfig;
+import de.dbo.javafx.spring1.model.Language;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import ro.stancalau.springfx.control.LanguageController;
-import ro.stancalau.springfx.gui.Presentation;
-import ro.stancalau.springfx.gui.ScreensConfig;
-import ro.stancalau.springfx.model.Language;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;

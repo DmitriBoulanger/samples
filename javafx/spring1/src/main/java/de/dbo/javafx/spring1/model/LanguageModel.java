@@ -1,4 +1,4 @@
-package ro.stancalau.springfx.model;
+package de.dbo.javafx.spring1.model;
 
 import java.util.Locale;
 import java.util.Observable;

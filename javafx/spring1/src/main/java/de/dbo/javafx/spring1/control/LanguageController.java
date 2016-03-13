@@ -1,8 +1,8 @@
-package ro.stancalau.springfx.control;
+package de.dbo.javafx.spring1.control;
 
 
-import ro.stancalau.springfx.model.LanguageModel;
-import ro.stancalau.springfx.model.Language;
+import de.dbo.javafx.spring1.model.Language;
+import de.dbo.javafx.spring1.model.LanguageModel;
 
 public class LanguageController {
 

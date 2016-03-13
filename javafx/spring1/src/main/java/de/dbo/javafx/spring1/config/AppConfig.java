@@ -1,13 +1,13 @@
-package ro.stancalau.springfx.config;
+package de.dbo.javafx.spring1.config;
+
+import de.dbo.javafx.spring1.control.LanguageController;
+import de.dbo.javafx.spring1.gui.ScreensConfig;
+import de.dbo.javafx.spring1.model.LanguageModel;
+import de.dbo.javafx.spring1.model.MessageModel;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
-
-import ro.stancalau.springfx.control.LanguageController;
-import ro.stancalau.springfx.gui.ScreensConfig;
-import ro.stancalau.springfx.model.LanguageModel;
-import ro.stancalau.springfx.model.MessageModel;
 
 
 @Configuration

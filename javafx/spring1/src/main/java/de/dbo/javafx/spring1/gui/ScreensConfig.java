@@ -1,4 +1,9 @@
-package ro.stancalau.springfx.gui;
+package de.dbo.javafx.spring1.gui;
+
+import de.dbo.javafx.spring1.gui.components.FirstPresentation;
+import de.dbo.javafx.spring1.gui.components.PopupPresentation;
+import de.dbo.javafx.spring1.gui.components.SecondPresentation;
+import de.dbo.javafx.spring1.model.LanguageModel;
 
 import java.net.URL;
 
@@ -20,11 +25,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.context.annotation.Scope;
-
-import ro.stancalau.springfx.gui.components.FirstPresentation;
-import ro.stancalau.springfx.gui.components.PopupPresentation;
-import ro.stancalau.springfx.gui.components.SecondPresentation;
-import ro.stancalau.springfx.model.LanguageModel;
 
 @Configuration
 @Lazy

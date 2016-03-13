@@ -1,4 +1,4 @@
-package ro.stancalau.springfx.gui;
+package de.dbo.javafx.spring1.gui;
 
 import java.io.IOException;
 import java.net.URL;

@@ -1,4 +1,4 @@
-package ro.stancalau.springfx.gui;
+package de.dbo.javafx.spring1.gui;
 
 public abstract class Modal extends Presentation {
 
