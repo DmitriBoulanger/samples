@@ -33,7 +33,7 @@ public class ScreensConfig implements Observer{
 	
 	public static final int WIDTH = 480;
 	public static final int HEIGHT = 320;	
-	public static final String STYLE_FILE = "main.css";
+	public static final String STYLE_FILE = "css/main.css";
 	
 	private Stage stage;
 	private Scene scene;

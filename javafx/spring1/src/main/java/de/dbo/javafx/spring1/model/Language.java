@@ -2,7 +2,7 @@ package de.dbo.javafx.spring1.model;
 
 public enum Language{
 	
-	EN("en"), RO("ro");
+	EN("en"), RO("ro"), DE("de");
 	
 	private String value;
 	

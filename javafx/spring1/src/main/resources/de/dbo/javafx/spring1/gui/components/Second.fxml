@@ -6,8 +6,8 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
-<?scenebuilder-preview-i18n-resource ../../../../lang_en.properties?>
-<?scenebuilder-stylesheet ../../../../main.css?>
+<?scenebuilder-preview-i18n-resource ../../../../lang/lang_en.properties?>
+<?scenebuilder-stylesheet ../../../../css/main.css?>
 
 <StackPane fx:id="root" maxHeight="-1.0" maxWidth="-1.0" prefHeight="394.0" prefWidth="594.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="de.dbo.javafx.spring1.gui.components.SecondPresentation">
   <children>
