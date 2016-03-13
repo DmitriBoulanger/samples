@@ -20,16 +20,16 @@ public abstract class SpringFXAbstraction extends Application {
 	}
 
 	@Override
-	public void start(Stage stage) throws Exception {
+	public final void start(Stage stage) throws Exception {
 		root = (Node) this.context.getBean(rootName!=null?rootName:"root");
 		startFXApplication(stage);
 	}
 	
-	public String getSpringXML() {
+	public final String getSpringXML() {
 		return springXML;
 	}
 	
-	public Node getRoot() {
+	public final Node getRoot() {
 		return root;
 	}
 

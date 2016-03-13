@@ -2,35 +2,37 @@ package de.dbo.javafx.spring0;
 
  import de.dbo.javafx.spring0.components.RootComponent;
 
-import java.util.List;
+import org.slf4j.*;
 
-import javafx.application.Application;
 import javafx.scene.Group;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class SpringFX extends SpringFXAbstraction{
+    private static final Logger log = LoggerFactory.getLogger(SpringFX.class);
 	
-	public SpringFX() {
-		super("spring.xml");
-	}
-
-	public static void main(final String[] args) {
-		Application.launch(args);
-	}
-
-	@Override
-	public void startFXApplication(Stage stage) {
-	    Group group = new Group();
-	    Scene scene = new Scene(group, 800, 600, Color.BLACK);		    
-	    RootComponent root = (RootComponent) this.getRoot();
-	    List<Node> leafs = root.getLeafs();
-	    root.getItems().addAll(leafs);	    
-	    group.getChildren().add(root);
-	    stage.setScene(scene);
-	    stage.show();
-	}
+    protected SpringFX(final String springCtx) {
+	super(springCtx);
+    }
+ 
+    @Override
+    public void startFXApplication(Stage stage) {
+	log.debug("Application starting ...");
+	final RootComponent root = (RootComponent) this.getRoot();
+	final double height = root.getRootHeight();
+	final double width = root.getRootWidth();
+	log.debug("Application size="+width+"x"+height);
+	
+	final Group group = new Group();
+	group.getChildren().add(root);
+	
+	final Scene scene = new Scene(group, width, height, Color.BLACK);		    
+	scene.getStylesheets().add(root.getCss());
+	
+	stage.setScene(scene);
+	stage.show();
+	log.debug("Application started");
+    }
 
 } 
