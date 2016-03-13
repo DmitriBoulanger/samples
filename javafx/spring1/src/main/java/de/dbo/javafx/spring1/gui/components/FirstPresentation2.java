@@ -1,8 +1,8 @@
 package de.dbo.javafx.spring1.gui.components;
 
 import de.dbo.javafx.spring1.control.LanguageController;
-import de.dbo.javafx.spring1.gui.components.Presentation;
 import de.dbo.javafx.spring1.gui.ScreensConfig;
+import de.dbo.javafx.spring1.gui.ScreensConfig2;
 import de.dbo.javafx.spring1.model.Language;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,29 +15,39 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 
-public class FirstPresentation extends Presentation {
+public class FirstPresentation2 extends Presentation2 {
 
-	public FirstPresentation(ScreensConfig config) {
-		super(config);
-	}
+	RadioButton engRadio;
 	
-	@FXML
-	RadioButton engRadio, romRadio;
+ 
+	RadioButton romRadio;
 	
-	@FXML
+ 
 	ToggleGroup langGroup;
-	
-	@Autowired
-	private LanguageController langCtr;
 	
 	@FXML
 	void nextView(ActionEvent event){
 		config.loadSecond();
 	}
 	
+	private LanguageController languageController;
+	
+	
+	public FirstPresentation2(ScreensConfig2 config) {
+		super(config);
+	}
+	
+	public FirstPresentation2() {
+		
+	}
+	
+	public void init() {
+	    initialize();
+	}
+	
 	@FXML
 	void initialize() {
-		if (Language.RO.equals(langCtr.getLanguage())){
+		if (Language.RO.equals(languageController.getLanguage())){
 			engRadio.setSelected(false);
 			romRadio.setSelected(true);
 		}
@@ -51,9 +61,9 @@ public class FirstPresentation extends Presentation {
 	
 	private void changeLanguage() {
 		if (engRadio.isSelected())
-			langCtr.toEnglish();
+			languageController.toEnglish();
 		else
-			langCtr.toRomanian();
+			languageController.toRomanian();
 	}
 
 }

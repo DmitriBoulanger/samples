@@ -10,7 +10,11 @@ public class LanguageModel extends Observable{
 	private Language lang;
 	
 	public LanguageModel(){
-		setBundle(Language.EN);
+		init();
+	}
+	
+	public void init() {
+	    setBundle(Language.EN);
 	}
 
 	public ResourceBundle getBundle() {

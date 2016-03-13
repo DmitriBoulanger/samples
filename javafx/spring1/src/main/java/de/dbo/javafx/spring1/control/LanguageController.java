@@ -1,6 +1,5 @@
 package de.dbo.javafx.spring1.control;
 
-
 import de.dbo.javafx.spring1.model.Language;
 import de.dbo.javafx.spring1.model.LanguageModel;
 
@@ -10,7 +9,15 @@ public class LanguageController {
 	
 	public LanguageController(LanguageModel model){
 		this.model = model;
-		toEnglish();
+		init();
+	}
+	
+	public void init() {
+	    toEnglish();
+	}
+	
+	public LanguageController(){
+		init();
 	}
 	
 	public void toEnglish(){
@@ -23,6 +30,18 @@ public class LanguageController {
 
 	public Language getLanguage() {
 		return model.getLanguage();
+	}
+
+	//
+	// Getters and Setters
+	//
+	
+	public LanguageModel getModel() {
+	    return model;
+	}
+
+	public void setModel(LanguageModel model) {
+	    this.model = model;
 	}
 	
 }

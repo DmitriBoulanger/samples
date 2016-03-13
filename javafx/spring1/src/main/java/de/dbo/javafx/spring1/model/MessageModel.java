@@ -7,7 +7,11 @@ public class MessageModel extends Observable{
 	private String message;
 	
 	public MessageModel(){
-		setMessage("Default Message!");
+		init();
+	}
+	
+	public void init() {
+	    setMessage("Default Message!");
 	}
 
 	public String getMessage() {

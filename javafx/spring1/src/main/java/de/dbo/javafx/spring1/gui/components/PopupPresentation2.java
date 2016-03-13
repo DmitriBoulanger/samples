@@ -5,14 +5,16 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 
 import de.dbo.javafx.spring1.control.Modal;
+import de.dbo.javafx.spring1.control.Modal2;
 import de.dbo.javafx.spring1.gui.ScreensConfig;
+import de.dbo.javafx.spring1.gui.ScreensConfig2;
 import de.dbo.javafx.spring1.model.MessageModel;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class PopupPresentation extends Modal {
+public class PopupPresentation2 extends Modal2 {
 
-	public PopupPresentation(ScreensConfig config) {
+	public PopupPresentation2(ScreensConfig2 config) {
 		super(config);
 	}
 	

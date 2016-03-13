@@ -6,6 +6,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
+
 <?scenebuilder-preview-i18n-resource ../../../../lang/lang_en.properties?>
 <?scenebuilder-stylesheet ../../../../css/main.css?>
 
@@ -36,7 +37,10 @@
       </children>
     </VBox>
   </children>
+  
+  
   <padding>
     <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
   </padding>
+  
 </StackPane>

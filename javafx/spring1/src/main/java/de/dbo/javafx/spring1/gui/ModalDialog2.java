@@ -1,6 +1,7 @@
 package de.dbo.javafx.spring1.gui;
 
 import de.dbo.javafx.spring1.control.Modal;
+import de.dbo.javafx.spring1.control.Modal2;
 
 import java.io.IOException;
 import java.net.URL;
@@ -18,17 +19,17 @@ import javafx.util.Callback;
 
 import org.slf4j.*;
 
-public class ModalDialog extends Stage {
-    private static Logger logger = LoggerFactory.getLogger(ModalDialog.class);
+public class ModalDialog2 extends Stage {
+    private static Logger logger = LoggerFactory.getLogger(ModalDialog2.class);
 
 	
 	private Scene scene;
 
-	public ModalDialog(Modal controller, URL fxml, Window owner, ResourceBundle bundle) {
+	public ModalDialog2(Modal2 controller, URL fxml, Window owner, ResourceBundle bundle) {
 		this(controller, fxml, owner, StageStyle.DECORATED, Modality.APPLICATION_MODAL, bundle);
 	}
 
-	public ModalDialog(final Modal controller, URL fxml, Window owner, StageStyle style, Modality modality, ResourceBundle bundle) {
+	public ModalDialog2(final Modal2 controller, URL fxml, Window owner, StageStyle style, Modality modality, ResourceBundle bundle) {
 		super(style);
 		initOwner(owner);
 		initModality(modality);

@@ -1,4 +1,8 @@
-package de.dbo.javafx.spring1.gui;
+package de.dbo.javafx.spring1.control;
+
+import de.dbo.javafx.spring1.gui.ModalDialog;
+import de.dbo.javafx.spring1.gui.ScreensConfig;
+import de.dbo.javafx.spring1.gui.components.Presentation;
 
 public abstract class Modal extends Presentation {
 
