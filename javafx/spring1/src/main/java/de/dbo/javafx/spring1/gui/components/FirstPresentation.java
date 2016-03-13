@@ -23,12 +23,12 @@ public class FirstPresentation extends Presentation {
 	
 	@FXML
 	RadioButton engRadio, romRadio;
+	
 	@FXML
 	ToggleGroup langGroup;
 	
 	@Autowired
 	private LanguageController langCtr;
-	
 	
 	@FXML
 	void nextView(ActionEvent event){
