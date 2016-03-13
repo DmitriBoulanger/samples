@@ -9,7 +9,7 @@
 <?scenebuilder-preview-i18n-resource ../../../../lang_en.properties?>
 <?scenebuilder-stylesheet ../../../../main.css?>
 
-<StackPane prefHeight="200.0" prefWidth="320.0" styleClass="main-window" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="ro.stancalau.springfx.gui.PopupPresentation">
+<StackPane prefHeight="200.0" prefWidth="320.0" styleClass="main-window" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="ro.stancalau.springfx.gui.components.PopupPresentation">
   <children>
     <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
       <children>

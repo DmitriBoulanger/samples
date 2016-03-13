@@ -21,6 +21,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.context.annotation.Scope;
 
+import ro.stancalau.springfx.gui.components.FirstPresentation;
+import ro.stancalau.springfx.gui.components.PopupPresentation;
+import ro.stancalau.springfx.gui.components.SecondPresentation;
 import ro.stancalau.springfx.model.LanguageModel;
 
 @Configuration
@@ -85,15 +88,15 @@ public class ScreensConfig implements Observer{
 	}
 
 	public void loadFirst() {
-		setNode(getNode(firstPresentation(), getClass().getResource("First.fxml")));
+		setNode(getNode(firstPresentation(), getClass().getResource("components/First.fxml")));
 	}
 	
 	public void loadSecond() {
-		setNode(getNode(secondPresentation(), getClass().getResource("Second.fxml")));
+		setNode(getNode(secondPresentation(), getClass().getResource("components/Second.fxml")));
 	}
 	
 	public void loadPopup() {
-		ModalDialog modal = new ModalDialog(popupPresentation(), getClass().getResource("Popup.fxml"), stage.getOwner(), lang.getBundle());
+		ModalDialog modal = new ModalDialog(popupPresentation(), getClass().getResource("components/Popup.fxml"), stage.getOwner(), lang.getBundle());
 		modal.setTitle( lang.getBundle().getString("popup.title") );
 		modal.getStyleSheets().add(STYLE_FILE);
 		modal.show(); 
