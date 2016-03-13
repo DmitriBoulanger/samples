@@ -1,6 +1,8 @@
 package de.dbo.javafx.spring0;
 
- import java.util.List;
+ import de.dbo.javafx.spring0.components.RootComponent;
+
+import java.util.List;
 
 import javafx.application.Application;
 import javafx.scene.Group;
@@ -9,10 +11,10 @@ import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-public class SpringFX extends ASpringFX{
+public class SpringFX extends SpringFXAbstraction{
 	
 	public SpringFX() {
-		super("main.xml");
+		super("spring.xml");
 	}
 
 	public static void main(final String[] args) {
@@ -21,14 +23,14 @@ public class SpringFX extends ASpringFX{
 
 	@Override
 	public void startFXApplication(Stage stage) {
-		Group group = new Group();
+	    Group group = new Group();
 	    Scene scene = new Scene(group, 800, 600, Color.BLACK);		    
 	    RootComponent root = (RootComponent) this.getRoot();
 	    List<Node> leafs = root.getLeafs();
 	    root.getItems().addAll(leafs);	    
-		group.getChildren().add(root);
-		stage.setScene(scene);
-		stage.show();
+	    group.getChildren().add(root);
+	    stage.setScene(scene);
+	    stage.show();
 	}
 
 } 

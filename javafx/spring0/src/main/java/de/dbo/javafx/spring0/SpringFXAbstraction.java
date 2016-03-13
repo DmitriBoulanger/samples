@@ -6,13 +6,13 @@ package de.dbo.javafx.spring0;
  
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-public abstract class ASpringFX extends Application {
+public abstract class SpringFXAbstraction extends Application {
 	private ClassPathXmlApplicationContext context = null;
 	private final String springXML;
 	private Node root;
 	private final String rootName;
 
-	public ASpringFX(final String springXML) {
+	public SpringFXAbstraction(final String springXML) {
 		this.springXML = springXML;
 		this.rootName = null;
 		this.context = new ClassPathXmlApplicationContext(
@@ -27,6 +27,10 @@ public abstract class ASpringFX extends Application {
 	
 	public String getSpringXML() {
 		return springXML;
+	}
+	
+	public Node getRoot() {
+		return root;
 	}
 
 	public abstract void startFXApplication(Stage stage);

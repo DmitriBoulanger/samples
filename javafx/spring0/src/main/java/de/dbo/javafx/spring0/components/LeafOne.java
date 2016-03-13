@@ -1,12 +1,9 @@
-package de.dbo.javafx.spring0;
+package de.dbo.javafx.spring0.components;
 
-import java.util.List;
-
-import javafx.scene.*;
-import javafx.scene.layout.*;
-import javafx.scene.control.*;
-import javafx.stage.*;
-import javafx.application.*;
+import javafx.scene.control.Label;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.Priority;
 
 public class LeafOne extends GridPane {
 	

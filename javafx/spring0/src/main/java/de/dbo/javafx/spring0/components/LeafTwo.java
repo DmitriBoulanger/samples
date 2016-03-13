@@ -1,4 +1,4 @@
-package de.dbo.javafx.spring0;
+package de.dbo.javafx.spring0.components;
 
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;

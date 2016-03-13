@@ -3,7 +3,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 	
-	<bean id="root" class="de.dbo.javafx.spring0.RootComponent">
+	<bean id="root" class="de.dbo.javafx.spring0.components.RootComponent">
 		<property name="leafs">
 			<list>
 				<ref bean="leafOne" />
@@ -12,6 +12,6 @@
 		</property>
 	</bean>
 	
-	<bean id="leafOne" class="de.dbo.javafx.spring0.LeafOne"/>
-	<bean id="leafTwo" class="de.dbo.javafx.spring0.LeafTwo"/>
+	<bean id="leafOne" class="de.dbo.javafx.spring0.components.LeafOne"/>
+	<bean id="leafTwo" class="de.dbo.javafx.spring0.components.LeafTwo"/>
 </beans> 
