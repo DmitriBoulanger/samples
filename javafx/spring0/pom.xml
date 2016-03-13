@@ -11,9 +11,10 @@
 
 	<artifactId>spring0</artifactId>
 	<name>Samples Java FX Spring</name>
+	<url>https://dzone.com/articles/use-javafx2-spring</url>
 
 	<description>
-Samples Java FX Spring
+Samples Java FX Spring 0
 	</description>
 
 	<dependencies>

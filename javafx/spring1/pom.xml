@@ -10,9 +10,10 @@
 	
 	<artifactId>spring1</artifactId>
 	<name>Samples Java FX Spring</name>
+	<url>http://stancalau.ro/javafx-and-spring/</url>
 
 	<description>
-Samples Java FX Spring
+Samples Java FX Spring 1
 	</description>
 	
 
