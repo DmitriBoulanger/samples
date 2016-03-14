@@ -11,7 +11,8 @@
     
 	<bean id="root" class="de.dbo.javafx.spring0.components.RootComponent" 
 		init-method="init">
-	 
+	 	<property name="id" value="rootPane" />
+	 	
 		<property name="leafs">
 			<list>
 				<ref bean="leafOne" />
@@ -21,6 +22,11 @@
 		
 	</bean>
 	
-	<bean id="leafOne" class="de.dbo.javafx.spring0.components.LeafOne"/>
-	<bean id="leafTwo" class="de.dbo.javafx.spring0.components.LeafTwo"/>
+	<bean id="leafOne" class="de.dbo.javafx.spring0.components.LeafOne">
+		<property name="id" value="leftPane" />
+	</bean>
+	
+	<bean id="leafTwo" class="de.dbo.javafx.spring0.components.LeafTwo">
+		<property name="id" value="rightPane" />
+	</bean>
 </beans>

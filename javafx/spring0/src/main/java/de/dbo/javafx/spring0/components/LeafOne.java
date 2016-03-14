@@ -7,12 +7,14 @@ import javafx.scene.layout.Priority;
 
 public class LeafOne extends GridPane {
 	
-	public LeafOne() {
-		Pane content = new Pane();
-		GridPane.setHgrow(content, Priority.ALWAYS);
-		GridPane.setVgrow(content, Priority.ALWAYS);
-		content.getChildren().add(new Label("left"));
-		this.getChildren().add(content);
-	}
+    public LeafOne() {
+	Pane content = new Pane();
+	GridPane.setHgrow(content, Priority.ALWAYS);
+	GridPane.setVgrow(content, Priority.ALWAYS);
+	final Label label = new Label("left");
+	label.setId("leftLabel");
+	content.getChildren().add(new Label("left"));
+	this.getChildren().add(content);
+    }
 
 } 
