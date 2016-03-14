@@ -21,7 +21,6 @@ import org.slf4j.*;
 public class ModalDialog extends Stage {
     private static Logger logger = LoggerFactory.getLogger(ModalDialog.class);
 
-	
 	private Scene scene;
 
 	public ModalDialog(Modal controller, URL fxml, Window owner, ResourceBundle bundle) {

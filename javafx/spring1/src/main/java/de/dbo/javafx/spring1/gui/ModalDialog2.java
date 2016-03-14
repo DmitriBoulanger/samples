@@ -1,11 +1,13 @@
 package de.dbo.javafx.spring1.gui;
 
-import de.dbo.javafx.spring1.control.Modal;
 import de.dbo.javafx.spring1.control.Modal2;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
@@ -16,8 +18,6 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.Window;
 import javafx.util.Callback;
-
-import org.slf4j.*;
 
 public class ModalDialog2 extends Stage {
     private static Logger logger = LoggerFactory.getLogger(ModalDialog2.class);
