@@ -1,4 +1,4 @@
-package de.dbo.javafx.spring1.gui.components;
+package de.dbo.javafx.spring1.gui.components2;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,9 +12,9 @@ import de.dbo.javafx.spring1.model.MessageModel;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class PopupPresentation2 extends Modal2 {
+public class PopupPresentation extends Modal2 {
 
-	public PopupPresentation2(ScreensConfig2 config) {
+	public PopupPresentation(ScreensConfig2 config) {
 		super(config);
 	}
 	

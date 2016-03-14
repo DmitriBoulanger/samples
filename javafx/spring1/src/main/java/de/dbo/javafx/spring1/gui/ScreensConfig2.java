@@ -1,13 +1,10 @@
 package de.dbo.javafx.spring1.gui;
 
-import de.dbo.javafx.spring1.gui.components.FirstPresentation;
-import de.dbo.javafx.spring1.gui.components.FirstPresentation2;
-import de.dbo.javafx.spring1.gui.components.PopupPresentation;
-import de.dbo.javafx.spring1.gui.components.PopupPresentation2;
-import de.dbo.javafx.spring1.gui.components.Presentation;
-import de.dbo.javafx.spring1.gui.components.Presentation2;
-import de.dbo.javafx.spring1.gui.components.SecondPresentation;
-import de.dbo.javafx.spring1.gui.components.SecondPresentation2;
+
+import de.dbo.javafx.spring1.gui.components2.FirstPresentation;
+import de.dbo.javafx.spring1.gui.components2.PopupPresentation;
+import de.dbo.javafx.spring1.gui.components2.ConfigurableStackPane;
+import de.dbo.javafx.spring1.gui.components2.SecondPresentation;
 import de.dbo.javafx.spring1.model.LanguageModel;
 
 import java.net.URL;
@@ -121,23 +118,23 @@ public class ScreensConfig2 implements Observer{
 
 	@Bean
 	@Scope("prototype")
-	FirstPresentation2 firstPresentation() {
-		return new FirstPresentation2(this);
+	FirstPresentation firstPresentation() {
+		return new FirstPresentation(this);
 	}
 	
 	@Bean
 	@Scope("prototype")
-	SecondPresentation2 secondPresentation() {
-		return new SecondPresentation2(this);
+	SecondPresentation secondPresentation() {
+		return new SecondPresentation(this);
 	}
 	
 	@Bean
 	@Scope("prototype")
-	PopupPresentation2 popupPresentation() {
-		return new PopupPresentation2(this);
+	PopupPresentation popupPresentation() {
+		return new PopupPresentation(this);
 	}
 
-	private Node getNode(final Presentation2 control, URL location) {
+	private Node getNode(final ConfigurableStackPane control, URL location) {
 		FXMLLoader loader = new FXMLLoader(location, lang.getBundle());
 		loader.setControllerFactory(new Callback<Class<?>, Object>() {
 			public Object call(Class<?> aClass) {

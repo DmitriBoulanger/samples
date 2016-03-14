@@ -1,5 +1,6 @@
 package de.dbo.javafx.spring1.gui.components;
 
+import de.dbo.javafx.spring1.gui.Configurable;
 import de.dbo.javafx.spring1.gui.ScreensConfig;
 
 import java.util.List;
@@ -7,7 +8,7 @@ import java.util.List;
 import javafx.scene.Node;
 import javafx.scene.layout.StackPane;
 
-public abstract class Presentation  {
+public abstract class Presentation implements Configurable  {
 
 	protected ScreensConfig config;
 	
@@ -19,6 +20,7 @@ public abstract class Presentation  {
 		
 	}
 	
+	@Override
 	public void init() {
 	    
 	}
@@ -27,10 +29,12 @@ public abstract class Presentation  {
 	// Getters and Setters
 	//
 	
+	@Override
 	public ScreensConfig getConfig() {
 	    return config;
 	}
 
+	@Override
 	public void setConfig(ScreensConfig config) {
 	    this.config = config;
 	}

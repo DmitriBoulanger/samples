@@ -1,7 +1,7 @@
 package de.dbo.javafx.spring1.gui.components;
 
 import de.dbo.javafx.spring1.control.LanguageController;
-import de.dbo.javafx.spring1.gui.components.Presentation;
+import de.dbo.javafx.spring1.gui.Configurable;
 import de.dbo.javafx.spring1.gui.ScreensConfig;
 import de.dbo.javafx.spring1.model.Language;
 
@@ -15,10 +15,10 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 
-public class FirstPresentation extends Presentation {
+public class FirstPresentation implements Configurable {
 
 	public FirstPresentation(ScreensConfig config) {
-		super(config);
+		this.config = config;
 	}
 	
 	@FXML
@@ -54,6 +54,32 @@ public class FirstPresentation extends Presentation {
 			langCtr.toEnglish();
 		else
 			langCtr.toRomanian();
+	}
+	
+
+	
+	
+	
+	protected ScreensConfig config;
+	
+	 
+	@Override
+	public void init() {
+	    
+	}
+
+	//
+	// Getters and Setters
+	//
+	
+	@Override
+	public ScreensConfig getConfig() {
+	    return config;
+	}
+
+	@Override
+	public void setConfig(ScreensConfig config) {
+	    this.config = config;
 	}
 
 }

@@ -1,11 +1,8 @@
-package de.dbo.javafx.spring1.gui.components;
+package de.dbo.javafx.spring1.gui.components2;
 
 import de.dbo.javafx.spring1.control.LanguageController;
-import de.dbo.javafx.spring1.gui.ScreensConfig;
 import de.dbo.javafx.spring1.gui.ScreensConfig2;
 import de.dbo.javafx.spring1.model.Language;
-
-import org.springframework.beans.factory.annotation.Autowired;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -15,7 +12,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 
-public class FirstPresentation2 extends Presentation2 {
+public class FirstPresentation extends ConfigurableStackPane {
 
 	RadioButton engRadio;
 	
@@ -33,11 +30,11 @@ public class FirstPresentation2 extends Presentation2 {
 	private LanguageController languageController;
 	
 	
-	public FirstPresentation2(ScreensConfig2 config) {
+	public FirstPresentation(ScreensConfig2 config) {
 		super(config);
 	}
 	
-	public FirstPresentation2() {
+	public FirstPresentation() {
 		
 	}
 	

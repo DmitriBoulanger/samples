@@ -23,7 +23,7 @@
 		<property name="lang" ref="languageModel" />
 	</bean>
 	
-	<bean id="firstPresentation2" class="de.dbo.javafx.spring1.gui.components.FirstPresentation2"
+	<bean id="firstPresentation" class="de.dbo.javafx.spring1.gui.components2.FirstPresentation"
 		init-method="init">
 		<property name="config" ref="screens" />
 	</bean>

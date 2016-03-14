@@ -1,4 +1,4 @@
-package de.dbo.javafx.spring1.gui.components;
+package de.dbo.javafx.spring1.gui.components2;
 
 import de.dbo.javafx.spring1.gui.ScreensConfig;
 import de.dbo.javafx.spring1.gui.ScreensConfig2;
@@ -13,9 +13,9 @@ import javafx.scene.control.TextField;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class SecondPresentation2 extends Presentation2 {
+public class SecondPresentation extends ConfigurableStackPane {
 
-	public SecondPresentation2(ScreensConfig2 config) {
+	public SecondPresentation(ScreensConfig2 config) {
 		super(config);
 	}
 	

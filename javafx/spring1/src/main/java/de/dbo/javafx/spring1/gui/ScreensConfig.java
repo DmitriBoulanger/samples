@@ -2,7 +2,6 @@ package de.dbo.javafx.spring1.gui;
 
 import de.dbo.javafx.spring1.gui.components.FirstPresentation;
 import de.dbo.javafx.spring1.gui.components.PopupPresentation;
-import de.dbo.javafx.spring1.gui.components.Presentation;
 import de.dbo.javafx.spring1.gui.components.SecondPresentation;
 import de.dbo.javafx.spring1.model.LanguageModel;
 
@@ -121,7 +120,7 @@ public class ScreensConfig implements Observer{
 		return new PopupPresentation(this);
 	}
 
-	private Node getNode(final Presentation control, URL location) {
+	private Node getNode(final Configurable control, URL location) {
 		FXMLLoader loader = new FXMLLoader(location, lang.getBundle());
 		loader.setControllerFactory(new Callback<Class<?>, Object>() {
 			public Object call(Class<?> aClass) {

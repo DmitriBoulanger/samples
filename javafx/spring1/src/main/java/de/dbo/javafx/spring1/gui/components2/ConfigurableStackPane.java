@@ -1,5 +1,6 @@
-package de.dbo.javafx.spring1.gui.components;
+package de.dbo.javafx.spring1.gui.components2;
 
+import de.dbo.javafx.spring1.gui.Configurable;
 import de.dbo.javafx.spring1.gui.ScreensConfig;
 import de.dbo.javafx.spring1.gui.ScreensConfig2;
 
@@ -8,17 +9,17 @@ import java.util.List;
 import javafx.scene.Node;
 import javafx.scene.layout.StackPane;
 
-public abstract class Presentation2 extends StackPane {
+public abstract class ConfigurableStackPane extends StackPane  {
 
 	protected ScreensConfig2 config;
 	
 	protected List<Node> leafs;
 
-	public Presentation2(ScreensConfig2 config) {
+	public ConfigurableStackPane(ScreensConfig2 config) {
 		this.config = config;
 	}
 	
-	public Presentation2() {
+	public ConfigurableStackPane() {
 		
 	}
 	
