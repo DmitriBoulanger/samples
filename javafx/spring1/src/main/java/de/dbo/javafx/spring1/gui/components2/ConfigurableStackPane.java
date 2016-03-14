@@ -1,7 +1,5 @@
 package de.dbo.javafx.spring1.gui.components2;
 
-import de.dbo.javafx.spring1.gui.Configurable;
-import de.dbo.javafx.spring1.gui.ScreensConfig;
 import de.dbo.javafx.spring1.gui.ScreensConfig2;
 
 import java.util.List;

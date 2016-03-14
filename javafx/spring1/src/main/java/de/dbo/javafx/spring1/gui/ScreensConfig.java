@@ -6,10 +6,16 @@ import de.dbo.javafx.spring1.gui.components.SecondPresentation;
 import de.dbo.javafx.spring1.model.LanguageModel;
 
 import java.net.URL;
-
 import java.util.Observable;
 import java.util.Observer;
 import java.util.ResourceBundle;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.context.annotation.Scope;
 
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -19,12 +25,6 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import javafx.util.Callback;
-
-import org.slf4j.*;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Lazy;
-import org.springframework.context.annotation.Scope;
 
 @Configuration
 @Lazy

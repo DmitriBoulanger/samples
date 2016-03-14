@@ -1,17 +1,16 @@
 package de.dbo.javafx.spring1.gui.components2;
 
-import de.dbo.javafx.spring1.gui.ScreensConfig;
 import de.dbo.javafx.spring1.gui.ScreensConfig2;
 import de.dbo.javafx.spring1.model.MessageModel;
 
 import java.util.Observable;
 import java.util.Observer;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
-
-import org.springframework.beans.factory.annotation.Autowired;
 
 public class SecondPresentation extends ConfigurableStackPane {
 

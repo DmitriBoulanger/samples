@@ -1,16 +1,17 @@
 package de.dbo.javafx.spring1.gui;
 
-import javafx.application.Application;
-import javafx.application.Platform;
-import javafx.stage.Stage;
-
 import de.dbo.javafx.spring1.config.AppConfig;
 import de.dbo.javafx.spring1.model.LanguageModel;
 
-import org.slf4j.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Service;
+
+import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.stage.Stage;
 
 @Service
 public class Main extends Application {
