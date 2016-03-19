@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	
+	<parent>
+		<groupId>de.dbo.samples</groupId>
+		<artifactId>samples</artifactId>
+		<version>0.0.0-SNAPSHOT</version>
+	</parent>
+
+	<groupId>de.dbo.samples.javafx-testfx</groupId>
+	<artifactId>javafx-testfx</artifactId>
+	<packaging>pom</packaging>
+	
+	<name>Samples Test FX</name>
+	<description>
+Samples Test FX
+	</description>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.mockito</groupId>
+				<artifactId>mockito-core</artifactId>
+				<version>1.9.5</version>
+				<exclusions>
+					<exclusion>
+						<artifactId>hamcrest-core</artifactId>
+						<groupId>org.hamcrest</groupId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+
+			<dependency>
+				<groupId>org.controlsfx</groupId>
+				<artifactId>controlsfx</artifactId>
+				<version>8.20.8</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.testfx</groupId>
+				<artifactId>openjfx-monocle</artifactId>
+				<version>1.8.0_20</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.google.guava</groupId>
+				<artifactId>guava</artifactId>
+				<version>18.0</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.hamcrest</groupId>
+				<artifactId>hamcrest-all</artifactId>
+				<version>1.3</version>
+			</dependency>
+
+		</dependencies>
+	</dependencyManagement>
+	
+</project>

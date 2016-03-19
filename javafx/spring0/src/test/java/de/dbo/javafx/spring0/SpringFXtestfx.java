@@ -41,6 +41,8 @@ public class SpringFXtestfx extends ApplicationTest  {
     
     @Test
     public void rootComponentAndItsChildren() {
+	sleep(10000);
+	
         verifyThat("#rootPane", isNotNull());
         verifyThat("#leftPane", isNotNull());
         verifyThat("#rightPane", isNotNull());
