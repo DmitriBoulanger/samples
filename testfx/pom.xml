@@ -25,16 +25,17 @@ Version management for TEST FX projects
 
 	<dependencyManagement>
 		<dependencies>
+		
+			<dependency>
+				<groupId>org.testfx</groupId>
+				<artifactId>testfx-junit</artifactId>
+				<version>${testfx.version}</version>
+			</dependency>
+			
 			<dependency>
 				<groupId>org.mockito</groupId>
 				<artifactId>mockito-core</artifactId>
 				<version>1.9.5</version>
-				<exclusions>
-					<exclusion>
-						<artifactId>hamcrest-core</artifactId>
-						<groupId>org.hamcrest</groupId>
-					</exclusion>
-				</exclusions>
 			</dependency>
 
 			<dependency>
@@ -67,14 +68,19 @@ Version management for TEST FX projects
 				<version>4.0.1-alpha</version>
 			</dependency>
 
-			<dependency>
-				<groupId>org.testfx</groupId>
-				<artifactId>testfx-junit</artifactId>
-				<version>${testfx.version}</version>
-			</dependency>
-
 		</dependencies>
 	</dependencyManagement>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+		</dependency>
+	</dependencies>
 
 <!-- 	
 	<modules>
