@@ -10,43 +10,15 @@
 	</parent>
 
 	<artifactId>java8-0</artifactId>
-	<name>Samples Java8 - </name>
-	<url></url>
+	<name>Samples Java8 - tutorial 0</name>
+	<url>https://github.com/winterbe/java8-tutorial#lambda-expressions</url>
 
 	<description>
-Samples Java8 - 
+Tutorial with basic things ...
 	</description>
 
 	<dependencies>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-core</artifactId>
-		</dependency>
-		
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-context</artifactId>
-		</dependency>
-		
-<!-- 		<dependency> -->
-<!--     		<groupId>org.loadui</groupId> -->
-<!--     		<artifactId>testFx</artifactId> -->
-<!--     		<version>3.1.2</version> -->
-<!-- 		</dependency> -->
 
-	<dependency>
-		<groupId>org.testfx</groupId>
-		<artifactId>testfx-core</artifactId>
-		<version>4.0.1-alpha</version>
-		<scope>test</scope>
-	</dependency>
-	<dependency>
-		<groupId>org.testfx</groupId>
-		<artifactId>testfx-junit</artifactId>
-		<version>4.0.1-alpha</version>
-		<scope>test</scope>
-	</dependency>
-		
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
