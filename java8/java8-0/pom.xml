@@ -9,7 +9,7 @@
 		<version>0.0.0-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>spring0</artifactId>
+	<artifactId>java8-0</artifactId>
 	<name>Samples Java8 - </name>
 	<url></url>
 
