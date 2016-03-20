@@ -13,6 +13,10 @@ public class FormulaUsageLambda   {
     
     public static void main(String[] args) {
         final Formula formula = (a) ->  a * 100;
+        
+        //Default methods cannot be accessed from within lambda expressions. 
+        //The following code does not compile:
+        //final Formula formula = (a) ->  sqrt(a * 100);
 
 	System.out.println(formula.calculate(100));     // 100.0
 	System.out.println(formula.sqrt(-23));          // 0.0
