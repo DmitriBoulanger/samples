@@ -20,17 +20,11 @@ Version management for TEST FX projects
 	</description>
 
 	<properties>
-		<testfx.version>4.0.1-alpha</testfx.version>
+		<org.testfx.version>4.0.1-alpha</org.testfx.version>
 	</properties>
 
 	<dependencyManagement>
 		<dependencies>
-		
-			<dependency>
-				<groupId>org.testfx</groupId>
-				<artifactId>testfx-junit</artifactId>
-				<version>${testfx.version}</version>
-			</dependency>
 			
 			<dependency>
 				<groupId>org.mockito</groupId>
@@ -62,12 +56,6 @@ Version management for TEST FX projects
 				<version>1.3</version>
 			</dependency>
 
-			<dependency>
-				<groupId>org.testfx</groupId>
-				<artifactId>testfx-core</artifactId>
-				<version>4.0.1-alpha</version>
-			</dependency>
-
 		</dependencies>
 	</dependencyManagement>
 
@@ -81,12 +69,10 @@ Version management for TEST FX projects
 			<artifactId>slf4j-log4j12</artifactId>
 		</dependency>
 	</dependencies>
-
-<!-- 	
+	
 	<modules>
 		<module>../../testfx-4alpha/subprojects</module>
 		<module>../../testfx-playground/samples</module>
 	</modules> 
--->
 	
 </project>
