@@ -5,8 +5,8 @@ import javafx.scene.Parent;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import de.dbo.samples.javafx.spring2.ui.MainController;
-import de.dbo.samples.javafx.spring2.ui.MainView;
+import de.dbo.samples.javafx.spring2.ui.Controller;
+import de.dbo.samples.javafx.spring2.ui.View;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -21,9 +21,9 @@ import java.io.InputStream;
 @Configuration
 public class SpringBootableApplicationConfiguration {
 
-    @Bean(name = "mainView")
-    public MainView getMainView() throws IOException {
-        return loadView("MainView.fxml");
+    @Bean(name = "View")
+    public View getMainView() throws IOException {
+        return loadView("View.fxml");
     }
 
     /**
@@ -31,8 +31,8 @@ public class SpringBootableApplicationConfiguration {
      * и заставили его сделать произвести все необходимые инъекции.
      */
     @Bean
-    public MainController getMainController() throws IOException {
-        return (MainController) getMainView().getController();
+    public Controller getMainController() throws IOException {
+        return (Controller) getMainView().getController();
     }
 
     /**
@@ -40,13 +40,13 @@ public class SpringBootableApplicationConfiguration {
      * Как раз-таки на этом этапе будет создан объект-контроллер,
      * произведены все FXML инъекции и вызван метод инициализации контроллера.
      */
-    protected MainView loadView(String url) throws IOException {
+    protected View loadView(String url) throws IOException {
         InputStream fxmlStream = null;
         try {
             fxmlStream = getClass().getClassLoader().getResourceAsStream(url);
             FXMLLoader loader = new FXMLLoader();
             loader.load(fxmlStream);
-            return new MainView(loader.getRoot(), loader.getController());
+            return new View(loader.getRoot(), loader.getController());
         } finally {
             if (fxmlStream != null) {
                 fxmlStream.close();

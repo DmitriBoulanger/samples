@@ -4,7 +4,7 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import de.dbo.samples.javafx.spring2.ui.MainView;
+import de.dbo.samples.javafx.spring2.ui.View;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -21,9 +21,9 @@ public class SpringBootableApplication extends Application  {
     @Value("${ui.title:JavaFX Spring-boot Application}") 
     private String windowTitle;
 
-    @Qualifier("mainView")
+    @Qualifier("View")
     @Autowired
-    private MainView view;
+    private View view;
 
    @Override
     public final void start(Stage stage) throws Exception {

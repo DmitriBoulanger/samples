@@ -7,13 +7,13 @@ import javafx.scene.Parent;
  * а view - представление, нам предстоит использовать в 
  * точке входа {@link Application}.
  */
-public class MainView {
+public class View {
     
     private Parent view;
     
     private Object controller;
 
-    public MainView(Parent view, Object controller) {
+    public View(Parent view, Object controller) {
         this.view = view;
         this.controller = controller;
     }

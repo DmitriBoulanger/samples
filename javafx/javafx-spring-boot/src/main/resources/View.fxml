@@ -5,8 +5,8 @@
 <?import javafx.scene.layout.*?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="405.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" 
-	fx:controller="de.dbo.samples.javafx.spring2.ui.MainController">
-   <children>
+	fx:controller="de.dbo.samples.javafx.spring2.ui.Controller">
+	  <children>
       <TableView fx:id="table" editable="true"
          prefHeight="200.0" prefWidth="405.0" 
          tableMenuButtonVisible="true" 

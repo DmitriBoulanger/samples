@@ -27,8 +27,8 @@ import java.util.List;
  *
  */
 
-public class MainController {
-    private static final Logger log = LoggerFactory.getLogger(MainController.class);
+public class Controller {
+    private static final Logger log = LoggerFactory.getLogger(Controller.class);
 
     @Autowired 
     private ContactService contactService;
@@ -56,7 +56,7 @@ public class MainController {
      * описанный аннотацией @PostConstruct,
      * который вызовется спрингом, после того, как им будут произведены все инъекции.
      * 
-     * {@link MainController#init()}
+     * {@link Controller#init()}
      */
     @FXML
     public void initialize() {
