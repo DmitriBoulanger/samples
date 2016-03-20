@@ -20,9 +20,9 @@ Samples Java FX
 	</description>
 
 	<modules>
-		<module>spring0</module>
-		<module>spring1</module>
-		<module>spring2-boot-fx</module>
+		<module>javafx-spring-0</module>
+		<module>javafx-spring-1</module>
+		<module>javafx-spring-boot</module>
 	</modules>
 	
 </project>
