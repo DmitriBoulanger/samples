@@ -1,9 +1,5 @@
 package de.dbo.samples.javafx.spring2;
 
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
 import de.dbo.samples.javafx.spring2.ui.Controller;
 import de.dbo.samples.javafx.spring2.ui.View;
@@ -11,18 +7,25 @@ import de.dbo.samples.javafx.spring2.ui.View;
 import java.io.IOException;
 import java.io.InputStream;
 
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+import javafx.fxml.FXMLLoader;
+
 /**
- * Date: 27.08.15
- * Time: 11:04
+ * 
+ * @author Dmitri Boulanger, Hombach
  *
- * @author Ruslan Molchanov (ruslanys@gmail.com)
- * @author http://mruslan.com
+ * D. Knuth: Programs are meant to be read by humans and 
+ *           only incidentally for computers to execute 
+ *
  */
+
 @Configuration
 public class SpringBootableApplicationConfiguration {
 
     @Bean(name = "View")
-    public View getMainView() throws IOException {
+    public View getView() throws IOException {
         return loadView("View.fxml");
     }
 
@@ -32,19 +35,18 @@ public class SpringBootableApplicationConfiguration {
      */
     @Bean
     public Controller getMainController() throws IOException {
-        return (Controller) getMainView().getController();
+        return getView().getController();
     }
-
+    
     /**
-     * Самый обыкновенный способ использовать FXML загрузчик.
-     * Как раз-таки на этом этапе будет создан объект-контроллер,
-     * произведены все FXML инъекции и вызван метод инициализации контроллера.
+     * Standard way to load FXML views. It creates a controller
+     * performs all injections and after that calls controler initialization
      */
-    protected View loadView(String url) throws IOException {
+    private static View loadView(String url) throws IOException {
         InputStream fxmlStream = null;
         try {
-            fxmlStream = getClass().getClassLoader().getResourceAsStream(url);
-            FXMLLoader loader = new FXMLLoader();
+            fxmlStream = ClassLoader.getSystemClassLoader().getResourceAsStream(url);
+            final FXMLLoader loader = new FXMLLoader();
             loader.load(fxmlStream);
             return new View(loader.getRoot(), loader.getController());
         } finally {
@@ -53,5 +55,7 @@ public class SpringBootableApplicationConfiguration {
             }
         }
     }
+
+ 
 
 }

@@ -11,9 +11,9 @@ public class View {
     
     private Parent view;
     
-    private Object controller;
+    private Controller controller;
 
-    public View(Parent view, Object controller) {
+    public View(Parent view, Controller controller) {
         this.view = view;
         this.controller = controller;
     }
@@ -26,11 +26,11 @@ public class View {
         this.view = view;
     }
 
-    public Object getController() {
+    public Controller getController() {
         return controller;
     }
 
-    public void setController(Object controller) {
+    public void setController(Controller controller) {
         this.controller = controller;
     }
 }

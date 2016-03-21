@@ -11,7 +11,8 @@
 
 	<artifactId>javafx-spring-boot</artifactId>
 	<name>Samples Java FX Spring Boot</name>
-	<description>Как подружить Spring Boot и JavaFX</description>
+	<description>Spring Boot and Java FX</description>
+	<url>https://habrahabr.ru/post/265511/</url>
 
 <!-- 	<parent> -->
 <!-- 		<groupId>org.springframework.boot</groupId> -->
@@ -30,23 +31,82 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
+            <exclusions>
+            	<exclusion>
+                	<groupId>org.springframework.boot</groupId>
+                	<artifactId>spring-boot-starter-logging</artifactId>
+            	</exclusion>
+        	</exclusions>
         </dependency>
 
         <!-- Spring Boot JPA  -->
-        <dependency>
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
+			<exclusions>
+            	<exclusion>
+                	<groupId>org.springframework.boot</groupId>
+                	<artifactId>spring-boot-starter-logging</artifactId>
+            	</exclusion>
+        	</exclusions>
 		</dependency>
 
-        <!-- H2 БД -->
-        <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-            <scope>runtime</scope>
-        </dependency>
+        <!-- H2 Database -->
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
+        <!-- HSQL Database - doesn't work! -->		
+<!-- 		<dependency> -->
+<!-- 				<groupId>hsqldb</groupId> -->
+<!-- 				<artifactId>hsqldb</artifactId> -->
+<!-- 				<exclusions> -->
+<!-- 					<exclusion> -->
+<!-- 						<groupId>org.slf4j</groupId> -->
+<!-- 						<artifactId>slf4j-log4j12</artifactId> -->
+<!-- 					</exclusion> -->
+<!-- 				</exclusions> -->
+<!-- 		</dependency> -->
+        
+        <!-- Logging -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+		</dependency>
+
+		<!-- DBO Tools -->
+		<dependency>
+			<groupId>de.dbo.tools</groupId>
+			<artifactId>print</artifactId>
+		</dependency>
+	 
 
         <!-- Tests -->
-		
+
+		<dependency>
+			<groupId>org.testfx</groupId>
+			<artifactId>testfx-core</artifactId>
+			<version>4.0.2-alpha</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.testfx</groupId>
+			<artifactId>testfx-junit</artifactId>
+			<version>4.0.2-alpha</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+
 	</dependencies>
 
 	<build>

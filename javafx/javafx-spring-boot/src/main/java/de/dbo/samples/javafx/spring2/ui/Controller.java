@@ -1,5 +1,7 @@
 package de.dbo.samples.javafx.spring2.ui;
 
+import static de.dbo.tools.utils.print.Profiler.elapsed;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -60,29 +62,33 @@ public class Controller {
      */
     @FXML
     public void initialize() {
-	log.info("initialize done");
+	log.info("initialize void ...");
     }
 
     /**
      * All injections are done before this method is called
+     * This method performs the actual controller initialization
      */
     @SuppressWarnings("unchecked")
     @PostConstruct
     public void init() {
-        List<Contact> contacts = contactService.findAll();
+	log.info("post-constuct init .....");
+	final long start = System.currentTimeMillis();
+	
+        final List<Contact> contacts = contactService.findAll();
         data = FXCollections.observableArrayList(contacts);
 
         // Table columns
-        TableColumn<Contact, String> idColumn = new TableColumn<>("ID");
+        final TableColumn<Contact, String> idColumn = new TableColumn<>("ID");
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
 
-        TableColumn<Contact, String> nameColumn = new TableColumn<>("Имя");
+        final TableColumn<Contact, String> nameColumn = new TableColumn<>("Имя");
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
 
-        TableColumn<Contact, String> phoneColumn = new TableColumn<>("Телефон");
+        final TableColumn<Contact, String> phoneColumn = new TableColumn<>("Телефон");
         phoneColumn.setCellValueFactory(new PropertyValueFactory<>("phone"));
 
-        TableColumn<Contact, String> emailColumn = new TableColumn<>("E-mail");
+        final TableColumn<Contact, String> emailColumn = new TableColumn<>("E-mail");
         emailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
 
         table.getColumns().setAll(idColumn, nameColumn, phoneColumn, emailColumn);
@@ -90,7 +96,7 @@ public class Controller {
         // Table data
         table.setItems(data);
         
-        log.info("init done");
+        log.info("post-constuct init done. " + elapsed(start));
     }
 
     /**
