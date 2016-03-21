@@ -72,7 +72,7 @@ public class Controller {
     @SuppressWarnings("unchecked")
     @PostConstruct
     public void init() {
-	log.info("post-constuct init .....");
+	log.debug("post-constuct init .....");
 	final long start = System.currentTimeMillis();
 	
         final List<Contact> contacts = contactService.findAll();
@@ -105,7 +105,9 @@ public class Controller {
      */
     @FXML
     public void addContact() {
-        Contact contact = new Contact(txtName.getText(), txtPhone.getText(), txtEmail.getText());
+	log.info("add contact .....");
+	
+        final Contact contact = new Contact(txtName.getText(), txtPhone.getText(), txtEmail.getText());
         contactService.save(contact);
         data.add(contact);
 
@@ -113,5 +115,7 @@ public class Controller {
         txtName.setText("");
         txtPhone.setText("");
         txtEmail.setText("");
+        
+        log.info("add contact done.");
     }
 }

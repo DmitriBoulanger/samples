@@ -50,7 +50,7 @@ public class SpringBootableApplication extends Application  {
    @Override
    public final void init() throws Exception {
        final long start = System.currentTimeMillis();
-       log.info("initializing Spring-contex .....");
+       log.debug("initializing Spring-contex .....");
        context = SpringApplication.run(SpringBootableApplication.class, maindArgs);
        context.getAutowireCapableBeanFactory().autowireBean(this);
        log.info("initializing Spring-contex done. " + elapsed(start));
@@ -63,13 +63,13 @@ public class SpringBootableApplication extends Application  {
    @Override
    public final void start(Stage stage) throws Exception {
        final long start = System.currentTimeMillis();
-       log.info("starting FX UI-stream .....");
+       log.debug("starting FX UI-stream .....");
        stage.setTitle(windowTitle);
        stage.setScene(new Scene(view.getView()));
        stage.setResizable(true);
        stage.centerOnScreen();
        stage.show();
-       log.info("starting FX UI-stream done." + elapsed(start));
+       log.info("starting FX UI-stream done. " + elapsed(start));
    }
     
    /**

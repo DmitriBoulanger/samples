@@ -9,11 +9,13 @@ import de.dbo.samples.javafx.spring2.entity.Contact;
 import java.util.List;
 
 /**
- * Date: 27.08.15
- * Time: 17:21
+ * Instance is generated as proxy by the Sring
+ * 
+ * @author Dmitri Boulanger, Hombach
  *
- * @author Ruslan Molchanov (ruslanys@gmail.com)
- * @author http://mruslan.com
+ * D. Knuth: Programs are meant to be read by humans and 
+ *           only incidentally for computers to execute 
+ *
  */
 @Transactional(propagation = Propagation.MANDATORY)
 public interface ContactRepository extends CrudRepository<Contact, Long> {

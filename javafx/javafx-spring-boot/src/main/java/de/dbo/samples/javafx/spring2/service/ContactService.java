@@ -5,16 +5,17 @@ import de.dbo.samples.javafx.spring2.entity.Contact;
 import java.util.List;
 
 /**
- * Date: 27.08.15
- * Time: 17:22
+ * 
+ * @author Dmitri Boulanger, Hombach
  *
- * @author Ruslan Molchanov (ruslanys@gmail.com)
- * @author http://mruslan.com
+ * D. Knuth: Programs are meant to be read by humans and 
+ *           only incidentally for computers to execute 
+ *
  */
 public interface ContactService {
 
-    Contact save(Contact contact);
+    public Contact save(Contact contact);
 
-    List<Contact> findAll();
+    public List<Contact> findAll();
 
 }
