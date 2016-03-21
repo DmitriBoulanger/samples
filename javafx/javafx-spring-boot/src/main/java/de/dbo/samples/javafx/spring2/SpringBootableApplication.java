@@ -24,7 +24,12 @@ import org.springframework.context.annotation.PropertySource;
 public class SpringBootableApplication extends Application  {
     private static final Logger log = LoggerFactory.getLogger(SpringBootableApplication.class);
     
-    private static String[] savedArgs;
+    private static String[] maindArgs;
+    
+    public static void main(String[] args) {
+	maindArgs = args;
+        Application.launch(SpringBootableApplication.class, args);
+    }
 
     /* gets its value from application.properties */
     @Value("${ui.title:JavaFX Application}") 
@@ -46,7 +51,7 @@ public class SpringBootableApplication extends Application  {
    public final void init() throws Exception {
        final long start = System.currentTimeMillis();
        log.info("initializing Spring-contex .....");
-       context = SpringApplication.run(SpringBootableApplication.class, savedArgs);
+       context = SpringApplication.run(SpringBootableApplication.class, maindArgs);
        context.getAutowireCapableBeanFactory().autowireBean(this);
        log.info("initializing Spring-contex done. " + elapsed(start));
    }
@@ -78,11 +83,4 @@ public class SpringBootableApplication extends Application  {
         log.info("closing Spring-contex ...");
         context.close();
     }
-
-    
-    public static void main(String[] args) {
-	savedArgs = args;
-        Application.launch(SpringBootableApplication.class, args);
-    }
-
 }
