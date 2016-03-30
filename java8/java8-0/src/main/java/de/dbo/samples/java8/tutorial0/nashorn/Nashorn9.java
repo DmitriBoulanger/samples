@@ -9,6 +9,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * @author Benjamin Winterberg
  */
+@SuppressWarnings("restriction")
 public class Nashorn9 {
 
     public static void main(String[] args) throws ScriptException, NoSuchMethodException {

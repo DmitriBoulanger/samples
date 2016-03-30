@@ -11,6 +11,7 @@ import javax.script.ScriptEngineManager;
  *
  * @author Benjamin Winterberg
  */
+@SuppressWarnings("restriction")
 public class Nashorn6 {
 
     public static void main(String[] args) throws Exception {

@@ -12,6 +12,7 @@ import java.util.Arrays;
  *
  * @author Benjamin Winterberg
  */
+@SuppressWarnings("restriction")
 public class Nashorn2 {
 
     public static String fun(String name) {

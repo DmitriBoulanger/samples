@@ -10,6 +10,7 @@ import javax.script.ScriptException;
 /**
  * @author Benjamin Winterberg
  */
+@SuppressWarnings({ "restriction"})
 public class Nashorn8 {
     public static void main(String[] args) throws ScriptException, NoSuchMethodException {
         NashornScriptEngine engine = (NashornScriptEngine) new ScriptEngineManager().getEngineByName("nashorn");

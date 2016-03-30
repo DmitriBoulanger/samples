@@ -12,6 +12,7 @@ import javax.script.SimpleScriptContext;
 /**
  * @author Benjamin Winterberg
  */
+@SuppressWarnings("restriction")
 public class Nashorn11 {
 
     public static void main(String[] args) throws Exception {
