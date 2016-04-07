@@ -13,9 +13,9 @@ import org.mockito.Matchers;
 import org.mockito.Mockito;
 
 /**
- * The Class JUnitServiceTestExample.
+ * The Class ServiceTestServiceMockJUnit.
  */
-public class JUnitServiceTestExample {
+public class ServiceTestServiceMockJUnit {
 
 	/**
 	 * Test1.

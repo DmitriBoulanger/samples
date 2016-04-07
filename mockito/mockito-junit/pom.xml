@@ -10,6 +10,8 @@
 	</parent>
 	
 	<artifactId>mockito-junit</artifactId>
+	<name>Samples Mockito - JUnit 0</name>
+	<url>https://examples.javacodegeeks.com/core-java/mockito/junit-mockito-example/</url>
 	
 	<dependencies>
 		<dependency>
