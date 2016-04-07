@@ -13,9 +13,9 @@ import org.mockito.Matchers;
 import org.mockito.Mockito;
 
 /**
- * The Class ServiceTestServiceMockJUnit.
+ * The Class TestServiceMockJUnit.
  */
-public class ServiceTestServiceMockJUnit {
+public class TestServiceMockJUnit {
 
     /**
      * Test 1.
@@ -73,14 +73,13 @@ public class ServiceTestServiceMockJUnit {
      * Test 5. Configuring service-mock and testing/verifying it
      */
     @Test
-    @SuppressWarnings({ "rawtypes", "unchecked" })
     public void test5_VerifyMockedService() {
 
 	// -------------------------------------------------------------------
 	// Creation and configuration of the service-mock
+	// -------------------------------------------------------------------
 	final TestService test = Mockito.mock(TestService.class);
 	when(test.getUniqueId()).thenReturn(43);
-	// -------------------------------------------------------------------
 
 	// -------------------------------------------------------------------
 	// Test-sequence of method calls in the mocked-service, 
@@ -89,15 +88,15 @@ public class ServiceTestServiceMockJUnit {
 	test.testing(12);
 	test.getUniqueId();
 	test.getUniqueId();
-	test.someMethod("Hello World");
-	test.someMethod("called at least once");
-	test.someMethod("called at least twice");
-	test.someMethod("called five times");
-	test.someMethod("called at most 3 times");
+	test.voidMethod("Hello World");
+	test.voidMethod("called at least once");
+	test.voidMethod("called at least twice");
+	test.voidMethod("called five times");
+	test.voidMethod("called at most 3 times");
 	
-	//
+	// -------------------------------------------------------------------
 	// Verification
-	//
+	// -------------------------------------------------------------------
 
 	// check if testing-method was called with the parameter 12
 	verify(test).testing(Matchers.eq(12));
@@ -107,13 +106,13 @@ public class ServiceTestServiceMockJUnit {
 
 	// other alternatives for verifying 
 	// the number of method calls for a method
-	verify(test, never()).someMethod("never called");
-	verify(test, atLeastOnce()).someMethod("called at least once");
+	verify(test, never()).voidMethod("never called");
+	verify(test, atLeastOnce()).voidMethod("called at least once");
 
-	// fails because we didn't met the conditions.
-	verify(test, atLeast(2)).someMethod("called at least twice");
-	verify(test, times(5)).someMethod("called five times");
-	verify(test, atMost(3)).someMethod("called at most 3 times");
+	// fails because we didn't met the conditions
+	verify(test, atLeast(2)).voidMethod("called at least twice");
+	verify(test, times(5)).voidMethod("called five times");
+	verify(test, atMost(3)).voidMethod("called at most 3 times");
     }
 
 }
