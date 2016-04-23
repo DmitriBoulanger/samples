@@ -38,8 +38,9 @@ public class TestServiceMockJUnit {
     }
 
     /**
-     * Test 2. More than one return value. Demonstrates the return of multiple
-     * values
+     * Test 2. 
+     * More than one return value. 
+     * Demonstrates the return of multiple values
      */
     @SuppressWarnings("rawtypes")
     @Test
@@ -51,7 +52,8 @@ public class TestServiceMockJUnit {
     }
 
     /**
-     * Test 3. Return value dependent on method parameter.
+     * Test 3. 
+     * Return value dependent on method parameter.
      */
     @SuppressWarnings({ "rawtypes", "unchecked" })
     @Test
@@ -64,7 +66,8 @@ public class TestServiceMockJUnit {
     }
 
     /**
-     * Test 4. Return value in dependent on method parameter.
+     * Test 4. 
+     * Return value in dependent on method parameter.
      */
     @SuppressWarnings({ "rawtypes", "unchecked" })
     @Test
@@ -75,7 +78,8 @@ public class TestServiceMockJUnit {
     }
 
     /**
-     * Test 5. Configuring service-mock and testing/verifying it
+     * Test 5. 
+     * Configuring service-mock and testing/verifying it
      */
     @Test
     public void test5_VerifyMockedService() {
@@ -83,41 +87,41 @@ public class TestServiceMockJUnit {
         // -------------------------------------------------------------------
         // Creation and configuration of the service-mock
         // -------------------------------------------------------------------
-        final TestService test = Mockito.mock(TestService.class);
-        when(test.getUniqueId()).thenReturn(43);
+        final TestService testServuceMock = Mockito.mock(TestService.class);
+        when(testServuceMock.getUniqueId()).thenReturn(43);
 
         // -------------------------------------------------------------------
         // Test-sequence of method calls in the mocked-service,
         // e.g. testing-method called on the mock with parameter 12
         // -------------------------------------------------------------------
-        test.testing(12);
-        test.getUniqueId();
-        test.getUniqueId();
-        test.voidMethod("Hello World");
-        test.voidMethod("called at least once");
-        test.voidMethod("called at least twice");
-        test.voidMethod("called five times");
-        test.voidMethod("called at most 3 times");
+        testServuceMock.testing(12);
+        testServuceMock.getUniqueId();
+        testServuceMock.getUniqueId();
+        testServuceMock.voidMethod("Hello World");
+        testServuceMock.voidMethod("called at least once");
+        testServuceMock.voidMethod("called at least twice");
+        testServuceMock.voidMethod("called five times");
+        testServuceMock.voidMethod("called at most 3 times");
 
         // -------------------------------------------------------------------
         // Verification
         // -------------------------------------------------------------------
 
         // check if testing-method was called with the parameter 12
-        verify(test).testing(Matchers.eq(12));
+        verify(testServuceMock).testing(Matchers.eq(12));
 
         // was the getUniqueId-method called twice?
-        verify(test, times(2)).getUniqueId();
+        verify(testServuceMock, times(2)).getUniqueId();
 
         // other alternatives for verifying
         // the number of method calls for a method
-        verify(test, never()).voidMethod("never called");
-        verify(test, atLeastOnce()).voidMethod("called at least once");
+        verify(testServuceMock, never()).voidMethod("never called");
+        verify(testServuceMock, atLeastOnce()).voidMethod("called at least once");
 
         // fails because we didn't met the conditions
-        verify(test, atLeast(2)).voidMethod("called at least twice");
-        verify(test, times(5)).voidMethod("called five times");
-        verify(test, atMost(3)).voidMethod("called at most 3 times");
+        verify(testServuceMock, atLeast(2)).voidMethod("called at least twice");
+        verify(testServuceMock, times(5)).voidMethod("called five times");
+        verify(testServuceMock, atMost(3)).voidMethod("called at most 3 times");
     }
 
 }
