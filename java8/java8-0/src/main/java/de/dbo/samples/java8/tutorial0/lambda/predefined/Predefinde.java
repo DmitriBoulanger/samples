@@ -4,9 +4,14 @@ import java.util.HashMap;
 import java.util.function.BiConsumer;
 
 /**
- * Created by grijesh
+ * 
+ * @author Dmitri Boulanger, Hombach
+ *
+ * D. Knuth: Programs are meant to be read by humans and 
+ *           only incidentally for computers to execute 
+ *
  */
-public class Lambda5 {
+public class Predefinde {
 
     //Pre-Defined Functional Interfaces
     public static void main(String... args) {

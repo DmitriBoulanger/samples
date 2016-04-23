@@ -1,4 +1,4 @@
-package de.dbo.samples.java8.tutorial0.lambda.function;
+package de.dbo.samples.java8.tutorial0.lambda.formula;
 
 
 /**

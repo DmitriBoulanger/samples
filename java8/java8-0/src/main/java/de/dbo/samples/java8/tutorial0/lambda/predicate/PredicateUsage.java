@@ -54,8 +54,6 @@ public class PredicateUsage {
         Consumer<Person> greeter = (p) -> System.out.println("Hello, " + p.firstName);
         greeter.accept(new Person("Luke", "Skywalker"));
 
-
-
         // Comparators
 
         Comparator<Person> comparator = (p1, p2) -> p1.firstName.compareTo(p2.firstName);
@@ -67,16 +65,17 @@ public class PredicateUsage {
         comparator.reversed().compare(p1, p2);  // < 0
 
 
-        // Runnables
-
-        Runnable runnable = () -> System.out.println(UUID.randomUUID());
-        runnable.run();
-
-
         // Callables
 
         Callable<UUID> callable = UUID::randomUUID;
         callable.call();
+        
+        
+        // Runnables
+
+        Runnable runnable = () -> System.out.println(UUID.randomUUID());
+        runnable.run();
+       
     }
 
 }
