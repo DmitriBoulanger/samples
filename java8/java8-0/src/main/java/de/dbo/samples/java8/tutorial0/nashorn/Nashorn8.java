@@ -2,7 +2,7 @@ package de.dbo.samples.java8.tutorial0.nashorn;
 
 import jdk.nashorn.api.scripting.NashornScriptEngine;
 
-import de.dbo.samples.java8.tutorial0.lambda.Person;
+
 
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;

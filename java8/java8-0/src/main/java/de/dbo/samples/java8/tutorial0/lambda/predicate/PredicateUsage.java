@@ -1,4 +1,4 @@
-package de.dbo.samples.java8.tutorial0.lambda;
+package de.dbo.samples.java8.tutorial0.lambda.predicate;
 
 import java.util.Comparator;
 import java.util.Objects;
@@ -10,16 +10,14 @@ import java.util.function.Predicate;
 import java.util.function.Supplier;
 
 /**
- * Common standard functions from the Java API.
+ * 
+ * @author Dmitri Boulanger, Hombach
  *
- * @author Benjamin Winterberg
+ * D. Knuth: Programs are meant to be read by humans and 
+ *           only incidentally for computers to execute 
+ *
  */
-public class Lambda3 {
-
-    @FunctionalInterface
-    interface Fun {
-        void foo();
-    }
+public class PredicateUsage {
 
     public static void main(String[] args) throws Exception {
 

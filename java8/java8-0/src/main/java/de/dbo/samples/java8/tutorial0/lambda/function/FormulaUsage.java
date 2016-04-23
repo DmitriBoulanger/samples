@@ -1,4 +1,4 @@
-package de.dbo.samples.java8.tutorial0.function;
+package de.dbo.samples.java8.tutorial0.lambda.function;
 
 /**
  * 
@@ -11,11 +11,13 @@ package de.dbo.samples.java8.tutorial0.function;
 public class FormulaUsage {
 
     public static void main(String[] args) {
+	
 	final Formula formula = new Formula() {
 	    @Override
 	    public final double calculate(int a) {
 		return sqrt(a * 100);
 	    }
+	    
 //	    @Override
 //	    public final int positive(int a) {
 //		return 25;

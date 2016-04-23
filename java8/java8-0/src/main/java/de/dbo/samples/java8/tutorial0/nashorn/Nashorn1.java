@@ -4,7 +4,6 @@ import javax.script.Invocable;
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 
-import de.dbo.samples.java8.tutorial0.lambda.Person;
 
 import java.io.FileReader;
 import java.time.LocalDateTime;

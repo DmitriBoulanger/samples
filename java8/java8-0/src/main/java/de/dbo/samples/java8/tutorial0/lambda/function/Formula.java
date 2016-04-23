@@ -1,4 +1,4 @@
-package de.dbo.samples.java8.tutorial0.function;
+package de.dbo.samples.java8.tutorial0.lambda.function;
 
 /**
  * 
@@ -22,4 +22,9 @@ public interface Formula {
     public default int positive(int a) {
 	return a > 0 ? a : 0;
     }
+    
+//    static int positiveStaic(int a) {
+//        return a > 0 ? a : 0;
+//    }
+    
 }

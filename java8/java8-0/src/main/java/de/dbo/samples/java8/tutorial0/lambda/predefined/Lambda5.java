@@ -1,4 +1,4 @@
-package de.dbo.samples.java8.tutorial0.lambda;
+package de.dbo.samples.java8.tutorial0.lambda.predefined;
 
 import java.util.HashMap;
 import java.util.function.BiConsumer;
@@ -12,8 +12,7 @@ public class Lambda5 {
     public static void main(String... args) {
 
         //BiConsumer Example
-        BiConsumer<String,Integer> printKeyAndValue
-                = (key,value) -> System.out.println(key+"-"+value);
+        BiConsumer<String,Integer> printKeyAndValue = (key,value) -> System.out.println(key+"-"+value);
 
         printKeyAndValue.accept("One",1);
         printKeyAndValue.accept("Two",2);
