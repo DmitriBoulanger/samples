@@ -23,7 +23,11 @@ and defines plug-in management.
 		<module>basic</module>
 		<module>bdd</module>
 		<module>email</module>
+		<module>testfx</module>
 		<!-- <module>ee</module> -->
+		<module>java8</module>
+		<module>mockito</module>
+		<module>spring-boot</module>
 	</modules>
 
 	<dependencies>

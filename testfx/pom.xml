@@ -20,7 +20,7 @@ Version management for TEST FX projects
 	</description>
 
 	<properties>
-		<org.testfx.version>4.0.1-alpha</org.testfx.version>
+		<org.testfx.version>4.0.4-alpha</org.testfx.version>
 	</properties>
 
 	<dependencyManagement>
