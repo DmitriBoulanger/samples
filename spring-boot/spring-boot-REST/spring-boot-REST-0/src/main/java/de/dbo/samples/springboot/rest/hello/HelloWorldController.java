@@ -24,7 +24,9 @@ public class HelloWorldController {
 
     @RequestMapping(method=RequestMethod.GET)
     public @ResponseBody Greeting sayHello(@RequestParam(value="name", required=false, defaultValue="Stranger") String name) {
-        return new Greeting(counter.incrementAndGet(), String.format(TEMPLATE, name));
+	final long requestId = counter.incrementAndGet();
+	log.info("processing request ID=" + requestId + " ...");
+        return new Greeting(requestId, String.format(TEMPLATE, name));
     }
 
 }

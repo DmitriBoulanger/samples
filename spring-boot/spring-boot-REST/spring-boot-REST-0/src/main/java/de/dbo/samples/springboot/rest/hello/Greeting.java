@@ -1,6 +1,7 @@
 package de.dbo.samples.springboot.rest.hello;
 
-import org.slf4j.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Greeting {
     private static final Logger log = LoggerFactory.getLogger(Greeting.class);
@@ -11,7 +12,7 @@ public class Greeting {
     public Greeting(long id, String content) {
         this.id = id;
         this.content = content;
-        log.info("created");
+        log.info("created. ID=" + id);
     }
 
     public long getId() {
