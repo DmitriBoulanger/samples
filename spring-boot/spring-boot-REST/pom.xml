@@ -14,6 +14,13 @@
 	<version>0.0.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	
+	<name>Samples Spring-Boot REST</name>
+	<description>
+Reactor for Spring-boot REST-samples.
+This reactor corrects standard spring-boot dependencies to disable standard spring-boot logging.
+Instead the SLF4J with Log4J version 1.2 is used 
+	</description>
+	
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -71,4 +78,8 @@
 		</plugins>
 	</build>
 
+	<modules>
+		<module>spring-boot-REST-0</module>
+	</modules>
+	
 </project>

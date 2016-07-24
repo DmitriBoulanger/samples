@@ -12,6 +12,11 @@
 	<groupId>org.springframework</groupId>
 	<artifactId>spring-boot-REST-0</artifactId>
 	<url>https://spring.io/guides/gs/actuator-service/</url>
+	
+		<name>Samples Spring-Boot REST - 0</name>
+	<description>
+Basic REST-sample
+	</description>
 
 
   

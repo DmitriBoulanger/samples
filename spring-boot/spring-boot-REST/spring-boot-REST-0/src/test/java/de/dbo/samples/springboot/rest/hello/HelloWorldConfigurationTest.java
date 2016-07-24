@@ -1,9 +1,10 @@
 package de.dbo.samples.springboot.rest.hello;
 
-import java.net.MalformedURLException;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
+
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.net.URL;
 import java.util.Map;
 
 import org.junit.Test;
@@ -20,11 +21,6 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.web.client.RestTemplate;
-
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.MatcherAssert.assertThat;
-
-import de.dbo.samples.springboot.rest.hello.HelloWorldConfiguration;
 
 /**
  * Basic integration tests for service demo application.
