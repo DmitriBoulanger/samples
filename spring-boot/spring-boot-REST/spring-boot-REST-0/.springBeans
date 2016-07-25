@@ -7,7 +7,7 @@
 	</configSuffixes>
 	<enableImports><![CDATA[false]]></enableImports>
 	<configs>
-		<config>java:de.dbo.samples.springboot.rest.hello.HelloWorldConfiguration</config>
+		<config>java:de.dbo.samples.springboot.rest.hello.Configuration</config>
 	</configs>
 	<autoconfigs>
 	</autoconfigs>

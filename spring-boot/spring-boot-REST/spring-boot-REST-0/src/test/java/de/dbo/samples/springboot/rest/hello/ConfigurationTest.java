@@ -33,12 +33,12 @@ import org.springframework.web.client.RestTemplate;
  */
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = HelloWorldConfiguration.class)
+@SpringApplicationConfiguration(classes = Configuration.class)
 @WebAppConfiguration
 @IntegrationTest({ "server.port=0", "management.port=0" })
 @DirtiesContext
-public class HelloWorldConfigurationTest {
-    private static final Logger log = LoggerFactory.getLogger(HelloWorldConfigurationTest.class);
+public class ConfigurationTest {
+    private static final Logger log = LoggerFactory.getLogger(ConfigurationTest.class);
 
     @Value("${local.server.port}")
     private int port;
