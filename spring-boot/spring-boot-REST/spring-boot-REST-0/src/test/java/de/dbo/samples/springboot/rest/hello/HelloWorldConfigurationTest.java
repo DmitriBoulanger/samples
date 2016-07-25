@@ -24,11 +24,11 @@ import org.springframework.web.client.RestTemplate;
 
 /**
  * Basic integration tests for service demo application.
- * 
+ *
  * @author Dmitri Boulanger, Hombach
  *
- * D. Knuth: Programs are meant to be read by humans and 
- *           only incidentally for computers to execute 
+ * D. Knuth: Programs are meant to be read by humans and
+ *           only incidentally for computers to execute
  *
  */
 
@@ -45,54 +45,55 @@ public class HelloWorldConfigurationTest {
 
     @Value("${local.management.port}")
     private int mgt;
-    
+
     @Value("${management.address}")
     private String localhost;
 
     @Test
     public void testGreeting() throws Exception {
-	final RestTemplate restTemplate =  new TestRestTemplate();
-	final URI uri = toURI(HELLO);
-	log.info("request " + uri + " ...");
-	@SuppressWarnings("rawtypes")
-	final ResponseEntity<Map> entity = restTemplate.getForEntity(uri, Map.class);		
-	assertThatHttpStatus(HttpStatus.OK, entity); 
+        final RestTemplate restTemplate = new TestRestTemplate();
+        final URI uri = toURI(HELLO);
+        log.info("request " + uri + " ...");
+        @SuppressWarnings("rawtypes")
+        final ResponseEntity<Map> entity = restTemplate.getForEntity(uri, Map.class);
+        assertThatHttpStatus(HttpStatus.OK, entity);
     }
 
     @Test
     public void testInfo() throws Exception {
-	final RestTemplate restTemplate =  new TestRestTemplate();
-	final URI uri = toURI(INFO);
-	log.info("request " + uri + " ...");
-	@SuppressWarnings("rawtypes")
-	final ResponseEntity<Map> entity = restTemplate.getForEntity(uri, Map.class);
-	assertThatHttpStatus(HttpStatus.OK, entity); 
+        final RestTemplate restTemplate = new TestRestTemplate();
+        final URI uri = toURI(INFO);
+        log.info("request " + uri + " ...");
+        @SuppressWarnings("rawtypes")
+        final ResponseEntity<Map> entity = restTemplate.getForEntity(uri, Map.class);
+        assertThatHttpStatus(HttpStatus.OK, entity);
     }
-    
+
     // ========================
     // Test implementations
     // ========================
-    
+
     private static final String HELLO = "hello-world";
     private static final String INFO  = "info";
-    
-    private final URI toURI(final String path) {
-	try {
-	    switch(path) {
-	    
-	    case HELLO:
-		return new URI("http://" + "localhost" +":" + this.port + "/" + path);
-		
-	    case INFO:
-		return new URI("http://localhost:" + this.mgt + "/" + path);
-		
-	    default:
-		throw new IllegalArgumentException("Path [" + path + "] is unknown");
-	    }
 
-	} catch (URISyntaxException e) {
-	    throw new IllegalStateException("Should never happen error: non-parsable hard-coded URI");
-	}
+    private final URI toURI(final String path) {
+        try {
+            switch (path) {
+
+                case HELLO:
+                    return new URI("http://" + "localhost" + ":" + this.port + "/" + path);
+
+                case INFO:
+                    return new URI("http://localhost:" + this.mgt + "/" + path);
+
+                default:
+                    throw new IllegalArgumentException("Path [" + path + "] is unknown");
+            }
+
+        }
+        catch(URISyntaxException e) {
+            throw new IllegalStateException("Should never happen error: non-parsable hard-coded URI");
+        }
 
     }
 
@@ -102,8 +103,8 @@ public class HelloWorldConfigurationTest {
 
     @SuppressWarnings("rawtypes")
     private static final void assertThatHttpStatus(final HttpStatus expectedHttpStatus, final ResponseEntity<Map> entity) {
-	final HttpStatus responseHttpStatus =  entity.getStatusCode();
-	assertThat("HTTP response code is not as expected", expectedHttpStatus, equalTo(responseHttpStatus));
+        final HttpStatus responseHttpStatus = entity.getStatusCode();
+        assertThat("HTTP response code is not as expected", expectedHttpStatus, equalTo(responseHttpStatus));
     }
 
 }
