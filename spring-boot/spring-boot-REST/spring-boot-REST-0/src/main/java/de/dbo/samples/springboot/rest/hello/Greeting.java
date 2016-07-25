@@ -6,8 +6,8 @@ import org.slf4j.LoggerFactory;
 public class Greeting {
     private static final Logger log = LoggerFactory.getLogger(Greeting.class);
 
-    private final long id;
-    private final String content;
+    private final long          id;
+    private final String        content;
 
     public Greeting(long id, String content) {
         this.id = id;
