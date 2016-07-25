@@ -10,12 +10,11 @@ public class HelloWorldConfiguration {
     private static final Logger log = LoggerFactory.getLogger(HelloWorldConfiguration.class);
 
     public HelloWorldConfiguration() {
-	log.info("created");
+        log.info("created");
     }
 
-
     public static void main(String[] args) {
-	SpringApplication.run(HelloWorldConfiguration.class, args);
+        SpringApplication.run(HelloWorldConfiguration.class, args);
     }
 
 }

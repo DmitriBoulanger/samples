@@ -14,18 +14,18 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/hello-world")
 public class HelloWorldController {
     private static final Logger log = LoggerFactory.getLogger(HelloWorldController.class);
-    
+
     public HelloWorldController() {
-	 log.info("created");
+        log.info("created");
     }
 
     private static final String TEMPLATE = "Hello, %s!";
-    private final AtomicLong counter = new AtomicLong();
+    private final AtomicLong    counter  = new AtomicLong();
 
-    @RequestMapping(method=RequestMethod.GET)
-    public @ResponseBody Greeting sayHello(@RequestParam(value="name", required=false, defaultValue="Stranger") String name) {
-	final long requestId = counter.incrementAndGet();
-	log.info("processing request ID=" + requestId + " ...");
+    @RequestMapping(method = RequestMethod.GET)
+    public @ResponseBody Greeting sayHello(@RequestParam(value = "name", required = false, defaultValue = "Stranger") String name) {
+        final long requestId = counter.incrementAndGet();
+        log.info("processing request ID=" + requestId + " ...");
         return new Greeting(requestId, String.format(TEMPLATE, name));
     }
 
